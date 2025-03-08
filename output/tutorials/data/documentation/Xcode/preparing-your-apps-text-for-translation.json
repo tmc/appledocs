@@ -1,0 +1,1267 @@
+{
+  "abstract": [
+    {
+      "text": "Make your app’s text translatable by leveraging the localization APIs in the Foundation framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-apps-text-for-translation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing your app’s text for translation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the system can translate your app’s text, you need to prepare your app’s strings for translation by creating localizable versions of these strings using the ",
+              "type": "text"
+            },
+            {
+              "code": "String(localized:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "AttributedString(localized:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " APIs found in the Foundation framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Localizable strings are user-facing strings you present to people at runtime. These strings signal to the system that they should be considered for translation, and thus added to your string catalog file. You then export those strings from your string catalog and send them to a localizer for translation or you edit the string catalog yourself and enter the translations directly there.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-your-string-literals-localizable",
+          "level": 3,
+          "text": "Make your string literals localizable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "String literals — strings created only with double quotes — aren’t localizable by themselves.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// An example of a nonlocalizable string literal.",
+            "let name = \"Lightbulbs\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There’s no way for the system to know whether the string literal is a user-facing string in need of translation or simply a print statement there for debugging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make a string localizable, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String/init(localized:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Localizable string with the same key and value.",
+            "String(localized: \"Lightbulbs\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This initializer takes the string literal passed in as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and assigns it to a key equal to the value of the string literal itself. Your string catalog uses this key to look up translations based on the language and locale of the user’s device, and then returns the translated value associated with that key. With this initializer, the key and underlying string value are the same. This means you can use the text of your development language as the keys for your translations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create localizable strings with different keys and values, use the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String/init(localized:defaultValue:options:table:bundle:locale:comment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer. This initializer assigns the first string literal as the string’s key and makes the second parameter the default string value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Localizable string with a different key and value.",
+            "String(localized: \"LIGHTING_KEY\", defaultValue: \"Lightbulbs\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If someone else translates your strings, consider adding helpful comments to your string initializers to provide additional context about how and when the string displays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Localizable string with a comment providing additional context.",
+            "String(localized: \"Lightbulbs\", comment: \"Label: The icon name displayed on the control screen\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the number of translations in your string catalog grows too large, consider breaking the default catalog up into several smaller catalogs. Then specify which catalog a translation comes from using the ",
+              "type": "text"
+            },
+            {
+              "code": "table",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String/init(localized:defaultValue:options:table:bundle:locale:comment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Localizable string referenced from the Greetings.xcstrings string catalog file.",
+            "String(localized: \"Welcome\", table: \"Greetings\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "String(localized:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "AttributedString(localized:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializers to initialize UIKit and AppKit controls as well as general Swift structures containing variables of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Accessory {",
+            "     // Nonlocalizable string literal.",
+            "     let name: String",
+            "}",
+            "// Made localizable using the String(localized:) initializer.",
+            "Accessory(name: String(localized: \"Welcome\"))",
+            "",
+            "// Localizable string passed into a UIKit control.",
+            "let label = UILabel()",
+            "label.text = String(localized: \"Welcome\")",
+            "",
+            "// Localizable string passed into a AppKit UI control.",
+            "let textField = NSTextField()",
+            "textField.stringValue = String(localized: \"Welcome\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Localize-text-automatically-in-SwiftUI",
+          "level": 3,
+          "text": "Localize text automatically in SwiftUI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI views that accept string literals of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/LocalizedStringKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are automatically considered localizable. For example, the following strings are all automatically considered localizable in SwiftUI:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Text made localizable with LocalizedStringKey.",
+            "",
+            "Label(\"Thanks for shopping with us!\", systemImage: \"bag\")",
+            "    .font(.title)",
+            "HStack {",
+            "    Button(\"Clear Cart\") {}",
+            "    Button(\"Checkout\") {}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help translators better understand the context for a localized string, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view and provide a comment with additional details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Provide additional localizable data with a `TextView`.",
+            "",
+            "Stepper {",
+            "    Text(\"Increase or decrease the item quantity\", comment: \"Lets the shopper increase or decrease the quantity for an item in their shopping cart\")",
+            "} onIncrement: {",
+            "    // ...",
+            "} onDecrement: {",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Pass-localizable-strings-with-a-localizable-type",
+          "level": 3,
+          "text": "Pass localizable strings with a localizable type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When defining or passing localizable text in your views, use the recommended type for passing strings in Swift ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Localizable strings in SwiftUI.",
+            "",
+            "struct CardView: View {",
+            "    let title: LocalizedStringResource",
+            "    let subtitle: LocalizedStringResource",
+            "    ",
+            "    var body: some View {",
+            "        ZStack {",
+            "            Rectangle()",
+            "            VStack {",
+            "                Text(title)",
+            "                Text(subtitle)",
+            "            }",
+            "            .padding()",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "CardView(title: \"Recent Purchases\", subtitle: \"Items you've ordered in the past week\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This type not only supports initialization using string literals, it also supports adding a comment, table name, or default value that’s different from the string key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "LocalizedStringResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also works for strings defined in general Swift code. For example, here’s a structure that defines a title of type ",
+              "type": "text"
+            },
+            {
+              "code": "LocalizedStringResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is then instantiated using a string literal and an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "LocalizedStringResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", both localizable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct UserAction {",
+            "   let title: LocalizedStringResource",
+            "}",
+            "",
+            "// Localizable text created with a string literal.",
+            "let action = UserAction(title: \"Order items\")",
+            "",
+            "// Localizable text created with a `LocalizedStringResource`.",
+            "let actionWithComment = UserAction(title: LocalizedStringResource(\"Order items\", comment: \"Action title displayed in button\"))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-and-load-localizable-strings-from-within-your-framework",
+          "level": 3,
+          "text": "Define and load localizable strings from within your framework",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you define the strings that you want to localize in another module, framework, or Swift Package, use the ",
+              "type": "text"
+            },
+            {
+              "code": "bundle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument in their definition. For example, say you want to modularize your project and you create a framework called ",
+              "type": "text"
+            },
+            {
+              "code": "BirdFinderUtilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To look up a localizable string from within that framework:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identify the name of a class within the framework (in this case, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "BirdSongs",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pass that class into an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417717-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " initializer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use that ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Bundle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to look up the localizable string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// Localizable string within a framework.",
+            "String(localized: \"Songs\", bundle: Bundle(for: (BirdSongs.self)))",
+            "",
+            "// Localizable string within a framework in SwiftUI.",
+            "Text(\"Songs\", bundle: Bundle(for: (BirdSongs.self)))",
+            "",
+            "// Localizable string within a framework for a `LocalizedStringResource`.",
+            "LocalizedStringResource(\"Songs\", bundle: .forClass(BirdSongs.self), comment: \"Headline above the name of the song currently playing.\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Avoid looking up strings from bundles you don’t own. Doing so may prevent automatic string extraction from properly working in the string catalog.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localization": {
+      "abstract": [
+        {
+          "text": "Expand the market for your app by supporting multiple languages and regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Localization",
+      "type": "topic",
+      "url": "/documentation/xcode/localization"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/preparing-dates-numbers-with-formatters": {
+      "abstract": [
+        {
+          "text": "Ensure that dates, currencies, and numbers display correctly across multiple languages and locales by using formatters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-dates-numbers-with-formatters",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing dates, currencies, and numbers for translation",
+      "type": "topic",
+      "url": "/documentation/xcode/preparing-dates-numbers-with-formatters"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/preparing-your-interface-for-localization": {
+      "abstract": [
+        {
+          "text": "Find text in your app that needs translation and verify that your interface adapts",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to translated text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-interface-for-localization",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your interface for localization",
+      "type": "topic",
+      "url": "/documentation/xcode/preparing-your-interface-for-localization"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String/init(localized:)": {
+      "abstract": [
+        {
+          "text": "Creates a localized string from a localized string resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "localized"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "resource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String/init(localized:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(localized:)",
+      "type": "topic",
+      "url": "/documentation/Swift/String/init(localized:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String/init(localized:defaultValue:options:table:bundle:locale:comment:)": {
+      "abstract": [
+        {
+          "text": "Creates a localized string from an arbitrary static string key, applying the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "localized"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "defaultValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS10FoundationE17LocalizationValueV",
+          "text": "LocalizationValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS10FoundationE19LocalizationOptionsV",
+          "text": "LocalizationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "table"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": " = .current, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "comment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String/init(localized:defaultValue:options:table:bundle:locale:comment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(localized:defaultValue:options:table:bundle:locale:comment:)",
+      "type": "topic",
+      "url": "/documentation/Swift/String/init(localized:defaultValue:options:table:bundle:locale:comment:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/LocalizedStringKey": {
+      "abstract": [
+        {
+          "text": "The key used to look up an entry in a strings file or strings dictionary file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/LocalizedStringKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedStringKey",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/LocalizedStringKey"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)": {
+      "abstract": [
+        {
+          "text": "Creates a text view that displays localized content identified by a key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18LocalizedStringKeyV",
+          "text": "LocalizedStringKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tableName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "comment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:tableName:bundle:comment:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1417717-init": {
+      "abstract": [
+        {
+          "text": "Returns the `NSBundle` object with which the specified class is associated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyClass)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417717-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1417717-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource": {
+      "abstract": [
+        {
+          "text": "A reference to a localizable string, accessible from another process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedStringResource",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Strings-and-text",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/preparing-your-interface-for-localization",
+        "doc://com.apple.Xcode/documentation/Xcode/preparing-dates-numbers-with-formatters"
+      ],
+      "title": "Strings and text"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle~11417717-init/title",
+          "value": "bundleForClass:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle/title",
+          "value": "NSBundle"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

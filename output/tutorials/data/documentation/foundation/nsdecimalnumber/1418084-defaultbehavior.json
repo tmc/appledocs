@@ -1,0 +1,400 @@
+{
+  "abstract": [
+    {
+      "text": "The way arithmetic methods round off and handle error conditions.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/decimal",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber/1418084-defaultbehavior"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1418084,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDecimalNumber(cpy)defaultBehavior",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class var "
+      },
+      {
+        "kind": "identifier",
+        "text": "defaultBehavior"
+      },
+      {
+        "kind": "text",
+        "text": ": any NSDecimalNumberBehaviors"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSDecimalNumber"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "cldata",
+    "title": "defaultBehavior"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "defaultBehavior"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSDecimalNumberBehaviors",
+              "text": "NSDecimalNumberBehaviors"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the arithmetic methods use the ",
+              "type": "text"
+            },
+            {
+              "code": "NSRoundPlain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " behavior; that is, the methods round to the closest possible return value. The methods assume your need for precision does not exceed 38 significant digits and raise exceptions when they try to divide by 0 or produce a number too big or too small to be represented.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this default behavior doesn’t suit your application, you should use methods that let you specify the behavior, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber/1407456-adding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you find yourself using a particular behavior consistently, you can specify a different default behavior with ",
+              "type": "text"
+            },
+            {
+              "code": "setDefaultBehavior(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default behavior is maintained separately for each thread in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber/1407456-adding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber/1407456-adding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "adding(_:withBehavior:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumber/1407456-adding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber/1418084-defaultbehavior": {
+      "abstract": [
+        {
+          "text": "The way arithmetic methods round off and handle error conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": any NSDecimalNumberBehaviors"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber/1418084-defaultbehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultBehavior",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumber/1418084-defaultbehavior"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors": {
+      "abstract": [
+        {
+          "text": "A protocol that declares three methods that control the discretionary aspects of working with decimal numbers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDecimalNumberBehaviors"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalNumberBehaviors",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumberbehaviors"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberhandler": {
+      "abstract": [
+        {
+          "text": "A class that adopts the decimal number behaviors protocol. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDecimalNumberHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalNumberHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumberhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberbehaviors",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberhandler"
+      ],
+      "title": "Managing Behavior"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdecimalnumber/1418084-defaultbehavior"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdecimalnumber/1418084-defaultbehavior"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

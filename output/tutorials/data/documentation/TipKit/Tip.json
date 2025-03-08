@@ -1,0 +1,1930 @@
+{
+  "abstract": [
+    {
+      "text": "A type that sets a tip’s content, as well as the conditions for when it displays.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TipKit/documentation/TipKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TipKit/documentation/TipKit/Tip"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6TipKit0A0P",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Tip"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TipKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Tip"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "Tip"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Tip"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s12IdentifiableP",
+              "text": "Identifiable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this protocol for setting a tip’s content, as well as defining the conditions for when it appears in a view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You create custom tips by declaring types that conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "Tip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Set your tip’s content by giving it a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/message",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and a list of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/actions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to create a tip with a ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "image",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct FavoriteBackyardTip: Tip {",
+            "    var title: Text {",
+            "        Text(\"Save as a Favorite\")",
+            "    }",
+            "",
+            "    var message: Text? {",
+            "        Text(\"Your favorite backyards always appear at the top of the list.\")",
+            "    }",
+            "",
+            "    var image: Image? {",
+            "        Image(systemName: \"star\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a tip to be valid, you need to set its ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To control when a tip displays, pass instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/Rule",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/Option",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " into the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/rules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/options",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties of the tip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you define your tip’s content, display it in either a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TipKit/documentation/TipKit/TipView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/popoverTip(_:arrowEdge:action:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TipKit/documentation/TipKit": {
+      "abstract": [
+        {
+          "text": "Display tips that help people discover features in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TipKit",
+      "type": "topic",
+      "url": "/documentation/tipkit"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/AnyTip": {
+      "abstract": [
+        {
+          "text": "A type-erased tip value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyTip"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/AnyTip",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyTip"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyTip",
+      "type": "topic",
+      "url": "/documentation/tipkit/anytip"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip": {
+      "abstract": [
+        {
+          "text": "A type that sets a tip’s content, as well as the conditions for when it displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tip"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tip"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tip",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/Action": {
+      "abstract": [
+        {
+          "text": "A type that describes a control associated with a tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/Action",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Action"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tip.Action",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/action"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/Event": {
+      "abstract": [
+        {
+          "text": "A repeatable user-defined action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/Event",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tip.Event",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/event"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/IgnoresDisplayFrequency": {
+      "abstract": [
+        {
+          "text": "Controls whether a tip obeys the preconfigured display frequency interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IgnoresDisplayFrequency"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/IgnoresDisplayFrequency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IgnoresDisplayFrequency"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tip.IgnoresDisplayFrequency",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/ignoresdisplayfrequency"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/InvalidationReason": {
+      "abstract": [
+        {
+          "text": "A type that describes why the system permanently invalidated a tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidationReason"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/InvalidationReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidationReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tip.InvalidationReason",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/invalidationreason"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/MaxDisplayCount": {
+      "abstract": [
+        {
+          "text": "Specifies the maximum number of times a tip displays before the system automatically invalidates it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MaxDisplayCount"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/MaxDisplayCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MaxDisplayCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tip.MaxDisplayCount",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/maxdisplaycount"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/MaxDisplayDuration": {
+      "abstract": [
+        {
+          "text": "Specifies the maximum amount of time a tip is displayed before it is invalidated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MaxDisplayDuration"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/MaxDisplayDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MaxDisplayDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tip.MaxDisplayDuration",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/maxdisplayduration"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/Option": {
+      "abstract": [
+        {
+          "text": "A type that represents the various customizations that you can make to a tip’s behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Option"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/Option",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Option"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tip.Option",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/option"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/Rule": {
+      "abstract": [
+        {
+          "text": "A condition to meet before displaying a tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Rule"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/Rule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Rule"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tip.Rule",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/rule"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/Status-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A type that describes the current display eligibility status for a tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/Status-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tip.Status",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/status-swift.typealias"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/actions": {
+      "abstract": [
+        {
+          "text": "Buttons that help people get started or learn more about your feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A0PAAE6Actiona",
+          "text": "Action"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/actions",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "actions",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/actions"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/id": {
+      "abstract": [
+        {
+          "text": "The tip’s unique identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/id",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/id"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/image": {
+      "abstract": [
+        {
+          "text": "The image associated with the tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/image",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/image"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/invalidate(reason:)": {
+      "abstract": [
+        {
+          "text": "Permanently invalidates a tip and prevents it from displaying.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "reason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A0PAAE18InvalidationReasona",
+          "text": "InvalidationReason"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/invalidate(reason:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate(reason:)",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/invalidate(reason:)"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/message": {
+      "abstract": [
+        {
+          "text": "A short description of how to use the tip’s feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/message",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "message",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/message"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/options": {
+      "abstract": [
+        {
+          "text": "Customizations for a tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A6OptionP",
+          "text": "TipOption"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/options",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "options",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/options"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/rules": {
+      "abstract": [
+        {
+          "text": "The rules that determine when a tip is eligible for display.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "For more information on rules, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Rule",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rules"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A0PAAE4Rulea",
+          "text": "Rule"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/rules",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "rules",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/rules"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/shouldDisplay": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether to display a tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldDisplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/shouldDisplay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldDisplay",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/shoulddisplay"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/shouldDisplayUpdates": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence for monitoring a tip’s display eligibility.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldDisplayUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency16AsyncMapSequenceV",
+          "text": "AsyncMapSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScS",
+          "text": "AsyncStream"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A0PAAE6Statusa",
+          "text": "Status"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/shouldDisplayUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldDisplayUpdates",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/shoulddisplayupdates"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/status-swift.property": {
+      "abstract": [
+        {
+          "text": "The current status of a tip based on its rules and the configured ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/ConfigurationOption/displayFrequency(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A0PAAE6Statusa",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/status-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/status-swift.property"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/statusUpdates": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence for monitoring a tip’s status changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "statusUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScS",
+          "text": "AsyncStream"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A0PAAE6Statusa",
+          "text": "Status"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/statusUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "statusUpdates",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/statusupdates"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tip/title": {
+      "abstract": [
+        {
+          "text": "A title that names the tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tip/title",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/tipkit/tip/title"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/TipGroup": {
+      "abstract": [
+        {
+          "text": "A collection of tips that can be presented one at a time using a specific",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "order or based on the first tip eligible for display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TipGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/TipGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TipGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "TipGroup",
+      "type": "topic",
+      "url": "/documentation/tipkit/tipgroup"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/TipView": {
+      "abstract": [
+        {
+          "text": "A user interface element that represents an inline tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TipView"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/TipView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TipView"
+        }
+      ],
+      "role": "symbol",
+      "title": "TipView",
+      "type": "topic",
+      "url": "/documentation/tipkit/tipview"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/ConfigurationOption/displayFrequency(_:)": {
+      "abstract": [
+        {
+          "text": "Customizes how often new tips are presented in your app after another tip has been displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayFrequency"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit4TipsO",
+          "text": "Tips"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit4TipsO19ConfigurationOptionV",
+          "text": "ConfigurationOption"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit4TipsO19ConfigurationOptionV16DisplayFrequencyV",
+          "text": "DisplayFrequency"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit4TipsO",
+          "text": "Tips"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit4TipsO19ConfigurationOptionV",
+          "text": "ConfigurationOption"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/ConfigurationOption/displayFrequency(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "displayFrequency(_:)",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/configurationoption/displayfrequency(_:)"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/Rule": {
+      "abstract": [
+        {
+          "text": "A condition to meet before displaying a tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Rule"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Rule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Rule"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tips.Rule",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/rule"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/popoverTip(_:arrowEdge:action:)": {
+      "abstract": [
+        {
+          "text": "Presents a popover tip on the modified view.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popoverTip"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "tip"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A0P",
+          "text": "Tip"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "arrowEdge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit4TipsO",
+          "text": "Tips"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit4TipsO6ActionV",
+          "text": "Action"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = { _ in }) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/popoverTip(_:arrowEdge:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "popoverTip(_:arrowEdge:action:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/popoverTip(_:arrowEdge:action:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/AnyTip"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/TipGroup"
+      ],
+      "title": "Content"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-tip-content",
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/title",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/message",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/image",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/id"
+      ],
+      "title": "Setting tip content"
+    },
+    {
+      "anchor": "Controlling-when-tips-appear",
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/rules",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/Rule",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/Event"
+      ],
+      "title": "Controlling when tips appear"
+    },
+    {
+      "anchor": "Customizing-tip-behavior",
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/options",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/Option"
+      ],
+      "title": "Customizing tip behavior"
+    },
+    {
+      "anchor": "Providing-actions",
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/actions",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/Action"
+      ],
+      "title": "Providing actions"
+    },
+    {
+      "anchor": "Monitoring-tip-status",
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/status-swift.property",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/statusUpdates",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/shouldDisplay",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/shouldDisplayUpdates",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/Status-swift.typealias",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/InvalidationReason"
+      ],
+      "title": "Monitoring tip status"
+    },
+    {
+      "anchor": "Invalidating-a-tip",
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/invalidate(reason:)"
+      ],
+      "title": "Invalidating a tip"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/IgnoresDisplayFrequency",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/MaxDisplayCount",
+        "doc://com.apple.TipKit/documentation/TipKit/Tip/MaxDisplayDuration"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tipkit/tip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

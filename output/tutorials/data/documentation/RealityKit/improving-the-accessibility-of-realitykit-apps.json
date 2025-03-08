@@ -1,0 +1,923 @@
+{
+  "abstract": [
+    {
+      "text": "Incorporate assistive technologies in your augmented reality app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/presentation-user-interface"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving the Accessibility of RealityKit Apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support assistive technologies such as VoiceOver in your RealityKit apps, set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the properties on each visible ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your scene. You can configure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessibility in Reality Composer, and in code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To see an example of accessibility support in a RealityKit app, check out",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the <doc:",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/configuring-collision-in-realitykit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ">",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "sample code project.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-accessibility-in-Reality-Composer",
+          "level": 3,
+          "text": "Configure accessibility in Reality Composer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a scene in Reality Composer, you can configure the accessibility",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties of your entities right in the properties inspector. Select one or more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entities in your scene and click the Accessibility Enabled checkbox in the properties",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inspector. In the Label field, give the entity a name to be used by assistive technologies.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the Detailed Description field, you can optionally add a more in-depth description.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-the-accessibility-of-realitykit-apps-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-accessibility-in-code",
+          "level": 3,
+          "text": "Configure accessibility in code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also configure entities to work with assistive technologies in code. To enable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessibility support for an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", set its  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAccessibilityElement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property to ",
+              "type": "text"
+            },
+            {
+              "code": "True",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and provide a short descriptive name using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you want to provide a more detailed description, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because these properties were introduced in iOS 14, any code that sets or reads their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values should be wrapped in an availability macro if your project’s deployment target",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is iOS 13. Setting these values on an older version of iOS results in a runtime exception.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if #available(iOS 14.0, *) {",
+            "    ball.isAccessibilityElement = true",
+            "    ball.accessibilityLabel = \"a bowling ball\"",
+            "    ball.accessibilityDescription = \"Tap and drag to roll the ball towards the pins.\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomActions": {
+      "abstract": [
+        {
+          "text": "An array of custom actions supported by the entity, identified by their localized string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityCustomActions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityCustomActions",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitycustomactions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomContent": {
+      "abstract": [
+        {
+          "text": "The Custom Content API is useful for delivering accessibility information from complex data sets to your users in measured portions.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Using this API allows you to leverage assistive technologies to present only the accessible content your app’s users need, when they need it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityCustomContent"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV",
+          "text": "AccessibilityComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV13CustomContentV",
+          "text": "CustomContent"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomContent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityCustomContent",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitycustomcontent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomRotors": {
+      "abstract": [
+        {
+          "text": "An array of supported rotors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityCustomRotors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV",
+          "text": "AccessibilityComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV0A3KitE9RotorTypeO",
+          "text": "RotorType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomRotors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityCustomRotors",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitycustomrotors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityDescription": {
+      "abstract": [
+        {
+          "text": "A longer description of the entity for use by assistive technologies.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityDescription",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitydescription"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabel": {
+      "abstract": [
+        {
+          "text": "A succinct label that identifies the purpose of the image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityLabel",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitylabel"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabelKey": {
+      "abstract": [
+        {
+          "text": "A succinct label that identifies the entity, in a localized string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLabelKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabelKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityLabelKey",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitylabelkey"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilitySystemActions": {
+      "abstract": [
+        {
+          "text": "The set of supported accessibility actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilitySystemActions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV",
+          "text": "AccessibilityComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV16SupportedActionsV",
+          "text": "SupportedActions"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilitySystemActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilitySystemActions",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitysystemactions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityTraits": {
+      "abstract": [
+        {
+          "text": "The combination of accessibility traits that best characterize the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityTraits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+          "text": "UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityTraits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityTraits",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitytraits"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityValue": {
+      "abstract": [
+        {
+          "text": "A localized string key that represents the current value of the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityValue",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilityvalue"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAccessibilityElement": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the receiver is an accessibility",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "element that an assistive application can access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAccessibilityElement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAccessibilityElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAccessibilityElement",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/isaccessibilityelement"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/configuring-collision-in-realitykit": {
+      "abstract": [
+        {
+          "text": "Use collision groups and collision filters to control which objects collide.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/configuring-collision-in-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Configuring Collision in RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/configuring-collision-in-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/presentation-user-interface": {
+      "abstract": [
+        {
+          "text": "Control your app’s content and how people can interact with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/presentation-user-interface",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Presentation UI",
+      "type": "topic",
+      "url": "/documentation/realitykit/presentation-user-interface"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "improving-the-accessibility-of-realitykit-apps-1": {
+      "alt": "The accessibility portion of Reality Composer’s property inspector, showing the Accessibility Enabled checkbox checked, with two additional fields for providing accessibility information about the selected entity.",
+      "identifier": "improving-the-accessibility-of-realitykit-apps-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e9456247052adaf8784ddac8a0788278/improving-the-accessibility-of-realitykit-apps-1@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/configuring-collision-in-realitykit"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Configuring-accessibility-features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAccessibilityElement",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabelKey",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomActions",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomContent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomRotors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabelKey",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilitySystemActions",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityTraits",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityValue",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityDescription",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabel",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityDescription"
+      ],
+      "title": "Configuring accessibility features"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/improving-the-accessibility-of-realitykit-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

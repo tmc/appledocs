@@ -1,0 +1,597 @@
+{
+  "abstract": [
+    {
+      "text": "Create your Apple Pay merchant ID and certificates, and verify your domain.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment"
+  },
+  "kind": "article",
+  "legacy_identifier": 2930231,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Your Environment"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support Apple Pay on your website, you must complete the setup steps in your developer account. The steps include registering a merchant ID, creating two certificates, and verifying your domain. Completing the setup enables you to use either or both web APIs: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Incorporating Apple Pay on your website is subject to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-2961940",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". You must have an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-2962404",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to complete the setup, and log in with a Team Agent or Admin role.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "3179108",
+          "level": 3,
+          "text": "Configure Merchant ID and Certificates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow the instructions in ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4179613",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". They guide you to create the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Merchant ID",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". An identifier you register with Apple that uniquely identifies your business as a merchant able to accept payments. This ID never expires, and you can use it in multiple websites and iOS apps. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-4171495",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for the setup steps. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Payment processing certificate",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". A certificate associated with your merchant ID, used to secure transaction data. Apple Pay servers use the certificate’s public key to encrypt payment data. You, or your payment service provider, use the private key to decrypt data to process payments. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-4171491",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for the setup steps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Merchant identity certificate",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". A Transport Layer Security (TLS) certificate associated with your merchant ID, used to authenticate your sessions with the Apple Pay servers. The merchant identity certificate is only required for Apple Pay on the web; it isn’t needed for apps. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-4171490",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for the setup steps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While your merchant ID never expires, the payment processing certificate, merchant identity certificate, and domain verification do expire. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/maintaining_your_environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can use the same merchant ID and payment processing certificate in iOS and watchOS apps. If you’re developing apps, enable Apple Pay in Xcode as a last step. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "3179109",
+          "level": 3,
+          "text": "Register and Verify Your Domain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must register and verify all top-level domains and subdomains where you’ll display the Apple Pay button. Apple Pay associates domains with your Apple Developer Team ID. As a result:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can register multiple domains under a single merchant ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can register the same domains under multiple merchant IDs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t register the same domain with a different Team ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Domains can’t be behind a proxy or redirect, and must be accessible to the Apple servers listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3179116",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To register and verify your domain, log in to your Apple Developer account as an Account Holder or Admin. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4171812",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4171813",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the setup steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2969390",
+          "level": 3,
+          "text": "Use the Merchant ID in Multiple Environments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s up to you to determine how many merchant IDs you need. Most merchants need only one for all environments: in multiple websites, iOS or watchOS apps, across test environments, and production environments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, you can create more than one merchant ID if you wish. Be sure to use the payment processing and merchant identity certificates created for the specific merchant ID. The certificates are valid only with their corresponding merchant ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment": {
+      "abstract": [
+        {
+          "text": "Create your Apple Pay merchant ID and certificates, and verify your domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Your Environment",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/configuring_your_environment"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/maintaining_your_environment": {
+      "abstract": [
+        {
+          "text": "Prevent interruptions in your Apple Pay service by keeping certificates and domain verification current.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/maintaining_your_environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Maintaining Your Environment",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/maintaining_your_environment"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payment Request API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server": {
+      "abstract": [
+        {
+          "text": "Set up your server for secure communications with Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Your Server",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3179116": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3179116",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Allow Apple IP Addresses for Domain Verification",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server#3179116"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay": {
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up Apple Pay",
+      "type": "topic",
+      "url": "/documentation/passkit/setting-up-apple-pay"
+    },
+    "link-2961940": {
+      "identifier": "link-2961940",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple Pay Acceptable Use Guidelines",
+      "type": "topic",
+      "url": "https://developer.apple.com/apple-pay/acceptable-use-guidelines-for-websites/"
+    },
+    "link-2962404": {
+      "identifier": "link-2962404",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple Developer Account",
+      "type": "topic",
+      "url": "https://developer.apple.com/account/"
+    },
+    "link-4171490": {
+      "identifier": "link-4171490",
+      "kind": "article",
+      "role": "link",
+      "title": "Create a merchant identity certificate",
+      "type": "section",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/configure-apple-pay-on-the-web#create-a-merchant-identity-certificate"
+    },
+    "link-4171491": {
+      "identifier": "link-4171491",
+      "kind": "article",
+      "role": "link",
+      "title": "Create a payment processing certificate",
+      "type": "section",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/configure-apple-pay#create-a-payment-processing-certificate"
+    },
+    "link-4171495": {
+      "identifier": "link-4171495",
+      "kind": "article",
+      "role": "link",
+      "title": "Create a merchant identifier",
+      "type": "section",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/configure-apple-pay#create-a-merchant-identifier"
+    },
+    "link-4171812": {
+      "identifier": "link-4171812",
+      "kind": "article",
+      "role": "link",
+      "title": "Register a merchant domain",
+      "type": "section",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/configure-apple-pay-on-the-web#register-a-merchant-domain"
+    },
+    "link-4171813": {
+      "identifier": "link-4171813",
+      "kind": "article",
+      "role": "link",
+      "title": "Verify a merchant domain",
+      "type": "section",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/configure-apple-pay-on-the-web#register-a-merchant-domain"
+    },
+    "link-4179613": {
+      "identifier": "link-4179613",
+      "kind": "article",
+      "role": "link",
+      "title": "Configure Apple Pay on the Web",
+      "type": "topic",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/configure-apple-pay-on-the-web"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/maintaining_your_environment"
+      ],
+      "title": "Apple Pay setup"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/configuring_your_environment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1862 @@
+{
+  "abstract": [
+    {
+      "text": "A profile that supports only the directional pad, without motion or rotation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamecontroller/documentation/GameController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamecontroller/documentation/GameController/GCDirectionalGamepad"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GCDirectionalGamepad",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GCDirectionalGamepad"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Game Controller"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GCDirectionalGamepad"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.3",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.3",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.3",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.1",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.3",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GCDirectionalGamepad"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GCDirectionalGamepad"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The directional gamepad profile is similar to a micro gamepad profile except it doesn’t support motion or rotation. The controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController/motion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad/allowsRotation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you select Micro Gamepad when you add the Game Controllers capability (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ) to your project, and you also support the GCDirectionalGamepad profile, select Directional Gamepad as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you support the second-generation Siri Remote and later, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the information property list in your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, the directional pad element may report digital or analog values. If the directional pad’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerElement/isAnalog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", it reports absolute directional pad values (the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad/reportsAbsoluteDpadValues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers": {
+      "abstract": [
+        {
+          "text": "The types of game controller profiles that the app supports or requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCSupportedGameControllers",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the physical Apple TV Remote and the Apple TV Remote app operate as separate game controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCSupportsMultipleMicroGamepads",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController": {
+      "abstract": [
+        {
+          "text": "Support hardware game controllers in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Game Controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController/extendedGamepad": {
+      "abstract": [
+        {
+          "text": "The extended gamepad profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedGamepad"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCExtendedGamepad",
+          "text": "GCExtendedGamepad"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController/extendedGamepad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extendedGamepad"
+        }
+      ],
+      "role": "symbol",
+      "title": "extendedGamepad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller/extendedgamepad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController/gamepad": {
+      "abstract": [
+        {
+          "text": "The gamepad profile.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gamepad"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCGamepad",
+          "text": "GCGamepad"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController/gamepad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gamepad"
+        }
+      ],
+      "role": "symbol",
+      "title": "gamepad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller/gamepad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController/microGamepad": {
+      "abstract": [
+        {
+          "text": "The micro gamepad profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "microGamepad"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCMicroGamepad",
+          "text": "GCMicroGamepad"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController/microGamepad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "microGamepad"
+        }
+      ],
+      "role": "symbol",
+      "title": "microGamepad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller/microgamepad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController/motion": {
+      "abstract": [
+        {
+          "text": "The motion input profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "motion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCMotion",
+          "text": "GCMotion"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController/motion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "motion"
+        }
+      ],
+      "role": "symbol",
+      "title": "motion",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller/motion"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController/physicalInputProfile": {
+      "abstract": [
+        {
+          "text": "The physical input profile for the controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicalInputProfile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCPhysicalInputProfile",
+          "text": "GCPhysicalInputProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController/physicalInputProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "physicalInputProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "physicalInputProfile",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller/physicalinputprofile"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCControllerElement/isAnalog": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the element provides analog data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAnalog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerElement/isAnalog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "analog"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAnalog",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontrollerelement/isanalog"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDirectionalGamepad": {
+      "abstract": [
+        {
+          "text": "A profile that supports only the directional pad, without motion or rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDirectionalGamepad"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDirectionalGamepad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDirectionalGamepad"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDirectionalGamepad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdirectionalgamepad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDualSenseGamepad": {
+      "abstract": [
+        {
+          "text": "A controller profile that supported the DualSense controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDualSenseGamepad"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDualSenseGamepad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDualSenseGamepad"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDualSenseGamepad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdualsensegamepad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDualShockGamepad": {
+      "abstract": [
+        {
+          "text": "A controller profile that supports the DualShock 4 controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDualShockGamepad"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDualShockGamepad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDualShockGamepad"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDualShockGamepad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdualshockgamepad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCExtendedGamepad": {
+      "abstract": [
+        {
+          "text": "A controller profile that supports the extended set of gamepad controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCExtendedGamepad"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCExtendedGamepad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCExtendedGamepad"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCExtendedGamepad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcextendedgamepad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboardInput": {
+      "abstract": [
+        {
+          "text": "A controller profile that uses the keyboard as the input device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCKeyboardInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboardInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCKeyboardInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCKeyboardInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gckeyboardinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad": {
+      "abstract": [
+        {
+          "text": "A controller profile that supports the Siri Remote.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCMicroGamepad"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCMicroGamepad"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCMicroGamepad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcmicrogamepad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad/allowsRotation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the profile reports the directional pad values relative to its current orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsRotation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad/allowsRotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsRotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsRotation",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcmicrogamepad/allowsrotation"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad/reportsAbsoluteDpadValues": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the directional pad reports absolute or relative values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportsAbsoluteDpadValues"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad/reportsAbsoluteDpadValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reportsAbsoluteDpadValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "reportsAbsoluteDpadValues",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcmicrogamepad/reportsabsolutedpadvalues"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCMouseInput": {
+      "abstract": [
+        {
+          "text": "A controller profile that tracks input from a mouse.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCMouseInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCMouseInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCMouseInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCMouseInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcmouseinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile": {
+      "abstract": [
+        {
+          "text": "The base class for controller profiles that support physical buttons, thumbsticks, and directional pads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCPhysicalInputProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCPhysicalInputProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCPhysicalInputProfile",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcphysicalinputprofile"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCXboxGamepad": {
+      "abstract": [
+        {
+          "text": "A controller profile that supports the Xbox controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCXboxGamepad"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCXboxGamepad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCXboxGamepad"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCXboxGamepad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcxboxgamepad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/directional-gamepad-input-names": {
+      "abstract": [
+        {
+          "text": "Constants for names of directional pad elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/directional-gamepad-input-names",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Directional Gamepad Input Names",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/directional-gamepad-input-names"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-controller-profiles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCController/extendedGamepad",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboardInput",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCMouseInput",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCExtendedGamepad",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDualShockGamepad",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCXboxGamepad",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDualSenseGamepad",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCController/microGamepad",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCController/motion",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCController/physicalInputProfile",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCController/gamepad"
+      ],
+      "title": "Accessing controller profiles"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-Elements-by-Name",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/directional-gamepad-input-names"
+      ],
+      "title": "Accessing Elements by Name"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.3",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.3",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.3",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.1",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.3",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GCDirectionalGamepad"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDirectionalGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDirectionalGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gamecontroller/documentation/GameController"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-Elements-by-Name",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/directional-gamepad-input-names"
+              ],
+              "title": "Accessing Elements by Name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accessing-controller-profiles",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCController/extendedGamepad",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboardInput",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCMouseInput",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCExtendedGamepad",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDualShockGamepad",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCXboxGamepad",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDualSenseGamepad",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCController/microGamepad",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCController/motion",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCController/physicalInputProfile",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCController/gamepad"
+              ],
+              "title": "Accessing controller profiles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GCDirectionalGamepad"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCMicroGamepad",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)GCMicroGamepad",
+                    "text": "GCMicroGamepad"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCXboxGamepad/title",
+          "value": "GCXboxGamepad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCXboxGamepad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCXboxGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCXboxGamepad/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCXboxGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1gamepad/title",
+          "value": "gamepad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1gamepad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMicroGamepad~1reportsAbsoluteDpadValues/title",
+          "value": "reportsAbsoluteDpadValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMicroGamepad~1reportsAbsoluteDpadValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reportsAbsoluteDpadValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile/title",
+          "value": "GCPhysicalInputProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCPhysicalInputProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCPhysicalInputProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDualSenseGamepad/title",
+          "value": "GCDualSenseGamepad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDualSenseGamepad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDualSenseGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDualSenseGamepad/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDualSenseGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMicroGamepad/title",
+          "value": "GCMicroGamepad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMicroGamepad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCMicroGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMicroGamepad/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCMicroGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1microGamepad/title",
+          "value": "microGamepad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1microGamepad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "microGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1motion/title",
+          "value": "motion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1motion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "motion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMicroGamepad~1allowsRotation/title",
+          "value": "allowsRotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMicroGamepad~1allowsRotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsRotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDualShockGamepad/title",
+          "value": "GCDualShockGamepad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDualShockGamepad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDualShockGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDualShockGamepad/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDualShockGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCControllerElement~1isAnalog/title",
+          "value": "analog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCControllerElement~1isAnalog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "analog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCExtendedGamepad/title",
+          "value": "GCExtendedGamepad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCExtendedGamepad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCExtendedGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCExtendedGamepad/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCExtendedGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1extendedGamepad/title",
+          "value": "extendedGamepad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1extendedGamepad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extendedGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1physicalInputProfile/title",
+          "value": "physicalInputProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1physicalInputProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "physicalInputProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCKeyboardInput/title",
+          "value": "GCKeyboardInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCKeyboardInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCKeyboardInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCKeyboardInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCKeyboardInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDirectionalGamepad/title",
+          "value": "GCDirectionalGamepad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDirectionalGamepad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDirectionalGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDirectionalGamepad/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDirectionalGamepad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMouseInput/title",
+          "value": "GCMouseInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMouseInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCMouseInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMouseInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCMouseInput"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamecontroller/gcdirectionalgamepad"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamecontroller/gcdirectionalgamepad"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

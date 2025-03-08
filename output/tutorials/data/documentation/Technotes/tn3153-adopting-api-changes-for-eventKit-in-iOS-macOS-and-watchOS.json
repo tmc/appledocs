@@ -1,0 +1,1797 @@
+{
+  "abstract": [
+    {
+      "text": "Test your existing apps against EventKit API latest changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3153-adopting-api-changes-for-eventKit-in-iOS-macOS-and-watchOS"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3153: Adopting API changes for EventKit in iOS 17, macOS 14, and watchOS 10"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 15 includes SDKs for iOS 17, macOS 14, and watchOS 10 that introduce notable changes in EventKit such as new access levels: the ability to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add events using EventKitUI without requesting access to Calendar, write-only access, and full access. Apps that don’t request access to calendar",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkitui/ekeventeditviewcontroller",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to present UI for editing an event, which the person using your app can save. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/accessing_the_event_store",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for details. If the user grants your app write-only access, your app can create and write calendar events. However, your app can’t read or delete any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "events from the user’s calendars,  including the ones it creates. If the user grants your app full access, your app can read, write, create, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delete calendar events as in iOS 16 and earlier, for example. To learn how to update your app to use these new features, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3152-migrating-to-the-latest-calendar-access-levels",
+              "isActive": true,
+              "overridingTitle": "TN3152: Migrating to the latest Calendar access levels",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3152: Migrating to the latest Calendar access levels",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you built your app with an older version of Xcode 15 such as Xcode 14.3.1 and linked it against older versions of the iOS, macOS, or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "watchOS SDK, and run it on iOS 17, macOS 14, or watchOS 10, you may see behavior that you are unfamiliar with when using EventKit or EventKitUI. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance, your app may not be able to fetch events even if the user previously granted full access to the app on an earlier OS version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This document",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "describes how some of these changes may affect your app. To identify these changes in behavior, thoroughly test your app for each major OS version it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supports. Confirm that your usage of EventKit or EventKitUI behaves as you expect in each OS version and update your code where needed. If you notice",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an unexpected behavior in these frameworks, report it using ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/bug-reporting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Calendar-usage-description-keys",
+          "level": 2,
+          "text": "Calendar usage description keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarsusagedescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsremindersusagedescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " keys describe how your app  intends to use the user’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calendar data or reminders, respectively. If your app runs on iOS 17, macOS 14, watchOS 10, or later and doesn’t include the new ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarswriteonlyaccessusagedescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarsfullaccessusagedescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key, EventKit uses ",
+              "type": "text"
+            },
+            {
+              "code": "NSCalendarsUsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as fallback. If your app doesn’t include the new ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsremindersfullaccessusagedescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "EventKit uses ",
+              "type": "text"
+            },
+            {
+              "code": "NSRemindersUsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as fallback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Requesting-permission-from-the-user",
+          "level": 2,
+          "text": "Requesting permission from the user",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app links against an SDK older than the iOS 17 SDK, macOS 14 SDK, or watchOS 10 SDK and hasn’t previously prompted the user for calendar access,",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On iOS and macOS",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507547-requestaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507547-requestaccess",
+              "isActive": true,
+              "overridingTitle": "requestAccess(to:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "requestAccess(to:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " with an entity type ",
+              "type": "text"
+            },
+            {
+              "code": "event",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prompts the user to grant write-only calendar access to your app. If the user allows write-only access to your app and your app used ",
+              "type": "text"
+            },
+            {
+              "code": "requestAccess(to:completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstorerequestaccesscompletionhandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " completion handler with its boolean parameter set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let eventStore = EKEventStore()",
+            "eventStore.requestAccess(to: .event, completion: {(granted, error) in",
+            "    if granted {",
+            "      // Fetch latest events.",
+            "    }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app called ",
+              "type": "text"
+            },
+            {
+              "code": "requestAccess(to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system asynchronously returns a boolean value set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let eventStore = EKEventStore()",
+            "let response = try await eventStore.requestAccess(to: .event)",
+            "if response {",
+            "    // Fetch latest events.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user denies access, the completion handler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receives a ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter and ",
+              "type": "text"
+            },
+            {
+              "code": "requestAccess(to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On watchOS",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Calling these methods with an entity type ",
+              "type": "text"
+            },
+            {
+              "code": "event",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prompts the user to grant full calendar access to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the user previously granted write-only access to the iOS companion app, calling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507547-requestaccess",
+                  "isActive": true,
+                  "overridingTitle": "requestAccess(to:completion:)",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "requestAccess(to:completion:)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " or",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507547-requestaccess",
+                  "isActive": true,
+                  "overridingTitle": "requestAccess(to:)",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "requestAccess(to:)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " for events in the watchOS app doesn’t prompt the user for access. The access level of the watchOS app matches its",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "companion app, which is write-only.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Authorization-status",
+          "level": 2,
+          "text": "Authorization status",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app with write-only or full access to calendar events will see its authorization status as ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/authorized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the user previously granted",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calendar access (",
+              "type": "text"
+            },
+            {
+              "code": "authorized",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to your app, calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507239-authorizationstatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an entity type ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekentitytype/event",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "authorized",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "EKEventStore.authorizationStatus(for: .event) == .authorized"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iOS, macOS, and watchOS SDKs bundled in Xcode 15 provide different levels of access: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/writeonly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/fullaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app linked against an SDK older than the iOS 17 SDK, macOS 14 SDK, or watchOS 10 SDK, ",
+              "type": "text"
+            },
+            {
+              "code": "writeOnly",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "fullAccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " both map to ",
+              "type": "text"
+            },
+            {
+              "code": "authorized",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user previously granted calendar access to your app on an earlier OS, your app will have write-only access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Implement the new APIs if you want to distinguish between the ",
+                  "type": "text"
+                },
+                {
+                  "code": "writeOnly",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "fullAccess",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " access levels in your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Existing-apps-with-write-only-calendar-access",
+          "level": 2,
+          "text": "Existing apps with write-only calendar access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user granted write-only access to your app,",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507315-sources",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property returns a single virtual source.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507419-delegatesources",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property returns an empty array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507062-defaultcalendarfornewevents",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property returns a single virtual calendar. The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507128-calendars",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/eventkit/eksource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " returns the same virtual calendar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app with write-only access may later request full access. The first time your app calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507433-calendaritemwithidentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507281-calendaritemswithexternalidentif",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507518-enumerateevents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507183-events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507490-event",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance methods, it implicitly prompts the user to upgrade the app to full access or keep it write-only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "access. If the user grants full access to the app, an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/foundation/nsnotification/name/1507525-ekeventstorechanged",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification is posted, these methods return some results,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the app has a full access authorization status. When your app receives the event store notification, refetch all calendar data that your app needs to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "refresh its views. These data are now visible to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user denies access, these methods don’t return any results, and any further calls don’t prompt the user for access again. Your app still has write-only calendar access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app doesn’t call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507433-calendaritemwithidentifier",
+                  "isActive": true,
+                  "overridingTitle": "calendarItemWithIdentifier:",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "calendarItemWithIdentifier:",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507281-calendaritemswithexternalidentif",
+                  "isActive": true,
+                  "overridingTitle": "calendarItemsWithExternalIdentifier:",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "calendarItemsWithExternalIdentifier:",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507518-enumerateevents",
+                  "isActive": true,
+                  "overridingTitle": "enumerateEvents(matching:using:)",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "enumerateEvents(matching:using:)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507183-events",
+                  "isActive": true,
+                  "overridingTitle": "events(matching:)",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "events(matching:)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507490-event",
+                  "isActive": true,
+                  "overridingTitle": "event(withIdentifier:)",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "event(withIdentifier:)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " to implicitly prompt the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "user for upgrade, the user would have to know to change the access level for the app in Settings > Privacy & Security > Calendars on their device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-27",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2023-06-06",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3152-migrating-to-the-latest-calendar-access-levels": {
+      "abstract": [
+        {
+          "text": "Follow these guidelines to update your app to use the new Calendar access levels.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3152-migrating-to-the-latest-calendar-access-levels",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3152: Migrating to the latest Calendar access levels",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3152-migrating-to-the-latest-calendar-access-levels"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/bug-reporting": {
+      "identifier": "https://developer.apple.com/bug-reporting",
+      "title": "Feedback Assistant",
+      "titleInlineContent": [
+        {
+          "text": "Feedback Assistant",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarsfullaccessusagedescription": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarsfullaccessusagedescription",
+      "title": "NSCalendarsFullAccessUsageDescription",
+      "titleInlineContent": [
+        {
+          "code": "NSCalendarsFullAccessUsageDescription",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarsfullaccessusagedescription"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarsusagedescription": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarsusagedescription",
+      "title": "NSCalendarsUsageDescription",
+      "titleInlineContent": [
+        {
+          "code": "NSCalendarsUsageDescription",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarsusagedescription"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarswriteonlyaccessusagedescription": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarswriteonlyaccessusagedescription",
+      "title": "NSCalendarsWriteOnlyAccessUsageDescription",
+      "titleInlineContent": [
+        {
+          "code": "NSCalendarsWriteOnlyAccessUsageDescription",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/nscalendarswriteonlyaccessusagedescription"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/nsremindersfullaccessusagedescription": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsremindersfullaccessusagedescription",
+      "title": "NSRemindersFullAccessUsageDescription",
+      "titleInlineContent": [
+        {
+          "code": "NSRemindersFullAccessUsageDescription",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsremindersfullaccessusagedescription"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/nsremindersusagedescription": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsremindersusagedescription",
+      "title": "NSRemindersUsageDescription",
+      "titleInlineContent": [
+        {
+          "code": "NSRemindersUsageDescription",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsremindersusagedescription"
+    },
+    "https://developer.apple.com/documentation/eventkit/accessing_the_event_store": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/accessing_the_event_store",
+      "title": "Accessing the Event Store",
+      "titleInlineContent": [
+        {
+          "text": "Accessing the Event Store",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/accessing_the_event_store"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/authorized": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/authorized",
+      "title": "authorized",
+      "titleInlineContent": [
+        {
+          "code": "authorized",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/authorized"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/fullaccess": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/fullaccess",
+      "title": "fullAccess",
+      "titleInlineContent": [
+        {
+          "code": "fullAccess",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/fullaccess"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/writeonly": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/writeonly",
+      "title": "writeOnly",
+      "titleInlineContent": [
+        {
+          "code": "writeOnly",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/writeonly"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekentitytype/event": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekentitytype/event",
+      "title": "event",
+      "titleInlineContent": [
+        {
+          "code": "event",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekentitytype/event"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore",
+      "title": "EKEventStore",
+      "titleInlineContent": [
+        {
+          "code": "EKEventStore",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507062-defaultcalendarfornewevents": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507062-defaultcalendarfornewevents",
+      "title": "defaultCalendarForNewEvents",
+      "titleInlineContent": [
+        {
+          "code": "defaultCalendarForNewEvents",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507062-defaultcalendarfornewevents"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507128-calendars": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507128-calendars",
+      "title": "calendars(for:)",
+      "titleInlineContent": [
+        {
+          "code": "calendars(for:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507128-calendars"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507183-events": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507183-events",
+      "title": "events(matching:)",
+      "titleInlineContent": [
+        {
+          "code": "events(matching:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507183-events"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507239-authorizationstatus": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507239-authorizationstatus",
+      "title": "authorizationStatus(for:)",
+      "titleInlineContent": [
+        {
+          "code": "authorizationStatus(for:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507239-authorizationstatus"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507281-calendaritemswithexternalidentif": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507281-calendaritemswithexternalidentif",
+      "title": "calendarItemsWithExternalIdentifier:",
+      "titleInlineContent": [
+        {
+          "code": "calendarItemsWithExternalIdentifier:",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507281-calendaritemswithexternalidentif"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507315-sources": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507315-sources",
+      "title": "sources",
+      "titleInlineContent": [
+        {
+          "code": "sources",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507315-sources"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507419-delegatesources": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507419-delegatesources",
+      "title": "delegateSources",
+      "titleInlineContent": [
+        {
+          "code": "delegateSources",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507419-delegatesources"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507433-calendaritemwithidentifier": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507433-calendaritemwithidentifier",
+      "title": "calendarItemWithIdentifier:",
+      "titleInlineContent": [
+        {
+          "code": "calendarItemWithIdentifier:",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507433-calendaritemwithidentifier"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507490-event": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507490-event",
+      "title": "event(withIdentifier:)",
+      "titleInlineContent": [
+        {
+          "code": "event(withIdentifier:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507490-event"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507518-enumerateevents": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507518-enumerateevents",
+      "title": "enumerateEvents(matching:using:)",
+      "titleInlineContent": [
+        {
+          "code": "enumerateEvents(matching:using:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507518-enumerateevents"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/1507547-requestaccess": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507547-requestaccess",
+      "title": "requestAccess(to:completion:)",
+      "titleInlineContent": [
+        {
+          "code": "requestAccess(to:completion:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/1507547-requestaccess"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstorerequestaccesscompletionhandler": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstorerequestaccesscompletionhandler",
+      "title": "EKEventStoreRequestAccessCompletionHandler",
+      "titleInlineContent": [
+        {
+          "code": "EKEventStoreRequestAccessCompletionHandler",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstorerequestaccesscompletionhandler"
+    },
+    "https://developer.apple.com/documentation/eventkit/eksource": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/eksource",
+      "title": "EKSource",
+      "titleInlineContent": [
+        {
+          "code": "EKSource",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/eksource"
+    },
+    "https://developer.apple.com/documentation/eventkitui/ekeventeditviewcontroller": {
+      "identifier": "https://developer.apple.com/documentation/eventkitui/ekeventeditviewcontroller",
+      "title": "EKEventEditViewController",
+      "titleInlineContent": [
+        {
+          "code": "EKEventEditViewController",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkitui/ekeventeditviewcontroller"
+    },
+    "https://developer.apple.com/documentation/foundation/nsnotification/name/1507525-ekeventstorechanged": {
+      "identifier": "https://developer.apple.com/documentation/foundation/nsnotification/name/1507525-ekeventstorechanged",
+      "title": "EKEventStoreChanged",
+      "titleInlineContent": [
+        {
+          "code": "EKEventStoreChanged",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/nsnotification/name/1507525-ekeventstorechanged"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

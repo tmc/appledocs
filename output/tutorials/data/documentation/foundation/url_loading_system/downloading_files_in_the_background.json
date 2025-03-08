@@ -1,0 +1,1323 @@
+{
+  "abstract": [
+    {
+      "text": "Create tasks that download files while your app is inactive.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background"
+  },
+  "kind": "article",
+  "legacy_identifier": 2919403,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Downloading files in the background"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For long-running and nonurgent transfers, you can create tasks that run in the background. These tasks continue to run even when your app is suspended, allowing your app to access the downloaded file when the app is resumed. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You don’t have to do all background network activity with background sessions as described in this article. Apps that declare appropriate background modes can use default URL sessions and data tasks, just as if they were in the foreground.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "2920773",
+          "level": 3,
+          "text": "Configure the background session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform a background download, configure a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for background operation. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920777",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " demonstrates this process. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a background ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object with the class method ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1407496-background",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", providing a session identifier that is unique within your app. Because most apps need only a few background sessions (usually one), you can use a fixed string for the identifier, rather than a dynamically generated identifier. The identifier doesn’t need to be unique globally. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To have the system to wake up your app when a task completes and the app is in the background, make sure the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1617174-sessionsendslaunchevents",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (the default).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For time-insensitive tasks, enable the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411552-isdiscretionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property, so the system can wait for optimal conditions to perform the transfer, such as when the device is plugged in or connected to Wi-Fi.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance to create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance. Provide a delegate, to receive events from the background transfer. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private lazy var urlSession: URLSession = {",
+            "    let config = URLSessionConfiguration.background(withIdentifier: \"MySession\")",
+            "    config.isDiscretionary = true",
+            "    config.sessionSendsLaunchEvents = true",
+            "    return URLSession(configuration: config, delegate: self, delegateQueue: nil)",
+            "}()"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a background URL session",
+                "type": "text"
+              }
+            ],
+            "anchor": "2920777",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more visibility into how the system is scheduling and performing your background tasks, download and install the Background Networking Profile onto your iOS device from the Bug Reporting ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-2936294",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " page.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2920774",
+          "level": 3,
+          "text": "Create and schedule the download task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create download tasks from the session with either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411482-downloadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that takes a URL, or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411481-downloadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that takes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.  You set properties on this method to help the system optimize its behavior. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "As shown in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920776",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", create a download task with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411482-downloadtask",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873413-earliestbegindate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to schedule the download to begin at a particular point in the future. The download isn’t guaranteed to begin at precisely this time, but it won’t start sooner. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To help the system schedule network activity efficiently, set the properties ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873401-countofbytesclientexpectstosend",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873414-countofbytesclientexpectstorecei",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". These values are best-guess upper bounds on the expected byte count, and should account for headers as well as body data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To start the task, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920776",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the task is set to begin at least one hour in the future and is configured to send around 200 bytes of data and receive around 500 KB.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let backgroundTask = urlSession.downloadTask(with: url)",
+            "backgroundTask.earliestBeginDate = Date().addingTimeInterval(60 * 60)",
+            "backgroundTask.countOfBytesClientExpectsToSend = 200",
+            "backgroundTask.countOfBytesClientExpectsToReceive = 500 * 1024",
+            "backgroundTask.resume()"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a download task from a URL session",
+                "type": "text"
+              }
+            ],
+            "anchor": "2920776",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "2928518",
+          "level": 3,
+          "text": "Handle app suspension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Different app states affect how your app interacts with the background download. In iOS, your app could be in the foreground, suspended, or even terminated by the system. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information about these states.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app is in the background, the system may suspend your app while the download is performed in another process. In this case, when the download finishes, the system resumes the app and calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:handleEventsForBackgroundURLSession:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This method receives the session identifier you created in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920777",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " as its second parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This delegate method also receives a completion handler as its final parameter. Immediately store this handler wherever it makes sense for your app, perhaps as a property of your app delegate, or of your class that implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2936325",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", this completion handler is stored in an app delegate property called ",
+              "type": "text"
+            },
+            {
+              "code": "backgroundCompletionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication,",
+            "                 handleEventsForBackgroundURLSession identifier: String,",
+            "                 completionHandler: @escaping () -> Void) {",
+            "        backgroundCompletionHandler = completionHandler",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Storing the background download completion handler sent to the application delegate",
+                "type": "text"
+              }
+            ],
+            "anchor": "2936325",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When all events have been delivered,  the system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". At this point, fetch  the ",
+              "type": "text"
+            },
+            {
+              "code": "backgroundCompletionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stored by the app delegate in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2936325",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and execute it. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2928519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows this process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " may be called on a secondary queue, it needs to explicitly execute the handler (which was received from a UIKit method) on the main queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {",
+            "    DispatchQueue.main.async {",
+            "        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,",
+            "            let backgroundCompletionHandler =",
+            "            appDelegate.backgroundCompletionHandler else {",
+            "                return",
+            "        }",
+            "        backgroundCompletionHandler()",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Executing the background URL session completion handler on the main queue",
+                "type": "text"
+              }
+            ],
+            "anchor": "2928519",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3087615",
+          "level": 3,
+          "text": "Access the file, or move it to a permanent location",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once your resumed app calls the completion handler, the download task finishes its work and calls the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. At this point, the file is fully downloaded, and will be available until your delegate method returns. If you only need to read it once, you can access the file immediately in its temporary location. If you want to preserve the file, move it to a permanent location like the ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2936566",
+          "level": 3,
+          "text": "Recreate the session if the app was terminated",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system terminated the app while it was suspended, the system relaunches the app in the background. As part of your launch time setup, recreate the background session (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920777",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": "), using the same session identifier as before, to allow the system to reassociate the background download task with your session. You do this so your background session is ready to go whether the app was launched by the user or by the system. Once the app relaunches, the series of events is the same as if the app had been suspended and resumed, as discussed earlier in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2928518",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In cases where the transfer is initiated while the app is in the background, the session configuration's ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411552-isdiscretionary",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " property is treated as being ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "2920790",
+          "level": 3,
+          "text": "Comply with background transfer limitations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With background sessions, the actual transfer is performed by a process that is separate from your app’s process. Because restarting your app’s process is fairly expensive, a few features are unavailable, resulting in the following limitations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The session ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "must",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " provide a delegate for event delivery. (For uploads and downloads, the delegates behave the same as for in-process transfers.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only HTTP and HTTPS protocols are supported (no custom protocols).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Redirects are always followed. As a result, even if you have implemented ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411626-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", it is ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "not",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " called.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only upload tasks from a file are supported (uploads from data instances or a stream fail after the app exits). ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3038438",
+          "level": 3,
+          "text": "Use background sessions efficiently",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system resumes or relaunches your app, it uses a rate limiter to prevent abuse of background downloads. When your app starts a new download task while in the background, the task doesn't begin until the delay expires. The delay increases each time the system resumes or relaunches your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a result, if your app starts a single background download, gets resumed when the download completes, and then starts a new download, it will greatly increase the delay. Instead, use a small number of background sessions — ideally just one — and use these sessions to start many download tasks at once. This allows the system to perform multiple downloads at once, and resume your app when they have completed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keep in mind, though, that each task has its own overhead. If you find you need to launch thousands of download tasks, change your design to perform fewer, larger transfers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The delay is reset to 0 whenever the user brings your app to the foreground. It also resets if the delay period elapses without the system resuming or relaunching your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites": {
+      "abstract": [
+        {
+          "text": "Download files directly to the filesystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files from websites",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_from_websites"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background": {
+      "abstract": [
+        {
+          "text": "Create tasks that download files while your app is inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files in the background",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920776": {
+      "abstract": [
+        {
+          "text": "Creating a download task from a URL session",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920776",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920776"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920777": {
+      "abstract": [
+        {
+          "text": "Creating a background URL session",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920777",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background#2920777"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2928518": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2928518",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Handle app suspension",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background#2928518"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2928519": {
+      "abstract": [
+        {
+          "text": "Executing the background URL session completion handler on the main queue",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2928519",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background#2928519"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2936325": {
+      "abstract": [
+        {
+          "text": "Storing the background download completion handler sent to the application delegate",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background#2936325",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background#2936325"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_downloads": {
+      "abstract": [
+        {
+          "text": "Allow the user to resume a download without starting over.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_downloads",
+      "kind": "article",
+      "role": "article",
+      "title": "Pausing and resuming downloads",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/pausing_and_resuming_downloads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411481-downloadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411481-downloadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTask(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411481-downloadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411482-downloadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411482-downloadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTask(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411482-downloadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1407496-background": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1407496-background",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "background(withIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1407496-background"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411552-isdiscretionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411552-isdiscretionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDiscretionary",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1411552-isdiscretionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1617174-sessionsendslaunchevents": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1617174-sessionsendslaunchevents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessionSendsLaunchEvents",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1617174-sessionsendslaunchevents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSessionDidFinishEvents(forBackgroundURLSession:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDownloadDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloaddelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:downloadTask:didFinishDownloadingTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/1411121-resume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873401-countofbytesclientexpectstosend": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873401-countofbytesclientexpectstosend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfBytesClientExpectsToSend",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/2873401-countofbytesclientexpectstosend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873413-earliestbegindate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873413-earliestbegindate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "earliestBeginDate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/2873413-earliestbegindate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873414-countofbytesclientexpectstorecei": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2873414-countofbytesclientexpectstorecei",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfBytesClientExpectsToReceive",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/2873414-countofbytesclientexpectstorecei"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411626-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411626-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:task:willPerformHTTPRedirection:newRequest:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate/1411626-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:handleEventsForBackgroundURLSession:completionHandler:)": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:handleEventsForBackgroundURLSession:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:handleEventsForBackgroundURLSession:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:handleeventsforbackgroundurlsession:completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing your app’s life cycle",
+      "type": "topic",
+      "url": "/documentation/uikit/managing-your-app-s-life-cycle"
+    },
+    "link-2936294": {
+      "identifier": "link-2936294",
+      "kind": "article",
+      "role": "link",
+      "title": "Profiles and Logs",
+      "type": "topic",
+      "url": "https://developer.apple.com/bug-reporting/profiles-and-logs/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_downloads"
+      ],
+      "title": "Downloading"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/downloading_files_in_the_background"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/downloading_files_in_the_background"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

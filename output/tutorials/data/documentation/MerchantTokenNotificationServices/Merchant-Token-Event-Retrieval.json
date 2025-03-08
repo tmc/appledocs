@@ -1,0 +1,997 @@
+{
+  "abstract": [
+    {
+      "text": "Get the details of a merchant token event after receiving a notification.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/Merchant-Token-Event-Retrieval"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:applepay_merchant_token_mngmt:get:paymentservices-v1-merchantId-{}-merchantToken-event-{}",
+    "modules": [
+      {
+        "name": "Apple Pay Merchant Token Management API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Merchant Token Event Retrieval"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.10",
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Details of a Merchant Token Event"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://apple-pay-gateway.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "paymentservices/v1/merchantId/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{merchantId}"
+        },
+        {
+          "kind": "path",
+          "text": "/merchantToken/event/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{eventId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique event identifier that you receive in a notification from the Apple Pay server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "eventId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Your merchant identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "merchantId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Accept",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Content-Type",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-request-id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "header",
+      "title": "Header Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Successful response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/MerchantTokenEventResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:applepay_merchant_token_mngmt:MerchantTokenEventResponse",
+              "text": "MerchantTokenEventResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Bad request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:applepay_merchant_token_mngmt:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Internal server error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:applepay_merchant_token_mngmt:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about setting your server’s notification URL to receive life-cycle events, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/PKAutomaticReloadPaymentRequest/tokenNotificationURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/PKAutomaticReloadPaymentRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/PKRecurringPaymentRequest/tokenNotificationURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/PKRecurringPaymentRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest/3955921-tokennotificationurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest/3955958-tokennotificationurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices": {
+      "abstract": [
+        {
+          "text": "Retrieve and manage payment life-cycle events for your Apple Pay merchant tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay Merchant Token Management API",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices"
+    },
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/CardArt": {
+      "abstract": [
+        {
+          "text": "Data for displaying art to represent a card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CardArt"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/CardArt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CardArt"
+        }
+      ],
+      "role": "symbol",
+      "title": "CardArt",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices/cardart"
+    },
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/CardMetadata": {
+      "abstract": [
+        {
+          "text": "Data about the card, including its expiration date and suffix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CardMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/CardMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CardMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "CardMetadata",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices/cardmetadata"
+    },
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "Information about errors that the API returns in the response body whenever an API request is unsuccessful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices/errorresponse"
+    },
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/Merchant-Token-Event-Retrieval": {
+      "abstract": [
+        {
+          "text": "Get the details of a merchant token event after receiving a notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/Merchant-Token-Event-Retrieval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Merchant Token Event Retrieval"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Details of a Merchant Token Event",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices/merchant-token-event-retrieval"
+    },
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/MerchantTokenEventResponse": {
+      "abstract": [
+        {
+          "text": "A response body that contains information about a life-cycle event for a merchant token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MerchantTokenEventResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/MerchantTokenEventResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MerchantTokenEventResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MerchantTokenEventResponse",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices/merchanttokeneventresponse"
+    },
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/MerchantTokenMetadata": {
+      "abstract": [
+        {
+          "text": "The card information related to a merchant token, including its card art and metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MerchantTokenMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/MerchantTokenMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MerchantTokenMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "MerchantTokenMetadata",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices/merchanttokenmetadata"
+    },
+    "doc://com.apple.documentation/documentation/PassKit/PKAutomaticReloadPaymentRequest": {
+      "abstract": [
+        {
+          "text": "A class that represents a request to set up an automatic reload payment, such as a store card top-up or a prepaid account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAutomaticReloadPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/PKAutomaticReloadPaymentRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKAutomaticReloadPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/PassKit/PKAutomaticReloadPaymentRequest"
+    },
+    "doc://com.apple.documentation/documentation/PassKit/PKAutomaticReloadPaymentRequest/tokenNotificationURL": {
+      "abstract": [
+        {
+          "text": "A URL you provide to receive life-cycle notifications from the Apple Pay servers about the Apple Pay merchant token for the automatic reload payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenNotificationURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/PKAutomaticReloadPaymentRequest/tokenNotificationURL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenNotificationURL",
+      "type": "topic",
+      "url": "/documentation/PassKit/PKAutomaticReloadPaymentRequest/tokenNotificationURL"
+    },
+    "doc://com.apple.documentation/documentation/PassKit/PKRecurringPaymentRequest": {
+      "abstract": [
+        {
+          "text": "A class that represents a request to set up a recurring payment, typically a subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKRecurringPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/PKRecurringPaymentRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKRecurringPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/PassKit/PKRecurringPaymentRequest"
+    },
+    "doc://com.apple.documentation/documentation/PassKit/PKRecurringPaymentRequest/tokenNotificationURL": {
+      "abstract": [
+        {
+          "text": "A URL you provide to receive life-cycle notifications from the Apple Pay servers about the Apple Pay merchant token for the recurring payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenNotificationURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/PKRecurringPaymentRequest/tokenNotificationURL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenNotificationURL",
+      "type": "topic",
+      "url": "/documentation/PassKit/PKRecurringPaymentRequest/tokenNotificationURL"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest": {
+      "abstract": [
+        {
+          "text": "A dictionary that represents a request to set up an automatic reload payment, such as a store card top-up or a prepaid account.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayAutomaticReloadPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest/3955921-tokennotificationurl": {
+      "abstract": [
+        {
+          "text": "A URL you provide to receive life-cycle notifications from the Apple Pay servers about the Apple Pay merchant token for the recurring payment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest/3955921-tokennotificationurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenNotificationURL",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest/3955921-tokennotificationurl"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest": {
+      "abstract": [
+        {
+          "text": "A dictionary that represents a request to set up a recurring payment, typically a subscription.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayRecurringPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest/3955958-tokennotificationurl": {
+      "abstract": [
+        {
+          "text": "A URL you provide for receiving life-cycle notifications from the Apple Pay servers about the Apple Pay merchant token for the recurring payment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest/3955958-tokennotificationurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenNotificationURL",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest/3955958-tokennotificationurl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Merchant-token-event-retrieval",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/MerchantTokenEventResponse",
+        "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/MerchantTokenMetadata",
+        "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/CardArt",
+        "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/CardMetadata"
+      ],
+      "title": "Merchant token event retrieval"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PassKit~1PKRecurringPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PassKit~1PKRecurringPaymentRequest~1tokenNotificationURL/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "tokenNotificationURL"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1tokenNotificationURL/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "tokenNotificationURL"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/merchanttokennotificationservices/merchant-token-event-retrieval"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

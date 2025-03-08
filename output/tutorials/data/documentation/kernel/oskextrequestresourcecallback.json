@@ -1,0 +1,417 @@
+{
+  "abstract": [
+    {
+      "text": "Invoked to provide results for a kext resource request.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/oskextrequestresourcecallback"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1508303,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@OSKextRequestResourceCallback",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "OSKextRequestResourceCallback"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (*"
+            },
+            {
+              "kind": "identifier",
+              "text": "OSKextRequestResourceCallback"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/oskextrequesttag",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSKextRequestTag",
+              "text": "OSKextRequestTag"
+            },
+            {
+              "kind": "text",
+              "text": " requestTag, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSReturn",
+              "text": "OSReturn"
+            },
+            {
+              "kind": "text",
+              "text": " result, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *resourceData, "
+            },
+            {
+              "kind": "keyword",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " resourceDataLength, "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *context);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The tag of the request that the callback pertains to.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "requestTag"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The result of the request: ",
+                  "type": "text"
+                },
+                {
+                  "code": "kOSReturnSuccess",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if the request was fulfilled; ",
+                  "type": "text"
+                },
+                {
+                  "code": "kOSKextReturnTimeout",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if the request has timed out; ",
+                  "type": "text"
+                },
+                {
+                  "code": "kOSKextReturnStopping",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if the kext containing the callback address for the kext is being unloaded; or other values on error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "result"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the requested resource data. Owned by the system; the kext should make a copy if it needs to keep the data past the callback.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "resourceData"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The length of ",
+                  "type": "text"
+                },
+                {
+                  "code": "resourceData",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "resourceDataLength"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The context pointer originally passed to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/1508294-oskextrequestresource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context"
+        }
+      ]
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1508294-oskextrequestresource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1508294-oskextrequestresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextRequestResource",
+      "type": "topic",
+      "url": "/documentation/kernel/1508294-oskextrequestresource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osactionabortedhandler": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osactionabortedhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSActionAbortedHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/osactionabortedhandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osactioncancelhandler": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osactioncancelhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSActionCancelHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/osactioncancelhandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdispatchmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdispatchmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDispatchMethod",
+      "type": "topic",
+      "url": "/documentation/kernel/osdispatchmethod"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oskextrequestresourcecallback": {
+      "abstract": [
+        {
+          "text": "Invoked to provide results for a kext resource request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oskextrequestresourcecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextRequestResourceCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/oskextrequestresourcecallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oskextrequesttag": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oskextrequesttag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSKextRequestTag",
+      "type": "topic",
+      "url": "/documentation/kernel/oskextrequesttag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobjectapplierfunction": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobjectapplierfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObjectApplierFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/osobjectapplierfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserializerblock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserializerblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSerializerBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/osserializerblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserializercallback": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserializercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSerializerCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/osserializercallback"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osactionabortedhandler",
+        "doc://com.apple.documentation/documentation/kernel/osactioncancelhandler",
+        "doc://com.apple.documentation/documentation/kernel/osdispatchmethod",
+        "doc://com.apple.documentation/documentation/kernel/osobjectapplierfunction",
+        "doc://com.apple.documentation/documentation/kernel/osserializerblock",
+        "doc://com.apple.documentation/documentation/kernel/osserializercallback"
+      ],
+      "title": "Callback Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/oskextrequestresourcecallback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

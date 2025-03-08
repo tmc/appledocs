@@ -1,0 +1,974 @@
+{
+  "abstract": [
+    {
+      "text": "Create distribution packages for your apps that you distribute on alternative marketplaces or on the web.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-distribution-packages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-alternative-distribution-packages"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating alternative distribution packages"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use alternative distribution package (ADP) endpoints to create new packages and read information about package versions, variants, and deltas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determing-eligibilty-to-create-alternative-distribution-packages",
+          "level": 3,
+          "text": "Determing eligibilty to create alternative distribution packages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app is eligible for an alternative distribution package if all of the following are true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You accept the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/support/dma-and-apps-in-the-eu/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app is an iOS, iPadOS app, or targets both platforms.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app version uses the iOS or iPadOS 16.1 SDK or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your App Review approved app version is in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Pending Developer Release, Pending Apple Release,",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ready for Distribution.",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, one of these must be true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app is connected to an alternative marketplace. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app is an alternative marketplace. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-alternative-marketplaces-and-alternative-marketplace-apps",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app is a web distribution app. For more infomation, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-apps-for-web-distribution",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Alternative marketpaces, apps distributed by alternative marketplaces, and web distribution apps all use alternative distribution packages. Web distribution apps do not use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/notifications",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/marketplace-search-configurations",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".``",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-and-manage-alternative-distribution-packages-for-an-alternative-marketplace",
+          "level": 3,
+          "text": "Create and manage alternative distribution packages for an alternative marketplace",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an app developer for alternative marketplaces, when you add an app to a marketplace integration for distribution on a specific marketplace, you can opt-in to notifications. These notifications alert the marketplace when there are certain changes to your apps — for example, when a new alternative distribution package is generated. For more information on managing notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your app is approved by App Review, and after you add it to a marketplace integration in App Store Connect, you need to create the alternative distribution package. Start by finding the app Apple ID for your app by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and searching the resulting pages for the name of the app you want. In the response, make note of the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of that app, which appears in the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\" : [",
+            "    {",
+            "      \"type\" : \"apps\",",
+            "      \"id\" : \"6448401697\",",
+            "      ..."
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also find the app Apple ID by going to App Store Connect > My Apps > Select an app > App Information > Apple ID. Next, look up the ",
+              "type": "text"
+            },
+            {
+              "code": "appStoreVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-appStoreVersions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the app Apple ID. Then, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the ",
+              "type": "text"
+            },
+            {
+              "code": "data.relationships.appStoreVersion.id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the previous response. Use the sample payload below as a guide:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"alternativeDistributionPackages\",",
+            "    \"relationships\": {",
+            "      \"appStoreVersion\": {",
+            "        \"data\": {",
+            "          \"type\": \"appStoreVersions\",",
+            "          \"id\": \"76931be7-95c6-470d-ace0-f3e208fd4b00\"",
+            "        }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you opt-in to notifications, and the associated marketplace has set up webhooks with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceWebhooks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint, the marketplace is notified that a new alternative distribution package is available. If you did not opt-in, you’ll need to provide the alternative distribution package ID to the marketplace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you manage an alternative marketplace, you can get the alternative distribution package ID either from a notification from the webhooks API or manually from the app developer. A marketplace can’t generate alternative distribution packages on behalf of the app developer. The marketplace developer uses the App Store Connect API key associated with the marketplace provider’s account to download ADPs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about server-side processing of marketplace webhooks, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appdistribution/processing-alternative-marketplace-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-and-manage-alternative-distribution-packages-for-web-distribution-apps",
+          "level": 3,
+          "text": "Create and manage alternative distribution packages for web distribution apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your web distribution app is approved by App Review, you need to create the alternative distribution package. Start by finding the app Apple ID for your app by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and searching the resulting pages for the name of the app you want. In the response, make note of the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of that app, which appears in the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\" : [",
+            "    {",
+            "      \"type\" : \"apps\",",
+            "      \"id\" : \"6448401697\",",
+            "      ..."
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also find the app Apple ID by going to App Store Connect > My Apps > Select an app > App Information > Apple ID. Next, look up the ",
+              "type": "text"
+            },
+            {
+              "code": "appStoreVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-appStoreVersions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the app Apple ID. Then, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the ",
+              "type": "text"
+            },
+            {
+              "code": "data.relationships.appStoreVersion.id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the previous response. Use the sample payload below as a guide:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"alternativeDistributionPackages\",",
+            "    \"relationships\": {",
+            "      \"appStoreVersion\": {",
+            "        \"data\": {",
+            "          \"type\": \"appStoreVersions\",",
+            "          \"id\": \"76931be7-95c6-470d-ace0-f3e208fd4b00\"",
+            "        }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about next steps for your web distribution app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appdistribution/installing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-the-most-recent-distribution-package",
+          "level": 3,
+          "text": "Select the most recent distribution package",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only one alternative distribution package can exist for an ",
+              "type": "text"
+            },
+            {
+              "code": "appStoreVersion.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " It’s possible that you might have multiple versions of an alternative distribution package. To ensure you’re selecting the most recent ",
+              "type": "text"
+            },
+            {
+              "code": "alternativeDistributionPackageVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when there are multiple versions available, use ",
+              "type": "text"
+            },
+            {
+              "code": "filter[state]=COMPLETED",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackages-_id_-versions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackages-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about a specific alternative distribution package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackages-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/alternativeDistributionPackages/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read alternative distribution package information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-alternativedistributionpackages-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackages-_id_-versions": {
+      "abstract": [
+        {
+          "text": "Get version detail information about a specific alternative distribution package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackages-_id_-versions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/alternativeDistributionPackages/{id}/versions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read version information for an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-alternativedistributionpackages-_id_-versions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appStoreVersions-_id_-alternativeDistributionPackage": {
+      "abstract": [
+        {
+          "text": "Read the alternative distribution package for a specific App Store version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appStoreVersions-_id_-alternativeDistributionPackage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/appStoreVersions/{id}/alternativeDistributionPackage"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read an App Store version’s alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-appstoreversions-_id_-alternativedistributionpackage"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps": {
+      "abstract": [
+        {
+          "text": "Find and list apps in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps"
+        }
+      ],
+      "role": "symbol",
+      "title": "List Apps",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-appStoreVersions": {
+      "abstract": [
+        {
+          "text": "Get a list of all App Store versions of an app across all platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-appStoreVersions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps/{id}/appStoreVersions"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All App Store Versions for an App",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps-_id_-appstoreversions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages": {
+      "abstract": [
+        {
+          "text": "Create an alternative distribution package for an app store version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/alternativeDistributionPackages"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-alternativedistributionpackages"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceWebhooks": {
+      "abstract": [
+        {
+          "text": "Add a new endpoint URL and secret for alternative distribution package notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceWebhooks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/marketplaceWebhooks"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add a marketplace webhook configuration",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-marketplacewebhooks"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-distribution-packages": {
+      "abstract": [
+        {
+          "text": "Create and read distribution packages for an alternative app distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-distribution-packages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alternative Distribution Packages",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/alternative-distribution-packages"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution": {
+      "abstract": [
+        {
+          "text": "Manage keys, packages, and search for alternative app distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alternative Marketplaces and Web Distribution",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/alternative-marketplaces-and-web-distribution"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-alternative-marketplaces-and-alternative-marketplace-apps": {
+      "abstract": [
+        {
+          "text": "Establish a connection between a marketplace and a marketplace app and configure marketplace settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-alternative-marketplaces-and-alternative-marketplace-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring alternative marketplaces and alternative marketplace apps",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/configuring-alternative-marketplaces-and-alternative-marketplace-apps"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-apps-for-web-distribution": {
+      "abstract": [
+        {
+          "text": "Set up your app for direct installation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-apps-for-web-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring apps for web distribution",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/configuring-apps-for-web-distribution"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/marketplace-search-configurations": {
+      "abstract": [
+        {
+          "text": "Add and read information for alternative marketplace search configurations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/marketplace-search-configurations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Marketplace Search Configurations",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/marketplace-search-configurations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/notifications": {
+      "abstract": [
+        {
+          "text": "Add and read information for alternative distribution package notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/notifications"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/installing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Manage the installation of an app that you develop and distribute through your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/installing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing your app from your website",
+      "type": "topic",
+      "url": "/documentation/appdistribution/installing-your-app-from-your-website"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/processing-alternative-marketplace-notifications": {
+      "abstract": [
+        {
+          "text": "Manage the addition and removal of apps available on your alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/processing-alternative-marketplace-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing alternative app marketplace notifications",
+      "type": "topic",
+      "url": "/documentation/appdistribution/processing-alternative-marketplace-notifications"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/": {
+      "identifier": "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/",
+      "title": "Alternative Terms Addendum for Apps in the EU",
+      "titleInlineContent": [
+        {
+          "text": "Alternative Terms Addendum for Apps in the EU",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+      "title": "Manage distribution on an alternative marketplace",
+      "titleInlineContent": [
+        {
+          "text": "Manage distribution on an alternative marketplace",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace"
+    },
+    "https://developer.apple.com/support/dma-and-apps-in-the-eu/": {
+      "identifier": "https://developer.apple.com/support/dma-and-apps-in-the-eu/",
+      "title": "Update on apps distributed in the European Union",
+      "titleInlineContent": [
+        {
+          "text": "Update on apps distributed in the European Union",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/dma-and-apps-in-the-eu/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-and-reading-distribution-packages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackages-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appStoreVersions-_id_-alternativeDistributionPackage",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackages-_id_-versions"
+      ],
+      "title": "Creating and reading distribution packages"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/creating-alternative-distribution-packages"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

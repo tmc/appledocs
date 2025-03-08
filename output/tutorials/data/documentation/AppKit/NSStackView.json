@@ -1,0 +1,4776 @@
+{
+  "abstract": [
+    {
+      "text": "A view that arranges an array of views horizontally or vertically and updates their placement and sizing when the window size changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSStackView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSStackView",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSStackView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSStackView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSStackView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A stack view employs Auto Layout (the system’s constraint-based layout feature) to arrange and align an array of views according to your specification. To use a stack view effectively, you need to understand the basics of Auto Layout constraints as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Basic-Features-of-Stack-Views",
+          "level": 3,
+          "text": "Basic Features of Stack Views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A stack view supports vertical and horizontal layouts and interacts dynamically with window resizing and Cocoa animations. You can easily reconfigure the contents of a stack view at runtime. That is, after you create and configure a stack view in Interface Builder, you can add or remove views dynamically without explicitly working with layout constraints. For example, if you configure a stack view with three checkboxes and dynamically add a fourth, the stack view automatically adds constraints as needed, according to the stack view’s configuration. The new checkbox gains dynamic layout configuration from the stack view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Stack views are nestable: a stack view is a valid element in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array of another stack view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Do not add views or constraints to a stack view’s private views. A stack view’s private views might change in future versions of macOS and are not guaranteed to be encoded or decoded with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Layout-Direction-and-Gravity-Areas",
+          "level": 3,
+          "text": "Layout Direction and Gravity Areas",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A stack view has three so-called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "gravity areas",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that each identify a section of the stack view’s layout. A horizontal stack view, which is the default type, has a leading, a center, and a trailing gravity area. The ordering of these areas depends on the value of the stack view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/userInterfaceLayoutDirection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property (inherited from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class). In a left to right language, the leading gravity area in a horizontal stack view is on the left. To enforce a left to right layout independently of language, explicitly set the layout direction by calling the inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/userInterfaceLayoutDirection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on your stack view instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify vertical layout, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/orientation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceLayoutOrientation/vertical",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constant from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceLayoutOrientation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enumeration. In a vertical stack view, the gravity areas always are top, center, and bottom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-Detachment-and-Hiding",
+          "level": 3,
+          "text": "View Detachment and Hiding",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A stack view can automatically detach and reattach its views in response to layout changes, such as window resizing performed by the user, or resizing/repositioning of another view in the same view hierarchy. A view in a detached state is not present in the stack view’s view hierarchy, but it still consumes memory. A view that is hidden, but not detached, remains part of the view hierarchy and continues to participate in Auto Layout, but it is not visible and doesn’t receive input events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow views to detach, set the so-called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "clipping resistance",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for a stack view to a value lower than its default of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct/required",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/setClippingResistancePriority(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can influence which views detach first (and reattach last). Do this by setting the so-called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "visibility priority",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for each view whose detachment order you want to specify. A view with a lower visibility priority detaches before one with a higher priority, and reattaches after it. See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enumeration and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/setVisibilityPriority(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To explicitly detach a view from a stack view, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/setVisibilityPriority(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method with a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority/notVisible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To explicitly reattach a view to a stack view, call the same method with a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority/mustHold",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you hide a view that belongs to a stack view (by setting the view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/isHidden",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), the view detaches from the stack view by default. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/detachesHiddenViews",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to change the default behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls a stack view delegate method when a view is about to be detached and when a view has been reattached, giving you the opportunity to run code at those times. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary to interact with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityElementProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityelementprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol": {
+      "abstract": [
+        {
+          "text": "The complete list of properties and methods for accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines a way to add animation to an existing class with a minimum of API impact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAnimatablePropertyContainer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsanimatablepropertycontainer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization": {
+      "abstract": [
+        {
+          "text": "A set of methods for getting and setting the appearance attributes of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppearanceCustomization",
+      "type": "topic",
+      "url": "/documentation/appkit/nsappearancecustomization"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination": {
+      "abstract": [
+        {
+          "text": "A set of methods that the destination object (or recipient) of a dragged image must implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingDestination",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdraggingdestination"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct/required": {
+      "abstract": [
+        {
+          "text": "A required constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "required"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSLayoutPriority",
+          "text": "Priority"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct/required",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutPriorityRequired"
+        }
+      ],
+      "role": "symbol",
+      "title": "required",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutconstraint/priority-swift.struct/required"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView": {
+      "abstract": [
+        {
+          "text": "A view that arranges an array of views horizontally or vertically and updates their placement and sizing when the window size changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStackView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStackView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStackView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/Distribution-swift.enum": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Distribution"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/Distribution-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Distribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStackView.Distribution",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/distribution-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/Gravity": {
+      "abstract": [
+        {
+          "text": "The gravity areas available in a stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Gravity"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/Gravity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Gravity"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStackView.Gravity",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/gravity"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority": {
+      "abstract": [
+        {
+          "text": "The various Auto Layout priorities for a view in the stack view to remain attached.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VisibilityPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VisibilityPriority"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStackView.VisibilityPriority",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/visibilitypriority"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority/mustHold": {
+      "abstract": [
+        {
+          "text": "The default value, and maximum Auto Layout priority, that results in a view never detaching from the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mustHold"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStackView",
+          "text": "NSStackView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSStackViewVisibilityPriority",
+          "text": "VisibilityPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority/mustHold",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStackViewVisibilityPriorityMustHold"
+        }
+      ],
+      "role": "symbol",
+      "title": "mustHold",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/visibilitypriority/musthold"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority/notVisible": {
+      "abstract": [
+        {
+          "text": "The minimum Auto Layout priority that forces a view to detach from the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notVisible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStackView",
+          "text": "NSStackView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSStackViewVisibilityPriority",
+          "text": "VisibilityPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority/notVisible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStackViewVisibilityPriorityNotVisible"
+        }
+      ],
+      "role": "symbol",
+      "title": "notVisible",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/visibilitypriority/notvisible"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/addArrangedSubview(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified view to the end of the arranged subviews list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addArrangedSubview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/addArrangedSubview(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addArrangedSubview:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addArrangedSubview(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/addarrangedsubview(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/addView(_:in:)": {
+      "abstract": [
+        {
+          "text": "Adds a view to the end of the stack view gravity area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStackView",
+          "text": "NSStackView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSStackViewGravity",
+          "text": "Gravity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/addView(_:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addView:inGravity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addView(_:in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/addview(_:in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/alignment": {
+      "abstract": [
+        {
+          "text": "The view alignment within the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutAttribute",
+          "text": "Attribute"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/alignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "alignment",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/alignment"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/arrangedSubviews": {
+      "abstract": [
+        {
+          "text": "The array of views arranged by the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "arrangedSubviews"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/arrangedSubviews",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "arrangedSubviews"
+        }
+      ],
+      "role": "symbol",
+      "title": "arrangedSubviews",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/arrangedsubviews"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/clippingResistancePriority(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the Auto Layout priority for resisting clipping of views in the stack view when Auto Layout attempts to reduce the stack view’s size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clippingResistancePriority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutConstraintOrientation",
+          "text": "Orientation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSLayoutPriority",
+          "text": "Priority"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/clippingResistancePriority(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clippingResistancePriorityForOrientation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "clippingResistancePriority(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/clippingresistancepriority(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/customSpacing(after:)": {
+      "abstract": [
+        {
+          "text": "Returns the custom spacing, in points, between a specified view in the stack view and the view that follows it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customSpacing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/customSpacing(after:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "customSpacingAfterView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "customSpacing(after:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/customspacing(after:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate object for the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSStackViewDelegate",
+          "text": "NSStackViewDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/delegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/detachedViews": {
+      "abstract": [
+        {
+          "text": "An array that contains the detached views from all the stack view’s gravity areas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachedViews"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/detachedViews",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detachedViews"
+        }
+      ],
+      "role": "symbol",
+      "title": "detachedViews",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/detachedviews"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/detachesHiddenViews": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the stack view removes hidden views from its view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachesHiddenViews"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/detachesHiddenViews",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detachesHiddenViews"
+        }
+      ],
+      "role": "symbol",
+      "title": "detachesHiddenViews",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/detacheshiddenviews"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/distribution-swift.property": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "distribution"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStackView",
+          "text": "NSStackView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSStackViewDistribution",
+          "text": "Distribution"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/distribution-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "distribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "distribution",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/distribution-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/edgeInsets": {
+      "abstract": [
+        {
+          "text": "The geometric padding, in points, inside the stack view, surrounding its views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "edgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSEdgeInsets",
+          "text": "NSEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/edgeInsets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "edgeInsets"
+        }
+      ],
+      "role": "symbol",
+      "title": "edgeInsets",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/edgeinsets"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/hasEqualSpacing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the spacing between adjacent views should be equal to each other.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasEqualSpacing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/hasEqualSpacing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasEqualSpacing"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasEqualSpacing",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/hasequalspacing"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/huggingPriority(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the Auto Layout priority for the stack view to minimize its size to fit its contained views as closely as possible, for a specified user interface axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "huggingPriority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutConstraintOrientation",
+          "text": "Orientation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSLayoutPriority",
+          "text": "Priority"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/huggingPriority(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "huggingPriorityForOrientation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "huggingPriority(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/huggingpriority(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/init(views:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a stack view with a specified array of views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "views"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/init(views:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stackViewWithViews:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(views:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/init(views:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/insertArrangedSubview(_:at:)": {
+      "abstract": [
+        {
+          "text": "Adds the provided view to the array of arranged subviews at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertArrangedSubview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/insertArrangedSubview(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertArrangedSubview:atIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertArrangedSubview(_:at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/insertarrangedsubview(_:at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/insertView(_:at:in:)": {
+      "abstract": [
+        {
+          "text": "Adds a view to a stack view gravity area at a specified index position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStackView",
+          "text": "NSStackView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSStackViewGravity",
+          "text": "Gravity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/insertView(_:at:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertView:atIndex:inGravity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertView(_:at:in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/insertview(_:at:in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/orientation": {
+      "abstract": [
+        {
+          "text": "The horizontal or vertical layout direction of the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSUserInterfaceLayoutOrientation",
+          "text": "NSUserInterfaceLayoutOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/orientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "orientation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/orientation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/removeArrangedSubview(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the provided view from the stack’s array of arranged subviews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeArrangedSubview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/removeArrangedSubview(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeArrangedSubview:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeArrangedSubview(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/removearrangedsubview(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/removeView(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a specified view from the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/removeView(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeView(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/removeview(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/setClippingResistancePriority(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the Auto Layout priority for resisting clipping of views in the stack view when Auto Layout attempts to reduce the stack view’s size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setClippingResistancePriority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSLayoutPriority",
+          "text": "Priority"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutConstraintOrientation",
+          "text": "Orientation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/setClippingResistancePriority(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setClippingResistancePriority:forOrientation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setClippingResistancePriority(_:for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/setclippingresistancepriority(_:for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/setCustomSpacing(_:after:)": {
+      "abstract": [
+        {
+          "text": "Specifies the custom spacing, in points, between a specified view and the view that follows it in the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCustomSpacing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/setCustomSpacing(_:after:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setCustomSpacing:afterView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setCustomSpacing(_:after:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/setcustomspacing(_:after:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/setHuggingPriority(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the Auto Layout priority for the stack view to minimize its size, for a specified user interface axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setHuggingPriority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSLayoutPriority",
+          "text": "Priority"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutConstraintOrientation",
+          "text": "Orientation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/setHuggingPriority(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setHuggingPriority:forOrientation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setHuggingPriority(_:for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/sethuggingpriority(_:for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/setViews(_:in:)": {
+      "abstract": [
+        {
+          "text": "Specifies an array of views for a specified gravity area in the stack view, replacing any previous views in that area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setViews"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStackView",
+          "text": "NSStackView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSStackViewGravity",
+          "text": "Gravity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/setViews(_:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setViews:inGravity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setViews(_:in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/setviews(_:in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/setVisibilityPriority(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the Auto Layout priority for a view to remain attached to the stack view when Auto Layout reduces the stack view’s size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibilityPriority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStackView",
+          "text": "NSStackView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSStackViewVisibilityPriority",
+          "text": "VisibilityPriority"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/setVisibilityPriority(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVisibilityPriority:forView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVisibilityPriority(_:for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/setvisibilitypriority(_:for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/spacing": {
+      "abstract": [
+        {
+          "text": "The minimum spacing, in points, between adjacent views in the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spacing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/spacing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "spacing"
+        }
+      ],
+      "role": "symbol",
+      "title": "spacing",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/spacing"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/useDefaultSpacing": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useDefaultSpacing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/useDefaultSpacing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStackViewSpacingUseDefault"
+        }
+      ],
+      "role": "symbol",
+      "title": "useDefaultSpacing",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/usedefaultspacing"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/views": {
+      "abstract": [
+        {
+          "text": "The array of views owned by the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "views"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/views",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "views"
+        }
+      ],
+      "role": "symbol",
+      "title": "views",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/views"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/views(in:)": {
+      "abstract": [
+        {
+          "text": "Returns the array of views in the specified gravity area in the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "views"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStackView",
+          "text": "NSStackView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSStackViewGravity",
+          "text": "Gravity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/views(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewsInGravity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "views(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/views(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView/visibilityPriority(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the visibility priority for a specified view in the stack view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibilityPriority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStackView",
+          "text": "NSStackView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSStackViewVisibilityPriority",
+          "text": "VisibilityPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView/visibilityPriority(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "visibilityPriorityForView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "visibilityPriority(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview/visibilitypriority(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackViewDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods you use to respond to a stack view detaching and reattaching views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStackViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStackViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStackViewDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackviewdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstandardkeybindingresponding"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbarprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuseractivityrestoring"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfaceitemidentification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceLayoutOrientation": {
+      "abstract": [
+        {
+          "text": "The stack view layout directions, and user interface axes for hugging priority and clipping resistance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceLayoutOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceLayoutOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceLayoutOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceLayoutOrientation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacelayoutorientation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceLayoutOrientation/vertical": {
+      "abstract": [
+        {
+          "text": "The vertical orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vertical"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceLayoutOrientation/vertical",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceLayoutOrientationVertical"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceLayoutOrientation.vertical",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacelayoutorientation/vertical"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/isHidden": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view is hidden.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/isHidden",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hidden"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHidden",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/ishidden"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/userInterfaceLayoutDirection": {
+      "abstract": [
+        {
+          "text": "The layout direction for content in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInterfaceLayoutDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSUserInterfaceLayoutDirection",
+          "text": "NSUserInterfaceLayoutDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/userInterfaceLayoutDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInterfaceLayoutDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInterfaceLayoutDirection",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/userinterfacelayoutdirection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view": {
+      "abstract": [
+        {
+          "text": "Group individual views in your app’s user interface into a scrollable stack view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Organize Your User Interface with a Stack View",
+      "type": "topic",
+      "url": "/documentation/appkit/organize-your-user-interface-with-a-stack-view"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder": {
+      "abstract": [
+        {
+          "text": "An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853",
+      "title": "Auto Layout Guide",
+      "titleInlineContent": [
+        {
+          "text": "Auto Layout Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+        "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Stack-View",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/init(views:)"
+      ],
+      "title": "Creating a Stack View"
+    },
+    {
+      "anchor": "Responding-to-Stack-Related-Changes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/delegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackViewDelegate"
+      ],
+      "title": "Responding to Stack-Related Changes"
+    },
+    {
+      "anchor": "Managing-Views-in-Gravity-Areas",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/addView(_:in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/insertView(_:at:in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/setViews(_:in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/removeView(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/Gravity"
+      ],
+      "title": "Managing Views in Gravity Areas"
+    },
+    {
+      "anchor": "Managing-the-Arranged-Subviews",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/addArrangedSubview(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/insertArrangedSubview(_:at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/removeArrangedSubview(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/arrangedSubviews"
+      ],
+      "title": "Managing the Arranged Subviews"
+    },
+    {
+      "anchor": "Inspecting-a-Stack-View",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/views",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/views(in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/detachedViews",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/clippingResistancePriority(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/huggingPriority(for:)"
+      ],
+      "title": "Inspecting a Stack View"
+    },
+    {
+      "anchor": "Configuring-the-Stack-View-Layout",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/orientation",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceLayoutOrientation",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/alignment",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/spacing",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/useDefaultSpacing",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/edgeInsets",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/hasEqualSpacing",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/distribution-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/Distribution-swift.enum"
+      ],
+      "title": "Configuring the Stack View Layout"
+    },
+    {
+      "anchor": "Configuring-Views-in-a-Stack-View",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/customSpacing(after:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/setCustomSpacing(_:after:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/visibilityPriority(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/setVisibilityPriority(_:for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/useDefaultSpacing"
+      ],
+      "title": "Configuring Views in a Stack View"
+    },
+    {
+      "anchor": "Configuring-Dynamic-Behavior-for-a-Stack-View",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/detachesHiddenViews",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/setClippingResistancePriority(_:for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView/setHuggingPriority(_:for:)"
+      ],
+      "title": "Configuring Dynamic Behavior for a Stack View"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSStackView"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Stack-View",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/init(views:)"
+              ],
+              "title": "Creating a Stack View"
+            },
+            {
+              "anchor": "Responding-to-Stack-Related-Changes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/delegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackViewDelegate"
+              ],
+              "title": "Responding to Stack-Related Changes"
+            },
+            {
+              "anchor": "Managing-Views-in-Gravity-Areas",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/addView(_:in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/insertView(_:at:in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/setViews(_:in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/removeView(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/Gravity"
+              ],
+              "title": "Managing Views in Gravity Areas"
+            },
+            {
+              "anchor": "Managing-the-Arranged-Subviews",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/addArrangedSubview(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/insertArrangedSubview(_:at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/removeArrangedSubview(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/arrangedSubviews"
+              ],
+              "title": "Managing the Arranged Subviews"
+            },
+            {
+              "anchor": "Inspecting-a-Stack-View",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/views",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/views(in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/detachedViews",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/clippingResistancePriority(for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/huggingPriority(for:)"
+              ],
+              "title": "Inspecting a Stack View"
+            },
+            {
+              "anchor": "Configuring-the-Stack-View-Layout",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/orientation",
+                "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceLayoutOrientation",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/alignment",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/spacing",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/useDefaultSpacing",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/edgeInsets",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/hasEqualSpacing",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/distribution-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/Distribution-swift.enum"
+              ],
+              "title": "Configuring the Stack View Layout"
+            },
+            {
+              "anchor": "Configuring-Views-in-a-Stack-View",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/customSpacing(after:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/setCustomSpacing(_:after:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/visibilityPriority(for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/setVisibilityPriority(_:for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/VisibilityPriority",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/useDefaultSpacing"
+              ],
+              "title": "Configuring Views in a Stack View"
+            },
+            {
+              "anchor": "Configuring-Dynamic-Behavior-for-a-Stack-View",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/detachesHiddenViews",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/setClippingResistancePriority(_:for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView/setHuggingPriority(_:for:)"
+              ],
+              "title": "Configuring Dynamic Behavior for a Stack View"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSStackView"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSView",
+                    "text": "NSView"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1useDefaultSpacing/title",
+          "value": "NSStackViewSpacingUseDefault"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1useDefaultSpacing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewSpacingUseDefault"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/title",
+          "value": "NSTouchBarProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1clippingResistancePriority(for:)/title",
+          "value": "clippingResistancePriorityForOrientation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1clippingResistancePriority(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "clippingResistancePriorityForOrientation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackViewDelegate/title",
+          "value": "NSStackViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1insertArrangedSubview(_:at:)/title",
+          "value": "insertArrangedSubview:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1insertArrangedSubview(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertArrangedSubview:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1huggingPriority(for:)/title",
+          "value": "huggingPriorityForOrientation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1huggingPriority(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "huggingPriorityForOrientation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1Gravity/title",
+          "value": "NSStackViewGravity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1Gravity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewGravity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1Gravity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewGravity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1visibilityPriority(for:)/title",
+          "value": "visibilityPriorityForView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1visibilityPriority(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "visibilityPriorityForView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1detachesHiddenViews/title",
+          "value": "detachesHiddenViews"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1detachesHiddenViews/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "detachesHiddenViews"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1addView(_:in:)/title",
+          "value": "addView:inGravity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1addView(_:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addView:inGravity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1views/title",
+          "value": "views"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1views/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1setClippingResistancePriority(_:for:)/title",
+          "value": "setClippingResistancePriority:forOrientation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1setClippingResistancePriority(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setClippingResistancePriority:forOrientation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1VisibilityPriority~1notVisible/title",
+          "value": "NSStackViewVisibilityPriorityNotVisible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1VisibilityPriority~1notVisible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewVisibilityPriorityNotVisible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/title",
+          "value": "NSStackView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1setViews(_:in:)/title",
+          "value": "setViews:inGravity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1setViews(_:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setViews:inGravity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1detachedViews/title",
+          "value": "detachedViews"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1detachedViews/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "detachedViews"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1orientation/title",
+          "value": "orientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1orientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "orientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1userInterfaceLayoutDirection/title",
+          "value": "userInterfaceLayoutDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1userInterfaceLayoutDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInterfaceLayoutDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceLayoutOrientation/title",
+          "value": "NSUserInterfaceLayoutOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceLayoutOrientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceLayoutOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceLayoutOrientation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceLayoutOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/title",
+          "value": "NSUserInterfaceItemIdentification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1removeArrangedSubview(_:)/title",
+          "value": "removeArrangedSubview:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1removeArrangedSubview(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeArrangedSubview:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1alignment/title",
+          "value": "alignment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1alignment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1VisibilityPriority/title",
+          "value": "NSStackViewVisibilityPriority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1VisibilityPriority/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewVisibilityPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1VisibilityPriority/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewVisibilityPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1customSpacing(after:)/title",
+          "value": "customSpacingAfterView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1customSpacing(after:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "customSpacingAfterView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1removeView(_:)/title",
+          "value": "removeView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1removeView(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1setHuggingPriority(_:for:)/title",
+          "value": "setHuggingPriority:forOrientation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1setHuggingPriority(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setHuggingPriority:forOrientation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/title",
+          "value": "NSAnimatablePropertyContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/title",
+          "value": "NSDraggingDestination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1setVisibilityPriority(_:for:)/title",
+          "value": "setVisibilityPriority:forView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1setVisibilityPriority(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVisibilityPriority:forView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1VisibilityPriority~1mustHold/title",
+          "value": "NSStackViewVisibilityPriorityMustHold"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1VisibilityPriority~1mustHold/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewVisibilityPriorityMustHold"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1spacing/title",
+          "value": "spacing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1spacing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "spacing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1edgeInsets/title",
+          "value": "edgeInsets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1edgeInsets/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "edgeInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/title",
+          "value": "NSAppearanceCustomization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1arrangedSubviews/title",
+          "value": "arrangedSubviews"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1arrangedSubviews/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "arrangedSubviews"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1insertView(_:at:in:)/title",
+          "value": "insertView:atIndex:inGravity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1insertView(_:at:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertView:atIndex:inGravity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceLayoutOrientation~1vertical/title",
+          "value": "NSUserInterfaceLayoutOrientationVertical"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceLayoutOrientation~1vertical/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceLayoutOrientationVertical"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1addArrangedSubview(_:)/title",
+          "value": "addArrangedSubview:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1addArrangedSubview(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addArrangedSubview:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1hasEqualSpacing/title",
+          "value": "hasEqualSpacing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1hasEqualSpacing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasEqualSpacing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1init(views:)/title",
+          "value": "stackViewWithViews:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1init(views:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "stackViewWithViews:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/title",
+          "value": "NSStandardKeyBindingResponding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1setCustomSpacing(_:after:)/title",
+          "value": "setCustomSpacing:afterView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1setCustomSpacing(_:after:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCustomSpacing:afterView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1distribution-swift.property/title",
+          "value": "distribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1distribution-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "distribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint~1Priority-swift.struct~1required/title",
+          "value": "NSLayoutPriorityRequired"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint~1Priority-swift.struct~1required/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutPriorityRequired"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1Distribution-swift.enum/title",
+          "value": "NSStackViewDistribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1Distribution-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewDistribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1Distribution-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackViewDistribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/title",
+          "value": "NSUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/title",
+          "value": "NSAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1isHidden/title",
+          "value": "hidden"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1isHidden/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hidden"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1views(in:)/title",
+          "value": "viewsInGravity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView~1views(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewsInGravity:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsstackview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsstackview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

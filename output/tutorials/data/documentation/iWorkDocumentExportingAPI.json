@@ -1,0 +1,488 @@
+{
+  "abstract": [
+    {
+      "text": "Convert iWork documents to Portable Document Format (PDF) files using a web API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "iWorkDocumentExportingAPI",
+    "modules": [
+      {
+        "name": "iWork Document Exporting API"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iWork"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "iWork Document Exporting API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iWork API enables the conversion of iWork documents from apps such as Numbers, Pages, and Keynote into PDF documents that a person can view using the Preview app or another PDF reader application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the service exports an iWork document to PDF format, an app can use the PDF to display an inline preview for iWork documents. You can extract Text and preview images from the PDF document using standard tools.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The conversion service supports files that meet the following criteria:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A maximum file size of 1 GB.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Documents that aren’t protected with a password.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "As part of your uploading workflow, inform people that the service temporarily stores iWork documents on Apple servers for the purpose of conversion. Provide the option to enable and disable the iWork preview feature, and display a privacy notice such as “When using iWork online previews, your files will be temporarily stored on Apple servers.”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert iWork documents to PDF files using the iWork document-exporting service, sign up by generating the keys and service identifier the service requires. This process consists of several steps that you need to perform in the order described below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Log-in-to-the-developer-portal",
+          "level": 3,
+          "text": "Log in to the developer portal",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Log into the developer portal by accessing ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using your Apple Developer ID. After logging in, click on the Identifiers item in the Certificates, IDs & Profiles section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make note of your developer team ID, located under your account name in the upper-right corner of the window; the service requires this value when making calls to the service API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-new-identifier",
+          "level": 3,
+          "text": "Create a new identifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new identifier, perform these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the + button to create a new identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Register a new identifier page, click Services IDs, and then click Continue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a description for the new service ID and a unique identifier. Use a reverse domain style sting,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.myAppName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and click Continue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Register to save your new service ID; the developer portal then displays a list of available identifiers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click on the newly created identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable iWork Document Export, click Continue, and then click Save.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Create-and-download-a-new-key",
+          "level": 3,
+          "text": "Create and download a new key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new key, perform these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Keys in the sidebar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a unique name for the new key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select iWork Document Exporting from the list of key types.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Continue to configure the new key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the dropdown menu, select the name of the identifier you created earlier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Save to bind the service name to the key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Download to save the new key. This key can’t be downloaded again; if it’s lost or compromised, you’ll need to revoke it and generate a new key. Keep copies of the key in a safe place.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI": {
+      "abstract": [
+        {
+          "text": "Convert iWork documents to Portable Document Format (PDF) files using a web API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "iWork Document Exporting API",
+      "type": "topic",
+      "url": "/documentation/iworkdocumentexportingapi"
+    },
+    "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI/Create-an-export-job-(v2)": {
+      "abstract": [
+        {
+          "text": "Create a PDF preview of an iWork document using JSON Web Token (JWT) authorization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI/Create-an-export-job-(v2)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create an export job (v2)"
+        }
+      ],
+      "role": "symbol",
+      "title": "Export a PDF document from an iWork file",
+      "type": "topic",
+      "url": "/documentation/iworkdocumentexportingapi/create-an-export-job-(v2)"
+    },
+    "https://developer.apple.com": {
+      "identifier": "https://developer.apple.com",
+      "title": "developer.apple.com",
+      "titleInlineContent": [
+        {
+          "text": "developer.apple.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Endpoints",
+      "generated": true,
+      "identifiers": [
+        "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI/Create-an-export-job-(v2)"
+      ],
+      "title": "Endpoints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/iworkdocumentexportingapi"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

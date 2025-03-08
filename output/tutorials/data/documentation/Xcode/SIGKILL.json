@@ -1,0 +1,1339 @@
+{
+  "abstract": [
+    {
+      "text": "The operating system terminated the process,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "often because a background task violated a requirement,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "device resources were limited,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "or the user force quit the app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/SIGKILL"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "EXC_CRASH (SIGKILL)"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The crash report contains a ",
+              "type": "text"
+            },
+            {
+              "code": "Termination Reason",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field with a code that explains the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reason for the crash. In the following example, that code is ",
+              "type": "text"
+            },
+            {
+              "code": "0xdead10cc",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:  EXC_CRASH (SIGKILL)",
+            "Exception Codes: 0x0000000000000000, 0x0000000000000000",
+            "Exception Note:  EXC_CORPSE_NOTIFY",
+            "Termination Reason: Namespace RUNNINGBOARD, Code 0xdead10cc"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Termination Reason",
+              "type": "codeVoice"
+            },
+            {
+              "text": " code is one of the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system terminated the app due to a background task failing to complete in time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0x2182bad2",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "562215634",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ")",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system terminated the app due to a background URL session failing to complete in time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0x2182bad3",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "562215635",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ")",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system terminated the app due to a background fetch failing to complete in time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0x2182bad4",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "562215636",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ")",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system’s watchdog terminated the app. See ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0x8badf00d",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "2343432205",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ") — pronounced “ate bad food”",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system terminated the app due to a thermal event. This can be an issue with the particular device that this crash occurred on, or the environment it operated in. For tips on making your app run more efficiently, watch the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/videos/play/wwdc2011/312/",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " WWDC session. To test your app’s response to thermal events, enable a thermal device condition as described in ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://help.apple.com/xcode/mac/current/#/dev308429d42",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0xc00010ff",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "3221229823",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ") — pronounced “cool off”",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system terminated the app because it held on to a file lock or SQLite database lock during suspension. Request additional background execution time on the main thread with ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/beginBackgroundTask(withName:expirationHandler:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". Make this request well before starting to write to the file in order to complete those operations and relinquish the lock before the app suspends. In an app extension, use ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/processinfo/1415995-beginactivity",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " to manage this work.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0xdead10cc",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "3735883980",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ") — pronounced “dead lock”",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system terminated the app for failing to report a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/CallKit",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " call in response to a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/PushKit",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " notification.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0xbaadca11",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "3131951633",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ") — pronounced “bad call”",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system terminated a VoIP application because it resumed too frequently.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0xbad22222",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "3134333474",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ")",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system terminated the app to delete caches, in an attempt to reclaim disk space. Many factors contribute to low disk space. You may be able to help by minimizing what you write to disk and managing the entire life cycle of your files.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0xbaddd15c",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "3135099228",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ") — pronounced “bad disc”",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "watchOS terminated the app because it used too much CPU time while performing a background task. Optimize the code performing the background task to be more CPU efficient, or decrease the amount of work that the app performs while running in the background to resolve this crash.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0xc51bad01",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "3306925313",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ")",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "watchOS terminated the app because it failed to complete a background task within the allocated time. Decrease the amount of work that the app performs while running in the background to resolve this crash.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0xc51bad02",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "3306925314",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ")",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "watchOS terminated the app because it failed to complete a background task within the allocated time, but the system was sufficiently busy overall that the app might not have received much CPU time to perform the background task. Although you might be able to avoid the issue by reducing the amount of work your app performs in background tasks, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0xc51bad03",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " doesn’t indicate that the app did anything wrong. More likely, the app wasn’t able to complete its work because of overall system load.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0xc51bad03",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "3306925315",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ")",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system terminated the app due to excessive use of key system resources. You might be able to avoid the issue by reducing parallelization and ensuring that your app completes operations for preceding tasks before starting new tasks.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "0xd00d2bad",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (",
+                    "type": "text"
+                  },
+                  {
+                    "code": "3490524077",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ") — pronounced “dude, too bad”",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/EXC_ARITHMETIC": {
+      "abstract": [
+        {
+          "text": "An arithmetic problem terminated the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because of division by zero or a floating-point error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/EXC_ARITHMETIC",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_ARITHMETIC",
+      "type": "topic",
+      "url": "/documentation/xcode/exc_arithmetic"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/EXC_BAD_ACCESS": {
+      "abstract": [
+        {
+          "text": "A bad access to memory terminated the process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/EXC_BAD_ACCESS",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_BAD_ACCESS",
+      "type": "topic",
+      "url": "/documentation/xcode/exc_bad_access"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/EXC_CRASH": {
+      "abstract": [
+        {
+          "text": "The process crashed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/EXC_CRASH",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_CRASH",
+      "type": "topic",
+      "url": "/documentation/xcode/exc_crash"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/EXC_GUARD": {
+      "abstract": [
+        {
+          "text": "The process violated a guarded resource protection, often related to file descriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/EXC_GUARD",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_GUARD",
+      "type": "topic",
+      "url": "/documentation/xcode/exc_guard"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/EXC_RESOURCE": {
+      "abstract": [
+        {
+          "text": "The operating system stopped the process",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "because the process exceeded a limit on resource consumption,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "like CPU time or memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/EXC_RESOURCE",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_RESOURCE",
+      "type": "topic",
+      "url": "/documentation/xcode/exc_resource"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGABRT": {
+      "abstract": [
+        {
+          "text": "The process terminated because it received an abort signal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGABRT",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_CRASH (SIGABRT)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigabrt"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGBUS": {
+      "abstract": [
+        {
+          "text": "A bus error terminated the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because the process tried to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "access a misaligned or invalid address in memory,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or due to a pointer authentication failure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGBUS",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_BAD_ACCESS (SIGBUS)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigbus"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGQUIT": {
+      "abstract": [
+        {
+          "text": "Another processes terminated the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because the process violated a requirement or timeout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGQUIT",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_CRASH (SIGQUIT)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigquit"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGSEGV": {
+      "abstract": [
+        {
+          "text": "A memory segmentation fault terminated the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because the process tried to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "access an invalid or out-of-bounds address in memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGSEGV",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_BAD_ACCESS (SIGSEGV)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigsegv"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGSYS": {
+      "abstract": [
+        {
+          "text": "A bad argument to a system call terminated the process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGSYS",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_CRASH (SIGSYS)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigsys"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGTERM": {
+      "abstract": [
+        {
+          "text": "A software termination signal terminated the process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGTERM",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_CRASH (SIGTERM)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigterm"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGTRAP_SIGILL": {
+      "abstract": [
+        {
+          "text": "A trace trap or invalid CPU instruction interrupted the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because the process violated a requirement or timeout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGTRAP_SIGILL",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_BREAKPOINT (SIGTRAP) and EXC_BAD_INSTRUCTION (SIGILL)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigtrap_sigill"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations": {
+      "abstract": [
+        {
+          "text": "Identify the signature of an unresponsive app terminated by the watchdog, and address",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations",
+      "kind": "article",
+      "role": "article",
+      "title": "Addressing watchdog terminations",
+      "type": "topic",
+      "url": "/documentation/xcode/addressing-watchdog-terminations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Learn what the exception type tells you about why your app crashed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Understanding the exception types in a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-the-exception-types-in-a-crash-report"
+    },
+    "doc://com.apple.documentation/documentation/CallKit": {
+      "abstract": [
+        {
+          "text": "Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CallKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CallKit",
+      "type": "topic",
+      "url": "/documentation/CallKit"
+    },
+    "doc://com.apple.documentation/documentation/PushKit": {
+      "abstract": [
+        {
+          "text": "Respond to push notifications related to your app’s complications, file providers, and VoIP services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PushKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PushKit",
+      "type": "topic",
+      "url": "/documentation/PushKit"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/beginBackgroundTask(withName:expirationHandler:)": {
+      "abstract": [
+        {
+          "text": "Marks the start of a task with a custom name that should continue if the app enters the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginBackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "taskName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "expirationHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIBackgroundTaskIdentifier",
+          "text": "UIBackgroundTaskIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/beginBackgroundTask(withName:expirationHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginBackgroundTask(withName:expirationHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/beginBackgroundTask(withName:expirationHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processinfo/1415995-beginactivity": {
+      "abstract": [
+        {
+          "text": "Begin an activity using the given options and reason.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ProcessInfo.ActivityOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "reason"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> any NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processinfo/1415995-beginactivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginActivity(options:reason:)",
+      "type": "topic",
+      "url": "/documentation/foundation/processinfo/1415995-beginactivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2011/312/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2011/312/",
+      "title": "iOS Performance and Power Optimization with Instruments",
+      "titleInlineContent": [
+        {
+          "text": "iOS Performance and Power Optimization with Instruments",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2011/312/"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev308429d42": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev308429d42",
+      "title": "Test under adverse device conditions (iOS)",
+      "titleInlineContent": [
+        {
+          "text": "Test under adverse device conditions (iOS)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev308429d42"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Exceptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/EXC_ARITHMETIC",
+        "doc://com.apple.Xcode/documentation/Xcode/EXC_BAD_ACCESS",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGBUS",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGSEGV",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGTRAP_SIGILL",
+        "doc://com.apple.Xcode/documentation/Xcode/EXC_CRASH",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGABRT",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGQUIT",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGSYS",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGTERM",
+        "doc://com.apple.Xcode/documentation/Xcode/EXC_GUARD",
+        "doc://com.apple.Xcode/documentation/Xcode/EXC_RESOURCE"
+      ],
+      "title": "Exceptions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1beginBackgroundTask(withName:expirationHandler:)/title",
+          "value": "beginBackgroundTaskWithName:expirationHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1beginBackgroundTask(withName:expirationHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UIBackgroundTaskIdentifier",
+              "text": "UIBackgroundTaskIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginBackgroundTaskWithName:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "taskName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "expirationHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:BFv()",
+              "text": "void (^)(void)"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "handler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1processinfo~11415995-beginactivity/title",
+          "value": "beginActivityWithOptions:reason:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

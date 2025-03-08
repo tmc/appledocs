@@ -1,0 +1,3292 @@
+{
+  "abstract": [
+    {
+      "text": "An instance of ",
+      "type": "text"
+    },
+    {
+      "code": "ALAssetsLibrary",
+      "type": "codeVoice"
+    },
+    {
+      "text": " provides access to the videos and photos that are under the control of the Photos application.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use PHPhotoLibrary from the Photos framework instead",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ALAssetsLibrary",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ALAssetsLibrary"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Assets Library"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ALAssetsLibrary"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "9.0",
+        "introducedAt": "4.0",
+        "message": "Use PHPhotoLibrary from the Photos framework instead",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "9.0",
+        "introducedAt": "4.0",
+        "message": "Use PHPhotoLibrary from the Photos framework instead",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "message": "Use PHPhotoLibrary from the Photos framework instead",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ALAssetsLibrary"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibrary"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The Assets Library framework is deprecated as of iOS 9.0. Instead, use the Photos framework instead, which in iOS 8.0 and later provides more features and better performance for working with a user’s photo library. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "code": "Photos",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "In the Photos framework, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Photos/PHPhotoLibrary",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class manages access to and changes in the photo library, and class methods on the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Photos/PHAsset",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Photos/PHCollection",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " classes and related classes provide functionality for finding photo and video assets.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The library includes those that are in the Saved Photos album, those coming from iTunes, and those that were directly imported into the device. You use it to retrieve the list of all asset groups and to save images and videos into the Saved Photos album.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "ALAssetsLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "code": "alloc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "init",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ALAssetsLibrary* library = [[ALAssetsLibrary alloc] init];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The lifetimes of objects you get back from a library instance are tied to the lifetime of the library instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many of the methods declared by ",
+              "type": "text"
+            },
+            {
+              "code": "ALAssetsLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " take blocks for failure and success as arguments. These methods are all asynchronous because the user may need to be asked to grant access to the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary": {
+      "abstract": [
+        {
+          "text": "Access the assets in a user’s media library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Assets Library",
+      "type": "topic",
+      "url": "/documentation/assetslibrary"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAsset": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "ALAsset",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object represents a photo or a video managed by the Photo application.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAsset",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alasset"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetOrientation": {
+      "abstract": [
+        {
+          "text": "Constants to indicate the orientation of an asset.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetOrientation",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetorientation"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetRepresentation": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "ALAssetRepresentation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object encapsulates one of the representations of a given ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAsset",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetRepresentation",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetrepresentation"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsFilter": {
+      "abstract": [
+        {
+          "code": "ALAssetsFilter",
+          "type": "codeVoice"
+        },
+        {
+          "text": " encapsulates filtering criteria to be used when retrieving assets from a group.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetsFilter",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetsfilter"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsGroup": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "ALAssetsGroup",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object represents an ordered set of the assets managed by the Photos application. The order of the elements is the same as the user sees in the Photos application. An asset can belong to multiple assets groups.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetsGroup",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetsgroup"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsGroupType": {
+      "abstract": [
+        {
+          "text": "A bitfield to identify types of asset.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsGroupType"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsGroupType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsGroupType"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetsGroupType",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetsgrouptype"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary": {
+      "abstract": [
+        {
+          "text": "An instance of ",
+          "type": "text"
+        },
+        {
+          "code": "ALAssetsLibrary",
+          "type": "codeVoice"
+        },
+        {
+          "text": " provides access to the videos and photos that are under the control of the Photos application.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetsLibrary",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/addAssetsGroupAlbum(withName:resultBlock:failureBlock:)": {
+      "abstract": [
+        {
+          "text": "Adds a new assets group to the library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAssetsGroupAlbum"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resultBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryGroupResultBlock",
+          "text": "ALAssetsLibraryGroupResultBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "failureBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryAccessFailureBlock",
+          "text": "ALAssetsLibraryAccessFailureBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/addAssetsGroupAlbum(withName:resultBlock:failureBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAssetsGroupAlbumWithName:resultBlock:failureBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAssetsGroupAlbum(withName:resultBlock:failureBlock:)",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/addassetsgroupalbum(withname:resultblock:failureblock:)"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/asset(for:resultBlock:failureBlock:)": {
+      "abstract": [
+        {
+          "text": "Invokes a given block passing as a parameter an asset identified by a specified file URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resultBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryAssetForURLResultBlock",
+          "text": "ALAssetsLibraryAssetForURLResultBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "failureBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryAccessFailureBlock",
+          "text": "ALAssetsLibraryAccessFailureBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/asset(for:resultBlock:failureBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "assetForURL:resultBlock:failureBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "asset(for:resultBlock:failureBlock:)",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/asset(for:resultblock:failureblock:)"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/authorizationStatus()": {
+      "abstract": [
+        {
+          "text": "Returns photo data authorization status for this application.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ALAuthorizationStatus",
+          "text": "ALAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/authorizationStatus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus()",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/authorizationstatus()"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/disableSharedPhotoStreamsSupport()": {
+      "abstract": [
+        {
+          "text": "Disables shared photo streams notifications and asset retrieval.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disableSharedPhotoStreamsSupport"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/disableSharedPhotoStreamsSupport()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "disableSharedPhotoStreamsSupport"
+        }
+      ],
+      "role": "symbol",
+      "title": "disableSharedPhotoStreamsSupport()",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/disablesharedphotostreamssupport()"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/enumerateGroups(withTypes:using:failureBlock:)": {
+      "abstract": [
+        {
+          "text": "Invokes a given block passing as a parameter each of the asset groups that match the given asset group type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateGroups"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsGroupType",
+          "text": "ALAssetsGroupType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryGroupsEnumerationResultsBlock",
+          "text": "ALAssetsLibraryGroupsEnumerationResultsBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "failureBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryAccessFailureBlock",
+          "text": "ALAssetsLibraryAccessFailureBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/enumerateGroups(withTypes:using:failureBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enumerateGroupsWithTypes:usingBlock:failureBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enumerateGroups(withTypes:using:failureBlock:)",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/enumerategroups(withtypes:using:failureblock:)"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/enumerateGroupsWithTypes(_:usingBlock:failureBlock:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateGroupsWithTypes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usingBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryGroupsEnumerationResultsBlock",
+          "text": "ALAssetsLibraryGroupsEnumerationResultsBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "failureBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryAccessFailureBlock",
+          "text": "ALAssetsLibraryAccessFailureBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/enumerateGroupsWithTypes(_:usingBlock:failureBlock:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateGroupsWithTypes(_:usingBlock:failureBlock:)",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/enumerategroupswithtypes(_:usingblock:failureblock:)"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/group(for:resultBlock:failureBlock:)": {
+      "abstract": [
+        {
+          "text": "Returns an assets group in the result block for a URL previously retrieved from an ",
+          "type": "text"
+        },
+        {
+          "code": "ALAssetsGroup",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "group"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resultBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryGroupResultBlock",
+          "text": "ALAssetsLibraryGroupResultBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "failureBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryAccessFailureBlock",
+          "text": "ALAssetsLibraryAccessFailureBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/group(for:resultBlock:failureBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "groupForURL:resultBlock:failureBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "group(for:resultBlock:failureBlock:)",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/group(for:resultblock:failureblock:)"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/videoAtPathIs(compatibleWithSavedPhotosAlbum:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a video identified by a given URL is compatible with the Saved Photos album.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoAtPathIs"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "compatibleWithSavedPhotosAlbum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/videoAtPathIs(compatibleWithSavedPhotosAlbum:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoAtPathIsCompatibleWithSavedPhotosAlbum:"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoAtPathIs(compatibleWithSavedPhotosAlbum:)",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/videoatpathis(compatiblewithsavedphotosalbum:)"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImage(toSavedPhotosAlbum:metadata:completionBlock:)": {
+      "abstract": [
+        {
+          "text": "Writes a given image and metadata to the Photos Album.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toSavedPhotosAlbum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryWriteImageCompletionBlock",
+          "text": "ALAssetsLibraryWriteImageCompletionBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImage(toSavedPhotosAlbum:metadata:completionBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeImageToSavedPhotosAlbum:metadata:completionBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeImage(toSavedPhotosAlbum:metadata:completionBlock:)",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/writeimage(tosavedphotosalbum:metadata:completionblock:)"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImage(toSavedPhotosAlbum:orientation:completionBlock:)": {
+      "abstract": [
+        {
+          "text": "Saves a given image to the Saved Photos album.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toSavedPhotosAlbum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ALAssetOrientation",
+          "text": "ALAssetOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryWriteImageCompletionBlock",
+          "text": "ALAssetsLibraryWriteImageCompletionBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImage(toSavedPhotosAlbum:orientation:completionBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeImageToSavedPhotosAlbum:orientation:completionBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeImage(toSavedPhotosAlbum:orientation:completionBlock:)",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/writeimage(tosavedphotosalbum:orientation:completionblock:)"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImageData(toSavedPhotosAlbum:metadata:completionBlock:)": {
+      "abstract": [
+        {
+          "text": "Writes given image data and metadata to the Photos Album.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeImageData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toSavedPhotosAlbum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryWriteImageCompletionBlock",
+          "text": "ALAssetsLibraryWriteImageCompletionBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImageData(toSavedPhotosAlbum:metadata:completionBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeImageDataToSavedPhotosAlbum:metadata:completionBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeImageData(toSavedPhotosAlbum:metadata:completionBlock:)",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/writeimagedata(tosavedphotosalbum:metadata:completionblock:)"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeVideoAtPath(toSavedPhotosAlbum:completionBlock:)": {
+      "abstract": [
+        {
+          "text": "Saves a video identified by a given URL to the Saved Photos album.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeVideoAtPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toSavedPhotosAlbum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ALAssetsLibraryWriteVideoCompletionBlock",
+          "text": "ALAssetsLibraryWriteVideoCompletionBlock"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeVideoAtPath(toSavedPhotosAlbum:completionBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeVideoAtPathToSavedPhotosAlbum:completionBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeVideoAtPath(toSavedPhotosAlbum:completionBlock:)",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrary/writevideoatpath(tosavedphotosalbum:completionblock:)"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryAccessFailureBlock": {
+      "abstract": [
+        {
+          "text": "Signature for the block executed if the user does not grant access to the caller to access the data managed by the framework.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryAccessFailureBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryAccessFailureBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryAccessFailureBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetsLibraryAccessFailureBlock",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibraryaccessfailureblock"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryAssetForURLResultBlock": {
+      "abstract": [
+        {
+          "text": "Signature for the block executed if the user has granted access to the caller to access the data managed by the framework in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/asset(for:resultBlock:failureBlock:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryAssetForURLResultBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryAssetForURLResultBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryAssetForURLResultBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetsLibraryAssetForURLResultBlock",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibraryassetforurlresultblock"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryChangedNotification": {
+      "abstract": [
+        {
+          "text": "Sent when the contents of the assets library have changed from under the app that is using the data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryChangedNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryChangedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ALAssetsLibraryChangedNotification",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrarychangednotification"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryGroupResultBlock": {
+      "abstract": [
+        {
+          "text": "Signature for the block executed if the user grants access to the caller to access the data managed by the framework..",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryGroupResultBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryGroupResultBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryGroupResultBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetsLibraryGroupResultBlock",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrarygroupresultblock"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryGroupsEnumerationResultsBlock": {
+      "abstract": [
+        {
+          "text": "Signature for the block executed when a match is found during enumeration using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/enumerateGroups(withTypes:using:failureBlock:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryGroupsEnumerationResultsBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryGroupsEnumerationResultsBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryGroupsEnumerationResultsBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetsLibraryGroupsEnumerationResultsBlock",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrarygroupsenumerationresultsblock"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryWriteImageCompletionBlock": {
+      "abstract": [
+        {
+          "text": "Signature for the block executed when ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImage(toSavedPhotosAlbum:orientation:completionBlock:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " completes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryWriteImageCompletionBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryWriteImageCompletionBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryWriteImageCompletionBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetsLibraryWriteImageCompletionBlock",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrarywriteimagecompletionblock"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryWriteVideoCompletionBlock": {
+      "abstract": [
+        {
+          "text": "Signature for the block executed when ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeVideoAtPath(toSavedPhotosAlbum:completionBlock:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " completes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryWriteVideoCompletionBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryWriteVideoCompletionBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryWriteVideoCompletionBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAssetsLibraryWriteVideoCompletionBlock",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alassetslibrarywritevideocompletionblock"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Constants to indicate authorization status.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/alauthorizationstatus"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/error-codes": {
+      "abstract": [
+        {
+          "text": "AssetsLibrary-related error codes",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/error-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/error-codes"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/error-domain": {
+      "abstract": [
+        {
+          "text": "Constant for the AssetsLibrary domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/error-domain",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Domain",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/error-domain"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/notification-keys": {
+      "abstract": [
+        {
+          "text": "Keys used to get values from the user information dictionary of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryChangedNotification",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/notification-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notification Keys",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/notification-keys"
+    },
+    "doc://com.apple.assetslibrary/documentation/AssetsLibrary/types-of-asset": {
+      "abstract": [
+        {
+          "text": "Constants to identify types of asset.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.assetslibrary/documentation/AssetsLibrary/types-of-asset",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Types of Asset",
+      "type": "topic",
+      "url": "/documentation/assetslibrary/types-of-asset"
+    },
+    "doc://com.apple.documentation/documentation/Photos/PHAsset": {
+      "abstract": [
+        {
+          "text": "A representation of an image, video, or Live Photo in the Photos library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHAsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHAsset",
+      "type": "topic",
+      "url": "/documentation/Photos/PHAsset"
+    },
+    "doc://com.apple.documentation/documentation/Photos/PHCollection": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for Photos asset collections and collection lists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHCollection",
+      "type": "topic",
+      "url": "/documentation/Photos/PHCollection"
+    },
+    "doc://com.apple.documentation/documentation/Photos/PHPhotoLibrary": {
+      "abstract": [
+        {
+          "text": "An object that manages access and changes to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHPhotoLibrary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHPhotoLibrary",
+      "type": "topic",
+      "url": "/documentation/Photos/PHPhotoLibrary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1617908-alassetslibrarychanged": {
+      "abstract": [
+        {
+          "text": "Sent when the contents of the assets library have changed from under the app that is using the data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALAssetsLibraryChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1617908-alassetslibrarychanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ALAssetsLibraryChanged",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1617908-alassetslibrarychanged"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAsset",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetRepresentation",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsFilter",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsGroup"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-Assets",
+      "identifiers": [
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/authorizationStatus()"
+      ],
+      "title": "Accessing Assets"
+    },
+    {
+      "anchor": "Managing-Notifications",
+      "identifiers": [
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/disableSharedPhotoStreamsSupport()"
+      ],
+      "title": "Managing Notifications"
+    },
+    {
+      "anchor": "Finding-Assets",
+      "identifiers": [
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/asset(for:resultBlock:failureBlock:)"
+      ],
+      "title": "Finding Assets"
+    },
+    {
+      "anchor": "Enumerating-Assets",
+      "identifiers": [
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/enumerateGroups(withTypes:using:failureBlock:)",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/enumerateGroupsWithTypes(_:usingBlock:failureBlock:)"
+      ],
+      "title": "Enumerating Assets"
+    },
+    {
+      "anchor": "Saving-Assets",
+      "identifiers": [
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeVideoAtPath(toSavedPhotosAlbum:completionBlock:)",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/videoAtPathIs(compatibleWithSavedPhotosAlbum:)",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImage(toSavedPhotosAlbum:orientation:completionBlock:)",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImageData(toSavedPhotosAlbum:metadata:completionBlock:)",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImage(toSavedPhotosAlbum:metadata:completionBlock:)"
+      ],
+      "title": "Saving Assets"
+    },
+    {
+      "anchor": "Managing-Asset-Groups",
+      "identifiers": [
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/addAssetsGroupAlbum(withName:resultBlock:failureBlock:)",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/group(for:resultBlock:failureBlock:)"
+      ],
+      "title": "Managing Asset Groups"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsGroupType",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/types-of-asset",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetOrientation",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryGroupsEnumerationResultsBlock",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryAssetForURLResultBlock",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryWriteImageCompletionBlock",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryWriteVideoCompletionBlock",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryAccessFailureBlock",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryGroupResultBlock",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAuthorizationStatus",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/notification-keys",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/error-domain",
+        "doc://com.apple.assetslibrary/documentation/AssetsLibrary/error-codes"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Notifications",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1617908-alassetslibrarychanged"
+      ],
+      "title": "Notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "9.0",
+              "introducedAt": "4.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "9.0",
+              "introducedAt": "4.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "13.1",
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ALAssetsLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-Assets",
+              "identifiers": [
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/authorizationStatus()"
+              ],
+              "title": "Accessing Assets"
+            },
+            {
+              "anchor": "Managing-Notifications",
+              "identifiers": [
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/disableSharedPhotoStreamsSupport()"
+              ],
+              "title": "Managing Notifications"
+            },
+            {
+              "anchor": "Finding-Assets",
+              "identifiers": [
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/asset(for:resultBlock:failureBlock:)"
+              ],
+              "title": "Finding Assets"
+            },
+            {
+              "anchor": "Enumerating-Assets",
+              "identifiers": [
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/enumerateGroups(withTypes:using:failureBlock:)"
+              ],
+              "title": "Enumerating Assets"
+            },
+            {
+              "anchor": "Saving-Assets",
+              "identifiers": [
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeVideoAtPath(toSavedPhotosAlbum:completionBlock:)",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/videoAtPathIs(compatibleWithSavedPhotosAlbum:)",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImage(toSavedPhotosAlbum:orientation:completionBlock:)",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImageData(toSavedPhotosAlbum:metadata:completionBlock:)",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/writeImage(toSavedPhotosAlbum:metadata:completionBlock:)"
+              ],
+              "title": "Saving Assets"
+            },
+            {
+              "anchor": "Managing-Asset-Groups",
+              "identifiers": [
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/addAssetsGroupAlbum(withName:resultBlock:failureBlock:)",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibrary/group(for:resultBlock:failureBlock:)"
+              ],
+              "title": "Managing Asset Groups"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsGroupType",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/types-of-asset",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetOrientation",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryGroupsEnumerationResultsBlock",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryAssetForURLResultBlock",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryWriteImageCompletionBlock",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryWriteVideoCompletionBlock",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryAccessFailureBlock",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryGroupResultBlock",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAuthorizationStatus",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/notification-keys",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/error-domain",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/error-codes"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsLibraryChangedNotification",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1617908-alassetslibrarychanged"
+              ],
+              "title": "Notifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAsset",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetRepresentation",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsFilter",
+                "doc://com.apple.assetslibrary/documentation/AssetsLibrary/ALAssetsGroup"
+              ],
+              "title": "Classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ALAssetsLibrary"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use PHPhotoLibrary from the Photos framework instead",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsGroup/title",
+          "value": "ALAssetsGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryAssetForURLResultBlock/title",
+          "value": "ALAssetsLibraryAssetForURLResultBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryAssetForURLResultBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryAssetForURLResultBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryAssetForURLResultBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryAssetForURLResultBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsGroupType/title",
+          "value": "ALAssetsGroupType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsGroupType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsGroupType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsGroupType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsGroupType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetRepresentation/title",
+          "value": "ALAssetRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetRepresentation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetRepresentation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetOrientation/title",
+          "value": "ALAssetOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetOrientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetOrientation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1asset(for:resultBlock:failureBlock:)/title",
+          "value": "assetForURL:resultBlock:failureBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1asset(for:resultBlock:failureBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "assetForURL:resultBlock:failureBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAuthorizationStatus/title",
+          "value": "ALAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1writeImageData(toSavedPhotosAlbum:metadata:completionBlock:)/title",
+          "value": "writeImageDataToSavedPhotosAlbum:metadata:completionBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1writeImageData(toSavedPhotosAlbum:metadata:completionBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeImageDataToSavedPhotosAlbum:metadata:completionBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryWriteImageCompletionBlock/title",
+          "value": "ALAssetsLibraryWriteImageCompletionBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryWriteImageCompletionBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryWriteImageCompletionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryWriteImageCompletionBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryWriteImageCompletionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1addAssetsGroupAlbum(withName:resultBlock:failureBlock:)/title",
+          "value": "addAssetsGroupAlbumWithName:resultBlock:failureBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1addAssetsGroupAlbum(withName:resultBlock:failureBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAssetsGroupAlbumWithName:resultBlock:failureBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1writeVideoAtPath(toSavedPhotosAlbum:completionBlock:)/title",
+          "value": "writeVideoAtPathToSavedPhotosAlbum:completionBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1writeVideoAtPath(toSavedPhotosAlbum:completionBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeVideoAtPathToSavedPhotosAlbum:completionBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAsset/title",
+          "value": "ALAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1writeImage(toSavedPhotosAlbum:orientation:completionBlock:)/title",
+          "value": "writeImageToSavedPhotosAlbum:orientation:completionBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1writeImage(toSavedPhotosAlbum:orientation:completionBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeImageToSavedPhotosAlbum:orientation:completionBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary/title",
+          "value": "ALAssetsLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1videoAtPathIs(compatibleWithSavedPhotosAlbum:)/title",
+          "value": "videoAtPathIsCompatibleWithSavedPhotosAlbum:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1videoAtPathIs(compatibleWithSavedPhotosAlbum:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "videoAtPathIsCompatibleWithSavedPhotosAlbum:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1enumerateGroups(withTypes:using:failureBlock:)/title",
+          "value": "enumerateGroupsWithTypes:usingBlock:failureBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1enumerateGroups(withTypes:using:failureBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enumerateGroupsWithTypes:usingBlock:failureBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryAccessFailureBlock/title",
+          "value": "ALAssetsLibraryAccessFailureBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryAccessFailureBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryAccessFailureBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryAccessFailureBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryAccessFailureBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryWriteVideoCompletionBlock/title",
+          "value": "ALAssetsLibraryWriteVideoCompletionBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryWriteVideoCompletionBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryWriteVideoCompletionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryWriteVideoCompletionBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryWriteVideoCompletionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHAsset/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHAsset"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)PHObject",
+              "text": "PHObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1group(for:resultBlock:failureBlock:)/title",
+          "value": "groupForURL:resultBlock:failureBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1group(for:resultBlock:failureBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "groupForURL:resultBlock:failureBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsFilter/title",
+          "value": "ALAssetsFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHCollection/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHCollection"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)PHObject",
+              "text": "PHObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1disableSharedPhotoStreamsSupport()/title",
+          "value": "disableSharedPhotoStreamsSupport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1disableSharedPhotoStreamsSupport()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "disableSharedPhotoStreamsSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHPhotoLibrary/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1writeImage(toSavedPhotosAlbum:metadata:completionBlock:)/title",
+          "value": "writeImageToSavedPhotosAlbum:metadata:completionBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1writeImage(toSavedPhotosAlbum:metadata:completionBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeImageToSavedPhotosAlbum:metadata:completionBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryGroupResultBlock/title",
+          "value": "ALAssetsLibraryGroupResultBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryGroupResultBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryGroupResultBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryGroupResultBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryGroupResultBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryGroupsEnumerationResultsBlock/title",
+          "value": "ALAssetsLibraryGroupsEnumerationResultsBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryGroupsEnumerationResultsBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryGroupsEnumerationResultsBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibraryGroupsEnumerationResultsBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ALAssetsLibraryGroupsEnumerationResultsBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1authorizationStatus()/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.assetslibrary~1documentation~1AssetsLibrary~1ALAssetsLibrary~1authorizationStatus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/assetslibrary/alassetslibrary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/assetslibrary/alassetslibrary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

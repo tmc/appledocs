@@ -1,0 +1,1606 @@
+{
+  "abstract": [
+    {
+      "text": "Leverage common compression algorithms for lossless data compression.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.compression/documentation/Compression"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Compression",
+    "modules": [
+      {
+        "name": "Compression"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.11",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Compression"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Compression framework enables your app to provide lossless compression when saving or sharing files and data. Compression is a process in which you compress (encode) and decompress (decode) data. For example, a text editor may save its files in a compressed format, and automatically decompress the saved file when the user opens it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4311255",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework offers two methods of compression:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Buffer compression",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " uses a single-step method for compressing files, making it perfect for use with uncompressed files under 8 MB, or compressed files under 1 MB.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Stream compression",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " uses multiple steps for compressing files, making it ideal for compressing larger files or streamed data, such as an incoming audio signal or downloading files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use buffer compression, you compress or decompress the input data with one call to the corresponding function. To learn more about buffer compression, including a walk-through of the code used to encode and decode a string, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-data-with-buffer-compression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use stream compression, you call the compression or decompression function repeatedly to compress or decompress data from a source buffer to a destination buffer. Between calls, the compressor or decompressor moves processed data out of the source buffer and loads new data into the destination buffer. To learn more about stream compression, see the sample code project ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-files-with-stream-compression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compression/documentation/Compression": {
+      "abstract": [
+        {
+          "text": "Leverage common compression algorithms for lossless data compression.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compression",
+      "type": "topic",
+      "url": "/documentation/compression"
+    },
+    "doc://com.apple.compression/documentation/Compression/Algorithm": {
+      "abstract": [
+        {
+          "text": "Algorithms used for compression or decompression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Algorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/Algorithm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Algorithm"
+        }
+      ],
+      "role": "symbol",
+      "title": "Algorithm",
+      "type": "topic",
+      "url": "/documentation/compression/algorithm"
+    },
+    "doc://com.apple.compression/documentation/Compression/FilterError": {
+      "abstract": [
+        {
+          "text": "Errors that occur during compression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FilterError"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/FilterError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FilterError"
+        }
+      ],
+      "role": "symbol",
+      "title": "FilterError",
+      "type": "topic",
+      "url": "/documentation/compression/filtererror"
+    },
+    "doc://com.apple.compression/documentation/Compression/FilterOperation": {
+      "abstract": [
+        {
+          "text": "Operations that define whether input and output filters compress or decompress data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FilterOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/FilterOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FilterOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "FilterOperation",
+      "type": "topic",
+      "url": "/documentation/compression/filteroperation"
+    },
+    "doc://com.apple.compression/documentation/Compression/InputFilter": {
+      "abstract": [
+        {
+          "text": "An encoder-decoder that reads input data from a stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InputFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/InputFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InputFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "InputFilter",
+      "type": "topic",
+      "url": "/documentation/compression/inputfilter"
+    },
+    "doc://com.apple.compression/documentation/Compression/OutputFilter": {
+      "abstract": [
+        {
+          "text": "An encoder-decoder that writes output data to a stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OutputFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/OutputFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OutputFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "OutputFilter",
+      "type": "topic",
+      "url": "/documentation/compression/outputfilter"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_algorithm": {
+      "abstract": [
+        {
+          "text": "A structure for values that represent compression algorithms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_algorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_algorithm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_algorithm"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_algorithm",
+      "type": "topic",
+      "url": "/documentation/compression/compression_algorithm"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_decode_buffer(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Decompresses the contents of a source buffer into a destination buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_decode_buffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_decode_buffer(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_decode_buffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_decode_buffer(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_decode_buffer(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_decode_scratch_buffer_size(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the required decompression scratch buffer size for the selected algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_decode_scratch_buffer_size"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_decode_scratch_buffer_size(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_decode_scratch_buffer_size"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_decode_scratch_buffer_size(_:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_decode_scratch_buffer_size(_:)"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_encode_buffer(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Compresses the contents of a source buffer into a destination buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_encode_buffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_encode_buffer(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_encode_buffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_encode_buffer(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_encode_buffer(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_encode_scratch_buffer_size(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the required compression scratch buffer size for the selected algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_encode_scratch_buffer_size"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_encode_scratch_buffer_size(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_encode_scratch_buffer_size"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_encode_scratch_buffer_size(_:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_encode_scratch_buffer_size(_:)"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_status": {
+      "abstract": [
+        {
+          "text": "A set of values used to represent the status of stream compression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_status"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_status",
+      "type": "topic",
+      "url": "/documentation/compression/compression_status"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream": {
+      "abstract": [
+        {
+          "text": "A structure representing a compression stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream_destroy(_:)": {
+      "abstract": [
+        {
+          "text": "Frees any memory allocated by stream initialization function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_destroy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@compression_stream",
+          "text": "compression_stream"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_destroy(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream_destroy"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream_destroy(_:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_destroy(_:)"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream_flags": {
+      "abstract": [
+        {
+          "text": "A set of values used to represent stream compression flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_flags"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_flags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream_flags"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream_flags",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_flags"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream_init(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a compression stream for either compression or decompression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@compression_stream",
+          "text": "compression_stream"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_stream_operation",
+          "text": "compression_stream_operation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_init(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream_init"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream_init(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_init(_:_:_:)"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream_operation": {
+      "abstract": [
+        {
+          "text": "A set of values used to represent a stream compression operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_operation"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_operation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream_operation"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream_operation",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_operation"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream_process(_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs compression or decompression using an initialized compression stream structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_process"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@compression_stream",
+          "text": "compression_stream"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_process(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream_process"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream_process(_:_:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_process(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-data-with-buffer-compression": {
+      "abstract": [
+        {
+          "text": "Compress a string, write it to the file system, and decompress the same file using buffer compression.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-data-with-buffer-compression",
+      "kind": "article",
+      "role": "article",
+      "title": "Compressing and decompressing data with buffer compression",
+      "type": "topic",
+      "url": "/documentation/Accelerate/compressing-and-decompressing-data-with-buffer-compression"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters": {
+      "abstract": [
+        {
+          "text": "Compress and decompress streamed or from-memory data, using input and output filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters",
+      "kind": "article",
+      "role": "article",
+      "title": "Compressing and decompressing data with input and output filters",
+      "type": "topic",
+      "url": "/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-files-with-stream-compression": {
+      "abstract": [
+        {
+          "text": "Perform compression for all files and decompression for files with supported extension types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-files-with-stream-compression",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Compressing and decompressing files with stream compression",
+      "type": "topic",
+      "url": "/documentation/Accelerate/compressing-and-decompressing-files-with-stream-compression"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4311255": {
+      "alt": "A flow diagram that illustrates the compression and decompression process. The encoder compresses the original data into the encoded (compressed) data. The decoder decompresses the encoded data into the decompressed data.",
+      "identifier": "media-4311255",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b37d3585a0d73570be20ff8da0ec06f3/media-4311255@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3f5caa746015fdf8bd568aba1de9bb87/media-4311255~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Simplify encoding and decoding streams of data using Compression classes for Swift.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Objects-that-simplify-multiple-step-compression",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters",
+        "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-files-with-stream-compression",
+        "doc://com.apple.compression/documentation/Compression/InputFilter",
+        "doc://com.apple.compression/documentation/Compression/OutputFilter",
+        "doc://com.apple.compression/documentation/Compression/Algorithm",
+        "doc://com.apple.compression/documentation/Compression/FilterError",
+        "doc://com.apple.compression/documentation/Compression/FilterOperation"
+      ],
+      "title": "Objects that simplify multiple-step compression"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Stream compression functions compress or decompress sequential blocks of data.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Multiple-step-compression",
+      "identifiers": [
+        "doc://com.apple.compression/documentation/Compression/compression_stream",
+        "doc://com.apple.compression/documentation/Compression/compression_stream_init(_:_:_:)",
+        "doc://com.apple.compression/documentation/Compression/compression_stream_process(_:_:)",
+        "doc://com.apple.compression/documentation/Compression/compression_stream_destroy(_:)",
+        "doc://com.apple.compression/documentation/Compression/compression_status",
+        "doc://com.apple.compression/documentation/Compression/compression_stream_flags",
+        "doc://com.apple.compression/documentation/Compression/compression_stream_operation",
+        "doc://com.apple.compression/documentation/Compression/compression_algorithm"
+      ],
+      "title": "Multiple-step compression"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Buffer compression functions compress or decompress a block of data stored contiguously in memory.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Single-step-compression",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-data-with-buffer-compression",
+        "doc://com.apple.compression/documentation/Compression/compression_encode_scratch_buffer_size(_:)",
+        "doc://com.apple.compression/documentation/Compression/compression_encode_buffer(_:_:_:_:_:_:)",
+        "doc://com.apple.compression/documentation/Compression/compression_decode_scratch_buffer_size(_:)",
+        "doc://com.apple.compression/documentation/Compression/compression_decode_buffer(_:_:_:_:_:_:)",
+        "doc://com.apple.compression/documentation/Compression/compression_algorithm"
+      ],
+      "title": "Single-step compression"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Simplify encoding and decoding streams of data using Compression classes for Swift.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Objects-that-simplify-multiple-step-compression",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters",
+                "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-files-with-stream-compression"
+              ],
+              "title": "Objects that simplify multiple-step compression"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Stream compression functions compress or decompress sequential blocks of data.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Multiple-step-compression",
+              "identifiers": [
+                "doc://com.apple.compression/documentation/Compression/compression_stream",
+                "doc://com.apple.compression/documentation/Compression/compression_stream_init(_:_:_:)",
+                "doc://com.apple.compression/documentation/Compression/compression_stream_process(_:_:)",
+                "doc://com.apple.compression/documentation/Compression/compression_stream_destroy(_:)",
+                "doc://com.apple.compression/documentation/Compression/compression_status",
+                "doc://com.apple.compression/documentation/Compression/compression_stream_flags",
+                "doc://com.apple.compression/documentation/Compression/compression_stream_operation",
+                "doc://com.apple.compression/documentation/Compression/compression_algorithm"
+              ],
+              "title": "Multiple-step compression"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Buffer compression functions compress or decompress a block of data stored contiguously in memory.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Single-step-compression",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Accelerate/compressing-and-decompressing-data-with-buffer-compression",
+                "doc://com.apple.compression/documentation/Compression/compression_encode_scratch_buffer_size(_:)",
+                "doc://com.apple.compression/documentation/Compression/compression_encode_buffer(_:_:_:_:_:_:)",
+                "doc://com.apple.compression/documentation/Compression/compression_decode_scratch_buffer_size(_:)",
+                "doc://com.apple.compression/documentation/Compression/compression_decode_buffer(_:_:_:_:_:_:)",
+                "doc://com.apple.compression/documentation/Compression/compression_algorithm"
+              ],
+              "title": "Single-step compression"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_encode_scratch_buffer_size(_:)/title",
+          "value": "compression_encode_scratch_buffer_size"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_encode_scratch_buffer_size(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_encode_scratch_buffer_size"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_flags/title",
+          "value": "compression_stream_flags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_flags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_flags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_flags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_flags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_encode_buffer(_:_:_:_:_:_:)/title",
+          "value": "compression_encode_buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_encode_buffer(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_encode_buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_status/title",
+          "value": "compression_status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_status/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_status/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_destroy(_:)/title",
+          "value": "compression_stream_destroy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_destroy(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_destroy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream/title",
+          "value": "compression_stream"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_decode_scratch_buffer_size(_:)/title",
+          "value": "compression_decode_scratch_buffer_size"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_decode_scratch_buffer_size(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_decode_scratch_buffer_size"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_operation/title",
+          "value": "compression_stream_operation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_operation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_operation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_operation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_operation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_algorithm/title",
+          "value": "compression_algorithm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_algorithm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_algorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_algorithm/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_algorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_init(_:_:_:)/title",
+          "value": "compression_stream_init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_init(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_decode_buffer(_:_:_:_:_:_:)/title",
+          "value": "compression_decode_buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_decode_buffer(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_decode_buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_process(_:_:)/title",
+          "value": "compression_stream_process"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_process(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_process"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compression"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/compression"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,683 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the estimated time of arrival (ETA) and distance between starting and ending locations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-etas"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:maps_web_api:get:v1-etas",
+    "modules": [
+      {
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "/v1/etas"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.2",
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Determine estimated arrival times and distances to one or more destinations"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://maps-api.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/etas"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The starting point for estimated arrival time requests, specified as a comma-separated string that contains the latitude and longitude. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "origin=37.331423,-122.030503",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "origin",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Destination coordinates represented as pairs of latitude and longitude separated by a vertical bar character (”|”).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "destinations=37.32556561130194,-121.94635203581443|37.44176585512703,-122.17259315798667",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The parameter must specify at least one destination coordinate, but no more than 10 destinations. Specify the location as a comma-separated string that contains the latitude and longitude.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "destinations",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "Automobile"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "Automobile",
+                "Transit",
+                "Walking"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The mode of transportation to use when estimating arrival times.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "transportType",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time of departure to use in an estimated arrival time request, in ISO 8601 format in UTC time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "departureDate=2020-09-15T16:42:00Z",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you don’t specify a departure date, the server uses the current date and time when you make the request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "departureDate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The intended time of arrival in ISO 8601 format in UTC time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "arrivalDate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/EtaResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects that contain distance and time from the origin to each destination.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/EtaResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:EtaResponse",
+              "text": "EtaResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains an error message and an array of strings that contain additional details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains an error message that indicates the Maps access token is missing or invalid, and an array of strings that contains additional details about the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that indicates the call exceeds the daily service call quota for the authorization token presented. The app should try again later. If your app requires a larger daily quota, submit a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/mapkitjs/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains a server error message and an array of strings that describe additional details about the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "curl -si -H \"Authorization: Bearer <maps_access_token>\" \"https://maps-api.apple.com/v1/etas?origin=37.331423,-122.030503&destinations=37.32556561130194,-121.94635203581443|37.44176585512703,-122.17259315798667\""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"etas\": [",
+                    "    {",
+                    "      \"destination\": {",
+                    "        \"latitude\": 37.32556561130194,",
+                    "        \"longitude\": -121.94635203581443",
+                    "      },",
+                    "      \"transportType\": \"AUTOMOBILE\",",
+                    "      \"distanceMeters\": 9550,",
+                    "      \"expectedTravelTimeSeconds\": 975,",
+                    "      \"staticTravelTimeSeconds\": 540",
+                    "    },",
+                    "    {",
+                    "      \"destination\": {",
+                    "        \"latitude\": 37.44176585512703,",
+                    "        \"longitude\": -122.17259315798667",
+                    "      },",
+                    "      \"transportType\": \"AUTOMOBILE\",",
+                    "      \"distanceMeters\": 23286,",
+                    "      \"expectedTravelTimeSeconds\": 1336,",
+                    "      \"staticTravelTimeSeconds\": 1039",
+                    "    }",
+                    "  ]",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI": {
+      "abstract": [
+        {
+          "text": "Reduce API calls and conserve device power by streamlining your app’s georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-directions": {
+      "abstract": [
+        {
+          "text": "Find directions by specific criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-directions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/directions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for directions and estimated travel time between locations",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-directions"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-etas": {
+      "abstract": [
+        {
+          "text": "Returns the estimated time of arrival (ETA) and distance between starting and ending locations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-etas",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/etas"
+        }
+      ],
+      "role": "symbol",
+      "title": "Determine estimated arrival times and distances to one or more destinations",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-etas"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "Information about an error that occurs while processing a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/errorresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/EtaResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains an array of one or more estimated times of arrival (ETAs).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "EtaResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/EtaResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EtaResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "EtaResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/etaresponse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/mapkitjs/": {
+      "identifier": "https://developer.apple.com/contact/request/mapkitjs/",
+      "title": "quota increase request form",
+      "titleInlineContent": [
+        {
+          "text": "quota increase request form",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/mapkitjs/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Directions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-directions"
+      ],
+      "title": "Directions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemapsserverapi/-v1-etas"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

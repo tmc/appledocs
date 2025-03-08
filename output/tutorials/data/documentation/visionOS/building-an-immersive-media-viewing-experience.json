@@ -1,0 +1,1740 @@
+{
+  "abstract": [
+    {
+      "text": "Add a deeper level of immersion to media playback in your app with RealityKit and Reality Composer Pro.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building an immersive media viewing experience"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "visionOS provides powerful features for building immersive media playback apps. It supports playing 3D video and Spatial Audio, which helps bring the content to life and makes the viewer feel like they’re part of the action. Starting in visionOS 2, you can take your app’s playback experience even further by creating custom environments using RealityKit and Reality Composer Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/destination-video",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample includes a custom environment, Studio. The Studio environment provides a large, open space that’s specifically designed to provide an optimal media viewing experience, as shown in the following image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "studio-overview",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-a-video-docking-location",
+          "level": 2,
+          "text": "Define a video docking location",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Destination Video uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to present video, which enables the app to provide a playback experience across platforms that matches system apps like TV and Music. In visionOS, ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " participates in the system docking behavior. When you play video in a full-window player then open an immersive experience, the system docks the video screen in a fixed location and presents streamlined playback controls that keep your focus on the content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "docking",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system determines the docking location for the scene by default. In visionOS 2, you can customize this location by specifying a custom docking region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The environment in Destination Video anchors the video player in front of the walkway at the top of the staircase. To have the video player dock to this location, the project defines a ",
+              "type": "text"
+            },
+            {
+              "code": "Player",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity and adds a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/DockingRegionComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to it in Reality Composer Pro’s Inspector. This component defines the bounding region for the video player, which has a depth of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and uses a fixed 2.4:1 aspect ratio. Because the aspect ratio is fixed, to configure the docking region’s size use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/DockingRegionComponent/width",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "docking-region-component",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer Pro provides a template to set up a configuration for Docking Region and related media reflections. You can access this template from the Insert menu by selecting Insert > Environment > Video Dock.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose a location for your docking region that provides a comfortable viewing angle to avoid causing strain or discomfort during longer viewing sessions. Avoid placing objects between the viewer and the video. Using Reality Composer Pro to define the docking region helps to visualize how it looks in context. Review your environment and docking region placement on Apple Vision Pro to get an appropriate sense of scale and layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enhance-the-realism-of-your-scene-with-reflections",
+          "level": 2,
+          "text": "Enhance the realism of your scene with reflections",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make your environment feel like a real, dynamic space, enable reflections from the video player on your environment surfaces. Reality Composer Pro supports two types of reflections that it exposes as Shader Graph nodes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A direct reflection of media content. Apply this reflection type on glossy surfaces like metals, mirrors, and water.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Reflection Specular",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A softer falloff of media content. Apply this reflection type to rougher, more organic surfaces like concrete or wood floor.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Reflection Diffuse",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Destination Video uses both types of reflections in its custom environment to create a more realistic experience that better grounds the video player in the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reflections",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about how the custom environment uses reflections, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-virtual-scene-lighting",
+          "level": 2,
+          "text": "Define the virtual scene lighting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Destination Video presents the Studio environment in a progressive immersion style, the scene provides a source of indirect lighting to the system. RealityKit represents this light source using an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/VirtualEnvironmentProbeComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To configure this lighting, the Studio scene defines an ",
+              "type": "text"
+            },
+            {
+              "code": "EnvironmentProbe",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity and adds a Virtual Environment Probe component to it in Reality Composer Pro’s Inspector. It defines the source as a blend between the project’s light and dark image-based lighting (IBL) files, as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "virtual-env-probe-component",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app presents the light or dark variant, it looks up the probe and configures the source with an appropriate blend value. The app passes a value of ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the light variant and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the dark, which effectively toggles which image the component uses as its source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func setVirtualEnvironmentProbeComponent(blendParam: Float) {",
+            "    let virtualEnvironmentProbeEntityName = \"EnvironmentProbe\"",
+            "",
+            "    guard let virtualEnvironmentProbeEntity = findCommonEntityByName(virtualEnvironmentProbeEntityName) else {",
+            "        logger.warning(\"\\(virtualEnvironmentProbeEntityName) not found.\")",
+            "        return",
+            "    }",
+            "",
+            "    if var probeComponent = virtualEnvironmentProbeEntity.components[VirtualEnvironmentProbeComponent.self] {",
+            "        if case VirtualEnvironmentProbeComponent.Source.blend(let firstProbe, let secondProbe, _) = probeComponent.source {",
+            "            probeComponent.source = .blend(from: firstProbe, to: secondProbe, t: blendParam)",
+            "            virtualEnvironmentProbeEntity.components[VirtualEnvironmentProbeComponent.self] = probeComponent",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enhance-audio-immersion",
+          "level": 2,
+          "text": "Enhance audio immersion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, visionOS reverberates spatial audio sources by simulating the acoustics of the user’s real environment. When you present a custom environment in a progressive or fully immersive space, you can enhance the level of immersion by applying reverb that matches the visuals of your scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When your app presents an environment in an immersive space using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/progressive",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " immersion style, turning the Digital Crown blends the acoustics of the real and virtual spaces to match the visual level of immersion.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Studio environment defines a ",
+              "type": "text"
+            },
+            {
+              "code": "Reverb",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity and adds a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ReverbComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to it in Reality Composer Pro’s Inspector. The component defines a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ReverbComponent/reverb",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to indicate a specific preset to apply. There are several high-quality reverb presets to choose from including various rooms, hall, and outside spaces. The app uses the ",
+              "type": "text"
+            },
+            {
+              "code": "Very Large Room",
+              "type": "codeVoice"
+            },
+            {
+              "text": " preset, which best fits the environment’s visuals.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reverb-component",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define a reverb component in your scene even if it doesn’t provide custom audio. The system still uses the reverb preset to spatialize system sounds such as UI interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To optimize the viewing experience, in most cases lower the volume of environment sounds, or stop their playback altogether, when video playback begins.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Specify-content-brightness-and-surroundings-effects",
+          "level": 2,
+          "text": "Specify content brightness and surroundings effects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Destination Video presents the Studio environment by opening an immersive space in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/progressive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " immersion style. This style works well for media apps because people can customize their level of immersion by turning the Digital Crown - from no immersion to fully immersive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enhance the media presentation and create a more immersive experience when presenting the Studio environment, the app customizes the space in the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It specifies a content brightness value for the immersive space, which indicates the overall brightness of the scene. The system uses this value to tailor the video presentation to best fit its surroundings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It sets a custom tint color for the video passthrough of the user’s hands and surroundings. The app defines tint color that matches the light or dark variant of the environment, and sets the appropriate tint color using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/preferredSurroundingsEffect(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "  view modifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "// Defines an immersive space to present an environment in which to watch the video.",
+            "ImmersiveSpace(id: ImmersiveEnvironmentView.id) {",
+            "    ImmersiveEnvironmentView()",
+            "        .environment(immersiveEnvironment)",
+            "        .onAppear {",
+            "            contentBrightness = immersiveEnvironment.contentBrightness",
+            "            surroundingsEffect = immersiveEnvironment.surroundingsEffect",
+            "        }",
+            "        .onDisappear {",
+            "            contentBrightness = .automatic",
+            "            surroundingsEffect = nil",
+            "        }",
+            "        // Set the surroundings effect for the immersive space.",
+            "        .preferredSurroundingsEffect(surroundingsEffect)",
+            "}",
+            "// Set the content brightness for the immersive space.",
+            ".immersiveContentBrightness(contentBrightness)",
+            ".immersionStyle(selection: .constant(.progressive), in: .progressive)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Present-a-custom-scene-in-the-environment-picker",
+          "level": 2,
+          "text": "Present a custom scene in the environment picker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In visionOS 2, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically displays a button for a person to pick an environment. When a person presses the button, the system displays a list of viewing environments in which they can watch the video. Selecting an item from the list opens the environment, and docks the player into its ideal viewing location within the scene. By default, the environment picker lists the most recently used system environments, but you can configure the list to show your custom environments as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Destination Video adds the Studio environment’s light and dark variants to the list by attaching the new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/immersiveEnvironmentPicker(content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier to the player view. This modifier takes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that defines a button for each environment entry you’re adding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PlayerView()",
+            "    .immersiveEnvironmentPicker {",
+            "        ImmersiveEnvironmentPickerView()",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample passes the modifier a custom view that defines two buttons: one for the light variant and one for the dark. Each button displays a title, thumbnail image, and subtitle that indicates which variant it is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ImmersiveEnvironmentPickerView: View {",
+            "    @Environment(ImmersiveEnvironment.self) private var immersiveEnvironment",
+            "    ",
+            "    var body: some View {",
+            "        studioButton(state: .dark)",
+            "        studioButton(state: .light)",
+            "    }",
+            "    ",
+            "    private func studioButton(state: EnvironmentStateType) -> some View {",
+            "        Button {",
+            "            immersiveEnvironment.requestEnvironmentState(state)",
+            "            immersiveEnvironment.loadEnvironment()",
+            "        } label: {",
+            "            Label {",
+            "                Text(\"Studio\", comment: \"Show Studio environment\")",
+            "            } icon: {",
+            "                Image([\"studio_thumbnail\", state.displayName.lowercased()].joined(separator: \"_\"))",
+            "            }",
+            "            Text(state.displayName)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After adding these buttons to the environment picker, they appear alongside the system environments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "env-picker",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/destination-video"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2024/10115",
+            "doc://com.apple.documentation/videos/play/wwdc2024/10087"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "08bd3c5ea0b3/DestinationVideo.zip": {
+      "checksum": "08bd3c5ea0b38e44d56c175dc21897a9d25c1bea5065796a942516c7f09ea771d19f713382b4bcb0a9bf88ccef44bb3c7ea7776cb4c43951eaf0a8639eba107c",
+      "identifier": "08bd3c5ea0b3/DestinationVideo.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/08bd3c5ea0b3/DestinationVideo.zip"
+    },
+    "BE45225C-F8DE-4EAD-9C54-37FAB539DF94": {
+      "alt": null,
+      "identifier": "BE45225C-F8DE-4EAD-9C54-37FAB539DF94",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BE45225C-F8DE-4EAD-9C54-37FAB539DF94/9242_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BE45225C-F8DE-4EAD-9C54-37FAB539DF94/9242_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BE45225C-F8DE-4EAD-9C54-37FAB539DF94/9242_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F": {
+      "alt": null,
+      "identifier": "BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F/9198_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F/9198_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F/9198_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": "An image showing Destination Video on visionOS.",
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "building-an-immersive-media-viewing-experience-PageImage-card.png": {
+      "alt": null,
+      "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbc286b58cd06b23756a1cb51a493360/building-an-immersive-media-viewing-experience-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b110534afd700b8b77992bd7f4184ae6/building-an-immersive-media-viewing-experience-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVPlayerViewController"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/DockingRegionComponent": {
+      "abstract": [
+        {
+          "text": "A component that docks a scene within a region of an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockingRegionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/DockingRegionComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockingRegionComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/DockingRegionComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/DockingRegionComponent/width": {
+      "abstract": [
+        {
+          "text": "The width of the docking region, in meters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/DockingRegionComponent/width",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "width",
+      "type": "topic",
+      "url": "/documentation/RealityKit/DockingRegionComponent/width"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ReverbComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines the reverberation of spatial audio sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReverbComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ReverbComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReverbComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ReverbComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ReverbComponent/reverb": {
+      "abstract": [
+        {
+          "text": "A reverberation setting the component applies to spatial audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reverb"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6ReverbV",
+          "text": "Reverb"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ReverbComponent/reverb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reverb",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ReverbComponent/reverb"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/VirtualEnvironmentProbeComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides environment lighting for entities you place within the same virtual world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VirtualEnvironmentProbeComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/VirtualEnvironmentProbeComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VirtualEnvironmentProbeComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/VirtualEnvironmentProbeComponent"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/progressive": {
+      "abstract": [
+        {
+          "text": "An immersion style that displays unbounded content that partially replaces passthrough video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progressive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25ProgressiveImmersionStyleV",
+          "text": "ProgressiveImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/progressive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progressive",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersionStyle/progressive"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/immersiveEnvironmentPicker(content:)": {
+      "abstract": [
+        {
+          "text": "Add menu items to open immersive spaces from a media player’s environment picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "immersiveEnvironmentPicker"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/immersiveEnvironmentPicker(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "immersiveEnvironmentPicker(content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/immersiveEnvironmentPicker(content:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/preferredSurroundingsEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Applies an effect to passthrough video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredSurroundingsEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "effect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18SurroundingsEffectV",
+          "text": "SurroundingsEffect"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/preferredSurroundingsEffect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredSurroundingsEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/preferredSurroundingsEffect(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder": {
+      "abstract": [
+        {
+          "text": "A custom parameter attribute that constructs views from closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@resultBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ViewBuilder",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ViewBuilder"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10087": {
+      "abstract": [
+        {
+          "text": "Discover how to create visually rich and performant customized app environments for Apple Vision Pro. Learn design guidelines, get expert recommendations, and explore techniques you can use in any digital content creation tool to begin building your immersive environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10087",
+      "images": [
+        {
+          "identifier": "BEBF6FDD-D987-4A45-AF6F-6D4C4575E69F",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Create custom environments for your immersive apps in visionOS",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10087"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10115": {
+      "abstract": [
+        {
+          "text": "Extend your media viewing experience using Reality Composer Pro components like Docking Region, Reverb, and Virtual Environment Probe. Find out how to further enhance immersion using Reflections, Tint Surroundings Effect, SharePlay, and the Immersive Environment Picker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10115",
+      "images": [
+        {
+          "identifier": "BE45225C-F8DE-4EAD-9C54-37FAB539DF94",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Enhance the immersion of media viewing in custom environments",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10115"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionos/destination-video"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionos/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "docking": {
+      "alt": "An image that shows the docked video playing. In front of the video player is a floating window that contains user interface elements to control playback, mute audio, and exit the environment.",
+      "identifier": "docking",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5f5e5cfb53dcdb9a9ddb134949e0f75/docking.jpg"
+        }
+      ]
+    },
+    "docking-region-component": {
+      "alt": "An image that shows a docking region component in Reality Composer Pro’s Inspector. The component has the title Docking Region at the top. Below the title is a width field with the units cm and a value of 850. Below the width configuration is a button to select a preview video to display within Reality Composer Pro.",
+      "identifier": "docking-region-component",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fbcb1da42d7b60a5a419c358def079a0/docking-region-component@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ce07bb87465e69c1043c35034c644894/docking-region-component~dark@2x.png"
+        }
+      ]
+    },
+    "env-picker": {
+      "alt": "An image of an environment picker. At the top of the image is a back button and to the right of it an environment picker button. The environment picker appears as a floating window with two sections. The top section has the title Watch in Apple Environment, and below it are buttons to select a light or dark System Environment. The bottom section has the title Watch in Destination Video Environment, and below it are buttons to select the dark or light Studio environments.",
+      "identifier": "env-picker",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f7db49f47fce31c148541127a713c617/env-picker.png"
+        }
+      ]
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": "A screenshot that shows the app's video player in the Studio environment in visionOS. The screenshot shows the contents of the video player reflecting onto the surrounding environment.",
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "reflections": {
+      "alt": "An image that shows the anchored video player reflecting its contents onto the floor in front of the player.",
+      "identifier": "reflections",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/68bda7216483b1f0a3d248933f19932d/reflections.jpg"
+        }
+      ]
+    },
+    "reverb-component": {
+      "alt": "An image that shows a reverb component in Reality Composer Pro's Inspector. The component has the title Reverb at the top. Below the title is a Preset label followed by a pop-up menu with Very Large Room preset selected.",
+      "identifier": "reverb-component",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3dbce6a64f6fcfae83ecd544a7e5b7f8/reverb-component@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/27c1ad4ba1513084d40468871a283a14/reverb-component~dark@2x.png"
+        }
+      ]
+    },
+    "studio-overview": {
+      "alt": "An image that shows Destination Video's Studio environment. The environment is a large, indoor space with concrete floors and a skylight that fills the area with light. There's a stairway on the right that leads up to a walkway that runs horizontally across the scene. The scene anchors a large video screen in front of the walkway.",
+      "identifier": "studio-overview",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1c703f8e928943bc54cb4aaad8c6e59f/studio-overview.jpg"
+        }
+      ]
+    },
+    "virtual-env-probe-component": {
+      "alt": "An image that shows a virtual environment probe in Reality Composer Pro's Inspector. The component has the title Virtual Environment Probe at the top, and below it are several key-value pairs arranged vertically. The first pair is a mode field with Blend as its selection. Next is an intensity exponent field with a value of 0.0. Next is an environment resource that selects the project's light IBL file. Next is another intensity exponent field with a value of 0.0. Next is another environment resource that selects the project's dark IBL file. Finally, below this pair is a blend control that is set to 0%.",
+      "identifier": "virtual-env-probe-component",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5ff74c1b761a45027ae9b5d6c6e3b156/virtual-env-probe-component@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/607ac20b9c44f3d571c89cacd3e58c40/virtual-env-probe-component~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "08bd3c5ea0b3/DestinationVideo.zip",
+      "isActive": true,
+      "overridingTitle": "Download (1.2 GB)",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1780 @@
+{
+  "abstract": [
+    {
+      "text": "Operate the camera in Split View, Slide Over, Picture in Picture, and Stage Manager modes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avkit/documentation/AVKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avkit/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accessing the camera while multitasking on iPad"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Camera access on iPad is normally limited to apps running in full-screen mode. If your app enters a multitasking mode, such as Split View or Stage Manager, the system disables the camera by default. In iPadOS 16 and later, your app can enable using the camera while multitasking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 110429: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/110429/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related Sessions from WWDC22",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multitasking modes enable people to work with multiple apps at the same time. There are four kinds:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Split View mode accommodates two different apps, or two windows from the same app, by splitting the screen into resizable views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Slide Over mode lets users work on an app that slides in front of any open apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Picture in Picture mode displays a draggable window over an app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stage Manager lets users resize windows and see multiple overlapping windows in a single view, group apps for specific tasks or projects, and drag windows between iPad and an externally connected display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable multitasking camera access, your app can run alongside other foreground apps and it no longer receives ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableWithMultipleForegroundApps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as an interruption reason.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When operating the camera capture system, using the multitasking feature introduces the possibility of performance degradation because of other apps consuming resources like memory, CPU, and GPU. Increased device temperature and power usage can lead to frame drops or poor capture quality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Enabling multitasking camera access isn’t recommended if your app uses resource-intensive capabilities such as 4K video capture, or Apple ProRAW or Deep Fusion image capture. Even if your app doesn’t use resource-intensive capabilities, you should test it alongside other resource-intensive apps and with Stage Manager to determine if there are performance issues.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about Split View and Slide Over modes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT207582",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information about Stage Manager on iPad, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/ipad/move-resize-and-organize-windows-ipad1240f36f/ipados",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-camera-access-while-multitasking",
+          "level": 3,
+          "text": "Enable camera access while multitasking",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set up a capture session to enable your app to capture photos or videos. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information. You can configure a capture session to allow use of the camera while multitasking if the current environment supports it. To determine if a capture session supports this feature, query its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If this value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can enable multitasking camera access by setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as the example below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let captureSession = AVCaptureSession()",
+            "",
+            "// Configure the capture session.",
+            "captureSession.beginConfiguration()",
+            "",
+            "if captureSession.isMultitaskingCameraAccessSupported {",
+            "    // Enable use of the camera in multitasking modes.",
+            "    captureSession.isMultitaskingCameraAccessEnabled = true",
+            "}",
+            "captureSession.commitConfiguration()",
+            "",
+            "// Start the capture session.",
+            "captureSession.startRunning()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enabling your app to use the camera while multitasking extends to Picture in Picture mode for video calls using AVKit. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-for-video-calls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to learn more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While multitasking, after an app finishes recording a video with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system displays an alert one time only to inform the user about the potential for lower-quality videos.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apps that have a deployment target earlier than iOS 16 require the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.multitasking-camera-access",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " entitlement to enable accessing the camera while multitasking.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-your-app-for-Split-View-or-Slide-Over-mode",
+          "level": 3,
+          "text": "Configure your app for Split View or Slide Over mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable multitasking camera access, your app doesn’t need to run in full-screen mode to use the camera. When it does run in full-screen mode, the camera continues to function in Slide Over mode and when the system presents a Picture in Picture window over your app. If you want to also run your app in Split View or Slide Over mode, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app target in Xcode’s project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the General tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deselect the “Requires full screen” checkbox.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Respond-to-system-pressure",
+          "level": 3,
+          "text": "Respond to system pressure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make your app resilient to increasing system pressure by monitoring the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and take action to reduce the impact. When the pressure reaches excessive levels, the capture system shuts down and emits an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps can reduce their footprint on the system by lowering the frame rate or requesting lower-resolution, binned, or non-HDR formats. The following code, from the sample app ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", shows how to reduce the capture frame rate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let systemPressureStateObservation = observe(\\.self.device.systemPressureState, ",
+            "                                             options: .new) { [weak self] _, change in",
+            "    guard let self = self else { return }",
+            "    guard let systemPressureState = change.newValue else { return }",
+            "",
+            "    // The frame rates here are for demonstrative purposes only.",
+            "    // Frame rate throttling can differ depending on your app's camera configuration.",
+            "    let pressureLevel = systemPressureState.level",
+            "    if pressureLevel == .serious || pressureLevel == .critical {",
+            "        do {",
+            "            try self.device.lockForConfiguration()",
+            "",
+            "            print(\"WARNING: Reached elevated system pressure level: \\(pressureLevel). Throttling frame rate.\")",
+            "",
+            "            self.device.activeVideoMinFrameDuration = CMTimeMake(value: 1, timescale: 20)",
+            "            self.device.activeVideoMaxFrameDuration = CMTimeMake(value: 1, timescale: 15)",
+            "",
+            "            self.device.unlockForConfiguration()",
+            "        } catch {",
+            "            print(\"Could not lock device for configuration: \\(error)\")",
+            "        }",
+            "    } else if pressureLevel == .shutdown {",
+            "        print(\"Session stopped running due to system pressure level.\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-camera-use-interruptions",
+          "level": 3,
+          "text": "Handle camera use interruptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system only allows one app to use the device’s camera at a time. Prepare your app to respond when another app starts using the camera. For example, if your app is running in Stage Manager and another app utilizes the camera, the system suspends your app’s use of the camera until the other app finishes. When the system interrupts your app’s use of the camera, it notifies your app so you can update your user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the system to notify you when your app’s camera access changes, observe the notifications ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/interruptionEndedNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as the example below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func addObservers() {",
+            "    let nc = NotificationCenter.default",
+            "",
+            "    // Observe when the system interrupts the capture session.",
+            "    nc.addObserver(self,",
+            "                   selector: #selector(handleInterruptionStarted),",
+            "                   name: .AVCaptureSessionWasInterrupted,",
+            "                   object: captureSession)",
+            "",
+            "    // Observe when the capture session interruption ends.",
+            "    nc.addObserver(self,",
+            "                   selector: #selector(handleInterruptionEnded),",
+            "                   name: .AVCaptureSessionInterruptionEnded,",
+            "                   object: captureSession)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notification object’s user information dictionary contains the reason for an interruption. Determining the reason lets you configure your user interface as your camera access changes. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSessionInterruptionReasonKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to look up the value, as the example below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc func handleInterruptionStarted(notification: Notification) {",
+            "    guard let userInfo = notification.userInfo,",
+            "          let reasonValue = userInfo[AVCaptureSessionInterruptionReasonKey] as? Int,",
+            "          let reason = AVCaptureSession.InterruptionReason(rawValue: reasonValue) else {",
+            "        print(“Failed to parse the interruption reason.”)",
+            "        return",
+            "    }",
+            "",
+            "    switch reason {",
+            "    case .videoDeviceInUseByAnotherClient:",
+            "        // Show your app's interruption user interface.",
+            "    case .videoDeviceNotAvailableDueToSystemPressure:",
+            "        // Handle an interruption from increasing system pressure.",
+            "    default:",
+            "        // Handle other interruption reasons.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avkit/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/avkit"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController": {
+      "abstract": [
+        {
+          "text": "A controller that responds to user-initiated Picture in Picture playback of video in a floating, resizable window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPictureInPictureController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPictureInPictureController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPictureInPictureController",
+      "type": "topic",
+      "url": "/documentation/avkit/avpictureinpicturecontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-for-video-calls": {
+      "abstract": [
+        {
+          "text": "Add multitasking capability to your video-call apps by using Picture in Picture (PiP).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-for-video-calls",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting Picture in Picture for video calls",
+      "type": "topic",
+      "url": "/documentation/avkit/adopting-picture-in-picture-for-video-calls"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-custom-player": {
+      "abstract": [
+        {
+          "text": "Add controls to your custom player user interface to invoke Picture in Picture (PiP) playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-custom-player",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting Picture in Picture in a Custom Player",
+      "type": "topic",
+      "url": "/documentation/avkit/adopting-picture-in-picture-in-a-custom-player"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-standard-player": {
+      "abstract": [
+        {
+          "text": "Add Picture in Picture (PiP) playback to your app using a player view controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-standard-player",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting Picture in Picture in a Standard Player",
+      "type": "topic",
+      "url": "/documentation/avkit/adopting-picture-in-picture-in-a-standard-player"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-playback-in-tvos": {
+      "abstract": [
+        {
+          "text": "Add advanced multitasking capabilities to your video apps by using Picture in Picture playback in tvOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-playback-in-tvos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting Picture in Picture Playback in tvOS",
+      "type": "topic",
+      "url": "/documentation/avkit/adopting-picture-in-picture-playback-in-tvos"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter": {
+      "abstract": [
+        {
+          "text": "An object that writes media data to a container file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAssetWriter",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVAssetWriter"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property": {
+      "abstract": [
+        {
+          "text": "A value that indicates the capture device’s current system pressure state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemPressureState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureSystemPressureState",
+          "text": "SystemPressureState"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "systemPressureState",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records video and audio to a QuickTime movie file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMovieFileOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureMovieFileOutput",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureMovieFileOutput"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableWithMultipleForegroundApps": {
+      "abstract": [
+        {
+          "text": "An interruption caused when your app is running in Slide Over, Split View, or Picture in Picture mode on iPad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoDeviceNotAvailableWithMultipleForegroundApps"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableWithMultipleForegroundApps",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession.InterruptionReason.videoDeviceNotAvailableWithMultipleForegroundApps",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableWithMultipleForegroundApps"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/interruptionEndedNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when an interruption to a capture session finishes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interruptionEndedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/interruptionEndedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interruptionEndedNotification",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/interruptionEndedNotification"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the capture session enables access to the camera while multitasking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultitaskingCameraAccessEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMultitaskingCameraAccessEnabled",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the capture session supports using the camera while multitasking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultitaskingCameraAccessSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMultitaskingCameraAccessSupported",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessSupported"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when it interrupts a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wasInterruptedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wasInterruptedNotification",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSessionInterruptionReasonKey": {
+      "abstract": [
+        {
+          "text": "Key to retrieve information about a capture interruption from a [`wasInterruptedNotification`](doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification) user info dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSessionInterruptionReasonKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSessionInterruptionReasonKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSessionInterruptionReasonKey",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSessionInterruptionReasonKey"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras": {
+      "abstract": [
+        {
+          "text": "Simultaneously record the output from the front and back cameras into a single movie file by using a multi-camera capture session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "AVMultiCamPiP: Capturing from Multiple Cameras",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session": {
+      "abstract": [
+        {
+          "text": "Configure input devices, output media, preview views, and basic settings before capturing photos or video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Capture Session",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/setting-up-a-capture-session"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.multitasking-camera-access": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app may continue using the camera at the same time as another foreground app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.multitasking-camera-access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.avfoundation.multitasking-camera-access",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.multitasking-camera-access"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/110429/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/110429/",
+      "title": "Discover advancements in iOS camera capture: Depth, focus, and multitasking",
+      "titleInlineContent": [
+        {
+          "text": "Discover advancements in iOS camera capture: Depth, focus, and multitasking",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/110429/"
+    },
+    "https://support.apple.com/en-us/HT207582": {
+      "identifier": "https://support.apple.com/en-us/HT207582",
+      "title": "Use multitasking on your iPad",
+      "titleInlineContent": [
+        {
+          "text": "Use multitasking on your iPad",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT207582"
+    },
+    "https://support.apple.com/guide/ipad/move-resize-and-organize-windows-ipad1240f36f/ipados": {
+      "identifier": "https://support.apple.com/guide/ipad/move-resize-and-organize-windows-ipad1240f36f/ipados",
+      "title": "Move, resize, and organize windows with Stage Manager on iPad",
+      "titleInlineContent": [
+        {
+          "text": "Move, resize, and organize windows with Stage Manager on iPad",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/ipad/move-resize-and-organize-windows-ipad1240f36f/ipados"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Picture-in-Picture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-playback-in-tvos",
+        "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-standard-player",
+        "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-custom-player",
+        "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-for-video-calls",
+        "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController"
+      ],
+      "title": "Picture in Picture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Picture-in-Picture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-playback-in-tvos",
+                "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-standard-player",
+                "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-custom-player",
+                "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-for-video-calls",
+                "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController"
+              ],
+              "title": "Picture in Picture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1InterruptionReason~1videoDeviceNotAvailableWithMultipleForegroundApps/title",
+          "value": "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1InterruptionReason~1videoDeviceNotAvailableWithMultipleForegroundApps/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1interruptionEndedNotification/title",
+          "value": "AVCaptureSessionInterruptionEndedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1interruptionEndedNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionInterruptionEndedNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController/title",
+          "value": "AVPictureInPictureController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1isMultitaskingCameraAccessSupported/title",
+          "value": "multitaskingCameraAccessSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1isMultitaskingCameraAccessSupported/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isMultitaskingCameraAccessSupported"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "multitaskingCameraAccessSupported"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1isMultitaskingCameraAccessEnabled/title",
+          "value": "multitaskingCameraAccessEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1isMultitaskingCameraAccessEnabled/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isMultitaskingCameraAccessEnabled"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "multitaskingCameraAccessEnabled"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSessionInterruptionReasonKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionInterruptionReasonKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1systemPressureState-swift.property/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureSystemPressureState",
+              "text": "AVCaptureSystemPressureState"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "systemPressureState"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1wasInterruptedNotification/title",
+          "value": "AVCaptureSessionWasInterruptedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1wasInterruptedNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionWasInterruptedNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMovieFileOutput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureFileOutput",
+              "text": "AVCaptureFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVAssetWriter/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avkit/accessing-the-camera-while-multitasking-on-ipad"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avkit/accessing-the-camera-while-multitasking-on-ipad"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

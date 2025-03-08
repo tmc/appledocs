@@ -1,0 +1,1402 @@
+{
+  "abstract": [
+    {
+      "text": "An object that tracks a specific week a person selects from a calendar view.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICalendarSelectionWeekOfYear",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UICalendarSelectionWeekOfYear"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICalendarSelectionWeekOfYear"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UICalendarSelectionWeekOfYear"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionWeekOfYear"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " selection behavior to allow selecting dates in a calendar view by week. The following code example shows how to configure a calendar view’s selection behavior to use week-of-year selection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a calendar view.",
+            "let calendarView = UICalendarView()",
+            "calendarView.calendar = Calendar(identifier: .gregorian)",
+            "",
+            "// Set the selection behavior.",
+            "let selection = UICalendarSelectionWeekOfYear(delegate: self)",
+            "calendarView.selectionBehavior = selection",
+            "",
+            "// Set the 11th week in the year 2024.",
+            "selection.selectedWeekOfYear = DateComponents(",
+            "    calendar: Calendar(identifier: .gregorian),",
+            "    weekOfYear: 11,",
+            "    yearForWeekOfYear: 2024)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarSelection": {
+      "abstract": [
+        {
+          "text": "A base object that tracks one or more dates a user selects from a calendar view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICalendarSelection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICalendarSelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICalendarSelection",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarselection"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionMultiDate": {
+      "abstract": [
+        {
+          "text": "An object that tracks multiple dates the user selects from a calendar view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICalendarSelectionMultiDate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionMultiDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICalendarSelectionMultiDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICalendarSelectionMultiDate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarselectionmultidate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionSingleDate": {
+      "abstract": [
+        {
+          "text": "An object that tracks a date the user selects from a calendar view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICalendarSelectionSingleDate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionSingleDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICalendarSelectionSingleDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICalendarSelectionSingleDate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarselectionsingledate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear": {
+      "abstract": [
+        {
+          "text": "An object that tracks a specific week a person selects from a calendar view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICalendarSelectionWeekOfYear"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICalendarSelectionWeekOfYear"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICalendarSelectionWeekOfYear",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarselectionweekofyear"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate object that a calendar view asks about selectable weeks and informs of changes to the week selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UICalendarSelectionWeekOfYearDelegate",
+          "text": "UICalendarSelectionWeekOfYearDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarselectionweekofyear/delegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/init(delegate:)": {
+      "abstract": [
+        {
+          "text": "Creates an object that tracks a week a person selects from a calendar view, with an optional delegate to manage selectable weeks and selection changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UICalendarSelectionWeekOfYearDelegate",
+          "text": "UICalendarSelectionWeekOfYearDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/init(delegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDelegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(delegate:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarselectionweekofyear/init(delegate:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/selectedWeekOfYear": {
+      "abstract": [
+        {
+          "text": "The current week-of-year selection in the calendar view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedWeekOfYear"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation14DateComponentsV",
+          "text": "DateComponents"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/selectedWeekOfYear",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedWeekOfYear"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedWeekOfYear",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarselectionweekofyear/selectedweekofyear"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/setSelected(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Updates the date component object that represents a selected week in a calendar view, with an option to animate the change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSelected"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation14DateComponentsV",
+          "text": "DateComponents"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/setSelected(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSelectedWeekOfYear:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSelected(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarselectionweekofyear/setselected(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYearDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods you implement to provide selectable weeks and handle changes to the week selection in a calendar view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICalendarSelectionWeekOfYearDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYearDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICalendarSelectionWeekOfYearDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICalendarSelectionWeekOfYearDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarselectionweekofyeardelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarView/selectionBehavior": {
+      "abstract": [
+        {
+          "text": "The current date selection method of the calendar view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICalendarSelection",
+          "text": "UICalendarSelection"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarView/selectionBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectionBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarview/selectionbehavior"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarSelection"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-date-selections",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarView/selectionBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionSingleDate",
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionMultiDate",
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarSelection"
+      ],
+      "title": "Handling date selections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-week-of-year-selection",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/init(delegate:)"
+      ],
+      "title": "Creating a week-of-year selection"
+    },
+    {
+      "anchor": "Setting-the-selection-delegate",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/delegate",
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYearDelegate"
+      ],
+      "title": "Setting the selection delegate"
+    },
+    {
+      "anchor": "Updating-the-selected-week",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/selectedWeekOfYear",
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/setSelected(_:animated:)"
+      ],
+      "title": "Updating the selected week"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UICalendarSelectionWeekOfYear"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionWeekOfYear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionWeekOfYear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-week-of-year-selection",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/init(delegate:)"
+              ],
+              "title": "Creating a week-of-year selection"
+            },
+            {
+              "anchor": "Setting-the-selection-delegate",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/delegate",
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYearDelegate"
+              ],
+              "title": "Setting the selection delegate"
+            },
+            {
+              "anchor": "Updating-the-selected-week",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/selectedWeekOfYear",
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionWeekOfYear/setSelected(_:animated:)"
+              ],
+              "title": "Updating the selected week"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarSelection"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Handling-date-selections",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarView/selectionBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionSingleDate",
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarSelectionMultiDate",
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarSelection"
+              ],
+              "title": "Handling date selections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UICalendarSelectionWeekOfYear"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarSelection",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UICalendarSelection",
+                    "text": "UICalendarSelection"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear/title",
+          "value": "UICalendarSelectionWeekOfYear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionWeekOfYear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionWeekOfYear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear~1init(delegate:)/title",
+          "value": "initWithDelegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear~1init(delegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDelegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionSingleDate/title",
+          "value": "UICalendarSelectionSingleDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionSingleDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionSingleDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionSingleDate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionSingleDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear~1selectedWeekOfYear/title",
+          "value": "selectedWeekOfYear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear~1selectedWeekOfYear/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedWeekOfYear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelection/title",
+          "value": "UICalendarSelection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear~1setSelected(_:animated:)/title",
+          "value": "setSelectedWeekOfYear:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear~1setSelected(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSelectedWeekOfYear:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionMultiDate/title",
+          "value": "UICalendarSelectionMultiDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionMultiDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionMultiDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionMultiDate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionMultiDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYearDelegate/title",
+          "value": "UICalendarSelectionWeekOfYearDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYearDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionWeekOfYearDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYearDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarSelectionWeekOfYearDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarView~1selectionBehavior/title",
+          "value": "selectionBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarView~1selectionBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarSelectionWeekOfYear~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicalendarselectionweekofyear"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uicalendarselectionweekofyear"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

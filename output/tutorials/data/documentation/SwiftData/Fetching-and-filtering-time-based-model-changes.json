@@ -1,0 +1,1488 @@
+{
+  "abstract": [
+    {
+      "text": "Track all inserts, updates, and deletes that occur in a data store and process",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "them as a series of chronological transactions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftData/documentation/SwiftData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "fetching-and-filtering-time-based-models-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftData"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Fetching and filtering time-based model changes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As people interact with your app, the app’s persisted model data may change",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "over time. For example, a person (or process) may create, update, or delete",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model instances. When the app fetches data from the data store, those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "results represent only the current state of that model data; there’s no",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "straightforward way to determine if there’s been any changes to that data since",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the last fetch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftData History enables your app to track changes in its data store",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "over time. The data store organizes changes as a series of chronological",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transactions, where each transaction contains information about one or more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "persisted changes. Your app can fetch these transactions and react accordingly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, your app may need to determine changes made by another process",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as a Widget or App Intent and reflect those changes in its user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use SwiftData History in your app, create a history descriptor and use a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model context to fetch the corresponding chronological transactions. After the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fetch completes, determine which of those fetched transactions relate to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current view or task and process them accordingly. After you finish processing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them, delete the transactions from the store to reclaim the disk space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "SwiftData History is available in data stores that adopt the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "History/HistoryProviding",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " protocol such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DefaultStore",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". All examples",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "in this article assume the use of ",
+                  "type": "text"
+                },
+                {
+                  "code": "DefaultStore",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and its related types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Fetch-a-stores-change-transactions",
+          "level": 2,
+          "text": "Fetch a store’s change transactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Transactions group together one or more changes that occur on a specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "boundary — such as when a model context writes pending changes to the store —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and are identifiable by their associated history token. SwiftData stores",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transactions in the order they occur, and a model context fetches them in that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same order. The group of changes that a transaction contains (inserts, updates,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deletes) are also ordered chronologically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using a model context, you can fetch all transactions from the persistent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "store, or just a subset by specifying a history token, an author, or both.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Tokens are opaque objects that conform to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Comparable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols, enabling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you to store the most recent token on-disk and use it in the next fetch to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receive only newer changes. An author is a short string that your app uses to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identify the origin of a transaction, which you specify on the model context",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that writes those changes to the store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you may want to fetch all new transactions that originate from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s widget.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func fetchWidgetTransactions(after tokenData: Data) -> Result<[DefaultHistoryTransaction], Error> {",
+            "    do {",
+            "        // Decode the given token data.",
+            "        let token = try JSONDecoder().decode(History.DefaultToken.self, from: tokenData)",
+            "        // Create a history descriptor and specify the predicate.",
+            "        var descriptor = History.HistoryDescriptor<History.DefaultTransaction>()",
+            "        descriptor.predicate = #Predicate {",
+            "            ($0.token > token) && ($0.author == \"widget\")",
+            "        }",
+            "        // Fetch the matching history transactions.",
+            "        let context = ModelContext(modelContainer)",
+            "        let txns = try context.fetchHistory(descriptor)",
+            "        return .success(txns)",
+            "    } catch {",
+            "        return .failure(error)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After processing the fetched transactions, make sure that you write the most",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "recent transaction’s token to disk so you can use it in the next fetch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-relevant-model-changes",
+          "level": 2,
+          "text": "Identify relevant model changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As transactions represent points in time, they’re heterogenous — a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transaction can (and often will) contain changes for several different model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types. Because of this, transactions aren’t bound to a specific model type.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you fetch them from a data store, the results will likely contain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transactions, and changes within those transactions, that are unrelated to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current view or task. Filter each transaction’s changes and identify only those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that are relevant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how you might identify trips with updated flight",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "times:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let context = ModelContext(modelContainer)",
+            "var updatedTrips = Set<Trip>()",
+            "",
+            "for txn in transactions {",
+            "    // Filter out any change that isn't an update.",
+            "    for change in txn.changes where change is History.DefaultUpdateChange<Trip> {",
+            "        // Proceed only when there's a single change, and that change ",
+            "        // is to the `flightTime` attribute.",
+            "        guard change.updatedAttributes.count == 1, ",
+            "              change.updatedAttributes.contains(\\.flightTime)",
+            "        else { continue }",
+            "        // Use the model ID from the change to fetch the actual model.",
+            "        let changedModelID = change.changedModelID",
+            "        var fetchDescriptor = FetchDescriptor<Trip>(predicate: #Predicate { ",
+            "            $0.persistentModelID == changedModelID",
+            "        })",
+            "        if let trip = try? taskContext.fetch(fetchDescriptor).first {",
+            "            updatedTrips.insert(trip)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Preserve-important-attributes-of-deleted-models",
+          "level": 2,
+          "text": "Preserve important attributes of deleted models",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After deleting a model from the data store, its values are gone with no way to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "recover them. In most situations, this is the preferred behavior. However,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "there may be occasions where your app needs to retain one or more attribute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values from a deleted model. For example, using a model’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel/persistentModelID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as a means of identifying that model is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only relevant within the scope of the local data store, and a different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attribute may provide a stable identity across different devices and services.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By retaining that attribute’s value, you’re able to reliably identify the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deleted model after it’s gone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retain a value, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Attribute/Option/preserveValueOnDeletion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Model",
+            "final class Trip {",
+            "    @Attribute(.preserveValueOnDeletion)",
+            "    var airlineBookingRef: String",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, when processing a transaction’s changes, use the ",
+              "type": "text"
+            },
+            {
+              "code": "tombstone",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "retrieve the preserved value. ",
+              "type": "text"
+            },
+            {
+              "code": "History/Tombstone",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a generic sequence type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that lets you iterate over the preserved values, or access a specific value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directly using the corresponding model key path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let deletion = change as? History.DefaultDeleteChange<Trip> {",
+            "   bookingRef = deletion.tombstone[\\.airlineBookingRef]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Delete-stale-change-transactions",
+          "level": 2,
+          "text": "Delete stale change transactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftData writes transactions to the data store alongside the model data,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and as such, transactions require additional disk space. To make sure the store",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t consume more space than necessary, determine a suitable clean-up",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "strategy to remove stale transactions when your app no longer needs them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you attempt to fetch deleted transactions, SwiftData throws a",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/SwiftDataError/historyTokenExpired",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similar to fetching, use a model context to delete transactions and provide a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "predicate to narrow the scope. For example, you may want to delete all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transactions that occur before a given token:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func deleteTransactions(before token: History.DefaultToken) -> Result<Void, Error> {",
+            "    do {",
+            "        // Create a history descriptor and specify the predicate.",
+            "        var descriptor = History.HistoryDescriptor<History.DefaultTransaction>()",
+            "        descriptor.predicate = #Predicate {",
+            "            $0.token < token",
+            "        }",
+            "        // Delete the matching history transactions.",
+            "        let context = ModelContext(modelContainer)",
+            "        try context.deleteHistory(descriptor)",
+            "        return .success",
+            "    } catch {",
+            "        return .failure(error)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SwiftData/documentation/SwiftData": {
+      "abstract": [
+        {
+          "text": "Write your model code declaratively to add managed persistence and efficient",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model fetching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData",
+      "images": [
+        {
+          "identifier": "swiftData-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftdata"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)": {
+      "abstract": [
+        {
+          "text": "Specifies the custom behavior that SwiftData applies to the annotated property",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when managing the owning class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC6OptionV",
+          "text": "Option"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "originalName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hashModifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Attribute(_:originalName:hashModifier:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/attribute(_:originalname:hashmodifier:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport": {
+      "abstract": [
+        {
+          "text": "Types you use to access model attributes and perform storage-related tasks in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a safe and isolated way.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Concurrency support",
+      "type": "topic",
+      "url": "/documentation/swiftdata/concurrencysupport"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DefaultStore": {
+      "abstract": [
+        {
+          "text": "A data store that uses Core Data as its undelying storage mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultStore"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DefaultStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultStore",
+      "type": "topic",
+      "url": "/documentation/swiftdata/defaultstore"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app": {
+      "abstract": [
+        {
+          "text": "Explore different ways to use SwiftData to delete persistent data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Deleting persistent data from your app",
+      "type": "topic",
+      "url": "/documentation/swiftdata/deleting-persistent-data-from-your-app"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s schema and model storage configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelContainer",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext": {
+      "abstract": [
+        {
+          "text": "An object that enables you to fetch, insert, and delete models, and save any",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelContext",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel/persistentModelID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "persistentModelID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData20PersistentIdentifierV",
+          "text": "PersistentIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel/persistentModelID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "persistentModelID",
+      "type": "topic",
+      "url": "/documentation/swiftdata/persistentmodel/persistentmodelid"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager": {
+      "abstract": [
+        {
+          "text": "Automatically record data change operations that people perform in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI app, and let them undo and redo those changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+      "kind": "article",
+      "role": "article",
+      "title": "Reverting data changes using the undo manager",
+      "type": "topic",
+      "url": "/documentation/swiftdata/reverting-data-changes-using-the-undo-manager"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Attribute/Option/preserveValueOnDeletion": {
+      "abstract": [
+        {
+          "text": "Preserves the property’s value in the persistent history when the context deletes the owning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preserveValueOnDeletion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC6OptionV",
+          "text": "Option"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Attribute/Option/preserveValueOnDeletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preserveValueOnDeletion",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schema/attribute/option/preservevalueondeletion"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/SwiftDataError/historyTokenExpired": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "historyTokenExpired"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData0aB5ErrorV",
+          "text": "SwiftDataError"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/SwiftDataError/historyTokenExpired",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "historyTokenExpired",
+      "type": "topic",
+      "url": "/documentation/swiftdata/swiftdataerror/historytokenexpired"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices": {
+      "abstract": [
+        {
+          "text": "Add the required capabilities and define a compatible schema to enable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftData to automatically sync your app’s model data using iCloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Syncing model data across a person’s devices",
+      "type": "topic",
+      "url": "/documentation/swiftdata/syncing-model-data-across-a-persons-devices"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/Swift/Codable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Comparable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared using the relational operators `<`, `<=`, `>=`, and `>`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Comparable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Comparable",
+      "type": "topic",
+      "url": "/documentation/Swift/Comparable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "fetching-and-filtering-time-based-models-PageImage-card.png": {
+      "alt": null,
+      "identifier": "fetching-and-filtering-time-based-models-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/075a7852ebc042773b65c445265171ee/fetching-and-filtering-time-based-models-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/511dbb1cea4900702d613a33524b1ff9/fetching-and-filtering-time-based-models-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "swiftData-PageImage-card.png": {
+      "alt": "A gray and white Swift logo on a swirly blue background.",
+      "identifier": "swiftData-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f347b5f4b93bb57bf95423987e9a6c9/swiftData-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a5e8a43bc94c93e07c48dc59f884ed/swiftData-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Model-life-cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport"
+      ],
+      "title": "Model life cycle"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftdata/fetching-and-filtering-time-based-model-changes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1609 @@
+{
+  "abstract": [
+    {
+      "text": "An environmental resource that contains background and lighting information for a scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation19EnvironmentResourceC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "EnvironmentResource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "EnvironmentResource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "EnvironmentResource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EnvironmentResource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit supports image-based lighting that enables realistic reflections on your scene’s 3D",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content. You can define the look of your scene’s background by supplying an environment resource",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "image that determines the general color of the room, and the location of any spotlights or shadowed areas",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within the reflection. RealityKit applies the image’s characteristics to your scene’s reflective content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "EnvironmentResource",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit checks a bundle for an environment resource by the filename you supply to one of the load functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-skybox-folder",
+          "level": 3,
+          "text": "Create a skybox folder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add an environment resource to your Xcode project, make a folder with a name that ends in ",
+              "type": "text"
+            },
+            {
+              "code": ".skybox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "place a single image inside.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ensure that the image is an environment map of equirectangular projection, also",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "known as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "latitude-longitude projection",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Drag the folder into the Project navigator.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the options pane, choose to create a folder reference (not a group), and add the folder to your app’s targets.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "At build time, Xcode compiles the image for use as an environment resource and inserts the result into the app bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit supports the same input formats as Image I/O, such as ",
+              "type": "text"
+            },
+            {
+              "code": ".png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": ".jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, to achieve rich, vibrant lighting, use a ",
+              "type": "text"
+            },
+            {
+              "code": ".exr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": ".hdr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format, which support a wide dynamic range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "EnvironmentResource": {
+      "alt": "Two screenshots depicting the process of applying an environment resource image to a reflective surface in a RealityKit scene. The first screenshot defines the",
+      "identifier": "EnvironmentResource",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1b295efdb644c044538354288c31d568/EnvironmentResource~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentLightingConfigurationComponent": {
+      "abstract": [
+        {
+          "text": "A component that scales the amount of light that an entity receives from its environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentLightingConfigurationComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentLightingConfigurationComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentLightingConfigurationComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentLightingConfigurationComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentlightingconfigurationcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource": {
+      "abstract": [
+        {
+          "text": "An environmental resource that contains background and lighting information for a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/Compression": {
+      "abstract": [
+        {
+          "text": "The compression to apply when creating an environment resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Compression"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/Compression",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Compression"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentResource.Compression",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/compression"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/CreateOptions": {
+      "abstract": [
+        {
+          "text": "A type that controls compression, sampling quality, and cubemap dimensions when creating an environment resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/CreateOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CreateOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentResource.CreateOptions",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/createoptions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/generate(fromEquirectangular:withName:)-3wtpe": {
+      "abstract": [
+        {
+          "text": "Synchronously generates an environment resource from an equirectangular image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromEquirectangular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19EnvironmentResourceC",
+          "text": "EnvironmentResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/generate(fromEquirectangular:withName:)-3wtpe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generate(fromEquirectangular:withName:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/generate(fromequirectangular:withname:)-3wtpe"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/generate(fromEquirectangular:withName:)-6mxsi": {
+      "abstract": [
+        {
+          "text": "Asynchronously generates an environment resource from an equirectangular image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromEquirectangular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19EnvironmentResourceC",
+          "text": "EnvironmentResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/generate(fromEquirectangular:withName:)-6mxsi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generate(fromEquirectangular:withName:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/generate(fromequirectangular:withname:)-6mxsi"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(cube:options:)-4knhi": {
+      "abstract": [
+        {
+          "text": "Synchronously generates an environment resource from a cube texture resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cube"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19EnvironmentResourceC",
+          "text": "EnvironmentResource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19EnvironmentResourceCAAE13CreateOptionsV",
+          "text": "CreateOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(cube:options:)-4knhi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cube:options:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/init(cube:options:)-4knhi"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(cube:options:)-4xqiz": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates an environment resource from a cube texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cube"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19EnvironmentResourceC",
+          "text": "EnvironmentResource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19EnvironmentResourceCAAE13CreateOptionsV",
+          "text": "CreateOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(cube:options:)-4xqiz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cube:options:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/init(cube:options:)-4xqiz"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(equirectangular:withName:)-3xxrz": {
+      "abstract": [
+        {
+          "text": "Asynchronously generates an environment resource from an equirectangular image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "equirectangular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(equirectangular:withName:)-3xxrz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(equirectangular:withName:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/init(equirectangular:withname:)-3xxrz"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(equirectangular:withName:)-9g602": {
+      "abstract": [
+        {
+          "text": "Synchronously creates an environment resource from an equirectangular image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "equirectangular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(equirectangular:withName:)-9g602",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(equirectangular:withName:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/init(equirectangular:withname:)-9g602"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(named:in:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously loads an environment resource from a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(named:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(named:in:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/init(named:in:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/load(named:in:)": {
+      "abstract": [
+        {
+          "text": "Synchronously loads an environment resource from a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19EnvironmentResourceC",
+          "text": "EnvironmentResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/load(named:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load(named:in:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/load(named:in:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/loadAsync(named:in:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously loads an environment resource from a bundle.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadAsync"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation11LoadRequestC",
+          "text": "LoadRequest"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19EnvironmentResourceC",
+          "text": "EnvironmentResource"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/loadAsync(named:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadAsync(named:in:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/loadasync(named:in:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/skybox": {
+      "abstract": [
+        {
+          "text": "The cube color texture that contains environment surrounding details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "skybox"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/skybox",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "skybox",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource/skybox"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Resource": {
+      "abstract": [
+        {
+          "text": "A shared resource you use to configure a component, like a material, mesh,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Resource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resource",
+      "type": "topic",
+      "url": "/documentation/realitykit/resource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides environment lighting for entities you place within the same virtual world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VirtualEnvironmentProbeComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VirtualEnvironmentProbeComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "VirtualEnvironmentProbeComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/virtualenvironmentprobecomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Probe": {
+      "abstract": [
+        {
+          "text": "A sample of the environment around a point in a scene the system uses for environment-based lighting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Probe"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Probe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Probe"
+        }
+      ],
+      "role": "symbol",
+      "title": "VirtualEnvironmentProbeComponent.Probe",
+      "type": "topic",
+      "url": "/documentation/realitykit/virtualenvironmentprobecomponent/probe"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Source-swift.enum": {
+      "abstract": [
+        {
+          "text": "Options that define the source of diffuse and specular lighting for environment lighting calculations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Source"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Source-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Source"
+        }
+      ],
+      "role": "symbol",
+      "title": "VirtualEnvironmentProbeComponent.Source",
+      "type": "topic",
+      "url": "/documentation/realitykit/virtualenvironmentprobecomponent/source-swift.enum"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Resource",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Environment",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentLightingConfigurationComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Probe",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Source-swift.enum"
+      ],
+      "title": "Environment"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Loading-the-resource",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(named:in:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(equirectangular:withName:)-9g602",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(equirectangular:withName:)-3xxrz",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(cube:options:)-4xqiz",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/init(cube:options:)-4knhi",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/load(named:in:)"
+      ],
+      "title": "Loading the resource"
+    },
+    {
+      "anchor": "Configuring-the-resource-creation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/CreateOptions",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/Compression"
+      ],
+      "title": "Configuring the resource creation"
+    },
+    {
+      "anchor": "Accessing-resource-data",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/skybox"
+      ],
+      "title": "Accessing resource data"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/generate(fromEquirectangular:withName:)-3wtpe",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/generate(fromEquirectangular:withName:)-6mxsi",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource/loadAsync(named:in:)"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/environmentresource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

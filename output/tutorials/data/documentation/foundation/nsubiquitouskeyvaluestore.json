@@ -1,0 +1,1456 @@
+{
+  "abstract": [
+    {
+      "text": "An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user's connected devices.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/icloud"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/preferences"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412202,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUbiquitousKeyValueStore",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSUbiquitousKeyValueStore"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSUbiquitousKeyValueStore"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUbiquitousKeyValueStore"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the iCloud key-value store to make preference, configuration, and app-state data available to every instance of your app on every device connected to a user’s iCloud account. You can store scalar values such as ",
+              "type": "text"
+            },
+            {
+              "code": "BOOL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as well as values containing any of the property list object types: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changes your app writes to the key-value store object are initially held in memory, then written to disk by the system at appropriate times. If you write to the key-value store object when the user is not signed into an iCloud account, the data is stored locally until the next synchronization opportunity. When the user signs into an iCloud account, the system automatically reconciles your local, on-disk keys and values with those on the iCloud server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any device running your app, and attached to the same iCloud account, can upload key-value changes to iCloud. To keep track of such changes, register for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification during app launch. Then, obtain the keys and values from iCloud (which may be newer than those that are local) by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You need not call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method again during your app’s life cycle, unless your app design requires fast-as-possible upload to iCloud after you change a value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on adopting key-value storage in your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1747187",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1747128",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid using this class for data that is essential to your app’s behavior when offline; instead, store such data directly into the local user defaults database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The total amount of space available in your app’s key-value store, for a given user, is 1 MB. There is a per-key value size limit of 1 MB, and a maximum of 1024 keys. If you attempt to write data that exceeds these quotas, the write attempt fails and no change is made to your iCloud key-value storage. In this scenario, the system posts the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification with a change reason of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The maximum length for key strings for the iCloud key-value store is 64 bytes using UTF8 encoding. Attempting to write a value to a longer key name results in a runtime error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use this class, you must distribute your app through the App Store or Mac App Store, and you must request the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.ubiquity-kvstore-identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement in your Xcode project. For more on this, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1747176",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1747128",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class is not meant to be subclassed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1747128": {
+      "identifier": "devLink-1747128",
+      "title": "iCloud Design Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012094"
+    },
+    "devLink-1747176": {
+      "identifier": "devLink-1747176",
+      "title": "Configuring Common Key-Value Storage for Multiple Apps",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/iCloudFundametals.html#//apple_ref/doc/uid/TP40012094-CH6-SW26"
+    },
+    "devLink-1747187": {
+      "identifier": "devLink-1747187",
+      "title": "Designing for Key-Value Data in iCloud",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/DesigningForKey-ValueDataIniCloud.html#//apple_ref/doc/uid/TP40012094-CH7"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud": {
+      "abstract": [
+        {
+          "text": "Store app preferences in iCloud and share them among instances of your app running on a user’s connected devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Synchronizing App Preferences with iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore": {
+      "abstract": [
+        {
+          "text": "An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user's connected devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUbiquitousKeyValueStore"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStore",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1407436-object": {
+      "abstract": [
+        {
+          "text": "Returns the object associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1407436-object",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1407436-object"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1407812-set": {
+      "abstract": [
+        {
+          "text": "Sets a ",
+          "type": "text"
+        },
+        {
+          "code": "long long",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value for the specified key in the key-value store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(Int64, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1407812-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1407812-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1409319-double": {
+      "abstract": [
+        {
+          "text": "Returns the double value associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "double"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1409319-double",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "double(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1409319-double"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1410916-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes the value associated with the specified key from the key-value store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1410916-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1410916-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1411129-dictionaryrepresentation": {
+      "abstract": [
+        {
+          "text": "A dictionary containing all of the key-value pairs in the key-value store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1411129-dictionaryrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionaryRepresentation",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1411129-dictionaryrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412191-array": {
+      "abstract": [
+        {
+          "text": "Returns the array associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "array"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412191-array",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "array(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1412191-array"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification": {
+      "abstract": [
+        {
+          "text": "Posted when the value of one or more keys in the local key-value store changed due to incoming data pushed from iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeExternallyNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didChangeExternallyNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412608-set": {
+      "abstract": [
+        {
+          "text": "Sets a double value for the specified key in the key-value store. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412608-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1412608-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1413240-longlong": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "long long",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "longLong"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1413240-longlong",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "longLong(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1413240-longlong"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1413949-default": {
+      "abstract": [
+        {
+          "text": "Returns the shared iCloud key-value store object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": ": NSUbiquitousKeyValueStore"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1413949-default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1413949-default"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1414610-set": {
+      "abstract": [
+        {
+          "text": "Sets a string object for the specified key in the key-value store. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1414610-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1414610-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415054-set": {
+      "abstract": [
+        {
+          "text": "Sets a Boolean value for the specified key in the key-value store. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415054-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1415054-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize": {
+      "abstract": [
+        {
+          "text": "Explicitly synchronizes in-memory keys and values with those stored on disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1416218-set": {
+      "abstract": [
+        {
+          "text": "Sets a data object for the specified key in the key-value store. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(Data?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1416218-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1416218-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1416241-dictionary": {
+      "abstract": [
+        {
+          "text": "Returns the dictionary object associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1416241-dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionary(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1416241-dictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1416434-set": {
+      "abstract": [
+        {
+          "text": "Sets an object for the specified key in the key-value store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1416434-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1416434-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417155-set": {
+      "abstract": [
+        {
+          "text": "Sets a dictionary object for the specified key in the key-value store. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "([String : Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417155-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1417155-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417350-bool": {
+      "abstract": [
+        {
+          "text": "Returns the Boolean value associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "bool"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417350-bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bool(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1417350-bool"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417721-set": {
+      "abstract": [
+        {
+          "text": "Sets an array object for the specified key in the key-value store. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "([Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417721-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1417721-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417800-data": {
+      "abstract": [
+        {
+          "text": "Returns the data object associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417800-data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1417800-data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1418249-string": {
+      "abstract": [
+        {
+          "text": "Returns the string associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1418249-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1418249-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1433687-change_reason_values": {
+      "abstract": [
+        {
+          "text": "Possible values associated with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " key. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1433687-change_reason_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Change Reason Values",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1433687-change_reason_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/notification_keys": {
+      "abstract": [
+        {
+          "text": "These keys can be included in the user info dictionary of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/notification_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notification Keys",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/notification_keys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStoreChangeReasonKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStoreQuotaViolationChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/preferences": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/preferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preferences",
+      "type": "topic",
+      "url": "/documentation/foundation/preferences"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud"
+      ],
+      "title": "App Preferences"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1660491",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1413949-default"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Shared Instance"
+    },
+    {
+      "anchor": "1660530",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412191-array",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417350-bool",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417800-data",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1416241-dictionary",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1409319-double",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1413240-longlong",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1407436-object",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1418249-string"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Values"
+    },
+    {
+      "anchor": "1660701",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417721-set",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415054-set",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1416218-set",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1417155-set",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412608-set",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1407812-set",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1416434-set",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1414610-set"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting Values"
+    },
+    {
+      "anchor": "1660898",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize"
+      ],
+      "kind": "taskGroup",
+      "title": "Explicitly Synchronizing In-Memory Key-Value Data to Disk"
+    },
+    {
+      "anchor": "1660940",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1410916-removeobject"
+      ],
+      "kind": "taskGroup",
+      "title": "Removing Keys"
+    },
+    {
+      "anchor": "1660979",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1411129-dictionaryrepresentation"
+      ],
+      "kind": "taskGroup",
+      "title": "Retrieving the Current Keys and Values"
+    },
+    {
+      "anchor": "1674423",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/notification_keys",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1433687-change_reason_values"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1674474",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifications"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsubiquitouskeyvaluestore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsubiquitouskeyvaluestore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

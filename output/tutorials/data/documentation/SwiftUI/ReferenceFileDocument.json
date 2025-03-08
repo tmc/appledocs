@@ -1,0 +1,1179 @@
+{
+  "abstract": [
+    {
+      "text": "A type that you use to serialize reference type documents to and from file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI21ReferenceFileDocumentP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ReferenceFileDocument"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ReferenceFileDocument"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "ReferenceFileDocument"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ReferenceFileDocument"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7Combine16ObservableObjectP",
+              "text": "ObservableObject"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To store a document as a reference type — like a class — create a type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "ReferenceFileDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol and implement the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "required methods and properties. Your implementation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provides a list of the content types that the document can read from and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "write to by defining ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/readableContentTypes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If the list of content",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "types that the document can write to is different from those that it reads",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "from, you can optionally also define ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/writableContentTypes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Loads documents from file in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/init(configuration:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " initializer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stores documents to file by providing a snapshot of the document’s",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "content in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/snapshot(contentType:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, and then serializing",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that content in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/fileWrapper(snapshot:configuration:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ensure that types that conform to this protocol are ",
+              "type": "text"
+            },
+            {
+              "code": "Sendable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In particular, SwiftUI calls the protocol’s methods from different isolation domains.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Don’t perform serialization and deserialization on ",
+              "type": "text"
+            },
+            {
+              "code": "MainActor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "final class PDFDocument: ReferenceFileDocument {",
+            "    struct Storage {",
+            "        var contents: Data",
+            "    }",
+            "",
+            "    static let readableContentTypes: [UTType] = [.pdf]",
+            "    let storage: OSAllocatedUnfairLock<Storage>",
+            "",
+            "    required init(configuration: ReadConfiguration) throws {",
+            "       guard let data = configuration.file.regularFileContents else {",
+            "           throw CocoaError(.fileReadCorruptFile)",
+            "       }",
+            "        self.storage = .init(initialState: .init(contents: data))",
+            "    }",
+            "",
+            "    func snapshot(contentType: UTType) throws -> Data {",
+            "        storage.withLock { $0.contents }",
+            "    }",
+            "",
+            "    func fileWrapper(snapshot: Data, configuration: WriteConfiguration) throws -> FileWrapper {",
+            "        return FileWrapper(regularFileWithContents: snapshot)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you store your document as a value type — like a",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "structure — use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/undoManager": {
+      "abstract": [
+        {
+          "text": "The undo manager used to register a view’s undo operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "undoManager"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUndoManager",
+          "text": "UndoManager"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/undoManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "undoManager",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/undomanager"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument": {
+      "abstract": [
+        {
+          "text": "A type that you use to serialize documents to and from file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FileDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "FileDocument",
+      "type": "topic",
+      "url": "/documentation/swiftui/filedocument"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument": {
+      "abstract": [
+        {
+          "text": "A type that you use to serialize reference type documents to and from file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReferenceFileDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReferenceFileDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReferenceFileDocument",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/ReadConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration for reading document contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReadConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/ReadConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReadConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReferenceFileDocument.ReadConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument/readconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/Snapshot": {
+      "abstract": [
+        {
+          "text": "A type that represents the document’s stored content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Snapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/Snapshot",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Snapshot",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument/snapshot"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/WriteConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration for writing document contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WriteConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/WriteConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WriteConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReferenceFileDocument.WriteConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument/writeconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/fileWrapper(snapshot:configuration:)": {
+      "abstract": [
+        {
+          "text": "Serializes a document snapshot to a file wrapper.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileWrapper"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "snapshot"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ReferenceFileDocumentP8SnapshotQa",
+          "text": "Snapshot"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ReferenceFileDocumentP18WriteConfigurationa",
+          "text": "WriteConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileWrapper",
+          "text": "FileWrapper"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/fileWrapper(snapshot:configuration:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "fileWrapper(snapshot:configuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument/filewrapper(snapshot:configuration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/init(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a document and initializes it with the contents of a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ReferenceFileDocumentP17ReadConfigurationa",
+          "text": "ReadConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/init(configuration:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init(configuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument/init(configuration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/readableContentTypes": {
+      "abstract": [
+        {
+          "text": "The file and data types that the document reads from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readableContentTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/readableContentTypes",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "readableContentTypes",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument/readablecontenttypes"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/snapshot(contentType:)": {
+      "abstract": [
+        {
+          "text": "Creates a snapshot that represents the current state of the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "snapshot"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ReferenceFileDocumentP8SnapshotQa",
+          "text": "Snapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/snapshot(contentType:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "snapshot(contentType:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument/snapshot(contenttype:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/writableContentTypes": {
+      "abstract": [
+        {
+          "text": "The file types that the document supports saving or exporting to.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writableContentTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/writableContentTypes",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "writableContentTypes",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument/writablecontenttypes"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocumentConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of an open reference file document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReferenceFileDocumentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocumentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReferenceFileDocumentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReferenceFileDocumentConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocumentconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP": {
+      "abstract": [
+        {
+          "text": "A type of object with a publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservableObject"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObservableObject",
+      "type": "topic",
+      "url": "/documentation/Combine/ObservableObject"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-document-data-in-a-class-instance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocumentConfiguration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/undoManager"
+      ],
+      "title": "Storing document data in a class instance"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Reading-a-document",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/init(configuration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/readableContentTypes",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/ReadConfiguration"
+      ],
+      "title": "Reading a document"
+    },
+    {
+      "anchor": "Getting-a-snapshot",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/snapshot(contentType:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/Snapshot"
+      ],
+      "title": "Getting a snapshot"
+    },
+    {
+      "anchor": "Writing-a-document",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/fileWrapper(snapshot:configuration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/writableContentTypes",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument/WriteConfiguration"
+      ],
+      "title": "Writing a document"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/referencefiledocument"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

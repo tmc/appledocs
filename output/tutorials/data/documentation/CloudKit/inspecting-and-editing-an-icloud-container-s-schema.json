@@ -1,0 +1,773 @@
+{
+  "abstract": [
+    {
+      "text": "Review and edit the schema for your app’s container using the CloudKit Database app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit",
+        "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting and Editing an iCloud Container’s Schema"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the CloudKit Database app to verify existing record types, create new record types, edit fields, add search indexes, and delete unpublished record types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To manage a schema’s record types, open the CloudKit Database app and select your app’s container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-Record-Types",
+          "level": 3,
+          "text": "Inspect Record Types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a record programmatically through just-in-time schema creation, use the CloudKit Database app to verify that the record type appears in the schema with the name and fields you expect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To view the fields for a record type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Record Types in the CloudKit Database app Schema section for your app’s container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the main screen, select a record type. The app displays the field names and the field types for the record type you select. You can then add, modify, and remove unpublished fields.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3699099",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about just-in-time schema creation, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database#Save-initial-records-to-iCloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-querying-for-your-record-type",
+          "level": 3,
+          "text": "Enable querying for your record type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing and debugging your database, you might find it useful to search for records with a particular record type. To enable searching for records by type, you must first add an index to a field on your record type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a record programmatically, iCloud creates a ",
+              "type": "text"
+            },
+            {
+              "code": "recordName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " metadata field in the corresponding record type. You add a ",
+              "type": "text"
+            },
+            {
+              "code": "QUERYABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " index to this field to enable searching for records by type in the CloudKit Database app and in code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable querying:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the CloudKit Database app schema management page for your app’s container, select Indexes from the Schema section in the navigation menu on the left.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To view or remove exisiting indexes, select a field name in the Indexes panel.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add an index, click the plus icon at the top of the Indexes panel.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set Record Type to the desired record type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a name for the new index.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set Type to QUERYABLE.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the field to index.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Add. The new index appears in Indexes main panel, and you can search for records using that field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3699101",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-record-type",
+          "level": 3,
+          "text": "Create a record type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to creating record types programmatically using just-in-time schema creation, you can create new record types directly in the CloudKit Database app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new record type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the CloudKit Database app schema management page for your app’s container, select Record Types from the Schema section on the left.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the click the plus icon at the top of the Record Types panel provide a name and description for the new record type in the fields that appear.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Create Record Type button. CloudKit adds the new record type to the schema.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add a field, click the Add button next to Record Fields, enter a field name and description, and select a field type from the menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To delete a field, choose Delete in the option’s menu of that field’s row. You can’t delete fields that are in a production schema.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Save Changes. CloudKit adds the new fields to the schema.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3699108",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Delete-a-record-type",
+          "level": 3,
+          "text": "Delete a record type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can delete a record type only in the development environment and only when that record type isn’t in production. Deleting a record type also deletes any corresponding records from the database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To delete a record type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the CloudKit Database App schema management page for your app’s container, select Record Types from the Schema section on the left.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Record Types panel, select the record type to delete.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When that type’s details appear, click the Delete button. You can’t delete record types that are part of a production schema.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm that you want to delete the record type. CloudKit removes the record type and any corresponding records from the container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3699107",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema": {
+      "abstract": [
+        {
+          "text": "Reset your container’s state during development and deploy your container’s schema to production.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema",
+      "kind": "article",
+      "role": "article",
+      "title": "Deploying an iCloud Container’s Schema",
+      "type": "topic",
+      "url": "/documentation/cloudkit/deploying-an-icloud-container-s-schema"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database": {
+      "abstract": [
+        {
+          "text": "Create a schema to store your app’s objects as records in iCloud using CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing and Creating a CloudKit Database",
+      "type": "topic",
+      "url": "/documentation/cloudkit/designing-and-creating-a-cloudkit-database"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database#Save-initial-records-to-iCloud": {
+      "abstract": [],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database#Save-initial-records-to-iCloud",
+      "kind": "section",
+      "title": "Save initial records to iCloud",
+      "type": "topic",
+      "url": "/documentation/cloudkit/designing-and-creating-a-cloudkit-database#Save-initial-records-to-iCloud"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/handling-an-icloud-container-s-data": {
+      "abstract": [
+        {
+          "text": "Inspect and manage your app’s iCloud container data using the CloudKit Database app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/handling-an-icloud-container-s-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling an iCloud Container’s Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/handling-an-icloud-container-s-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app": {
+      "abstract": [
+        {
+          "text": "Inspect and modify the schema and data for your app’s iCloud container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing iCloud Containers with CloudKit Database App",
+      "type": "topic",
+      "url": "/documentation/cloudkit/managing-icloud-containers-with-cloudkit-database-app"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/obtaining-an-api-token-for-an-icloud-container": {
+      "abstract": [
+        {
+          "text": "Generate an API token to access CloudKit web services or use CloudKit JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/obtaining-an-api-token-for-an-icloud-container",
+      "kind": "article",
+      "role": "article",
+      "title": "Obtaining an API Token for an iCloud Container",
+      "type": "topic",
+      "url": "/documentation/cloudkit/obtaining-an-api-token-for-an-icloud-container"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3699099": {
+      "alt": "A screenshot showing a container’s record types on the schema management page of the CloudKit Database app. The screenshot highlights the Record Types menu item in the Schema section on the left, as well as the selected Record Type in the pane on the right.",
+      "identifier": "media-3699099",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4c3a86836ec5d4dfc9926bef5d2e774a/media-3699099@2x.png"
+        }
+      ]
+    },
+    "media-3699101": {
+      "alt": "A screenshot showing a container’s indexes on the schema management page of the CloudKit Dashboard app. The screenshot highlights the Indexes menu item in the Schema section on the left and the Add Index pane.",
+      "identifier": "media-3699101",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cd1d954320f5a477f44893402eb25094/media-3699101@2x.png"
+        }
+      ]
+    },
+    "media-3699107": {
+      "alt": "A screenshot showing a container’s record types on the schema management page of the CloudKit Database app. The screenshot highlights the Record Types menu item in the Schema section on the left, as well as the Record Type details dialog on the right.",
+      "identifier": "media-3699107",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cef088d0cb85a6b32603033158c08803/media-3699107@2x.png"
+        }
+      ]
+    },
+    "media-3699108": {
+      "alt": "A screenshot showing a container’s record types on the schema management page of the CloudKit Dashboard app. The screenshot highlights the Record Types menu item in the Schema section on the left, as well as the New Record Type panel.",
+      "identifier": "media-3699108",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3288df8dec299caee74d4a1e0be396a/media-3699108@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Container-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/handling-an-icloud-container-s-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema",
+        "doc://com.apple.cloudkit/documentation/CloudKit/obtaining-an-api-token-for-an-icloud-container"
+      ],
+      "title": "Container Management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Container-Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/handling-an-icloud-container-s-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema",
+                "doc://com.apple.cloudkit/documentation/CloudKit/obtaining-an-api-token-for-an-icloud-container"
+              ],
+              "title": "Container Management"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/inspecting-and-editing-an-icloud-container-s-schema"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/inspecting-and-editing-an-icloud-container-s-schema"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

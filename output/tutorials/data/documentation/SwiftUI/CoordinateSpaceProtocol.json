@@ -1,0 +1,1538 @@
+{
+  "abstract": [
+    {
+      "text": "A frame of reference within the layout system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI23CoordinateSpaceProtocolP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CoordinateSpaceProtocol"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CoordinateSpaceProtocol"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "CoordinateSpaceProtocol"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CoordinateSpaceProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All geometric properties of a view, including size, position, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transform, are defined within the local coordinate space of the view’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parent. These values can be converted into other coordinate spaces",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by passing types conforming to this protocol into functions such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "GeometryProxy.frame(in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a named coordinate space allows you to convert the frame",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a view into the local coordinate space of an ancestor view by defining",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a named coordinate space using the ",
+              "type": "text"
+            },
+            {
+              "code": "coordinateSpace(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier, then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "passing that same named coordinate space into the ",
+              "type": "text"
+            },
+            {
+              "code": "frame(in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VStack {",
+            "    GeometryReader { geometryProxy in",
+            "        let distanceFromTop = geometryProxy.frame(in: \"container\").origin.y",
+            "        Text(\"This view is \\(distanceFromTop) points from the top of the VStack\")",
+            "    }",
+            "    .padding()",
+            "}",
+            ".coordinateSpace(.named(\"container\"))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t typically create types conforming to this protocol yourself.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, use the system-provided ",
+              "type": "text"
+            },
+            {
+              "code": ".global",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": ".local",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": ".named(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implementations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A resolved coordinate space created by the coordinate space protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "CoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/swiftui/coordinatespace"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol": {
+      "abstract": [
+        {
+          "text": "A frame of reference within the layout system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoordinateSpaceProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CoordinateSpaceProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "CoordinateSpaceProtocol",
+      "type": "topic",
+      "url": "/documentation/swiftui/coordinatespaceprotocol"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/coordinateSpace": {
+      "abstract": [
+        {
+          "text": "The resolved coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15CoordinateSpaceO",
+          "text": "CoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/coordinateSpace",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "coordinateSpace",
+      "type": "topic",
+      "url": "/documentation/swiftui/coordinatespaceprotocol/coordinatespace"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/global": {
+      "abstract": [
+        {
+          "text": "The global coordinate space at the root of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "GlobalCoordinateSpace",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "global"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21GlobalCoordinateSpaceV",
+          "text": "GlobalCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/global",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "global",
+      "type": "topic",
+      "url": "/documentation/swiftui/coordinatespaceprotocol/global"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/immersiveSpace": {
+      "abstract": [
+        {
+          "text": "The named coordinate space that represents the currently opened",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ImmersiveSpace",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " scene.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "If no immersive space is currently opened, this CoordinateSpace provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the same behavior as the ",
+          "type": "text"
+        },
+        {
+          "code": ".global",
+          "type": "codeVoice"
+        },
+        {
+          "text": " coordinate space.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "NamedCoordinateSpace",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "immersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20NamedCoordinateSpaceV",
+          "text": "NamedCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/immersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "immersiveSpace",
+      "type": "topic",
+      "url": "/documentation/swiftui/coordinatespaceprotocol/immersivespace"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/local": {
+      "abstract": [
+        {
+          "text": "The local coordinate space of the current view.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "LocalCoordinateSpace",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "local"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20LocalCoordinateSpaceV",
+          "text": "LocalCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/local",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "local",
+      "type": "topic",
+      "url": "/documentation/swiftui/coordinatespaceprotocol/local"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/named(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a named coordinate space using the given value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "NamedCoordinateSpace",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20NamedCoordinateSpaceV",
+          "text": "NamedCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/named(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "named(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/coordinatespaceprotocol/named(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/scrollView": {
+      "abstract": [
+        {
+          "text": "The named coordinate space that is added by the system for the innermost",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "containing scroll view.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "NamedCoordinateSpace",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20NamedCoordinateSpaceV",
+          "text": "NamedCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/scrollView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollView",
+      "type": "topic",
+      "url": "/documentation/swiftui/coordinatespaceprotocol/scrollview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/scrollView(axis:)": {
+      "abstract": [
+        {
+          "text": "The named coordinate space that is added by the system for the innermost",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "containing scroll view that allows scrolling along the provided axis.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "NamedCoordinateSpace",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "axis"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/scrollView(axis:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollView(axis:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/coordinatespaceprotocol/scrollview(axis:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryProxy": {
+      "abstract": [
+        {
+          "text": "A proxy for access to the size and coordinate space (for anchor resolution)",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the container view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeometryProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeometryProxy",
+      "type": "topic",
+      "url": "/documentation/swiftui/geometryproxy"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryProxy3D": {
+      "abstract": [
+        {
+          "text": "A proxy for access to the size and coordinate space of the container view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryProxy3D"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryProxy3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeometryProxy3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeometryProxy3D",
+      "type": "topic",
+      "url": "/documentation/swiftui/geometryproxy3d"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryReader": {
+      "abstract": [
+        {
+          "text": "A container view that defines its content as a function of its own size and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryReader"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeometryReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeometryReader",
+      "type": "topic",
+      "url": "/documentation/swiftui/geometryreader"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryReader3D": {
+      "abstract": [
+        {
+          "text": "A container view that defines its content as a function of its own",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "size and coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryReader3D"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryReader3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeometryReader3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeometryReader3D",
+      "type": "topic",
+      "url": "/documentation/swiftui/geometryreader3d"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GlobalCoordinateSpace": {
+      "abstract": [
+        {
+          "text": "The global coordinate space at the root of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GlobalCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GlobalCoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GlobalCoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "GlobalCoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/swiftui/globalcoordinatespace"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "A scene that presents its content in an unbounded space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ImmersiveSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/swiftui/immersivespace"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalCoordinateSpace": {
+      "abstract": [
+        {
+          "text": "The local coordinate space of the current view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalCoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalCoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalCoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/swiftui/localcoordinatespace"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NamedCoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A named coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NamedCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NamedCoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NamedCoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "NamedCoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/swiftui/namedcoordinatespace"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PhysicalMetric": {
+      "abstract": [
+        {
+          "text": "Provides access to a value in points that corresponds to the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "physical measurement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicalMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PhysicalMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicalMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicalMetric",
+      "type": "topic",
+      "url": "/documentation/swiftui/physicalmetric"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PhysicalMetricsConverter": {
+      "abstract": [
+        {
+          "text": "A physical metrics converter provides conversion between point values and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their extent in 3D space, in the form of physical length measurements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicalMetricsConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PhysicalMetricsConverter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicalMetricsConverter"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicalMetricsConverter",
+      "type": "topic",
+      "url": "/documentation/swiftui/physicalmetricsconverter"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/coordinateSpace(_:)": {
+      "abstract": [
+        {
+          "text": "Assigns a name to the view’s coordinate space, so other code can operate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on dimensions like points and sizes relative to the named space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20NamedCoordinateSpaceV",
+          "text": "NamedCoordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/coordinateSpace(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coordinateSpace(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/coordinatespace(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GlobalCoordinateSpace",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalCoordinateSpace",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NamedCoordinateSpace"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Measuring-a-view",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryReader",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryReader3D",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryProxy",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GeometryProxy3D",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/coordinateSpace(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpace",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PhysicalMetric",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PhysicalMetricsConverter"
+      ],
+      "title": "Measuring a view"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-built-in-coordinate-spaces",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/immersiveSpace",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/global",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/local",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/named(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/scrollView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/scrollView(axis:)"
+      ],
+      "title": "Getting built-in coordinate spaces"
+    },
+    {
+      "anchor": "Getting-the-resolved-coordinate-space",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CoordinateSpaceProtocol/coordinateSpace"
+      ],
+      "title": "Getting the resolved coordinate space"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GlobalCoordinateSpace",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalCoordinateSpace",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NamedCoordinateSpace"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/coordinatespaceprotocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

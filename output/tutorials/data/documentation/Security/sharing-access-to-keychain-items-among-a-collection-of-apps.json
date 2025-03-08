@@ -1,0 +1,1504 @@
+{
+  "abstract": [
+    {
+      "text": "Enable apps to share keychain items with each other by adding the apps to an access group.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/keychain-services",
+        "doc://com.apple.security/documentation/Security/keychain-items"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/keychain-services",
+        "doc://com.apple.security/documentation/Security/keychain-items",
+        "doc://com.apple.security/documentation/Security/using-the-keychain-to-manage-user-secrets"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sharing access to keychain items among a collection of apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you develop a family of apps, all of which rely on the same user secret, you can use access groups to securely share that secret among those apps. For example, you can share credentials, so that logging into one of your apps automatically grants the user access to all of your apps. This kind of sharing doesn’t require interaction with or permission from the user, but limits sharing to apps that are delivered by a single development team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An access group is a logical collection of apps tagged with a particular group name string. Any app in a given group can share keychain items with all the other apps in the same group. You can add an app to any number of groups, but the app is always part of at least one group that contains only itself. That is, an app can always store and retrieve private keychain items, regardless of whether it also participates in any other groups. Keychain items, on the other hand, are always part of exactly one group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This form of keychain item sharing applies to all iOS keychain items, and to macOS keychain items when you query with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/kSecUseDataProtectionKeychain",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key, set the item’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " attribute, or both.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-your-apps-access-groups",
+          "level": 3,
+          "text": "Set your app’s access groups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You control the groups that your app belongs to by manipulating its entitlements. In particular, an app belongs to all the groups named in a virtual array of strings that the system forms for each app as the concatenation of the following items, evaluated in this order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The optional ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/keychain-access-groups",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " holds an array of strings, each of which names an access group.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Keychain access groups",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Xcode automatically adds the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "application-identifier",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " entitlement (or the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "com.apple.application-identifier",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " entitlement in macOS) to every app during code signing, formed as the team identifier (team ID) plus the bundle identifier (bundle ID).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Application identifier",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When you collect related apps into an application group using the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", they share access to a group container, and gain the ability to message each other in certain ways. Starting in iOS 8, the array of strings given by this entitlement also extends the list of keychain access groups.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Application groups",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode handles the application identifier (app ID) for you when you set the bundle ID. You set the others by manipulating capabilities in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Establish-your-apps-private-access-group",
+          "level": 4,
+          "text": "Establish your app’s private access group",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One of the first steps you take when you create any new app is to assign it a bundle ID, typically using reverse DNS notation, with a string like ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.AppOne",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When code signing your app, Xcode automatically prefixes the bundle ID with your team ID — the unique character sequence issued by Apple to each development team — and stores the combined string as the app ID. The system recognizes this app ID as the name of your app’s private access group by including it in your access group array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[$(teamID).com.example.AppOne]"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because app IDs are unique across all apps, and because the app ID is stored in an entitlement protected by code signing, no other app can use it, therefore no other app is in this group. Any keychain items stored with this access group are private to App One. Similarly, if you have a second app with a bundle ID of ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.AppTwo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it automatically belongs to its own private group:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[$(teamID).com.example.AppTwo]"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a result, by default, each app’s keychain items remains isolated from all other apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2983093",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-apps-to-one-or-more-keychain-access-groups",
+          "level": 4,
+          "text": "Add apps to one or more keychain access groups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want two apps to be able to share keychain items, you can add both to the same keychain access group. Do this by enabling the Keychain Sharing capability in Xcode for each app, and adding a common string to the list of keychain groups in each case. Typically, you use the same kind of reverse DNS naming for a keychain group that you use for a bundle ID, so you might choose ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.SharedItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3370375",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with forming the app ID from the bundle ID, Xcode automatically prefixes keychain groups with your team ID. This ensures that your groups are specific to your development team. When you enable the capability for App One as shown above, its logical list of app groups becomes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[$(teamID).com.example.SharedItems,",
+            " $(teamID).com.example.AppOne]"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you also add the same keychain group to App Two, its logical list of app groups becomes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[$(teamID).com.example.SharedItems,",
+            " $(teamID).com.example.AppTwo]"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In effect, the two apps gain a region of overlap to share items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2983090",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notice that the distinct areas represented by the app IDs are still present, allowing each app to continue to access its own, private items. But both apps now also belong to the shared items group, enabling them to share keychain items. In this way, you can add an app to as many different groups as you like.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-app-groups-to-expand-sharing-of-keychain-and-non-keychain-data",
+          "level": 4,
+          "text": "Use app groups to expand sharing of keychain and non-keychain data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app belongs to an app group, it can share certain kinds of non-keychain data with other apps in the same group. For example, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that shares the preferences you set among all the apps in the app group. Like keychain access groups, you enable app groups with a capability in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in iOS 8, when an app belongs to an app group, it can also use this mechanism to share keychain items. In this example, add App One to the ",
+              "type": "text"
+            },
+            {
+              "code": "group.com.example.AppSuite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " app group:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3370376",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App One’s list of access groups expands to include the app group:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[$(teamID).com.example.SharedItems,",
+            " $(teamID).com.example.AppOne,",
+            " group.com.example.AppSuite]"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This allows it to share keychain items with any app in the App Suite group (distinct from any sharing it’s already doing with apps in the shared items keychain access group).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode doesn’t prepend the app group with the team identifier. Instead, it guards against the reuse of app group names across teams when you try to add an app group to a provisioning profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Know-the-difference-between-app-groups-and-keychain-access-groups",
+          "level": 4,
+          "text": "Know the difference between app groups and keychain access groups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App groups and keychain access groups aren’t mutually exclusive—you can use both in the same app—but they do differ in several important ways that may help you decide which to use for a given situation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, as described above, using an app group enables additional data sharing beyond keychain items. You might want this extra sharing, or might already be using an app group for this purpose, and thus not need to add keychain access groups. On the other hand, you might not want to enable this additional sharing at all, and prefer keychain access groups instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Second, order matters. The system considers the first item in the list of access groups to be the app’s default access group. This is the access group that keychain services assumes if you don’t otherwise specify one when adding keychain items. An app group can’t ever be the default, because the app ID is always present and appears earlier in the list. However, a keychain access group can be the default, because it appears before the app ID. In particular, the first keychain access group, if any, that you specify in the corresponding capability becomes the app’s default access group. If you don’t specify any keychain access groups, then the app ID is the default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-a-keychain-items-access-group",
+          "level": 3,
+          "text": "Set a keychain item’s access group",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike apps, which can belong to many access groups, keychain items belong to a single group, identified by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrAccessGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute. From the item’s point of view, the world is a collection of disjoint groups, and the item belongs to exactly one of them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2983091",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new item with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, you can specify a group in the add attributes using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrAccessGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key. For example, you can create a new generic password item in the Shared Items group defined above:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let accessGroup = \"<# Your Team ID #>.com.example.SharedItems\"",
+            "let attributes = [kSecClass: kSecClassGenericPassword,",
+            "                  kSecAttrService: service,",
+            "                  kSecAttrAccount: username,",
+            "                  kSecAttrAccessGroup: accessGroup,",
+            "                  kSecValueData: password] as [String: Any]",
+            "let addStatus = SecItemAdd(attributes as CFDictionary, nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use any of the groups to which your app belongs. If you try to use an access group to which your app doesn’t belong, the operation fails and returns the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errSecMissingEntitlement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " status. This includes attempts to “prime” an entry using a zero-length string as the value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrAccessGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key, because the empty string represents an invalid group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t specify any access group when adding an item, keychain services applies your app’s default access group, which is the first group named in the concatenated list of groups described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps#Set-your-apps-access-groups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you search for keychain items with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, you can likewise specify an access group in the search query to limit your search to a particular access group:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let query = [kSecClass: kSecClassGenericPassword,",
+            "             kSecAttrService: service,",
+            "             kSecAttrAccount: username,",
+            "             kSecReturnAttributes: true,",
+            "             kSecAttrAccessGroup: accessGroup,",
+            "             kSecReturnData: true] as [String: Any]",
+            "var item: CFTypeRef?",
+            "let readStatus = SecItemCopyMatching(query as CFDictionary, &item)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify a group to which your app doesn’t belong, no items match and the query returns the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errSecItemNotFound",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " status. If you don’t specify an access group in the query, the search matches any of your app’s groups.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups": {
+      "abstract": [
+        {
+          "text": "A list of identifiers specifying the groups your app belongs to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Groups Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.application-groups"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/keychain-access-groups": {
+      "abstract": [
+        {
+          "text": "The identifiers for the keychain groups that the app may share items with.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/keychain-access-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Keychain Access Groups Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/keychain-access-groups"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init": {
+      "abstract": [
+        {
+          "text": "Creates a user defaults object initialized with the defaults for the specified database name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "suiteName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(suiteName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1409957-init"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds one or more items to a keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemAdd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemAdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemAdd(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemadd(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns one or more keychain items that match a search query, or copies attributes of specific keychain items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemCopyMatching"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemCopyMatching"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemCopyMatching(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemcopymatching(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/errSecItemNotFound": {
+      "abstract": [
+        {
+          "text": "The item cannot be found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errSecItemNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errSecItemNotFound",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errSecItemNotFound"
+        }
+      ],
+      "role": "symbol",
+      "title": "errSecItemNotFound",
+      "type": "topic",
+      "url": "/documentation/security/errsecitemnotfound"
+    },
+    "doc://com.apple.security/documentation/Security/errSecMissingEntitlement": {
+      "abstract": [
+        {
+          "text": "A required entitlement is missing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errSecMissingEntitlement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errSecMissingEntitlement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errSecMissingEntitlement"
+        }
+      ],
+      "role": "symbol",
+      "title": "errSecMissingEntitlement",
+      "type": "topic",
+      "url": "/documentation/security/errsecmissingentitlement"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrAccessGroup": {
+      "abstract": [
+        {
+          "text": "A key with a value that’s a string indicating the access group the item is in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrAccessGroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrAccessGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrAccessGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrAccessGroup",
+      "type": "topic",
+      "url": "/documentation/security/ksecattraccessgroup"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable": {
+      "abstract": [
+        {
+          "text": "A key with a value that’s a string indicating whether the item synchronizes through iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrSynchronizable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrSynchronizable"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrSynchronizable",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrsynchronizable"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseDataProtectionKeychain": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates whether to treat macOS keychain items like iOS keychain items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseDataProtectionKeychain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseDataProtectionKeychain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseDataProtectionKeychain"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseDataProtectionKeychain",
+      "type": "topic",
+      "url": "/documentation/security/ksecusedataprotectionkeychain"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-items": {
+      "abstract": [
+        {
+          "text": "Embed confidential information in items that you store in a keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-items",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain items",
+      "type": "topic",
+      "url": "/documentation/security/keychain-items"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-services": {
+      "abstract": [
+        {
+          "text": "Securely store small chunks of data on behalf of the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain services",
+      "type": "topic",
+      "url": "/documentation/security/keychain-services"
+    },
+    "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps#Set-your-apps-access-groups": {
+      "abstract": [],
+      "identifier": "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps#Set-your-apps-access-groups",
+      "kind": "section",
+      "title": "Set your app’s access groups",
+      "type": "topic",
+      "url": "/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps#Set-your-apps-access-groups"
+    },
+    "doc://com.apple.security/documentation/Security/using-the-keychain-to-manage-user-secrets": {
+      "abstract": [
+        {
+          "text": "Relieve the user of remembering small secrets by storing them in the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/using-the-keychain-to-manage-user-secrets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Using the keychain to manage user secrets",
+      "type": "topic",
+      "url": "/documentation/security/using-the-keychain-to-manage-user-secrets"
+    },
+    "media-2983090": {
+      "alt": "Diagram showing how keychain items can reside in the region of overlap between two apps, and thus be shared by the apps.",
+      "identifier": "media-2983090",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fea386e436c388b408d667836e8c54a7/media-2983090@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fea386e436c388b408d667836e8c54a7/media-2983090~dark@2x.png"
+        }
+      ]
+    },
+    "media-2983091": {
+      "alt": "Diagram showing how keychain items can live in only one group at a time.",
+      "identifier": "media-2983091",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42336ff84a83119f01bf0ed413d52885/media-2983091@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42336ff84a83119f01bf0ed413d52885/media-2983091~dark@2x.png"
+        }
+      ]
+    },
+    "media-2983093": {
+      "alt": "Diagram showing how keychain items are isolated by default to a single app.",
+      "identifier": "media-2983093",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e2f600a5e594ebef997428f952a040a3/media-2983093@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e2f600a5e594ebef997428f952a040a3/media-2983093~dark@2x.png"
+        }
+      ]
+    },
+    "media-3370375": {
+      "alt": "Screenshot showing the keychain sharing item in Xcode’s Signing and Capabilities tab, with a single keychain group called com.example.SharedItems.",
+      "identifier": "media-3370375",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c14705c7a8ae29d0a3b7e7f5d86df0c7/media-3370375@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d28d101fa83903b9218b2ea17369be0b/media-3370375~dark@2x.png"
+        }
+      ]
+    },
+    "media-3370376": {
+      "alt": "Screenshot showing App One enabling the app groups capability.",
+      "identifier": "media-3370376",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a4ddfabd6e00082021f4a4544cd6e7bb/media-3370376@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/45d1202b8872abc99ef632628210287e/media-3370376~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemCopyMatching(_:_:)/title",
+          "value": "SecItemCopyMatching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemCopyMatching(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemCopyMatching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecMissingEntitlement/title",
+          "value": "errSecMissingEntitlement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecMissingEntitlement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errSecMissingEntitlement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrAccessGroup/title",
+          "value": "kSecAttrAccessGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrAccessGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrAccessGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrSynchronizable/title",
+          "value": "kSecAttrSynchronizable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrSynchronizable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrSynchronizable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecItemNotFound/title",
+          "value": "errSecItemNotFound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecItemNotFound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errSecItemNotFound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults/title",
+          "value": "NSUserDefaults"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseDataProtectionKeychain/title",
+          "value": "kSecUseDataProtectionKeychain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseDataProtectionKeychain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseDataProtectionKeychain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults~11409957-init/title",
+          "value": "initWithSuiteName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemAdd(_:_:)/title",
+          "value": "SecItemAdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemAdd(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemAdd"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

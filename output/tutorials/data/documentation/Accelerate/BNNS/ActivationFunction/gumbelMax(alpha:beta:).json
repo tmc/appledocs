@@ -1,0 +1,1340 @@
+{
+  "abstract": [
+    {
+      "text": "An activation function that returns random numbers from the Gumbel distribution.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use the BNNSGraph API instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/gumbelMax(alpha:beta:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Accelerate4BNNSO18ActivationFunctionO9gumbelMaxyAESf_SftcAEmF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "case"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "gumbelMax"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "alpha"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sf",
+        "text": "Float"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "beta"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sf",
+        "text": "Float"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": true,
+        "message": "Use the BNNSGraph API instead.",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Case",
+    "symbolKind": "case",
+    "title": "BNNS.ActivationFunction.gumbelMax(alpha:beta:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "case"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "gumbelMax"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "alpha"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sf",
+              "text": "Float"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "beta"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sf",
+              "text": "Float"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This constant defines an activation function that returns values using the following operation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " GumbleMax(X)_i = MAX(−log(−log(alpha*Uniform(0,1)+beta)+beta) + Xj) "
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to BNNS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNS"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNS"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction": {
+      "abstract": [
+        {
+          "text": "Constants that describe activation functions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivationFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivationFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/abs": {
+      "abstract": [
+        {
+          "text": "An activation function that returns the absolute value of its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "abs"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/abs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.abs",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/abs"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/celu(alpha:)": {
+      "abstract": [
+        {
+          "text": "An activation function that evaluates the continuously differentiable exponential linear units (CELU) on its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "celu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/celu(alpha:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.celu(alpha:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/celu(alpha:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/clamp(bounds:)": {
+      "abstract": [
+        {
+          "text": "An activation function that returns its input clamped to the specified range.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/clamp(bounds:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.clamp(bounds:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/clamp(bounds:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/clampedLeakyRectifiedLinear(alpha:beta:)": {
+      "abstract": [
+        {
+          "text": "An activation function that returns its input clamped to beta when that is greater than or equal to zero, otherwise it returns its input multiplied by alpha clamped to beta.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clampedLeakyRectifiedLinear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/clampedLeakyRectifiedLinear(alpha:beta:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.clampedLeakyRectifiedLinear(alpha:beta:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/clampedleakyrectifiedlinear(alpha:beta:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/elu(alpha:)": {
+      "abstract": [
+        {
+          "text": "An activation function that evaluates the exponential linear units (ELU) on its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "elu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/elu(alpha:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.elu(alpha:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/elu(alpha:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/geluApproximation(alpha:beta:)": {
+      "abstract": [
+        {
+          "text": "An activation function that evaluates the Gaussian error linear units (GELU) approximation on its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geluApproximation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/geluApproximation(alpha:beta:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.geluApproximation(alpha:beta:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/geluapproximation(alpha:beta:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/geluApproximation2(alpha:beta:)": {
+      "abstract": [
+        {
+          "text": "An activation function that provides a fast evaluation of the Gaussian error linear units (GELU) approximation on its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geluApproximation2"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/geluApproximation2(alpha:beta:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.geluApproximation2(alpha:beta:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/geluapproximation2(alpha:beta:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/gumbel(alpha:beta:)": {
+      "abstract": [
+        {
+          "text": "An activation function that returns random numbers from the Gumbel distribution.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gumbel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/gumbel(alpha:beta:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.gumbel(alpha:beta:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/gumbel(alpha:beta:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/gumbelMax(alpha:beta:)": {
+      "abstract": [
+        {
+          "text": "An activation function that returns random numbers from the Gumbel distribution.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gumbelMax"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/gumbelMax(alpha:beta:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.gumbelMax(alpha:beta:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/gumbelmax(alpha:beta:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/hardShrink(alpha:)": {
+      "abstract": [
+        {
+          "text": "An activation function that returns zero when the absolute input is less than alpha, otherwise it returns its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardShrink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/hardShrink(alpha:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.hardShrink(alpha:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/hardshrink(alpha:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/hardSigmoid(alpha:beta:)": {
+      "abstract": [
+        {
+          "text": "An activation function that returns the hard sigmoid function of its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardSigmoid"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/hardSigmoid(alpha:beta:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.hardSigmoid(alpha:beta:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/hardsigmoid(alpha:beta:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/hardSwish(alpha:beta:)": {
+      "abstract": [
+        {
+          "text": "An activation function that returns the hard swish function of its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardSwish"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/hardSwish(alpha:beta:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.hardSwish(alpha:beta:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/hardswish(alpha:beta:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/identity": {
+      "abstract": [
+        {
+          "text": "An activation function that returns its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identity"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/identity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.identity",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/identity"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/leakyRectifiedLinear(alpha:)": {
+      "abstract": [
+        {
+          "text": "An activation function that returns its input when that is greater than or equal to zero, otherwise it returns its input multiplied by a specified value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leakyRectifiedLinear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/leakyRectifiedLinear(alpha:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.leakyRectifiedLinear(alpha:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/leakyrectifiedlinear(alpha:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/linear(alpha:)": {
+      "abstract": [
+        {
+          "text": "An activation function that returns its input multiplied by a specified value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/linear(alpha:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.linear(alpha:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/linear(alpha:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/linearWithBias(alpha:beta:)": {
+      "abstract": [
+        {
+          "text": "An activation function that returns its input multiplied by a scale and added to a bias.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearWithBias"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/linearWithBias(alpha:beta:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ActivationFunction.linearWithBias(alpha:beta:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/activationfunction/linearwithbias(alpha:beta:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sf": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/Swift/Float"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Activation-Functions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/abs",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/celu(alpha:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/clamp(bounds:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/clampedLeakyRectifiedLinear(alpha:beta:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/elu(alpha:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/geluApproximation(alpha:beta:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/geluApproximation2(alpha:beta:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/gumbel(alpha:beta:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/hardShrink(alpha:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/hardSigmoid(alpha:beta:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/hardSwish(alpha:beta:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/identity",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/leakyRectifiedLinear(alpha:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/linear(alpha:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ActivationFunction/linearWithBias(alpha:beta:)"
+      ],
+      "title": "Activation Functions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/bnns/activationfunction/gumbelmax(alpha:beta:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

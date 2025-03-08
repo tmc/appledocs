@@ -1,0 +1,1206 @@
+{
+  "abstract": [
+    {
+      "text": "Enhance your visionOS app by adding an immersive space using RealityKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/creating-immersive-spaces-in-visionos-with-swiftui"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "sample-immersive-1-main-view.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating an immersive space in visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in visionOS, showcasing a collection of rocks orbiting around a person, like the scene in the following video:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "sample-immersive.1-main-view.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TurnTableSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " runs the core functionality to manage the rotational dynamics of entities through the ",
+              "type": "text"
+            },
+            {
+              "code": "TurnTableComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which defines the speed and rotation axis. The ",
+              "type": "text"
+            },
+            {
+              "code": "Entity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class extends with a method to populate the immersive space with 3D rock entities and then apply a random transformation to create a halo effect. The ",
+              "type": "text"
+            },
+            {
+              "code": "ImmersiveView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integrates these features and showcases the potential of SwiftUI and RealityKit to build an exciting augmented reality experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-turntable-system",
+          "level": 3,
+          "text": "Create the turntable system",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a custom system and corresponding component to apply a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "series of random rotations to the content in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "immersive environment, resulting in a collection of objects that orbit around a person.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct TurnTableComponent: Component {",
+            "    /// The duration of the orbit effect.",
+            "    var time: TimeInterval = 0",
+            "           ",
+            "    /// The speed at which the entity moves over time.",
+            "    var speed: TimeInterval",
+            "           ",
+            "    /// The axis that the object orbits around.",
+            "    var axis: SIMD3<Float>",
+            "           ",
+            "    /// Initialize the turntable component by setting the speed and axis variables.",
+            "    init(speed: TimeInterval = 1.0, axis: SIMD3<Float> = [0, 1, 0]) {",
+            "        self.speed = speed",
+            "        self.axis = axis",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TurnTableComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stores the time, speed, and axis information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that decides how each of the entities rotates over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TurnTableSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " checks the current scene for any rendered content that contains a ",
+              "type": "text"
+            },
+            {
+              "code": "TurnTableComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If it detects the component, the system applies the value of ",
+              "type": "text"
+            },
+            {
+              "code": "deltaTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the component’s ",
+              "type": "text"
+            },
+            {
+              "code": "time",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value and sets the orientation value to the component’s ",
+              "type": "text"
+            },
+            {
+              "code": "axis",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct TurnTableSystem: System {",
+            "    /// A value to check whether the entity has the required component.",
+            "    static let query = EntityQuery(where: .has(TurnTableComponent.self))",
+            "",
+            "    /// Initialize the system with the RealityKit scene.",
+            "    init(scene: RealityKit.Scene) { }",
+            "",
+            "    // Update the entities to apply the time value and orientation.",
+            "    func update(context: SceneUpdateContext) {",
+            "        // Iterate over entities that match the query and are currently rendering.",
+            "        for entity in context.entities(matching: Self.query, updatingSystemWhen: .rendering) {",
+            "            /// The variable to get the `TurnTableComponent` from the entity.",
+            "            var comp = entity.components[TurnTableComponent.self]!",
+            "",
+            "            // Set the time variable to increase as time passes.",
+            "            comp.time += context.deltaTime",
+            "",
+            "            // Update the component in the entity.",
+            "            entity.components[TurnTableComponent.self] = comp",
+            "",
+            "            // Adjust the orientation to update the angle, speed, and axis of rotation.",
+            "            entity.setOrientation(simd_quatf(angle: Float(0.1 * comp.speed), axis: comp.axis), relativeTo: entity)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Extend-the-entity-class",
+          "level": 3,
+          "text": "Extend the entity class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample extends the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to load a file as a model component and apply the model for the halo effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import RealityKit",
+            "",
+            "extension Entity {",
+            "    /// The name of the 3D model resource file.",
+            "    static var fileName: String = \"rock\"",
+            "           ",
+            "    /// The model component loads a given filename.",
+            "    static var rockModel: ModelComponent = {",
+            "        let rock = try! Entity.loadModel(named: fileName)",
+            "        return rock.model!",
+            "    }()",
+            "",
+            "    //...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a halo effect, the sample extends the ",
+              "type": "text"
+            },
+            {
+              "code": "Entity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class with a custom method called ",
+              "type": "text"
+            },
+            {
+              "code": "addHalo()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The method loops through the total number of rocks that the app creates, and makes an array of entities with random size, speed, and rotation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import RealityKit",
+            "",
+            "extension Entity {",
+            "    // ...",
+            "    ",
+            "    /// Assign a series of random rotations, translations, and scales for each rock model.",
+            "    func addHalo() {",
+            "        /// The number of models to generate.",
+            "        let modelCount: Int = 50",
+            "",
+            "        // Create each model and apply a random transform, scale, and time interval.",
+            "        for _ in 0..<modelCount {",
+            "            /// The dedicated entity for the model.",
+            "            let entity = Entity()",
+            "",
+            "            // Assign the model as a component.",
+            "            entity.components.set(Self.rockModel)",
+            "",
+            "            /// A transform that contains a random rotation along the y-axis.",
+            "            let rotate0 = Transform(rotation: simd_quatf(angle: .random(in: 0...(2 * .pi)), axis: [0, 1, 0])).matrix",
+            "",
+            "            /// A transform that adjusts along the z-axis.",
+            "            let translate = Transform(translation: [0, 0, 1]).matrix",
+            "",
+            "            /// A transform that contains a random rotation along the y-axis.",
+            "            let rotate1 = Transform(rotation: simd_quatf(angle: .random(in: 0...(2 * .pi)), axis: [0, 1, 0])).matrix",
+            "",
+            "            /// A transform that contains a random rotation along the x-axis.",
+            "            let rotate2 = Transform(rotation: simd_quatf(angle: .random(in: (-.pi / 9)...(.pi / 9)), axis: [1, 0, 0])).matrix",
+            "",
+            "            // Assign the entity a transform based on the matrix product of each rotation and translation variable.",
+            "            entity.transform = Transform(matrix: rotate1 * rotate2 * translate * rotate0)",
+            "",
+            "            // Assign the entity a random scale along all axes.",
+            "            entity.setScale(SIMD3(repeating: 0.001 * .random(in: 0.5...2)), relativeTo: entity)",
+            "",
+            "            // Assign the entity's `TurnTableComponent` a random speed at which to rotate along the axis.",
+            "            entity.components.set(TurnTableComponent(",
+            "                speed: .random(in: 0.001...0.1),",
+            "                axis: [",
+            "                    .random(in: -1...1),",
+            "                    .random(in: -1...1),",
+            "                    .random(in: -1...1)]",
+            "            ))",
+            "",
+            "            // Add the entity as a subentity.",
+            "            self.addChild(entity)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method constructs and returns a single entity that contains multiple subentities, each with a model that applies unique rotations and speed through the ",
+              "type": "text"
+            },
+            {
+              "code": "TurnTableComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-immersive-view",
+          "level": 3,
+          "text": "Create the immersive view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample defines a custom view for an immersive space that creates a single entity and applies the ",
+              "type": "text"
+            },
+            {
+              "code": "addHalo()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct ImmersiveView: View {",
+            "    /// The average human height in meters.",
+            "    let avgHeight: Float = 1.70",
+            "",
+            "    /// The rate of movement at which the rocks orbit.",
+            "    let speed: TimeInterval = 0.03",
+            "",
+            "    var body: some View {",
+            "        // Initiate a `RealityView` to create a ring",
+            "        // of rocks to orbit around a person.",
+            "        RealityView { content in",
+            "            /// The entity to contain the models.",
+            "            let rootEntity = Entity()",
+            "",
+            "            // Set the y-axis position to the average human height.",
+            "            rootEntity.position.y += avgHeight",
+            "",
+            "            // Create the halo effect with the `addHalo` method.",
+            "            rootEntity.addHalo()",
+            "",
+            "            // Set the rotation speed for the rocks.",
+            "            rootEntity.components.set(TurnTableComponent(speed: speed))",
+            "",
+            "            // Register the `TurnTableSystem` to handle the rotation logic.",
+            "            TurnTableSystem.registerSystem()",
+            "",
+            "            // Add the entity to the view.",
+            "            content.add(rootEntity)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "rootEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " includes a ",
+              "type": "text"
+            },
+            {
+              "code": "TurnTableComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to enable an orbit effect similar to the collective rotation of all the rock entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-immersive-scene",
+          "level": 3,
+          "text": "Run the immersive scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Immersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " app structure includes an ",
+              "type": "text"
+            },
+            {
+              "code": "ImmersiveSpace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry to the scene to include in the app’s environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "@main",
+            "struct Immersion: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            MainView()",
+            "        }",
+            "        ",
+            "        // Defines an immersive space as a part of the scene.",
+            "        ImmersiveSpace(id: \"ImmersiveScene\") {",
+            "            ImmersiveView()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s main view uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance property to call the immersive space that the ",
+              "type": "text"
+            },
+            {
+              "code": "Immersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " app structure defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "struct MainView: View {",
+            "    /// The environment value to get the `OpenImmersiveSpaceAction` instance.",
+            "    @Environment(\\.openImmersiveSpace) var openImmersiveSpace",
+            "",
+            "    var body: some View {",
+            "        // Displays a line of text and",
+            "        // opens a new `ImmersiveSpace` environment.",
+            "        Text(\"Immersive Content Example\")",
+            "            .onAppear {",
+            "                Task {",
+            "                    await openImmersiveSpace(id: \"ImmersiveScene\")",
+            "                }",
+            "            }",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+            "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit",
+            "doc://com.apple.documentation/documentation/RealityKit/construct-an-immersive-environment-for-visionOS",
+            "doc://com.apple.visionOS/documentation/visionOS/creating-an-interactable-3d-model-in-visionos"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+            "doc://com.apple.documentation/documentation/visionOS/creating-fully-immersive-experiences",
+            "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene"
+          ],
+          "style": "list",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "66347c531199/CreatingImmersiveSpacesInVisionOSWithSwiftUI.zip": {
+      "checksum": "66347c5311991ad6d601d14c6b97ddb1c0ef6dee8766b10c577d4164eb922736082656e555e424820da31edf5fd0e21fb8df9b2b49a0ffec452595b789768bf2",
+      "identifier": "66347c531199/CreatingImmersiveSpacesInVisionOSWithSwiftUI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/66347c531199/CreatingImmersiveSpacesInVisionOSWithSwiftUI.zip"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Entity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/construct-an-immersive-environment-for-visionOS": {
+      "abstract": [
+        {
+          "text": "Build efficient custom worlds for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/construct-an-immersive-environment-for-visionOS",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Construct an immersive environment for visionOS",
+      "type": "topic",
+      "url": "/documentation/RealityKit/construct-an-immersive-environment-for-visionOS"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Apply behaviors and physical effects to the objects and characters in a RealityKit scene with the Entity Component System (ECS).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing systems for entities in a scene",
+      "type": "topic",
+      "url": "/documentation/RealityKit/implementing-systems-for-entities-in-a-scene"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "An action that presents an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24OpenImmersiveSpaceActionV",
+          "text": "OpenImmersiveSpaceAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "A scene that presents its content in an unbounded space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ImmersiveSpaceContentP",
+          "text": "ImmersiveSpaceContent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit": {
+      "abstract": [
+        {
+          "text": "Use systems and postprocessing effects to create a realistic underwater scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an Immersive Experience with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/building_an_immersive_experience_with_realitykit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/creating-fully-immersive-experiences": {
+      "abstract": [
+        {
+          "text": "Build fully immersive experiences by combining spaces with content you create using RealityKit or Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/creating-fully-immersive-experiences",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating fully immersive experiences in your app",
+      "type": "topic",
+      "url": "/documentation/visionOS/creating-fully-immersive-experiences"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionOS/understanding-the-realitykit-modular-architecture"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-an-interactable-3d-model-in-visionos": {
+      "abstract": [
+        {
+          "text": "Display an interactive car model using gestures in a reality view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-an-interactable-3d-model-in-visionos",
+      "images": [
+        {
+          "identifier": "sample-car-example-1-main-view-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating an interactive 3D model in visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-an-interactable-3d-model-in-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-car-example-1-main-view-card.png": {
+      "alt": "",
+      "identifier": "sample-car-example-1-main-view-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ffa900addb4dda85070a399d6f70a5e0/sample-car-example-1-main-view-card.png"
+        }
+      ]
+    },
+    "sample-immersive-1-main-view.png": {
+      "alt": null,
+      "identifier": "sample-immersive-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81add09bef8d5995e4c347d1fe291b22/sample-immersive-1-main-view.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10eb3fdbc10f3c47328edba49ccda376/sample-immersive-1-main-view~dark.png"
+        }
+      ]
+    },
+    "sample-immersive.1-main-view.mp4": {
+      "alt": "A screen recording of a visionOS app in Simulator that has one translucent window and a series of 3D rock entities rotating around the user.",
+      "identifier": "sample-immersive.1-main-view.mp4",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/46e60fa0248fb0d6d759df28aca95e28/sample-immersive.1-main-view.mp4"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "66347c531199/CreatingImmersiveSpacesInVisionOSWithSwiftUI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2076 @@
+{
+  "abstract": [
+    {
+      "text": "Create JSON Web Tokens (JWTs) signed with your private key to authorize API requests.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating Tokens for API Requests"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "JSON Web Token (JWT) is an open standard (",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") that defines a way to securely transmit information. The App Store Connect API requires JWTs to authorize each API request. You create the token, and sign it with the private key you downloaded from App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate a signed JWT:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the JWT header.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the JWT payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign the JWT.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include the signed JWT in the authorization header of each App Store Connect API request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-JWT-Header",
+          "level": 3,
+          "text": "Create the JWT Header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a JWT to communicate with the App Store Connect API, use the following fields and values in the header:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header Field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alg",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Encryption Algorithm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ES256",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " All JWTs for App Store Connect API must be signed with ES256 encryption.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Key Identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your private key ID from App Store Connect, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2X9R4HXF34",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "typ",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Token Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "JWT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get your key ID for your team API key from App Store Connect, log in to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Users and Access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Integrations tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key IDs appear in a column under the Active heading.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hover the cursor next to a key ID to display the Copy Key ID link.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Copy Key ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get your key ID for your individual API key from App Store Connect, log in to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Go to your user profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll down to Individual API Key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Generate API Key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you have more than one team API key, use the key ID of the same private key that you use to sign the JWT.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of a JWT header:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"alg\": \"ES256\",",
+            "    \"kid\": \"2X9R4HXF34\",",
+            "    \"typ\": \"JWT\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-JWT-Payload-for-Team-Keys",
+          "level": 3,
+          "text": "Create the JWT Payload for Team Keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JWT payload contains information specific to the App Store Connect APIs, such as issuer ID and expiration time. Use the following fields and values in the JWT payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Payload Field",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Value",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Issuer ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your issuer ID from the API Keys page in App Store Connect, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "57246542-96fe-1a63-e053-0824d011072a",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Issued At Time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token’s creation time, in UNIX epoch time, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1528407600",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "exp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Expiration Time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token’s expiration time in Unix epoch time. Tokens that expire more than 20 minutes into the future are not valid except for resources listed in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests#Determine-the-Appropriate-Token-Lifetime",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "aud",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Audience",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appstoreconnect-v1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "scope",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Token Scope",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A list of operations you want App Store Connect to allow for this token; for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GET /v1/apps/123",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get your issuer ID, log in to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Users and Access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Integrations tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The issuer ID appears near the top of the page. To copy the issuer ID, click Copy next to the ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of a JWT payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"iss\": \"57246542-96fe-1a63-e053-0824d011072a\",",
+            "    \"iat\": 1528407600,",
+            "    \"exp\": 1528408800,",
+            "    \"aud\": \"appstoreconnect-v1\",",
+            "    \"scope\": [",
+            "        \"GET /v1/apps?filter[platform]=IOS\"",
+            "    ]",
+            "}",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-JWT-Payload-for-Individual-Keys",
+          "level": 3,
+          "text": "Create the JWT Payload for Individual Keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JWT payload for Individual keys contains information specific to the App Store Connect APIs, and expiration time. Use the following fields and values in the JWT payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Payload Field",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Value",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "sub",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Subject",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "user",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ``This value is always the same for individual keys.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Issued At Time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token’s creation time, in UNIX epoch time, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1528407600",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "exp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Expiration Time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token’s expiration time in Unix epoch time. Tokens that expire more than 20 minutes in the future are not valid except for resources listed in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests#Determine-the-Appropriate-Token-Lifetime",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "aud",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Audience",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appstoreconnect-v1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "scope",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - Token Scope",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A list of operations you want App Store Connect to allow for this token, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GET /v1/apps/123",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Individual keys don’t use the Issuer ID key ",
+                  "type": "text"
+                },
+                {
+                  "code": "iss",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", but do require the Subject key ",
+                  "type": "text"
+                },
+                {
+                  "code": "sub.",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of a JWT payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"sub\": \"user\",",
+            "    \"iat\": 1528407600,",
+            "    \"exp\": 1528408800,",
+            "    \"aud\": \"appstoreconnect-v1\",",
+            "    \"scope\": [",
+            "        \"GET /v1/apps?filter[platform]=IOS\"",
+            "    ]",
+            "}",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Determine-the-Scope-of-the-Token",
+          "level": 3,
+          "text": "Determine the Scope of the Token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reduce potential attack surface and improve security of your tokens, you can explicitly specify the scope of a token. The scope tells App Store Connect which requests it needs to accept for the token. If you unintentionally share a token with an unauthorized party, a limited scope reduces the requests that a potential attacker can make using the token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scope claim is an array of strings, each representing a request. Each scope entry includes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The HTTP ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GET",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The URL path, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/v1/apps",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/v1/ciWorkflows/1234",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The optional URL query string, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "?filter[platform]=IOS",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Store Connect rejects a token with a scope claim if none of the scope entries match the attempted request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The order of query parameters isn’t important. Additionally, App Store Connect ignores the following query parameters when it checks the scope: ",
+                  "type": "text"
+                },
+                {
+                  "code": "limit",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "cursor",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "sort",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code listing shows an example of a JWT payload with a scope.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"iss\": \"57246542-96fe-1a63-e053-0824d011072a\",",
+            "    \"iat\": 1528407600,",
+            "    \"exp\": 1528408800,",
+            "    \"aud\": \"appstoreconnect-v1\",",
+            "    \"scope\": [",
+            "        \"GET /v1/apps?filter[platform]=IOS\"",
+            "    ]",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this payload, App Store Connect only allows you to fetch a list of iOS apps using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint if you use the ",
+              "type": "text"
+            },
+            {
+              "code": "filter[platform]=IOS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a JWT without a ",
+              "type": "text"
+            },
+            {
+              "code": "scope",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for any request as long as the role of the API key allows it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-Appropriate-Token-Lifetime",
+          "level": 3,
+          "text": "Determine the Appropriate Token Lifetime",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For every request, App Store Connect calculates the valid time for a token, referred as the token’s ",
+              "type": "text"
+            },
+            {
+              "code": "lifetime",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", by subtracting the ",
+              "type": "text"
+            },
+            {
+              "code": "iat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " claim from the ",
+              "type": "text"
+            },
+            {
+              "code": "exp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " claim. For increased security, carefully consider the lifetime of tokens you create and choose a lifetime that doesn’t allow usage of the token for longer than necessary. For example, an appropriate lifetime for a token you use for a one-off request is two minutes. In contrast, consider using a token with a lifetime of 20 minutes for a long-running process that makes many requests with the same token. Additionally, consider generating a new token periodically throughout the process, instead of issuing tokens with longer lifetimes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most requests, App Store Connect rejects a token with a lifetime greater than 20 minutes. However, it accepts long-lived tokens for some inherently safe requests if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token defines a scope.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The scope only includes GET requests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The resources in the scope allow long-lived tokens.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a token meets all the above criteria, App Store Connect accepts a token with a lifetime of up to six months for the following resources:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-actions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-runs",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/git-references",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/issues",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/macos-versions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/products",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/providers",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/power-and-performance-metrics-and-logs",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/pull-requests",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/repositories",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/test-results",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-versions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Sign-the-JWT",
+          "level": 3,
+          "text": "Sign the JWT",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the private key associated with the key ID you specified in the header to sign the token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Regardless of the programming language you’re using with the App Store Connect API, there are a variety of open source libraries available online for creating and signing JWT tokens. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://jwt.io/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You don’t need to generate a new token for every API request. To get better performance from the App Store Connect API, reuse the same signed token for multiple requests until it expires.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Include-the-JWT-in-the-Requests-Authorization-Header",
+          "level": 3,
+          "text": "Include the JWT in the Request’s Authorization Header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have a complete and signed token, provide the token in the request’s authorization header as a bearer token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a ",
+              "type": "text"
+            },
+            {
+              "code": "curl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command using a bearer token. Replace the text ",
+              "type": "text"
+            },
+            {
+              "code": "[signed token]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the value of the signed token itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v -H 'Authorization: Bearer [signed token]' ",
+            "\"https://api.appstoreconnect.apple.com/v1/apps\""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps": {
+      "abstract": [
+        {
+          "text": "Find and list apps in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps"
+        }
+      ],
+      "role": "symbol",
+      "title": "List Apps",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the App Store Connect API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store Connect API Release Notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-actions": {
+      "abstract": [
+        {
+          "text": "Read information about actions you configured for an Xcode Cloud workflow and their related data such as artifacts, issues, or test results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-actions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build Actions",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/build-actions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-runs": {
+      "abstract": [
+        {
+          "text": "Read detailed build information and start new builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-runs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build Runs",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/build-runs"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-api-keys-for-app-store-connect-api": {
+      "abstract": [
+        {
+          "text": "Create API keys to sign JSON Web Tokens (JWTs) and authorize API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-api-keys-for-app-store-connect-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating API Keys for App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/creating-api-keys-for-app-store-connect-api"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests#Determine-the-Appropriate-Token-Lifetime": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests#Determine-the-Appropriate-Token-Lifetime",
+      "kind": "section",
+      "title": "Determine the Appropriate Token Lifetime",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/generating-tokens-for-api-requests#Determine-the-Appropriate-Token-Lifetime"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/git-references": {
+      "abstract": [
+        {
+          "text": "Read information about the canonical reference for a Git branch or tag.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/git-references",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Git References",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/git-references"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/identifying-rate-limits": {
+      "abstract": [
+        {
+          "text": "Recognize the rate limits that REST API responses provide and handle them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/identifying-rate-limits",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying Rate Limits",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/identifying-rate-limits"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/issues": {
+      "abstract": [
+        {
+          "text": "Read information about issues that occurred when Xcode Cloud performs a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/issues",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Issues",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/issues"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/macos-versions": {
+      "abstract": [
+        {
+          "text": "Read macOS version information you configure for an Xcode Cloud workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/macos-versions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "macOS Versions",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/macos-versions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/power-and-performance-metrics-and-logs": {
+      "abstract": [
+        {
+          "text": "Get power and performance metrics, logs, and signatures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/power-and-performance-metrics-and-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Power and Performance Metrics and Logs",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/power-and-performance-metrics-and-logs"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/products": {
+      "abstract": [
+        {
+          "text": "Read information about the products Xcode Cloud detected or delete a product and all its associated information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/products",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Products",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/products"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/providers": {
+      "abstract": [
+        {
+          "text": "Read information about source code management providers you connected to Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/providers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Providers",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/providers"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/pull-requests": {
+      "abstract": [
+        {
+          "text": "Read pull request information such as source and destination branches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/pull-requests",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Pull Requests",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/pull-requests"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/repositories": {
+      "abstract": [
+        {
+          "text": "Read detailed information for each repository Xcode Cloud can access, including Git references and pull requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/repositories",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Repositories",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/repositories"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/revoking-api-keys": {
+      "abstract": [
+        {
+          "text": "Revoke unused, lost, or compromised private keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/revoking-api-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Revoking API Keys",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/revoking-api-keys"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/test-results": {
+      "abstract": [
+        {
+          "text": "Read test results for test actions Xcode Cloud performs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/test-results",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Test Results",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/test-results"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect": {
+      "abstract": [
+        {
+          "text": "Upload screenshots, app previews, attachments for App Review, and routing app coverage files to App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading Assets to App Store Connect",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/uploading-assets-to-app-store-connect"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows": {
+      "abstract": [
+        {
+          "text": "Manage Xcode Cloud workflows and view workflow details like actions and start conditions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflows",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/workflows"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-versions": {
+      "abstract": [
+        {
+          "text": "Read Xcode version information you configure for an Xcode Cloud workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-versions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Versions",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/xcode-versions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com/": {
+      "identifier": "https://appstoreconnect.apple.com/",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/"
+    },
+    "https://jwt.io/": {
+      "identifier": "https://jwt.io/",
+      "title": "JWT.io",
+      "titleInlineContent": [
+        {
+          "text": "JWT.io",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://jwt.io/"
+    },
+    "https://tools.ietf.org/html/rfc7519": {
+      "identifier": "https://tools.ietf.org/html/rfc7519",
+      "title": "RFC 7519",
+      "titleInlineContent": [
+        {
+          "text": "RFC 7519",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7519"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-api-keys-for-app-store-connect-api",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/revoking-api-keys",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/identifying-rate-limits",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/generating-tokens-for-api-requests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

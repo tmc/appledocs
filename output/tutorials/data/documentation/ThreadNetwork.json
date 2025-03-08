@@ -1,0 +1,719 @@
+{
+  "abstract": [
+    {
+      "text": "Share credentials and choose a designated network for each home.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ThreadNetwork",
+    "modules": [
+      {
+        "name": "ThreadNetwork"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "ThreadNetwork"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://www.threadgroup.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a low-power wireless mesh networking protocol based on the universally",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supported Internet Protocol (IP). It’s built using open and proven standards. Thread",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "networks have no single point of failure and include the ability to maintain communication",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when other devices go offline. For example, if you remove a Border Router, nearby",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Thread devices can still communicate with their neighbors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "threadnetwork-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ThreadNetwork framework helps clients share credentials in a safe and secure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manner, and automatically chooses a network for each home, known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "preferred",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "network",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Border Router hardware device is a key element of Thread networks. It routes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "IP traffic between Thread and Wi-Fi or Ethernet networks, and enables iOS devices",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to communicate with Thread devices. HomePod and HomePod mini are examples of Border",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Routers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The robustness of Thread relies on member devices forwarding packets to their neighbors",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the network. This creates a mesh that strengthens the network and increases reliability.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, adding an additional Border Router to a Thread network improves coverage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "threadnetwork-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "End devices",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are Thread devices located at the endpoint of a Thread network. They",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "communicate with other Thread devices, but don’t forward packets on their behalf.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Sleepy end devices",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are end devices that run in low-power mode because they’re usually",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "battery-powered. An example of a sleepy end device is a temperature sensor that runs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on a battery. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Thread Leader",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " manages routers on a Thread network. There can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only be one Thread Leader on the network at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about Thread, visit the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://openthread.io/guides",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://openthread.io/guides/thread-primer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork": {
+      "abstract": [
+        {
+          "text": "Share credentials and choose a designated network for each home.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ThreadNetwork",
+      "type": "topic",
+      "url": "/documentation/threadnetwork"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient": {
+      "abstract": [
+        {
+          "text": "A class that supports safely sharing Thread credentials between multiple clients.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "THClient"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "THClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "THClient",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THCredentials": {
+      "abstract": [
+        {
+          "text": "A class that contains credentials for a Thread network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "THCredentials"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THCredentials",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "THCredentials"
+        }
+      ],
+      "role": "symbol",
+      "title": "THCredentials",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thcredentials"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/configuring-a-border-router": {
+      "abstract": [
+        {
+          "text": "Set up or add a Border Router on a Thread network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/configuring-a-border-router",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a Border Router",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/configuring-a-border-router"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/managing-thread-network-credentials": {
+      "abstract": [
+        {
+          "text": "Store, delete, retrieve, and update Thread network credentials on your Apple device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/managing-thread-network-credentials",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Thread network credentials",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/managing-thread-network-credentials"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app can use ThreadNetwork.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.networking.manage-thread-network-credentials",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://openthread.io/guides": {
+      "identifier": "https://openthread.io/guides",
+      "title": "OpenThread Guides",
+      "titleInlineContent": [
+        {
+          "text": "OpenThread Guides",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://openthread.io/guides"
+    },
+    "https://openthread.io/guides/thread-primer": {
+      "identifier": "https://openthread.io/guides/thread-primer",
+      "title": "What is Thread?",
+      "titleInlineContent": [
+        {
+          "text": "What is Thread?",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://openthread.io/guides/thread-primer"
+    },
+    "https://www.threadgroup.org": {
+      "identifier": "https://www.threadgroup.org",
+      "title": "Thread",
+      "titleInlineContent": [
+        {
+          "text": "Thread",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.threadgroup.org"
+    },
+    "threadnetwork-1": {
+      "alt": "A cross-cut section of a two-story house. The living room on the bottom floor shows a fan, a HomePod mini, a light bulb, and a remote, all connected wirelessly with Thread. The upstairs rooms have a ceiling fan, a HomePod, several light bulbs, and a wall plug connected wirelessly with Thread. The kitchen on the first floor has an oven and a light bulb connected wirelessly to Thread. The front yard has a landscape light under a tree connected wireless to Thread.",
+      "identifier": "threadnetwork-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c8ccd1019a7919ab4ed39e7ee04d814/threadnetwork-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5dd71877de5479485a64068a81f4f252/threadnetwork-1~dark@2x.png"
+        }
+      ]
+    },
+    "threadnetwork-2": {
+      "alt": "A Thread Border Router connects wirelessly to two end devices. One is an end device icon that represents a light switch. The other is a sleepy end device icon that represents a wireless, battery-powered sensor.",
+      "identifier": "threadnetwork-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1c35203952259f42eb47e0efb735ae20/threadnetwork-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/23d40d3575b39e7a528918e2b12f5b0a/threadnetwork-2~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Setting-up-Border-Routers",
+      "identifiers": [
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/configuring-a-border-router",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/managing-thread-network-credentials"
+      ],
+      "title": "Setting up Border Routers"
+    },
+    {
+      "anchor": "Managing-clients-and-sharing-credentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THCredentials"
+      ],
+      "title": "Managing clients and sharing credentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-up-Border-Routers",
+              "identifiers": [
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/configuring-a-border-router",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/managing-thread-network-credentials"
+              ],
+              "title": "Setting up Border Routers"
+            },
+            {
+              "anchor": "Managing-clients-and-sharing-credentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THCredentials"
+              ],
+              "title": "Managing clients and sharing credentials"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient/title",
+          "value": "THClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "THClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "THClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THCredentials/title",
+          "value": "THCredentials"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THCredentials/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "THCredentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THCredentials/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "THCredentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/threadnetwork"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/threadnetwork"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

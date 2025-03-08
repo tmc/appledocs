@@ -1,0 +1,4029 @@
+{
+  "abstract": [
+    {
+      "text": "Set up a window and view for optimally displaying your Metal content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/managing-your-game-window-for-metal-in-macos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing your game window for Metal in macOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Metal, apps can leverage a GPU to quickly render complex scenes and run computational tasks in parallel. Your results accumulate into a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you can display onscreen using a window. By configuring your window correctly, your app can achieve optimal results by engaging direct-to-display for its Metal drawable.  And, when not in full-screen mode, your game’s content displays as expected in a window that works in familiar ways for people using macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a Metal drawable is direct-to-display, the hardware composites it directly to the display at a very low performance cost with a high-quality upscaling or downscaling algorithm. This means your app can present the drawable to the display at high speed with all the details taken care of.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable direct-to-display, your app needs to run in full-screen mode, displaying a nonopaque ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " layer and RGB content, and run on a Mac with Apple silicon. There may be other edge case conditions depending on the hardware and system software, but if you set up your window in this way, the drawable is direct-to-display in most situations. All of the RGB formats supported by Metal layers are capable of drawing direct-to-display content. You can enable the Metal HUD or use instruments to verify that your drawable goes direct-to-display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-the-screen-for-displaying-your-window",
+          "level": 3,
+          "text": "Choose the screen for displaying your window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up a window for displaying your game in macOS, begin by selecting a screen where you want to display your game. The computer running your game may be equipped with more than one monitor. You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to discover what ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/screens",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are connected to a computer running macOS and what screen the user designated as the main screen. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/main",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  is optimal for displaying a game. You can get a reference to the main screen like so:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSScreen *screen = [NSScreen mainScreen];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object includes detailed information such as the resolution, bit depth, dimensions and location of the screen, its color space, and other details. If you need more information about a screen or want to interact with the screen beyond the functionality offered by AppKit’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a lower-level API that provides direct access to features in the macOS window server for configuring and controlling display hardware.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pick-a-style-for-your-window",
+          "level": 3,
+          "text": "Pick a style for your window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AppKit in macOS has a concept called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "window style",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that you store as a set of flags describing the layout of the frame and controls decorating the outside edges of a window. Use the following value for windows displaying Metal game content:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSWindowStyleMask style= NSWindowStyleMaskClosable ",
+            "                       | NSWindowStyleMaskTitled ",
+            "                       | NSWindowStyleMaskMiniaturizable ",
+            "                       | NSWindowStyleMaskResizable;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are the parts of the style above and the functionality each adds to your window:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A person can close the window.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/closable",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The window displays a title bar.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/titled",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The window contains a miniaturized (yellow dot) control with which a person can collapse the window into the Dock.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/miniaturizable",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A person can resize the window. Note that allowing resizing doesn’t mean you need to resize all your render targets dynamically. In a later section, this article discusses how to adjust your ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": "’s ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/drawableSize",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " to match the pixels onscreen whenever someone resizes your window.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/resizable",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Choose-the-content-size-of-your-window-and-Metal-view",
+          "level": 3,
+          "text": "Choose the content size of your window and Metal view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new window, you specify its coordinates in points relative to the coordinates of a screen. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Points",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are an abstract measurement quantity that don’t correspond to any actual pixel sizes. There are roughly 72 points per inch. For more information on points, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Explained/Explained.html#//apple_ref/doc/uid/TP40012302-CH4-SW1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system manages most issues related to pixel sizes and display resolution for you, and optimizes a person’s experience depending on the device hardware they’re using. Your app need only be concerned with setting up its window as described here.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For your initial window size, you can use any point size that you think looks suitable on displays where you expect people to use your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSRect contentRect = NSMakeRect(0, 0, 1280, 720);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The size you choose when creating your window isn’t important, but center your window in the screen:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "contentRect.origin.x = (screen.frame.size.width - contentRect.size.width) / 2;",
+            "contentRect.origin.y = (screen.frame.size.height - contentRect.size.height) / 2;"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create your window, you can get more information about the actual resolution AppKit uses to render your view by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/convertPointToBacking(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. For example, if you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/convertPointToBacking(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the size of your window, it returns the actual pixel dimensions of the window’s content onscreen. This can be useful to know when converting locations in your window to actual screen pixel positions, but you don’t need to be concerned about these details when creating your window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Leave all of AppKit’s settings for managing window and its associated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " at their defaults so your app looks consistent on the rest of the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-window",
+          "level": 3,
+          "text": "Create the window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, the AppKit framework represents windows using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, so you can easily add additional functionality to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " like so:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@interface GameWindow: NSWindow",
+            "@end",
+            "",
+            "@implementation GameWindow",
+            "@end "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then you can allocate and initialize your window as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GameWindow *window = [[GameWindow alloc] initWithContentRect:contentRect",
+            "                                                   styleMask:style",
+            "                                                     backing:NSBackingStoreBuffered",
+            "                                                       defer:NO",
+            "                                                      screen:screen];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You already set up the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTabView/contentRect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", mask, and screen parameters in the previous sections. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/BackingStoreType/buffered",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter tells AppKit that you want a window that has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " backing store. Later, you replace the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so the window displays your content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-window",
+          "level": 3,
+          "text": "Add the window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a better user experience, after creating your new window, set the following properties on your window:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/minSize",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to prevent the user from accidentally resizing the window too small: \u2028",
+                      "type": "text"
+                    },
+                    {
+                      "code": "window.minSize = NSMakeSize(640, 360)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ";.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your game retains a reference to a window, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/isReleasedWhenClosed",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This prevents the system from releasing your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object when someone closes the window: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "window.releasedWhenClosed = NO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ";.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your window is closed and not showing, you can display it again by calling the window’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/setIsVisible(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/makeKeyAndOrderFront(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods. For an example, see the “Make the window visible and present in front” section below.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Display-your-Metal-content-in-your-new-view",
+          "level": 3,
+          "text": "Display your Metal content in your new view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want Metal to render a layer’s contents, use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You set up a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and use it to replace the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the view you set up previously. Begin by creating a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CAMetalLayer *metalLayer = [[CAMetalLayer alloc] init]"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, configure the following settings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Associate your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with a metal device using the default ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "metalLayer.device = MTLCreateSystemDefaultDevice();",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make the layer opaque. An opaque layer can provide direct-to-display contents under the right conditions: \u2028",
+                      "type": "text"
+                    },
+                    {
+                      "code": "metalLayer.opaque = YES;",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a resolution for your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " layer. The pixel resolution of your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " determines the size of the drawable produced to fill the layer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Support resizing dynamically whenever possible and keep in mind the following considerations when deciding on a pixel resolution for your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The pixel resolution of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " doesn’t have to match the view’s backing size (the screen’s resolution).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Render 2D UI that matches the view’s backing size and render 3D in a different render target with a size appropriate for the device. Then upscale it to the final drawable using a custom render pass or MetalFX: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "metalLayer.drawableSize = [view convertSizeToBacking:view.frame.size];",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "However, for some games, it might be more convenient to render the drawable at an arbitrary size: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "metalLayer.drawableSize = NSMakeSize(3840, 2160);",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Depending on your situation, the drawable aspect ratio might not always match the view aspect ratio. In that case, you can ask Core Animation to preserve the aspect ratio for you using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "metalLayer.contentsGravity = kCAGravityResizeAspect",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "metalLayer.backgroundColor = CGColorGetConstantColor(kCGColorBlack);",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Regardless, the macOS compositor efficiently sends the drawable directly to the display, even if the drawable size doesn’t match the monitor size.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you set up your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can activate it by replacing the layer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with your new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "view.layer = metalLayer;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At this point, your window is ready to start rendering Metal content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-the-window-visible-and-present-in-front",
+          "level": 3,
+          "text": "Make the window visible and present in front",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Up until now, everything you’ve done is offscreen. To present your new window and Metal view onscreen, call the following APIs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[window setIsVisible:true];",
+            "[window makeKeyAndOrderFront:nil];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If someone happens to close your window and you previously set ",
+              "type": "text"
+            },
+            {
+              "code": "window.releasedWhenClosed = NO;",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when creating your window, you can use these APIs to present your window onscreen again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-entire-window",
+          "level": 3,
+          "text": "Use the entire window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Lastly, set your window to full-screen mode by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/toggleFullScreen(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[window toggleFullScreen:nil];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can call this same method again to switch out of full-screen mode. For more information about AppKit and full-screen mode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/MOSXAppProgrammingGuide/FullScreenApp/FullScreenApp.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that when using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/toggleFullScreen(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, you don’t specify what full screen means, and you let the system decide what it means in a way that’s most familiar to the user. When you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/toggleFullScreen(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system adjusts your window’s size to what it considers to be full screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/toggleFullScreen(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to switch to full screen so your app’s full-screen mode works in a way consistent with other apps that use full-screen mode. This keeps control over the window in the user’s hands, and AppKit takes responsibility for finding the optimal position and size for your window on the screen that you selected. Avoid customizing any aspects of what ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/toggleFullScreen(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " does.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-code-so-your-window-can-handle-resizing",
+          "level": 3,
+          "text": "Add code so your window can handle resizing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To keep the size of your CAMetalLayer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/drawableSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in sync with the part of the screen the window is drawing to, set up a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate/windowDidResize(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the window’s delegate as described below. Call this method every time your window is resized, including times when your app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/toggleFullScreen(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By adding a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass (",
+              "type": "text"
+            },
+            {
+              "code": "GameWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), you can respond to resizing events for the window. These can occur in response to user actions, when properties of the display change, or when your application resizes the window. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to define your own delegate class capable of responding to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate/windowDidResize(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " events as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@interface GameWindowDelegate: NSObject<NSWindowDelegate>",
+            "@end",
+            "",
+            "@implementation GameWindowDelegate {",
+            "}",
+            "",
+            "-(void)windowDidResize:(NSNotification *)notification {",
+            "// Automatically resize the view.",
+            "// Resize the Metal layer using the view ",
+            "// size here. You can use any other size if necessary.",
+            "    NSWindow window = notification.object; // 1",
+            "    NSView *view = window.contentView; // 2",
+            "    CAMetalLayer *metalLayer = (CAMetalLayer *)view.layer; // 3",
+            "    metalLayer.drawableSize = [view convertSizeToBacking:view.frame.size]; // 4",
+            "}",
+            "",
+            "@end"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s what’s going on in the above statements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object as the object property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get a reference to the view you created in the “Create the window” section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieve a reference to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " you created in the “Display your Metal content in your new view” section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reset the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "‘s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/drawableSize",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to the actual pixel size of the screen you intend to draw to using the NSView’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/convertToBacking(_:)-4ra9y",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, as discussed in the “Choose the content size of your window and Metal view” section. Note these directions set the drawable to match the size and resolution of the display, but it’s not necessary. If the drawable doesn’t match the size and resolution of the display, it scales automatically as it presents on the display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The net result is that whenever you resize the window, the system resets the ",
+              "type": "text"
+            },
+            {
+              "code": "CAMetalLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView/drawableSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the actual pixel resolution of the display your window is drawing to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set the delegate for your ",
+              "type": "text"
+            },
+            {
+              "code": "GameWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to an object of your newly defined ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to an object of your new class like so:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GameWindowDelegate *windowDelegate = [[GameWindowDelegate alloc] init];",
+            "if (windowDelegate != NULL) {",
+            "    window.delegate = windowDelegate;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you set up your window delegate, it begins receiving method calls to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate/windowDidResize(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method whenever the size of your window changes. When your app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/toggleFullScreen(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", AppKit recomputes the size of your window and calls your delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate/windowDidResize(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-code-to-prevent-exposing-your-window-class-to-unintentionally-consuming-key-events",
+          "level": 3,
+          "text": "Add code to prevent exposing your window class to unintentionally consuming key events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Interactions between the AppKit framework and the Game Controller framework can, under some conditions, expose the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs to unintentionally consuming key events that need to go to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameController/GCController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To avoid this possibility, add a key down handler that does nothing on your ",
+              "type": "text"
+            },
+            {
+              "code": "GameWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@interface GameWindow : NSWindow",
+            "@end",
+            "",
+            "@implementation GameWindow",
+            "",
+            "- (void)keyDown:(NSEvent *)event",
+            "{",
+            "}",
+            "",
+            "@end "
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen": {
+      "abstract": [
+        {
+          "text": "An object that describes the attributes of a computer’s monitor or screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScreen",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen/main": {
+      "abstract": [
+        {
+          "text": "Returns the screen object containing the window with the keyboard focus.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "main"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSScreen",
+          "text": "NSScreen"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/main",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "main",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen/main"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen/screens": {
+      "abstract": [
+        {
+          "text": "Returns an array of screen objects representing all of the screens available on the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "screens"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSScreen",
+          "text": "NSScreen"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/screens",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "screens",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen/screens"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTabView/contentRect": {
+      "abstract": [
+        {
+          "text": "The rectangle describing the content area of the tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTabView/contentRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentRect",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTabView/contentRect"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSView/convertToBacking(_:)-4ra9y": {
+      "abstract": [
+        {
+          "text": "Converts a size from the view’s interior coordinate system to its pixel aligned backing store coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertToBacking"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/convertToBacking(_:)-4ra9y",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertToBacking(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView/convertToBacking(_:)-4ra9y"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow": {
+      "abstract": [
+        {
+          "text": "A window that an app displays on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWindow",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/BackingStoreType/buffered": {
+      "abstract": [
+        {
+          "text": "The window renders all drawing into a display buffer and then flushes it to the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buffered"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/BackingStoreType/buffered",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWindow.BackingStoreType.buffered",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/BackingStoreType/buffered"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/closable": {
+      "abstract": [
+        {
+          "text": "The window displays a close button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "closable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWindowStyleMask",
+          "text": "StyleMask"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/closable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "closable",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/StyleMask-swift.struct/closable"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/miniaturizable": {
+      "abstract": [
+        {
+          "text": "The window displays a minimize button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "miniaturizable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWindowStyleMask",
+          "text": "StyleMask"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/miniaturizable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "miniaturizable",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/StyleMask-swift.struct/miniaturizable"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/resizable": {
+      "abstract": [
+        {
+          "text": "The window can be resized by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resizable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWindowStyleMask",
+          "text": "StyleMask"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/resizable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resizable",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/StyleMask-swift.struct/resizable"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/titled": {
+      "abstract": [
+        {
+          "text": "The window displays a title bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWindowStyleMask",
+          "text": "StyleMask"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/StyleMask-swift.struct/titled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "titled",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/StyleMask-swift.struct/titled"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/convertPointToBacking(_:)": {
+      "abstract": [
+        {
+          "text": "Converts a point from the window’s coordinate system to its pixel-aligned backing store coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertPointToBacking"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/convertPointToBacking(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertPointToBacking(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/convertPointToBacking(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/isReleasedWhenClosed": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the window is released when it receives the `close` message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReleasedWhenClosed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/isReleasedWhenClosed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isReleasedWhenClosed",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/isReleasedWhenClosed"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/makeKeyAndOrderFront(_:)": {
+      "abstract": [
+        {
+          "text": "Moves the window to the front of the screen list, within its level, and makes it the key window; that is, it shows the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeKeyAndOrderFront"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/makeKeyAndOrderFront(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeKeyAndOrderFront(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/makeKeyAndOrderFront(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/minSize": {
+      "abstract": [
+        {
+          "text": "The minimum size to which the window’s frame (including its title bar) can be sized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/minSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minSize",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/minSize"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/setIsVisible(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the window’s visible state to the value you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIsVisible"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "flag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/setIsVisible(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIsVisible(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/setIsVisible(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/toggleFullScreen(_:)": {
+      "abstract": [
+        {
+          "text": "Takes the window into or out of fullscreen mode,",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toggleFullScreen"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/toggleFullScreen(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toggleFullScreen(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/toggleFullScreen(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods that a window’s delegate can implement to respond to events, such as window resizing, moving, exposing, and minimizing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindowDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWindowDelegate",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindowDelegate"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate/windowDidResize(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the window has been resized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowDidResize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "notification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12NotificationV",
+          "text": "Notification"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate/windowDidResize(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowDidResize(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindowDelegate/windowDidResize(_:)"
+    },
+    "doc://com.apple.documentation/documentation/GameController/GCController": {
+      "abstract": [
+        {
+          "text": "A representation of a real game controller, a virtual controller, or a snapshot of a controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameController/GCController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCController",
+      "type": "topic",
+      "url": "/documentation/GameController/GCController"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKView/drawableSize": {
+      "abstract": [
+        {
+          "text": "The current size of drawable textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawableSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView/drawableSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawableSize",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKView/drawableSize"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that Metal can render into, typically displayed onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAMetalLayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/drawableSize": {
+      "abstract": [
+        {
+          "text": "The size, in pixels, of textures for rendering layer content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawableSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/drawableSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawableSize",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer/drawableSize"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services": {
+      "abstract": [
+        {
+          "text": "Provides direct access to features in the macOS window server for configuring and controlling display hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services",
+      "kind": "article",
+      "role": "article",
+      "title": "Quartz Display Services",
+      "type": "topic",
+      "url": "/documentation/coregraphics/quartz_display_services"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "abstract": [
+        {
+          "text": "An object containing information broadcast to registered observers that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/adapting-your-game-interface-for-smaller-screens": {
+      "abstract": [
+        {
+          "text": "Make text legible on all devices the player chooses to run your game on.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adapting-your-game-interface-for-smaller-screens",
+      "kind": "article",
+      "role": "article",
+      "title": "Adapting your game interface for smaller screens",
+      "type": "topic",
+      "url": "/documentation/metal/adapting-your-game-interface-for-smaller-screens"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/MOSXAppProgrammingGuide/FullScreenApp/FullScreenApp.html": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/MOSXAppProgrammingGuide/FullScreenApp/FullScreenApp.html",
+      "title": "Mac App Programming Guide: Implementing the Full-Screen Experience",
+      "titleInlineContent": [
+        {
+          "text": "Mac App Programming Guide: Implementing the Full-Screen Experience",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/MOSXAppProgrammingGuide/FullScreenApp/FullScreenApp.html"
+    },
+    "https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Explained/Explained.html#//apple_ref/doc/uid/TP40012302-CH4-SW1": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Explained/Explained.html#//apple_ref/doc/uid/TP40012302-CH4-SW1",
+      "title": "High Resolution Guidelines for OS X",
+      "titleInlineContent": [
+        {
+          "text": "High Resolution Guidelines for OS X",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Explained/Explained.html#//apple_ref/doc/uid/TP40012302-CH4-SW1"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/adapting-your-game-interface-for-smaller-screens"
+      ],
+      "title": "User Interface"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-Interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/adapting-your-game-interface-for-smaller-screens"
+              ],
+              "title": "User Interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameController~1GCController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSScreen"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct~1closable/title",
+          "value": "NSWindowStyleMaskClosable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct~1closable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowStyleMaskClosable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTabView~1contentRect/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRect",
+              "text": "NSRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentRect"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1setIsVisible(_:)/title",
+          "value": "setIsVisible:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1setIsVisible(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setIsVisible:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flag"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1BackingStoreType~1buffered/title",
+          "value": "NSBackingStoreBuffered"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1BackingStoreType~1buffered/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBackingStoreBuffered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsnotification/abstract",
+          "value": [
+            {
+              "text": "A container for information broadcast through a notification center to all registered observers.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct~1miniaturizable/title",
+          "value": "NSWindowStyleMaskMiniaturizable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct~1miniaturizable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowStyleMaskMiniaturizable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1makeKeyAndOrderFront(_:)/title",
+          "value": "makeKeyAndOrderFront:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1makeKeyAndOrderFront(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeKeyAndOrderFront:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sender"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindowDelegate~1windowDidResize(_:)/title",
+          "value": "windowDidResize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindowDelegate~1windowDidResize(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "windowDidResize:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "notification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKView~1drawableSize/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGSize",
+              "text": "CGSize"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawableSize"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1toggleFullScreen(_:)/title",
+          "value": "toggleFullScreen:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1toggleFullScreen(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "toggleFullScreen:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sender"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen~1main/title",
+          "value": "mainScreen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen~1main/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSScreen",
+              "text": "NSScreen"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "mainScreen"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen~1screens/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSScreen *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "screens"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1isReleasedWhenClosed/title",
+          "value": "releasedWhenClosed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1isReleasedWhenClosed/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isReleasedWhenClosed"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "releasedWhenClosed"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1minSize/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSSize",
+              "text": "NSSize"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "minSize"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1convertToBacking(_:)-4ra9y/title",
+          "value": "convertSizeToBacking:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1convertToBacking(_:)-4ra9y/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSSize",
+              "text": "NSSize"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertSizeToBacking:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSSize",
+              "text": "NSSize"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "size"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CALayer",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1convertPointToBacking(_:)/title",
+          "value": "convertPointToBacking:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1convertPointToBacking(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSPoint",
+              "text": "NSPoint"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertPointToBacking:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSPoint",
+              "text": "NSPoint"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "point"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct~1resizable/title",
+          "value": "NSWindowStyleMaskResizable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct~1resizable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowStyleMaskResizable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct~1titled/title",
+          "value": "NSWindowStyleMaskTitled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct~1titled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowStyleMaskTitled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer~1drawableSize/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGSize",
+              "text": "CGSize"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawableSize"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindowDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWindowDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/managing-your-game-window-for-metal-in-macos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/managing-your-game-window-for-metal-in-macos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

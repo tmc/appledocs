@@ -1,0 +1,899 @@
+{
+  "abstract": [
+    {
+      "text": "Create a richer calling and messaging experience in your app by implementing communication notifications and Focus status updates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-communication-notifications-and-focus-status-updates"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Handling Communication Notifications and Focus Status Updates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Communication notifications have a distinct user experience that features prominent avatars and group names, as well as unique breakthrough behaviors. Implement these notifications for incoming calls and messages to provide additional context to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2021/10091/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample runs on physical devices in order to meet requirements for push notifications and the Notification Service Extension. The Notification Service Extension modifies a notification’s content before it’s displayed on the user’s device. To learn more about Notification Service Extensions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications",
+              "isActive": true,
+              "overridingTitle": "Modifying Content in Newly Delivered Notifications",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Modifying Content in Newly Delivered Notifications",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin by configuring the iOS target to include your development team and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/account/resources/identifiers/bundleId/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The bundle identifier must support the following capabilities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Push notifications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Communication notifications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Time Sensitive notifications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SiriKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support communication notifications, the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file must contain a top-level entry with the key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSUserActivityTypes",
+              "isActive": true,
+              "overridingTitle": "NSUserActivityTypes",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "NSUserActivityTypes",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and type ",
+              "type": "text"
+            },
+            {
+              "code": "Array",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This array should contain ",
+              "type": "text"
+            },
+            {
+              "code": "INStartCallIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the app supports calling functionality, and ",
+              "type": "text"
+            },
+            {
+              "code": "INSendMessageIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it supports messaging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accessing a user’s Focus status requires their authorization. To let the user know how the app uses their Focus status, include a usage description string. Provide this usage description string as a value for the ",
+              "type": "text"
+            },
+            {
+              "code": "Privacy - Focus Status Usage Description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Donate-Intent-Interactions",
+          "level": 3,
+          "text": "Donate Intent Interactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Donate an intent interaction for each communication that takes place in the app. The app should donate both outgoing and incoming communication interactions. Donate incoming interactions to update communication notifications and enable their unique user experience and breakthrough behavior. Donate outgoing interactions when the current user sends messages or initiates calls. This allows the system to make better suggestions and provide communication notification functionality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample initializes interactions in ",
+              "type": "text"
+            },
+            {
+              "code": "CommunicationMapper.ineraction(communicationInformation:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and donates them in the ",
+              "type": "text"
+            },
+            {
+              "code": "suggest(communicationInformation:completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. The provided communication information determines the interaction’s direction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    /// Outgoing messages and calls suggest people involved for Focus breakthrough.",
+            "    static func suggest(communicationInformation: CommunicationInformation,",
+            "                        completion: @escaping (Result<INInteraction, Error>) -> Void) {",
+            "        do {",
+            "            // Create an INInteraction.",
+            "            let interaction = try CommunicationMapper.interaction(communicationInformation: communicationInformation)",
+            "            // Donate INInteraction to the system.",
+            "            interaction.donate { [completion] error in",
+            "                DispatchQueue.global(qos: .userInitiated).async {",
+            "                    if let error = error {",
+            "                        completion(.failure(error))",
+            "                    } else {",
+            "                        completion(.success(interaction))",
+            "                    }",
+            "                }",
+            "            }",
+            "        } catch let error {",
+            "            // Catch CommunicationMapper errors.",
+            "            completion(.failure(error))",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-Notification-Content",
+          "level": 3,
+          "text": "Update Notification Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a communication notification, your app should update the notification’s content. This allows the notification to break through scheduled notification summaries. It’s also possible for communication notifications to break through an enabled Focus when the Allowed People list contains the sender. Use the same intent object that initialized the ",
+              "type": "text"
+            },
+            {
+              "code": "incoming",
+              "type": "codeVoice"
+            },
+            {
+              "text": " interaction. Wait for the interaction donation to complete before updating notification content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample updates notification content in the Notification Service Extension by calling ",
+              "type": "text"
+            },
+            {
+              "code": "CommunicationInteractor.update(notificationContent:communicationInformation:completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    /// Update incoming notifications with a message or call information to allow the following:",
+            "    /// - Display an avatar, if present.",
+            "    /// - Check if sender is allowed to break through.",
+            "    /// - Update notification title (sender's name) and subtitle (group information).",
+            "    @available(iOS 15.0, watchOS 8.0, macOS 12.0, *)",
+            "    static func update(notificationContent: UNNotificationContent,",
+            "                       communicationInformation: CommunicationInformation,",
+            "                       completion: @escaping (Result<UNNotificationContent, Error>) -> Void) {",
+            "        suggest(communicationInformation: communicationInformation) { [notificationContent] result in",
+            "            switch result {",
+            "                case .failure(let error):",
+            "                    completion(.failure(error))",
+            "                case .success(let interaction):",
+            "                    guard let notificationContentProvider = interaction.intent as? UNNotificationContentProviding else {",
+            "                        completion(.failure(CommunicationInteractorError.unexpectedIntentType))",
+            "                        return",
+            "                    }",
+            "                    do {",
+            "                        let updatedContent = try notificationContent.updating(from: notificationContentProvider)",
+            "                        completion(.success(updatedContent))",
+            "                    } catch let error {",
+            "                        completion(.failure(error))",
+            "                    }",
+            "            }",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Request-Focus-Status",
+          "level": 3,
+          "text": "Request Focus Status",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user has enabled a Focus, it may be useful to display that status to other users of an app. This informs other users when someone silences their notifications and may not see communications right away.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accessing the user’s Focus status requires explicit user authorization. To request authorization, use ",
+              "type": "text"
+            },
+            {
+              "code": "INFocusStatusCenter.default.requestAuthorization(completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and parse the result. Someone can choose to authorize the app to access their Focus status, deny the app access, or choose neither.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    /// Requests FocusStatusCenter authorization.",
+            "    /// Parameter completion: Result contains AuthorizationStatus or error.",
+            "    @available(iOS 15.0, watchOS 8.0, macOS 12.0, *)",
+            "    static func requestFocusStatusAuthorization(completion: @escaping (Result<AuthorizationStatus, Error>) -> Void) {",
+            "        INFocusStatusCenter.default.requestAuthorization { status in",
+            "            switch status {",
+            "                case .denied:",
+            "                    completion(.success(.denied))",
+            "                case .authorized:",
+            "                    completion(.success(.authorized))",
+            "                case .notDetermined:",
+            "                    completion(.success(.notDetermined))",
+            "                case .restricted:",
+            "                    completion(.success(.restricted))",
+            "                @unknown default:",
+            "                    completion(.success(.notSupported))",
+            "            }",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once authorized, an app can request the user’s current Focus status. The perspective of the app is important; the user doesn’t appear focused to an app if an enabled Focus allows notifications from that app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample accesses the current Focus status in the ",
+              "type": "text"
+            },
+            {
+              "code": "requestFocusStatus(completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. Unauthorized apps don’t receive a Focus status value. Ensure the app handles the ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Focus status case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    /// Requests current focus status.",
+            "    /// Requires UserNotifications and FocusStatus to be authorized and Communication Notifications capability enabled for the app's target.",
+            "    /// Parameter completion: Result contains FocusStatus isFocused Bool, which will be true if Focus is enabled and this app",
+            "    /// isn't in its Allowed Apps list.",
+            "    @available(iOS 15.0, watchOS 8.0, macOS 12.0, *)",
+            "    static func requestFocusStatus(completion: @escaping (Result<Bool, Error>) -> Void) {",
+            "        guard let isFocused = INFocusStatusCenter.default.focusStatus.isFocused else {",
+            "            completion(.failure(CommunicationInteractorError.focusStatusNotAvailable))",
+            "            return",
+            "        }",
+            "        completion(.success(isFocused))",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Observe Focus status changes from an Intents app extension. This extension launches in the background to handle interactions between your app and SiriKit. To learn more about Intents app extensions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension",
+              "isActive": true,
+              "overridingTitle": "Creating an Intents App Extension",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Creating an Intents App Extension",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Ensure your Intents app extension target includes support for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INShareFocusStatusIntent",
+              "isActive": true,
+              "overridingTitle": "INShareFocusStatusIntent",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "INShareFocusStatusIntent",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". The Intents app extension target’s General tab in the project file contains the list of supported intents. Include the class names of all supported intents in the Supported Intents section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Intents app extension in the sample handles incoming ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INShareFocusStatusIntent",
+              "isActive": true,
+              "overridingTitle": "INShareFocusStatusIntent",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "INShareFocusStatusIntent",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " objects. When doing so, the sample uses the intent itself to access the ",
+              "type": "text"
+            },
+            {
+              "code": "isFocused",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bool directly instead of using the default ",
+              "type": "text"
+            },
+            {
+              "code": "INFocusStatusCenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/**",
+            "     For this Intent to be handled, the following requirements must be met:",
+            "     FocusStatusCenter authorized for parent app (target).",
+            "     UserNotifications authorized for parent app (target).",
+            "     Communication Notifications capability (entitlement) added to the parent app (target).",
+            "     */",
+            "    func handle(intent: INShareFocusStatusIntent, completion: @escaping (INShareFocusStatusIntentResponse) -> Void) {",
+            "        let response = INShareFocusStatusIntentResponse(code: .success, userActivity: nil)",
+            "        if let isFocused = intent.focusStatus?.isFocused {",
+            "            // Send isFocused value to servers or AppGroup.",
+            "            print(\"Is user focused: \\(isFocused)\")",
+            "        }",
+            "        completion(response)",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "47d72f90ec70/HandlingCommunicationNotificationsAndFocusStatusUpdates.zip": {
+      "checksum": "47d72f90ec7044b5c327290409411474529310634f15378699fa6eb898251d66b7055f46efa235d3f1881131e7d8e831962e4aee81616811f9bfabfb133edcb2",
+      "identifier": "47d72f90ec70/HandlingCommunicationNotificationsAndFocusStatusUpdates.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/47d72f90ec70/HandlingCommunicationNotificationsAndFocusStatusUpdates.zip"
+    },
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSUserActivityTypes": {
+      "abstract": [
+        {
+          "text": "The user activity types that the app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSUserActivityTypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityTypes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSUserActivityTypes"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INShareFocusStatusIntent": {
+      "abstract": [
+        {
+          "text": "An object that indicates the user’s focus status is changing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INShareFocusStatusIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INShareFocusStatusIntent",
+      "type": "topic",
+      "url": "/documentation/Intents/INShareFocusStatusIntent"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension": {
+      "abstract": [
+        {
+          "text": "Add and configure an Intents app extension in your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Intents App Extension",
+      "type": "topic",
+      "url": "/documentation/SiriKit/creating-an-intents-app-extension"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications": {
+      "abstract": [
+        {
+          "text": "Modify the payload of a remote notification before it’s displayed on the user’s iOS device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Modifying content in newly delivered notifications",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-alert-push-notifications": {
+      "abstract": [
+        {
+          "text": "Add visible alert notifications to your app by using the UserNotifications framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-alert-push-notifications",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Alert Push Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/implementing-alert-push-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-background-push-notifications": {
+      "abstract": [
+        {
+          "text": "Add background notifications to your app by using the UserNotifications framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-background-push-notifications",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Background Push Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/implementing-background-push-notifications"
+    },
+    "https://developer.apple.com/account/resources/identifiers/bundleId/": {
+      "identifier": "https://developer.apple.com/account/resources/identifiers/bundleId/",
+      "title": "bundle identifier",
+      "titleInlineContent": [
+        {
+          "text": "bundle identifier",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/resources/identifiers/bundleId/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10091/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10091/",
+      "title": "10091: Send communication and Time Sensitive notifications",
+      "titleInlineContent": [
+        {
+          "text": "10091: Send communication and Time Sensitive notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10091/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "47d72f90ec70/HandlingCommunicationNotificationsAndFocusStatusUpdates.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-alert-push-notifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-background-push-notifications"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INShareFocusStatusIntent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INIntent",
+              "text": "INIntent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/handling-communication-notifications-and-focus-status-updates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

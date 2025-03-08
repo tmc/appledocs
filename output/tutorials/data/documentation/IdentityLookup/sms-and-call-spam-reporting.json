@@ -1,0 +1,2097 @@
+{
+  "abstract": [
+    {
+      "text": "Create an app extension that lets users report unwanted SMS messages and calls as junk.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.identitylookup/documentation/IdentityLookup/sms-and-call-spam-reporting"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SMS and Call Reporting"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "SMS and Call Spam Reporting"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To report SMS messages and calls as spam, the user must enable an Unwanted Communication Reporting extension, called an SMS/Call Reporting extension in the Settings app (see Settings > Phone > SMS/Call Reporting). The user can only enable one Unwanted Communication Reporting extension at a time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order to report calls, the user swipes left on an item in the Recents list and selects Report. For SMS messages, they press the Report Messages button when it appears in the Messages transcript. Users can also select messages by long-pressing a message and selecting additional messages, then selecting Report Messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user reports an SMS message or call, the system launches your Unwanted Communication Reporting extension. Your extension gathers additional information from the user, before deciding whether to report or block the number, as shown in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3012154",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specifically, the system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instantiates your extension’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calls your controller’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/prepare(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method and presents the controller to the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass to gather data from the user. Override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/prepare(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to configure your controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Cancel-or-Complete-the-Report",
+          "level": 3,
+          "text": "Cancel or Complete the Report",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system provides a Cancel and a Done button for the controller. By default, the system disables the Done button. As soon as the user has entered all the information you require, enable the Done button by setting the view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionContext/isReadyForClassificationResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user presses the Cancel button, the system dismisses your view controller, as shown in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3025730",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user presses Done, the system calls your view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/classificationResponse(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object (see the figure below).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3025729",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/classificationResponse(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to return a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " based on the data the user has entered and information about the SMS message or call from the request object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-a-Response",
+          "level": 3,
+          "text": "Choose a Response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system takes different actions based on the response. For ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/none",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system dismisses your view controller, but doesn’t take any other action, as shown in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3025747",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/reportNotJunk",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/reportJunk",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system generates a report based on your response’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationResponse/action",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationResponse/userInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties and then posts it to a network endpoint or sends it using an SMS message, depending on the keys specified in your extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send a response over the network connection, you must add an associated domain to your extension. For general instructions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Note that you must use ",
+              "type": "text"
+            },
+            {
+              "code": "classificationreport",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of ",
+              "type": "text"
+            },
+            {
+              "code": "webcredentials",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when specifying the domains. You must also specify the network endpoint’s address using the ",
+              "type": "text"
+            },
+            {
+              "code": "ILClassificationExtensionNetworkReportDestination",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in your extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send your response using SMS, specify a fully qualified destination telephony number using the ",
+              "type": "text"
+            },
+            {
+              "code": "ILClassificationExtensionSMSReportDestination",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in your extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. When your app uses this report path, the system displays the SMS message to give the user the opportunity to send or cancel the message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the report step is complete, the system dismisses your view controller and any view controllers related to it (see the figure below).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3025725",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/reportJunkAndBlockSender",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system responds just like in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/reportJunk",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " action. However, after the report step, the system presents an alert letting the user know the number will be blocked. Finally, the system blocks the SMS or call number, and dismisses your view controller as shown in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3025734",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Blocked numbers are added to the device’s Blocked Contact list. Users can manage this list in the Settings app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, to protect user privacy, the system always deletes your extension’s container after your extension terminates. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW12",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup": {
+      "abstract": [
+        {
+          "text": "Create app extensions to manage and report unwanted SMS messages and spam calls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SMS and Call Reporting",
+      "type": "topic",
+      "url": "/documentation/identitylookup"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILCallClassificationRequest": {
+      "abstract": [
+        {
+          "text": "A classification request for phone calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILCallClassificationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILCallClassificationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILCallClassificationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILCallClassificationRequest",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilcallclassificationrequest"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILCallCommunication": {
+      "abstract": [
+        {
+          "text": "A concrete subclass representing a  phone call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILCallCommunication"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILCallCommunication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILCallCommunication"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILCallCommunication",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilcallcommunication"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction": {
+      "abstract": [
+        {
+          "text": "The actions the system can take in response to the reported communication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILClassificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILClassificationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILClassificationAction",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilclassificationaction"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/none": {
+      "abstract": [
+        {
+          "text": "No action is required.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/none",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILClassificationActionNone"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILClassificationAction.none",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilclassificationaction/none"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/reportJunk": {
+      "abstract": [
+        {
+          "text": "The system should report the communication as junk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportJunk"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/reportJunk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILClassificationActionReportJunk"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILClassificationAction.reportJunk",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilclassificationaction/reportjunk"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/reportJunkAndBlockSender": {
+      "abstract": [
+        {
+          "text": "The system should report the communication as junk and add the number to the system’s block list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportJunkAndBlockSender"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/reportJunkAndBlockSender",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILClassificationActionReportJunkAndBlockSender"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILClassificationAction.reportJunkAndBlockSender",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilclassificationaction/reportjunkandblocksender"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/reportNotJunk": {
+      "abstract": [
+        {
+          "text": "The system should report that the communication is not junk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportNotJunk"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction/reportNotJunk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILClassificationActionReportNotJunk"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILClassificationAction.reportNotJunk",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilclassificationaction/reportnotjunk"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationRequest": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for classification requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILClassificationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILClassificationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILClassificationRequest",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilclassificationrequest"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationResponse": {
+      "abstract": [
+        {
+          "text": "A response object that tells the system how to handle the reported communications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILClassificationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILClassificationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILClassificationResponse",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilclassificationresponse"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationResponse/action": {
+      "abstract": [
+        {
+          "text": "A classification that determines what action the system takes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ILClassificationAction",
+          "text": "ILClassificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationResponse/action",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "action"
+        }
+      ],
+      "role": "symbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilclassificationresponse/action"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationResponse/userInfo": {
+      "abstract": [
+        {
+          "text": "JSON data included in a response sent over the network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationResponse/userInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilclassificationresponse/userinfo"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILCommunication": {
+      "abstract": [
+        {
+          "text": "An abstract superclass representing a message or call to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILCommunication"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILCommunication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILCommunication"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILCommunication",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilcommunication"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageClassificationRequest": {
+      "abstract": [
+        {
+          "text": "A classification request for SMS messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageClassificationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageClassificationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageClassificationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageClassificationRequest",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessageclassificationrequest"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageCommunication": {
+      "abstract": [
+        {
+          "text": "A concrete subclass representing a SMS message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageCommunication"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageCommunication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageCommunication"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageCommunication",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagecommunication"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterCapabilitiesQueryHandling": {
+      "abstract": [
+        {
+          "text": "A set of methods implemented by a Message Filter app extension to handle capabilities query requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterCapabilitiesQueryHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterCapabilitiesQueryHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterCapabilitiesQueryHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterCapabilitiesQueryHandling",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefiltercapabilitiesqueryhandling"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterCapabilitiesQueryRequest": {
+      "abstract": [
+        {
+          "text": "A request to query a Message Filter extension about sharing its sub-category capabilities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterCapabilitiesQueryRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterCapabilitiesQueryRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterCapabilitiesQueryRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterCapabilitiesQueryRequest",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefiltercapabilitiesqueryrequest"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterCapabilitiesQueryResponse": {
+      "abstract": [
+        {
+          "text": "A response to a message filter capabilities query request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterCapabilitiesQueryResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterCapabilitiesQueryResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterCapabilitiesQueryResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterCapabilitiesQueryResponse",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefiltercapabilitiesqueryresponse"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterSubAction": {
+      "abstract": [
+        {
+          "text": "Responds to a received message with a filter subaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterSubAction"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterSubAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterSubAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterSubAction",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefiltersubaction"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionContext/isReadyForClassificationResponse": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the extension has enough information to complete the report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReadyForClassificationResponse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionContext/isReadyForClassificationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readyForClassificationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "isReadyForClassificationResponse",
+      "type": "topic",
+      "url": "/documentation/identitylookupui/ilclassificationuiextensioncontext/isreadyforclassificationresponse"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController": {
+      "abstract": [
+        {
+          "text": "The superclass for an Unwanted Communication Reporting extension’s principal view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILClassificationUIExtensionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILClassificationUIExtensionViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILClassificationUIExtensionViewController",
+      "type": "topic",
+      "url": "/documentation/identitylookupui/ilclassificationuiextensionviewcontroller"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/classificationResponse(for:)": {
+      "abstract": [
+        {
+          "text": "Notifies the view controller when the user finishes entering data and presses the Done button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "classificationResponse"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ILClassificationRequest",
+          "text": "ILClassificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ILClassificationResponse",
+          "text": "ILClassificationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/classificationResponse(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "classificationResponseForRequest:"
+        }
+      ],
+      "role": "symbol",
+      "title": "classificationResponse(for:)",
+      "type": "topic",
+      "url": "/documentation/identitylookupui/ilclassificationuiextensionviewcontroller/classificationresponse(for:)"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/prepare(for:)": {
+      "abstract": [
+        {
+          "text": "Notifies the view controller just before the system presents it to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ILClassificationRequest",
+          "text": "ILClassificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/prepare(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareForClassificationRequest:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepare(for:)",
+      "type": "topic",
+      "url": "/documentation/identitylookupui/ilclassificationuiextensionviewcontroller/prepare(for:)"
+    },
+    "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW12": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW12",
+      "title": "About the iOS File System",
+      "titleInlineContent": [
+        {
+          "text": "About the iOS File System",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW12"
+    },
+    "media-3012154": {
+      "alt": "An illustration showing the system instantiating and displaying your view controller in response to the user reporting an SMS message or call.",
+      "identifier": "media-3012154",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c5673dc5d2fb71f2cde19025ddbb865/media-3012154@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c48ad1b073fc6c40c78285d78ba5b53/media-3012154~dark@2x.png"
+        }
+      ]
+    },
+    "media-3025725": {
+      "alt": "A circle representing the System Response with a right-facing arrow that points to a device with Cancel or Send buttons. That device has a right-facing arrow that points to a rectangle representing an extension with a view controller with Cancel and Send buttons. That extension has a right-facing arrow that points to a rectangle representing an extension with Deleted for user privacy text. Below that is a dark version of the same diagram.",
+      "identifier": "media-3025725",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4a77f4e3614400d09331fe8d0846261/media-3025725@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cbd3dbf85d0563afc491b34f10dc8e7f/media-3025725~dark@2x.png"
+        }
+      ]
+    },
+    "media-3025729": {
+      "alt": "An illustration showing the user tapping the Done button after entering all the required information in your user interface.",
+      "identifier": "media-3025729",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5334663f6c15dba90dedfc6cc0bddf79/media-3025729@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5299a5ac249d17387520a54da68ac9c/media-3025729~dark@2x.png"
+        }
+      ]
+    },
+    "media-3025730": {
+      "alt": "An illustration showing the user cancelling your view controller.",
+      "identifier": "media-3025730",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1ecc18e802ab0affc09424f1ada9ca61/media-3025730@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b3ac0df5b64417d30d9f979d26ec769f/media-3025730~dark@2x.png"
+        }
+      ]
+    },
+    "media-3025734": {
+      "alt": "A circle representing the System Response with a right-facing arrow that points to a device with Cancel or Send buttons. That device has a right-facing arrow that points to another device showing Alert SMS/Call blocked text. That device has a right-facing arrow that points to a rectangle representing an extension with a view controller dismissed. That extension has a right-facing arrow that points to a rectangle representing an extension with Deleted for user privacy text. Below that is a dark version of the same diagram.",
+      "identifier": "media-3025734",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b9734e3fc56dc8828b13eeed3f5f3472/media-3025734@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/192f3919e6a191e7019aa724c853d495/media-3025734~dark@2x.png"
+        }
+      ]
+    },
+    "media-3025747": {
+      "alt": "A circle representing the System Response with a right-facing arrow that points to a rectangle representing an extension with view controller dismissed. That extension has a right-facing arrow that points to a rectangle representing an extension with Deleted for user privacy text. Below that is a dark version of the same diagram.",
+      "identifier": "media-3025747",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b75dbbc41d718c616079e1a600573eb3/media-3025747@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5f544c4e69c25e814550fb04b07b0f4/media-3025747~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "App-Extension",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController"
+      ],
+      "title": "App Extension"
+    },
+    {
+      "anchor": "Communications",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILCommunication",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageCommunication",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILCallCommunication"
+      ],
+      "title": "Communications"
+    },
+    {
+      "anchor": "Requests",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationRequest",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageClassificationRequest",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILCallClassificationRequest"
+      ],
+      "title": "Requests"
+    },
+    {
+      "anchor": "Responses",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationResponse",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILClassificationAction"
+      ],
+      "title": "Responses"
+    },
+    {
+      "anchor": "Queries",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterCapabilitiesQueryRequest",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterCapabilitiesQueryHandling"
+      ],
+      "title": "Queries"
+    },
+    {
+      "anchor": "Responses",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterCapabilitiesQueryResponse",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterSubAction"
+      ],
+      "title": "Responses"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction~1reportJunkAndBlockSender/title",
+          "value": "ILClassificationActionReportJunkAndBlockSender"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction~1reportJunkAndBlockSender/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationActionReportJunkAndBlockSender"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILCallClassificationRequest/title",
+          "value": "ILCallClassificationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILCallClassificationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILCallClassificationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILCallClassificationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILCallClassificationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterSubAction/title",
+          "value": "ILMessageFilterSubAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterSubAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterSubAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterSubAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterSubAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILCallCommunication/title",
+          "value": "ILCallCommunication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILCallCommunication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILCallCommunication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILCallCommunication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILCallCommunication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookupUI~1ILClassificationUIExtensionViewController~1classificationResponse(for:)/title",
+          "value": "classificationResponseForRequest:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookupUI~1ILClassificationUIExtensionViewController~1classificationResponse(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "classificationResponseForRequest:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageClassificationRequest/title",
+          "value": "ILMessageClassificationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageClassificationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageClassificationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageClassificationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageClassificationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction~1reportJunk/title",
+          "value": "ILClassificationActionReportJunk"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction~1reportJunk/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationActionReportJunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageCommunication/title",
+          "value": "ILMessageCommunication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageCommunication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageCommunication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageCommunication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageCommunication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationResponse~1userInfo/title",
+          "value": "userInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationResponse~1userInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction~1none/title",
+          "value": "ILClassificationActionNone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction~1none/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationActionNone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationResponse~1action/title",
+          "value": "action"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationResponse~1action/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "action"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationResponse/title",
+          "value": "ILClassificationResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookupUI~1ILClassificationUIExtensionViewController~1prepare(for:)/title",
+          "value": "prepareForClassificationRequest:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookupUI~1ILClassificationUIExtensionViewController~1prepare(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareForClassificationRequest:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookupUI~1ILClassificationUIExtensionViewController/title",
+          "value": "ILClassificationUIExtensionViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookupUI~1ILClassificationUIExtensionViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationUIExtensionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookupUI~1ILClassificationUIExtensionViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationUIExtensionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction~1reportNotJunk/title",
+          "value": "ILClassificationActionReportNotJunk"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction~1reportNotJunk/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationActionReportNotJunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterCapabilitiesQueryRequest/title",
+          "value": "ILMessageFilterCapabilitiesQueryRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterCapabilitiesQueryRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterCapabilitiesQueryRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterCapabilitiesQueryRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterCapabilitiesQueryRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILCommunication/title",
+          "value": "ILCommunication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILCommunication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILCommunication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILCommunication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILCommunication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookupUI~1ILClassificationUIExtensionContext~1isReadyForClassificationResponse/title",
+          "value": "readyForClassificationResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookupUI~1ILClassificationUIExtensionContext~1isReadyForClassificationResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "readyForClassificationResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterCapabilitiesQueryResponse/title",
+          "value": "ILMessageFilterCapabilitiesQueryResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterCapabilitiesQueryResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterCapabilitiesQueryResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterCapabilitiesQueryResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterCapabilitiesQueryResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationRequest/title",
+          "value": "ILClassificationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction/title",
+          "value": "ILClassificationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILClassificationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILClassificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterCapabilitiesQueryHandling/title",
+          "value": "ILMessageFilterCapabilitiesQueryHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterCapabilitiesQueryHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterCapabilitiesQueryHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterCapabilitiesQueryHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterCapabilitiesQueryHandling"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

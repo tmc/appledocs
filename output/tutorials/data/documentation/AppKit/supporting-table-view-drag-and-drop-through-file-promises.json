@@ -1,0 +1,2129 @@
+{
+  "abstract": [
+    {
+      "text": "Share data between macOS apps during drag and drop by using an item provider.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/documents-data-and-pasteboard"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+        "doc://com.apple.appkit/documentation/AppKit/table-view",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Supporting Table View Drag and Drop Through File Promises"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A file promise is a possible future file sent by an app of a specified type. When working with drag and drop, use file promises to indicate intent for a future drag operation. The future drag operation promises the delivery of the file at drop time. This avoids loading or performing any actions on the file until the promise completes. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class when creating file promises. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to receive file promises.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement drag and drop with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by using a dragging pasteboard. When a drag starts, you adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to write data to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When a drag occurs, you determine the valid drop target. When the drag ends, you read the drag data from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Adopt ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to handle with these drag operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-Files-to-Drag-and-Drop",
+          "level": 3,
+          "text": "Display Files to Drag and Drop",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project displays a list of image files from the Pictures folder found in the user’s home directory. It allows those pictures to be dragged within the table view, to be reordered, and dragged out to be copied to other apps. Pictures are also dragged in from other apps like Finder, Mail, Safari, and Photos.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample shows how to support both ",
+              "type": "text"
+            },
+            {
+              "code": "URL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and file promises drags when accepting images from Mail, Safari, Photos, and other apps that support drag and drop. It also demonstrates how to provide file promises to other apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-Drag-and-Drop-by-Creating-or-Receiving-File-Promises",
+          "level": 3,
+          "text": "Test Drag and Drop by Creating or Receiving File Promises",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see this sample in action, build and run the project, then drag an image from another app or location, such as Finder, Mail, Photos or Safari, into the app’s window. Dragging the image into the window imports it into a form that the sample app can parse and consume. There are multiple ways to drag and drop image files to and from the sample app. The way a user drags a file determines how files are promised to and from the destination. If the user drags an image file from the app to the Finder, the Finder uses the ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to make a copy. If the user drags a photo from Photos, the sample app uses ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseReceiver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to receive a copy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Below are the various ways a drag and drop can occur that will involve either a ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or a ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseReceiver",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drag sent by ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image out to the Finder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image out to Mail.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image out to Photos.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drag received by ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseReceiver",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image in from Safari (from a website with a jpg, png, etc).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image in from Photos.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag multiple images in from Photos — helps test receiving multiple file promises.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag in a very large photo from Photos app — helps test the progress UI when receiving large photos.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, a drag and drop involves just the image file’s URL, without a file promise:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image from Finder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image from a Mail attachment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app also supports drag and drop of images from within the table view that don’t involve a URL. In this case photos are re-ordered using the row number of the photo as the drag reference.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-Image-Import-by-Accepting-File-Promises",
+          "level": 3,
+          "text": "Support Image Import by Accepting File Promises",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When setting up the table view to support drag and drop, register drag pasteboard types to the table view. This sample registers three pasteboard types. ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseReceiver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides the first. This type allows the table view to accept file promises that handle dragged images from apps like Safari or Photos. The second, ",
+              "type": "text"
+            },
+            {
+              "code": ".fileURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", accepts drags as file URLs. The third type is ",
+              "type": "text"
+            },
+            {
+              "code": "itemDragType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a custom pasteboard type that accepts table view cell rows to drag within the table view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample registers these pasteboard types in the view controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "viewDidLoad",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "tableView.registerForDraggedTypes(",
+            "    NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) })",
+            "",
+            "tableView.registerForDraggedTypes([",
+            "    .fileURL, // Accept dragging of image file URLs from other apps.",
+            "    .rowDragType]) // Intra drag of row items numbers within the table."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Handle file promises before handling file URLs, because the file promise generally represents the higher-quality image and should take precedence when both types are supported. Provide a background operation queue so the read-and-write operation doesn’t block the main thread. Until the file promise is fulfilled, this app shows a spinning indicator to give the user immediate feedback that the app is processing the drop. Continue to handle file URLs, in case the app from which the user drags the image doesn’t provide file promises.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handlePromisedDrops(draggingInfo: NSDraggingInfo, toRow: Int) -> Bool {",
+            "    var handled = false",
+            "    if let promises = draggingInfo.draggingPasteboard.readObjects(forClasses: [NSFilePromiseReceiver.self], options: nil) {",
+            "        if !promises.isEmpty {",
+            "            // We have incoming drag item(s) that are file promises.",
+            "",
+            "            // At the start of insertion(s), clear the current table view selection.",
+            "            tableView.deselectAll(self)",
+            "            ",
+            "            for promise in promises {",
+            "                if let promiseReceiver = promise as? NSFilePromiseReceiver {",
+            "                    // Show the progress indicator as we start receiving this promised file.",
+            "                    progressIndicator.isHidden = false",
+            "                    progressIndicator.startAnimation(self)",
+            "                    ",
+            "                    // Ask our file promise receiver to fulfull on their promise.",
+            "                    promiseReceiver.receivePromisedFiles(atDestination: destinationURL,",
+            "                                                         options: [:],",
+            "                                                         operationQueue: filePromiseQueue) { (fileURL, error) in",
+            "                        /** Finished copying the promised file.",
+            "                            Back on the main thread, insert the newly created image file into the table view.",
+            "                        */",
+            "                        OperationQueue.main.addOperation {",
+            "                            if error != nil {",
+            "                                self.reportURLError(fileURL, error: error!)",
+            "                            } else {",
+            "                                _ = self.insertURL(fileURL, toRow: toRow)",
+            "",
+            "                                /** Select the newly inserted photo,",
+            "                                    extend the selection so to accumulate multiple selected photos.",
+            "                                */",
+            "                                let indexSet = IndexSet(integer: toRow)",
+            "                                self.tableView.selectRowIndexes(indexSet, byExtendingSelection: true)",
+            "                            }",
+            "                            // Stop the progress indicator as we are done receiving this promised file.",
+            "                            self.progressIndicator.isHidden = true",
+            "                            self.progressIndicator.stopAnimation(self)",
+            "                        }",
+            "                    }",
+            "                }",
+            "            }",
+            "            handled = true",
+            "        }",
+            "    }",
+            "    return handled",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Support-Image-Export-by-Providing-File-Promises",
+          "level": 3,
+          "text": "Support Image Export by Providing File Promises",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To write images from the table view, the sample app creates formats that other apps like Safari, Mail, and Finder can consume, write an ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to the dragging pasteboard, and conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by implementing three delegate functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the first function to provide the title of the file to be promised. This sample uses the last component of the photo item’s ",
+              "type": "text"
+            },
+            {
+              "code": "fileURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine the promised file name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {",
+            "    // Return the photoItem's URL file name.",
+            "    let photoItem = photoFromFilePromiserProvider(filePromiseProvider: filePromiseProvider)",
+            "    return (photoItem?.fileURL.lastPathComponent)!",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide a background operation queue in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate/operationQueue(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", so the file write happens without blocking the app’s UI. This function is optional, but defaulting to the main queue will block the app’s UI for writing large files to disk. When possible, provide a background queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {",
+            "    return filePromiseQueue",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The third delegate function performs the actual writing of the file to disk when it is time to fulfill the file promise. Add custom logic necessary to transform the image from the app into a file format that other apps are likely to understand, such as the image formats that this sample uses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider,",
+            "                         writePromiseTo url: URL,",
+            "                         completionHandler: @escaping (Error?) -> Void) {",
+            "    do {",
+            "        if let photoItem = photoFromFilePromiserProvider(filePromiseProvider: filePromiseProvider) {",
+            "            /** Copy the file to the location provided to us. We always do a copy, not a move.",
+            "                It's important you call the completion handler.",
+            "            */",
+            "            try FileManager.default.copyItem(at: photoItem.fileURL, to: url)",
+            "        }",
+            "        completionHandler(nil)",
+            "    } catch let error {",
+            "        OperationQueue.main.addOperation {",
+            "            self.presentError(error, modalFor: self.view.window!,",
+            "                              delegate: nil, didPresent: nil, contextInfo: nil)",
+            "        }",
+            "        completionHandler(error)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement ",
+              "type": "text"
+            },
+            {
+              "code": "NSTableViewDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:pasteboardWriterForRow:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so the table view uses the file promise provider when the image files are dragged out. It returns an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or a custom object that implements the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPasteboardWriting",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {",
+            "    /** Return a custom NSFilePromiseProvider.",
+            "        Here we provide a custom provider, offering the row to the drag object, and it's URL.",
+            "    */",
+            "    var provider: FilePromiseProvider",
+            "    ",
+            "    let photoItem = contentArray[row]",
+            "    let photoFileExtension = photoItem.fileURL.pathExtension",
+            "",
+            "    if #available(macOS 11.0, *) {",
+            "        let typeIdentifier = UTType(filenameExtension: photoFileExtension)",
+            "        provider = FilePromiseProvider(fileType: typeIdentifier!.identifier, delegate: self)",
+            "    } else {",
+            "        let typeIdentifier =",
+            "              UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, photoFileExtension as CFString, nil)",
+            "        provider = FilePromiseProvider(fileType: typeIdentifier!.takeRetainedValue() as String, delegate: self)",
+            "    }",
+            "",
+            "    // Send over the row number and photo's url dictionary.",
+            "    provider.userInfo = [FilePromiseProvider.UserInfoKeys.rowNumberKey: row,",
+            "                         FilePromiseProvider.UserInfoKeys.urlKey: photoItem.fileURL as Any]",
+            "    return provider",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returning a non-nil value will make the table view cell draggable. To drag image files from the table view to other apps, the table view’s drag operation mask is set by the table view’s view controller to work outside the app using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/setDraggingSourceOperationMask(_:forLocal:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "tableView.setDraggingSourceOperationMask(.copy, forLocal: false)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Validate-the-Table-Drop",
+          "level": 3,
+          "text": "Validate the Table Drop",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow the table view to determine a valid drop target, implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:validateDrop:proposedRow:proposedDropOperation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". UIKit calls this delegate function when a drag is moved over the table view and before the dragging object is dropped by the user. Specify how to respond to a proposed drop operation, which will be either on or above a cell. In this sample, users can drop items between cells to insert them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accept-the-Drop-onto-the-Table",
+          "level": 3,
+          "text": "Accept the Drop onto the Table",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow the table view to accept the drop when the user releases the mouse button over it, implement this delegate function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:acceptDrop:row:dropOperation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func tableView(_ tableView: NSTableView,",
+            "               acceptDrop info: NSDraggingInfo,",
+            "               row: Int,",
+            "               dropOperation: NSTableView.DropOperation) -> Bool {",
+            "    // Check where the dragged items are coming.",
+            "    if dragSourceIsFromOurTable(draggingInfo: info) {",
+            "        /** Drag source came from our own table view.",
+            "            Move each dragged photo item to their new place.",
+            "        */",
+            "        dropInternalPhotos(tableView, draggingInfo: info, toRow: row)",
+            "    } else {",
+            "        /** The drop source is from another app (Finder, Mail, Safari, etc.) and there may be more than one file.",
+            "            Drop each dragged image file to their new place.",
+            "        */",
+            "        dropExternalPhotos(tableView, draggingInfo: info, toRow: row)",
+            "    }",
+            "    return true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function handles the data from the dragging pasteboard after the user drops the image onto the table view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Drag-and-Drop-to-Reorder-Table-Rows",
+          "level": 3,
+          "text": "Drag and Drop to Reorder Table Rows",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reorder image files within the table view, the sample app defines and registers a custom pasteboard type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension NSPasteboard.PasteboardType {",
+            "    static let rowDragType = NSPasteboard.PasteboardType(\"com.mycompany.mydragdrop\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using that custom pasteboard type, the user then drags and drops images within the table view to be reordered:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func dropInternalPhotos(_ tableView: NSTableView, draggingInfo: NSDraggingInfo, toRow: Int) {",
+            "    var indexesToMove = IndexSet()",
+            "    ",
+            "    draggingInfo.enumerateDraggingItems(",
+            "        options: NSDraggingItemEnumerationOptions.concurrent,",
+            "        for: tableView,",
+            "        classes: [NSPasteboardItem.self],",
+            "        searchOptions: [:],",
+            "        using: {(draggingItem, idx, stop) in",
+            "            if  let pasteboardItem = draggingItem.item as? NSPasteboardItem,",
+            "                let photoRow = pasteboardItem.propertyList(forType: .rowDragType) as? Int {",
+            "                    indexesToMove.insert(photoRow)",
+            "                }",
+            "        })",
+            "            ",
+            "    // Move/drop the photos in their correct place using their indexes.",
+            "    moveObjectsFromIndexes(indexesToMove, toIndex: toRow)",
+            "    ",
+            "    // Set the selected rows to those that were just moved.",
+            "    let rowsMovedDown = rowsMovedDownward(toRow, indexSet: indexesToMove)",
+            "    let selectionRange = toRow - rowsMovedDown..<toRow - rowsMovedDown + indexesToMove.count",
+            "    let indexSet = IndexSet(integersIn: selectionRange)",
+            "    tableView.selectRowIndexes(indexSet, byExtendingSelection: false)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "2456370b6ad5/SupportingTableViewDragAndDropThroughFilePromises.zip": {
+      "checksum": "2456370b6ad5536c6e66fc55ed40a4003f27d819ac720e46058d89b7cd81d26b38f2c30d55a28a7f4506f86a49957c161d1dcbf8425ecd1401552dc268082981",
+      "identifier": "2456370b6ad5/SupportingTableViewDragAndDropThroughFilePromises.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/2456370b6ad5/SupportingTableViewDragAndDropThroughFilePromises.zip"
+    },
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider": {
+      "abstract": [
+        {
+          "text": "An object that provides a promise for the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFilePromiseProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromiseprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that provides the name of the promised file and writes the file to the destination directory when the file promise is fulfilled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProviderDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProviderDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFilePromiseProviderDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromiseproviderdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate/operationQueue(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the operation queue from which to issue the write request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "operationQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFilePromiseProvider",
+          "text": "NSFilePromiseProvider"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate/operationQueue(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "operationQueueForFilePromiseProvider:"
+        }
+      ],
+      "role": "symbol",
+      "title": "operationQueue(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromiseproviderdelegate/operationqueue(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver": {
+      "abstract": [
+        {
+          "text": "An object that receives a file promise from the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseReceiver"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseReceiver"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFilePromiseReceiver",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromisereceiver"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard": {
+      "abstract": [
+        {
+          "text": "An object that transfers data to and from the pasteboard server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboard"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItem": {
+      "abstract": [
+        {
+          "text": "An item on a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboarditem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the interface for retrieving a representation of an object that can be written to a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardWriting"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardWriting"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardWriting",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboardwriting"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView": {
+      "abstract": [
+        {
+          "text": "A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTableView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTableView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTableView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/setDraggingSourceOperationMask(_:forLocal:)": {
+      "abstract": [
+        {
+          "text": "Sets the default operation mask returned by ",
+          "type": "text"
+        },
+        {
+          "code": "draggingSourceOperationMaskForLocal:",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to ",
+          "type": "text"
+        },
+        {
+          "code": "mask",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDraggingSourceOperationMask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDragOperation",
+          "text": "NSDragOperation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forLocal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/setDraggingSourceOperationMask(_:forLocal:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDraggingSourceOperationMask:forLocal:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDraggingSourceOperationMask(_:forLocal:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/setdraggingsourceoperationmask(_:forlocal:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that a table view uses to provide data to a table view and to allow the editing of the table view’s data source object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTableViewDataSource",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:acceptDrop:row:dropOperation:)": {
+      "abstract": [
+        {
+          "text": "Called by ",
+          "type": "text"
+        },
+        {
+          "code": "aTableView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " when the mouse button is released over a table view that previously decided to allow a drop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "acceptDrop"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSDraggingInfo",
+          "text": "NSDraggingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "row"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dropOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTableViewDropOperation",
+          "text": "DropOperation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:acceptDrop:row:dropOperation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:acceptDrop:row:dropOperation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:acceptDrop:row:dropOperation:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:acceptdrop:row:dropoperation:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:pasteboardWriterForRow:)": {
+      "abstract": [
+        {
+          "text": "Called to allow the table to support multiple item dragging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pasteboardWriterForRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSPasteboardWriting",
+          "text": "NSPasteboardWriting"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:pasteboardWriterForRow:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:pasteboardWriterForRow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:pasteboardWriterForRow:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:pasteboardwriterforrow:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:validateDrop:proposedRow:proposedDropOperation:)": {
+      "abstract": [
+        {
+          "text": "Used by ",
+          "type": "text"
+        },
+        {
+          "code": "aTableView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to determine a valid drop target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validateDrop"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSDraggingInfo",
+          "text": "NSDraggingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "proposedRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "proposedDropOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTableViewDropOperation",
+          "text": "DropOperation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDragOperation",
+          "text": "NSDragOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:validateDrop:proposedRow:proposedDropOperation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:validateDrop:proposedRow:proposedDropOperation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:validateDrop:proposedRow:proposedDropOperation:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:validatedrop:proposedrow:proposeddropoperation:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/documents-data-and-pasteboard": {
+      "abstract": [
+        {
+          "text": "Organize your app’s data and preferences, and share that data on the pasteboard or in iCloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/documents-data-and-pasteboard",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Documents, Data, and Pasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/documents-data-and-pasteboard"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Share data between macOS apps during drag and drop by using an item provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Collection View Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-collection-view-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Receive and provide file promises to support dragged app files and pasteboard operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/table-view": {
+      "abstract": [
+        {
+          "text": "Display custom data in rows and columns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/table-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Table View",
+      "type": "topic",
+      "url": "/documentation/appkit/table-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and handle user input and events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and Controls",
+      "type": "topic",
+      "url": "/documentation/appkit/views-and-controls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "2456370b6ad5/SupportingTableViewDragAndDropThroughFilePromises.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "File-Promises",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises",
+        "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver"
+      ],
+      "title": "File Promises"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "File-Promises",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises",
+                "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver"
+              ],
+              "title": "File Promises"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardItem/title",
+          "value": "NSPasteboardItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate/title",
+          "value": "NSFilePromiseProviderDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProviderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProviderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:pasteboardWriterForRow:)/title",
+          "value": "tableView:pasteboardWriterForRow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:pasteboardWriterForRow:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:pasteboardWriterForRow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView/title",
+          "value": "NSTableView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver/title",
+          "value": "NSFilePromiseReceiver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseReceiver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseReceiver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/title",
+          "value": "NSPasteboardWriting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/title",
+          "value": "NSFilePromiseProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/title",
+          "value": "NSPasteboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource/title",
+          "value": "NSTableViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate~1operationQueue(for:)/title",
+          "value": "operationQueueForFilePromiseProvider:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate~1operationQueue(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "operationQueueForFilePromiseProvider:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1setDraggingSourceOperationMask(_:forLocal:)/title",
+          "value": "setDraggingSourceOperationMask:forLocal:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1setDraggingSourceOperationMask(_:forLocal:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDraggingSourceOperationMask:forLocal:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:validateDrop:proposedRow:proposedDropOperation:)/title",
+          "value": "tableView:validateDrop:proposedRow:proposedDropOperation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:validateDrop:proposedRow:proposedDropOperation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:validateDrop:proposedRow:proposedDropOperation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:acceptDrop:row:dropOperation:)/title",
+          "value": "tableView:acceptDrop:row:dropOperation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:acceptDrop:row:dropOperation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:acceptDrop:row:dropOperation:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/supporting-table-view-drag-and-drop-through-file-promises"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/supporting-table-view-drag-and-drop-through-file-promises"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

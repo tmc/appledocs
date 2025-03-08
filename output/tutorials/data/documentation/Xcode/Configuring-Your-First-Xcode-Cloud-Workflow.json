@@ -1,0 +1,2230 @@
+{
+  "abstract": [
+    {
+      "text": "Set up your project or workspace to use Xcode Cloud and adopt continuous integration and delivery.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring your first Xcode Cloud workflow"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode helps you configure your project or workspace to use Xcode Cloud. It analyzes your project, suggests a configuration to quickly build your app or framework with Xcode Cloud, and makes it easy to refine your continuous integration practice after you complete your first build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about Xcode Cloud, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc21/10267",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc21/10268",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc21/10269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2022-110374",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To avoid issues and save time when configuring your first workflow, review the requirements for using Xcode Cloud in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " before you configure your project or workspace to use Xcode Cloud. Additionally, if your project requires dependencies, make sure they’re accessible to Xcode Cloud. To learn more, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Review-Xcode-Cloud-workflows",
+          "level": 3,
+          "text": "Review Xcode Cloud workflows",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you start configuring a project or workspace to use Xcode Cloud, Xcode analyzes your project to detect its settings and then creates a list of its apps and frameworks — referred to as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "products",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". After you select a product, Xcode suggests a first workflow for it. The workflow is the configuration for the steps you want Xcode Cloud to perform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A workflow includes the following settings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "General information, such as a name and a description of the workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode and macOS versions of the temporary build environment. Note that Xcode Cloud may periodically update available macOS and Xcode versions and ask you to update your workflows so they continue to build successfully.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start conditions that define when Xcode Cloud runs a workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Actions that Xcode Cloud performs. You can configure several actions for a workflow. Available actions are: build, analyze, test, and archive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Postactions that Xcode Cloud performs. For example, you can configure custom notifications or distribute a new version of your app to testers in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/testflight/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Custom build scripts that perform particular tasks, such as installing a third-party tool. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After reviewing the suggested workflow, you connect Xcode Cloud to your Git repository and run the workflow, referred to as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "build",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode Cloud clones your repository in a private, isolated, and temporary build environment. It doesn’t store your source code, and securely handles any stored data, such as your derived data, and keeps it private. The temporary build environment that Xcode Cloud uses includes tools that are part of macOS and Xcode, like Python, as well as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://brew.sh",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to support installing third-party dependencies and tools. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When it completes a build, Xcode Cloud:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sends an email that contains information about the build, including links to the build report in Xcode and in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stores the build’s ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "artifacts",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " and makes them available for downloading in Xcode or in App Store Connect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The artifacts that Xcode Cloud creates include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Detailed build logs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The exported app archive, app binary, or framework",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A test result bundle, including screenshots you create in your automated user interface tests",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can access build information and artifacts for 30 days from the moment Xcode Cloud completes a build. Always download and archive build artifacts for workflows that publish your app on the App Store. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Download-and-archive-build-artifacts",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " below.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Xcode to initially configure your project or workspace to use Xcode Cloud. After you complete your first build, use either Xcode or App Store Connect to configure additional workflows, access build information, and more. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Create-additional-workflows-in-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you use ",
+                  "type": "text"
+                },
+                {
+                  "code": ".xcconfig",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " files to set the bundle identifier or use them to automatically change the bundle identifier, you need to take extra steps to start using Xcode Cloud. First, set the bundle identifier for your app target in the Signing & Capabilities pane of your project or workspace. Then configure your first workflow as described below. Repeat this process for each bundle identifier. Note that you need to use App Store Connect to view your workflows and builds because Xcode relies on the explicitly set bundle identifier to show them.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Select-the-archive-action",
+          "level": 3,
+          "text": "Select the archive action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each app or framework that you want to build with Xcode Cloud, make sure its corresponding scheme uses the archive action. Choose Product > Scheme > Edit Scheme. In the sidebar, click Build and in the detail area, select the Archive checkbox for the target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find out which of your project’s schemes use the archive action, run the following command in Terminal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "xcodebuild -project Example.xcodeproj -describeAllArchivableProducts -json"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode uses the same command to find available products that you can build with Xcode Cloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-a-product",
+          "level": 3,
+          "text": "Select a product",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure your project or workspace to use Xcode Cloud, open your project or workspace in Xcode. In the Report navigator, click the Cloud button, and then click Get Started.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you develop a WatchKit app and a watchOS app extension, you can configure Xcode Cloud workflows for them, but they may fail if you don’t register their bundle IDs in your developer account. To successfully build them with Xcode Cloud, sign in to your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "http://developer.apple.com/account/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", navigate to the Certificates, Identifiers & Profiles section, and add the bundle IDs for your WatchKit app and watchOS app extension manually before you configure Xcode Cloud workflows for them.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode analyzes your project or workspace, and then creates a list in the Select a Product sheet for the products it finds. Select the product that matches your app or framework and click Next.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your project contains targets that use the same bundle identifier, Xcode Cloud treats them as one product. Note that a product can only have one bundle ID, and a bundle ID always matches exactly one Xcode Cloud product. If your workspace or project contains several app targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When possible, share the same bundle ID across versions of your app for each platform. For example, use the same bundle ID for the iOS, macOS, and watchOS versions of your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If each version of your app uses a different bundle ID — for example, if the iOS version uses ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.myiosapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the macOS app uses ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.mymacapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Xcode detects more than one product. Select one of them when you create your first workflow, and later configure additional workflows for the other product.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may be a member of more than one Apple Developer Program team. In this case, Xcode asks you to select a team. Select the team you intend to use for distribution to testers with TestFlight, and for publishing the app in the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-the-suggested-workflow",
+          "level": 3,
+          "text": "Review the suggested workflow",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Based on the product you select, Xcode suggests a first workflow that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Starts a build for each change to your Git repository’s default branch, and for each pull request that targets your default branch",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uses the latest released macOS and Xcode versions for its temporary build environment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uses the archive action",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sends an email with information about the build, including links to the build report in Xcode and in App Store Connect",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before starting your first build, review the suggested workflow; for example, verify whether Xcode chooses the correct scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To review the suggested workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Edit Workflow in the Review Workflow sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make changes only if necessary in the sheet that displays the workflow information and save them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Review Workflow sheet, click Next and follow the steps to grant Xcode Cloud access to your source code repository.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Keep your first workflow simple and use the suggested settings, if possible. That way, you become familiar with Xcode Cloud without worrying about misconfiguring your first workflow. When Xcode Cloud successfully finishes your first build, edit the workflow to meet your requirements or create additional workflows to refine your CI/CD practice in either Xcode or App Store Connect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Grant-Xcode-Cloud-access-to-your-source-code",
+          "level": 3,
+          "text": "Grant Xcode Cloud access to your source code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud requires access to the Git repository containing your code. It uses this access to build and test your code automatically when you make changes. When you configure your project or workspace to use Xcode Cloud, Xcode analyzes it to detect the source code management (SCM) provider you use. In the Grant Access to Your Source Code sheet, click Grant Access and let Xcode guide you through your SCM provider’s authorization process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Make sure you have the required permission or role to grant Xcode Cloud access to your Git repository. Additionally, if you use a self-hosted SCM provider — such as Bitbucket Server or GitHub Enterprise — make sure Xcode Cloud can access your Git repository. For information on required permissions, roles, and IP address ranges that Xcode Cloud uses, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud#Use-a-remote-source-control-repository",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After allowing Xcode Cloud to access your Git repository, Xcode indicates that it can access your source code. Click Next, and in the next sheet, click Complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Building your project may require access to more than one instance of your self-hosted SCM provider — a common case for large teams. For example, you may use two different GitHub Enterprise instances where one hosts your app’s code and the other hosts your dependencies. If this scenario applies to you, finish the initial onboarding workflow for the project in Xcode and connect the instance that hosts your app’s code, then let the first build fail. After the build failure, Xcode suggests a fix to connect the other instance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional guidance on granting Xcode Cloud access to your source code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Source-Code-Management-Setup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-app-record",
+          "level": 3,
+          "text": "Create an app record",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud combines Xcode, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/testflight/",
+              "isActive": true,
+              "overridingTitle": "TestFlight",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TestFlight",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and App Store Connect into a powerful CI/CD system. As a result, you need an app record in App Store Connect for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you already have an app record in App Store Connect, Xcode Cloud uses it automatically. If you don’t have an app record, Xcode helps you create one after you grant Xcode Cloud access to your Git repository.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You don’t need an app record to build a framework with Xcode Cloud.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an app record, you need to have the App Manager, Admin, or Account Holder role for your team. If you have the Developer role, you need the Create Apps permission. If you don’t have the required role or permission, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Create-an-app-record-in-App-Store-Connect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-your-first-build",
+          "level": 3,
+          "text": "Start your first build",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After granting Xcode Cloud access to your Git repository and, if applicable, creating an app record, you’re ready to start your first build. Choose a branch from the pop-up menu and click Start Build. Xcode Cloud checks out the branch and starts building your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To view information about the in-progress build in the Editor pane, select the build in the Report navigator. To see detailed build logs, expand an action in the report outline and click Logs. If the report outline isn’t visible, enable it using the Adjust Editor Options button in the top-right corner of the Editor pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode Cloud finishes building your project, it sends an email that contains information about the build, including the build’s status, the commit it used for the build, and links to the build report in Xcode or in App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you start using Xcode Cloud for an existing Mac app, you may need to configure Xcode Cloud to increment the build number starting with value other than ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Understand-why-a-build-fails",
+          "level": 3,
+          "text": "Understand why a build fails",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There’s a chance that your first build might fail. This is especially likely for complex code bases and projects with many dependencies. To understand why a build failed, select a build in the Report navigator, expand a failed action in the report outline, and click Logs to see the build logs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-7",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also click Artifacts and download the build report. For additional guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Resolving-Common-Configuration-and-Build-Issues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to viewing build logs in Xcode, you can explore build logs in App Store Connect by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to App Store Connect and go to your app’s page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Xcode Cloud tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Builds in the sidebar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand a workflow and select a build.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand an action in the sidebar and click Logs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Refine-your-continuous-integration-practice",
+          "level": 3,
+          "text": "Refine your continuous integration practice",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After configuring your first workflow and successfully completing your first build, spend time planning next steps to refine your CI/CD process, and consider the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ask coworkers to start using Xcode Cloud as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Connect-your-personal-SCM-account-to-Xcode-Cloud",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " describes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change your first workflow’s name and description.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a test action to your first workflow that runs your unit tests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change your first workflow’s start conditions to only start a build if you update a custom branch or add start conditions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a postaction to distribute a new version of your app to testers with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/testflight/",
+                      "isActive": true,
+                      "overridingTitle": "TestFlight",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "TestFlight",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create additional workflows to perform advanced verifications that take more time to complete; for example, configure a workflow that runs your automated UI tests once per week.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create workflows for other products that Xcode detected when you created your first workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Share build configurations across workflows. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive build information in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://slackhq.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", a popular collaboration tool. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Require an Xcode Cloud build to succeed before it’s possible to merge a pull request. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Requirements-for-Merging-a-Pull-Request",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-additional-workflows-in-Xcode",
+          "level": 3,
+          "text": "Create additional workflows in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure and create additional workflows, or to make changes to an existing one in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Cloud button in the Report navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click your app’s name, or a workflow, and choose Manage Workflows.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Manage Workflows sheet, double-click a workflow to make changes to it, or add a new workflow using the Add button (+).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on creating custom workflows, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Edit-and-create-workflows-in-App-Store-Connect",
+          "level": 3,
+          "text": "Edit and create workflows in App Store Connect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to configure your first Xcode Cloud workflow in Xcode. The deep integration of Xcode Cloud into Xcode enables an integrated development process where you write code, review changes, view build information, and configure workflows. However, teams may have dedicated infrastructure engineers or release managers who aren’t familiar with Xcode. To accommodate them, and to offer you an additional way to configure your workflows and view build information, App Store Connect also deeply integrates with Xcode Cloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To view, edit, or create workflows in App Store Connect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to App Store Connect and go to your app’s page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Xcode Cloud tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Manage Workflows in the sidebar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button next to Manage Workflows to create a workflow, or click a workflow to view and edit its settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By clicking the More button (···) for a workflow, you can also edit, duplicate, deactivate, or delete a workflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-and-archive-build-artifacts",
+          "level": 3,
+          "text": "Download and archive build artifacts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode Cloud completes a build for a workflow, it creates a set of artifacts that includes build information, app binaries, symbol information, test results, and more. Xcode Cloud stores artifacts for up to 30 days after it completes a build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Beyond the need to archive past builds, it’s especially important to download and archive build artifacts for a version of an app that you distribute on the App Store. This is because you may need the symbol information Xcode Cloud creates when it archives your app to diagnose issues using crash reports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To download build information and artifacts, you can use Xcode or App Store Connect. Alternatively, use the App Store Connect API to automate the task of downloading the build artifacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on automating Xcode Cloud with the App Store Connect API, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/xcode-cloud-workflows-and-builds",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information on symbol information and crash reports, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Configuring-Your-First-Xcode-Cloud-Workflow-1": {
+      "alt": "A screenshot that shows a scheme of the Fruta app with an enabled archive action.",
+      "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e945f8514d710390e42820ba221438d6/Configuring-Your-First-Xcode-Cloud-Workflow-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62a995ce41f81c21547a29005bf70d59/Configuring-Your-First-Xcode-Cloud-Workflow-1~dark@2x.png"
+        }
+      ]
+    },
+    "Configuring-Your-First-Xcode-Cloud-Workflow-3": {
+      "alt": "A screenshot of the Select a Product sheet in Xcode that lists all products for the Fruta app.",
+      "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/07ee5eb73ec5e84c53b4716d0a544368/Configuring-Your-First-Xcode-Cloud-Workflow-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6a4a25c0fa999a0ec9eebb623aff6cb2/Configuring-Your-First-Xcode-Cloud-Workflow-3~dark@2x.png"
+        }
+      ]
+    },
+    "Configuring-Your-First-Xcode-Cloud-Workflow-4": {
+      "alt": "A screenshot of the suggested workflow in Xcode for the Fruta app.",
+      "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f00fe5c3b5dd12f29978feca81c98da4/Configuring-Your-First-Xcode-Cloud-Workflow-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/08b21eaf75ef6a4d52caa99082728a9d/Configuring-Your-First-Xcode-Cloud-Workflow-4~dark@2x.png"
+        }
+      ]
+    },
+    "Configuring-Your-First-Xcode-Cloud-Workflow-5": {
+      "alt": "A screenshot of the Grant Access to Your Source Code sheet in Xcode.",
+      "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/370da2c2fcf558030fd8b44500dac3b6/Configuring-Your-First-Xcode-Cloud-Workflow-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2546d8e8b4fdba680343c29f6b401f35/Configuring-Your-First-Xcode-Cloud-Workflow-5~dark@2x.png"
+        }
+      ]
+    },
+    "Configuring-Your-First-Xcode-Cloud-Workflow-6": {
+      "alt": "A screenshot of the Start Build sheet in Xcode for the Fruta app.",
+      "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7450d7c337f31cf4f7a578035b6be55c/Configuring-Your-First-Xcode-Cloud-Workflow-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/03461ef60a73c0a2e42b7fa5023c0363/Configuring-Your-First-Xcode-Cloud-Workflow-6~dark@2x.png"
+        }
+      ]
+    },
+    "Configuring-Your-First-Xcode-Cloud-Workflow-7": {
+      "alt": "A screenshot of Xcode that shows detailed build information in the Editor pane for a failed archive action.",
+      "identifier": "Configuring-Your-First-Xcode-Cloud-Workflow-7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba9dafa2ed0f6e806ddcbfc73e585049/Configuring-Your-First-Xcode-Cloud-Workflow-7@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90ae0a7e36e447089e83cfc3b83abaf4/Configuring-Your-First-Xcode-Cloud-Workflow-7~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Learn how continuous integration and delivery with Xcode Cloud helps you create high-quality apps and frameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "About continuous integration and delivery with Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/about-continuous-integration-and-delivery-with-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Requirements-for-Merging-a-Pull-Request": {
+      "abstract": [
+        {
+          "text": "Protect stable branches by requiring a successful Xcode Cloud build or action before it’s possible to merge a pull request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Requirements-for-Merging-a-Pull-Request",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring requirements for merging a pull request",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-requirements-for-merging-a-pull-request"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Connect-your-personal-SCM-account-to-Xcode-Cloud": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Connect-your-personal-SCM-account-to-Xcode-Cloud",
+      "kind": "section",
+      "title": "Connect your personal SCM account to Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-xcode-cloud-for-your-team#Connect-your-personal-SCM-account-to-Xcode-Cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Create-an-app-record-in-App-Store-Connect": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Create-an-app-record-in-App-Store-Connect",
+      "kind": "section",
+      "title": "Create an app record in App Store Connect",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-xcode-cloud-for-your-team#Create-an-app-record-in-App-Store-Connect"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Create-additional-workflows-in-Xcode": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Create-additional-workflows-in-Xcode",
+      "kind": "section",
+      "title": "Create additional workflows in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-first-xcode-cloud-workflow#Create-additional-workflows-in-Xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Download-and-archive-build-artifacts": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Download-and-archive-build-artifacts",
+      "kind": "section",
+      "title": "Download and archive build artifacts",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-first-xcode-cloud-workflow#Download-and-archive-build-artifacts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack": {
+      "abstract": [
+        {
+          "text": "Connect Xcode Cloud to Slack to keep your team informed about the latest Xcode Cloud builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack",
+      "kind": "article",
+      "role": "article",
+      "title": "Connecting Xcode Cloud to Slack",
+      "type": "topic",
+      "url": "/documentation/xcode/connecting-xcode-cloud-to-slack"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review how you can best create custom Xcode Cloud workflows to refine your continuous integration and delivery practice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a workflow strategy for Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/developing-a-workflow-strategy-for-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review dependencies and make them available to Xcode Cloud before you configure your project to use Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Making dependencies available to Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Resolving-Common-Configuration-and-Build-Issues": {
+      "abstract": [
+        {
+          "text": "Review common configuration and build issues and learn how you can resolve them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Resolving-Common-Configuration-and-Build-Issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Resolving common configuration and build issues",
+      "type": "topic",
+      "url": "/documentation/xcode/resolving-common-configuration-and-build-issues"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds": {
+      "abstract": [
+        {
+          "text": "Start numbering builds from a custom build number for your existing Mac app to avoid version collisions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting the next build number for Xcode Cloud builds",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-the-next-build-number-for-xcode-cloud-builds"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review account, project, and source control requirements before configuring your project or workspace to use Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up your project to use Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-up-your-project-to-use-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud#Use-a-remote-source-control-repository": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud#Use-a-remote-source-control-repository",
+      "kind": "section",
+      "title": "Use a remote source control repository",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-up-your-project-to-use-xcode-cloud#Use-a-remote-source-control-repository"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows": {
+      "abstract": [
+        {
+          "text": "Use custom aliases to share configurations with multiple workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing macOS and Xcode versions across Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-custom-aliases-across-xcode-cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows": {
+      "abstract": [
+        {
+          "text": "Apply common configurations to multiple workflows by using shared environment variables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing environment variables across Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-environment-variables-across-xcode-cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Source-Code-Management-Setup": {
+      "abstract": [
+        {
+          "text": "Allow Xcode Cloud to access your Git repository.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Source-Code-Management-Setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Source code management setup",
+      "type": "topic",
+      "url": "/documentation/xcode/source-code-management-setup"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts": {
+      "abstract": [
+        {
+          "text": "Extend your Xcode Cloud workflows with custom build scripts that perform custom tasks or install additional tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing custom build scripts",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-custom-build-scripts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference": {
+      "abstract": [
+        {
+          "text": "Configure metadata, start conditions, actions, post-actions, and more to create custom Xcode Cloud workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud workflow reference",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud-workflow-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/xcode-cloud-workflows-and-builds": {
+      "abstract": [
+        {
+          "text": "Automate reading Xcode Cloud data, managing workflows, and starting builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/xcode-cloud-workflows-and-builds",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode Cloud Workflows and Builds",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/xcode-cloud-workflows-and-builds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "http://developer.apple.com/account/": {
+      "identifier": "http://developer.apple.com/account/",
+      "title": "developer account",
+      "titleInlineContent": [
+        {
+          "text": "developer account",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://developer.apple.com/account/"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://brew.sh": {
+      "identifier": "https://brew.sh",
+      "title": "Homebrew",
+      "titleInlineContent": [
+        {
+          "text": "Homebrew",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://brew.sh"
+    },
+    "https://developer.apple.com/testflight/": {
+      "identifier": "https://developer.apple.com/testflight/",
+      "title": "TestFlight",
+      "titleInlineContent": [
+        {
+          "text": "TestFlight",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/testflight/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022-110374": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022-110374",
+      "title": "Get the most out of Xcode Cloud",
+      "titleInlineContent": [
+        {
+          "text": "Get the most out of Xcode Cloud",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022-110374"
+    },
+    "https://developer.apple.com/wwdc21/10267": {
+      "identifier": "https://developer.apple.com/wwdc21/10267",
+      "title": "Meet Xcode Cloud",
+      "titleInlineContent": [
+        {
+          "text": "Meet Xcode Cloud",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10267"
+    },
+    "https://developer.apple.com/wwdc21/10268": {
+      "identifier": "https://developer.apple.com/wwdc21/10268",
+      "title": "Explore Xcode Cloud workflows",
+      "titleInlineContent": [
+        {
+          "text": "Explore Xcode Cloud workflows",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10268"
+    },
+    "https://developer.apple.com/wwdc21/10269": {
+      "identifier": "https://developer.apple.com/wwdc21/10269",
+      "title": "Customize your advanced Xcode Cloud workflows",
+      "titleInlineContent": [
+        {
+          "text": "Customize your advanced Xcode Cloud workflows",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10269"
+    },
+    "https://slackhq.com": {
+      "identifier": "https://slackhq.com",
+      "title": "Slack",
+      "titleInlineContent": [
+        {
+          "text": "Slack",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://slackhq.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

@@ -1,0 +1,737 @@
+{
+  "abstract": [
+    {
+      "text": "The QuickTime file format describes the characteristics of QuickTime movie files.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_movie_files"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "QuickTime movie files"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A QuickTime movie file contains a QuickTime movie resource, or else points to one or more external sources using movie references. The media samples used by the movie (such as video frames or groups of audio samples) may be included in the movie file, or may be external to the movie file in one or more files, streams, or other sources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A QuickTime movie is not limited to video and audio; it may use any subset or combination of media types that QuickTime supports, including video, sound, still images, text, Flash, 3D models, and virtual reality panoramas. It supports both time-based and nonlinear interactive media.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In file systems that support filename extensions, QuickTime movie files should have an extension of ",
+              "type": "text"
+            },
+            {
+              "code": ".mov",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". On the Macintosh platform, QuickTime files have a Mac OS file type of ",
+              "type": "text"
+            },
+            {
+              "code": "'MooV'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". QuickTime movie files should always be associated with the MIME type ",
+              "type": "text"
+            },
+            {
+              "code": "\"video/quicktime\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", whether or not the movie contains video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The use of resource forks for the storage of QuickTime media is deprecated in the QuickTime file format. The information below documents existing content and should not be used for new development.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In file systems that support both a resource fork and a data fork, the movie resource may be contained in the resource fork. The default, however, is for the movie resource to be contained in the data fork for all file systems. If media sample data is included in the movie file, it is always in the data fork.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A QuickTime movie file is structured as a collection of atoms that together identify the file as a QuickTime movie, describe the structure of the movie, and may contain the sample data needed to play the movie. Not all atoms are required.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The file format is extensible, and from time to time new atom types are introduced. If your application encounters an unknown atom type in a QuickTime file, it should simply ignore it. This allows the file format to be extended without breaking existing applications, and provides a measure of forward compatibility. Because the first field in any atom contains its size, including any contained atoms, it is easy to skip to the end of an unknown atom type and continue parsing the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Generally speaking, atoms can be present in any order. Do not conclude that a particular atom is not present until you have parsed all the atoms in the file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An exception is the file type atom, which typically identifies the file as a QuickTime movie. If present, this atom precedes any movie atom, movie data, preview, or free space atoms. If you encounter one of these other atom types prior to finding a file type atom, you may assume the file type atom is not present. (This atom is introduced in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "QuickTime File Format Specification",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for 2004, and is not present in QuickTime movie files created prior to 2004).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While other atoms can be in any order, unless specified in this documentation, for practical reasons there is a recommended order that you should use when creating a QuickTime movie file. For example, the atom containing the movie resource should precede any atoms containing the movie’s sample data. If you follow this recommended atom order, it is possible to play a movie over a network while the movie file is in the process of downloading.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A QuickTime movie file must contain a movie atom, which contains either the movie structure or a reference to one or more alternate movie sources external to the file. Generally speaking, these alternate sources will be QuickTime movie files that contain movie structures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A QuickTime movie file typically contains one or more movie data atoms, which contain media sample data such as video frames and groups of audio samples. There may be no movie data atoms in the file, however, as the movie may depend on sample data external to the movie file, such as external data files or live streams on the Internet. A single movie data atom may contain sample data for a variety of different media. Generally speaking, it is possible to contain all the media samples used by a movie in a single movie data atom. Movie data atoms can be quite large, and sometimes exceed 2^32 bytes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the essential atom types in a QuickTime movie file within which other atoms are stored. In addition, the file may contain free space atoms, preview atoms, and other atoms not enumerated in this file format specification. Unknown atom types should be ignored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "quicktime-movie-file-structure",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the basic atom types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Atom type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'ftyp'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "File type compatibility—identifies the file type and differentiates it from similar file types, such as MPEG-4 files and JPEG-2000 files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'moov'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Movie resource metadata about the movie (number and type of tracks, location of sample data, and so on). Describes where the movie data can be found and how to interpret it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'mdat'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Movie sample data—media samples such as video frames and groups of audio samples. Usually this data can be interpreted only by using the movie resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'free'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unused space available in file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'skip'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unused space available in file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'wide'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reserved space—can be overwritten by an extended size field if the following atom exceeds 2^32 bytes, without displacing the contents of the following atom.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'pnot'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reference to movie preview data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections describe these basic atom types (except for the movie atom) in more detail, including descriptions of other atoms that each basic atom may contain. The movie atom is described separately in Movie Atoms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Atoms": {
+      "abstract": [
+        {
+          "text": "The basic data unit in a QuickTime file is the atom.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Atoms",
+      "kind": "article",
+      "role": "article",
+      "title": "Atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers": {
+      "abstract": [
+        {
+          "text": "Manage atoms in atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating, copying, and disposing of atom containers",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_copying_and_disposing_of_atom_containers"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atoms_and_atom_containers": {
+      "abstract": [
+        {
+          "text": "An enhanced data structure that provide a more general-purpose storage format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atoms_and_atom_containers",
+      "kind": "article",
+      "role": "article",
+      "title": "QT atoms and atom containers",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/qt_atoms_and_atom_containers"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files": {
+      "abstract": [
+        {
+          "text": "Build QuickTime files with atoms, QT atoms, and atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storing and sharing media with QuickTime files",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/storing_and_sharing_media_with_quicktime_files"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/File_type_compatibility_atom": {
+      "abstract": [
+        {
+          "text": "An atom that identifies the file type specifications with which the file is compatible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$File_type_compatibility_atom",
+          "text": "File type compatibility atom ('ftyp')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/File_type_compatibility_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "File type compatibility atom ('ftyp')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/file_type_compatibility_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Free_space_atom": {
+      "abstract": [
+        {
+          "text": "An atom that designates unused space in the movie data file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Free_space_atom",
+          "text": "Free space atom ('free')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Free_space_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Free space atom ('free')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/free_space_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_data_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains movie data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Movie_data_atom",
+          "text": "Movie data atom ('mdat')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_data_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Movie data atom ('mdat')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie_data_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Preview_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains information that allows you to find the preview image associated with a QuickTime movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Preview_atom",
+          "text": "Preview atom ('pnot')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Preview_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview atom ('pnot')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/preview_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Skip_atom": {
+      "abstract": [
+        {
+          "text": "An atom that designates unused space in the movie data file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Skip_atom",
+          "text": "Skip atom ('skip')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Skip_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Skip atom ('skip')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/skip_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Wide_atom": {
+      "abstract": [
+        {
+          "text": "An atom that designates reserved space in the movie data file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Wide_atom",
+          "text": "Wide atom ('wide')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Wide_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Wide atom ('wide')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/wide_atom"
+    },
+    "quicktime-movie-file-structure": {
+      "alt": "The structure of a QuickTime movie file.",
+      "identifier": "quicktime-movie-file-structure",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/72054fb3cc6f4cd8bffcd14d1797cb7d/quicktime-movie-file-structure@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/13bb27789f963700abeb2a83668d2785/quicktime-movie-file-structure~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Building-in-QuickTime",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atoms_and_atom_containers",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers"
+      ],
+      "title": "Building in QuickTime"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Declaring-compatibility",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/File_type_compatibility_atom"
+      ],
+      "title": "Declaring compatibility"
+    },
+    {
+      "anchor": "Setting-free-space",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Free_space_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Skip_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Wide_atom"
+      ],
+      "title": "Setting free space"
+    },
+    {
+      "anchor": "Describing-movie-data",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_data_atom"
+      ],
+      "title": "Describing movie data"
+    },
+    {
+      "anchor": "Describing-preview-information",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Preview_atom"
+      ],
+      "title": "Describing preview information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/quicktime_movie_files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

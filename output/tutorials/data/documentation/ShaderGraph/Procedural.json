@@ -1,0 +1,910 @@
+{
+  "abstract": [
+    {
+      "text": "Add a constant number, vector, matrix, color, string, or other value to your graph.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "procedural",
+    "modules": [
+      {
+        "name": "ShaderGraph"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "ShaderGraph Node Group",
+    "symbolKind": "dictionary",
+    "title": "Procedural"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Procedural nodes to manage constant values within your graph. Configure a Procedural node with a constant value in the Reality Composer Pro inspector, and use it as an input to other nodes. You can also use the input side of the node to store values from other parts of your graph.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph": {
+      "abstract": [
+        {
+          "text": "Create custom materials and effects for 3D content in Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShaderGraph",
+      "type": "topic",
+      "url": "/documentation/shadergraph"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Procedural": {
+      "abstract": [
+        {
+          "text": "Generate 2D gradients, noise, and other patterns programmatically for your material.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Procedural",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "2D-Procedural",
+      "type": "topic",
+      "url": "/documentation/shadergraph/2d-procedural"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture": {
+      "abstract": [
+        {
+          "text": "Load and configure 2D texture files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "2D-Texture",
+      "type": "topic",
+      "url": "/documentation/shadergraph/2d-texture"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural": {
+      "abstract": [
+        {
+          "text": "Generate 3D noise patterns programmatically for your material.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "3D-Procedural",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Texture": {
+      "abstract": [
+        {
+          "text": "Project multiple 2D images onto a surface to create a 3D texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Texture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "3D-Texture",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-texture"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Adjustment": {
+      "abstract": [
+        {
+          "text": "Modify or convert values, or ranges of values, from one form to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Adjustment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Adjustment",
+      "type": "topic",
+      "url": "/documentation/shadergraph/adjustment"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Application": {
+      "abstract": [
+        {
+          "text": "Get system values such as the current time or the direction of the up vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Application",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Application",
+      "type": "topic",
+      "url": "/documentation/shadergraph/application"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing": {
+      "abstract": [
+        {
+          "text": "Generate a single output from the combination of multiple data values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Compositing",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Data": {
+      "abstract": [
+        {
+          "text": "Convert data values to different formats, or manipulate individual elements within a data structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/shadergraph/data"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Geometric": {
+      "abstract": [
+        {
+          "text": "Access scene geometry while your graph runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Geometric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Geometric",
+      "type": "topic",
+      "url": "/documentation/shadergraph/geometric"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Logic": {
+      "abstract": [
+        {
+          "text": "Perform Boolean operations and other logical comparisons on data values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Logic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Logic",
+      "type": "topic",
+      "url": "/documentation/shadergraph/logic"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Material": {
+      "abstract": [
+        {
+          "text": "Encapsulate a set of shader graph nodes into a single module.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Material",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/shadergraph/material"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math": {
+      "abstract": [
+        {
+          "text": "Perform a wide variety of mathematical and transformative operations on data values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Math",
+      "type": "topic",
+      "url": "/documentation/shadergraph/math"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Organization": {
+      "abstract": [
+        {
+          "text": "Modify the visual flow of data within your graph without changing any values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Organization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Organization",
+      "type": "topic",
+      "url": "/documentation/shadergraph/organization"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural": {
+      "abstract": [
+        {
+          "text": "Add a constant number, vector, matrix, color, string, or other value to your graph.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Procedural",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Boolean": {
+      "abstract": [
+        {
+          "text": "A constant boolean (true/false) value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Boolean",
+      "images": [
+        {
+          "identifier": "purple.switch.2.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Boolean",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/boolean"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Color3-(Float)": {
+      "abstract": [
+        {
+          "text": "A constant Color3 (Float) value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Color3-(Float)",
+      "images": [
+        {
+          "identifier": "purple.paintpalette.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Color3 (Float)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/color3-(float)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Color4-(Float)": {
+      "abstract": [
+        {
+          "text": "A constant Color4 (Float) value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Color4-(Float)",
+      "images": [
+        {
+          "identifier": "purple.paintpalette.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Color4 (Float)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/color4-(float)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Float": {
+      "abstract": [
+        {
+          "text": "A constant floating-point numeric value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Float",
+      "images": [
+        {
+          "identifier": "purple.number.square.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/float"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Half": {
+      "abstract": [
+        {
+          "text": "A constant half-precision floating-point numeric value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Half",
+      "images": [
+        {
+          "identifier": "purple.number.square.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Half",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/half"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Image-File": {
+      "abstract": [
+        {
+          "text": "A constant path refering to an arbitrary image file on disk.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Image-File",
+      "images": [
+        {
+          "identifier": "purple.photo.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Image File",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/image-file"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer": {
+      "abstract": [
+        {
+          "text": "A constant integer numeric value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer",
+      "images": [
+        {
+          "identifier": "purple.number.square.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Integer",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/integer"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer2": {
+      "abstract": [
+        {
+          "text": "A constant Integer2 value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer2",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Integer2",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/integer2"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer3": {
+      "abstract": [
+        {
+          "text": "A constant Integer3 value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer3",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Integer3",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/integer3"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer4": {
+      "abstract": [
+        {
+          "text": "A constant Integer4 value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer4",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Integer4",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/integer4"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Matrix2x2-(Float)": {
+      "abstract": [
+        {
+          "text": "A constant Matrix2x2 (Float) value. (Row-major order.)",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Matrix2x2-(Float)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Matrix2x2 (Float)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/matrix2x2-(float)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Matrix3x3-(Float)": {
+      "abstract": [
+        {
+          "text": "A constant Matrix3x3 (Float) value. (Row-major order.)",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Matrix3x3-(Float)",
+      "images": [
+        {
+          "identifier": "purple.arrow.up.and.down.and.arrow.left.and.right.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Matrix3x3 (Float)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/matrix3x3-(float)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Matrix4x4-(Float)": {
+      "abstract": [
+        {
+          "text": "A constant Matrix4x4 (Float) value. (Row-major order.)",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Matrix4x4-(Float)",
+      "images": [
+        {
+          "identifier": "purple.move.3d.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Matrix4x4 (Float)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/matrix4x4-(float)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/String": {
+      "abstract": [
+        {
+          "text": "A constant string (text) value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/String",
+      "images": [
+        {
+          "identifier": "purple.textformat.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/string"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector2-(Float)": {
+      "abstract": [
+        {
+          "text": "A constant Vector2 (Float) value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector2-(Float)",
+      "images": [
+        {
+          "identifier": "purple.line.diagonal.arrow.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Vector2 (Float)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/vector2-(float)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector2-(Half)": {
+      "abstract": [
+        {
+          "text": "A constant half-precision floating-point Vector2 numeric value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector2-(Half)",
+      "images": [
+        {
+          "identifier": "purple.line.diagonal.arrow.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Vector2 (Half)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/vector2-(half)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector3-(Float)": {
+      "abstract": [
+        {
+          "text": "A constant Vector3 (Float) value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector3-(Float)",
+      "images": [
+        {
+          "identifier": "purple.line.diagonal.arrow.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Vector3 (Float)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/vector3-(float)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector3-(Half)": {
+      "abstract": [
+        {
+          "text": "A constant half-precision floating-point Vector3 numeric value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector3-(Half)",
+      "images": [
+        {
+          "identifier": "purple.line.diagonal.arrow.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Vector3 (Half)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/vector3-(half)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector4-(Float)": {
+      "abstract": [
+        {
+          "text": "A constant Vector4 (Float) value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector4-(Float)",
+      "images": [
+        {
+          "identifier": "purple.line.diagonal.arrow.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Vector4 (Float)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/vector4-(float)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector4-(Half)": {
+      "abstract": [
+        {
+          "text": "A constant half-precision floating-point Vector4 numeric value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector4-(Half)",
+      "images": [
+        {
+          "identifier": "purple.line.diagonal.arrow.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Vector4 (Half)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/procedural/vector4-(half)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit": {
+      "abstract": [
+        {
+          "text": "Add RealityKit surfaces or textures to your material and access and manipulate scene geometry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/surface": {
+      "abstract": [
+        {
+          "text": "Generate a MaterialX preview surface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/surface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Surface",
+      "type": "topic",
+      "url": "/documentation/shadergraph/surface"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "purple.arrow.up.and.down.and.arrow.left.and.right.png": {
+      "alt": "nil",
+      "identifier": "purple.arrow.up.and.down.and.arrow.left.and.right.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/951062370d2f157c82015a20d8a39cb0/purple.arrow.up.and.down.and.arrow.left.and.right.png"
+        }
+      ]
+    },
+    "purple.line.diagonal.arrow.png": {
+      "alt": "nil",
+      "identifier": "purple.line.diagonal.arrow.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f3e7a1fa8d819303e9700a04b4b31df5/purple.line.diagonal.arrow.png"
+        }
+      ]
+    },
+    "purple.move.3d.png": {
+      "alt": "nil",
+      "identifier": "purple.move.3d.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4902c8d6aaaa527dc78c222a63b8ad94/purple.move.3d.png"
+        }
+      ]
+    },
+    "purple.number.square.png": {
+      "alt": "nil",
+      "identifier": "purple.number.square.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6349516b19f7b3e739f248202dfea699/purple.number.square.png"
+        }
+      ]
+    },
+    "purple.paintpalette.png": {
+      "alt": "nil",
+      "identifier": "purple.paintpalette.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/43130fa4addf11b058c8e3da59a1b4e3/purple.paintpalette.png"
+        }
+      ]
+    },
+    "purple.photo.png": {
+      "alt": "nil",
+      "identifier": "purple.photo.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6dd5b45641ddcdb21d8b2cb3c6e7c318/purple.photo.png"
+        }
+      ]
+    },
+    "purple.scribble.variable.png": {
+      "alt": "nil",
+      "identifier": "purple.scribble.variable.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1c8425513fe53762d457b1ee08fa4dca/purple.scribble.variable.png"
+        }
+      ]
+    },
+    "purple.switch.2.png": {
+      "alt": "nil",
+      "identifier": "purple.switch.2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9f7df61f17e5af709545cfd5ae40385d/purple.switch.2.png"
+        }
+      ]
+    },
+    "purple.textformat.png": {
+      "alt": "nil",
+      "identifier": "purple.textformat.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76dae0fa16452a5231014b7c687b0860/purple.textformat.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Node-Categories",
+      "generated": true,
+      "identifiers": [
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Procedural",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Texture",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Adjustment",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Application",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Data",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Geometric",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Logic",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Material",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Math",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Organization",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/surface"
+      ],
+      "title": "Node Categories"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Nodes",
+      "identifiers": [
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Float",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Color3-(Float)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Color4-(Float)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector2-(Float)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector3-(Float)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector4-(Float)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Boolean",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Matrix3x3-(Float)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Matrix4x4-(Float)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/String",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Image-File",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Half",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector2-(Half)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector3-(Half)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Vector4-(Half)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Matrix2x2-(Float)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer2",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer3",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Procedural/Integer4"
+      ],
+      "title": "Nodes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shadergraph/procedural"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

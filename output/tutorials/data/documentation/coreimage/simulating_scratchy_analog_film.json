@@ -1,0 +1,1143 @@
+{
+  "abstract": [
+    {
+      "text": "Degrade the quality of an image to make it look like dated, analog film.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film"
+  },
+  "kind": "article",
+  "legacy_identifier": 2953439,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Simulating Scratchy Analog Film"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228402-sepiatone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter changes the tint of an image to a reddish-brownish hue resembling old analog photographs. You can enhance the effect by applying random specks and scratches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2959650",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Combine filtered white noise with dark scratches to the ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "CISepiaTone",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " filter to create an old analog film effect",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2959650",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following steps leverage built-in Core Image filters to tint and texture an image to look as if it were analog film:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apply the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228402-sepiatone",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " filter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create randomly varying white specks to simulate grain. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create randomly varying dark scratches to simulate scratchy film. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Composite the speckle image and scratches onto the sepia-toned image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2953506",
+          "level": 3,
+          "text": "Apply the Sepia Tone Filter to the Original Image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tint the original image by applying the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228402-sepiatone",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sepiaFilter = CIFilter.sepiaTone()",
+            "sepiaFilter.inputImage = inputImage",
+            "sepiaFilter.intensity = 1.0",
+            "let sepiaCIImage = sepiaFilter.outputImage"
+          ],
+          "metadata": {
+            "anchor": "2953582",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2953505",
+          "level": 3,
+          "text": "Simulate Grain by Creating Randomly Varying Specks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the output of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228396-randomgenerator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter to generate images containing random noise. Even though the noise pattern isn’t customizable in size, you can extend and crop it to fit the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The image output from ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228396-randomgenerator",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " is always the same; even if you reseed your random number generator, the image output from this filter is always the same 512x512 pattern. However, it’s suitable for giving the appearance of randomness. For truly random noise generation, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The filter takes no inputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let colorNoise = CIFilter.randomGenerator()",
+            "let noiseImage = colorNoise.outputImage"
+          ],
+          "metadata": {
+            "anchor": "2953585",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, apply a whitening effect by chaining the noise output to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228294-colormatrix",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter. This built-in filter multiplies the noise color values individually and applies a bias to each component. For white grain, apply whitening to the y-component of RGB and no bias. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let whitenVector = CIVector(x: 0, y: 1, z: 0, w: 0)",
+            "let fineGrain = CIVector(x:0, y:0.005, z:0, w:0)",
+            "let zeroVector = CIVector(x: 0, y: 0, z: 0, w: 0)",
+            "let whiteningFilter = CIFilter.colorMatrix()",
+            "whiteningFilter.inputImage = noiseImage",
+            "whiteningFilter.rVector = whitenVector",
+            "whiteningFilter.gVector = whitenVector",
+            "whiteningFilter.bVector = whitenVector",
+            "whiteningFilter.aVector = fineGrain",
+            "whiteningFilter.biasVector = zeroVector",
+            "let whiteSpecks = whiteningFilter.outputImage"
+          ],
+          "metadata": {
+            "anchor": "2953583",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "whiteSpecks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resulting from this filter have the appearance of spotty grain when viewed as an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2960179",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "White speckle grain created from a whitening ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "CIColorMatrix",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " applied to ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "CIRandomGenerator",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " noise",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2960179",
+                "title": "Figure 2"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the grainy image by compositing the whitened noise as input over the sepia-toned source image using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228412-sourceovercompositing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let speckCompositor = CIFilter.sourceOverCompositing()",
+            "speckCompositor.inputImage = whiteSpecks",
+            "speckCompositor.backgroundImage = sepiaCIImage",
+            "let speckledImage = speckCompositor.outputImage"
+          ],
+          "metadata": {
+            "anchor": "2953584",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2953507",
+          "level": 3,
+          "text": "Simulate Scratch by Scaling Randomly Varying Noise",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The process for applying random-looking scratches is the same as the technique used in the white grain: color the output of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228396-randomgenerator",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make the speckle resemble scratches, scale the random noise output vertically by applying a scaling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let verticalScale = CGAffineTransform(scaleX: 1.5, y: 25)",
+            "let transformedNoise = noiseImage.transformed(by: verticalScale)"
+          ],
+          "metadata": {
+            "anchor": "2953588",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Previously, you whitened the speckle image by applying the ",
+              "type": "text"
+            },
+            {
+              "code": "CIColorMatrix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filter evenly across all color components.  For the dark scratches, instead focus on only the red component, setting the other vector inputs to zero.  This time, instead of multiplying the green, blue, and alpha channels, add bias ",
+              "type": "text"
+            },
+            {
+              "code": "(0, 1, 1, 1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let darkenVector = CIVector(x: 4, y: 0, z: 0, w: 0)",
+            "let darkenBias = CIVector(x: 0, y: 1, z: 1, w: 1)",
+            "let darkeningFilter = CIFilter.colorMatrix()",
+            "darkeningFilter.inputImage = noiseImage",
+            "darkeningFilter.rVector = darkenVector",
+            "darkeningFilter.gVector = zeroVector",
+            "darkeningFilter.bVector = zeroVector",
+            "darkeningFilter.aVector = zeroVector",
+            "darkeningFilter.biasVector = darkenBias",
+            "let randomScratches = darkeningFilter.outputImage.outputImage"
+          ],
+          "metadata": {
+            "anchor": "2953586",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting scratches are cyan, so grayscale them using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228360-minimumcomponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter, which takes the minimum of the RGB values to produce a grayscale image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let grayscaleFilter = CIFilter.minimumComponent()",
+            "grayscaleFilter.inputImage = randomScratches",
+            "let darkScratches = grayscaleFilter.outputImage"
+          ],
+          "metadata": {
+            "anchor": "2953587",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The grayscale filter produces random lines that resemble dark scratches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2960180",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Dark scratches created from a darkening ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "CIColorMatrix",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " applied to ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "CIRandomGenerator",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " noise",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2960180",
+                "title": "Figure 3"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2953504",
+          "level": 3,
+          "text": "Composite the Specks and Scratches to the Sepia Image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that the components are set, you can add the scratches to the grainy sepia image produced earlier.  However, unlike the grainy texture, the scratches impact the image multiplicatively.  Instead of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228412-sourceovercompositing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter, which composites source over background, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228371-multiplycompositing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter to compose the scratches multiplicatively.  Set the scratched image as the filter’s input image, and tab the speckle-composited sepia image as the input background image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let oldFilmCompositor = CIFilter.multiplyCompositing()",
+            "oldFilmCompositor.inputImage = darkScratches",
+            "oldFilmCompositor.backgroundImage = speckledImage",
+            "let oldFilmImage = oldFilmCompositor.outputImage"
+          ],
+          "metadata": {
+            "anchor": "2953590",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since the noise images had different dimensions than the source image, crop the composited result to the original image size to remove excess beyond the original extent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let finalImage = oldFilmImage.cropped(to: inputImage.extent)"
+          ],
+          "metadata": {
+            "anchor": "2953589",
+            "title": "Listing 9"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The cropped image represents the final result: a sepia-toned image with simulated grain and scratches composited to give it an analog film appearance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2959656",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Final result of ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "CIMultiplyCompositing",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " the source image with grain and scratches.",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2959656",
+                "title": "Figure 4"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransform",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/applying_a_chroma_key_effect": {
+      "abstract": [
+        {
+          "text": "Replace a color in one image with the background from another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/applying_a_chroma_key_effect",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying a Chroma Key Effect",
+      "type": "topic",
+      "url": "/documentation/coreimage/applying_a_chroma_key_effect"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228294-colormatrix": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228294-colormatrix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorMatrix()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228294-colormatrix"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228360-minimumcomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228360-minimumcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumComponent()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228360-minimumcomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228371-multiplycompositing": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228371-multiplycompositing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiplyCompositing()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228371-multiplycompositing"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228396-randomgenerator": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228396-randomgenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "randomGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228396-randomgenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228402-sepiatone": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228402-sepiatone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sepiaTone()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228402-sepiatone"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228412-sourceovercompositing": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228412-sourceovercompositing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceOverCompositing()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228412-sourceovercompositing"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/customizing_image_transitions": {
+      "abstract": [
+        {
+          "text": "Transition between images in creative ways using Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/customizing_image_transitions",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing Image Transitions",
+      "type": "topic",
+      "url": "/documentation/coreimage/customizing_image_transitions"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/selectively_focusing_on_an_image": {
+      "abstract": [
+        {
+          "text": "Focus on a part of an image by applying Gaussian blur and gradient masks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/selectively_focusing_on_an_image",
+      "kind": "article",
+      "role": "article",
+      "title": "Selectively Focusing on an Image",
+      "type": "topic",
+      "url": "/documentation/coreimage/selectively_focusing_on_an_image"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film": {
+      "abstract": [
+        {
+          "text": "Degrade the quality of an image to make it look like dated, analog film.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film",
+      "kind": "article",
+      "role": "article",
+      "title": "Simulating Scratchy Analog Film",
+      "type": "topic",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953582": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953582",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2953582"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953583": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953583",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2953583"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953584": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953584",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2953584"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953585": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953585",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2953585"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953586": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953586",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2953586"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953587": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953587",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2953587"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953588": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953588",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2953588"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953589": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953589",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2953589"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953590": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film#2953590",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2953590"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit": {
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "GameplayKit",
+      "type": "topic",
+      "url": "/documentation/gameplaykit"
+    },
+    "link-media-2959650": {
+      "identifier": "link-media-2959650",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2959650"
+    },
+    "link-media-2959656": {
+      "identifier": "link-media-2959656",
+      "title": "Figure 4",
+      "type": "link",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2959656"
+    },
+    "link-media-2960179": {
+      "identifier": "link-media-2960179",
+      "title": "Figure 2",
+      "type": "link",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2960179"
+    },
+    "link-media-2960180": {
+      "identifier": "link-media-2960180",
+      "title": "Figure 3",
+      "type": "link",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film#2960180"
+    },
+    "media-2959650": {
+      "abstract": [
+        {
+          "text": "Combine filtered white noise with dark scratches to the ",
+          "type": "text"
+        },
+        {
+          "code": "CISepiaTone",
+          "type": "codeVoice"
+        },
+        {
+          "text": " filter to create an old analog film effect",
+          "type": "text"
+        }
+      ],
+      "alt": "Compositing scratchy analog film by compositing results from CIFilter objects",
+      "identifier": "media-2959650",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1fe35365cb/687b0540-b9c6-43ea-a3b4-56e5d5467090.png"
+        },
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ff3a7d4dd8/6b723dd2-af59-4a0c-a87a-5bb486d55441.png"
+        }
+      ]
+    },
+    "media-2959656": {
+      "abstract": [
+        {
+          "text": "Final result of ",
+          "type": "text"
+        },
+        {
+          "code": "CIMultiplyCompositing",
+          "type": "codeVoice"
+        },
+        {
+          "text": " the source image with grain and scratches.",
+          "type": "text"
+        }
+      ],
+      "alt": "Sepia-toned image of fruit augmented with speckle grain and dark scratches.",
+      "identifier": "media-2959656",
+      "title": "Figure 4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7732402b70/2959656@2x.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3bc2e8581a/2959656~dark@2x.png"
+        }
+      ]
+    },
+    "media-2960179": {
+      "abstract": [
+        {
+          "text": "White speckle grain created from a whitening ",
+          "type": "text"
+        },
+        {
+          "code": "CIColorMatrix",
+          "type": "codeVoice"
+        },
+        {
+          "text": " applied to ",
+          "type": "text"
+        },
+        {
+          "code": "CIRandomGenerator",
+          "type": "codeVoice"
+        },
+        {
+          "text": " noise",
+          "type": "text"
+        }
+      ],
+      "alt": "Image of white dots on a transaprent background, used to simulate grain on an old photo",
+      "identifier": "media-2960179",
+      "title": "Figure 2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1f02fba474/2960179@2x.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba500c44cd/2960179~dark@2x.png"
+        }
+      ]
+    },
+    "media-2960180": {
+      "abstract": [
+        {
+          "text": "Dark scratches created from a darkening ",
+          "type": "text"
+        },
+        {
+          "code": "CIColorMatrix",
+          "type": "codeVoice"
+        },
+        {
+          "text": " applied to ",
+          "type": "text"
+        },
+        {
+          "code": "CIRandomGenerator",
+          "type": "codeVoice"
+        },
+        {
+          "text": " noise",
+          "type": "text"
+        }
+      ],
+      "alt": "Image of black lines on a white background, used to simulate scratches on an old photo",
+      "identifier": "media-2960180",
+      "title": "Figure 3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bff31900ad/2960180@2x.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83b97798d9/2960180~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/applying_a_chroma_key_effect",
+        "doc://com.apple.documentation/documentation/coreimage/selectively_focusing_on_an_image",
+        "doc://com.apple.documentation/documentation/coreimage/customizing_image_transitions"
+      ],
+      "title": "Filter Recipes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/simulating_scratchy_analog_film"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/simulating_scratchy_analog_film"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

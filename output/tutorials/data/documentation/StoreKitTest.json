@@ -1,0 +1,1515 @@
+{
+  "abstract": [
+    {
+      "text": "Create and automate tests in Xcode for your app’s subscription and in-app purchase transactions, and SKAdNetwork implementations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekittest/documentation/StoreKitTest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "StoreKitTest",
+    "modules": [
+      {
+        "name": "StoreKit Test"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "7.4",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "StoreKit Test"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The StoreKitTest framework makes StoreKit testing in Xcode available for automation. Use this framework to write unit tests and continuous integration tests. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to control the test environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For testing in-app purchase transactions, use ",
+              "type": "text"
+            },
+            {
+              "code": "SKTestSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each instance of ",
+              "type": "text"
+            },
+            {
+              "code": "SKTestSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " gives you access to the same settings you manually change for StoreKit testing in Xcode. Use this class to test a variety of in-app purchase scenarios, such as subscription renewals and Ask to Buy transactions, and maintain control over the transactions in the testing environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For testing ad impressions and postbacks, use ",
+              "type": "text"
+            },
+            {
+              "code": "SKAdTestSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each instance of ",
+              "type": "text"
+            },
+            {
+              "code": "SKAdTestSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " holds a set of test postbacks that you create and can use in multiple unit tests. Ad networks that use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKAdNetwork",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs can use this class to validate the ad impressions that they sign, and test receiving postbacks on their server. Advertised apps can test their conversion value updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Testing StoreKit in iOS, watchOS, or tvOS apps requires Xcode 12 or later running on macOS 10.15 or later. Testing StoreKit in a macOS app requires Xcode 12 or later running on macOS 11 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10659 : ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc20/10659",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related session from WWDC20",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/StoreKit/SKAdNetwork": {
+      "abstract": [
+        {
+          "text": "A class that validates advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKAdNetwork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKAdNetwork",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKAdNetwork"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode": {
+      "abstract": [
+        {
+          "text": "Prepare your test environment to test in-app purchases with data you configure locally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up StoreKit Testing in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/setting-up-storekit-testing-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest": {
+      "abstract": [
+        {
+          "text": "Create and automate tests in Xcode for your app’s subscription and in-app purchase transactions, and SKAdNetwork implementations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit Test",
+      "type": "topic",
+      "url": "/documentation/storekittest"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/FailableStoreKitAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FailableStoreKitAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/FailableStoreKitAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FailableStoreKitAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FailableStoreKitAPI",
+      "type": "topic",
+      "url": "/documentation/storekittest/failablestorekitapi"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestError": {
+      "abstract": [
+        {
+          "text": "An error the testing environment returns for SKAdNetwork testing errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdTestError"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdTestError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestError",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtesterror"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestError/Code": {
+      "abstract": [
+        {
+          "text": "Enumerated error codes related to ad network testing in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestError.Code",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtesterror/code"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestErrorDomain": {
+      "abstract": [
+        {
+          "text": "A string that identifies the error domain for SKAdNetwork testing in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdTestErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdTestErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestErrorDomain",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtesterrordomain"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostback": {
+      "abstract": [
+        {
+          "text": "A test postback that contains ad conversion information in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostback"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostback"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestPostback",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtestpostback"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackResponse": {
+      "abstract": [
+        {
+          "text": "The status and error information for a postback that the system sends in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostbackResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostbackResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestPostbackResponse",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtestpostbackresponse"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackVersion": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the postback version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostbackVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdTestPostbackVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestPostbackVersion",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtestpostbackversion"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestSession": {
+      "abstract": [
+        {
+          "text": "The class you use to test ad impressions and postbacks in Xcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdTestSession"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdTestSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdTestSession",
+      "type": "topic",
+      "url": "/documentation/storekittest/skadtestsession"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestError": {
+      "abstract": [
+        {
+          "text": "Information about an error that the testing environment returns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTestError"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTestError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTestError",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktesterror"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestError/Code": {
+      "abstract": [
+        {
+          "text": "Error codes in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTestError.Code",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktesterror/code"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestErrorDomain": {
+      "abstract": [
+        {
+          "text": "A constant that represents the domain for error codes in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTestErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTestErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTestErrorDomain",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktesterrordomain"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestFailure": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTestFailure"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestFailure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTestFailure"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTestFailure",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestfailure"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestFailures": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTestFailures"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestFailures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTestFailures"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTestFailures",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestfailures"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession": {
+      "abstract": [
+        {
+          "text": "The controls and environment configuration you use to test StoreKit transactions in Xcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTestSession"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTestSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTestSession",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestTransaction": {
+      "abstract": [
+        {
+          "text": "A transaction that occurs in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTestTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTestTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTestTransaction",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktesttransaction"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitAppStoreSyncAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreKitAppStoreSyncAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitAppStoreSyncAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreKitAppStoreSyncAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreKitAppStoreSyncAPI",
+      "type": "topic",
+      "url": "/documentation/storekittest/storekitappstoresyncapi"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitAppTransactionAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreKitAppTransactionAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitAppTransactionAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreKitAppTransactionAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreKitAppTransactionAPI",
+      "type": "topic",
+      "url": "/documentation/storekittest/storekitapptransactionapi"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitLoadProductsAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreKitLoadProductsAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitLoadProductsAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreKitLoadProductsAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreKitLoadProductsAPI",
+      "type": "topic",
+      "url": "/documentation/storekittest/storekitloadproductsapi"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitManageSubscriptionsAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreKitManageSubscriptionsAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitManageSubscriptionsAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreKitManageSubscriptionsAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreKitManageSubscriptionsAPI",
+      "type": "topic",
+      "url": "/documentation/storekittest/storekitmanagesubscriptionsapi"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitOfferCodeRedeemAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreKitOfferCodeRedeemAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitOfferCodeRedeemAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreKitOfferCodeRedeemAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreKitOfferCodeRedeemAPI",
+      "type": "topic",
+      "url": "/documentation/storekittest/storekitoffercoderedeemapi"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitPurchaseAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreKitPurchaseAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitPurchaseAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreKitPurchaseAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreKitPurchaseAPI",
+      "type": "topic",
+      "url": "/documentation/storekittest/storekitpurchaseapi"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitRefundRequestAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreKitRefundRequestAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitRefundRequestAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreKitRefundRequestAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreKitRefundRequestAPI",
+      "type": "topic",
+      "url": "/documentation/storekittest/storekitrefundrequestapi"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitSubscriptionStatusAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreKitSubscriptionStatusAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitSubscriptionStatusAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreKitSubscriptionStatusAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreKitSubscriptionStatusAPI",
+      "type": "topic",
+      "url": "/documentation/storekittest/storekitsubscriptionstatusapi"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitVerificationAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreKitVerificationAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitVerificationAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreKitVerificationAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreKitVerificationAPI",
+      "type": "topic",
+      "url": "/documentation/storekittest/storekitverificationapi"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork": {
+      "abstract": [
+        {
+          "text": "Validate your ad impressions and test your postbacks by creating unit tests using the StoreKit Test framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Testing and validating ad impression signatures and postbacks for SKAdNetwork",
+      "type": "topic",
+      "url": "/documentation/storekittest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork"
+    },
+    "https://developer.apple.com/wwdc20/10659": {
+      "identifier": "https://developer.apple.com/wwdc20/10659",
+      "title": "Introducing StoreKit testing in Xcode",
+      "titleInlineContent": [
+        {
+          "text": "Introducing StoreKit testing in Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc20/10659"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "StoreKit-transaction-testing",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestTransaction"
+      ],
+      "title": "StoreKit transaction testing"
+    },
+    {
+      "anchor": "StoreKit-transaction-testing-errors",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestErrorDomain",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestError"
+      ],
+      "title": "StoreKit transaction testing errors"
+    },
+    {
+      "anchor": "Ad-impression-and-postback-testing",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestSession",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostback",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackResponse",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackVersion"
+      ],
+      "title": "Ad impression and postback testing"
+    },
+    {
+      "anchor": "Ad-impression-and-postback-errors",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestErrorDomain",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestError"
+      ],
+      "title": "Ad impression and postback errors"
+    },
+    {
+      "anchor": "Structures",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitAppStoreSyncAPI",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitAppTransactionAPI",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitLoadProductsAPI",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitManageSubscriptionsAPI",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitOfferCodeRedeemAPI",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitPurchaseAPI",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitRefundRequestAPI",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitSubscriptionStatusAPI",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/StoreKitVerificationAPI"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestFailures"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Protocols",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/FailableStoreKitAPI",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestFailure"
+      ],
+      "title": "Protocols"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "StoreKit-transaction-testing",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestTransaction"
+              ],
+              "title": "StoreKit transaction testing"
+            },
+            {
+              "anchor": "StoreKit-transaction-testing-errors",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestErrorDomain",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestError/Code"
+              ],
+              "title": "StoreKit transaction testing errors"
+            },
+            {
+              "anchor": "Ad-impression-and-postback-testing",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestSession",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostback",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackResponse",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestPostbackVersion"
+              ],
+              "title": "Ad impression and postback testing"
+            },
+            {
+              "anchor": "Ad-impression-and-postback-errors",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestErrorDomain",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKAdTestError/Code"
+              ],
+              "title": "Ad impression and postback errors"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestErrorDomain/title",
+          "value": "SKAdTestErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackResponse/title",
+          "value": "SKAdTestPostbackResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostbackResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostbackResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestError~1Code/title",
+          "value": "SKAdTestErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKAdNetwork/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestError~1Code/title",
+          "value": "SKTestErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestErrorDomain/title",
+          "value": "SKTestErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestTransaction/title",
+          "value": "SKTestTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestTransaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestSession/title",
+          "value": "SKAdTestSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostback/title",
+          "value": "SKAdTestPostback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession/title",
+          "value": "SKTestSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackVersion/title",
+          "value": "SKAdTestPostbackVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostbackVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKAdTestPostbackVersion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdTestPostbackVersion"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekittest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekittest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

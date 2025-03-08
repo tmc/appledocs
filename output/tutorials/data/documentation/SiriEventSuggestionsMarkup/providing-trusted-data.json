@@ -1,0 +1,302 @@
+{
+  "abstract": [
+    {
+      "text": "Sign your content and avoid sending unnecessary or inaccurate information.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/providing-trusted-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Siri Event Suggestions Markup"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Providing Trusted Data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid cluttering the user’s calendar, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " only for events that the user has booked. The system also protects the integrity of reservation data by employing security measures to ensure that no one can impersonate your domain to put events on the user’s calendar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-Reliable-Events-in-Webpages",
+          "level": 3,
+          "text": "Provide Reliable Events in Webpages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only provide markup with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "ReservationConfirmed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on a webpage that includes a confirmed reservation. For example, a page that prompts the user to select their seat before your service finalizes the transaction should use a different ",
+              "type": "text"
+            },
+            {
+              "code": "reservationStatus",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or not include markup at all. Similarly, a promotional page that advertises a booking the user could make shouldn’t include markup with a ",
+              "type": "text"
+            },
+            {
+              "code": "reservationStatus",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "ReservationConfirmed",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Use HTTPS for connections to your service so that Siri can provide trusted information to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-Reliable-Events-in-Emails",
+          "level": 3,
+          "text": "Provide Reliable Events in Emails",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide markup with an accurate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in emails confirming, updating, or canceling a reservation. Don’t provide reservation markup in other emails from your service, such as advertisements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your reservation emails must comply with these security measures:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a static email address in the From field of the email.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign your emails with DKIM. The DKIM key must be at least 1024 bits and hashed with SHA-256.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the top-level domain hosting the public key used for the DKIM signature matches the top-level domain of the email address in the From field of the email.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup": {
+      "abstract": [
+        {
+          "text": "Update users’ calendars and inform suggestions from Siri with reservation data embedded in email and webpages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Siri Event Suggestions Markup",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/checking-your-reservation-markup": {
+      "abstract": [
+        {
+          "text": "Preview your reservation event data before the Allow List includes your domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/checking-your-reservation-markup",
+      "kind": "article",
+      "role": "article",
+      "title": "Checking Your Reservation Markup",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/checking-your-reservation-markup"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationStatus": {
+      "abstract": [
+        {
+          "text": "A string indicating that the reservation has been confirmed or canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "reservationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reservationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "reservationStatus",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/reservationstatus"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/checking-your-reservation-markup"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirieventsuggestionsmarkup/providing-trusted-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

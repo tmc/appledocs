@@ -1,0 +1,2051 @@
+{
+  "abstract": [
+    {
+      "text": "An object that provides an animated transition between a layer’s states.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartzcore/documentation/QuartzCore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CATransition",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CATransition"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Animation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CATransition"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CATransition"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CATransition"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can transition between a layer’s states by creating and adding a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to it. The default transition is a cross fade, but you can specify different effects from a set of predefined transitions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how you can transition between the two states of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " named ",
+              "type": "text"
+            },
+            {
+              "code": "transitioningLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When the layer is first created, its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer/backgroundColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is set to red and its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer/string",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is set to ",
+              "type": "text"
+            },
+            {
+              "code": "Red",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When the ",
+              "type": "text"
+            },
+            {
+              "code": "runTransition()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function is called, a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is created and added to ",
+              "type": "text"
+            },
+            {
+              "code": "transitioningLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the state of the layer is changed so that its background color is blue and its rendered text reads ",
+              "type": "text"
+            },
+            {
+              "code": "Blue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The end result is that the push transition animates the red state from left to right with the blue state entering the scene from the left.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let transitioningLayer = CATextLayer()",
+            "     ",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    transitioningLayer.frame = CGRect(x: 10, y: 10,",
+            "                                      width: 320, height: 160)",
+            "    ",
+            "    view.layer.addSublayer(transitioningLayer)",
+            "    ",
+            "    // Initial \"red\" state",
+            "    transitioningLayer.backgroundColor = UIColor.red.cgColor",
+            "    transitioningLayer.string = \"Red\"",
+            "}",
+            "      ",
+            "   ",
+            "func runTransition() {",
+            "    let transition = CATransition()",
+            "    transition.duration = 2",
+            "    ",
+            "    transition.type = kCATransitionPush",
+            "    ",
+            "    transitioningLayer.add(transition,",
+            "                           forKey: \"transition\")",
+            "    ",
+            "    // Transition to \"blue\" state",
+            "    transitioningLayer.backgroundColor = UIColor.blue.cgColor",
+            "    transitioningLayer.string = \"Blue\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/quartzcore"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAction": {
+      "abstract": [
+        {
+          "text": "An interface that allows instances to respond to actions triggered by a Core Animation layer change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAAction"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAAction",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caaction"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for animations in Core Animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationDelegate": {
+      "abstract": [
+        {
+          "text": "Methods your app can implement to respond when animations start and stop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAAnimationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAAnimationDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAAnimationDelegate",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caanimationdelegate"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CABasicAnimation": {
+      "abstract": [
+        {
+          "text": "An object that provides basic, single-keyframe animation capabilities for a layer property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CABasicAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CABasicAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CABasicAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CABasicAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cabasicanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation": {
+      "abstract": [
+        {
+          "text": "An object that provides keyframe animation capabilities for a layer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAKeyframeAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAKeyframeAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAKeyframeAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cakeyframeanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer/backgroundColor": {
+      "abstract": [
+        {
+          "text": "The background color of the receiver. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer/backgroundColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "backgroundColor",
+      "type": "topic",
+      "url": "/documentation/quartzcore/calayer/backgroundcolor"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming": {
+      "abstract": [
+        {
+          "text": "Methods that model a hierarchical timing system, allowing objects to map time between their parent and local time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMediaTiming",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAPropertyAnimation": {
+      "abstract": [
+        {
+          "text": "An abstract subclass for creating animations that manipulate the value of layer properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAPropertyAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAPropertyAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAPropertyAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAPropertyAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/capropertyanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CASpringAnimation": {
+      "abstract": [
+        {
+          "text": "An animation that applies a spring-like force to a layer’s properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CASpringAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CASpringAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CASpringAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CASpringAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caspringanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer": {
+      "abstract": [
+        {
+          "text": "A layer that provides simple text layout and rendering of plain or attributed strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATextLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CATextLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CATextLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catextlayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer/string": {
+      "abstract": [
+        {
+          "text": "The text to be rendered by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer/string",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "string"
+        }
+      ],
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catextlayer/string"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition": {
+      "abstract": [
+        {
+          "text": "An object that provides an animated transition between a layer’s states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATransition"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CATransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "CATransition",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransition"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/endProgress": {
+      "abstract": [
+        {
+          "text": "Indicates the end point of the receiver as a fraction of the entire transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endProgress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/endProgress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endProgress"
+        }
+      ],
+      "role": "symbol",
+      "title": "endProgress",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransition/endprogress"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/filter": {
+      "abstract": [
+        {
+          "text": "An optional Core Image filter object that provides the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/filter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "filter"
+        }
+      ],
+      "role": "symbol",
+      "title": "filter",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransition/filter"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/startProgress": {
+      "abstract": [
+        {
+          "text": "Indicates the start point of the receiver as a fraction of the entire transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startProgress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/startProgress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startProgress"
+        }
+      ],
+      "role": "symbol",
+      "title": "startProgress",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransition/startprogress"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/subtype": {
+      "abstract": [
+        {
+          "text": "Specifies an optional subtype that indicates the direction for the predefined motion-based transitions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtype"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CATransitionSubtype",
+          "text": "CATransitionSubtype"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/subtype",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subtype"
+        }
+      ],
+      "role": "symbol",
+      "title": "subtype",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransition/subtype"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/type": {
+      "abstract": [
+        {
+          "text": "Specifies the predefined transition type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CATransitionType",
+          "text": "CATransitionType"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransition/type"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAValueFunction": {
+      "abstract": [
+        {
+          "text": "An object that provides a flexible method of defining animated transformations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAValueFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAValueFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAValueFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAValueFunction",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cavaluefunction"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/common-transition-subtypes": {
+      "abstract": [
+        {
+          "text": "These constants specify the direction of motion-based transitions. They are used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/subtype",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/common-transition-subtypes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Transition Subtypes",
+      "type": "topic",
+      "url": "/documentation/quartzcore/common-transition-subtypes"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/common-transition-types": {
+      "abstract": [
+        {
+          "text": "These constants specify the transition types that can be used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/type",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/common-transition-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Transition Types",
+      "type": "topic",
+      "url": "/documentation/quartzcore/common-transition-types"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAAction",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Animation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationDelegate",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAPropertyAnimation",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CABasicAnimation",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CASpringAnimation",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAValueFunction"
+      ],
+      "title": "Animation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Transition-start-and-end-point",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/startProgress",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/endProgress"
+      ],
+      "title": "Transition start and end point"
+    },
+    {
+      "anchor": "Transition-Properties",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/type",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/subtype"
+      ],
+      "title": "Transition Properties"
+    },
+    {
+      "anchor": "Custom-transition-filter",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/filter"
+      ],
+      "title": "Custom transition filter"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/common-transition-types",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/common-transition-subtypes"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CATransition"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartzcore/documentation/QuartzCore"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Transition-start-and-end-point",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/startProgress",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/endProgress"
+              ],
+              "title": "Transition start and end point"
+            },
+            {
+              "anchor": "Transition-Properties",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/type",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/subtype"
+              ],
+              "title": "Transition Properties"
+            },
+            {
+              "anchor": "Custom-transition-filter",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition/filter"
+              ],
+              "title": "Custom transition filter"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/common-transition-types",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/common-transition-subtypes"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Animation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationDelegate",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAPropertyAnimation",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CABasicAnimation",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CASpringAnimation",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAValueFunction"
+              ],
+              "title": "Animation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CATransition"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CAAnimation",
+                    "text": "CAAnimation"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CASpringAnimation/title",
+          "value": "CASpringAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CASpringAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CASpringAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CASpringAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CASpringAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition~1filter/title",
+          "value": "filter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition~1filter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "filter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition/title",
+          "value": "CATransition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer~1string/title",
+          "value": "string"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer~1string/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CABasicAnimation/title",
+          "value": "CABasicAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CABasicAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CABasicAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CABasicAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CABasicAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition~1startProgress/title",
+          "value": "startProgress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition~1startProgress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "startProgress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition~1endProgress/title",
+          "value": "endProgress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition~1endProgress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "endProgress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/title",
+          "value": "CAMediaTiming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer/title",
+          "value": "CATextLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATextLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATextLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition~1subtype/title",
+          "value": "subtype"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition~1subtype/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "subtype"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAPropertyAnimation/title",
+          "value": "CAPropertyAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAPropertyAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAPropertyAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAPropertyAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAPropertyAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimation/title",
+          "value": "CAAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationDelegate/title",
+          "value": "CAAnimationDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAnimationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAnimationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAValueFunction/title",
+          "value": "CAValueFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAValueFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAValueFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAValueFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAValueFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer~1backgroundColor/title",
+          "value": "backgroundColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer~1backgroundColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backgroundColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation/title",
+          "value": "CAKeyframeAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAKeyframeAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAKeyframeAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAction/title",
+          "value": "CAAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartzcore/catransition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartzcore/catransition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

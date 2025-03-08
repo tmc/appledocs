@@ -1,0 +1,4200 @@
+{
+  "abstract": [
+    {
+      "text": "Create a fully immersive experience in visionOS using a custom Metal-based rendering engine.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/drawing-fully-immersive-content-using-metal"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Drawing fully immersive content using Metal"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app draws fully immersive content using Metal, Compositor Services provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a bridge between your SwiftUI code and your Metal rendering engine code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use this framework to present a fully immersive scene that supports Metal rendering.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you present the scene from your app, Compositor Services provides a layer,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which contains the Metal types, textures, and other information you need.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The layer also provides timing information to help you manage your app’s rendering loop",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and deliver frames of content in a timely manner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you don’t use Metal to create a fully immersive experience,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you don’t need to use Compositor Services.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating fully immersive content using Metal, you draw everything the person sees.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The result of your drawing efforts is two images, one for each eye,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create a stereosopic effect when viewed on Apple Vision Pro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the timing information in the layer to render up to 90 frames a second using a custom rendering loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to draw content with Metal, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-immersive-space-for-your-content",
+          "level": 3,
+          "text": "Add an immersive space for your content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present your fully immersive experience, configure your app with an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ImmersiveSpace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " scene that gets its content from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This type provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type you need to set up and run your app’s custom rendering loop.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example shows how to set up the space and your app’s content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the closure for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type, create a new thread to configure and start your app’s render loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct MyApp: App {",
+            "    var body: some Scene {",
+            "        ",
+            "        // Display a fully immersive scene that uses Metal for drawing.",
+            "        ImmersiveSpace(id: \"MyContent\") {",
+            "            CompositorLayer { layerRenderer in",
+            "                // Set up and run the Metal render loop.",
+            "                let renderThread = Thread {",
+            "                    let engine = myEngineCreate(layerRenderer)",
+            "                    myEngineRenderLoop(engine)",
+            "                }",
+            "                renderThread.name = \"Render Thread\"",
+            "                renderThread.start()",
+            "            }",
+            "        }",
+            "",
+            "        // Display a 2D window.",
+            "        WindowGroup {",
+            "            ContentView()",
+            "        }",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t include any style modifiers on a space that contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system automatically configures a space with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " content as fully immersive,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ignores any style modifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, apps don’t display an immersive space immediately at launch.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Transitioning to a fully immersive experience can be jarring if someone isn’t ready for it,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so it’s preferable to display a window first and let someone enter the space when they’re ready.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, if you need to display a space first,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add the ",
+              "type": "text"
+            },
+            {
+              "code": "UIApplicationPreferredDefaultSceneSessionRole",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Set the value of this key to ",
+              "type": "text"
+            },
+            {
+              "code": "CPSceneSessionRoleImmersiveSpaceApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When this key is present, the system displays the first space it finds in your app’s list of scenes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-configuration-of-your-layer",
+          "level": 3,
+          "text": "Customize the configuration of your layer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your Metal rendering engine requires specific texture layouts, pixel formats, or rendering options,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify those details when you configure your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In your scene creation code, pass a type that adopts ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a parameter to your scene content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system uses that information to configure the Metal textures your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you don’t provide a custom configuration, Compositor Services uses a set of default configuration values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify a set of custom options, define a type that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol and implement its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In your implementation of that method, update the default values in the ",
+              "type": "text"
+            },
+            {
+              "code": "configuration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter with your preferred choices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Change only the values you want and leave the other values alone.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Configuration options that are available on a device might not be available in Simulator,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so use the ",
+              "type": "text"
+            },
+            {
+              "code": "capabilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to validate your choices before making them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example changes the pixel format to one that supports HDR values,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and configures the texture layout based on the current foveation setting:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyContentConfiguration: CompositorLayerConfiguration {",
+            "    func makeConfiguration(",
+            "        capabilities: LayerRenderer.Capabilities, ",
+            "        configuration: inout LayerRenderer.Configuration",
+            "    ) {",
+            "        let supportsFoveation = layerCapabilites.supportsFoveation",
+            "        let supportedLayouts = supportedLayouts(options: supportsFoveation ?",
+            "                                                [.foveationEnabled] : [])",
+            "",
+            "        configuration.layout = supportedLayouts.contains(.layered) ? .layered : .dedicated",
+            "        configuration.isFoveationEnabled = supportsFoveation",
+            "",
+            "        // HDR support",
+            "        configuration.colorFormat = .rgba16Float",
+            "",
+            "    }",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apple Vision Pro uses the P3 color space for all pixel color values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use your configuration options for rendering, pass your custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " at initialization time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example modifies the previous scene’s setup code to include custom configuration data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Compositor Services integrates your configuration details into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type it creates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct MyApp: App {",
+            "    var body: some Scene {",
+            "        ",
+            "        ImmersiveSpace(id: \"MyContent\") {",
+            "            CompositorLayer (configuration: MyContentConfiguration()) { layerRenderer in",
+            "                // Set up and run the Metal render loop.",
+            "                let renderThread = Thread {",
+            "                    let engine = myEngineCreate(layerRenderer)",
+            "                    myEngineRenderLoop(engine)",
+            "                }",
+            "                renderThread.name = \"Render Thread\"",
+            "                renderThread.start()",
+            "            }",
+            "        }",
+            "        // Other scenes...",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-your-apps-rendering-loop",
+          "level": 3,
+          "text": "Configure your app’s rendering loop",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app displays a space with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system runs the code you provide.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use that code to configure your Metal rendering engine and spawn a thread for your rendering loop,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but don’t start rendering your content immediately.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, check the state of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type to see if the scene is actually running.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system might leave a scene in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/paused",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state while it confirms",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the person wants to enter the fully immersive experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system changes the state to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/running",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only when it’s ready to display your scene’s content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the logic you might use to check the state of your loop",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each time through your rendering loop.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "While the layer is paused, the code pauses the render loop thread and waits",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "until the layer starts running again.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the system or a person dismisses the scene, the layer moves to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/invalidated",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to let you know it’s time to stop your rendering loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void myEngineRenderLoop(my_engine *engine) {",
+            "    my_engine_setup_render_pipeline(engine);",
+            "",
+            "    bool is_rendering = true;",
+            "    while (is_rendering) @autoreleasepool {",
+            "        switch (cp_layer_renderer_get_state(engine->layer_renderer)) {",
+            "            case cp_layer_renderer_state_paused:",
+            "                // Wait until the scene appears.",
+            "                cp_layer_renderer_wait_until_running(layer);",
+            "                break;",
+            "",
+            "            case cp_layer_renderer_state_running:",
+            "                // Render the next frame.",
+            "                my_engine_render_new_frame(engine);",
+            "                break;",
+            "",
+            "            case cp_layer_renderer_state_invalidated:",
+            "                // Exit the render loop.",
+            "                is_rendering = false;",
+            "                break;",
+            "        }",
+            "    }",
+            "",
+            "    my_engine_invalidate(engine);",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Always run your render loop code in a dedicated thread, and not in your app’s main thread.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating Metal pipeline state information is potentially expensive,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so use the setup phase of your render loop to configure as much of your Metal code as possible.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Start loading textures and shader code, and set up the render and compute descriptors you need for your content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also use your setup code to configure the ARKit code you need to fetch device anchor information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Until your scene is visible, you can’t fetch new frames from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and use them to configure your rendering code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you need information about the configuration of textures, create a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Properties-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type using the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information you used to configure your scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Properties-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type contains the number of views to draw and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the organization of textures for each frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-and-encode-a-single-frame-of-content",
+          "level": 3,
+          "text": "Update and encode a single frame of content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While your layer is in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/running",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state, fetch a new frame and fill it with content each time through your render loop.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The layer manages a finite number of frames, so render only one frame at a time and submit it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Compositor Services provides timing information with each frame to help you start work on the frame at the appropriate time and submit your changes before the system needs them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sequence shows the steps to create a single frame of content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Perform these steps each time through your app’s render loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/queryNextFrame()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to fetch the next frame to use for drawing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/predictTiming()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to get the predicted render deadlines for your code.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You use this information later to pause your thread until the optimal rendering time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startUpdate()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to mark the start of the update phase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apply user interactions to your content and update any app-specific data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform any rendering-related work that doesn’t rely on the device anchor information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endUpdate()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to mark the end of the update phase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Clock/wait(until:tolerance:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_time_wait_until",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to pause your render loop until the optimal rendering time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to mark the start of submission phase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fetch the predicted device anchor from ARKit using the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " information, and apply that anchor to your frame.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encode any drawing commands that depend on the device position or orientation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/encodePresent(commandBuffer:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to encode a presentation event into your command buffer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Commit your command buffer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endSubmission()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to mark the end of your GPU submission.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses data from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startUpdate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endUpdate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endSubmission()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions to improve the timing information for subsequent frames.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Call these functions to ensure your app has accurate timing information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and to help the system manage CPU and GPU resources efficiently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the structure of the drawing code for rendering one frame of content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The custom ",
+              "type": "text"
+            },
+            {
+              "code": "my_engine_gather_inputs",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "my_engine_update_frame",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "my_engine_draw_and_submit_frame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions perform custom tasks the app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "needs to update its data structures and render the content of the frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The code also fetches the current device anchor from ARKit using the custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "my_engine_get_ar_device_anchor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function and associates that information with the frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void my_engine_render_new_frame(my_engine *engine) {",
+            "    // Get the next frame.",
+            "    cp_frame_t frame = cp_layer_renderer_query_next_frame(engine->layer_renderer);",
+            "    if (frame == nullptr) { return; }",
+            "    ",
+            "    // Fetch the predicted timing information.",
+            "    cp_frame_timing_t timing = cp_frame_predict_timing(frame);",
+            "    if (timing == nullptr) { return; }",
+            "",
+            "    // Update the frame...",
+            "    cp_frame_start_update(frame);",
+            "",
+            "    // Update any position- or orientation-independent information.",
+            "    my_input_state input_state = my_engine_gather_inputs(engine, timing);",
+            "    my_engine_update_frame(engine, timing, input_state);",
+            "",
+            "    cp_frame_end_update(frame);",
+            "",
+            "    // Wait until the optimal time for querying the input.",
+            "    cp_time_wait_until(cp_frame_timing_get_optimal_input_time(timing));",
+            "",
+            "    // Submit the frame...",
+            "    cp_frame_start_submission(frame);",
+            "    cp_drawable_t drawable = cp_frame_query_drawable(frame);",
+            "    if (drawable == nullptr) { return; }",
+            "",
+            "    cp_frame_timing_t timing = cp_drawable_get_frame_timing(frame);",
+            "    ar_device_anchor_t anchor = my_engine_get_ar_device_anchor(engine, timing);",
+            "    cp_drawable_set_ar_device_anchor(drawable, anchor);",
+            "",
+            "    my_engine_draw_and_submit_frame(engine, frame, drawable);",
+            "",
+            "    cp_frame_end_submission(frame);",
+            " }"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to set up Metal command buffers and command encoders,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/setting-up-a-command-structure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-render-pass-descriptor-for-the-frame",
+          "level": 3,
+          "text": "Configure the render pass descriptor for the frame",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During drawing, add the textures from your frame’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your render pass descriptor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The render pass descriptor tells Metal where to deliver the output of your rendering commands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because each frame of content relies on different textures, you must create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and configure a render pass descriptor with the current frame’s textures each time through your render loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a function that creates a new render pass descriptor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and configures its texture information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the example uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout/layered",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " layout, which uses a single texture of type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DArray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You could use similar code to set up the render pass descriptor for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout/shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLRenderPassDescriptor* my_renderer_create_render_descriptor(my_renderer *renderer,",
+            "                                                              cp_drawable_t *drawable) {    ",
+            "    MTLRenderPassDescriptor *pass_descriptor = [[MTLRenderPassDescriptor alloc] init];",
+            "",
+            "    pass_descriptor.colorAttachments[0].texture = cp_drawable_get_color_texture(drawable, 0);",
+            "    pass_descriptor.colorAttachments[0].storeAction = MTLStoreActionStore;",
+            "    ",
+            "    pass_descriptor.depthAttachment.texture = cp_drawable_get_depth_texture(drawable, 0);",
+            "    pass_descriptor.depthAttachment.storeAction = MTLStoreActionStore;",
+            "",
+            "    pass_descriptor.renderTargetArrayLength = cp_drawable_get_view_count(drawable);",
+            "",
+            "    // Foveation support",
+            "    pass_descriptor.rasterizationRateMap = cp_drawable_get_rasterization_rate_map(drawable, 0);",
+            "",
+            "    return pass_descriptor;",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout/dedicated",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " layout, you must perform two render passes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on your content and create a separate render pass descriptor for each one.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Configure each render pass descriptor with the texture at a different index in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the arrays of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retrieve-device-anchor-information-and-attach-it-to-the-frame",
+          "level": 3,
+          "text": "Retrieve device anchor information and attach it to the frame",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent the person viewing your content from experiencing disorientation or physical discomfort,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it’s essential to match the position of the camera in your scene to the location of the person’s head.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Matching the person’s head movements ensures that what they see doesn’t conflict",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the input their body receives from the real world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because you render your app’s content in advance, you also need to know the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "position and orientation of the device in advance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To retrieve this information, use ARKit to call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ar_world_tracking_provider_query_device_anchor_at_timestamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "during the encoding process for your frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ARKit provides this function to deliver the expected device anchor at the time you specify.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use this information to configure any camera positions during rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to retrieve the predicted device anchor using ARKit.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the timing information from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get the most",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accurate presentation time for the frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Return the device anchor upon success or return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if an error occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ar_device_anchor_t my_engine_get_ar_device_anchor(my_engine *engine, cp_frame_timing_t timing) {   ",
+            "    ar_device_anchor_t anchor = ar_device_anchor_create();",
+            "    ar_world_tracking_provider_t provider = engine->my_world_tracking_provider;",
+            "",
+            "    // Fetch the device anchor from ARKit.",
+            "    auto p_time = cp_time_to_cf_time_interval(cp_frame_timing_get_presentation_time(timing));",
+            "    auto anchor_status = ar_world_tracking_provider_query_device_anchor_at_timestamp(provider, p_time, &anchor);",
+            "    if (anchor_status == ar_device_anchor_query_status_success) {",
+            "        return anchor;",
+            "    }",
+            "    return nil;",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When it displays your frame, the system checks for a discrepancy between the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "predicted device anchor you provided for your frame and the actual device anchor the hardware reports.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If there’s a difference, the system automatically adjusts the rendered frame to compensate for the movement.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you don’t want the system to make this adjustment, don’t specify a device anchor using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_set_device_anchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to track the device anchor,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-each-view-with-the-correct-perspective",
+          "level": 3,
+          "text": "Render each view with the correct perspective",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The goal of your Metal rendering engine is to produce 2D textures to display to the viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When your content is 3D, you need to map points in your scene to the 2D texture in a way",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that makes the content look realistically 3D to someone viewing it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This process requires you to create a projection matrix that maps points in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "3D content to points on the texture for each view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For stereoscopic rendering, you also have to account for the positional differences",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between the device anchor and the position of the person’s eyes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During rendering, the rendering engine calls the method in the following example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "once for each view in the frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It uses the device anchor it assigned to the frame earlier to create a transform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to compensate for any differences between the device position and the view’s position.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also creates a projection matrix using the view’s tangents information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the distances to the near and far projection planes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "makeProjectiveTransformFromTangents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function assembles the actual matrix values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the same way as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/spatial/projectivetransform3d/3954410-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct{",
+            "    simd_float4x4 projectionMatrix;",
+            "    simd_float4x4 viewMatrix;",
+            "} Uniforms;",
+            "",
+            "static const NSUInteger MaxBuffersInFlight = 3;",
+            "@implementation Renderer (UniformsExtension)",
+            "   id <MTLBuffer> _uniformBufferAddress[MaxBuffersInFlight];",
+            "",
+            "- (void)updateUniformsForRenderer:(Renderer*)renderer",
+            "                     withDrawable:(cp_drawable_t)drawable",
+            "                          atIndex:(size_t)index {",
+            "",
+            "    Uniforms *uniforms = (Uniforms*)_uniformBufferAddress;",
+            "",
+            "    // Get the current device anchor value.",
+            "    ar_device_anchor_t device_anchor = cp_drawable_get_device_anchor(drawable);",
+            "    simd_float4x4 head_position = ar_anchor_get_origin_from_anchor_transform(device_anchor);",
+            "",
+            "    cp_view_t view = cp_drawable_get_view(drawable, index);",
+            "    simd_float4 tangents = cp_view_get_tangents(view);",
+            "    simd_float2 depth_range = cp_drawable_get_depth_range(drawable);",
+            "    simd_float4x4 transform = makeProjectiveTransformFromTangents(tangents[0], /* left */",
+            "                                                                  tangents[1], /* right */",
+            "                                                                  tangents[2], /* top */",
+            "                                                                  tangents[3], /* bottom */",
+            "                                                                  depth_range[1], /* nearZ */",
+            "                                                                  depth_range[0], /* farZ */",
+            "                                                                  true); /* reverseZ */",
+            "    uniforms[index].projectionMatrix = transform;",
+            "",
+            "    // Adjust the camera transform for the current eye position.",
+            "    simd_float4x4 camera_transform = simd_mul(head_position, cp_view_get_transform(view));",
+            "    uniforms[index].viewMatrix = simd_inverse(camera_transform);",
+            "}",
+            "",
+            "@end",
+            ""
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Respond-to-interactions-with-your-custom-content",
+          "level": 3,
+          "text": "Respond to interactions with your custom content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your scene is visible, you’re responsible for managing all interactions with your custom content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because you render everything yourself using Metal, you can’t rely on view-based events or gesture recognizers for input.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, use one of the following techniques:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".onSpatialEvent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " callback to your layer and map touch events to your content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ARKit hand tracking to manage input yourself.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system detects any direct or indirect touch events,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it reports them to the ",
+              "type": "text"
+            },
+            {
+              "code": ".onSpatialEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " callback of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use this callback to handle any interactions with your custom content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system executes your callback on the main thread each time a new touch occurs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or an active touch changes, so keep your callback code brief.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example shows how to add this callback to your layer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct MyApp: App {",
+            "    var body: some Scene {",
+            "        ",
+            "        // Create a fully immersive scene.",
+            "        ImmersiveSpace(id: \"MyContent\") {",
+            "            CompositorLayer (configuration: MyContentConfiguration()) { layerRenderer in",
+            "                // Set up and run the Metal render loop.",
+            "                let renderThread = Thread {",
+            "                    let engine = myEngineCreate(layerRenderer)",
+            "                    myEngineRenderLoop(engine)",
+            "                }",
+            "                renderThread.name = \"Render Thread\"",
+            "                renderThread.start()",
+            "",
+            "                // Handle any events in the scene.",
+            "                layerRenderer.onSpatialEvent = { eventCollection in",
+            "                    var events = eventCollection.map { mySpatialEvent($0) }",
+            "                    myEnginePushSpatialEvents(engine, &events, events.count)",
+            "                }",
+            "            }",
+            "        }",
+            "         // Other scenes...",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To prevent issues when reading or writing event data,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "use locks or another synchronization mechanism to access event data.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The system delivers events on the app’s main thread,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "but your rendering loop handles those events on a different thread.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Synchronization is therefore necessary to prevent errors, undefined behavior, or crashes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about ARKit hand tracking,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer": {
+      "abstract": [
+        {
+          "text": "A type that you use with an immersive space to display fully immersive content using Metal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompositorLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompositorLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompositorLayer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/compositorlayer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration": {
+      "abstract": [
+        {
+          "text": "An interface for specifying the texture configurations and rendering behaviors to use with your Metal rendering engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompositorLayerConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompositorLayerConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompositorLayerConfiguration",
+      "type": "topic",
+      "url": "/documentation/compositorservices/compositorlayerconfiguration"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a type that contains the rendering options for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Compositor Services to use when configuring a layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "capabilities"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE12CapabilitiesV",
+          "text": "Capabilities"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE13ConfigurationV",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeConfiguration(capabilities:configuration:)",
+      "type": "topic",
+      "url": "/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/DefaultCompositorLayerConfiguration": {
+      "abstract": [
+        {
+          "text": "A type that configures the layer with the default texture configurations and rendering behaviors for the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultCompositorLayerConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/DefaultCompositorLayerConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultCompositorLayerConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultCompositorLayerConfiguration",
+      "type": "topic",
+      "url": "/documentation/compositorservices/defaultcompositorlayerconfiguration"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Clock/wait(until:tolerance:)": {
+      "abstract": [
+        {
+          "text": "Blocks the current thread until the specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wait"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "until"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE5ClockV",
+          "text": "Clock"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instant"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Clock/wait(until:tolerance:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wait(until:tolerance:)",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/clock/wait(until:tolerance:)"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable": {
+      "abstract": [
+        {
+          "text": "A type that provides the textures and information you need to draw a frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Drawable"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Drawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Drawable",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/encodePresent(commandBuffer:)": {
+      "abstract": [
+        {
+          "text": "Encodes a notification event to the specified command buffer to present the drawable’s content onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodePresent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandBuffer",
+          "text": "MTLCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/encodePresent(commandBuffer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_encode_present"
+        }
+      ],
+      "role": "symbol",
+      "title": "encodePresent(commandBuffer:)",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/encodepresent(commandbuffer:)"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming": {
+      "abstract": [
+        {
+          "text": "The timing information for the drawable’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameTiming"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_t",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_timing_t",
+          "text": "Timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_frame_timing"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameTiming",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/frametiming"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endSubmission()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you finished generating the GPU commands to render the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endSubmission"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endSubmission()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_end_submission"
+        }
+      ],
+      "role": "symbol",
+      "title": "endSubmission()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/endsubmission()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endUpdate()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you finished updating the app-specific content",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "you need to render the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endUpdate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_end_update"
+        }
+      ],
+      "role": "symbol",
+      "title": "endUpdate()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/endupdate()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/predictTiming()": {
+      "abstract": [
+        {
+          "text": "Computes and returns the predicted timing information for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictTiming"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_t",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_timing_t",
+          "text": "Timing"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/predictTiming()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictTiming()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/predicttiming()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you’re ready to generate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Metal commands to render the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSubmission"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_start_submission"
+        }
+      ],
+      "role": "symbol",
+      "title": "startSubmission()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/startsubmission()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startUpdate()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you started updating the app-specific content for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startUpdate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_start_update"
+        }
+      ],
+      "role": "symbol",
+      "title": "startUpdate()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/startupdate()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout/dedicated": {
+      "abstract": [
+        {
+          "text": "A layout that assigns a separate texture to each rendered view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dedicated"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout/dedicated",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_layout_dedicated"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Layout.dedicated",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/layout/dedicated"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout/layered": {
+      "abstract": [
+        {
+          "text": "A layout that specifies each view’s content as a slice of a single texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layered"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout/layered",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_layout_layered"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Layout.layered",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/layout/layered"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout/shared": {
+      "abstract": [
+        {
+          "text": "A layout that uses a single texture to store the content for all rendered views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_layout_shared"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Layout.shared",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/layout/shared"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Properties-swift.struct": {
+      "abstract": [
+        {
+          "text": "A type that describes the organization of the layer renderer’s textures and the relationships between those textures and the views you use for drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Properties"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Properties-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Properties"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Properties",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/properties-swift.struct"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/invalidated": {
+      "abstract": [
+        {
+          "text": "A state that indicates the layer no longer supports drawing operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidated"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/invalidated",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_state_invalidated"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.State.invalidated",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/state-swift.enum/invalidated"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/paused": {
+      "abstract": [
+        {
+          "text": "A state that indicates the layer is paused and not currently drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paused"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/paused",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_state_paused"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.State.paused",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/state-swift.enum/paused"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/running": {
+      "abstract": [
+        {
+          "text": "A state that indicates the layer is visible and ready for you to draw your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "running"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/running",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_state_running"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.State.running",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/state-swift.enum/running"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/queryNextFrame()": {
+      "abstract": [
+        {
+          "text": "Returns the next frame to use for drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryNextFrame"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_t",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/queryNextFrame()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "queryNextFrame()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/querynextframe()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_set_device_anchor": {
+      "abstract": [
+        {
+          "text": "Specifies the world position and orientation to apply to the current frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_set_device_anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_set_device_anchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_set_device_anchor",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_set_device_anchor"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing": {
+      "abstract": [
+        {
+          "text": "Computes and returns the predicted timing information for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_predict_timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_predict_timing",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_predict_timing"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_time_wait_until": {
+      "abstract": [
+        {
+          "text": "Blocks the current thread until the specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_time_wait_until"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_time_wait_until",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_time_wait_until",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_time_wait_until"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/interacting-with-virtual-content-blended-with-passthrough": {
+      "abstract": [
+        {
+          "text": "Present a mixed immersion style space to draw content in a person’s surroundings,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and choose how upper limbs appear with respect to rendered content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/interacting-with-virtual-content-blended-with-passthrough",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Interacting with virtual content blended with passthrough",
+      "type": "topic",
+      "url": "/documentation/compositorservices/interacting-with-virtual-content-blended-with-passthrough"
+    },
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ar_world_tracking_provider_query_device_anchor_at_timestamp": {
+      "abstract": [
+        {
+          "text": "Queries the predicted pose of the current device at a given time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "extern"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@ar_device_anchor_query_status_t",
+          "text": "ar_device_anchor_query_status_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ar_world_tracking_provider_query_device_anchor_at_timestamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ar_world_tracking_provider_t",
+          "text": "ar_world_tracking_provider_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "world_tracking_provider"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ar_device_anchor_t",
+          "text": "ar_device_anchor_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "device_anchor"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ar_world_tracking_provider_query_device_anchor_at_timestamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ar_world_tracking_provider_query_device_anchor_at_timestamp",
+      "type": "topic",
+      "url": "/documentation/ARKit/ar_world_tracking_provider_query_device_anchor_at_timestamp"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest": {
+      "abstract": [
+        {
+          "text": "The information about the app’s scene-based life-cycle support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationSceneManifest",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest"
+    },
+    "doc://com.apple.documentation/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/Metal"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DArray": {
+      "abstract": [
+        {
+          "text": "An array of two-dimensional texture images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type2DArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DArray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType.type2DArray",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTextureType/type2DArray"
+    },
+    "doc://com.apple.documentation/documentation/Metal/setting-up-a-command-structure": {
+      "abstract": [
+        {
+          "text": "Discover how Metal executes commands on a GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/setting-up-a-command-structure",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Command Structure",
+      "type": "topic",
+      "url": "/documentation/Metal/setting-up-a-command-structure"
+    },
+    "doc://com.apple.documentation/documentation/spatial/projectivetransform3d/3954410-init": {
+      "abstract": [
+        {
+          "text": "Returns a projective transform from tangents for each side of its frustum.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "leftTangent"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightTangent"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "topTangent"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bottomTangent"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "nearZ"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "farZ"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "reverseZ"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/spatial/projectivetransform3d/3954410-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(leftTangent:rightTangent:topTangent:bottomTangent:nearZ:farZ:reverseZ:)",
+      "type": "topic",
+      "url": "/documentation/spatial/projectivetransform3d/3954410-init"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-integration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/interacting-with-virtual-content-blended-with-passthrough",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/DefaultCompositorLayerConfiguration"
+      ],
+      "title": "App integration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-integration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.compositorservices/documentation/CompositorServices/interacting-with-virtual-content-blended-with-passthrough"
+              ],
+              "title": "App integration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1encodePresent(commandBuffer:)/title",
+          "value": "cp_drawable_encode_present"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1encodePresent(commandBuffer:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_encode_present"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum~1running/title",
+          "value": "cp_layer_renderer_state_running"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum~1running/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_state_running"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Layout~1layered/title",
+          "value": "cp_layer_renderer_layout_layered"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Layout~1layered/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_layout_layered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1spatial~1projectivetransform3d~13954410-init/title",
+          "value": "SPProjectiveTransform3DMakeFromTangents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1frameTiming/title",
+          "value": "cp_drawable_get_frame_timing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1frameTiming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_get_frame_timing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startSubmission()/title",
+          "value": "cp_frame_start_submission"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startSubmission()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_start_submission"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum~1invalidated/title",
+          "value": "cp_layer_renderer_state_invalidated"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum~1invalidated/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_state_invalidated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endUpdate()/title",
+          "value": "cp_frame_end_update"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endUpdate()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_end_update"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum~1paused/title",
+          "value": "cp_layer_renderer_state_paused"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum~1paused/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_state_paused"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Layout~1dedicated/title",
+          "value": "cp_layer_renderer_layout_dedicated"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Layout~1dedicated/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_layout_dedicated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Layout~1shared/title",
+          "value": "cp_layer_renderer_layout_shared"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Layout~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_layout_shared"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/title",
+          "value": "CP_OBJECT_cp_layer_renderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endSubmission()/title",
+          "value": "cp_frame_end_submission"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endSubmission()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_end_submission"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startUpdate()/title",
+          "value": "cp_frame_start_update"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startUpdate()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_start_update"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1type2DArray/title",
+          "value": "MTLTextureType2DArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1type2DArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureType2DArray"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/drawing-fully-immersive-content-using-metal"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/compositorservices/drawing-fully-immersive-content-using-metal"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

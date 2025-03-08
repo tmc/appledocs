@@ -1,0 +1,876 @@
+{
+  "abstract": [
+    {
+      "text": "Let users choose the music they want to play by displaying a media picker interface from within your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaplayer/documentation/MediaPlayer/displaying-a-media-picker-from-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Media Player"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Displaying a media picker from your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a media picker view controller to your app to enable users to choose music items from their Apple Music library without leaving your app. You can configure the media picker to accept single or multiple items from the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file must include the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key prior to accessing the user’s music library. If that key isn’t present, displaying the media picker causes your app to exit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Adopt-the-Protocol-and-Create-the-System-Music-Player",
+          "level": 3,
+          "text": "Adopt the Protocol, and Create the System Music Player",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable your app to respond to user input, adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class ViewController: UIViewController, MPMediaPickerControllerDelegate {",
+            "    ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-the-media-picker-view-controller",
+          "level": 3,
+          "text": "Add the media picker view controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the media picker view controller as a popover presentation controller when you target an iPad. Set the source view and delegate, and present the media picker. In this example, the media picker allows the user to select multiple items, and the source view is a button object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func selectSongs(_ sender: UIButton) {",
+            "    let controller = MPMediaPickerController(mediaTypes: .music)",
+            "    controller.allowsPickingMultipleItems = true",
+            "    controller.popoverPresentationController?.sourceView = sender",
+            "    controller.delegate = self",
+            "    present(controller, animated: true)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-select-music-button-and-target-the-previously-created-function",
+          "level": 3,
+          "text": "Add a select music button, and target the previously created function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a button that gives the user access to their Apple Music library from within your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIButton",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, and name it Select Songs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attach restraints to center the button in the display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-drag from the new button object to View Controller in the Outline view, and select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "selectSongs:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the menu that appears.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3405904",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Select Songs button is the source view for the media picker that the view controller presents modally. The media picker displays the user’s Apple Music library, which allows them to choose the music they want to play.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-the-protocol-methods",
+          "level": 3,
+          "text": "Implement the protocol methods",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement two methods from the ",
+              "type": "text"
+            },
+            {
+              "code": "MPMediaPickerControllerDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerControllerDelegate/mediaPicker(_:didPickMediaItems:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerControllerDelegate/mediaPickerDidCancel(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Inside these methods, add code to handle the user’s choice of items to create a music queue, and code to dismiss the view controller. The following code shows how to set the music player queue, begin playing the user’s choices, and dismiss the view controller if the user doesn’t choose any media items:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func mediaPicker(_ mediaPicker: MPMediaPickerController,",
+            "                 didPickMediaItems mediaItemCollection: MPMediaItemCollection) {",
+            "    // Get the system music player.",
+            "    let musicPlayer = MPMusicPlayerController.systemMusicPlayer",
+            "    musicPlayer.setQueue(with: mediaItemCollection)",
+            "    mediaPicker.dismiss(animated: true)",
+            "    // Begin playback.",
+            "    musicPlayer.play()",
+            "}",
+            "",
+            "func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {",
+            "    mediaPicker.dismiss(animated: true)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleMusicUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIButton": {
+      "abstract": [
+        {
+          "text": "A control that executes your custom code in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIButton",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIButton"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerController": {
+      "abstract": [
+        {
+          "text": "A specialized view controller that provides a graphical interface for selecting media items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPickerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPickerController",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediapickercontroller"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerControllerDelegate": {
+      "abstract": [
+        {
+          "text": "The protocol you implement so that a media item picker can respond to a user making media item selections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPickerControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPickerControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPickerControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediapickercontrollerdelegate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerControllerDelegate/mediaPicker(_:didPickMediaItems:)": {
+      "abstract": [
+        {
+          "text": "A method that the system calls when a user selects a set of media items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaPicker"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMediaPickerController",
+          "text": "MPMediaPickerController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didPickMediaItems"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMediaItemCollection",
+          "text": "MPMediaItemCollection"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerControllerDelegate/mediaPicker(_:didPickMediaItems:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaPicker:didPickMediaItems:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaPicker(_:didPickMediaItems:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediapickercontrollerdelegate/mediapicker(_:didpickmediaitems:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerControllerDelegate/mediaPickerDidCancel(_:)": {
+      "abstract": [
+        {
+          "text": "A method that the system calls when a user taps Cancel to dismiss a media item picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaPickerDidCancel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMediaPickerController",
+          "text": "MPMediaPickerController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerControllerDelegate/mediaPickerDidCancel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaPickerDidCancel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaPickerDidCancel(_:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediapickercontrollerdelegate/mediapickerdidcancel(_:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView": {
+      "abstract": [
+        {
+          "text": "A slider control for setting the system audio output volume, and a button for choosing the audio output route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPVolumeView"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPVolumeView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPVolumeView",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpvolumeview"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/playing-audio-using-the-built-in-music-player": {
+      "abstract": [
+        {
+          "text": "Create a media player inside your app to play audio from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/playing-audio-using-the-built-in-music-player",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing audio using the built-in music player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/playing-audio-using-the-built-in-music-player"
+    },
+    "media-3405904": {
+      "alt": "The Xcode Outline View and Canvas displayed side-by-side.",
+      "identifier": "media-3405904",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90637eda70d37f70a1b4c4fca3fa4d57/media-3405904@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f87f19684e790d9c7d6c7c2cfa50fa16/media-3405904~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/playing-audio-using-the-built-in-music-player"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Media-player-user-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerController",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView"
+      ],
+      "title": "Media player user interface"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/playing-audio-using-the-built-in-music-player"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Media-player-user-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerController",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView"
+              ],
+              "title": "Media player user interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerControllerDelegate/title",
+          "value": "MPMediaPickerControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPickerControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPickerControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerControllerDelegate~1mediaPickerDidCancel(_:)/title",
+          "value": "mediaPickerDidCancel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerControllerDelegate~1mediaPickerDidCancel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mediaPickerDidCancel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerController/title",
+          "value": "MPMediaPickerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIControl",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerControllerDelegate~1mediaPicker(_:didPickMediaItems:)/title",
+          "value": "mediaPicker:didPickMediaItems:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerControllerDelegate~1mediaPicker(_:didPickMediaItems:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mediaPicker:didPickMediaItems:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPVolumeView/title",
+          "value": "MPVolumeView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPVolumeView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPVolumeView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPVolumeView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPVolumeView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaplayer/displaying-a-media-picker-from-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaplayer/displaying-a-media-picker-from-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

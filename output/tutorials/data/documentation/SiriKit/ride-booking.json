@@ -1,0 +1,1816 @@
+{
+  "abstract": [
+    {
+      "text": "Book rides and report their status.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/ride-booking"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Ride Booking"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can book rides from Maps, Shortcuts, and Siri Suggestions. When the user requests a ride from your service, SiriKit forwards the information to your Intents app extension for processing. The user can ask you to provide a list of available rides, to initiate the booking of a ride, and to provide status updates for a booked ride. Maps expects you to handle all of the intents in this domain and won’t load your Intents app extension if you don’t support all of them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide a custom interface for ride-booking intents using an Intents UI app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For information about Siri and Ride Booking, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/support/deprecated-sirikit-intent-domains",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCancelRideIntent": {
+      "abstract": [
+        {
+          "text": "An intent requesting the cancellation of a previously booked ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCancelRideIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCancelRideIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCancelRideIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCancelRideIntent",
+      "type": "topic",
+      "url": "/documentation/intents/incancelrideintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCancelRideIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for canceling a previously booked ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCancelRideIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCancelRideIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCancelRideIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCancelRideIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/incancelrideintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCancelRideIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a cancel ride intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCancelRideIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCancelRideIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCancelRideIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCancelRideIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/incancelrideintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntent": {
+      "abstract": [
+        {
+          "text": "A request for the current status of a previously booked ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetRideStatusIntent",
+      "type": "topic",
+      "url": "/documentation/intents/ingetridestatusintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for fetching the status of the user’s current ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetRideStatusIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/ingetridestatusintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a get ride status intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetRideStatusIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/ingetridestatusintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentResponseObserver": {
+      "abstract": [
+        {
+          "text": "An interface for providing updated status for an active ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntentResponseObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentResponseObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntentResponseObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetRideStatusIntentResponseObserver",
+      "type": "topic",
+      "url": "/documentation/intents/ingetridestatusintentresponseobserver"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INListRideOptionsIntent": {
+      "abstract": [
+        {
+          "text": "An intent for getting the types of rides available from a ride-booking service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INListRideOptionsIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INListRideOptionsIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INListRideOptionsIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INListRideOptionsIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inlistrideoptionsintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INListRideOptionsIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for fetching the list of rides currently available from your ride-booking service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INListRideOptionsIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INListRideOptionsIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INListRideOptionsIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INListRideOptionsIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inlistrideoptionsintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INListRideOptionsIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a list ride options intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INListRideOptionsIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INListRideOptionsIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INListRideOptionsIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INListRideOptionsIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inlistrideoptionsintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent": {
+      "abstract": [
+        {
+          "text": "A request to book the specified ride from your service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestRideIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for booking a ride for the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestRideIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a request ride intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestRideIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRideCompletionStatus": {
+      "abstract": [
+        {
+          "text": "Additional details about whether a ride completed successfully or someone canceled the ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRideCompletionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRideCompletionStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRideCompletionStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRideCompletionStatus",
+      "type": "topic",
+      "url": "/documentation/intents/inridecompletionstatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRideDriver": {
+      "abstract": [
+        {
+          "text": "Identifying information about a driver of a ride service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRideDriver"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRideDriver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRideDriver"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRideDriver",
+      "type": "topic",
+      "url": "/documentation/intents/inridedriver"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRideFareLineItem": {
+      "abstract": [
+        {
+          "text": "A specific type of ride-related charge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRideFareLineItem"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRideFareLineItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRideFareLineItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRideFareLineItem",
+      "type": "topic",
+      "url": "/documentation/intents/inridefarelineitem"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRideOption": {
+      "abstract": [
+        {
+          "text": "Details about a type of ride offered by your ride-booking service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRideOption"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRideOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRideOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRideOption",
+      "type": "topic",
+      "url": "/documentation/intents/inrideoption"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRidePartySizeOption": {
+      "abstract": [
+        {
+          "text": "The price of a ride involving the specified number of people.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRidePartySizeOption"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRidePartySizeOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRidePartySizeOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRidePartySizeOption",
+      "type": "topic",
+      "url": "/documentation/intents/inridepartysizeoption"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRideStatus": {
+      "abstract": [
+        {
+          "text": "The status of a ride booked through a ride-booking service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRideStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRideStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRideStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRideStatus",
+      "type": "topic",
+      "url": "/documentation/intents/inridestatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRideVehicle": {
+      "abstract": [
+        {
+          "text": "A specific vehicle used by a ride-booking service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRideVehicle"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRideVehicle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRideVehicle"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRideVehicle",
+      "type": "topic",
+      "url": "/documentation/intents/inridevehicle"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendRideFeedbackIntent": {
+      "abstract": [
+        {
+          "text": "An intent indicating that the user provided feedback for a completed ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendRideFeedbackIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendRideFeedbackIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendRideFeedbackIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendRideFeedbackIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insendridefeedbackintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendRideFeedbackIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for sending ride feedback to your service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendRideFeedbackIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendRideFeedbackIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendRideFeedbackIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendRideFeedbackIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insendridefeedbackintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendRideFeedbackIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a send ride feedback intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendRideFeedbackIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendRideFeedbackIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendRideFeedbackIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendRideFeedbackIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insendridefeedbackintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add Intents extensions to your app to handle requests to book rides using Siri and Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Booking Rides with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/booking-rides-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/car-commands": {
+      "abstract": [
+        {
+          "text": "Manage vehicle door locks and get the vehicle’s status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Car Commands",
+      "type": "topic",
+      "url": "/documentation/sirikit/car-commands"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options": {
+      "abstract": [
+        {
+          "text": "Generate ride options for Maps to display to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a List of Ride Options",
+      "type": "topic",
+      "url": "/documentation/sirikit/generating-a-list-of-ride-options"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents": {
+      "abstract": [
+        {
+          "text": "Support the different intent-handling sequences for booking rides with Shortcuts or Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling the Ride-Booking Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-the-ride-booking-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers": {
+      "abstract": [
+        {
+          "text": "Identify intents that user notifications specify.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intent Class Identifiers",
+      "type": "topic",
+      "url": "/documentation/sirikit/intent-class-identifiers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes": {
+      "abstract": [
+        {
+          "text": "Create and manage notes and to-do list items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lists and Notes",
+      "type": "topic",
+      "url": "/documentation/sirikit/lists-and-notes"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/media": {
+      "abstract": [
+        {
+          "text": "Listen and control audio through Siri Intents, or listen and watch media content from your app with shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media",
+      "type": "topic",
+      "url": "/documentation/sirikit/media"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/messaging": {
+      "abstract": [
+        {
+          "text": "Send messages and search the user’s received messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/messaging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Messaging",
+      "type": "topic",
+      "url": "/documentation/sirikit/messaging"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/payments": {
+      "abstract": [
+        {
+          "text": "Send payments between users or pay bills.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/payments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payments",
+      "type": "topic",
+      "url": "/documentation/sirikit/payments"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations": {
+      "abstract": [
+        {
+          "text": "Create and manage restaurant reservations with help from the Maps app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Restaurant Reservations",
+      "type": "topic",
+      "url": "/documentation/sirikit/restaurant-reservations"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/voip-calling": {
+      "abstract": [
+        {
+          "text": "Initiate calls and search the user’s call history.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/voip-calling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VoIP Calling",
+      "type": "topic",
+      "url": "/documentation/sirikit/voip-calling"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/workouts": {
+      "abstract": [
+        {
+          "text": "Start, end, and manage fitness routines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workouts",
+      "type": "topic",
+      "url": "/documentation/sirikit/workouts"
+    },
+    "https://developer.apple.com/support/deprecated-sirikit-intent-domains": {
+      "identifier": "https://developer.apple.com/support/deprecated-sirikit-intent-domains",
+      "title": "Deprecated SiriKit Intent Domains",
+      "titleInlineContent": [
+        {
+          "text": "Deprecated SiriKit Intent Domains",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/deprecated-sirikit-intent-domains"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Standard-Intents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+        "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes",
+        "doc://com.apple.sirikit/documentation/SiriKit/media",
+        "doc://com.apple.sirikit/documentation/SiriKit/messaging",
+        "doc://com.apple.sirikit/documentation/SiriKit/payments",
+        "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+        "doc://com.apple.sirikit/documentation/SiriKit/voip-calling",
+        "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+        "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers"
+      ],
+      "title": "Standard Intents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Maps uses this intent to obtain a list of ride options from your ride-booking service. Siri does not generate this intent.",
+          "type": "text"
+        }
+      ],
+      "anchor": "List-Ride-Options",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options",
+        "doc://com.apple.sirikit/documentation/Intents/INListRideOptionsIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INListRideOptionsIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INListRideOptionsIntentResponse"
+      ],
+      "title": "List Ride Options"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Book the ride based on the information provided by the user.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Request-a-Ride",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentResponse"
+      ],
+      "title": "Request a Ride"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Return the status of the booked ride that is currently active.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Get-the-Ride-Status",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentResponseObserver"
+      ],
+      "title": "Get the Ride Status"
+    },
+    {
+      "anchor": "Cancel-Ride",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCancelRideIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INCancelRideIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INCancelRideIntentResponse"
+      ],
+      "title": "Cancel Ride"
+    },
+    {
+      "anchor": "Send-Ride-Feedback",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSendRideFeedbackIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INSendRideFeedbackIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INSendRideFeedbackIntentResponse"
+      ],
+      "title": "Send Ride Feedback"
+    },
+    {
+      "abstract": [
+        {
+          "text": "When crafting your responses, use these objects to specify details about the booking, the vehicle, and the driver providing the ride.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Data-Objects",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INRideOption",
+        "doc://com.apple.sirikit/documentation/Intents/INRideStatus",
+        "doc://com.apple.sirikit/documentation/Intents/INRideDriver",
+        "doc://com.apple.sirikit/documentation/Intents/INRideVehicle",
+        "doc://com.apple.sirikit/documentation/Intents/INRideFareLineItem",
+        "doc://com.apple.sirikit/documentation/Intents/INRidePartySizeOption",
+        "doc://com.apple.sirikit/documentation/Intents/INRideCompletionStatus"
+      ],
+      "title": "Data Objects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListRideOptionsIntentHandling/title",
+          "value": "INListRideOptionsIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListRideOptionsIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INListRideOptionsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListRideOptionsIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INListRideOptionsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentHandling/title",
+          "value": "INRequestRideIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendRideFeedbackIntentHandling/title",
+          "value": "INSendRideFeedbackIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendRideFeedbackIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendRideFeedbackIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendRideFeedbackIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendRideFeedbackIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideVehicle/title",
+          "value": "INRideVehicle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideVehicle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideVehicle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideVehicle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideVehicle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideFareLineItem/title",
+          "value": "INRideFareLineItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideFareLineItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideFareLineItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideFareLineItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideFareLineItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideCompletionStatus/title",
+          "value": "INRideCompletionStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideCompletionStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideCompletionStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideCompletionStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideCompletionStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentResponseObserver/title",
+          "value": "INGetRideStatusIntentResponseObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentResponseObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntentResponseObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentResponseObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntentResponseObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideDriver/title",
+          "value": "INRideDriver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideDriver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideDriver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideDriver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideDriver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideOption/title",
+          "value": "INRideOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListRideOptionsIntentResponse/title",
+          "value": "INListRideOptionsIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListRideOptionsIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INListRideOptionsIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListRideOptionsIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INListRideOptionsIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent/title",
+          "value": "INRequestRideIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelRideIntentHandling/title",
+          "value": "INCancelRideIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelRideIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelRideIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelRideIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelRideIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendRideFeedbackIntent/title",
+          "value": "INSendRideFeedbackIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendRideFeedbackIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendRideFeedbackIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendRideFeedbackIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendRideFeedbackIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelRideIntentResponse/title",
+          "value": "INCancelRideIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelRideIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelRideIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelRideIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelRideIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentResponse/title",
+          "value": "INRequestRideIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntent/title",
+          "value": "INGetRideStatusIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentHandling/title",
+          "value": "INGetRideStatusIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListRideOptionsIntent/title",
+          "value": "INListRideOptionsIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListRideOptionsIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INListRideOptionsIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INListRideOptionsIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INListRideOptionsIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendRideFeedbackIntentResponse/title",
+          "value": "INSendRideFeedbackIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendRideFeedbackIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendRideFeedbackIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendRideFeedbackIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendRideFeedbackIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideStatus/title",
+          "value": "INRideStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelRideIntent/title",
+          "value": "INCancelRideIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelRideIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelRideIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelRideIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelRideIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentResponse/title",
+          "value": "INGetRideStatusIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRidePartySizeOption/title",
+          "value": "INRidePartySizeOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRidePartySizeOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRidePartySizeOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRidePartySizeOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRidePartySizeOption"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

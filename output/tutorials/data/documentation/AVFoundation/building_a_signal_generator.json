@@ -1,0 +1,314 @@
+{
+  "abstract": [
+    {
+      "text": "Use an audio source node and a custom render callback to generate audio signals.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/avfoundation"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/avfoundation",
+        "doc://com.apple.documentation/documentation/avfoundation/audio-playback-recording-and-processing",
+        "doc://com.apple.documentation/documentation/avfaudio/audio-engine"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/avfaudio",
+        "doc://com.apple.documentation/documentation/avfaudio/audio-engine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/avfoundation/building_a_signal_generator"
+  },
+  "kind": "article",
+  "legacy_identifier": 3232823,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building a Signal Generator"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3262321",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "3920950",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode, ensure you’re using macOS 10.15 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio/building-a-signal-generator": {
+      "abstract": [
+        {
+          "text": "Use an audio source node and a custom render callback to generate audio signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/building-a-signal-generator",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a signal generator",
+      "type": "topic",
+      "url": "/documentation/avfaudio/building-a-signal-generator"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/performing-offline-audio-processing": {
+      "abstract": [
+        {
+          "text": "Add offline audio processing features to your app by enabling offline manual rendering mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/performing-offline-audio-processing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Performing offline audio processing",
+      "type": "topic",
+      "url": "/documentation/avfaudio/performing-offline-audio-processing"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio": {
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/audio-engine": {
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/audio-engine",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Engine",
+      "type": "topic",
+      "url": "/documentation/avfaudio/audio-engine"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/avaudiosinknode": {
+      "abstract": [
+        {
+          "text": "An object that receives audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSinkNode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/avaudiosinknode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSinkNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosinknode"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/avaudiosourcenode": {
+      "abstract": [
+        {
+          "text": "An object that supplies audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSourceNode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/avaudiosourcenode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSourceNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosourcenode"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/audio-playback-recording-and-processing": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/audio-playback-recording-and-processing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio playback, recording, and processing",
+      "type": "topic",
+      "url": "/documentation/avfoundation/audio-playback-recording-and-processing"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/building_a_signal_generator": {
+      "abstract": [
+        {
+          "text": "Use an audio source node and a custom render callback to generate audio signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/building_a_signal_generator",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a Signal Generator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/building_a_signal_generator"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/performing_offline_audio_processing": {
+      "abstract": [
+        {
+          "text": "Add offline audio processing features to your app by enabling offline manual rendering mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/performing_offline_audio_processing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Performing Offline Audio Processing",
+      "type": "topic",
+      "url": "/documentation/avfoundation/performing_offline_audio_processing"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/12b59497fd/BuildingASignalGenerator.zip": {
+      "checksum": "4da535c7e6559dbf9da1791a5a1d607551b4024a74d1bc3db2ba65203f291d478ea6aa1f9ced1e8145af2c9631d49c954d9cb85ff50b95ca5034a1cf548a6d11",
+      "identifier": "https://docs-assets.developer.apple.com/published/12b59497fd/BuildingASignalGenerator.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/12b59497fd/BuildingASignalGenerator.zip"
+    },
+    "link-3262321": {
+      "identifier": "link-3262321",
+      "kind": "article",
+      "role": "link",
+      "title": "510: What’s New in AVAudioEngine",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc19/510/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/12b59497fd/BuildingASignalGenerator.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/building-a-signal-generator",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/performing-offline-audio-processing",
+        "doc://com.apple.documentation/documentation/avfaudio/avaudiosourcenode",
+        "doc://com.apple.documentation/documentation/avfaudio/avaudiosinknode",
+        "doc://com.apple.documentation/documentation/avfoundation/performing_offline_audio_processing"
+      ],
+      "title": "Rendering"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/avfoundation/building_a_signal_generator",
+        "documentation/avfaudio/audio_engine/building_a_signal_generator",
+        "documentation/avfoundation/audio_playback_recording_and_processing/audio_engine/building_a_signal_generator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "abstract": [
+    {
+      "text": "These keys are used to populate the ",
+      "type": "text"
+    },
+    {
+      "code": "properties",
+      "type": "codeVoice"
+    },
+    {
+      "text": " dictionary used when creating a new display stream.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services/display_stream_optional_property_keys"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1658141,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Display Stream Optional Property Keys"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455760-cgrectcreatedictionaryrepresenta": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455760-cgrectcreatedictionaryrepresenta",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectCreateDictionaryRepresentation",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455760-cgrectcreatedictionaryrepresenta"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcolorspaceref": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspaceref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGColorSpaceRef",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcolorspaceref"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamcolorspace": {
+      "abstract": [
+        {
+          "text": "This key specifies the color space of the output buffer. If this key is not included in the dictionary, the output buffer uses the same color space as the display. The value associated with this key must be a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspaceref",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for the desired color space.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamcolorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGDisplayStreamColorSpace",
+      "type": "topic",
+      "url": "/documentation/coregraphics/kcgdisplaystreamcolorspace"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamdestinationrect": {
+      "abstract": [
+        {
+          "text": "This key specifies that the display stream outputs the frame data into a subset of the output ",
+          "type": "text"
+        },
+        {
+          "code": "IOSurface",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object. If this key is not included in the dictionary, then the entire output surface is used. The value must be created using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455760-cgrectcreatedictionaryrepresenta",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function. The rectangle is specified in pixels in the surface’s coordinate system",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamdestinationrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGDisplayStreamDestinationRect",
+      "type": "topic",
+      "url": "/documentation/coregraphics/kcgdisplaystreamdestinationrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamminimumframetime": {
+      "abstract": [
+        {
+          "text": "This key specifies the desired minimum time between frame updates, allowing you to throttle the rate at which updates are received. If this key is not included in the dictionary, the default value is ",
+          "type": "text"
+        },
+        {
+          "code": "0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", meaning that updates are not throttled. The value must be specified as a ",
+          "type": "text"
+        },
+        {
+          "code": "CFNumber",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamminimumframetime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGDisplayStreamMinimumFrameTime",
+      "type": "topic",
+      "url": "/documentation/coregraphics/kcgdisplaystreamminimumframetime"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreampreserveaspectratio": {
+      "abstract": [
+        {
+          "text": "This key specifies whether the display stream preserves the aspect ratio of the source pixel data. If this key is not included in the dictionary, then the aspect ratio is preserved. If the aspect ratio is preserved, then the display stream adds black bars to the output data. If the aspect ratio is not preserved, then the pixel data is stretched to fit the output buffer’s dimensions. The value associated with the key must be a ",
+          "type": "text"
+        },
+        {
+          "code": "CFBoolean",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreampreserveaspectratio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGDisplayStreamPreserveAspectRatio",
+      "type": "topic",
+      "url": "/documentation/coregraphics/kcgdisplaystreampreserveaspectratio"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamqueuedepth": {
+      "abstract": [
+        {
+          "text": "This key specifies the number of frames to keep in the queue. If this key is not included in the dictionary, the default value is ",
+          "type": "text"
+        },
+        {
+          "code": "3",
+          "type": "codeVoice"
+        },
+        {
+          "text": " frames. Specifying more frames uses more memory, but may allow you to process frame data without stalling the display stream. The value associated with this key should be specified as a ",
+          "type": "text"
+        },
+        {
+          "code": "CFNumber",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and should not exceed ",
+          "type": "text"
+        },
+        {
+          "code": "8",
+          "type": "codeVoice"
+        },
+        {
+          "text": " frames.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamqueuedepth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGDisplayStreamQueueDepth",
+      "type": "topic",
+      "url": "/documentation/coregraphics/kcgdisplaystreamqueuedepth"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamshowcursor": {
+      "abstract": [
+        {
+          "text": "This key specifies whether the cursor should appear in the stream. If this key is not included in the dictionary, the cursor is visible. The value must be specified as a ",
+          "type": "text"
+        },
+        {
+          "code": "CFBoolean",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamshowcursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGDisplayStreamShowCursor",
+      "type": "topic",
+      "url": "/documentation/coregraphics/kcgdisplaystreamshowcursor"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamsourcerect": {
+      "abstract": [
+        {
+          "text": "This key specifies that the display stream only samples a subset of the display’s framebuffer. If this key is not included in the dictionary, then the entire display is streamed. The value must be created using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455760-cgrectcreatedictionaryrepresenta",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function. The rectangle is specified in points in the display’s logical coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamsourcerect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGDisplayStreamSourceRect",
+      "type": "topic",
+      "url": "/documentation/coregraphics/kcgdisplaystreamsourcerect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamycbcrmatrix": {
+      "abstract": [
+        {
+          "text": "This key should only be included if you the display stream is creating output frames in either the 420v or 420f formats. It is used to specify the YCbCr matrix applied to the output surface. The value associated with this key must be one of the strings specified in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services/display_stream_ycbcr_to_rgb_conversion_matrix_options",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamycbcrmatrix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGDisplayStreamYCbCrMatrix",
+      "type": "topic",
+      "url": "/documentation/coregraphics/kcgdisplaystreamycbcrmatrix"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Quartz Display Services",
+      "type": "topic",
+      "url": "/documentation/coregraphics/quartz_display_services"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services/display_stream_ycbcr_to_rgb_conversion_matrix_options": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services/display_stream_ycbcr_to_rgb_conversion_matrix_options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Display Stream YCbCr to RGB conversion Matrix Options",
+      "type": "topic",
+      "url": "/documentation/coregraphics/quartz_display_services/display_stream_ycbcr_to_rgb_conversion_matrix_options"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1680274",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamsourcerect",
+        "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamdestinationrect",
+        "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreampreserveaspectratio",
+        "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamcolorspace",
+        "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamminimumframetime",
+        "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamshowcursor",
+        "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamqueuedepth",
+        "doc://com.apple.documentation/documentation/coregraphics/kcgdisplaystreamycbcrmatrix"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/quartz_display_services/display_stream_optional_property_keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

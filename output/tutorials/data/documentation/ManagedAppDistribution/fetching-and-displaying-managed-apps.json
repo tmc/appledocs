@@ -1,0 +1,324 @@
+{
+  "abstract": [
+    {
+      "text": "Provide a consistent app presentation when displaying managed apps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ManagedAppDistribution/documentation/managedappdistribution/fetching-and-displaying-managed-apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ManagedAppDistribution"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Fetching and displaying managed apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can take advantage of Managed App Distribution features to display download status and launch apps. Obtain a list of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedApp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, then display that list of apps in a custom view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fetching",
+          "level": 3,
+          "text": "Fetching",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code snippet defines a model that obtains a list of apps from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import ManagedAppDistribution",
+            "import Observation",
+            "",
+            "// Define a model that obtains a list of managed apps.",
+            "@Observable final class ViewModel {",
+            "    var content: [Content] = []",
+            "    enum Content {",
+            "        case managedApp(ManagedApp), developerContent(title: String, action: () -> Void)",
+            "    }",
+            "",
+            "    func getApps() async {",
+            "        do {",
+            "            for try await result in ManagedAppLibrary.currentDistributor.availableApps {",
+            "                content = try result.get().map(Content.managedApp)",
+            "            }",
+            "        } catch {",
+            "            // Handle errors here.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Displaying",
+          "level": 3,
+          "text": "Displaying",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you fetch the list of apps from the model, display them in a compact content style within your custom view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "fetching-displaying-managed-apps",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code snippet demonstrates how to display the list of apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import ManagedAppDistribution",
+            "import SwiftUI",
+            "",
+            "struct AppList: View {",
+            "    private var viewModel = ViewModel()",
+            "    var body: some View {",
+            "        List(viewModel.content) { content in",
+            "            switch content {",
+            "            case let .managedApp(managedApp): ",
+            "                ManagedAppView(app: managedApp)",
+            "            case let .developerContent(title, action): ",
+            "                ManagedContentView(primaryText: title, offerState: .custom(\"Request\"), offerAction: action) {",
+            "                    Image(name: \"custom\")",
+            "                }",
+            "            }",
+            "        }",
+            "        .managedContentStyle(.compact)",
+            "        .task { await viewModel.getApps() }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution": {
+      "abstract": [
+        {
+          "text": "Manage the distribution of apps within an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ManagedAppDistribution",
+      "type": "topic",
+      "url": "/documentation/managedappdistribution"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedApp": {
+      "abstract": [
+        {
+          "text": "A representation of a managed app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedApp"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedApp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedApp"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedApp",
+      "type": "topic",
+      "url": "/documentation/managedappdistribution/managedapp"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary": {
+      "abstract": [
+        {
+          "text": "A representation of a library of managed apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedAppLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedAppLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedAppLibrary",
+      "type": "topic",
+      "url": "/documentation/managedappdistribution/managedapplibrary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "fetching-displaying-managed-apps": {
+      "alt": "An image of the bottom of an iPhone showing an app with a banner that contains a title, subtitle, and an install button.",
+      "identifier": "fetching-displaying-managed-apps",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/580c12870254422a479ee299ff61ae92/fetching-displaying-managed-apps@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d2a5696fe8236a1cee6047c7df2c3b14/fetching-displaying-managed-apps~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedApp",
+        "doc://com.apple.ManagedAppDistribution/documentation/ManagedAppDistribution/ManagedAppLibrary"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/managedappdistribution/fetching-and-displaying-managed-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

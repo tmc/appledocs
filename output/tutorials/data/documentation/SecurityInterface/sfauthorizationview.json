@@ -1,0 +1,3428 @@
+{
+  "abstract": [
+    {
+      "text": "The class responsible for displaying a lock icon that can be used to indicate that a user interface has restricted access.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SFAuthorizationView",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SFAuthorizationView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security Interface"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SFAuthorizationView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.3",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SFAuthorizationView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationView"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The lock appears locked when the user must be authorized and appears open when the user has been authorized. The closed and open lock icons of the authorization view are shown in the following figure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-1965610",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add an authorization view as a custom view to a window or dialog box, you must initialize it before it displays correctly. To initialize the view, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setString(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create a default rights structure (containing a prompt string) or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAuthorizationRights(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to specify a rights structure. You must also either specify automatic updates (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:interval:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or perform a manual update (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/updateStatus(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to set the lock icon to its initial state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can implement delegate methods that are invoked when the authorization view changes state. You can optionally implement the delegate methods to obtain the state of the authorization object when you are using an authorization view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user clicks a locked authorization view icon, the Security Server displays an authentication dialog (to request a user name and password, for example). When the user provides the requested credentials, the lock icon unlocks and the user is considered preauthorized to perform the functions specified by the authorization rights structure. You can call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/updateStatus(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to determine whether the user has been preauthorized: this method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if the view is in the unlocked state, otherwise ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Before committing changes or performing actions that require authorization, you should check the user’s authorization again, even if they are preauthorized.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default behavior of this view is to preauthorize rights; if this is not possible it unlocks and waits for authorization to be checked when explicitly required.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1410992-authorizationviewreleasedauthori": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate to indicate that deauthorization is about to occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationViewReleasedAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "(SFAuthorizationView!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1410992-authorizationviewreleasedauthori",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationViewReleasedAuthorization(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1410992-authorizationviewreleasedauthori"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1411002-authorizationviewdidauthorize": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate to indicate the user was authorized and the authorization view was changed to unlocked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationViewDidAuthorize"
+        },
+        {
+          "kind": "text",
+          "text": "(SFAuthorizationView!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411002-authorizationviewdidauthorize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationViewDidAuthorize(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1411002-authorizationviewdidauthorize"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1411006-authorizationviewshoulddeauthori": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate when a user clicks the open lock icon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationViewShouldDeauthorize"
+        },
+        {
+          "kind": "text",
+          "text": "(SFAuthorizationView!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411006-authorizationviewshoulddeauthori",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationViewShouldDeauthorize(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1411006-authorizationviewshoulddeauthori"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1411010-authorizationviewcreatedauthoriz": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate to indicate the authorization object has been created or changed. If you have saved a copy of the authorization object for your own purposes, you should discard it and call  for a new authorization object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationViewCreatedAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "(SFAuthorizationView!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411010-authorizationviewcreatedauthoriz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationViewCreatedAuthorization(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1411010-authorizationviewcreatedauthoriz"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1411017-authorizationviewdiddeauthorize": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate to indicate the user was deauthorized and the authorization view was changed to locked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationViewDidDeauthorize"
+        },
+        {
+          "kind": "text",
+          "text": "(SFAuthorizationView!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411017-authorizationviewdiddeauthorize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationViewDidDeauthorize(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1411017-authorizationviewdiddeauthorize"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1411034-authorizationviewdidhide": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate to indicate that the view’s visibility has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationViewDidHide"
+        },
+        {
+          "kind": "text",
+          "text": "(SFAuthorizationView!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411034-authorizationviewdidhide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationViewDidHide(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1411034-authorizationviewdidhide"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface": {
+      "abstract": [
+        {
+          "text": "Provide user interface elements for security features such as authorization, access to digital certificates, and access to items in keychains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security Interface",
+      "type": "topic",
+      "url": "/documentation/securityinterface"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationPluginView": {
+      "abstract": [
+        {
+          "text": "Allows authorization plug-in developers to create a custom view their plug-in can display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFAuthorizationPluginView"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationPluginView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFAuthorizationPluginView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFAuthorizationPluginView",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationpluginview"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView": {
+      "abstract": [
+        {
+          "text": "The class responsible for displaying a lock icon that can be used to indicate that a user interface has restricted access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFAuthorizationView"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFAuthorizationView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFAuthorizationView",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorization()": {
+      "abstract": [
+        {
+          "text": "Returns the authorization object associated with this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorization"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFAuthorization",
+          "text": "SFAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorization()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorization"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorization()",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/authorization()"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorizationRights()": {
+      "abstract": [
+        {
+          "text": "Returns the authorization rights for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorizationRights()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationRights"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationRights()",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/authorizationrights()"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorizationState()": {
+      "abstract": [
+        {
+          "text": "Returns the current state of the authorization view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationState"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SFAuthorizationViewState",
+          "text": "SFAuthorizationViewState"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorizationState()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationState"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationState()",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/authorizationstate()"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorize(_:)": {
+      "abstract": [
+        {
+          "text": "Attempts to unlock the lock icon in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorize(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/authorize(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/deauthorize(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the authorization state to unauthorized and locks the lock icon in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deauthorize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/deauthorize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deauthorize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deauthorize(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/deauthorize(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/delegate()": {
+      "abstract": [
+        {
+          "text": "Returns the delegate for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/delegate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate()",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/delegate()"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/isEnabled()": {
+      "abstract": [
+        {
+          "text": "Indicates whether the authorization view is enabled (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/true",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ") or disabled (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/false",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/isEnabled()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEnabled()",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/isenabled()"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAuthorizationRights(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the authorization rights for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">!)"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAuthorizationRights(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAuthorizationRights:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAuthorizationRights(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/setauthorizationrights(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the authorization view to update itself automatically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAutoupdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAutoupdate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAutoupdate(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/setautoupdate(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:interval:)": {
+      "abstract": [
+        {
+          "text": "Sets the authorization view to update itself at a specific interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAutoupdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:interval:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAutoupdate:interval:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAutoupdate(_:interval:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/setautoupdate(_:interval:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setDelegate(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the delegate for this authorization view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDelegate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setDelegate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDelegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDelegate(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/setdelegate(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setEnabled(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the current state of the authorization view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setEnabled(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setEnabled:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setEnabled(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/setenabled(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setFlags(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the current authorization flags for the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFlags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AuthorizationFlags",
+          "text": "AuthorizationFlags"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setFlags(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFlags:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setFlags(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/setflags(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setString(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the requested-right string to use with the default authorization rights set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationString",
+          "text": "AuthorizationString"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setString:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setString(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/setstring(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/updateStatus(_:)": {
+      "abstract": [
+        {
+          "text": "Manually updates the authorization view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/updateStatus(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateStatus(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationview/updatestatus(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationViewState": {
+      "abstract": [
+        {
+          "text": "Defines the current state of the authorization view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFAuthorizationViewState"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationViewState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFAuthorizationViewState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFAuthorizationViewState",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfauthorizationviewstate"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificatePanel": {
+      "abstract": [
+        {
+          "text": "A panel or sheet that displays one or more certificates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFCertificatePanel"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificatePanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFCertificatePanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFCertificatePanel",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfcertificatepanel"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificateTrustPanel": {
+      "abstract": [
+        {
+          "text": "A panel or sheet that lets the user edit the trust settings in any of the certificates in a certificate chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFCertificateTrustPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificateTrustPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFCertificateTrustPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFCertificateTrustPanel",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfcertificatetrustpanel"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificateView": {
+      "abstract": [
+        {
+          "text": "A view that displays the contents of a certificate, with options to display certificate details, display trust settings, and allow users to edit a certificate’s trust settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFCertificateView"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificateView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFCertificateView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFCertificateView",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfcertificateview"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel": {
+      "abstract": [
+        {
+          "text": "A panel or sheet containing a list of identities that a user can choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFChooseIdentityPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFChooseIdentityPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFChooseIdentityPanel",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfchooseidentitypanel"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityTableCellView": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFChooseIdentityTableCellView"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityTableCellView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFChooseIdentityTableCellView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFChooseIdentityTableCellView",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfchooseidentitytablecellview"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFKeychainSavePanel": {
+      "abstract": [
+        {
+          "text": "A panel or sheet that allows the user to create a keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFKeychainSavePanel"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFKeychainSavePanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFKeychainSavePanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFKeychainSavePanel",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfkeychainsavepanel"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFKeychainSettingsPanel": {
+      "abstract": [
+        {
+          "text": "A panel or sheet that allows users to change their keychain settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFKeychainSettingsPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFKeychainSettingsPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFKeychainSettingsPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFKeychainSettingsPanel",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfkeychainsettingspanel"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility": {
+      "abstract": [
+        {
+          "text": "The complete list of properties and methods for accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilityProtocol",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityProtocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary to interact with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilityElementProtocol",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityElementProtocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines a way to add animation to an existing class with a minimum of API impact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAnimatablePropertyContainer",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAnimatablePropertyContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization": {
+      "abstract": [
+        {
+          "text": "A set of methods for getting and setting the appearance attributes of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppearanceCustomization",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAppearanceCustomization"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination": {
+      "abstract": [
+        {
+          "text": "A set of methods that the destination object (or recipient) of a dragged image must implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDraggingDestination",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDraggingDestination"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSStandardKeyBindingResponding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserInterfaceItemIdentification"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-1965610": {
+      "alt": "Authorization view lock icon",
+      "identifier": "media-1965610",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/153dfdaab793afc67f163364d0c7cf69/media-1965610.gif"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSView"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationPluginView",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificatePanel",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificateTrustPanel",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificateView",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityTableCellView",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFKeychainSavePanel",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFKeychainSettingsPanel"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-up-the-authorization-view",
+      "identifiers": [
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setString(_:)",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAuthorizationRights(_:)",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:)",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:interval:)",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setFlags(_:)",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setEnabled(_:)"
+      ],
+      "title": "Setting up the authorization view"
+    },
+    {
+      "anchor": "Setting-and-getting-the-delegate-for-the-view",
+      "identifiers": [
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setDelegate(_:)",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/delegate()"
+      ],
+      "title": "Setting and getting the delegate for the view"
+    },
+    {
+      "anchor": "Updating-the-view",
+      "identifiers": [
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/updateStatus(_:)"
+      ],
+      "title": "Updating the view"
+    },
+    {
+      "anchor": "Getting-information-about-the-authorization-view",
+      "identifiers": [
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorization()",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorizationRights()",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorizationState()",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/isEnabled()"
+      ],
+      "title": "Getting information about the authorization view"
+    },
+    {
+      "anchor": "Setting-the-authorization-state",
+      "identifiers": [
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorize(_:)",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/deauthorize(_:)"
+      ],
+      "title": "Setting the authorization state"
+    },
+    {
+      "anchor": "Delegate-methods",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1411006-authorizationviewshoulddeauthori",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1411010-authorizationviewcreatedauthoriz",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1411002-authorizationviewdidauthorize",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1411017-authorizationviewdiddeauthorize",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1411034-authorizationviewdidhide",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1410992-authorizationviewreleasedauthori"
+      ],
+      "title": "Delegate methods"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationViewState"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.3",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SFAuthorizationView"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-up-the-authorization-view",
+              "identifiers": [
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setString(_:)",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAuthorizationRights(_:)",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:)",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:interval:)",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setFlags(_:)",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setEnabled(_:)"
+              ],
+              "title": "Setting up the authorization view"
+            },
+            {
+              "anchor": "Setting-and-getting-the-delegate-for-the-view",
+              "identifiers": [
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/setDelegate(_:)",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/delegate()"
+              ],
+              "title": "Setting and getting the delegate for the view"
+            },
+            {
+              "anchor": "Updating-the-view",
+              "identifiers": [
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/updateStatus(_:)"
+              ],
+              "title": "Updating the view"
+            },
+            {
+              "anchor": "Getting-information-about-the-authorization-view",
+              "identifiers": [
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorization()",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorizationRights()",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorizationState()",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/isEnabled()"
+              ],
+              "title": "Getting information about the authorization view"
+            },
+            {
+              "anchor": "Setting-the-authorization-state",
+              "identifiers": [
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/authorize(_:)",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationView/deauthorize(_:)"
+              ],
+              "title": "Setting the authorization state"
+            },
+            {
+              "anchor": "Delegate-methods",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1411006-authorizationviewshoulddeauthori",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1411010-authorizationviewcreatedauthoriz",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1411002-authorizationviewdidauthorize",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1411017-authorizationviewdiddeauthorize",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1411034-authorizationviewdidhide",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1410992-authorizationviewreleasedauthori"
+              ],
+              "title": "Delegate methods"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationViewState"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSView"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFAuthorizationPluginView",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificatePanel",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificateTrustPanel",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFCertificateView",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityTableCellView",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFKeychainSavePanel",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFKeychainSettingsPanel"
+              ],
+              "title": "Classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SFAuthorizationView"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSView",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSView",
+                    "text": "NSView"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setDelegate(_:)/title",
+          "value": "setDelegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setDelegate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDelegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityTableCellView/title",
+          "value": "SFChooseIdentityTableCellView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityTableCellView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFChooseIdentityTableCellView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityTableCellView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFChooseIdentityTableCellView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11411017-authorizationviewdiddeauthorize/title",
+          "value": "authorizationViewDidDeauthorize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationPluginView/title",
+          "value": "SFAuthorizationPluginView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationPluginView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationPluginView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationPluginView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationPluginView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11411006-authorizationviewshoulddeauthori/title",
+          "value": "authorizationViewShouldDeauthorize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11411002-authorizationviewdidauthorize/title",
+          "value": "authorizationViewDidAuthorize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11411034-authorizationviewdidhide/title",
+          "value": "authorizationViewDidHide:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel/title",
+          "value": "SFChooseIdentityPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFChooseIdentityPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFChooseIdentityPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1authorizationState()/title",
+          "value": "authorizationState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1authorizationState()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setAuthorizationRights(_:)/title",
+          "value": "setAuthorizationRights:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setAuthorizationRights(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAuthorizationRights:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setEnabled(_:)/title",
+          "value": "setEnabled:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setEnabled(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setEnabled:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setString(_:)/title",
+          "value": "setString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setString(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setString:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1deauthorize(_:)/title",
+          "value": "deauthorize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1deauthorize(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deauthorize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1authorizationRights()/title",
+          "value": "authorizationRights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1authorizationRights()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationRights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSDraggingDestination/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setAutoupdate(_:)/title",
+          "value": "setAutoupdate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setAutoupdate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAutoupdate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAnimatablePropertyContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFKeychainSavePanel/title",
+          "value": "SFKeychainSavePanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFKeychainSavePanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFKeychainSavePanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFKeychainSavePanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFKeychainSavePanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationViewState/title",
+          "value": "SFAuthorizationViewState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationViewState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationViewState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationViewState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationViewState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11410992-authorizationviewreleasedauthori/title",
+          "value": "authorizationViewReleasedAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1authorize(_:)/title",
+          "value": "authorize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1authorize(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFCertificatePanel/title",
+          "value": "SFCertificatePanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFCertificatePanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFCertificatePanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFCertificatePanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFCertificatePanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibilityElement/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibilityElement/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setFlags(_:)/title",
+          "value": "setFlags:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setFlags(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setFlags:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibility/title",
+          "value": "NSAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibility/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFKeychainSettingsPanel/title",
+          "value": "SFKeychainSettingsPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFKeychainSettingsPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFKeychainSettingsPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFKeychainSettingsPanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFKeychainSettingsPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setAutoupdate(_:interval:)/title",
+          "value": "setAutoupdate:interval:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1setAutoupdate(_:interval:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAutoupdate:interval:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1updateStatus(_:)/title",
+          "value": "updateStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1updateStatus(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFCertificateTrustPanel/title",
+          "value": "SFCertificateTrustPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFCertificateTrustPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFCertificateTrustPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFCertificateTrustPanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFCertificateTrustPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1delegate()/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1delegate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAppearanceCustomization/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11411010-authorizationviewcreatedauthoriz/title",
+          "value": "authorizationViewCreatedAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1isEnabled()/title",
+          "value": "isEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1isEnabled()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1authorization()/title",
+          "value": "authorization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView~1authorization()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFCertificateView/title",
+          "value": "SFCertificateView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFCertificateView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFCertificateView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFCertificateView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFCertificateView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView/title",
+          "value": "SFAuthorizationView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFAuthorizationView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/securityinterface/sfauthorizationview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/securityinterface/sfauthorizationview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

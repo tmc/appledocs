@@ -1,0 +1,741 @@
+{
+  "abstract": [
+    {
+      "text": "Create app intents and entities to integrate your app’s presentation functionality with Siri and Apple Intelligence.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/Making-presentation-actions-available-to-siri-and-apple-intelligence"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Making presentation actions available to Siri and Apple Intelligence"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To integrate your app’s presentation capabilities with Siri and Apple Intelligence, you use Swift macros that generate additional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties and add protocol conformance for your app intent and app entity implementation that Apple Intelligence needs. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, if your app allows someone to open a presentation, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro and provide the assistant schema",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that consists of the ",
+              "type": "text"
+            },
+            {
+              "code": ".presentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationIntent/createSlide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " schema:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantIntent(schema: .presentation.open)",
+            "struct OpenPresentationIntent: OpenIntent {",
+            "    var target: PresentationEntity",
+            "",
+            "    func perform() async throws -> some IntentResult {",
+            "        .result()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about assistant schemas, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a list of available app intents in the ",
+              "type": "text"
+            },
+            {
+              "code": ".presentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-sure-your-entity-meets-requirements",
+          "level": 3,
+          "text": "Make sure your entity meets requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use app entities to describe custom data types, annotate the app entity implementation with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro. This makes sure Siri and Apple Intelligence can understand your data. For example, the intent in the previous section uses ",
+              "type": "text"
+            },
+            {
+              "code": "PresentationEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code snippet shows how the ",
+              "type": "text"
+            },
+            {
+              "code": "PresentationEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantEntity(schema: .presentation.document)",
+            "struct PresentationEntity {",
+            "    struct Query: EntityStringQuery {",
+            "        func entities(for identifiers: [PresentationEntity.ID]) async throws -> [PresentationEntity] { [] }",
+            "        func entities(matching string: String) async throws -> [PresentationEntity] { [] }",
+            "    }",
+            "",
+            "    static var defaultQuery = Query()",
+            "    var displayRepresentation: DisplayRepresentation { \"Provide a display representation.\" }",
+            "",
+            "    let id = UUID()",
+            "",
+            "    var name: String",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The assistant schema for the ",
+              "type": "text"
+            },
+            {
+              "code": "PresentationEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " consists of the ",
+              "type": "text"
+            },
+            {
+              "code": ".presentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain and the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationEntity/document",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " schema.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of available app entity schemas in the ",
+              "type": "text"
+            },
+            {
+              "code": ".presentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "app-intents-PageImage-card.png": {
+      "alt": "[A hero image of an App Intents framework icon.]",
+      "identifier": "app-intents-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f45fa3b20a1dca9bc37dc1052bdd8f0b/app-intents-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8bc71c773b4be518f0665536bee92d34/app-intents-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app entity conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantEntity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantEntity(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantentity(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app intent conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantIntent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantIntent(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantintent(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationEntity": {
+      "abstract": [
+        {
+          "text": "Assistant schema conformance for app entities that describe presentation data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PresentationEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PresentationEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssistantSchemas.PresentationEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/presentationentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationEntity/document": {
+      "abstract": [
+        {
+          "text": "The app entity describes a presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "document"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO",
+          "text": "AssistantSchemas"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO6EntityP",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationEntity/document",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "document",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/presentationentity/document"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationIntent": {
+      "abstract": [
+        {
+          "text": "Assistant schema conformance for app intents that offer presentation functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PresentationIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PresentationIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssistantSchemas.PresentationIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/presentationintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationIntent/createSlide": {
+      "abstract": [
+        {
+          "text": "The app intent conforms to the schema for creating a new slide for a presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createSlide"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO",
+          "text": "AssistantSchemas"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO6IntentP",
+          "text": "Intent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationIntent/createSlide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createSlide",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/presentationintent/createslide"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence": {
+      "abstract": [
+        {
+          "text": "Create app intents, entities, and enumerations that conform to assistant schemas to tap into the enhanced action capabilities of Siri and Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence",
+      "images": [
+        {
+          "identifier": "app-intents-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating actions with Siri and Apple Intelligence",
+      "type": "topic",
+      "url": "/documentation/appintents/integrating-actions-with-siri-and-apple-intelligence"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains": {
+      "abstract": [
+        {
+          "text": "Make your app’s actions and content available to Siri and Apple Intelligence with assistant schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App intent domains",
+      "type": "topic",
+      "url": "/documentation/appintents/app-intent-domains"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/app-intents": {
+      "abstract": [
+        {
+          "text": "Define the custom actions your app exposes to the system, and incorporate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "support for existing SiriKit intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App intents",
+      "type": "topic",
+      "url": "/documentation/appintents/app-intents"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Presentations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/PresentationEntity"
+      ],
+      "title": "Presentations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/making-presentation-actions-available-to-siri-and-apple-intelligence"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

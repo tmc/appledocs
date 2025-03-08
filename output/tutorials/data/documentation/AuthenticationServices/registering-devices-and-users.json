@@ -1,0 +1,1543 @@
+{
+  "abstract": [
+    {
+      "text": "Implement device and user registration.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/registering-devices-and-users"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Registering devices and users"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you develop a single sign-on (SSO) extension, there’s a sequence of steps that it follows to register devices and users with an identity provider (IdP). Platform SSO calls the extension to perform these steps. First, the extension registers a device, and then it registers users on that device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your SSO extension needs to implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to support registration. Platform SSO calls these methods when a device or user needs to register with the IdP, or when the system needs to repair an existing registration. The extension repeats the registration calls for each user on a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-extensions-that-support-platform-sso",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-a-device",
+          "level": 3,
+          "text": "Register a device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An SSO extension registers a device using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler/beginDeviceRegistration(loginManager:options:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The extension needs to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register the device with its associated IdP.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide the login configuration to Platform SSO.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Execute the completion handler.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there’s a registration token in the Device Management configuration profile, then platform SSO attempts a silent device registration. The extension can use the registration token to authenticate the device with the IdP to avoid prompting the user. If necessary, the system presents a user interface that prompts the user to register and then again calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler/beginDeviceRegistration(loginManager:options:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the SSO extension needs to present a user interface during registration, it can call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/presentRegistrationViewController(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the login manager.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKeyType/currentDeviceSigning",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKeyType/currentDeviceEncryption",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key types to access the signing and encryption keys, regardless of the use of shared keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When complete, the SSO extension needs to call the completion handler with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the result is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult/failed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then platform SSO automatically prompts the user for registration again in about 10 minutes. The user can also use the register button under Settings → Users & Groups → Network Account Server to restart registration. If the result is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult/failedNoRetry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then platform SSO doesn’t attempt registration again until the configuration or extension changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "During device registration, SSO extensions can run as a user or a role account. Device registration is also user-agnostic. So, don’t set user-specific settings such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration/loginUserName",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " during registration.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on registering devices and users, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-a-user",
+          "level": 3,
+          "text": "Register a user",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the device registration completes successfully with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult/success",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " result, the SSO extension initiates user registration through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler/beginUserRegistration(loginManager:userName:method:options:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". All users on a device use the login configuration, including when the system creates new users during login. You can set user-specific login configuration values that the system supports during user registration by creating an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and save these values using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/saveUserLoginConfiguration(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using shared device keys, the system only starts user registration for each subsequent user on the device. If the system creates new users during login, it prompts the user to start registration when they reach the desktop if necessary. The login manager’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/saveUserLoginConfiguration(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method specifies per-user login configuration changes. If the user already entered a user name, it’s sent through the ",
+              "type": "text"
+            },
+            {
+              "code": "userName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The SSO extension needs to call the completion handler when registration completes. The system then prompts the user to authenticate using the new configuration which can use platform SSO immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the extension supports the new platform SSO 2.0 protocol methods and the system uses password authentication, it calls the key service to provision a new key and bind it to the user account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionAuthenticationMethod": {
+      "abstract": [
+        {
+          "text": "The platform single sign-on method for the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionAuthenticationMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionAuthenticationMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionAuthenticationMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionAuthenticationMethod",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionauthenticationmethod"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKeyType/currentDeviceEncryption": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentDeviceEncryption"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKeyType/currentDeviceEncryption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionKeyType.currentDeviceEncryption",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionkeytype/currentdeviceencryption"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKeyType/currentDeviceSigning": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentDeviceSigning"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKeyType/currentDeviceSigning",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionKeyType.currentDeviceSigning",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionkeytype/currentdevicesigning"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/presentRegistrationViewController(completion:)": {
+      "abstract": [
+        {
+          "text": "Requests platform single sign-on to show the extension’s view controller to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentRegistrationViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/presentRegistrationViewController(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentRegistrationViewControllerWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentRegistrationViewController(completion:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/presentregistrationviewcontroller(completion:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/saveUserLoginConfiguration(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveUserLoginConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationProviderExtensionUserLoginConfiguration",
+          "text": "ASAuthorizationProviderExtensionUserLoginConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/saveUserLoginConfiguration(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveUserLoginConfiguration:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "saveUserLoginConfiguration(_:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/saveuserloginconfiguration(_:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler": {
+      "abstract": [
+        {
+          "text": "An interface through which a single sign-on (SSO) authentication provider extension registers users and devices for platform SSO.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionRegistrationHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionRegistrationHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionRegistrationHandler",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionregistrationhandler"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler/beginDeviceRegistration(loginManager:options:completion:)": {
+      "abstract": [
+        {
+          "text": "Initiates the device registration process for the single sign-on extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginDeviceRegistration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "loginManager"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationProviderExtensionLoginManager",
+          "text": "ASAuthorizationProviderExtensionLoginManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationProviderExtensionRequestOptions",
+          "text": "ASAuthorizationProviderExtensionRequestOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationProviderExtensionRegistrationResult",
+          "text": "ASAuthorizationProviderExtensionRegistrationResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler/beginDeviceRegistration(loginManager:options:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginDeviceRegistrationUsingLoginManager:options:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "beginDeviceRegistration(loginManager:options:completion:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionregistrationhandler/begindeviceregistration(loginmanager:options:completion:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler/beginUserRegistration(loginManager:userName:method:options:completion:)": {
+      "abstract": [
+        {
+          "text": "Initiates the user registration process for the user and the single sign-on extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginUserRegistration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "loginManager"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationProviderExtensionLoginManager",
+          "text": "ASAuthorizationProviderExtensionLoginManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "method"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationProviderExtensionAuthenticationMethod",
+          "text": "ASAuthorizationProviderExtensionAuthenticationMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationProviderExtensionRequestOptions",
+          "text": "ASAuthorizationProviderExtensionRequestOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationProviderExtensionRegistrationResult",
+          "text": "ASAuthorizationProviderExtensionRegistrationResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler/beginUserRegistration(loginManager:userName:method:options:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginUserRegistrationUsingLoginManager:userName:authenticationMethod:options:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "beginUserRegistration(loginManager:userName:method:options:completion:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionregistrationhandler/beginuserregistration(loginmanager:username:method:options:completion:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult": {
+      "abstract": [
+        {
+          "text": "The registration result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionRegistrationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionRegistrationResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionRegistrationResult",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult/failed": {
+      "abstract": [
+        {
+          "text": "The registration fails to complete and the system retries later.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failed"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult/failed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionRegistrationResultFailed"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionRegistrationResult.failed",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/failed"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult/failedNoRetry": {
+      "abstract": [
+        {
+          "text": "The registration fails to complete and the system doesn’t retry later.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failedNoRetry"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult/failedNoRetry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionRegistrationResult.failedNoRetry",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/failednoretry"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult/success": {
+      "abstract": [
+        {
+          "text": "The registration succeeds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "success"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult/success",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionRegistrationResultSuccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionRegistrationResult.success",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/success"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRequestOptions": {
+      "abstract": [
+        {
+          "text": "The options for the extension to obtain the status of the registration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionRequestOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRequestOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionRequestOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionRequestOptions",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionUserLoginConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionUserLoginConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionUserLoginConfiguration",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration/loginUserName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loginUserName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration/loginUserName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loginUserName"
+        }
+      ],
+      "role": "symbol",
+      "title": "loginUserName",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration/loginusername"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-extensions-that-support-platform-sso": {
+      "abstract": [
+        {
+          "text": "Configure capabilities and authentication options for extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-extensions-that-support-platform-sso",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating extensions that support platform SSO",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-extensions-that-support-platform-sso"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso": {
+      "abstract": [
+        {
+          "text": "Use credentials from macOS login to perform single sign-on with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Platform single sign-on (SSO)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/platform-single-sign-on-sso"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-extensions-that-support-platform-sso",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionAuthenticationMethod",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRequestOptions",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-extensions-that-support-platform-sso",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationHandler",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionAuthenticationMethod",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRequestOptions",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionRegistrationResult"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationHandler/title",
+          "value": "ASAuthorizationProviderExtensionRegistrationHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionRegistrationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionRegistrationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionUserLoginConfiguration/title",
+          "value": "ASAuthorizationProviderExtensionUserLoginConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionUserLoginConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionUserLoginConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionUserLoginConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionUserLoginConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionAuthenticationMethod/title",
+          "value": "ASAuthorizationProviderExtensionAuthenticationMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionAuthenticationMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionAuthenticationMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionAuthenticationMethod/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionAuthenticationMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionUserLoginConfiguration~1loginUserName/title",
+          "value": "loginUserName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionUserLoginConfiguration~1loginUserName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "loginUserName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRequestOptions/title",
+          "value": "ASAuthorizationProviderExtensionRequestOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRequestOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionRequestOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRequestOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionRequestOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginManager~1presentRegistrationViewController(completion:)/title",
+          "value": "presentRegistrationViewControllerWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginManager~1presentRegistrationViewController(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentRegistrationViewControllerWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginManager~1saveUserLoginConfiguration(_:)/title",
+          "value": "saveUserLoginConfiguration:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginManager~1saveUserLoginConfiguration(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveUserLoginConfiguration:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionKeyType~1currentDeviceEncryption/title",
+          "value": "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionKeyType~1currentDeviceEncryption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationResult/title",
+          "value": "ASAuthorizationProviderExtensionRegistrationResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionRegistrationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionRegistrationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationResult~1failed/title",
+          "value": "ASAuthorizationProviderExtensionRegistrationResultFailed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationResult~1failed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionRegistrationResultFailed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationResult~1success/title",
+          "value": "ASAuthorizationProviderExtensionRegistrationResultSuccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationResult~1success/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionRegistrationResultSuccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationResult~1failedNoRetry/title",
+          "value": "ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationResult~1failedNoRetry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationHandler~1beginDeviceRegistration(loginManager:options:completion:)/title",
+          "value": "beginDeviceRegistrationUsingLoginManager:options:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationHandler~1beginDeviceRegistration(loginManager:options:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginDeviceRegistrationUsingLoginManager:options:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationHandler~1beginUserRegistration(loginManager:userName:method:options:completion:)/title",
+          "value": "beginUserRegistrationUsingLoginManager:userName:authenticationMethod:options:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionRegistrationHandler~1beginUserRegistration(loginManager:userName:method:options:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginUserRegistrationUsingLoginManager:userName:authenticationMethod:options:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionKeyType~1currentDeviceSigning/title",
+          "value": "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionKeyType~1currentDeviceSigning/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/registering-devices-and-users"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/registering-devices-and-users"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,445 @@
+{
+  "abstract": [
+    {
+      "text": "The execution priority of the operation in an operation queue. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management",
+        "doc://com.apple.documentation/documentation/foundation/operation"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/operation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/operation/1411204-queuepriority"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411204,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSOperation(py)queuePriority",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "queuePriority"
+      },
+      {
+        "kind": "text",
+        "text": ": Operation.QueuePriority"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "Operation"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "queuePriority"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "queuePriority"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSOperation",
+              "text": "Operation"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operation/queuepriority",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NSOperationQueuePriority",
+              "text": "QueuePriority"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property contains the relative priority of the operation. This value is used to influence the order in which operations are dequeued and executed. The returned value always corresponds to one of the predefined constants. (For a list of valid values, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operation/queuepriority",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".) If no priority is explicitly set, this method returns ",
+              "type": "text"
+            },
+            {
+              "code": "NSOperationQueuePriorityNormal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should use priority values only as needed to classify the relative priority of non-dependent operations. Priority values should not be used to implement dependency management among different operation objects. If you need to establish dependencies between operations, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1412859-adddependency",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method instead. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you attempt to specify a priority value that does not match one of the defined constants, the operation object automatically adjusts the value you specify towards the ",
+              "type": "text"
+            },
+            {
+              "code": "NSOperationQueuePriorityNormal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " priority, stopping at the first valid constant value. For example, if you specified the value -10, the operation would adjust that value to match the ",
+              "type": "text"
+            },
+            {
+              "code": "NSOperationQueuePriorityVeryLow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constant. Similarly, if you specified +10, this operation would adjust the value to match the ",
+              "type": "text"
+            },
+            {
+              "code": "NSOperationQueuePriorityVeryHigh",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constant.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Operation",
+      "type": "topic",
+      "url": "/documentation/foundation/operation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation/1409020-threadpriority": {
+      "abstract": [
+        {
+          "text": "The thread priority to use when executing the operation",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "threadPriority"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1409020-threadpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "threadPriority",
+      "type": "topic",
+      "url": "/documentation/foundation/operation/1409020-threadpriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation/1411204-queuepriority": {
+      "abstract": [
+        {
+          "text": "The execution priority of the operation in an operation queue. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "queuePriority"
+        },
+        {
+          "kind": "text",
+          "text": ": Operation.QueuePriority"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1411204-queuepriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "queuePriority",
+      "type": "topic",
+      "url": "/documentation/foundation/operation/1411204-queuepriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation/1412859-adddependency": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1412859-adddependency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addDependency(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/operation/1412859-adddependency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation/1413553-qualityofservice": {
+      "abstract": [
+        {
+          "text": "The relative amount of importance for granting system resources to the operation. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "qualityOfService"
+        },
+        {
+          "kind": "text",
+          "text": ": QualityOfService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1413553-qualityofservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "qualityOfService",
+      "type": "topic",
+      "url": "/documentation/foundation/operation/1413553-qualityofservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation/queuepriority": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation/queuepriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Operation.QueuePriority",
+      "type": "topic",
+      "url": "/documentation/foundation/operation/queuepriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/operation/1413553-qualityofservice",
+        "doc://com.apple.documentation/documentation/foundation/operation/1409020-threadpriority"
+      ],
+      "title": "Configuring the Execution Priority"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsoperation/1411204-queuepriority"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/operation/1411204-queuepriority"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

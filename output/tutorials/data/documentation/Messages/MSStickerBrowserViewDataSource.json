@@ -1,0 +1,1006 @@
+{
+  "abstract": [
+    {
+      "text": "The protocol for dynamically providing stickers to a browser view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.messages/documentation/Messages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MSStickerBrowserViewDataSource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MSStickerBrowserViewDataSource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Messages"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MSStickerBrowserViewDataSource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MSStickerBrowserViewDataSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewDataSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To load its stickers, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class performs the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The browser calls the data source’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource/numberOfStickers(in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to get the number of stickers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The browser repeatedly calls the data source’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource/stickerBrowserView(_:stickerAt:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to load the individual stickers. Initially, the browser requests only enough stickers to fill the screen. The browser requests additional stickers as the user scrolls and new stickers become visible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both methods are required. If the sticker collection changes at runtime, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView/reloadData()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to reload the stickers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.messages/documentation/Messages": {
+      "abstract": [
+        {
+          "text": "Create app extensions that allow users to send text, stickers, media files, and interactive messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Messages",
+      "type": "topic",
+      "url": "/documentation/messages"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView": {
+      "abstract": [
+        {
+          "text": "A browser view that displays a dynamically generated list of stickers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserView"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerBrowserView",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserview"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView/dataSource": {
+      "abstract": [
+        {
+          "text": "The sticker browser’s data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataSource"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MSStickerBrowserViewDataSource",
+          "text": "MSStickerBrowserViewDataSource"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView/dataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "dataSource",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserview/datasource"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView/reloadData()": {
+      "abstract": [
+        {
+          "text": "Asks the sticker browser to reload its data from the data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadData"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView/reloadData()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reloadData"
+        }
+      ],
+      "role": "symbol",
+      "title": "reloadData()",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserview/reloaddata()"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides dynamic content to the standard sticker browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserviewcontroller"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource": {
+      "abstract": [
+        {
+          "text": "The protocol for dynamically providing stickers to a browser view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerBrowserViewDataSource",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserviewdatasource"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource/numberOfStickers(in:)": {
+      "abstract": [
+        {
+          "text": "Asks the data source for the number of stickers that the browser will display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfStickers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSStickerBrowserView",
+          "text": "MSStickerBrowserView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource/numberOfStickers(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfStickersInStickerBrowserView:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "numberOfStickers(in:)",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserviewdatasource/numberofstickers(in:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource/stickerBrowserView(_:stickerAt:)": {
+      "abstract": [
+        {
+          "text": "Asks the data source for the sticker object that the browser will display at the provided index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stickerBrowserView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSStickerBrowserView",
+          "text": "MSStickerBrowserView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stickerAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSSticker",
+          "text": "MSSticker"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource/stickerBrowserView(_:stickerAt:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stickerBrowserView:stickerAtIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "stickerBrowserView(_:stickerAt:)",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserviewdatasource/stickerbrowserview(_:stickerat:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-the-Sticker-Collection-Contents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView/dataSource",
+        "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView/reloadData()"
+      ],
+      "title": "Managing the Sticker Collection Contents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Providing-Stickers",
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource/numberOfStickers(in:)",
+        "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource/stickerBrowserView(_:stickerAt:)"
+      ],
+      "title": "Providing Stickers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MSStickerBrowserViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.messages/documentation/Messages"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Providing-Stickers",
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource/numberOfStickers(in:)",
+                "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewDataSource/stickerBrowserView(_:stickerAt:)"
+              ],
+              "title": "Providing Stickers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-the-Sticker-Collection-Contents",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView/dataSource",
+                "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView/reloadData()"
+              ],
+              "title": "Managing the Sticker Collection Contents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MSStickerBrowserViewDataSource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewDataSource~1numberOfStickers(in:)/title",
+          "value": "numberOfStickersInStickerBrowserView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewDataSource~1numberOfStickers(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "numberOfStickersInStickerBrowserView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView~1reloadData()/title",
+          "value": "reloadData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView~1reloadData()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reloadData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewDataSource~1stickerBrowserView(_:stickerAt:)/title",
+          "value": "stickerBrowserView:stickerAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewDataSource~1stickerBrowserView(_:stickerAt:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stickerBrowserView:stickerAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView~1dataSource/title",
+          "value": "dataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView~1dataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewController/title",
+          "value": "MSStickerBrowserViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView/title",
+          "value": "MSStickerBrowserView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewDataSource/title",
+          "value": "MSStickerBrowserViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewDataSource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/messages/msstickerbrowserviewdatasource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/messages/msstickerbrowserviewdatasource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3739 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/resources"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/bundle"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408289,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSBundle",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "Bundle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "Bundle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Bundle"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple uses bundles to represent apps, frameworks, plug-ins, and many other specific types of content. Bundles organize their contained resources into well-defined subdirectories, and bundle structures vary depending on the platform and the type of the bundle. By using a bundle object, you can access a bundle's resources without knowing the structure of the bundle. The bundle object provides a single interface for locating items, taking into account the bundle structure, user preferences, available localizations, and other relevant factors. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any executable can use a bundle object to locate resources, either inside an app’s bundle or in a known bundle located elsewhere. You don't use a bundle object to locate files in a container directory or in other parts of the file system. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The general pattern for using a bundle object is as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a bundle object for the intended bundle directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the methods of the bundle object to locate or load the needed resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use other system APIs to interact with the resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some types of frequently used resources can be located and opened without a bundle. For example, when loading images, you store images in asset catalogs and load them using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Similarly, for string resources, you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslocalizedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to load individual strings instead of loading the entire ",
+              "type": "text"
+            },
+            {
+              "code": ".strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Unlike some other Foundation classes with corresponding Core Foundation names (such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstring",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "), ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects cannot be cast to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " references. If you need functionality provided by ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ", you can still create a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " and use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " API. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1745091",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "1651474",
+          "level": 3,
+          "text": "Finding and Opening a Bundle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can locate a resource, you must first specify which bundle contains it. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class has many constructors, but the one you use most often is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1410786-main",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The main bundle represents the bundle directory that contains the currently executing code. So for an app, the main bundle object gives you access to the resources that shipped with your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app interacts directly with plug-ins, frameworks, or other bundled content, you can use other methods of this class to create appropriate bundle objects. You can always create bundle objects from a known URL or path, but other methods make it easier to access bundles your app is already using. For example, if you link to a framework, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417717-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to locate the framework bundle based on a class defined in that framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the app's main bundle",
+            "let mainBundle = Bundle.main",
+            "",
+            "// Get the bundle containing the specified private class.",
+            "let myBundle = Bundle(for: NSClassFromString(\"MyPrivateClass\")!)"
+          ],
+          "metadata": {
+            "anchor": "2555530",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "1651491",
+          "level": 3,
+          "text": "Locating Resources in a Bundle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects to obtain the location of specific resources inside the bundle. When looking for resources, you provide the name of the resource and its type at a minimum. For resources in a specific subdirectory, you can also specify that directory. After locating the resource, the bundle routines return a path string or URL that you can use to open the file. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSBundle *main = [NSBundle mainBundle];",
+            "NSString *resourcePath = [main pathForResource:@\"Seagull\" ofType:@\"jpg\"];"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Locating a single resource in a bundle",
+                "type": "text"
+              }
+            ],
+            "anchor": "2863917",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bundle objects follow a specific search pattern when looking for resources on disk. Global resources—that is, resources not in a language-specific ",
+              "type": "text"
+            },
+            {
+              "code": ".lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory—are returned first, followed by region- and language-specific resources. This search pattern means that the bundle looks for resources in the following order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Global (nonlocalized) resources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Region-specific localized resources (based on the user’s region preferences)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Language-specific localized resources (based on the user’s language preferences)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Development language resources (as specified by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "devLink-1698489",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key in the bundle’s Info.plist file)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because global resources take precedence over language-specific resources, you should never include both a global and localized version of a given resource in your app. When a global version of a resource exists, language-specific versions are never returned. The reason for this precedence is performance. If localized resources were searched first, the bundle object might waste time searching for a nonexistent localized resource before returning the global resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Bundle objects always consider case when searching for resource files, even on file systems that support case-insensitive filenames. Always make sure that you specify filenames with case sensitivity in mind.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When locating resource files, the bundle object automatically considers many standard filename modifiers when determining which file to return. Resources may be tagged for a specific device (",
+              "type": "text"
+            },
+            {
+              "code": "~iphone",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "~ipad",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") or for a specific screen resolution (",
+              "type": "text"
+            },
+            {
+              "code": "@2x",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "@3x",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Do not include these modifiers when specifying the name of the resource you want. The bundle object selects the file that is most appropriate for the underlying device. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1707721",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651512",
+          "level": 3,
+          "text": "Understanding Bundle Structures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bundle structures vary depending on the target platform and the type of bundle you are building. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class hides this underlying structure in most (but not all) cases. Many of the methods you use to load resources from a bundle automatically locate the appropriate starting directory and look for resources in known places. You can also use the methods and properties of this class to get the location of known bundle directories and to retrieve resources specifically from those directories.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about the bundle structure of iOS and macOS apps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1696005",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information about the structure of framework bundles, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1696490",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information about the structure of macOS plug-ins, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695499",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695499": {
+      "identifier": "devLink-1695499",
+      "title": "Code Loading Programming Topics",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/LoadingCode/LoadingCode.html#//apple_ref/doc/uid/10000052i"
+    },
+    "devLink-1696005": {
+      "identifier": "devLink-1696005",
+      "title": "Bundle Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i"
+    },
+    "devLink-1696490": {
+      "identifier": "devLink-1696490",
+      "title": "Framework Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183i"
+    },
+    "devLink-1698489": {
+      "identifier": "devLink-1698489",
+      "title": "CFBundleDevelopmentRegion",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-130430"
+    },
+    "devLink-1707721": {
+      "identifier": "devLink-1707721",
+      "title": "App Icons on iPhone, iPad and Apple Watch",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/qa/qa1686/_index.html#//apple_ref/doc/uid/DTS40009882"
+    },
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundle": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundle",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundle"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBundle",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundle-s0a"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstring": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle#2555530": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle#2555530",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/bundle#2555530"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle#2863917": {
+      "abstract": [
+        {
+          "text": "Locating a single resource in a bundle",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle#2863917",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/bundle#2863917"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1402909-loadnibnamed": {
+      "abstract": [
+        {
+          "text": "Loads a nib from the bundle with the specified file name and owner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadNibNamed"
+        },
+        {
+          "kind": "text",
+          "text": "(NSNib.Name, "
+        },
+        {
+          "kind": "identifier",
+          "text": "owner"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "topLevelObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSArray?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1402909-loadnibnamed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadNibNamed(_:owner:topLevelObjects:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1402909-loadnibnamed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl": {
+      "abstract": [
+        {
+          "text": "The file URL for the bundle’s App Store receipt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "appStoreReceiptURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appStoreReceiptURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1407276-appstorereceipturl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1407299-classnamed": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "Class",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object for the specified name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "classNamed"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> AnyClass?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407299-classnamed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "classNamed(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1407299-classnamed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1407424-urls": {
+      "abstract": [
+        {
+          "text": "Returns an array of file URLs for all resources identified by the specified file extension and located in the specified bundle subdirectory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urls"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResourcesWithExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "subdirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> [URL]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407424-urls",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urls(forResourcesWithExtension:subdirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1407424-urls"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1407645-localizedinfodictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary with the keys from the bundle’s localized property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedInfoDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407645-localizedinfodictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedInfoDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1407645-localizedinfodictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1407973-bundlepath": {
+      "abstract": [
+        {
+          "text": "The full pathname of the receiver’s bundle directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundlePath"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407973-bundlepath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bundlePath",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1407973-bundlepath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1408056-allframeworks": {
+      "abstract": [
+        {
+          "text": "Returns an array of all of the application’s bundles that represent frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allFrameworks"
+        },
+        {
+          "kind": "text",
+          "text": ": [Bundle]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1408056-allframeworks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allFrameworks",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1408056-allframeworks"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1408696-object": {
+      "abstract": [
+        {
+          "text": "Returns the value associated with the specified key in the receiver's information property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forInfoDictionaryKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1408696-object",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object(forInfoDictionaryKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1408696-object"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1408900-builtinpluginspath": {
+      "abstract": [
+        {
+          "text": "The full pathname of the receiver's subdirectory containing plug-ins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "builtInPlugInsPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1408900-builtinpluginspath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "builtInPlugInsPath",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1408900-builtinpluginspath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1409048-principalclass": {
+      "abstract": [
+        {
+          "text": "The bundle’s principal class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "principalClass"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyClass?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1409048-principalclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "principalClass",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1409048-principalclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1409078-executablepath": {
+      "abstract": [
+        {
+          "text": "The full pathname of the receiver's executable file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "executablePath"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1409078-executablepath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executablePath",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1409078-executablepath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1409352-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSBundle",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized to correspond to the specified file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1409352-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(url:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1409352-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1409418-preferredlocalizations": {
+      "abstract": [
+        {
+          "text": "Returns locale identifiers for which a bundle would provide localized content, given a specified list of candidates for a user's language preferences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredLocalizations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": [String], "
+        },
+        {
+          "kind": "identifier",
+          "text": "forPreferences"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]?) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1409418-preferredlocalizations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredLocalizations(from:forPreferences:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1409418-preferredlocalizations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1409523-path": {
+      "abstract": [
+        {
+          "text": "Returns the full pathname for the resource file identified by the specified name and extension and residing in a given bundle directory. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResource"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1409523-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path(forResource:ofType:inDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1409523-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1409603-builtinpluginsurl": {
+      "abstract": [
+        {
+          "text": "The file URL of the receiver's subdirectory containing plug-ins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "builtInPlugInsURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1409603-builtinpluginsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "builtInPlugInsURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1409603-builtinpluginsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1409670-path": {
+      "abstract": [
+        {
+          "text": "Returns the full pathname for the resource identified by the specified name and file extension and located in the specified bundle subdirectory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResource"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1409670-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path(forResource:ofType:inDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1409670-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1409807-urls": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the file URLs for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, within the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urls"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResourcesWithExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "subdirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> [URL]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1409807-urls",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urls(forResourcesWithExtension:subdirectory:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1409807-urls"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1410470-executableurl": {
+      "abstract": [
+        {
+          "text": "The file URL of the receiver's executable file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "executableURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1410470-executableurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executableURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1410470-executableurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1410786-main": {
+      "abstract": [
+        {
+          "text": "Returns the bundle object that contains the current executable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "main"
+        },
+        {
+          "kind": "text",
+          "text": ": Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1410786-main",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "main",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1410786-main"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1410989-path": {
+      "abstract": [
+        {
+          "text": "Returns the full pathname for the resource identified by the specified name and file extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResource"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1410989-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path(forResource:ofType:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1410989-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1411412-url": {
+      "abstract": [
+        {
+          "text": "Returns the file URL of the executable with the specified name in the receiver’s bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forAuxiliaryExecutable"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1411412-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(forAuxiliaryExecutable:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1411412-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1411540-url": {
+      "abstract": [
+        {
+          "text": "Returns the file URL for the resource identified by the specified name and file extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResource"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1411540-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(forResource:withExtension:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1411540-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1411609-sharedsupportpath": {
+      "abstract": [
+        {
+          "text": "The full pathname of the bundle’s subdirectory containing shared support files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedSupportPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1411609-sharedsupportpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedSupportPath",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1411609-sharedsupportpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1411774-sharedframeworksurl": {
+      "abstract": [
+        {
+          "text": "The file URL of the receiver's subdirectory containing shared frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedFrameworksURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1411774-sharedframeworksurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedFrameworksURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1411774-sharedframeworksurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1411819-loadandreturnerror": {
+      "abstract": [
+        {
+          "text": "Loads the bundle’s executable code and returns any errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadAndReturnError"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1411819-loadandreturnerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadAndReturnError()",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1411819-loadandreturnerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1411929-init": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "NSBundle",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance that has the specified bundle identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1411929-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(identifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1411929-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1412388-unload": {
+      "abstract": [
+        {
+          "text": "Unloads the code associated with the receiver. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unload"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1412388-unload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unload()",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1412388-unload"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1412741-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSBundle",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized to correspond to the specified directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1412741-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(path:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1412741-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1413058-paths": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the pathnames for all bundle resources having the specified filename extension and residing in the resource subdirectory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "paths"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResourcesOfType"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1413058-paths",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paths(forResourcesOfType:inDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1413058-paths"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1413220-preferredlocalizations": {
+      "abstract": [
+        {
+          "text": "An ordered list of preferred localizations contained in the bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredLocalizations"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1413220-preferredlocalizations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredLocalizations",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1413220-preferredlocalizations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1413471-path": {
+      "abstract": [
+        {
+          "text": "Returns the full pathname for the resource identified by the specified name and file extension, located in the specified bundle subdirectory, and limited to global resources and those associated with the specified localization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResource"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forLocalization"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1413471-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path(forResource:ofType:inDirectory:forLocalization:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1413471-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1413477-infodictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary, constructed from the bundle’s ",
+          "type": "text"
+        },
+        {
+          "code": "Info.plist",
+          "type": "codeVoice"
+        },
+        {
+          "text": " file, that contains information about the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "infoDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1413477-infodictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "infoDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1413477-infodictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1413594-isloaded": {
+      "abstract": [
+        {
+          "text": "The load status of a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLoaded"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1413594-isloaded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isLoaded",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1413594-isloaded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1413705-allbundles": {
+      "abstract": [
+        {
+          "text": "Returns an array of all the application’s non-framework bundles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allBundles"
+        },
+        {
+          "kind": "text",
+          "text": ": [Bundle]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1413705-allbundles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allBundles",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1413705-allbundles"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1414688-urls": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the file URLs for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, and limited to global resources and those associated with the specified localization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urls"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResourcesWithExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "subdirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "localization"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> [URL]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1414688-urls",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urls(forResourcesWithExtension:subdirectory:localization:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1414688-urls"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1414821-resourceurl": {
+      "abstract": [
+        {
+          "text": "The file URL of the bundle’s subdirectory containing resource files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1414821-resourceurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1414821-resourceurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1415083-preflight": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the bundle’s executable code could be loaded successfully. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "preflight"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1415083-preflight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preflight()",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1415083-preflight"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1415214-path": {
+      "abstract": [
+        {
+          "text": "Returns the full pathname of the executable with the specified name in the receiver’s bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forAuxiliaryExecutable"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1415214-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path(forAuxiliaryExecutable:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1415214-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1415499-executablearchitectures": {
+      "abstract": [
+        {
+          "text": "An array of numbers indicating the architecture types supported by the bundle’s executable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "executableArchitectures"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSNumber]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1415499-executablearchitectures",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executableArchitectures",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1415499-executablearchitectures"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1415562-privateframeworkspath": {
+      "abstract": [
+        {
+          "text": "The full pathname of the bundle’s subdirectory containing private frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "privateFrameworksPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1415562-privateframeworkspath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "privateFrameworksPath",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1415562-privateframeworkspath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1415654-bundleurl": {
+      "abstract": [
+        {
+          "text": "The full URL of the receiver’s bundle directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundleURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1415654-bundleurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bundleURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1415654-bundleurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1415876-paths": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the pathnames for all bundle resources having the specified extension and residing in the bundle directory at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "paths"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResourcesOfType"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1415876-paths",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paths(forResourcesOfType:inDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1415876-paths"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1415927-load": {
+      "abstract": [
+        {
+          "text": "Dynamically loads the bundle’s executable code into a running program, if the code has not already been loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1415927-load",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load()",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1415927-load"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1416137-didloadnotification": {
+      "abstract": [
+        {
+          "text": "A notification that lets observers know when classes are dynamically loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "didLoadNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1416137-didloadnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didLoadNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1416137-didloadnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1416361-url": {
+      "abstract": [
+        {
+          "text": "Creates and returns a file URL for the resource with the specified name and extension in the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResource"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "subdirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1416361-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(forResource:withExtension:subdirectory:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1416361-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1416712-url": {
+      "abstract": [
+        {
+          "text": "Returns the file URL for the resource file identified by the specified name and extension and residing in a given bundle directory. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResource"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "subdirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1416712-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(forResource:withExtension:subdirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1416712-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1416823-sharedsupporturl": {
+      "abstract": [
+        {
+          "text": "The file URL of the bundle’s subdirectory containing shared support files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedSupportURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1416823-sharedsupporturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedSupportURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1416823-sharedsupporturl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1416940-paths": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the file for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, and limited to global resources and those associated with the specified localization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "paths"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResourcesOfType"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forLocalization"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1416940-paths",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paths(forResourcesOfType:inDirectory:forLocalization:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1416940-paths"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1417226-sharedframeworkspath": {
+      "abstract": [
+        {
+          "text": "The full pathname of the bundle’s subdirectory containing shared frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedFrameworksPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417226-sharedframeworkspath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedFrameworksPath",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1417226-sharedframeworkspath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1417249-preferredlocalizations": {
+      "abstract": [
+        {
+          "text": "Returns one or more localizations from the specified list that a bundle object would use to locate resources for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredLocalizations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417249-preferredlocalizations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredLocalizations(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1417249-preferredlocalizations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1417378-url": {
+      "abstract": [
+        {
+          "text": "Returns the file URL for the resource identified by the specified name and file extension, located in the specified bundle subdirectory, and limited to global resources and those associated with the specified localization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResource"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "subdirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "localization"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417378-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(forResource:withExtension:subdirectory:localization:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1417378-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1417415-localizations": {
+      "abstract": [
+        {
+          "text": "A list of all the localizations contained in the bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizations"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417415-localizations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizations",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1417415-localizations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1417526-developmentlocalization": {
+      "abstract": [
+        {
+          "text": "The localization for the development language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "developmentLocalization"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417526-developmentlocalization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "developmentLocalization",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1417526-developmentlocalization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1417617-privateframeworksurl": {
+      "abstract": [
+        {
+          "text": "The file URL of the bundle’s subdirectory containing private frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "privateFrameworksURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417617-privateframeworksurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "privateFrameworksURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1417617-privateframeworksurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1417694-localizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized version of the string designated by the specified key and residing in the specified table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "table"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417694-localizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedString(forKey:value:table:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1417694-localizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1417717-init": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "NSBundle",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object with which the specified class is associated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyClass)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417717-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1417717-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1417723-resourcepath": {
+      "abstract": [
+        {
+          "text": "The full pathname of the bundle’s subdirectory containing resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourcePath"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1417723-resourcepath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourcePath",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1417723-resourcepath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1418023-bundleidentifier": {
+      "abstract": [
+        {
+          "text": "The receiver’s bundle identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1418023-bundleidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1418023-bundleidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1477280-path": {
+      "abstract": [
+        {
+          "text": "Returns the location of the specified sound resource file. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forSoundResource"
+        },
+        {
+          "kind": "text",
+          "text": ": NSSound.Name) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1477280-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path(forSoundResource:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1477280-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1495005-mach-o_architecture": {
+      "abstract": [
+        {
+          "text": "Constants that describe the CPU types that a bundle’s executable code supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1495005-mach-o_architecture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mach-O Architecture",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1495005-mach-o_architecture"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1500918-contexthelp": {
+      "abstract": [
+        {
+          "text": "Returns the context-sensitive help for the specified key from the bundle's help file. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextHelp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": NSHelpManager.ContextHelpKey) -> NSAttributedString?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1500918-contexthelp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contextHelp(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1500918-contexthelp"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1519854-pathforimageresource": {
+      "abstract": [
+        {
+          "text": "Returns the location of the specified image resource file. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "pathForImageResource"
+        },
+        {
+          "kind": "text",
+          "text": "(NSImage.Name) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1519854-pathforimageresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pathForImageResource(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1519854-pathforimageresource"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1519886-urlforimageresource": {
+      "abstract": [
+        {
+          "text": "Returns the location of the specified image resource as an NSURL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlForImageResource"
+        },
+        {
+          "kind": "text",
+          "text": "(NSImage.Name) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1519886-urlforimageresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlForImageResource(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1519886-urlforimageresource"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1519901-image": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSImage",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance associated with the specified name, which can be backed by multiple files representing different resolution versions of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forResource"
+        },
+        {
+          "kind": "text",
+          "text": ": NSImage.Name) -> NSImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1519901-image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "image(forResource:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1519901-image"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1614839-preservationpriority": {
+      "abstract": [
+        {
+          "text": "Returns the current preservation priority for the specified tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "preservationPriority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTag"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1614839-preservationpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preservationPriority(forTag:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1614839-preservationpriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1614845-setpreservationpriority": {
+      "abstract": [
+        {
+          "text": "A hint to the system of the relative order for purging tagged sets of resources in the bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPreservationPriority"
+        },
+        {
+          "kind": "text",
+          "text": "(Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forTags"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<String>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1614845-setpreservationpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPreservationPriority(_:forTags:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1614845-setpreservationpriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1618147-loadnibnamed": {
+      "abstract": [
+        {
+          "text": "Unarchives the contents of a nib file located in the receiver's bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadNibNamed"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "owner"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [UINib.OptionsKey : Any]?) -> [Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1618147-loadnibnamed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadNibNamed(_:owner:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1618147-loadnibnamed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexecutablearchitecturemismatcherror": {
+      "abstract": [
+        {
+          "text": "The executable doesn’t provide an architecture compatible with the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExecutableArchitectureMismatchError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexecutablearchitecturemismatcherror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExecutableArchitectureMismatchError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexecutablearchitecturemismatcherror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexecutableerrormaximum": {
+      "abstract": [
+        {
+          "text": "The end of the range of error codes reserved for errors related to executable files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExecutableErrorMaximum"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexecutableerrormaximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExecutableErrorMaximum",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexecutableerrormaximum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexecutableerrorminimum": {
+      "abstract": [
+        {
+          "text": "The beginning of the range of error codes reserved for errors related to executable files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExecutableErrorMinimum"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexecutableerrorminimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExecutableErrorMinimum",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexecutableerrorminimum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexecutablelinkerror": {
+      "abstract": [
+        {
+          "text": "The executable failed due to linking issues.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExecutableLinkError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexecutablelinkerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExecutableLinkError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexecutablelinkerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexecutableloaderror": {
+      "abstract": [
+        {
+          "text": "Executable cannot be loaded for an otherwise-unspecified reason.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExecutableLoadError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexecutableloaderror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExecutableLoadError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexecutableloaderror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexecutablenotloadableerror": {
+      "abstract": [
+        {
+          "text": "The executable type isn’t loadable in the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExecutableNotLoadableError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexecutablenotloadableerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExecutableNotLoadableError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexecutablenotloadableerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexecutableruntimemismatcherror": {
+      "abstract": [
+        {
+          "text": "The executable has Objective-C runtime information that’s incompatible with the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExecutableRuntimeMismatchError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexecutableruntimemismatcherror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExecutableRuntimeMismatchError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexecutableruntimemismatcherror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsloadedclasses": {
+      "abstract": [
+        {
+          "text": "A constant used as a key for the ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary of a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1416137-didloadnotification",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " notification that corresponds to an array of names of each class that was loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLoadedClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsloadedclasses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLoadedClasses",
+      "type": "topic",
+      "url": "/documentation/foundation/nsloadedclasses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocalizedstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocalizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocalizedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocalizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/resources": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resources",
+      "type": "topic",
+      "url": "/documentation/foundation/resources"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:)": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/init(named:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(named:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/init(named:)"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1651552",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1410786-main",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1408056-allframeworks",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1413705-allbundles"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Standard Bundle Objects"
+    },
+    {
+      "anchor": "1651981",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1417717-init",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1411929-init",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1409352-init",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1412741-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Initializing a Bundle"
+    },
+    {
+      "anchor": "1652033",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1618147-loadnibnamed",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1402909-loadnibnamed"
+      ],
+      "kind": "taskGroup",
+      "title": "Loading Nib Files"
+    },
+    {
+      "anchor": "1652137",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1416712-url",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1411540-url",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1407424-urls",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1417378-url",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1414688-urls",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1416361-url",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1409807-urls",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1410989-path",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1409670-path",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1413471-path",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1413058-paths",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1416940-paths",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1409523-path",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1415876-paths"
+      ],
+      "kind": "taskGroup",
+      "title": "Finding Resource Files"
+    },
+    {
+      "anchor": "1652297",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1519886-urlforimageresource",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1519854-pathforimageresource",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1519901-image"
+      ],
+      "kind": "taskGroup",
+      "title": "Finding Image Resources"
+    },
+    {
+      "anchor": "1652362",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1477280-path"
+      ],
+      "kind": "taskGroup",
+      "title": "Finding Sound Resources"
+    },
+    {
+      "anchor": "1652392",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1417694-localizedstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Fetching Localized Strings"
+    },
+    {
+      "anchor": "1652413",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1500918-contexthelp"
+      ],
+      "kind": "taskGroup",
+      "title": "Fetching Context Help Resources"
+    },
+    {
+      "anchor": "1652436",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1414821-resourceurl",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1410470-executableurl",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1417617-privateframeworksurl",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1411774-sharedframeworksurl",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1409603-builtinpluginsurl",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1411412-url",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1416823-sharedsupporturl",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1417723-resourcepath",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1409078-executablepath",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1415562-privateframeworkspath",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1417226-sharedframeworkspath",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1408900-builtinpluginspath",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1415214-path",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1411609-sharedsupportpath"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Standard Bundle Directories"
+    },
+    {
+      "anchor": "1652578",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1415654-bundleurl",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1407973-bundlepath",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1418023-bundleidentifier",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1413477-infodictionary",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1408696-object"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Bundle Information"
+    },
+    {
+      "anchor": "1652622",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1417415-localizations",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1413220-preferredlocalizations",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1417526-developmentlocalization",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1407645-localizedinfodictionary",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1417249-preferredlocalizations",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1409418-preferredlocalizations"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Localization Information"
+    },
+    {
+      "anchor": "1652683",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1614845-setpreservationpriority",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1614839-preservationpriority"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Preservation Priority for On Demand Resources"
+    },
+    {
+      "anchor": "1652712",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1407299-classnamed",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1409048-principalclass",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1416137-didloadnotification",
+        "doc://com.apple.documentation/documentation/foundation/nsloadedclasses"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Classes from a Bundle"
+    },
+    {
+      "anchor": "1652744",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bundle/1415499-executablearchitectures",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1415083-preflight",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1415927-load",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1411819-loadandreturnerror",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1412388-unload",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1413594-isloaded",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1495005-mach-o_architecture"
+      ],
+      "kind": "taskGroup",
+      "title": "Loading Code from a Bundle"
+    },
+    {
+      "anchor": "2879035",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexecutableerrorminimum",
+        "doc://com.apple.documentation/documentation/foundation/nsexecutablenotloadableerror",
+        "doc://com.apple.documentation/documentation/foundation/nsexecutablearchitecturemismatcherror",
+        "doc://com.apple.documentation/documentation/foundation/nsexecutableruntimemismatcherror",
+        "doc://com.apple.documentation/documentation/foundation/nsexecutableloaderror",
+        "doc://com.apple.documentation/documentation/foundation/nsexecutablelinkerror",
+        "doc://com.apple.documentation/documentation/foundation/nsexecutableerrormaximum"
+      ],
+      "kind": "taskGroup",
+      "title": "Errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsbundle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/bundle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

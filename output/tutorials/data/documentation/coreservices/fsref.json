@@ -1,0 +1,371 @@
+{
+  "abstract": [
+    {
+      "text": "Identifies a directory or file, including a volume’s root directory.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/file_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/fsref"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1566097,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@FSRef",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "FSRef"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " FSRef {"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "    ..."
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "} "
+            },
+            {
+              "kind": "identifier",
+              "text": "FSRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " structures are designed to work with 32-bit inode numbers. Because APFS uses 64-bit inode numbers, interacting with APIs that return an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " value or that take one or more ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " values as an argument may result in performance issues in APFS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This data type’s purpose is similar to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/fsspec",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " except that an ",
+              "type": "text"
+            },
+            {
+              "code": "FSRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is completely opaque. An ",
+              "type": "text"
+            },
+            {
+              "code": "FSRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains whatever information is needed to find the given object; the internal structure of an ",
+              "type": "text"
+            },
+            {
+              "code": "FSRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is likely to vary based on the volume format, and may vary based on the particular object being identified.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The client of the File Manager cannot examine the contents of an ",
+              "type": "text"
+            },
+            {
+              "code": "FSRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to extract information about the parent directory or the object’s name. Similarly, an ",
+              "type": "text"
+            },
+            {
+              "code": "FSRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " cannot be constructed directly by the client; the ",
+              "type": "text"
+            },
+            {
+              "code": "FSRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must be constructed and returned via the File Manager. There is no need to call the File Manager to dispose an ",
+              "type": "text"
+            },
+            {
+              "code": "FSRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine the volume, parent directory and name associated with an ",
+              "type": "text"
+            },
+            {
+              "code": "FSRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or to get an equivalent ",
+              "type": "text"
+            },
+            {
+              "code": "FSSpec",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetCatalogInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565356-fsgetcataloginfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/file_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/file_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/file_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsref": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsref/1565674-hidden": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref/1565674-hidden",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hidden",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsref/1565674-hidden"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsspec": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsspec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSpec",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsspec"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2860174",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/fsref/1565674-hidden"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/fsref"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

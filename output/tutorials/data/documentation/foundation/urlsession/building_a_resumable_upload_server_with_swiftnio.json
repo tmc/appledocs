@@ -1,0 +1,568 @@
+{
+  "abstract": [
+    {
+      "text": "Support HTTP resumable upload protocol in SwiftNIO by translating resumable uploads to regular uploads.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlsession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/urlsession/building_a_resumable_upload_server_with_swiftnio"
+  },
+  "kind": "article",
+  "legacy_identifier": 4190812,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building a resumable upload server with SwiftNIO"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 10006: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4257920",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4281589",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Package.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file of an existing HTTP server project, add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".package(path: \"/path/to/swift-nio-resumable-upload\")",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as one of the dependencies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Import ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NIOResumableUpload",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in your SwiftNIO bootstrapping code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an upload context: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "let uploadContext = HTTPResumableUploadContext(origin: \"https://example.com\")",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wrap your HTTP server channel handler within ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HTTPResumableUploadHandler",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1409763-uploadtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that performs an HTTP request for the specified URL request object and uploads the provided data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1409763-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(with:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1409763-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1410934-uploadtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that performs an HTTP request for uploading data based on the specified URL request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withStreamedRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest) -> URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1410934-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(withStreamedRequest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1410934-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411518-uploadtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that performs an HTTP request for the specified URL request object, uploads the provided data, and calls a handler upon completion. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411518-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(with:from:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411518-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411550-uploadtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that performs an HTTP request for uploading the specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromFile"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411550-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(with:fromFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411550-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411638-uploadtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that performs an HTTP request for uploading the specified file, then calls a handler upon completion. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromFile"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411638-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(with:fromFile:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411638-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/building_a_resumable_upload_server_with_swiftnio": {
+      "abstract": [
+        {
+          "text": "Support HTTP resumable upload protocol in SwiftNIO by translating resumable uploads to regular uploads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/building_a_resumable_upload_server_with_swiftnio",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a resumable upload server with SwiftNIO",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/building_a_resumable_upload_server_with_swiftnio"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to data and upload tasks. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionDataDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDataDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondatadelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask": {
+      "abstract": [
+        {
+          "text": "A URL session task that uploads data to the network in a request body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionUploadTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionuploadtask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/0a69de1f99/BuildingAResumableUploadServerWithSwiftNIO.zip": {
+      "checksum": "387a5a0e8474f5a8be21315b0ade7ed96855751d63d92764da82e5447e01953b71558436da76d54825c6f549add87536ac80ae564a62313efb9d30634b7deb53",
+      "identifier": "https://docs-assets.developer.apple.com/published/0a69de1f99/BuildingAResumableUploadServerWithSwiftNIO.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/0a69de1f99/BuildingAResumableUploadServerWithSwiftNIO.zip"
+    },
+    "link-4257920": {
+      "identifier": "link-4257920",
+      "kind": "article",
+      "role": "link",
+      "title": "Build robust and resumable file transfers",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc23/10006/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/0a69de1f99/BuildingAResumableUploadServerWithSwiftNIO.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1409763-uploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1411518-uploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1411550-uploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1411638-uploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1410934-uploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate"
+      ],
+      "title": "Adding upload tasks to a session"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/urlsession/building_a_resumable_upload_server_with_swiftnio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

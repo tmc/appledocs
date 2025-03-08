@@ -1,0 +1,570 @@
+{
+  "abstract": [
+    {
+      "text": "An array of custom rotors for the current accessibility element.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/uikit",
+        "doc://com.apple.documentation/documentation/uikit/accessibility-for-uikit",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/accessibility"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/1649788-accessibilitycustomrotors"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1649788,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSObject(py)accessibilityCustomRotors",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "accessibilityCustomRotors"
+      },
+      {
+        "kind": "text",
+        "text": ": [UIAccessibilityCustomRotor]?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "parent": {
+      "title": "NSObject"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "accessibilityCustomRotors"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessibilityCustomRotors"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIAccessibilityCustomRotor",
+              "text": "UIAccessibilityCustomRotor"
+            },
+            {
+              "kind": "text",
+              "text": "]?"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value for this array is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assistive apps, like VoiceOver, use a context-sensitive function that provides more power and flexibility to perform actions and searches. VoiceOver accesses this functionality through the VoiceOver rotor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A current element can expose an array of custom rotors that a user can activate to search for other instances of similar elements. The same applies to ranges within elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, in a magazine app, you can create a custom rotor to allow the user to find the next link or heading within an article. In a document editor, you can help the user find the next misspelled word by returning the next range that contains a misspelled word.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/MainActor": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MainActor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/swift/mainactor"
+    },
+    "doc://com.apple.documentation/documentation/accessibility": {
+      "identifier": "doc://com.apple.documentation/documentation/accessibility",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615080-accessibilityelementshidden": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to hide the accessibility elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityElementsHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615080-accessibilityelementshidden",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityElementsHidden",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615080-accessibilityelementshidden"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615089-accessibilityviewismodal": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether VoiceOver ignores the accessibility elements within views that are siblings of the element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityViewIsModal"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615089-accessibilityviewismodal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityViewIsModal",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615089-accessibilityviewismodal"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615143-shouldgroupaccessibilitychildren": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether VoiceOver groups the accessibility elements that are children of the element, regardless of their positions on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldGroupAccessibilityChildren"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615143-shouldgroupaccessibilitychildren",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldGroupAccessibilityChildren",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615143-shouldgroupaccessibilitychildren"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1649788-accessibilitycustomrotors": {
+      "abstract": [
+        {
+          "text": "An array of custom rotors for the current accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityCustomRotors"
+        },
+        {
+          "kind": "text",
+          "text": ": [UIAccessibilityCustomRotor]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1649788-accessibilitycustomrotors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityCustomRotors",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1649788-accessibilitycustomrotors"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/3043551-accessibilityrespondstouserinter": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the accessibility element performs an action due to user interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityRespondsToUserInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/3043551-accessibilityrespondstouserinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityRespondsToUserInteraction",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/3043551-accessibilityrespondstouserinter"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/4161973-accessibilitydirecttouchoptions": {
+      "abstract": [
+        {
+          "text": "A value that configures how VoiceOver produces audio for direct touch areas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityDirectTouchOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": UIAccessibility.DirectTouchOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/4161973-accessibilitydirecttouchoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityDirectTouchOptions",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/4161973-accessibilitydirecttouchoptions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/uikit": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.documentation/documentation/uikit/accessibility-for-uikit": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit/accessibility-for-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit/accessibility-for-uikit"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIAccessibility",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility-protocol"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiaccessibility/directtouchoptions": {
+      "abstract": [
+        {
+          "text": "Constants that configure how VoiceOver produces audio for direct touch areas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibility.DirectTouchOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiaccessibility/directtouchoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccessibility.DirectTouchOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/directtouchoptions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotor": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccessibilityCustomRotor",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycustomrotor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility/directtouchoptions",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1615080-accessibilityelementshidden",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/3043551-accessibilityrespondstouserinter",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1615089-accessibilityviewismodal",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1615143-shouldgroupaccessibilitychildren",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/4161973-accessibilitydirecttouchoptions"
+      ],
+      "title": "Configuring behavior"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1649788-accessibilitycustomrotors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1649788-accessibilitycustomrotors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

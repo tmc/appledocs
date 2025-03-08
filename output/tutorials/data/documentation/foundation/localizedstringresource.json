@@ -1,0 +1,1565 @@
+{
+  "abstract": [
+    {
+      "text": "A reference to a localizable string, accessible from another process.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/localizedstringresource"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3988410,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation23LocalizedStringResourceV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "LocalizedStringResource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LocalizedStringResource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LocalizedStringResource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to provide localizable strings with lookups you defer to a later time. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a localized string or a localized attributed string with an initializer that takes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String/LocalizationValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", those initializers lookup the localized string immediately. If you want to perform the lookup at a later time, use this ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " type to refer to the localizable strings. Then, when you need to perform localization, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from an initializer that takes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " parameter, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Swift/documentation/Swift/String/init(localized:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Swift/documentation/Swift/String/init(localized:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3988307-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3988312-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3988311-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This approach allows you to provide localizable strings to an entirely separate process, which may use a different locale. For example, consider an app with a data model type called ",
+              "type": "text"
+            },
+            {
+              "code": "UserAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " rather than strings for its ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public protocol UserAction {",
+            "    static var title: LocalizedStringResource { get }",
+            "    static var description: LocalizedStringResource { get }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4013011",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app (or one of its embedded frameworks) then uses these ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " members to defer looking up localized strings. Typically, this happens when calling out to another process over XPC.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public func perform(action: UserAction) {",
+            "    ...",
+            "    // Send text to another process via XPC or similar.",
+            "    performActionOutOfProcess(title: action.title, description: action.description)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4013012",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, when the other process receives the call, it can alter the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988424-locale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", prior to resolving the localized strings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func performActionOutOfProcess(title: LocalizedStringResource,",
+            "                               description: LocalizedStringResource) {",
+            "    // Set resource locales to match the current locale",
+            "    // of the separate process.",
+            "    var fixedTitle = title",
+            "    fixedTitle.locale = .current",
+            "    var fixedDescription = description",
+            "    fixedDescription.locale = .current",
+            "    ",
+            "    // Look up localized strings.",
+            "    let titleString = String(localized: fixedTitle)",
+            "    let descriptionString = String(localized: fixedDescription)",
+            "        ",
+            "    // Use a correctly localized title/description.",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4013013",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to perform a late resolution of localized strings. This allows the Siri UI to potentially use different localization preferences than the app providing the intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "article",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringInterpolation": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringInterpolation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByStringInterpolation",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebystringinterpolation"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String/LocalizationValue": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String/LocalizationValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String.LocalizationValue",
+      "type": "topic",
+      "url": "/documentation/swift/string/localizationvalue"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String/init(localized:)": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String/init(localized:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(localized:)",
+      "type": "topic",
+      "url": "/documentation/swift/string/init(localized:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String/init(localized:options:)": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String/init(localized:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(localized:options:)",
+      "type": "topic",
+      "url": "/documentation/swift/string/init(localized:options:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1418095-nslocalizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string from a table that Xcode generates for you when exporting localizations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLocalizedString"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": Bundle, "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "comment"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1418095-nslocalizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocalizedString(_:tableName:bundle:value:comment:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1418095-nslocalizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3988307-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3988307-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(localized:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3988307-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3988311-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3988311-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(localized:including:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3988311-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3988312-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3988312-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(localized:including:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3988312-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/customlocalizedstringresourceconvertible": {
+      "abstract": [
+        {
+          "text": "A type that provides an out-of-process localizable description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomLocalizedStringResourceConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/customlocalizedstringresourceconvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomLocalizedStringResourceConvertible",
+      "type": "topic",
+      "url": "/documentation/foundation/customlocalizedstringresourceconvertible"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale": {
+      "abstract": [
+        {
+          "text": "Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale",
+      "type": "topic",
+      "url": "/documentation/foundation/locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource": {
+      "abstract": [
+        {
+          "text": "A reference to a localizable string, accessible from another process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedStringResource",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource#4013011": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource#4013011",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/localizedstringresource#4013011"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource#4013012": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource#4013012",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/localizedstringresource#4013012"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource#4013013": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource#4013013",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/localizedstringresource#4013013"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988411": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(LocalizedStringResource, LocalizedStringResource) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988411",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988411"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988412": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(LocalizedStringResource, LocalizedStringResource) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988412",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988412"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988417-bundle": {
+      "abstract": [
+        {
+          "text": "The bundle containing the table’s strings file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": LocalizedStringResource.BundleDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988417-bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988417-bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988418-defaultvalue": {
+      "abstract": [
+        {
+          "text": "The resource’s default value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String.LocalizationValue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988418-defaultvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultValue",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988418-defaultvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988419-encode": {
+      "abstract": [
+        {
+          "text": "Encodes this value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988419-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988419-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988420-init": {
+      "abstract": [
+        {
+          "text": "Creates a localized string resource from a static string and its bundle properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "(StaticString, "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String.LocalizationValue, "
+        },
+        {
+          "kind": "identifier",
+          "text": "table"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": LocalizedStringResource.BundleDescription, "
+        },
+        {
+          "kind": "identifier",
+          "text": "comment"
+        },
+        {
+          "kind": "text",
+          "text": ": StaticString?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988420-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:defaultValue:table:locale:bundle:comment:)",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988420-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988421-init": {
+      "abstract": [
+        {
+          "text": "Creates a localized string resource from a localization key and its bundle properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "(String.LocalizationValue, "
+        },
+        {
+          "kind": "identifier",
+          "text": "table"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": LocalizedStringResource.BundleDescription, "
+        },
+        {
+          "kind": "identifier",
+          "text": "comment"
+        },
+        {
+          "kind": "text",
+          "text": ": StaticString?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988421-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:table:locale:bundle:comment:)",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988421-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988422-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988422-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988422-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988423-key": {
+      "abstract": [
+        {
+          "text": "The key to use to look up a localized string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988423-key",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "key",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988423-key"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988424-locale": {
+      "abstract": [
+        {
+          "text": "The locale to use to look up the localized string from the string resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988424-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988424-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988425-localizedstringresource": {
+      "abstract": [
+        {
+          "text": "A resource that helps provide a description of the instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": ": LocalizedStringResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988425-localizedstringresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedStringResource",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988425-localizedstringresource"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988426-table": {
+      "abstract": [
+        {
+          "text": "The name of the table containing the key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "table"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988426-table",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "table",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/3988426-table"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013384-init": {
+      "abstract": [
+        {
+          "text": "Creates an instance initialized to the given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedGraphemeClusterLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013384-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(extendedGraphemeClusterLiteral:)",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/4013384-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013385-init": {
+      "abstract": [
+        {
+          "text": "Creates a localized string resource from the given string interpolation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "stringInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": ": String.LocalizationValue.StringInterpolation)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013385-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(stringInterpolation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/4013385-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013386-init": {
+      "abstract": [
+        {
+          "text": "Creates a localized string resource from the specified string literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "stringLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013386-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(stringLiteral:)",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/4013386-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013387-init": {
+      "abstract": [
+        {
+          "text": "Creates an instance initialized to the given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "unicodeScalarLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013387-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(unicodeScalarLiteral:)",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/4013387-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/bundledescription": {
+      "abstract": [
+        {
+          "text": "The location of a bundle to use for looking up localized strings, such as the main bundle, or a bundle at a specific file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringResource.BundleDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/bundledescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedStringResource.BundleDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/bundledescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/extendedgraphemeclusterliteraltype": {
+      "abstract": [
+        {
+          "text": "The type that extended grapheme cluster literal initializers use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringResource.ExtendedGraphemeClusterLiteralType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/extendedgraphemeclusterliteraltype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedStringResource.ExtendedGraphemeClusterLiteralType",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/extendedgraphemeclusterliteraltype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/stringinterpolation": {
+      "abstract": [
+        {
+          "text": "The type to use for string interpolation for creating localized string resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringResource.StringInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/stringinterpolation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedStringResource.StringInterpolation",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/stringinterpolation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/stringliteraltype": {
+      "abstract": [
+        {
+          "text": "The type that string literal initializers use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringResource.StringLiteralType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/stringliteraltype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedStringResource.StringLiteralType",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/stringliteraltype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource/unicodescalarliteraltype": {
+      "abstract": [
+        {
+          "text": "The type that Unicode scalar literal initializers use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringResource.UnicodeScalarLiteralType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource/unicodescalarliteraltype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedStringResource.UnicodeScalarLiteralType",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource/unicodescalarliteraltype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography": {
+      "abstract": [
+        {
+          "text": "A description of the linguistic content of natural language text, typically used for spelling and grammar checking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOrthography"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOrthography",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresource": {
+      "abstract": [
+        {
+          "text": "A resource located at a particular file URL within a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResource",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresource"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/customlocalizedstringresourceconvertible",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringInterpolation"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale",
+        "doc://com.apple.documentation/documentation/foundation/nsorthography",
+        "doc://com.apple.documentation/documentation/foundation/1418095-nslocalizedstring",
+        "doc://com.apple.documentation/documentation/foundation/customlocalizedstringresourceconvertible",
+        "doc://com.apple.documentation/documentation/foundation/urlresource"
+      ],
+      "title": "Localization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "4012609",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988421-init",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988420-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a localized string resource"
+    },
+    {
+      "anchor": "4018253",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013386-init",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/stringliteraltype",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013387-init",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/unicodescalarliteraltype",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013384-init",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/extendedgraphemeclusterliteraltype",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/4013385-init",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/stringinterpolation"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a localized string resource from literal values"
+    },
+    {
+      "anchor": "4012607",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988423-key",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988418-defaultvalue",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988426-table",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988417-bundle",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/bundledescription",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988424-locale"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing resource properties"
+    },
+    {
+      "anchor": "4012606",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988425-localizedstringresource"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing a resource"
+    },
+    {
+      "anchor": "4012611",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988422-init",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988419-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and decoding"
+    },
+    {
+      "anchor": "4012610",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988412",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource/3988411"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing localized string resources"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/localizedstringresource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

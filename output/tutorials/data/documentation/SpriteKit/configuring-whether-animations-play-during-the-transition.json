@@ -1,0 +1,1827 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKView",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/configuring-whether-animations-play-during-the-transition"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Whether Animations Play During the Transition"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/pausesIncomingScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/pausesOutgoingScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties on the transition object define which animations are played during the transition. By default, both scenes are paused during the transition. However, you might want to enable animation on either scene during the transition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Figure 1 illustrates which frames of the incoming and outgoing scenes are displayed on screen during a three frame transition with different permutations of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/pausesIncomingScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/pausesOutgoingScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2975371",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider the code again in . Because the button is going to run an action, this code expects the outgoing scene to be animated. But perhaps the incoming scene should not animate its content until the transition completes. Adding the code in Listing 1 has the desired effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Pausing frame processing during a transition",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "reveal.pausesOutgoingScene = true;",
+                    "reveal.pausesIncomingScene = false;"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "reveal.pausesOutgoingScene = YES;",
+                    "reveal.pausesIncomingScene = NO;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Obj-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition": {
+      "abstract": [
+        {
+          "text": "An object used to perform an animated transition to a new scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTransition",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/crossFade(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a cross fade transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "crossFade"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/crossFade(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "crossFadeWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "crossFade(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/crossfade(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsCloseHorizontal(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition where the new scene appears as a pair of closing horizontal doors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "doorsCloseHorizontal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsCloseHorizontal(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "doorsCloseHorizontalWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "doorsCloseHorizontal(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/doorsclosehorizontal(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsCloseVertical(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition where the new scene appears as a pair of closing vertical doors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "doorsCloseVertical"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsCloseVertical(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "doorsCloseVerticalWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "doorsCloseVertical(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/doorsclosevertical(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsOpenHorizontal(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition where the new scene appears as a pair of opening horizontal doors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "doorsOpenHorizontal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsOpenHorizontal(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "doorsOpenHorizontalWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "doorsOpenHorizontal(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/doorsopenhorizontal(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsOpenVertical(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition where the new scene appears as a pair of opening vertical doors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "doorsOpenVertical"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsOpenVertical(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "doorsOpenVerticalWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "doorsOpenVertical(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/doorsopenvertical(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorway(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition where the previous scene disappears as a pair of opening doors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "doorway"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorway(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "doorwayWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "doorway(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/doorway(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(with:duration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition that first fades to a constant color and then fades to the new scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fade"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(with:duration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fadeWithColor:duration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fade(with:duration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/fade(with:duration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition that first fades to black and then fades to the new scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fade"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fadeWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fade(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/fade(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/flipHorizontal(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition where the two scenes are flipped across a horizontal line running through the center of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flipHorizontal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/flipHorizontal(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flipHorizontalWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "flipHorizontal(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/fliphorizontal(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/flipVertical(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition where the two scenes are flipped across a vertical line running through the center of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flipVertical"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/flipVertical(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flipVerticalWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "flipVertical(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/flipvertical(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/init(ciFilter:duration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition that uses a Core Image filter to perform the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ciFilter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIFilter",
+          "text": "CIFilter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/init(ciFilter:duration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transitionWithCIFilter:duration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(ciFilter:duration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/init(cifilter:duration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/moveIn(with:duration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition where the new scene moves in on top of the old scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveIn"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKTransitionDirection",
+          "text": "SKTransitionDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/moveIn(with:duration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "moveInWithDirection:duration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "moveIn(with:duration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/movein(with:duration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/pausesIncomingScene": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the incoming scene is paused during the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pausesIncomingScene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/pausesIncomingScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pausesIncomingScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "pausesIncomingScene",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/pausesincomingscene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/pausesOutgoingScene": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the outgoing scene is paused during the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pausesOutgoingScene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/pausesOutgoingScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pausesOutgoingScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "pausesOutgoingScene",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/pausesoutgoingscene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/push(with:duration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition where the new scene moves in, pushing the old scene out of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "push"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKTransitionDirection",
+          "text": "SKTransitionDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/push(with:duration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pushWithDirection:duration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "push(with:duration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/push(with:duration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/reveal(with:duration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition where the old scene moves out of the view, revealing the new scene underneath it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reveal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKTransitionDirection",
+          "text": "SKTransitionDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/reveal(with:duration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "revealWithDirection:duration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "reveal(with:duration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/reveal(with:duration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKView": {
+      "abstract": [
+        {
+          "text": "A view subclass that renders a SpriteKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKView"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKView",
+      "type": "topic",
+      "url": "/documentation/spritekit/skview"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/transitioning-between-two-scenes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/transitioning-between-two-scenes",
+      "kind": "article",
+      "role": "article",
+      "title": "Transitioning Between Two Scenes",
+      "type": "topic",
+      "url": "/documentation/spritekit/transitioning-between-two-scenes"
+    },
+    "media-2975371": {
+      "alt": "Frame progression during transitions",
+      "identifier": "media-2975371",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a872be721bccc26ab0b4a3b55a7eace2/media-2975371@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-Transitions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/transitioning-between-two-scenes",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/crossFade(withDuration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsCloseHorizontal(withDuration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsCloseVertical(withDuration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsOpenHorizontal(withDuration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsOpenVertical(withDuration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorway(withDuration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(with:duration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(withDuration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/flipHorizontal(withDuration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/flipVertical(withDuration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/moveIn(with:duration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/push(with:duration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/reveal(with:duration:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/init(ciFilter:duration:)"
+      ],
+      "title": "Creating Transitions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-Transitions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/transitioning-between-two-scenes",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/crossFade(withDuration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsCloseHorizontal(withDuration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsCloseVertical(withDuration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsOpenHorizontal(withDuration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorsOpenVertical(withDuration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/doorway(withDuration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(with:duration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(withDuration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/flipHorizontal(withDuration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/flipVertical(withDuration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/moveIn(with:duration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/push(with:duration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/reveal(with:duration:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/init(ciFilter:duration:)"
+              ],
+              "title": "Creating Transitions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1crossFade(withDuration:)/title",
+          "value": "crossFadeWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1crossFade(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "crossFadeWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1doorsOpenVertical(withDuration:)/title",
+          "value": "doorsOpenVerticalWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1doorsOpenVertical(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "doorsOpenVerticalWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1fade(withDuration:)/title",
+          "value": "fadeWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1fade(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fadeWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1flipHorizontal(withDuration:)/title",
+          "value": "flipHorizontalWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1flipHorizontal(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "flipHorizontalWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1doorsCloseVertical(withDuration:)/title",
+          "value": "doorsCloseVerticalWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1doorsCloseVertical(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "doorsCloseVerticalWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1fade(with:duration:)/title",
+          "value": "fadeWithColor:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1fade(with:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fadeWithColor:duration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1pausesOutgoingScene/title",
+          "value": "pausesOutgoingScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1pausesOutgoingScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pausesOutgoingScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1flipVertical(withDuration:)/title",
+          "value": "flipVerticalWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1flipVertical(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "flipVerticalWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1init(ciFilter:duration:)/title",
+          "value": "transitionWithCIFilter:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1init(ciFilter:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "transitionWithCIFilter:duration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1reveal(with:duration:)/title",
+          "value": "revealWithDirection:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1reveal(with:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "revealWithDirection:duration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1doorsCloseHorizontal(withDuration:)/title",
+          "value": "doorsCloseHorizontalWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1doorsCloseHorizontal(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "doorsCloseHorizontalWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition/title",
+          "value": "SKTransition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTransition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTransition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1push(with:duration:)/title",
+          "value": "pushWithDirection:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1push(with:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "pushWithDirection:duration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1doorsOpenHorizontal(withDuration:)/title",
+          "value": "doorsOpenHorizontalWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1doorsOpenHorizontal(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "doorsOpenHorizontalWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1pausesIncomingScene/title",
+          "value": "pausesIncomingScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1pausesIncomingScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pausesIncomingScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1doorway(withDuration:)/title",
+          "value": "doorwayWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1doorway(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "doorwayWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView/title",
+          "value": "SKView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1moveIn(with:duration:)/title",
+          "value": "moveInWithDirection:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1moveIn(with:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "moveInWithDirection:duration:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/configuring-whether-animations-play-during-the-transition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/configuring-whether-animations-play-during-the-transition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

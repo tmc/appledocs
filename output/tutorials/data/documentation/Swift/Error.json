@@ -1,0 +1,1324 @@
+{
+  "abstract": [
+    {
+      "text": "A type representing an error value that can be thrown.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Error"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s5ErrorP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Error"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Error"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "Error"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Error"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any type that declares conformance to the ",
+              "type": "text"
+            },
+            {
+              "code": "Error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol can be used to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represent an error in Swift’s error handling system. Because the ",
+              "type": "text"
+            },
+            {
+              "code": "Error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol has no requirements of its own, you can declare conformance on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any custom type you create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Using-Enumerations-as-Errors",
+          "level": 1,
+          "text": "Using Enumerations as Errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift’s enumerations are well suited to represent simple errors. Create an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enumeration that conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "Error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol with a case for each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "possible error. If there are additional details about the error that could",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be helpful for recovery, use associated values to include that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows an ",
+              "type": "text"
+            },
+            {
+              "code": "IntParsingError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumeration that captures",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "two different kinds of errors that can occur when parsing an integer from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a string: overflow, where the value represented by the string is too large",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the integer data type, and invalid input, where nonnumeric characters",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are found within the input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum IntParsingError: Error {",
+            "    case overflow",
+            "    case invalidInput(Character)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "invalidInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " case includes the invalid character as an associated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next code sample shows a possible extension to the ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parses the integer value of a ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance, throwing an error when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "there is a problem during parsing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Int {",
+            "    init(validating input: String) throws {",
+            "        // ...",
+            "        let c = _nextCharacter(from: input)",
+            "        if !_isValid(c) {",
+            "            throw IntParsingError.invalidInput(c)",
+            "        }",
+            "        // ...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When calling the new ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer within a ",
+              "type": "text"
+            },
+            {
+              "code": "do",
+              "type": "codeVoice"
+            },
+            {
+              "text": " statement, you can use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pattern matching to match specific cases of your custom error type and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "access their associated values, as in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    let price = try Int(validating: \"$100\")",
+            "} catch IntParsingError.invalidInput(let invalid) {",
+            "    print(\"Invalid character: '\\(invalid)'\")",
+            "} catch IntParsingError.overflow {",
+            "    print(\"Overflow error\")",
+            "} catch {",
+            "    print(\"Other error\")",
+            "}",
+            "// Prints \"Invalid character: '$'\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Including-More-Data-in-Errors",
+          "level": 1,
+          "text": "Including More Data in Errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes you may want different error states to include the same common",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data, such as the position in a file or some of your application’s state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you do, use a structure to represent errors. The following example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "uses a structure to represent an error when parsing an XML document,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including the line and column numbers where the error occurred:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct XMLParsingError: Error {",
+            "    enum ErrorKind {",
+            "        case invalidCharacter",
+            "        case mismatchedTag",
+            "        case internalError",
+            "    }",
+            "",
+            "    let line: Int",
+            "    let column: Int",
+            "    let kind: ErrorKind",
+            "}",
+            "",
+            "func parse(_ source: String) throws -> XMLDoc {",
+            "    // ...",
+            "    throw XMLParsingError(line: 19, column: 5, kind: .mismatchedTag)",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once again, use pattern matching to conditionally catch errors. Here’s how",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can catch any ",
+              "type": "text"
+            },
+            {
+              "code": "XMLParsingError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " errors thrown by the ",
+              "type": "text"
+            },
+            {
+              "code": "parse(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    let xmlDoc = try parse(myXMLData)",
+            "} catch let e as XMLParsingError {",
+            "    print(\"Parsing error: \\(e.kind) [\\(e.line):\\(e.column)]\")",
+            "} catch {",
+            "    print(\"Other error: \\(error)\")",
+            "}",
+            "// Prints \"Parsing error: mismatchedTag [19:5]\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActorCodingError": {
+      "abstract": [
+        {
+          "text": "Error thrown by distributed actor systems while encountering encoding/decoding",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issues.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedActorCodingError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorCodingError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedActorCodingError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedActorCodingError",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactorcodingerror"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem/executeDistributedTarget(on:target:invocationDecoder:handler:)": {
+      "abstract": [
+        {
+          "text": "Prepare and execute a call to the distributed function identified by the passed arguments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on the passed ",
+          "type": "text"
+        },
+        {
+          "code": "actor",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and collect its results using the ",
+          "type": "text"
+        },
+        {
+          "code": "ResultHandler",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeDistributedTarget"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Act"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Act"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Distributed16RemoteCallTargetV",
+          "text": "RemoteCallTarget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "invocationDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Distributed0A11ActorSystemP17InvocationDecoderQa",
+          "text": "InvocationDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Distributed0A11ActorSystemP13ResultHandlerQa",
+          "text": "ResultHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem/executeDistributedTarget(on:target:invocationDecoder:handler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeDistributedTarget(on:target:invocationDecoder:handler:)",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactorsystem/executedistributedtarget(on:target:invocationdecoder:handler:)"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystemError": {
+      "abstract": [
+        {
+          "text": "Error protocol to which errors thrown by any ",
+          "type": "text"
+        },
+        {
+          "code": "DistributedActorSystem",
+          "type": "codeVoice"
+        },
+        {
+          "text": " should conform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedActorSystemError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystemError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedActorSystemError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedActorSystemError",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactorsystemerror"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/ExecuteDistributedTargetError": {
+      "abstract": [
+        {
+          "text": "Error thrown by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem/executeDistributedTarget(on:target:invocationDecoder:handler:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExecuteDistributedTargetError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/ExecuteDistributedTargetError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExecuteDistributedTargetError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExecuteDistributedTargetError",
+      "type": "topic",
+      "url": "/documentation/distributed/executedistributedtargeterror"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystemError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalTestingDistributedActorSystemError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystemError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalTestingDistributedActorSystemError"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingDistributedActorSystemError",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestingdistributedactorsystemerror"
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CancellationError": {
+      "abstract": [
+        {
+          "text": "An error that indicates a task was canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CancellationError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CancellationError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CancellationError"
+        }
+      ],
+      "role": "symbol",
+      "title": "CancellationError",
+      "type": "topic",
+      "url": "/documentation/swift/cancellationerror"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DecodingError": {
+      "abstract": [
+        {
+          "text": "An error that occurs during the decoding of a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DecodingError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DecodingError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DecodingError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DecodingError",
+      "type": "topic",
+      "url": "/documentation/swift/decodingerror"
+    },
+    "doc://com.apple.Swift/documentation/Swift/EncodingError": {
+      "abstract": [
+        {
+          "text": "An error that occurs during the encoding of a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EncodingError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/EncodingError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EncodingError"
+        }
+      ],
+      "role": "symbol",
+      "title": "EncodingError",
+      "type": "topic",
+      "url": "/documentation/swift/encodingerror"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Error": {
+      "abstract": [
+        {
+          "text": "A type representing an error value that can be thrown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/swift/error"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Error/localizedDescription": {
+      "abstract": [
+        {
+          "text": "Retrieve the localized description for this error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Error/localizedDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedDescription",
+      "type": "topic",
+      "url": "/documentation/swift/error/localizeddescription"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never": {
+      "abstract": [
+        {
+          "text": "A type that has no values and can’t be constructed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Never"
+        }
+      ],
+      "role": "symbol",
+      "title": "Never",
+      "type": "topic",
+      "url": "/documentation/swift/never"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Result": {
+      "abstract": [
+        {
+          "text": "A value that represents either a success or a failure, including an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "associated value in each case.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Result",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Result"
+        }
+      ],
+      "role": "symbol",
+      "title": "Result",
+      "type": "topic",
+      "url": "/documentation/swift/result"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystemError"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CancellationError",
+        "doc://com.apple.Swift/documentation/Swift/DecodingError",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActorCodingError",
+        "doc://com.apple.Swift/documentation/Swift/EncodingError",
+        "doc://com.apple.Swift/documentation/Distributed/ExecuteDistributedTargetError",
+        "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystemError",
+        "doc://com.apple.Swift/documentation/Swift/Never"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Errors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Result"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Describing-an-Error",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Error/localizedDescription"
+      ],
+      "title": "Describing an Error"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/error"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

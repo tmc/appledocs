@@ -1,0 +1,991 @@
+{
+  "abstract": [
+    {
+      "text": "A component expression that makes up part of a predicate.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/filters_and_sorting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/predicateexpression"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 4162344,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation19PredicateExpressionP",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "protocol "
+      },
+      {
+        "kind": "identifier",
+        "text": "PredicateExpression"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "10.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "intf",
+    "title": "PredicateExpression"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PredicateExpression"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation19PredicateExpressionP6OutputQa",
+              "text": "Output"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To transform a predicate, define a protocol for the result and add conformance on each predicate expression type that you support. For example: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "protocol ProsePredicateExpression {",
+            "    func proseQuery() -> String",
+            "}",
+            "",
+            "// Repeated for each supported operator.",
+            "extension PredicateExpressions.Equal: ProsePredicateExpression ",
+            "        where LHS: ProsePredicateExpression,",
+            "        RHS: ProsePredicateExpression {",
+            "    func proseQuery() -> String {",
+            "        return lhs.proseQuery() + \" is equal to \" + rhs.proseQuery()",
+            "    }",
+            "}",
+            "",
+            "extension Predicate  {",
+            "    func proseQuery() -> String? {",
+            "        guard let expression = expression as? ProsePredicateExpression else { return nil }",
+            "        return expression.proseQuery()",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4265246",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filters_and_sorting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filters_and_sorting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Filters and Sorting",
+      "type": "topic",
+      "url": "/documentation/foundation/filters_and_sorting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate for comparing expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSComparisonPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSComparisonPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscomparisonpredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate that evaluates logical combinations of other predicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCompoundPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompoundPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscompoundpredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression": {
+      "abstract": [
+        {
+          "text": "An expression for use in a comparison predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate": {
+      "abstract": [
+        {
+          "text": "A logical condition used to test a set of input values for searching or filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatebindings": {
+      "abstract": [
+        {
+          "text": "A mapping from a predicates‘s input variables to their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateBindings"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatebindings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateBindings",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatebindings"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration": {
+      "abstract": [
+        {
+          "text": "A specification of the expected types and key paths found in an archived predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateCodableConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateCodableConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding": {
+      "abstract": [
+        {
+          "text": "A type that provides the expected key paths found in an archived predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateCodableKeyPathProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateCodableKeyPathProviding",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodablekeypathproviding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateerror": {
+      "abstract": [
+        {
+          "text": "An error thrown while evaluating a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateError",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpression": {
+      "abstract": [
+        {
+          "text": "A component expression that makes up part of a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpression#4265246": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpression#4265246",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/predicateexpression#4265246"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpression/4162345-output": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "associatedtype "
+        },
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpression/4162345-output",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Output",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpression/4162345-output"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpression/4162346-evaluate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluate"
+        },
+        {
+          "kind": "text",
+          "text": "(PredicateBindings) -> Self.Output"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpression/4162346-evaluate",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "evaluate(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpression/4162346-evaluate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions": {
+      "abstract": [
+        {
+          "text": "The expressions that make up a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateExpressions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/arithmetic": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/arithmetic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.Arithmetic",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/arithmetic"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/closedrange": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/closedrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.ClosedRange",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/closedrange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/collectioncontainscollection": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/collectioncontainscollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.CollectionContainsCollection",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/collectioncontainscollection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/collectionindexsubscript": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/collectionindexsubscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.CollectionIndexSubscript",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/collectionindexsubscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/collectionrangesubscript": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/collectionrangesubscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.CollectionRangeSubscript",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/collectionrangesubscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/comparison": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/comparison",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.Comparison",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/comparison"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/conditional": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/conditional",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.Conditional",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/conditional"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/conditionalcast": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/conditionalcast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.ConditionalCast",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/conditionalcast"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/conjunction": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/conjunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.Conjunction",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/conjunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/dictionarykeydefaultvaluesubscript": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/dictionarykeydefaultvaluesubscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.DictionaryKeyDefaultValueSubscript",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/dictionarykeydefaultvaluesubscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/dictionarykeysubscript": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/dictionarykeysubscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.DictionaryKeySubscript",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/dictionarykeysubscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/disjunction": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/disjunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.Disjunction",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/disjunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/equal": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/equal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.Equal",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/equal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/expressionevaluate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/expressionevaluate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.ExpressionEvaluate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/expressionevaluate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/filter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/filter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.Filter",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/filter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/floatdivision": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/floatdivision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.FloatDivision",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/floatdivision"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/forcecast": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/forcecast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.ForceCast",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/forcecast"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/forcedunwrap": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/forcedunwrap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.ForcedUnwrap",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/forcedunwrap"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/intdivision": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/intdivision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.IntDivision",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/intdivision"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/intremainder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/intremainder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.IntRemainder",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/intremainder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/keypath": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/keypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.KeyPath",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/keypath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/negation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/negation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.Negation",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/negation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/nilcoalesce": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/nilcoalesce",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.NilCoalesce",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/nilcoalesce"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/notequal": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/notequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.NotEqual",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/notequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/optionalflatmap": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/optionalflatmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.OptionalFlatMap",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/optionalflatmap"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/predicateevaluate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/predicateevaluate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.PredicateEvaluate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/predicateevaluate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/range": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.Range",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/range"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/rangeexpressioncontains": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/rangeexpressioncontains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.RangeExpressionContains",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/rangeexpressioncontains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequenceallsatisfy": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequenceallsatisfy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.SequenceAllSatisfy",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/sequenceallsatisfy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencecontains": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencecontains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.SequenceContains",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/sequencecontains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencecontainswhere": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencecontainswhere",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.SequenceContainsWhere",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/sequencecontainswhere"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencemaximum": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencemaximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.SequenceMaximum",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/sequencemaximum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequenceminimum": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequenceminimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.SequenceMinimum",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/sequenceminimum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencestartswith": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencestartswith",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.SequenceStartsWith",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/sequencestartswith"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringcaseinsensitivecompare": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringcaseinsensitivecompare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.StringCaseInsensitiveCompare",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/stringcaseinsensitivecompare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringcontainsregex": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringcontainsregex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.StringContainsRegex",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/stringcontainsregex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringlocalizedcompare": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringlocalizedcompare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.StringLocalizedCompare",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/stringlocalizedcompare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringlocalizedstandardcontains": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringlocalizedstandardcontains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.StringLocalizedStandardContains",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/stringlocalizedstandardcontains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/typecheck": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/typecheck",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.TypeCheck",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/typecheck"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/unaryminus": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/unaryminus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.UnaryMinus",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/unaryminus"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions/value": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions/value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions.Value",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions/value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression": {
+      "abstract": [
+        {
+          "text": "A component expression that makes up part of a predicate, and that's supported by the standard predicate type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "StandardPredicateExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StandardPredicateExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/standardpredicateexpression"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/arithmetic",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/closedrange",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/collectioncontainscollection",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/collectionindexsubscript",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/collectionrangesubscript",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/comparison",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/conditional",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/conditionalcast",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/conjunction",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/dictionarykeydefaultvaluesubscript",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/dictionarykeysubscript",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/disjunction",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/equal",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/expressionevaluate",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/filter",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/floatdivision",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/forcecast",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/forcedunwrap",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/intdivision",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/intremainder",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/keypath",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/negation",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/nilcoalesce",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/notequal",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/optionalflatmap",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/predicateevaluate",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/range",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/rangeexpressioncontains",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequenceallsatisfy",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencecontains",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencecontainswhere",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencemaximum",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequenceminimum",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/sequencestartswith",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringcaseinsensitivecompare",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringcontainsregex",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringlocalizedcompare",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/stringlocalizedstandardcontains",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/typecheck",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/unaryminus",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions/value"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicate",
+        "doc://com.apple.documentation/documentation/foundation/predicateerror",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding",
+        "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions",
+        "doc://com.apple.documentation/documentation/foundation/predicatebindings",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression",
+        "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+        "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate"
+      ],
+      "title": "Filltering"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "4264770",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicateexpression/4162345-output",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpression/4162346-evaluate"
+      ],
+      "kind": "taskGroup",
+      "title": "Evaluating a predicate expression"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/predicateexpression"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

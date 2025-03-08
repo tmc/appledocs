@@ -1,0 +1,461 @@
+{
+  "abstract": [
+    {
+      "text": "Invalidates the session, allowing any outstanding tasks to finish.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1407428-finishtasksandinvalidate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1407428,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLSession(im)finishTasksAndInvalidate",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSURLSession"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "finishTasksAndInvalidate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "finishTasksAndInvalidate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method returns immediately without waiting for tasks to finish. Once a session is invalidated, new tasks cannot be created in the session, but existing tasks continue until completion. After the last task finishes and the session makes the last delegate call related to those tasks, the session calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelegate/1407776-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on its delegate, then breaks references to the delegate and callback objects. After invalidation, session objects cannot be reused.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To cancel all outstanding tasks, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411538-invalidateandcancel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Calling this method on the session returned by the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409000-sharedsession",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method has no effect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1407428-finishtasksandinvalidate": {
+      "abstract": [
+        {
+          "text": "Invalidates the session, allowing any outstanding tasks to finish.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishTasksAndInvalidate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1407428-finishtasksandinvalidate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finishTasksAndInvalidate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1407428-finishtasksandinvalidate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1408277-sessiondescription": {
+      "abstract": [
+        {
+          "text": "An app-defined descriptive label for the session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1408277-sessiondescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessionDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1408277-sessiondescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409000-sharedsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409000-sharedsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1409000-sharedsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411479-resetwithcompletionhandler": {
+      "abstract": [
+        {
+          "text": "Empties all cookies, caches and credential stores, removes disk files, flushes in-progress downloads to disk, and ensures that future requests occur on a new socket.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411479-resetwithcompletionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411479-resetwithcompletionhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411538-invalidateandcancel": {
+      "abstract": [
+        {
+          "text": "Cancels all outstanding tasks and then invalidates the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateAndCancel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411538-invalidateandcancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidateAndCancel",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411538-invalidateandcancel"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411578-gettaskswithcompletionhandler": {
+      "abstract": [
+        {
+          "text": "Asynchronously calls a completion callback with all data, upload, and download tasks in a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTasksWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411578-gettaskswithcompletionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTasksWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411578-gettaskswithcompletionhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411618-getalltaskswithcompletionhandler": {
+      "abstract": [
+        {
+          "text": "Asynchronously calls a completion callback with all tasks in a session",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAllTasksWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411618-getalltaskswithcompletionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAllTasksWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411618-getalltaskswithcompletionhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411622-flushwithcompletionhandler": {
+      "abstract": [
+        {
+          "text": "Flushes cookies and credentials to disk, clears transient caches, and ensures that future requests occur on a new TCP connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flushWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411622-flushwithcompletionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flushWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411622-flushwithcompletionhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelegate/1407776-urlsession": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession:didBecomeInvalidWithError:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelegate/1407776-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession:didBecomeInvalidWithError:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondelegate/1407776-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411622-flushwithcompletionhandler",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411578-gettaskswithcompletionhandler",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411618-getalltaskswithcompletionhandler",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411538-invalidateandcancel",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411479-resetwithcompletionhandler",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1408277-sessiondescription"
+      ],
+      "title": "Managing the session"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsession/1407428-finishtasksandinvalidate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsession/1407428-finishtasksandinvalidate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

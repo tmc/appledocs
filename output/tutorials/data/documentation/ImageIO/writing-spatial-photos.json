@@ -1,0 +1,4138 @@
+{
+  "abstract": [
+    {
+      "text": "Create spatial photos for visionOS by packaging a pair of left- and right-eye images as a stereo HEIC file with related spatial metadata.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.imageio/documentation/ImageIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.imageio/documentation/ImageIO/writing-spatial-photos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Image I/O"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Writing spatial photos"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Spatial photos are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "High-Efficiency Image Codec",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (HEIC) files containing a pair of left- and right-eye images, together with a stereo pair group and additional spatial metadata. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Spatial metadata",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " describes properties of the left- and right-eye cameras that captured the stereo scene. Adding spatial metadata to a stereo HEIC prompts Apple platforms to consider the image as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "spatial",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " instead of just stereo, and opts the image into visual treatments on Apple Vision Pro that help minimize common causes of stereo viewing discomfort.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about why you might want to package a pair of stereo images as a spatial photo and the metadata values you provide, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app demonstrates how to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO",
+              "isActive": true,
+              "overridingTitle": "Image I/O",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Image I/O",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " APIs to convert two separate images into a spatial photo, saving the output as a HEIC file. The app’s ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialPhotoConverter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class performs this conversion process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample app is a macOS command-line application, but you can also perform the spatial photo conversion process on other Apple platforms such as visionOS and iOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the app in Xcode, add the input file locations, output file location, and spatial metadata for your images as arguments to the project’s scheme. Select Product > Scheme > Edit Scheme (Command-<), and add the arguments described below to Arguments Passed On Launch:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--leftImage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-l",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") followed by a path to a local left-eye image file",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--rightImage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-r",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") followed by a path to a local right-eye image file",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--outputImage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-o",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") followed by the output path for the spatial photo, with a file extension of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".heic",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "~/Documents/spatial_photo.heic",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--baseline",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-b",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to provide a baseline in millimeters (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--baseline 64.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for a 64mm baseline)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--fov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-f",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to provide a horizontal field of view in degrees (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--fov 80.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for an 80-degree field of view)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--disparityAdjustment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-d",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to provide a disparity adjustment value as a fraction of the image’s width (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--disparityAdjustment 0.02",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for a 2% positive disparity shift)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the project’s scheme loads a pair of left- and right-eye images from the Xcode project folder: ",
+              "type": "text"
+            },
+            {
+              "code": "Hummingbird_Left.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Hummingbird_Right.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". These images are renders of a 3D scene of a hummingbird model. The virtual cameras that created these renders were positioned 64mm apart, with a horizontal field of view of 80 degrees, which means the value for the ",
+              "type": "text"
+            },
+            {
+              "code": "--baseline",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument is ",
+              "type": "text"
+            },
+            {
+              "code": "64.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "--fov",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument is ",
+              "type": "text"
+            },
+            {
+              "code": "80.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For these images, a disparity adjustment of +2% of the image width produces a comfortable depth effect when the spatial photo is presented in a window on Apple Vision Pro. This 2% disparity adjustment value positions the nearest object in the spatial photo — the hummingbird — just behind the front of the window, while still keeping an effective illusion of depth between the hummingbird and the background. The scheme’s arguments express the +2% disparity adjustment with a ",
+              "type": "text"
+            },
+            {
+              "code": "--disparityAdjustment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "0.02",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-the-left-and-right-eye-images",
+          "level": 3,
+          "text": "Load the left- and right-eye images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app starts by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSource",
+              "isActive": true,
+              "overridingTitle": "CGImageSource",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGImageSource",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for each of the left- and right-eye images. An initializer on ",
+              "type": "text"
+            },
+            {
+              "code": "StereoPairImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " performs the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Opens the image as a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CGImageSource",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceCreateWithURL(_:_:)",
+                      "isActive": true,
+                      "overridingTitle": "CGImageSourceCreateWithURL",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "CGImageSourceCreateWithURL",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Discovers the primary image index for the image source by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceGetPrimaryImageIndex(_:)",
+                      "isActive": true,
+                      "overridingTitle": "CGImageSourceGetPrimaryImageIndex",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "CGImageSourceGetPrimaryImageIndex",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Discovers the pixel width and height of the image by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceCopyPropertiesAtIndex(_:_:_:)",
+                      "isActive": true,
+                      "overridingTitle": "CGImageSourceCopyPropertiesAtIndex",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "CGImageSourceCopyPropertiesAtIndex",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for the primary image index, and looking for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyPixelWidth",
+                      "isActive": true,
+                      "overridingTitle": "kCGImagePropertyPixelWidth",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kCGImagePropertyPixelWidth",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyPixelHeight",
+                      "isActive": true,
+                      "overridingTitle": "kCGImagePropertyPixelHeight",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kCGImagePropertyPixelHeight",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " values in the returned properties dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stores the results of the above steps as properties on the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "StereoPairImage",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "init(url: URL) throws {",
+            "",
+            "    guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {",
+            "        throw ConversionError.couldNotOpenURLAsImageSource",
+            "    }",
+            "    self.source = source",
+            "",
+            "    primaryImageIndex = CGImageSourceGetPrimaryImageIndex(source)",
+            "",
+            "    guard let properties = CGImageSourceCopyPropertiesAtIndex(source, primaryImageIndex, nil) as? [CFString: Any] else {",
+            "        throw ConversionError.couldNotCopyImageProperties",
+            "    }",
+            "    guard let width = properties[kCGImagePropertyPixelWidth] as? Int,",
+            "        let height = properties[kCGImagePropertyPixelHeight] as? Int else {",
+            "        throw ConversionError.unableToReadImageSize",
+            "    }",
+            "    self.width = width",
+            "    self.height = height",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app next validates that the left and right ",
+              "type": "text"
+            },
+            {
+              "code": "StereoPairImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " have the same pixel width and height.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard leftImage.width == rightImage.width, leftImage.height == rightImage.height else {",
+            "    throw ConversionError.leftAndRightImageSizesDoNotMatch",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The left- and right-eye images in a spatial photo must have the same pixel size.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Define-an-extrinsic-position-for-each-image",
+          "level": 3,
+          "text": "Define an extrinsic position for each image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app converts the provided baseline distance from millimeters to meters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Convert the baseline from millimeters to meters.",
+            "let baselineInMeters = baselineInMillimeters / 1000.0"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the app uses this baseline distance to define a left extrinsic position (at the origin) and a right extrinsic position (offset from the origin by ",
+              "type": "text"
+            },
+            {
+              "code": "baselineInMeters",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the positive x-axis) to describe how the left and right cameras are positioned relative to each other in 3D space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let leftPosition: [Double] = [0, 0, 0]",
+            "let rightPosition: [Double] = [baselineInMeters, 0, 0]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The distance in 3D space between the left- and right-eye camera extrinsic positions must always represent the baseline in meters between the two cameras that captured the images. The position of the right-eye camera must always be positioned to the right of the left-eye camera in the left-eye camera’s coordinate space.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Compute-a-camera-intrinsics-matrix",
+          "level": 3,
+          "text": "Compute a camera intrinsics matrix",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses the provided horizontal field of view, plus the known width and height of each input image, to compute a 3x3 camera intrinsics matrix that describes the characteristics of the left and right cameras.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let intrinsics = leftImage.intrinsics(horizontalFOV: horizontalFOV)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app calculates the 3x3 intrinsics matrix using a convenience method, ",
+              "type": "text"
+            },
+            {
+              "code": "intrinsics(horizontalFOV:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", on ",
+              "type": "text"
+            },
+            {
+              "code": "StereoPairImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This method defines an intrinsics matrix with the same focal length in both X and Y (to represent a spherical lens), with the principal point of the camera located at the center of the image, and no shear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func intrinsics(horizontalFOV: Double) -> [Double] {",
+            "    let width = Double(width)",
+            "    let height = Double(height)",
+            "    let horizontalFOVInRadians = horizontalFOV / 180.0 * .pi",
+            "    let focalLengthX = (width * 0.5) / (tan(horizontalFOVInRadians * 0.5))",
+            "    // For a spherical pinhole camera, the focal length is the same in both X and Y.",
+            "    let focalLengthY = focalLengthX",
+            "    // The app assumes the principal point of the camera is located at the center of the image.",
+            "    let principalPointX = 0.5 * width",
+            "    let principalPointY = 0.5 * height",
+            "    return [",
+            "        focalLengthX, 0, principalPointX,",
+            "        0, focalLengthY, principalPointY,",
+            "        0, 0, 1",
+            "    ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app already validated the left-eye and right-eye images to confirm that they have the same pixel size. As a result, the app calculates the intrinsics matrix for the left-eye image and uses it as the intrinsics matrix for both images below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Encode-the-disparity-adjustment",
+          "level": 3,
+          "text": "Encode the disparity adjustment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app encodes the provided disparity adjustment value as a signed integer, converting it from a signed floating-point value in the range ",
+              "type": "text"
+            },
+            {
+              "code": "[-1.0, +1.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (as a fraction of image width) to a signed integer value in the range ",
+              "type": "text"
+            },
+            {
+              "code": "[-10000, +10000]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let encodedDisparityAdjustment = Int(disparityAdjustment * 1e4)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-an-image-properties-dictionary-for-each-image",
+          "level": 3,
+          "text": "Define an image properties dictionary for each image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before adding the left-eye and right-eye images to the image destination, the app defines a properties dictionary for each image, which expresses the spatial metadata for that image as expected ImageIO properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let leftProperties = propertiesDictionary(",
+            "    isLeft: true,",
+            "    encodedDisparityAdjustment: encodedDisparityAdjustment,",
+            "    position: leftPosition,",
+            "    intrinsics: intrinsics",
+            ")",
+            "let rightProperties = propertiesDictionary(",
+            "    isLeft: false,",
+            "    encodedDisparityAdjustment: encodedDisparityAdjustment,",
+            "    position: rightPosition,",
+            "    intrinsics: intrinsics",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A convenience method, ",
+              "type": "text"
+            },
+            {
+              "code": "propertiesDictionary(isLeft:encodedDisparityAdjustment:position:intrinsics:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", defines these property dictionaries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func propertiesDictionary(",
+            "    isLeft: Bool,",
+            "    encodedDisparityAdjustment: Int,",
+            "    position: [Double],",
+            "    intrinsics: [Double]",
+            ") -> [CFString: Any] {",
+            "    return [",
+            "        kCGImagePropertyGroups: [",
+            "            kCGImagePropertyGroupIndex: 0,",
+            "            kCGImagePropertyGroupType: kCGImagePropertyGroupTypeStereoPair,",
+            "            (isLeft ? kCGImagePropertyGroupImageIsLeftImage : kCGImagePropertyGroupImageIsRightImage): true,",
+            "            kCGImagePropertyGroupImageDisparityAdjustment: encodedDisparityAdjustment",
+            "        ],",
+            "        kCGImagePropertyHEIFDictionary: [",
+            "            kIIOMetadata_CameraExtrinsicsKey: [",
+            "                kIIOCameraExtrinsics_Position: position,",
+            "                kIIOCameraExtrinsics_Rotation: Self.identityRotation",
+            "            ],",
+            "            kIIOMetadata_CameraModelKey: [",
+            "                kIIOCameraModel_Intrinsics: intrinsics,",
+            "                kIIOCameraModel_ModelType: kIIOCameraModelType_SimplifiedPinhole",
+            "            ]",
+            "        ],",
+            "        kCGImagePropertyHasAlpha: false",
+            "    ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The properties dictionary has two sub-dictionaries for each image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A groups dictionary (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroups",
+                      "isActive": true,
+                      "overridingTitle": "kCGImagePropertyGroups",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kCGImagePropertyGroups",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") that defines the image as part of a stereo pair group, and specifies a disparity adjustment for that group",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A HEIF dictionary (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyHEIFDictionary",
+                      "isActive": true,
+                      "overridingTitle": "kCGImagePropertyHEIFDictionary",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kCGImagePropertyHEIFDictionary",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") that defines the extrinsics and camera model for the camera that created the image",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the groups dictionary, the convenience method defines a single stereo pair group with the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupIndex",
+                      "isActive": true,
+                      "overridingTitle": "kCGImagePropertyGroupIndex",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kCGImagePropertyGroupIndex",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", because this is the first and only group in the output file",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupType",
+                      "isActive": true,
+                      "overridingTitle": "kCGImagePropertyGroupType",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kCGImagePropertyGroupType",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupTypeStereoPair",
+                      "isActive": true,
+                      "overridingTitle": "kCGImagePropertyGroupTypeStereoPair",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kCGImagePropertyGroupTypeStereoPair",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to indicate that this group defines a stereo pair of images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A flag indicating if this image is the left-eye image (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupImageIsLeftImage",
+                      "isActive": true,
+                      "overridingTitle": "kCGImagePropertyGroupImageIsLeftImage",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kCGImagePropertyGroupImageIsLeftImage",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") or the right-eye image (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupImageIsRightImage",
+                      "isActive": true,
+                      "overridingTitle": "kCGImagePropertyGroupImageIsRightImage",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kCGImagePropertyGroupImageIsRightImage",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") in the stereo pair group",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupImageDisparityAdjustment",
+                      "isActive": true,
+                      "overridingTitle": "kCGImagePropertyGroupImageDisparityAdjustment",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kCGImagePropertyGroupImageDisparityAdjustment",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to use when presenting this stereo pair group",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The stereo pair group for a spatial photo must always define a disparity adjustment offset. Disparity adjustment and group index are provided as part of the image properties for each image, so the app includes the same index and disparity adjustment value in the groups dictionary for both the left- and right-eye images.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the HEIF dictionary, the convenience method defines:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A camera extrinsics (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kIIOMetadata_CameraExtrinsicsKey",
+                      "isActive": true,
+                      "overridingTitle": "kIIOMetadata_CameraExtrinsicsKey",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kIIOMetadata_CameraExtrinsicsKey",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") dictionary that contains the extrinsic position and rotation for the camera",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A camera model (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kIIOMetadata_CameraModelKey",
+                      "isActive": true,
+                      "overridingTitle": "kIIOMetadata_CameraModelKey",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "kIIOMetadata_CameraModelKey",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") dictionary that contains the camera intrinsics matrix and camera model type for the camera that captured the image",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The camera extrinsics dictionary specifies an identity rotation to indicate that the app defines camera extrinsics with a position offset only.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The camera model dictionary for the left- and right-eye images in a spatial photo must always define a camera model type of either ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ImageIO/kIIOCameraModelType_SimplifiedPinhole",
+                  "isActive": true,
+                  "overridingTitle": "kIIOCameraModelType_SimplifiedPinhole",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "kIIOCameraModelType_SimplifiedPinhole",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ImageIO/kIIOCameraModelType_GenericPinhole",
+                  "isActive": true,
+                  "overridingTitle": "kIIOCameraModelType_GenericPinhole",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "kIIOCameraModelType_GenericPinhole",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The properties dictionary also specifies a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyHasAlpha",
+              "isActive": true,
+              "overridingTitle": "kCGImagePropertyHasAlpha",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kCGImagePropertyHasAlpha",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate that the system should ignore any alpha channel data in the source image when adding that source image to the image destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-the-images-to-an-output-image-destination",
+          "level": 3,
+          "text": "Write the images to an output image destination",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageDestinationCreateWithURL(_:_:_:_:)",
+              "isActive": true,
+              "overridingTitle": "CGImageDestinationCreateWithURL",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGImageDestinationCreateWithURL",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to create an output ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageDestination",
+              "isActive": true,
+              "overridingTitle": "CGImageDestination",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGImageDestination",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " at the provided URL for the output spatial photo. The app creates the image destination with the uniform type identifier for a HEIC image and an expected image count of ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate that the app writes both a left- and right-eye image to a single HEIC file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let destinationProperties: [CFString: Any] = [kCGImagePropertyPrimaryImage: 0]",
+            "guard let destination = CGImageDestinationCreateWithURL(",
+            "    outputImageURL as CFURL,",
+            "    UTType.heic.description as CFString,",
+            "    2,",
+            "    destinationProperties as CFDictionary",
+            ") else {",
+            "    throw ConversionError.unableToCreateImageDestination",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app creates an image destination with a ",
+              "type": "text"
+            },
+            {
+              "code": "destinationProperties",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary that specifies a primary image index of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the output HEIC file. This primary image index specifies which image in the output HEIC file is preferred for display when an app or system needs a single image to represent the file’s content (for example, on a nonstereo platform such as iOS). However, not all apps and operating systems use the primary image index when displaying a HEIC file, and instead display the first image in the HEIC by default. For this reason, the app sets the primary image index to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so that apps that use the primary image index select the same image as apps that don’t.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageDestinationAddImageFromSource(_:_:_:_:)",
+              "isActive": true,
+              "overridingTitle": "CGImageDestinationAddImageFromSource",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGImageDestinationAddImageFromSource",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to copy the left- and right-eye image sources into the image destination, passing in an appropriate properties dictionary for each image. The app adds the left-eye image first, which means the left-eye image is the primary image for the output HEIC file, because it appears at image index ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the output file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CGImageDestinationAddImageFromSource(",
+            "    destination,",
+            "    leftImage.source,",
+            "    leftImage.primaryImageIndex,",
+            "    leftProperties as CFDictionary",
+            ")",
+            "CGImageDestinationAddImageFromSource(",
+            "    destination,",
+            "    rightImage.source,",
+            "    rightImage.primaryImageIndex,",
+            "    rightProperties as CFDictionary",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s valid to write either the left- or right-eye image as the first image in a spatial photo. visionOS detects the appropriate images to use for left- and right-eye presentation based on the ",
+              "type": "text"
+            },
+            {
+              "code": "kCGImagePropertyGroupImageIsLeftImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "kCGImagePropertyGroupImageIsRightImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties in the groups dictionary for each image, regardless of the order in which the images are added to the HEIC file. If the system should prefer the right-eye image as the primary image to display when it shows the spatial photo in a nonstereo environment, modify the app to add the right-eye image to the image destination first, so that it appears at index ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the output HEIC file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageDestinationFinalize(_:)",
+              "isActive": true,
+              "overridingTitle": "CGImageDestinationFinalize",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGImageDestinationFinalize",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to write the image destination to disk as a self-contained spatial photo.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard CGImageDestinationFinalize(destination) else {",
+            "    throw ConversionError.unableToFinalizeImageDestination",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/ImageIO": {
+      "abstract": [
+        {
+          "text": "Read and write most image file formats, and access an image’s metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Image I/O",
+      "type": "topic",
+      "url": "/documentation/ImageIO"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageDestination": {
+      "abstract": [
+        {
+          "text": "An opaque type that you use to write image data to a URL, data object, or data consumer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageDestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageDestination",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageDestination"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageDestinationAddImageFromSource(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an image from an image source to an image destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageDestinationAddImageFromSource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "idst"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageDestinationRef",
+          "text": "CGImageDestination"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "isrc"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageSourceRef",
+          "text": "CGImageSource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageDestinationAddImageFromSource(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageDestinationAddImageFromSource(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageDestinationAddImageFromSource(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageDestinationCreateWithURL(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an image destination that writes image data to the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageDestinationCreateWithURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageDestinationRef",
+          "text": "CGImageDestination"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageDestinationCreateWithURL(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageDestinationCreateWithURL(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageDestinationCreateWithURL(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageDestinationFinalize(_:)": {
+      "abstract": [
+        {
+          "text": "Writes image data and properties to the data, URL, or data consumer associated with the image destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageDestinationFinalize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "idst"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageDestinationRef",
+          "text": "CGImageDestination"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageDestinationFinalize(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageDestinationFinalize(_:)",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageDestinationFinalize(_:)"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageSource": {
+      "abstract": [
+        {
+          "text": "An opaque type that you use to read image data from a URL, data object, or data consumer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageSource",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageSource"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceCopyPropertiesAtIndex(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the properties of the image at a specified location in an image source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageSourceCopyPropertiesAtIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "isrc"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageSourceRef",
+          "text": "CGImageSource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceCopyPropertiesAtIndex(_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageSourceCopyPropertiesAtIndex(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageSourceCopyPropertiesAtIndex(_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceCreateWithURL(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an image source that reads from a location specified by a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageSourceCreateWithURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageSourceRef",
+          "text": "CGImageSource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceCreateWithURL(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageSourceCreateWithURL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageSourceCreateWithURL(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceGetPrimaryImageIndex(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the index of the primary image for an High Efficiency Image File Format (HEIF) image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageSourceGetPrimaryImageIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "isrc"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageSourceRef",
+          "text": "CGImageSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceGetPrimaryImageIndex(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageSourceGetPrimaryImageIndex(_:)",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageSourceGetPrimaryImageIndex(_:)"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata": {
+      "abstract": [
+        {
+          "text": "Add spatial metadata to stereo photos and videos to create spatial media for viewing on Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating spatial photos and videos with spatial metadata",
+      "type": "topic",
+      "url": "/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupImageDisparityAdjustment": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyGroupImageDisparityAdjustment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupImageDisparityAdjustment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyGroupImageDisparityAdjustment",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyGroupImageDisparityAdjustment"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupImageIsLeftImage": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyGroupImageIsLeftImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupImageIsLeftImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyGroupImageIsLeftImage",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyGroupImageIsLeftImage"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupImageIsRightImage": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyGroupImageIsRightImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupImageIsRightImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyGroupImageIsRightImage",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyGroupImageIsRightImage"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupIndex": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyGroupIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupIndex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyGroupIndex",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyGroupIndex"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupType": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyGroupType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyGroupType",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyGroupType"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupTypeStereoPair": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyGroupTypeStereoPair"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroupTypeStereoPair",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyGroupTypeStereoPair",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyGroupTypeStereoPair"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroups": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyGroups"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyGroups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyGroups",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyGroups"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyHEIFDictionary": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyHEIFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyHEIFDictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyHEIFDictionary",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyHEIFDictionary"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyHasAlpha": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the image has an alpha channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyHasAlpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyHasAlpha",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyHasAlpha",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyHasAlpha"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyPixelHeight": {
+      "abstract": [
+        {
+          "text": "The number of pixels along the y-axis of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyPixelHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyPixelHeight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyPixelHeight",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyPixelHeight"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyPixelWidth": {
+      "abstract": [
+        {
+          "text": "The number of pixels along the x-axis of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImagePropertyPixelWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImagePropertyPixelWidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyPixelWidth",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImagePropertyPixelWidth"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kIIOCameraModelType_GenericPinhole": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kIIOCameraModelType_GenericPinhole"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kIIOCameraModelType_GenericPinhole",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIIOCameraModelType_GenericPinhole",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kIIOCameraModelType_GenericPinhole"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kIIOCameraModelType_SimplifiedPinhole": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kIIOCameraModelType_SimplifiedPinhole"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kIIOCameraModelType_SimplifiedPinhole",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIIOCameraModelType_SimplifiedPinhole",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kIIOCameraModelType_SimplifiedPinhole"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kIIOMetadata_CameraExtrinsicsKey": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kIIOMetadata_CameraExtrinsicsKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kIIOMetadata_CameraExtrinsicsKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIIOMetadata_CameraExtrinsicsKey",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kIIOMetadata_CameraExtrinsicsKey"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kIIOMetadata_CameraModelKey": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kIIOMetadata_CameraModelKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kIIOMetadata_CameraModelKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIIOMetadata_CameraModelKey",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kIIOMetadata_CameraModelKey"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.imageio/documentation/ImageIO": {
+      "abstract": [
+        {
+          "text": "Read and write most image file formats, and access an image’s metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.imageio/documentation/ImageIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Image I/O",
+      "type": "topic",
+      "url": "/documentation/imageio"
+    },
+    "doc://com.apple.imageio/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata": {
+      "abstract": [
+        {
+          "text": "Add spatial metadata to stereo photos and videos to create spatial media for viewing on Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.imageio/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating spatial photos and videos with spatial metadata",
+      "type": "topic",
+      "url": "/documentation/imageio/creating-spatial-photos-and-videos-with-spatial-metadata"
+    },
+    "f576a7476465/WritingSpatialPhotos.zip": {
+      "checksum": "f576a74764653ba21763c5269b8846ec3894fe40f3845eeb535bde710da1c3065b8e6f77784aec4762f93e5be3759a1e9e71e86139bf3ef2069b74ea9ac3592e",
+      "identifier": "f576a7476465/WritingSpatialPhotos.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f576a7476465/WritingSpatialPhotos.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f576a7476465/WritingSpatialPhotos.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Spatial-Photos",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.imageio/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata"
+      ],
+      "title": "Spatial Photos"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Spatial-Photos",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.imageio/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata"
+              ],
+              "title": "Spatial Photos"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyGroupIndex/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyGroupIndex"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kIIOMetadata_CameraModelKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kIIOMetadata_CameraModelKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyGroupImageDisparityAdjustment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyGroupImageDisparityAdjustment"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyPixelWidth/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyPixelWidth"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kIIOCameraModelType_SimplifiedPinhole/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kIIOCameraModelType_SimplifiedPinhole"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSourceGetPrimaryImageIndex(_:)/title",
+          "value": "CGImageSourceGetPrimaryImageIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSourceGetPrimaryImageIndex(_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageSourceGetPrimaryImageIndex"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGImageSourceRef",
+              "text": "CGImageSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "isrc"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyGroups/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyGroups"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyPixelHeight/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyPixelHeight"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageDestinationCreateWithURL(_:_:_:_:)/title",
+          "value": "CGImageDestinationCreateWithURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageDestinationCreateWithURL(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGImageDestinationRef",
+              "text": "CGImageDestinationRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageDestinationCreateWithURL"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "type"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "count"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageDestinationFinalize(_:)/title",
+          "value": "CGImageDestinationFinalize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageDestinationFinalize(_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageDestinationFinalize"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGImageDestinationRef",
+              "text": "CGImageDestinationRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "idst"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSourceCreateWithURL(_:_:)/title",
+          "value": "CGImageSourceCreateWithURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSourceCreateWithURL(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGImageSourceRef",
+              "text": "CGImageSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageSourceCreateWithURL"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSource/title",
+          "value": "CGImageSourceRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSource/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGImageSource",
+              "text": "CGImageSource"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kIIOCameraModelType_GenericPinhole/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kIIOCameraModelType_GenericPinhole"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyGroupTypeStereoPair/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyGroupTypeStereoPair"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyGroupImageIsRightImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyGroupImageIsRightImage"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSourceCopyPropertiesAtIndex(_:_:_:)/title",
+          "value": "CGImageSourceCopyPropertiesAtIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSourceCopyPropertiesAtIndex(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageSourceCopyPropertiesAtIndex"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGImageSourceRef",
+              "text": "CGImageSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "isrc"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "index"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyGroupType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyGroupType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageDestinationAddImageFromSource(_:_:_:_:)/title",
+          "value": "CGImageDestinationAddImageFromSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageDestinationAddImageFromSource(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageDestinationAddImageFromSource"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGImageDestinationRef",
+              "text": "CGImageDestinationRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "idst"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGImageSourceRef",
+              "text": "CGImageSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "isrc"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "index"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "properties"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kIIOMetadata_CameraExtrinsicsKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kIIOMetadata_CameraExtrinsicsKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyGroupImageIsLeftImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyGroupImageIsLeftImage"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyHasAlpha/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyHasAlpha"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImagePropertyHEIFDictionary/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyHEIFDictionary"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageDestination/title",
+          "value": "CGImageDestinationRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageDestination/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGImageDestination",
+              "text": "CGImageDestination"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageDestinationRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/imageio/writing-spatial-photos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/imageio/writing-spatial-photos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

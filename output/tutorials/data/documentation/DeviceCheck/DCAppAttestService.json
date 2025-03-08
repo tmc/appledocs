@@ -1,0 +1,1577 @@
+{
+  "abstract": [
+    {
+      "text": "A service that you use to validate the instance of your app running on a",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)DCAppAttestService",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DCAppAttestService"
+      }
+    ],
+    "modules": [
+      {
+        "name": "DeviceCheck"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DCAppAttestService"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "DCAppAttestService"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DCAppAttestService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to assert the legitimacy of a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "particular instance of your app to your server. After ensuring service",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "availability by reading the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/isSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property, you use the service to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a cryptographic key in the Secure Enclave by calling the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/generateKey(completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ask Apple to certify the key by calling the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "method. - Prepare an assertion of your app’s integrity to accompany any or",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "all server requests using the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to support App Attest in your app, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information about the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "complementary procedures you implement on your server, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To use the App Attest service, your app must have an app ID that you",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "register on the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/account/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "website.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck": {
+      "abstract": [
+        {
+          "text": "Reduce fraudulent use of your services by managing device state and asserting app",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "integrity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceCheck",
+      "type": "topic",
+      "url": "/documentation/devicecheck"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService": {
+      "abstract": [
+        {
+          "text": "A service that you use to validate the instance of your app running on a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DCAppAttestService"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DCAppAttestService"
+        }
+      ],
+      "role": "symbol",
+      "title": "DCAppAttestService",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcappattestservice"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks Apple to attest to the validity of a generated cryptographic key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attestKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clientDataHash"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attestKey:clientDataHash:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "attestKey(_:clientDataHash:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcappattestservice/attestkey(_:clientdatahash:completionhandler:)"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a block of data that demonstrates the legitimacy of an instance of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your app running on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateAssertion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clientDataHash"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "generateAssertion:clientDataHash:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "generateAssertion(_:clientDataHash:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcappattestservice/generateassertion(_:clientdatahash:completionhandler:)"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/generateKey(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a new cryptographic key for use with the App Attest service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/generateKey(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "generateKeyWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "generateKey(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcappattestservice/generatekey(completionhandler:)"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/isSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a particular device provides the App",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Attest service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/isSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supported"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSupported",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcappattestservice/issupported"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/shared": {
+      "abstract": [
+        {
+          "text": "The shared App Attest service that you use to validate your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DCAppAttestService",
+          "text": "DCAppAttestService"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedService"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcappattestservice/shared"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk": {
+      "abstract": [
+        {
+          "text": "Request and analyze risk data using server-to-server calls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk",
+      "kind": "article",
+      "role": "article",
+      "title": "Assessing fraud risk",
+      "type": "topic",
+      "url": "/documentation/devicecheck/assessing-fraud-risk"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity": {
+      "abstract": [
+        {
+          "text": "Ensure that requests your server receives come from legitimate instances of your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing your app’s integrity",
+      "type": "topic",
+      "url": "/documentation/devicecheck/establishing-your-app-s-integrity"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service": {
+      "abstract": [
+        {
+          "text": "Test your implementation in a development environment and onboard users gradually.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing to use the app attest service",
+      "type": "topic",
+      "url": "/documentation/devicecheck/preparing-to-use-the-app-attest-service"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server": {
+      "abstract": [
+        {
+          "text": "Verify that connections to your server come from legitimate instances of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating apps that connect to your server",
+      "type": "topic",
+      "url": "/documentation/devicecheck/validating-apps-that-connect-to-your-server"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment": {
+      "abstract": [
+        {
+          "text": "The environment for an app that uses the App Attest service to validate itself.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Attest Environment",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/account/": {
+      "identifier": "https://developer.apple.com/account/",
+      "title": "Apple Developer",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-Attest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment"
+      ],
+      "title": "App Attest"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-the-service",
+      "identifiers": [
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/shared",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/isSupported"
+      ],
+      "title": "Accessing the service"
+    },
+    {
+      "anchor": "Preparing-a-key",
+      "identifiers": [
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/generateKey(completionHandler:)",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)"
+      ],
+      "title": "Preparing a key"
+    },
+    {
+      "anchor": "Validating-the-app-instance",
+      "identifiers": [
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)"
+      ],
+      "title": "Validating the app instance"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "DCAppAttestService"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCAppAttestService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCAppAttestService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-the-service",
+              "identifiers": [
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/shared",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/isSupported"
+              ],
+              "title": "Accessing the service"
+            },
+            {
+              "anchor": "Preparing-a-key",
+              "identifiers": [
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/generateKey(completionHandler:)",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)"
+              ],
+              "title": "Preparing a key"
+            },
+            {
+              "anchor": "Validating-the-app-instance",
+              "identifiers": [
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)"
+              ],
+              "title": "Validating the app instance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-Attest",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment"
+              ],
+              "title": "App Attest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "DCAppAttestService"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1generateKey(completionHandler:)/title",
+          "value": "generateKeyWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1generateKey(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "generateKeyWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1shared/title",
+          "value": "sharedService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1attestKey(_:clientDataHash:completionHandler:)/title",
+          "value": "attestKey:clientDataHash:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1attestKey(_:clientDataHash:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "attestKey:clientDataHash:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService/title",
+          "value": "DCAppAttestService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCAppAttestService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCAppAttestService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1generateAssertion(_:clientDataHash:completionHandler:)/title",
+          "value": "generateAssertion:clientDataHash:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1generateAssertion(_:clientDataHash:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "generateAssertion:clientDataHash:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1isSupported/title",
+          "value": "supported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService~1isSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supported"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicecheck/dcappattestservice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/devicecheck/dcappattestservice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

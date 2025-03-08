@@ -1,0 +1,679 @@
+{
+  "abstract": [
+    {
+      "text": "A single item to add to the Xcode library.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:21DeveloperToolsSupport11LibraryItemV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LibraryItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "DeveloperToolsSupport"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LibraryItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LibraryItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LibraryItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declare a library item to describe an entry in the Xcode library.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode discovers and validates library items that you place in the context of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At a minimum, you provide an expression that Xcode uses when the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "chooses the library item. You can provide any expression that compiles in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the context of the library item instantiation. However, Xcode only honors",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "items that adhere to certain restrictions, as described in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/modifiers(base:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also provide additional characteristics, like a title",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and a category, to help you find the item when searching the library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport": {
+      "abstract": [
+        {
+          "text": "Expose custom views and modifiers in the Xcode library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeveloperToolsSupport",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider": {
+      "abstract": [
+        {
+          "text": "A source of Xcode library and code completion content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryContentProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryContentProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryContentProvider",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/librarycontentprovider"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/modifiers(base:)": {
+      "abstract": [
+        {
+          "text": "Indicates a collection of SwiftUI view modifiers to add to the Xcode",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "library.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "base"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport22LibraryContentProviderP12ModifierBaseQa",
+          "text": "ModifierBase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport11LibraryItemV",
+          "text": "LibraryItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/modifiers(base:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "modifiers(base:)",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/librarycontentprovider/modifiers(base:)"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/views": {
+      "abstract": [
+        {
+          "text": "The SwiftUI views that you want to add to the Xcode library.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "views"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport11LibraryItemV",
+          "text": "LibraryItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/views",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "views",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/librarycontentprovider/views"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem": {
+      "abstract": [
+        {
+          "text": "A single item to add to the Xcode library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryItem",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/libraryitem"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem/Category": {
+      "abstract": [
+        {
+          "text": "The kinds of library items that you can create.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Category"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem/Category",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Category"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryItem.Category",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/libraryitem/category"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem/init(_:visible:title:category:matchingSignature:)": {
+      "abstract": [
+        {
+          "text": "Creates a new library item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SnippetExpressionType"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SnippetExpressionType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "visible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport11LibraryItemV",
+          "text": "LibraryItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport11LibraryItemV8CategoryV",
+          "text": "Category"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "matchingSignature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem/init(_:visible:title:category:matchingSignature:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:visible:title:category:matchingSignature:)",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/libraryitem/init(_:visible:title:category:matchingsignature:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Library-Customization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider"
+      ],
+      "title": "Library Customization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Library-Item",
+      "identifiers": [
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem/init(_:visible:title:category:matchingSignature:)",
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem/Category"
+      ],
+      "title": "Creating a Library Item"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/developertoolssupport/libraryitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1028 @@
+{
+  "abstract": [
+    {
+      "text": "Enhance the readability of a map by replacing overlapping annotations with a clustering annotation view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-annotations"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-annotations",
+        "doc://com.apple.mapkit/documentation/MapKit/MKAnnotationView"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/decluttering-a-map-with-mapkit-annotation-clustering"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Decluttering a Map with MapKit Annotation Clustering"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "TANDm is a fictional bike sharing app that uses annotation clustering to provide an uncluttered map. The app shows how MapKit automatically groups two or more annotations into a single annotation when spacing on the map doesn’t permit each annotation to be visible without overlapping. This enhances the readability of the map by replacing overlapping annotations with a clustering annotation view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Annotation-Clustering",
+          "level": 3,
+          "text": "Annotation Clustering",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To group annotations into a cluster, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKAnnotationView/clusteringIdentifier",
+              "isActive": true,
+              "overridingTitle": "clusteringIdentifier",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "clusteringIdentifier",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property to the same value on each annotation view in the group. For example, to show overlapping unicycle annotations in a clustering annotation view, TANDm sets ",
+              "type": "text"
+            },
+            {
+              "code": "clusteringIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on each instance of [",
+              "type": "text"
+            },
+            {
+              "code": "UnicycleAnnotationView",
+              "type": "codeVoice"
+            },
+            {
+              "text": "][2] to ",
+              "type": "text"
+            },
+            {
+              "code": "\"unicycle\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override init(annotation: MKAnnotation?, reuseIdentifier: String?) {",
+            "    super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)",
+            "    clusteringIdentifier = \"unicycle\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-Priority",
+          "level": 3,
+          "text": "Display Priority",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine how an annotation view behaves when it overlaps another annotation view, set its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKAnnotationView/displayPriority",
+              "isActive": true,
+              "overridingTitle": "displayPriority",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "displayPriority",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property. In the sample app, the map view is likely to hide the unicycle annotation if it overlaps with another annotation because the unicycle annotation view has a display priority of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKFeatureDisplayPriority/defaultLow",
+              "isActive": true,
+              "overridingTitle": "defaultLow",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "defaultLow",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", while the display priorities for bicycle and tricycle are set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKFeatureDisplayPriority/defaultHigh",
+              "isActive": true,
+              "overridingTitle": "defaultHigh",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "defaultHigh",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Here’s an example of setting the display priority while preparing an instance of [",
+              "type": "text"
+            },
+            {
+              "code": "BicycleAnnotationView",
+              "type": "codeVoice"
+            },
+            {
+              "text": "][8] for reuse:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func prepareForDisplay() {",
+            "    super.prepareForDisplay()",
+            "    displayPriority = .defaultHigh",
+            "    markerTintColor = UIColor.bicycleColor",
+            "    glyphImage = #imageLiteral(resourceName: \"bicycle\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Custom-Clustering-Annotation-Views",
+          "level": 3,
+          "text": "Custom Clustering Annotation Views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize the behavior and appearance of a clustering annotation view by subclassing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKAnnotationView",
+              "isActive": true,
+              "overridingTitle": "MKAnnotationView",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKAnnotationView",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "; for instance, to display hints about the annotations within the cluster. TANDm, for example, uses the custom clustering annotation view [",
+              "type": "text"
+            },
+            {
+              "code": "ClusterAnnotationView",
+              "type": "codeVoice"
+            },
+            {
+              "text": "][7] to show the ratio between bicycles and tricycles at a location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func prepareForDisplay() {",
+            "    super.prepareForDisplay()",
+            "    ",
+            "    if let cluster = annotation as? MKClusterAnnotation {",
+            "        let totalBikes = cluster.memberAnnotations.count",
+            "        ",
+            "        if count(cycleType: .unicycle) > 0 {",
+            "            image = drawUnicycleCount(count: totalBikes)",
+            "        } else {",
+            "            let tricycleCount = count(cycleType: .tricycle)",
+            "            image = drawRatioBicycleToTricycle(tricycleCount, to: totalBikes)",
+            "        }",
+            "        ",
+            "        if count(cycleType: .unicycle) > 0 {",
+            "            displayPriority = .defaultLow",
+            "        } else {",
+            "            displayPriority = .defaultHigh",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8f52e0ee5541/DeclutteringAMapWithMapKitAnnotationClustering.zip": {
+      "checksum": "8f52e0ee5541db4ee31cde554426537bf95b04f4dbf55b041154045f7f42ffa616f53f409f9502ddb34d2e0f55a2c261ce307b8cb1584c7f450173b7494d7136",
+      "identifier": "8f52e0ee5541/DeclutteringAMapWithMapKitAnnotationClustering.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8f52e0ee5541/DeclutteringAMapWithMapKitAnnotationClustering.zip"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKAnnotationView": {
+      "abstract": [
+        {
+          "text": "The visual representation of one of your annotation objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKAnnotationView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKAnnotationView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKAnnotationView",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKAnnotationView"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKAnnotationView/clusteringIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier that determines whether the annotation view participates in clustering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clusteringIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKAnnotationView/clusteringIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clusteringIdentifier",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKAnnotationView/clusteringIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKAnnotationView/displayPriority": {
+      "abstract": [
+        {
+          "text": "The display priority of the annotation view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayPriority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MKFeatureDisplayPriority",
+          "text": "MKFeatureDisplayPriority"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKAnnotationView/displayPriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "displayPriority",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKAnnotationView/displayPriority"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKFeatureDisplayPriority/defaultHigh": {
+      "abstract": [
+        {
+          "text": "A constant indicating that the item’s display priority is high.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultHigh"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MKFeatureDisplayPriority",
+          "text": "MKFeatureDisplayPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKFeatureDisplayPriority/defaultHigh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultHigh",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKFeatureDisplayPriority/defaultHigh"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKFeatureDisplayPriority/defaultLow": {
+      "abstract": [
+        {
+          "text": "A constant indicating that the item’s display priority is low.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultLow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MKFeatureDisplayPriority",
+          "text": "MKFeatureDisplayPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKFeatureDisplayPriority/defaultLow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultLow",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKFeatureDisplayPriority/defaultLow"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKAnnotationView": {
+      "abstract": [
+        {
+          "text": "The visual representation of one of your annotation objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKAnnotationView"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKAnnotationView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKAnnotationView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKAnnotationView",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkannotationview"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKClusterAnnotation": {
+      "abstract": [
+        {
+          "text": "An annotation that groups two or more distinct annotations into a single entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKClusterAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKClusterAnnotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKClusterAnnotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKClusterAnnotation",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkclusterannotation"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-annotations": {
+      "abstract": [
+        {
+          "text": "Create annotations to add indicators and additional details for specific locations on a map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-annotations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit annotations",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-annotations"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit": {
+      "abstract": [],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit for AppKit and UIKit",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-for-appkit-and-uikit"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8f52e0ee5541/DeclutteringAMapWithMapKitAnnotationClustering.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Grouped-annotations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKClusterAnnotation"
+      ],
+      "title": "Grouped annotations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Grouped-annotations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKClusterAnnotation"
+              ],
+              "title": "Grouped annotations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKFeatureDisplayPriority~1defaultLow/title",
+          "value": "MKFeatureDisplayPriorityDefaultLow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKFeatureDisplayPriority~1defaultLow/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@MKFeatureDisplayPriority",
+              "text": "MKFeatureDisplayPriority"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKFeatureDisplayPriorityDefaultLow"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAnnotationView/title",
+          "value": "MKAnnotationView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAnnotationView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKAnnotationView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAnnotationView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKAnnotationView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKFeatureDisplayPriority~1defaultHigh/title",
+          "value": "MKFeatureDisplayPriorityDefaultHigh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKFeatureDisplayPriority~1defaultHigh/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@MKFeatureDisplayPriority",
+              "text": "MKFeatureDisplayPriority"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKFeatureDisplayPriorityDefaultHigh"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKAnnotationView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKAnnotationView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKAnnotationView~1clusteringIdentifier/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "clusteringIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKAnnotationView~1displayPriority/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@MKFeatureDisplayPriority",
+              "text": "MKFeatureDisplayPriority"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayPriority"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKClusterAnnotation/title",
+          "value": "MKClusterAnnotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKClusterAnnotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKClusterAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKClusterAnnotation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKClusterAnnotation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/decluttering-a-map-with-mapkit-annotation-clustering"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/decluttering-a-map-with-mapkit-annotation-clustering"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1428 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the list of pasteboard types supported directly by the image representation.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use +imageUnfilteredTypes instead",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageRep"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredPasteboardTypes()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSImageRep(cm)imageUnfilteredPasteboardTypes",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "imageUnfilteredPasteboardTypes"
+      },
+      {
+        "kind": "text",
+        "text": "() -> ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSPasteboard",
+        "text": "NSPasteboard"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSPasteboardType",
+        "text": "PasteboardType"
+      },
+      {
+        "kind": "text",
+        "text": "]"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "imageUnfilteredPasteboardTypes"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.10",
+        "introducedAt": "10.0",
+        "message": "Use +imageUnfilteredTypes instead",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "imageUnfilteredPasteboardTypes()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageUnfilteredPasteboardTypes"
+            },
+            {
+              "kind": "text",
+              "text": "() -> ["
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPasteboard",
+              "text": "NSPasteboard"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSPasteboardType",
+              "text": "PasteboardType"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An array of ",
+              "type": "text"
+            },
+            {
+              "code": "NSString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. This array is empty by default. Subclasses must override to return the list of pasteboard formats they support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSImageRep",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", override this method to return a list representing the supported pasteboard types. For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "NSBitmapImageRep",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class implements code similar to the following for this method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "+ (NSArray *)imageUnfilteredPasteboardTypes {",
+            "    static NSArray *types = nil;",
+            " ",
+            "    if (!types) types = [[NSArray alloc] initWithObjects:NSTIFFPboardType,  nil];",
+            "    return types;",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your subclass supports the types supported by its superclass, you must explicitly get the list of types from the superclass and add them to the array returned by this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/imageUnfilteredPasteboardTypes()": {
+      "abstract": [
+        {
+          "text": "Returns an array of strings identifying the pasteboard types supported directly by the registered image representation objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageUnfilteredPasteboardTypes"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/imageUnfilteredPasteboardTypes()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageUnfilteredPasteboardTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageUnfilteredPasteboardTypes()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/imageunfilteredpasteboardtypes()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep": {
+      "abstract": [
+        {
+          "text": "A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageRep"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImageRep"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImageRep",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep/canInit(with:)-56pum": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the receiver can initialize itself from the data on the specified pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep/canInit(with:)-56pum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canInitWithPasteboard:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canInit(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep/caninit(with:)-56pum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep/canInit(with:)-6zv56": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the image representation can initialize itself from the specified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep/canInit(with:)-6zv56",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canInitWithData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canInit(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep/caninit(with:)-6zv56"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageFileTypes()": {
+      "abstract": [
+        {
+          "text": "Returns the file types supported by the image representation class or one of its subclasses.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageFileTypes"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageFileTypes()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageFileTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageFileTypes()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep/imagefiletypes()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imagePasteboardTypes()": {
+      "abstract": [
+        {
+          "text": "Returns the pasteboard types supported by the image representation class or one of its subclasses.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imagePasteboardTypes"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imagePasteboardTypes()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imagePasteboardTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "imagePasteboardTypes()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep/imagepasteboardtypes()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageTypes": {
+      "abstract": [
+        {
+          "text": "Returns an array of UTI strings identifying the image types supported by the image representation, either directly or through a user-installed filter service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageTypes",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep/imagetypes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredFileTypes()": {
+      "abstract": [
+        {
+          "text": "Returns the list of file types supported directly by the image representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageUnfilteredFileTypes"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredFileTypes()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageUnfilteredFileTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageUnfilteredFileTypes()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep/imageunfilteredfiletypes()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredPasteboardTypes()": {
+      "abstract": [
+        {
+          "text": "Returns the list of pasteboard types supported directly by the image representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageUnfilteredPasteboardTypes"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredPasteboardTypes()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageUnfilteredPasteboardTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageUnfilteredPasteboardTypes()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep/imageunfilteredpasteboardtypes()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredTypes": {
+      "abstract": [
+        {
+          "text": "Returns an array of UTI strings identifying the image types supported directly by the ime representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageUnfilteredTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageUnfilteredTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageUnfilteredTypes",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep/imageunfilteredtypes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard": {
+      "abstract": [
+        {
+          "text": "An object that transfers data to and from the pasteboard server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboard"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType": {
+      "abstract": [
+        {
+          "text": "The supported pasteboard types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PasteboardType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PasteboardType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard.PasteboardType",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/pasteboardtype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/imageUnfilteredPasteboardTypes()"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Determining-Types-for-Images",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImageRep/canInit(with:)-6zv56",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageRep/canInit(with:)-56pum",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageTypes",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredTypes",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageFileTypes()",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imagePasteboardTypes()",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredFileTypes()"
+      ],
+      "title": "Determining Types for Images"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.10",
+              "introducedAt": "10.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "imageUnfilteredPasteboardTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageUnfilteredPasteboardTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageRep"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/imageUnfilteredPasteboardTypes()"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Determining-Types-for-Images",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSImageRep/canInit(with:)-6zv56",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageRep/canInit(with:)-56pum",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageTypes",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredTypes",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageFileTypes()",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imagePasteboardTypes()",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageRep/imageUnfilteredFileTypes()"
+              ],
+              "title": "Determining Types for Images"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "+ ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<NSString *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "imageUnfilteredPasteboardTypes"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "An array of ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "NSString",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " objects. This array is empty by default. Subclasses must override to return the list of pasteboard formats they support.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use +imageUnfilteredTypes instead",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imageUnfilteredPasteboardTypes()/title",
+          "value": "imageUnfilteredPasteboardTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imageUnfilteredPasteboardTypes()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageUnfilteredPasteboardTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1PasteboardType/title",
+          "value": "NSPasteboardType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1PasteboardType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1PasteboardType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imageUnfilteredTypes/title",
+          "value": "imageUnfilteredTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imageUnfilteredTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageUnfilteredTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imageFileTypes()/title",
+          "value": "imageFileTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imageFileTypes()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageFileTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imageTypes/title",
+          "value": "imageTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imageTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imageUnfilteredFileTypes()/title",
+          "value": "imageUnfilteredFileTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imageUnfilteredFileTypes()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageUnfilteredFileTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1imageUnfilteredPasteboardTypes()/title",
+          "value": "imageUnfilteredPasteboardTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1imageUnfilteredPasteboardTypes()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageUnfilteredPasteboardTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep/title",
+          "value": "NSImageRep"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageRep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageRep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1canInit(with:)-6zv56/title",
+          "value": "canInitWithData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1canInit(with:)-6zv56/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "canInitWithData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/title",
+          "value": "NSPasteboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imagePasteboardTypes()/title",
+          "value": "imagePasteboardTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1imagePasteboardTypes()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "imagePasteboardTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1canInit(with:)-56pum/title",
+          "value": "canInitWithPasteboard:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep~1canInit(with:)-56pum/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "canInitWithPasteboard:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsimagerep/imageunfilteredpasteboardtypes()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsimagerep/imageunfilteredpasteboardtypes()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

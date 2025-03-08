@@ -1,0 +1,659 @@
+{
+  "abstract": [
+    {
+      "text": "The response that contains the client configuration.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigResponse"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-apps:vpp:ClientConfigResponse",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "ClientConfigResponse"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ClientConfigResponse"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "ClientConfigResponse"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: VPP License Management"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "ClientConfigResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ISO alpha-2 country code that designates the organization’s location.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "countryISO2ACode",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "volumestore",
+                "enterprisestore"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The value that the MDM client passes for the platform parameter in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "contentMetadataLookup",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " request. For more information about how the MDM client queries metadata by using ",
+                  "type": "text"
+                },
+                {
+                  "code": "contentMetadataLookup",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/getting-app-and-book-information-legacy",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "defaultPlatform",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The current URL to post notifications to.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "notificationUrl",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "ASSET_MANAGEMENT",
+                "USER_MANAGEMENT",
+                "USER_ASSOCIATED",
+                "ASSET_COUNT"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The set of currently subscribed notification types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "subscribedNotificationTypes",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "https://school.apple.com",
+                "https://business.apple.com"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The current website URL for the specified platform.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "websiteURL",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The current information for the provided token.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The response only includes this field when the MDM client sets a value using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mdmInfo",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/MdmInfo",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:MdmInfo",
+              "text": "MdmInfo"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The current shared secret that the server returns in the Authorization header of notifications.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "notificationAuthToken",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The token’s expiration date in an ISO-8601 format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Note: The server shows all dates and times in UTC.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "tokenExpirationDate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique library identifier. When querying records using multiple tokens that may share libraries, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "uId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field to filter duplicates and avoid double-counting records when different content managers upload duplicate tokens.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "uId",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The current name of the library.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "locationName",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Client config should be checked regularly in order to verify expected values for the various fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1": {
+      "abstract": [
+        {
+          "text": "Store client-specific information on the server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-4szk1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Client Config"
+        }
+      ],
+      "role": "symbol",
+      "title": "Client Config",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/client-config-4szk1"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest": {
+      "abstract": [
+        {
+          "text": "The request for the client configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClientConfigRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClientConfigRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClientConfigRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clientconfigrequest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains the client configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClientConfigResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClientConfigResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClientConfigResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clientconfigresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains the error that occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/errorresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/MdmInfo": {
+      "abstract": [
+        {
+          "text": "Information about the MDM client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MdmInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/MdmInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MdmInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "MdmInfo",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/mdminfo"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations": {
+      "abstract": [
+        {
+          "text": "Get details about apps and books to show to your users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apps and Books for Organizations",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/apps-and-books-for-organizations"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/getting-app-and-book-information-legacy": {
+      "abstract": [
+        {
+          "text": "Use a web service to find details about apps and books to show to your users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/getting-app-and-book-information-legacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting App and Book Information (Legacy)",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/getting-app-and-book-information-legacy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Request-and-Response",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigRequest",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse"
+      ],
+      "title": "Request and Response"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Content-Metadata",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/apps-and-books-for-organizations"
+      ],
+      "title": "Content Metadata"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/clientconfigresponse"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,513 @@
+{
+  "abstract": [
+    {
+      "text": "Describe the interface elements of your widgets and Live Activities to help people understand what they represent.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ActivityKit/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ActivityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding accessible descriptions to widgets and Live Activities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Designing with accessibility in mind is a foundational principle when creating an app. It also applies to widgets and Live Activities. To allow people to customize how they interact with your widget or Live Activity, to verify VoiceOver works correctly for them, and to help people understand what each interface element represents, add accessibility labels to the SwiftUI views you create for each widget and Live Activity presentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-accessibility-labels",
+          "level": 3,
+          "text": "Provide accessibility labels",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add accessibility labels for each SwiftUI view you use as needed and make sure your accessibility labels fit the widget or Live Activity content. To review API that allows you to add accessible descriptions to SwiftUI views, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Accessible-descriptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityLabel(_:)-1d7jv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to add an accessibility labels for minimal, compact leading, and compact trailing presentations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import WidgetKit",
+            "",
+            "struct AdventureActivityConfiguration: Widget {",
+            "    var body: some WidgetConfiguration {",
+            "        ActivityConfiguration(for: AdventureAttributes.self) { context in",
+            "            // Create the presentation that appears on the Lock Screen and as a",
+            "            // banner on the Home Screen of devices that don't support the",
+            "            // Dynamic Island.",
+            "            // ...",
+            "        } dynamicIsland: { context in",
+            "            // Create the presentations that appear in the Dynamic Island.",
+            "            DynamicIsland {",
+            "                // Create the expanded presentation.",
+            "                // ...",
+            "            } compactLeading: {",
+            "                // Create the compact leading presentation.",
+            "                Avatar(hero: context.attributes.hero, includeBackground: true)",
+            "                    .accessibilityLabel(\"The avatar of \\(context.attributes.hero.name).\")",
+            "            } compactTrailing: {",
+            "                // Create the compact trailing presentation.",
+            "                ProgressView(value: context.state.currentHealthLevel, total: 1) {",
+            "                    let healthLevel = Int(context.state.currentHealthLevel * 100)",
+            "                    Text(\"\\(healthLevel)\")",
+            "                        .accessibilityLabel(\"Health level at \\(healthLevel) percent.\")",
+            "                }",
+            "                .progressViewStyle(.circular)",
+            "                .tint(context.state.currentHealthLevel <= 0.2 ? Color.red : Color.green)",
+            "            } minimal: {",
+            "                 // Create the minimal presentation.",
+            "                ProgressView(value: context.state.currentHealthLevel, total: 1) {",
+            "                    Avatar(hero: context.attributes.hero, includeBackground: false)",
+            "                        .accessibilityLabel(\"The avatar of \\(context.attributes.hero.name).\")",
+            "                }",
+            "                .progressViewStyle(.circular)",
+            "                .tint(context.state.currentHealthLevel <= 0.2 ? Color.red : Color.green)",
+            "            }",
+            "        }",
+            "        .supplementalActivityFamilies([.small, .medium])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you provide a content description for an image you update while a Live Activity is active and the image conveys status information or similar, make sure to also update the accessibility label to match the updated status. For example, if an image indicates a delivery status, make sure the accessibility label changes as the delivery status that the image indicates changes. Similarly, update accessibility labels when a widget updates displayed images or SwiftUI views. For guidance on providing content descriptions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/foundations/accessibility#content-descriptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ActivityKit-PageImage-card.png": {
+      "alt": "[A hero image of the ActivityKit framework.]",
+      "identifier": "ActivityKit-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2809f67730f457afbeb77d866e20466e/ActivityKit-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cbca6adfca53a5472c0c9f4b7395c3e/ActivityKit-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Share live updates from your app as Live Activities in the Dynamic Island, on the Lock Screen, and on the Smart Stack in watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit",
+      "images": [
+        {
+          "identifier": "ActivityKit-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ActivityKit",
+      "type": "topic",
+      "url": "/documentation/activitykit"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity": {
+      "abstract": [
+        {
+          "text": "The object you use to start, update, and end a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Activity"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Activity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities": {
+      "abstract": [
+        {
+          "text": "Display your app’s data in the Dynamic Island and on the Lock Screen and offer quick interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying live data with Live Activities",
+      "type": "topic",
+      "url": "/documentation/activitykit/displaying-live-data-with-live-activities"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/starting-and-updating-live-activities-with-activitykit-push-notifications": {
+      "abstract": [
+        {
+          "text": "Use ActivityKit to receive push tokens and to remotely start, update, and end your Live Activity with ActivityKit notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/starting-and-updating-live-activities-with-activitykit-push-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Starting and updating Live Activities with ActivityKit push notifications",
+      "type": "topic",
+      "url": "/documentation/activitykit/starting-and-updating-live-activities-with-activitykit-push-notifications"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app supports Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSupportsLiveActivities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can update its Live Activities frequently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSupportsLiveActivitiesFrequentUpdates",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Accessible-descriptions": {
+      "abstract": [
+        {
+          "text": "Describe interface elements to help people understand what they represent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Accessible-descriptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessible descriptions",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Accessible-descriptions"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityLabel(_:)-1d7jv": {
+      "abstract": [
+        {
+          "text": "Adds a label to the view that describes its contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLabel"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15ModifiedContentV",
+          "text": "ModifiedContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityAttachmentModifierV",
+          "text": "AccessibilityAttachmentModifier"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sy",
+          "text": "StringProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityLabel(_:)-1d7jv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityLabel(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/accessibilityLabel(_:)-1d7jv"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/foundations/accessibility#content-descriptions": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/foundations/accessibility#content-descriptions",
+      "title": "Human Interface Guidelines > Accessibility > VoiceOver > Content descriptions",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Accessibility > VoiceOver > Content descriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/foundations/accessibility#content-descriptions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Live-Activity-implementation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/starting-and-updating-live-activities-with-activitykit-push-notifications",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity",
+        "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates"
+      ],
+      "title": "Live Activity implementation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/activitykit/adding-accessible-descriptions-to-widgets-and-live-activities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

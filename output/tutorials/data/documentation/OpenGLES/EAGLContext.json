@@ -1,0 +1,2133 @@
+{
+  "abstract": [
+    {
+      "text": "An ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " object manages an OpenGL ES ",
+      "type": "text"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "rendering context",
+          "type": "text"
+        }
+      ],
+      "type": "emphasis"
+    },
+    {
+      "text": "—the state information, commands, and resources needed to draw using OpenGL ES. To execute OpenGL ES commands, you need a current rendering context.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.opengles/documentation/OpenGLES"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)EAGLContext",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "EAGLContext"
+      }
+    ],
+    "modules": [
+      {
+        "name": "OpenGL ES"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "EAGLContext"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "2.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "2.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "2.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "9.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "EAGLContext"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EAGLContext"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drawing resources, such as textures and renderbuffers, are managed for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object by an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLSharegroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object associated with the context. When you initialize a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, you can choose to have it create a new sharegroup, or you can use one obtained from a previously created context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before drawing to a context, you must bind a complete framebuffer object to the context. For more information on configuring rendering contexts, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES": {
+      "abstract": [
+        {
+          "text": "Create 3D and 2D graphics effects with this compact, efficient subset of OpenGL.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "OpenGL ES",
+      "type": "topic",
+      "url": "/documentation/opengles"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object manages an OpenGL ES ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "rendering context",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": "—the state information, commands, and resources needed to draw using OpenGL ES. To execute OpenGL ES commands, you need a current rendering context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAGLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EAGLContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "EAGLContext",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/api": {
+      "abstract": [
+        {
+          "text": "The OpenGL ES rendering API version supported by the context. (read-only)",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "api"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EAGLRenderingAPI",
+          "text": "EAGLRenderingAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/api",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "API"
+        }
+      ],
+      "role": "symbol",
+      "title": "api",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/api"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/current()": {
+      "abstract": [
+        {
+          "text": "Returns the current rendering context for the calling thread.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EAGLContext",
+          "text": "EAGLContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/current()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "current()",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/current()"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/debugLabel": {
+      "abstract": [
+        {
+          "text": "A label describing the context for use in debugging.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/debugLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "debugLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "debugLabel",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/debuglabel"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/init(api:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a newly allocated rendering context with the specified version of the OpenGL ES rendering API.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "api"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EAGLRenderingAPI",
+          "text": "EAGLRenderingAPI"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/init(api:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAPI:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(api:)",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/init(api:)"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/init(api:sharegroup:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a newly allocated rendering context with the specified version of OpenGL ES rendering API and the specified sharegroup.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "api"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EAGLRenderingAPI",
+          "text": "EAGLRenderingAPI"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sharegroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EAGLSharegroup",
+          "text": "EAGLSharegroup"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/init(api:sharegroup:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAPI:sharegroup:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(api:sharegroup:)",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/init(api:sharegroup:)"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/isMultiThreaded": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether OpenGL ES defers work to another thread.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultiThreaded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/isMultiThreaded",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "multiThreaded"
+        }
+      ],
+      "role": "symbol",
+      "title": "isMultiThreaded",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/ismultithreaded"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:)": {
+      "abstract": [
+        {
+          "text": "Displays a renderbuffer’s contents on screen.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentRenderbuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentRenderbuffer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentRenderbuffer(_:)",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/presentrenderbuffer(_:)"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:afterMinimumDuration:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentRenderbuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "afterMinimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:afterMinimumDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentRenderbuffer:afterMinimumDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentRenderbuffer(_:afterMinimumDuration:)",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/presentrenderbuffer(_:afterminimumduration:)"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:atTime:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentRenderbuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:atTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentRenderbuffer:atTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentRenderbuffer(_:atTime:)",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/presentrenderbuffer(_:attime:)"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/renderbufferStorage(_:from:)": {
+      "abstract": [
+        {
+          "text": "Binds a drawable object’s storage to an OpenGL ES renderbuffer object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderbufferStorage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)EAGLDrawable",
+          "text": "EAGLDrawable"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/renderbufferStorage(_:from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderbufferStorage:fromDrawable:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderbufferStorage(_:from:)",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/renderbufferstorage(_:from:)"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/setCurrent(_:)": {
+      "abstract": [
+        {
+          "text": "Makes the specified context the current rendering context for the calling thread.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCurrent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EAGLContext",
+          "text": "EAGLContext"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/setCurrent(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setCurrentContext:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setCurrent(_:)",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/setcurrent(_:)"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/sharegroup": {
+      "abstract": [
+        {
+          "text": "The context’s sharegroup object. (read-only)",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharegroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EAGLSharegroup",
+          "text": "EAGLSharegroup"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/sharegroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharegroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "sharegroup",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/sharegroup"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/texImageIOSurface(_:target:internalFormat:width:height:format:type:plane:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "texImageIOSurface"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOSurfaceRef",
+          "text": "IOSurfaceRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "internalFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "plane"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/texImageIOSurface(_:target:internalFormat:width:height:format:type:plane:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "texImageIOSurface:target:internalFormat:width:height:format:type:plane:"
+        }
+      ],
+      "role": "symbol",
+      "title": "texImageIOSurface(_:target:internalFormat:width:height:format:type:plane:)",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglcontext/teximageiosurface(_:target:internalformat:width:height:format:type:plane:)"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLRenderingAPI": {
+      "abstract": [
+        {
+          "text": "Versions of OpenGL ES that a rendering context provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAGLRenderingAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLRenderingAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EAGLRenderingAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "EAGLRenderingAPI",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglrenderingapi"
+    },
+    "doc://com.apple.opengles/documentation/OpenGLES/EAGLSharegroup": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "EAGLSharegroup",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object manages OpenGL ES resources associated with one or more ",
+          "type": "text"
+        },
+        {
+          "code": "EAGLContext",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects. It is created when an ",
+          "type": "text"
+        },
+        {
+          "code": "EAGLContext",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object is initialized and disposed of when the last ",
+          "type": "text"
+        },
+        {
+          "code": "EAGLContext",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that references it is released. As an opaque object, there is no developer accessible API.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAGLSharegroup"
+        }
+      ],
+      "identifier": "doc://com.apple.opengles/documentation/OpenGLES/EAGLSharegroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EAGLSharegroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "EAGLSharegroup",
+      "type": "topic",
+      "url": "/documentation/opengles/eaglsharegroup"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793",
+      "title": "OpenGL ES Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "OpenGL ES Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-Contexts",
+      "identifiers": [
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/init(api:)",
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/init(api:sharegroup:)"
+      ],
+      "title": "Creating Contexts"
+    },
+    {
+      "anchor": "Setting-the-Current-Context",
+      "identifiers": [
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/setCurrent(_:)"
+      ],
+      "title": "Setting the Current Context"
+    },
+    {
+      "anchor": "Attaching-Storage-to-a-Renderbuffer",
+      "identifiers": [
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/renderbufferStorage(_:from:)"
+      ],
+      "title": "Attaching Storage to a Renderbuffer"
+    },
+    {
+      "anchor": "Displaying-a-Renderbuffer",
+      "identifiers": [
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:)"
+      ],
+      "title": "Displaying a Renderbuffer"
+    },
+    {
+      "anchor": "Getting-Context-Information",
+      "identifiers": [
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/api",
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/sharegroup",
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/debugLabel",
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/current()"
+      ],
+      "title": "Getting Context Information"
+    },
+    {
+      "anchor": "Enabling-OpenGL-ES-Multithreading",
+      "identifiers": [
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/isMultiThreaded"
+      ],
+      "title": "Enabling OpenGL ES Multithreading"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLRenderingAPI"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:afterMinimumDuration:)",
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:atTime:)",
+        "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/texImageIOSurface(_:target:internalFormat:width:height:format:type:plane:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "2.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "EAGLContext"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAGLContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAGLContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.opengles/documentation/OpenGLES"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Contexts",
+              "identifiers": [
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/init(api:)",
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/init(api:sharegroup:)"
+              ],
+              "title": "Creating Contexts"
+            },
+            {
+              "anchor": "Setting-the-Current-Context",
+              "identifiers": [
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/setCurrent(_:)"
+              ],
+              "title": "Setting the Current Context"
+            },
+            {
+              "anchor": "Attaching-Storage-to-a-Renderbuffer",
+              "identifiers": [
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/renderbufferStorage(_:from:)"
+              ],
+              "title": "Attaching Storage to a Renderbuffer"
+            },
+            {
+              "anchor": "Displaying-a-Renderbuffer",
+              "identifiers": [
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:)"
+              ],
+              "title": "Displaying a Renderbuffer"
+            },
+            {
+              "anchor": "Getting-Context-Information",
+              "identifiers": [
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/api",
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/sharegroup",
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/debugLabel",
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/current()"
+              ],
+              "title": "Getting Context Information"
+            },
+            {
+              "anchor": "Enabling-OpenGL-ES-Multithreading",
+              "identifiers": [
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/isMultiThreaded"
+              ],
+              "title": "Enabling OpenGL ES Multithreading"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLRenderingAPI"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "identifiers": [
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:afterMinimumDuration:)",
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/presentRenderbuffer(_:atTime:)",
+                "doc://com.apple.opengles/documentation/OpenGLES/EAGLContext/texImageIOSurface(_:target:internalFormat:width:height:format:type:plane:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "EAGLContext"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext/title",
+          "value": "EAGLContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAGLContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAGLContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1api/title",
+          "value": "API"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1api/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "API"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1presentRenderbuffer(_:afterMinimumDuration:)/title",
+          "value": "presentRenderbuffer:afterMinimumDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1presentRenderbuffer(_:afterMinimumDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentRenderbuffer:afterMinimumDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1init(api:sharegroup:)/title",
+          "value": "initWithAPI:sharegroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1init(api:sharegroup:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAPI:sharegroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1debugLabel/title",
+          "value": "debugLabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1debugLabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "debugLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1presentRenderbuffer(_:)/title",
+          "value": "presentRenderbuffer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1presentRenderbuffer(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentRenderbuffer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1init(api:)/title",
+          "value": "initWithAPI:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1init(api:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAPI:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1renderbufferStorage(_:from:)/title",
+          "value": "renderbufferStorage:fromDrawable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1renderbufferStorage(_:from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderbufferStorage:fromDrawable:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1texImageIOSurface(_:target:internalFormat:width:height:format:type:plane:)/title",
+          "value": "texImageIOSurface:target:internalFormat:width:height:format:type:plane:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1texImageIOSurface(_:target:internalFormat:width:height:format:type:plane:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "texImageIOSurface:target:internalFormat:width:height:format:type:plane:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1current()/title",
+          "value": "currentContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1current()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "currentContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1setCurrent(_:)/title",
+          "value": "setCurrentContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1setCurrent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCurrentContext:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1presentRenderbuffer(_:atTime:)/title",
+          "value": "presentRenderbuffer:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1presentRenderbuffer(_:atTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentRenderbuffer:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1isMultiThreaded/title",
+          "value": "multiThreaded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1isMultiThreaded/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "multiThreaded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLRenderingAPI/title",
+          "value": "EAGLRenderingAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLRenderingAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAGLRenderingAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLRenderingAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAGLRenderingAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLSharegroup/title",
+          "value": "EAGLSharegroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLSharegroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAGLSharegroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLSharegroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAGLSharegroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1sharegroup/title",
+          "value": "sharegroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.opengles~1documentation~1OpenGLES~1EAGLContext~1sharegroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharegroup"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/opengles/eaglcontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/opengles/eaglcontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

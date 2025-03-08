@@ -1,0 +1,402 @@
+{
+  "abstract": [
+    {
+      "text": "Get URLs to download a snapshot of someone’s data from a recurring series.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/Get-recurring-request-download-URLs"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:Account Data Transfer:get:api-transfer-accountdata-fetch-{}-{}",
+    "modules": [
+      {
+        "name": "Account Data Transfer"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get recurring request download URLs"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Account Data Transfer"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get recurring request download URLs"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://accountdatatransfer.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "api/transfer/accountdata/fetch/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{parentRequestId}"
+        },
+        {
+          "kind": "path",
+          "text": "/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{requestId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A UUID that identifies the individual download request in the recurring sequence.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "requestId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A UUID that identifies the recurring sequence of download requests.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "parentRequestId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/DownloadLinks",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:Account Data Transfer:DownloadLinks",
+              "text": "DownloadLinks"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/DownloadError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:Account Data Transfer:DownloadError",
+              "text": "DownloadError"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [],
+          "reason": "Forbidden",
+          "status": 403,
+          "type": []
+        },
+        {
+          "content": [],
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "% curl -X GET \\",
+                    "  -H \"Authorization: Bearer [ACCESS_TOKEN]\" \\",
+                    "  -H \"X-Apple-Transaction-Id: E3857B28-7FC4-41C8-AC54-08E121E26F59\" \\",
+                    "  -H \"X-Forwarded-For: 192.168.42.63\" \\",
+                    "  -H \"Accept: application/json\" \\",
+                    "  https://accountdatatransfer.apple.com/api/transfer/accountdata/fetch/EABD06C0-9210-47FF-83C4-318CF8520644/7BBBD45D-638B-4DB5-8B02-F23FDB15EDA7"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"assetInfo\": [",
+                    "    \"https://assets.example.com/1.zip\",",
+                    "    \"https://assets.example.com/2.zip\"",
+                    "  ],",
+                    "  \"jobStatus\": \"completed\",",
+                    "  \"status\": \"success\",",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer": {
+      "abstract": [
+        {
+          "text": "Download App Store information and app-install activity on behalf of your app’s users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Account Data Transfer",
+      "type": "topic",
+      "url": "/documentation/accountdatatransfer"
+    },
+    "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/DownloadError": {
+      "abstract": [
+        {
+          "text": "An object that describes an error the server encounters preparing download URLs for a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DownloadError"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/DownloadError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DownloadError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DownloadError",
+      "type": "topic",
+      "url": "/documentation/accountdatatransfer/downloaderror"
+    },
+    "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/DownloadLinks": {
+      "abstract": [
+        {
+          "text": "An object that contains URLs to download someone’s account data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DownloadLinks"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/DownloadLinks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DownloadLinks"
+        }
+      ],
+      "role": "symbol",
+      "title": "DownloadLinks",
+      "type": "topic",
+      "url": "/documentation/accountdatatransfer/downloadlinks"
+    },
+    "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/Get-one-time-request-download-URLs": {
+      "abstract": [
+        {
+          "text": "Get URLs to retrieve someone’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/Get-one-time-request-download-URLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get one-time request download URLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get one-time request download URLs",
+      "type": "topic",
+      "url": "/documentation/accountdatatransfer/get-one-time-request-download-urls"
+    },
+    "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/Get-recurring-request-download-URLs": {
+      "abstract": [
+        {
+          "text": "Get URLs to download a snapshot of someone’s data from a recurring series.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/Get-recurring-request-download-URLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get recurring request download URLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get recurring request download URLs",
+      "type": "topic",
+      "url": "/documentation/accountdatatransfer/get-recurring-request-download-urls"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Downloads",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/Get-one-time-request-download-URLs",
+        "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/DownloadLinks",
+        "doc://org.swift.docc.AccountDataTransfer/documentation/AccountDataTransfer/DownloadError"
+      ],
+      "title": "Downloads"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accountdatatransfer/get-recurring-request-download-urls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

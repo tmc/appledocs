@@ -1,0 +1,2178 @@
+{
+  "abstract": [
+    {
+      "text": "A format style that shows durations with localized labeled components",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/Duration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Swift",
+    "externalID": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UnitsFormatStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UnitsFormatStyle"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Duration.UnitsFormatStyle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UnitsFormatStyle"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This style produces formatted strings that break out a duration’s individual components, like “2 min, 3 sec”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "code": "UnitsFormatStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by providing a set of allowed ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/Unit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances — such as hours, minutes, or seconds — for formatted strings to include. You also specify a width for displaying these units, which controls whether they appear as full words (“minutes”) or abbreviations (“min”). The initializers also take optional parameters to control things like the handling of zero units and fractional parts. Then create a formatted string by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/formatted(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a duration, passing the style, or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/format(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the style, passing a duration. You can also use the style’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/TimeFormatStyle/attributed-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to create a style that produces ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances, which contains attributes that indicate the unit value of formatted runs of the string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In situations that expect a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/formatted(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can use the convenience function ",
+              "type": "text"
+            },
+            {
+              "code": ".units(allowed:width:maximumUnitCount:zeroValueUnits:valueLength:fractionalPart:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", rather than using the full initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to reuse a style to format many durations, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/format(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the style, passing in a new duration each time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates ",
+              "type": "text"
+            },
+            {
+              "code": "duration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent 1 hour, 10 minutes, 32 seconds, and 400 milliseconds. It then creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to show the hours, minutes, seconds, and milliseconds parts, with a wide width that presents the full name of each unit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let duration = Duration.seconds(70 * 60 + 32) + Duration.milliseconds(400)",
+            "let format = duration1.formatted(",
+            "     .units(allowed: [.hours, .minutes, .seconds, .milliseconds],",
+            "            width: .wide))",
+            "// format == \"1 hour, 10 minutes, 32 seconds, 400 milliseconds\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The formatted string omits any units that aren’t needed to accurately represent the value. In the above example, a duration of exactly one minute would format as ",
+              "type": "text"
+            },
+            {
+              "code": "1 minute",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", omitting the hours, seconds, and milliseconds parts. To override this behavior and show the omitted units, use the initializer’s’ ",
+              "type": "text"
+            },
+            {
+              "code": "zeroValueUnits",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration": {
+      "abstract": [
+        {
+          "text": "A representation of high precision time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration",
+      "type": "topic",
+      "url": "/documentation/swift/duration"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/TimeFormatStyle": {
+      "abstract": [
+        {
+          "text": "A format style that shows durations in a compact, localized format with separators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/TimeFormatStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeFormatStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.TimeFormatStyle",
+      "type": "topic",
+      "url": "/documentation/swift/duration/timeformatstyle"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/TimeFormatStyle/attributed-swift.property": {
+      "abstract": [
+        {
+          "text": "A property that formats the duration as an attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE15TimeFormatStyleV",
+          "text": "TimeFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE15TimeFormatStyleV10AttributedV",
+          "text": "Attributed"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/TimeFormatStyle/attributed-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributed",
+      "type": "topic",
+      "url": "/documentation/swift/duration/timeformatstyle/attributed-swift.property"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle": {
+      "abstract": [
+        {
+          "text": "A format style that shows durations with localized labeled components",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitsFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnitsFormatStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/Attributed-swift.struct": {
+      "abstract": [
+        {
+          "text": "A format style that formats durations as attributed strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attributed"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/Attributed-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attributed"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle.Attributed",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/attributed-swift.struct"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy": {
+      "abstract": [
+        {
+          "text": "A strategy that determines how to format the fractional part of a duration if the allowed units can’t represent it exactly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FractionalPartDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FractionalPartDisplayStrategy"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle.FractionalPartDisplayStrategy",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/Unit": {
+      "abstract": [
+        {
+          "text": "A unit to use in formatting a duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/Unit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Unit"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle.Unit",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/unit"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/UnitWidth-swift.struct": {
+      "abstract": [
+        {
+          "text": "The width of a unit to use in formatting a duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitWidth"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/UnitWidth-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnitWidth"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle.UnitWidth",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/unitwidth-swift.struct"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy": {
+      "abstract": [
+        {
+          "text": "A strategy that determines how to format a unit whose value is zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZeroValueUnitsDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ZeroValueUnitsDisplayStrategy"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle.ZeroValueUnitsDisplayStrategy",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/zerovalueunitsdisplaystrategy"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/allowedUnits": {
+      "abstract": [
+        {
+          "text": "The units that may be included in the output string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedUnits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV4UnitV",
+          "text": "Unit"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/allowedUnits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowedUnits",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/allowedunits"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/attributed-swift.property": {
+      "abstract": [
+        {
+          "text": "A property that formats the duration as an attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV10AttributedV",
+          "text": "Attributed"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/attributed-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributed",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/attributed-swift.property"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/format(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a locale-aware string representation from a duration value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/format(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "format(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/format(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/fractionalPartDisplay": {
+      "abstract": [
+        {
+          "text": "The strategy for displaying a duration if it cannot be represented exactly with the allowed units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fractionalPartDisplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV29FractionalPartDisplayStrategyV",
+          "text": "FractionalPartDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/fractionalPartDisplay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fractionalPartDisplay",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplay"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/init(allowedUnits:width:maximumUnitCount:zeroValueUnits:valueLength:fractionalPart:)": {
+      "abstract": [
+        {
+          "text": "Creates a units format style using the given parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowedUnits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV4UnitV",
+          "text": "Unit"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV9UnitWidthV",
+          "text": "UnitWidth"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumUnitCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "zeroValueUnits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV09ZeroValueC15DisplayStrategyV",
+          "text": "ZeroValueUnitsDisplayStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "valueLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fractionalPart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV29FractionalPartDisplayStrategyV",
+          "text": "FractionalPartDisplayStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/init(allowedUnits:width:maximumUnitCount:zeroValueUnits:valueLength:fractionalPart:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(allowedUnits:width:maximumUnitCount:zeroValueUnits:valueLength:fractionalPart:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/init(allowedunits:width:maximumunitcount:zerovalueunits:valuelength:fractionalpart:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/init(allowedUnits:width:maximumUnitCount:zeroValueUnits:valueLengthLimits:fractionalPart:)": {
+      "abstract": [
+        {
+          "text": "Creates a units format style using the given parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ValueRange"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowedUnits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV4UnitV",
+          "text": "Unit"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV9UnitWidthV",
+          "text": "UnitWidth"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumUnitCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "zeroValueUnits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV09ZeroValueC15DisplayStrategyV",
+          "text": "ZeroValueUnitsDisplayStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "valueLengthLimits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ValueRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fractionalPart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV29FractionalPartDisplayStrategyV",
+          "text": "FractionalPartDisplayStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/init(allowedUnits:width:maximumUnitCount:zeroValueUnits:valueLengthLimits:fractionalPart:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(allowedUnits:width:maximumUnitCount:zeroValueUnits:valueLengthLimits:fractionalPart:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/init(allowedunits:width:maximumunitcount:zerovalueunits:valuelengthlimits:fractionalpart:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/locale": {
+      "abstract": [
+        {
+          "text": "The locale to use when formatting the duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/locale"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/locale(_:)": {
+      "abstract": [
+        {
+          "text": "A modifier to set the locale of the format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/locale(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/locale(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/maximumUnitCount": {
+      "abstract": [
+        {
+          "text": "The maximum number of time units to include in the output string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumUnitCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/maximumUnitCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumUnitCount",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/maximumunitcount"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/unitWidth-swift.property": {
+      "abstract": [
+        {
+          "text": "The width of the unit and the spacing between the value and the unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unitWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV9UnitWidthV",
+          "text": "UnitWidth"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/unitWidth-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unitWidth",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/unitwidth-swift.property"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/valueLengthLimits": {
+      "abstract": [
+        {
+          "text": "The padding or truncating behavior of the unit value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueLengthLimits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/valueLengthLimits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "valueLengthLimits",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/valuelengthlimits"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/zeroValueUnitsDisplay": {
+      "abstract": [
+        {
+          "text": "The strategy for how zero-value units are handled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zeroValueUnitsDisplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV09ZeroValueC15DisplayStrategyV",
+          "text": "ZeroValueUnitsDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/zeroValueUnitsDisplay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zeroValueUnitsDisplay",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/zerovalueunitsdisplay"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/formatted()": {
+      "abstract": [
+        {
+          "text": "Formats the string using a localized hour-minute-second time pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/formatted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted()",
+      "type": "topic",
+      "url": "/documentation/swift/duration/formatted()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/formatted(_:)": {
+      "abstract": [
+        {
+          "text": "Formats the duration, using the provided format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B6OutputQa",
+          "text": "FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/formatted(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/formatted(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a ",
+          "type": "text"
+        },
+        {
+          "code": "Hasher",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "abstract": [
+        {
+          "text": "A value type for a string with associated attributes for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation11FormatStyleP": {
+      "abstract": [
+        {
+          "text": "A type that converts a given data type into a representation in another type, such as a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation11FormatStyleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation19DiscreteFormatStyleP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "DiscreteFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation19DiscreteFormatStyleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DiscreteFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/discreteformatstyle"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.externally.resolved.symbol/s:10Foundation19DiscreteFormatStyleP",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.externally.resolved.symbol/s:10Foundation11FormatStyleP",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Formatting-a-duration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/formatted()",
+        "doc://com.apple.Swift/documentation/Swift/Duration/formatted(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Duration/TimeFormatStyle"
+      ],
+      "title": "Formatting a duration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-units-format-style",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/init(allowedUnits:width:maximumUnitCount:zeroValueUnits:valueLength:fractionalPart:)",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/init(allowedUnits:width:maximumUnitCount:zeroValueUnits:valueLengthLimits:fractionalPart:)"
+      ],
+      "title": "Creating a units format style"
+    },
+    {
+      "anchor": "Formatting-a-duration",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/format(_:)"
+      ],
+      "title": "Formatting a duration"
+    },
+    {
+      "anchor": "Formatting-a-duration-as-an-attributed-string",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/attributed-swift.property",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/Attributed-swift.struct"
+      ],
+      "title": "Formatting a duration as an attributed string"
+    },
+    {
+      "anchor": "Working-with-units",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/allowedUnits",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/Unit",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/maximumUnitCount",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/valueLengthLimits"
+      ],
+      "title": "Working with units"
+    },
+    {
+      "anchor": "Working-with-unit-widths",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/unitWidth-swift.property",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/UnitWidth-swift.struct"
+      ],
+      "title": "Working with unit widths"
+    },
+    {
+      "anchor": "Working-with-zero-values",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/zeroValueUnitsDisplay",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy"
+      ],
+      "title": "Working with zero values"
+    },
+    {
+      "anchor": "Working-with-fractional-values",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/fractionalPartDisplay",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy"
+      ],
+      "title": "Working with fractional values"
+    },
+    {
+      "anchor": "Working-with-locales",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/locale",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/locale(_:)"
+      ],
+      "title": "Working with locales"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/duration/unitsformatstyle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

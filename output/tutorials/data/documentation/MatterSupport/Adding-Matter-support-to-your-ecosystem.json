@@ -1,0 +1,515 @@
+{
+  "abstract": [
+    {
+      "text": "Allow people to add Matter accessories to your platform.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MatterSupport/documentation/MatterSupport/Adding-Matter-support-to-your-ecosystem"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MatterSupport"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding Matter support to your ecosystem"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the MatterSupport framework, you can administer, add, and configure Matter devices in your ecosystem using an iOS device. To onboard a device, you need to configure discovery, set up a home, create an extension request handler, and override its methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-discovery",
+          "level": 3,
+          "text": "Configure discovery",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the following to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so it can discover Matter-related services. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSBonjourServices</key>",
+            "    <array>",
+            "        <string>_matter._tcp</string>",
+            "        <string>_matterc._udp</string>",
+            "        <string>_matterd._udp</string>",
+            "</array>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-up-the-home",
+          "level": 3,
+          "text": "Set up the home",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define the home’s name, then create the topology and pass your ecosystem name and an array of homes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import MatterSupport",
+            "",
+            "let homes = [MatterAddDeviceRequest.Home(name: \"My Home\")]",
+            "let topology = MatterAddDeviceRequest.Topology(ecosystemName: \"MyEcosystemName\", homes: homes)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the newly created topology object to create a request to add a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let request = MatterAddDeviceRequest(topology: topology)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can optionally provide the Matter setup code programmatically while setting up a Matter device in an ecosystem. To do this, pass a string containing the payload information from the device’s packaging, such as a QR code. For more information on when this is appropriate, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.matter.allow-setup-payload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let onboardingPayload = \"MT:<setup_code>\"",
+            "let qrCodeParser = MTRQRCodeSetupPayloadParser(base38Representation: onboardingPayload)",
+            "request.setupPayload = qrCodeParser.populatePayload()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, start the user interface flow for adding the device. Handle any errors that may occur during the setup.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    try await request.perform()",
+            "    print(\"Successfully set up device!\")",
+            "} catch {",
+            "    print(\"Failed to set up device with error: \\(error)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-extension-request-handler",
+          "level": 3,
+          "text": "Create the extension request handler",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and override its methods. This class facilitates the user interface flow during the setup of a new Matter device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyMatterAddDeviceExtensionRequestHandler: MatterAddDeviceExtensionRequestHandler {",
+            "    override init() {",
+            "        super.init()",
+            "    }",
+            "",
+            "    // Override this method to return the rooms in the home.",
+            "    override func rooms(in home: MatterAddDeviceRequest.Home?) async -> [MatterAddDeviceRequest.Room] {",
+            "        os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Received request to fetch rooms in home: \\(String(describing: home))\")",
+            "",
+            "        var rooms: [String] = [\"Living Room\", \"Bedroom\", \"Office\"];",
+            "        return rooms.map { MatterAddDeviceRequest.Room(displayName: $0) }",
+            "    }",
+            "",
+            "    // Override this method to commission the device.",
+            "    override func commissionDevice(in home: MatterAddDeviceRequest.Home?, onboardingPayload: String, commissioningID: UUID) async throws {",
+            "        os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Received request to commission device in home \\(String(describing: home)) using onboarding payload: \\(onboardingPayload) and uuid: \\(commissioningID)\")",
+            "",
+            "        do {",
+            "            // Use Matter framework APIs to pair the accessory to your application with the provided onboardingPayload.            ",
+            "            os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Successfully paired accessory: \\(String(describing: accessory))\")",
+            "        } catch {",
+            "            os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Failed to pair accessory: \\(String(describing: error))\")",
+            "            throw error",
+            "        }",
+            "    }",
+            "",
+            "    // Override this method to commission the device to your application.",
+            "    override func configureDevice(named name: String, in room: MatterAddDeviceRequest.Room?) async {",
+            "        os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Received request to configure device with name \\(name) in room: \\(String(describing: room))\")",
+            "",
+            "        // Configure the device with selected attributes.",
+            "        let accessory = <Your_Ecosystem_Accessory_Object>",
+            "        accessory.name = name",
+            "        accessory.roomName = room?.displayName ?? \"Room Name Not Available\"",
+            "    }",
+            "",
+            "    // Override this method to validate the device's credentials.",
+            "    override func validateDeviceCredential(_ deviceCredential: MatterAddDeviceExtensionRequestHandler.DeviceCredential) async throws {",
+            "        os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Received request to validate device credential: \\(String(describing: deviceCredential))\")",
+            "",
+            "        // Performs verification and attestation checks.",
+            "        var isValid = false",
+            "",
+            "        if !isValid {",
+            "            os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Rejecting device credential: \\(String(describing: deviceCredential))\")",
+            "                throw \"Failed to validate device credentials\"",
+            "        } else {",
+            "            os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Confirming device credential: \\(String(describing: deviceCredential))\")",
+            "        }",
+            "    }",
+            "",
+            "    // Override this method to select a specific Wi-Fi network.",
+            "    override func selectWiFiNetwork(from wifiScanResults: [MatterAddDeviceExtensionRequestHandler.WiFiScanResult]) async throws -> MatterAddDeviceExtensionRequestHandler.WiFiNetworkAssociation {",
+            "        os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Received WiFi scan results: \\(String(describing: wifiScanResults))\")",
+            "        ",
+            "        // If your application would like to specify a nondefault Wi-Fi network.",
+            "        var shouldSelectNetwork = true",
+            "        ",
+            "        if shouldSelectNetwork {",
+            "            // Return the SSID and credentials known to your application.",
+            "            os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Selecting WiFi network with SSID: \\(String(describing: ssid)) Credentials: \\(String(describing: credentials))\")",
+            "            return .network(ssid: ssid, credentials: credentials)",
+            "        } else {",
+            "            os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Selecting default WiFi network\")",
+            "            return .defaultSystemNetwork",
+            "        }",
+            "    }",
+            "",
+            "    // Override this method to select a specific Thread network.",
+            "    override func selectThreadNetwork(from threadScanResults: [MatterAddDeviceExtensionRequestHandler.ThreadScanResult]) async throws -> MatterAddDeviceExtensionRequestHandler.ThreadNetworkAssociation {",
+            "        os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Received Thread scan results: \\(String(describing: threadScanResults))\")",
+            "        ",
+            "        // If your application would like to specify a nondefault Thread network.",
+            "        var shouldSelectNetwork = true",
+            "        ",
+            "        if shouldSelectNetwork {",
+            "            // Return `extendedPANID` of the Thread network known to your application.",
+            "            os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Selecting Thread network with extendedPANID: \\(String(describing: extendedPANID))\")",
+            "            return .network(extendedPANID: extendedPANID)",
+            "        } else {",
+            "            os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG,\"Selecting default Thread network\")",
+            "            return .defaultSystemNetwork",
+            "        }        ",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-the-principal-class",
+          "level": 3,
+          "text": "Set the principal class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Register the subclass you created above in the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPrincipalClass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.matter.support.extension.device-setup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension point identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.MatterSupport/documentation/MatterSupport": {
+      "abstract": [
+        {
+          "text": "Coordinate and control compatible smart home accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MatterSupport",
+      "type": "topic",
+      "url": "/documentation/mattersupport"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler": {
+      "abstract": [
+        {
+          "text": "The object that handles configuration and commissioning of a device into an ecosystem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MatterAddDeviceExtensionRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MatterAddDeviceExtensionRequestHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatterAddDeviceExtensionRequestHandler",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceRequest": {
+      "abstract": [
+        {
+          "text": "A request that adds and sets up a device into an ecosystem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MatterAddDeviceRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MatterAddDeviceRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatterAddDeviceRequest",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddevicerequest"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.matter.allow-setup-payload": {
+      "abstract": [
+        {
+          "text": "A Boolean value that allows an app to provide an optional Matter Setup payload while setting up a Matter device in an ecosystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.matter.allow-setup-payload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Matter Allow Setup Payload",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.matter.allow-setup-payload"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices": {
+      "abstract": [
+        {
+          "text": "Bonjour service types browsed by the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBonjourServices",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSBonjourServices"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPrincipalClass": {
+      "abstract": [
+        {
+          "text": "The name of the bundle’s main executable class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPrincipalClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPrincipalClass",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSPrincipalClass"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-a-device",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceRequest",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler"
+      ],
+      "title": "Adding a device"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mattersupport/adding-matter-support-to-your-ecosystem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

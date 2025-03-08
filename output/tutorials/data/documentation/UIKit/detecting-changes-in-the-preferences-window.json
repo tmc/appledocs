@@ -1,0 +1,933 @@
+{
+  "abstract": [
+    {
+      "text": "Listen for and respond to a user’s preference changes in your Mac app built with Mac Catalyst using Combine.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/mac-catalyst"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/detecting-changes-in-the-preferences-window"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Detecting changes in the preferences window"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine",
+              "isActive": true,
+              "overridingTitle": "Combine",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Combine",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", your app can listen for changes a user makes to the app’s Preferences window, and respond to those changes. The sample app provides a Preferences window with one setting: background color. When the user selects a color, the background of the main view changes to match their selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows how to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a Preferences window in a Mac app built with Mac Catalyst.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register default values for the preferences.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieve current preference values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Listen for and respond to changes the user makes in the Preferences window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the sample app, open the sample code project in Xcode and select My Mac as the destination. Then, build and run the sample project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-preferences-window-in-the-app",
+          "level": 3,
+          "text": "Provide a preferences window in the app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app includes a ",
+              "type": "text"
+            },
+            {
+              "code": "Settings.bundle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that the system uses to automatically add the standard Preferences menu item to the app menu. Selecting the menu item displays a Preferences window that the system generates based on the preference specifiers defined in the Settings bundle. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-a-preferences-window",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Settings bundle for the sample app has a preference specifier for setting the background color of the main view. It also has a child pane preference specifier, which displays a second tab of preferences in the Preferences windows. The Settings bundle file ",
+              "type": "text"
+            },
+            {
+              "code": "Root.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines these specifiers, while the file ",
+              "type": "text"
+            },
+            {
+              "code": "OtherSettings.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines the preference specifiers for the child pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-default-preference-values",
+          "level": 3,
+          "text": "Register default preference values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user changes preferences in the Preferences window, the window saves them to the application domain of the user defaults system. To store and retrieve the preference values within the app, the sample app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "overridingTitle": "UserDefaults",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UserDefaults",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". However, when you launch the sample app for the first time, the preference values don’t exist in the user defaults system. If the app tries retrieving a value, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "overridingTitle": "UserDefaults",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UserDefaults",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that the app always retrieves a non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, the sample app registers the default preference values with the registration domain. However, this domain doesn’t persist these values between app launches, so the sample app registers the default values each time the user launches the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {",
+            "",
+            "    // To ensure that the app has a good set of preference values, register",
+            "    // the default values each time the app launches.",
+            "    registerDefaultPreferenceValues()",
+            "",
+            "    return true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method ",
+              "type": "text"
+            },
+            {
+              "code": "registerDefaultPreferenceValues()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " retrieves the default values from the Settings bundle by retrieving the preference specifiers from the ",
+              "type": "text"
+            },
+            {
+              "code": "Root.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and parsing the specifiers for their default value. After retrieving the values, the method registers the default values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func registerDefaultPreferenceValues() {",
+            "    let preferenceSpecifiers = retrieveSettingsBundlePreferenceSpecifiers(from: \"Root.plist\")",
+            "    let defaultValuesToRegister = parse(preferenceSpecifiers)",
+            "",
+            "    // Register the default values with the registration domain.",
+            "    UserDefaults.standard.register(defaults: defaultValuesToRegister)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To parse the preference specifiers, the ",
+              "type": "text"
+            },
+            {
+              "code": "parse()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method loops through the array of specifiers, copying the default values into the dictionary ",
+              "type": "text"
+            },
+            {
+              "code": "defaultValuesToRegister",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the method detects the ",
+              "type": "text"
+            },
+            {
+              "code": "PSChildPaneSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, it gets the name of the child pane property list file, and merges the default values in the file into the ",
+              "type": "text"
+            },
+            {
+              "code": "defaultValuesToRegister",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary. After gathering the default values, the method returns the dictionary to the caller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func parse(_ preferenceSpecifiers: [NSDictionary]) -> [String: Any] {",
+            "    var defaultValuesToRegister = [String: Any]()",
+            "",
+            "    // Parse the preference specifiers, copying the default values",
+            "    // into the `defaultValuesToRegister` dictionary.",
+            "    for preferenceItem in preferenceSpecifiers {",
+            "        if let key = preferenceItem[\"Key\"] as? String,",
+            "            let defaultValue = preferenceItem[\"DefaultValue\"] {",
+            "            defaultValuesToRegister[key] = defaultValue",
+            "        }",
+            "",
+            "        // Add child pane preference specifiers.",
+            "        if let type = preferenceItem[\"Type\"] as? String,",
+            "            type == \"PSChildPaneSpecifier\" {",
+            "            if var file = preferenceItem[\"File\"] as? String {",
+            "                if file.hasSuffix(\".plist\") == false {",
+            "                    file += \".plist\"",
+            "                }",
+            "                let morePreferenceSpecifiers = retrieveSettingsBundlePreferenceSpecifiers(from: file)",
+            "                let moreDefaultValuesToRegister = parse(morePreferenceSpecifiers)",
+            "                defaultValuesToRegister.merge(moreDefaultValuesToRegister) { (current, _) in current }",
+            "            }",
+            "        }",
+            "    }",
+            "    ",
+            "    return defaultValuesToRegister",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Retrieve-preference-values",
+          "level": 3,
+          "text": "Retrieve preference values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After registering the default values with the registration domain, the app can retrieve a preference value without the possibility of encountering an unavailable value. To simplify access to the background color preference value, the sample app extends ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "overridingTitle": "UserDefaults",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UserDefaults",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to include properties for each preference value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension UserDefaults {",
+            "",
+            "    @objc dynamic var backgroundColorValue: Int {",
+            "        return integer(forKey: \"backgroundColorValue\")",
+            "    }",
+            "    ",
+            "    @objc dynamic var someRandomOption: Bool {",
+            "        return bool(forKey: \"someRandomOption\")",
+            "    }",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-changes-made-in-the-preferences-window",
+          "level": 3,
+          "text": "Handle changes made in the preferences window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the user changes the background color setting in the Preferences window, the app changes the background color of its main view. To accomplish this, the view controller for the main view creates a subscriber in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. When the background color value changes, the subscriber receives the new value, maps it to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, and assigns the color to the view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/backgroundColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var subscriber: AnyCancellable?   // Subscriber of preference changes.",
+            "",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    ",
+            "    // Set the view's initial background color to the color specified in Preferences.",
+            "    if let colorSetting = BackgroundColors(rawValue: UserDefaults.standard.backgroundColorValue) {",
+            "        view.backgroundColor = colorSetting.currentColor()",
+            "    }",
+            "    ",
+            "    // Listen for changes to the background color preference made in the Preferences window.",
+            "    subscriber = UserDefaults.standard",
+            "        .publisher(for: \\.backgroundColorValue, options: [.initial, .new])",
+            "        .map( { BackgroundColors(rawValue: $0)?.currentColor() })",
+            "        .assign(to: \\UIView.backgroundColor, on: self.view)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "1b05ad2e7b73/DetectingChangesInThePreferencesWindow.zip": {
+      "checksum": "1b05ad2e7b7376c681c9427b24491bc5c7e7b2e86a5a4650d68e904126ba074ac92134fc73101b567f88c15cbdd2d56f4ca7f0d5d4f8c831d6e2134dccad1511",
+      "identifier": "1b05ad2e7b73/DetectingChangesInThePreferencesWindow.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/1b05ad2e7b73/DetectingChangesInThePreferencesWindow.zip"
+    },
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/Combine"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor": {
+      "abstract": [
+        {
+          "text": "An object that stores color data and sometimes opacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/backgroundColor": {
+      "abstract": [
+        {
+          "text": "The view’s background color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/backgroundColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "backgroundColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/backgroundcolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewdidload()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/displaying-a-preferences-window": {
+      "abstract": [
+        {
+          "text": "Provide a Preferences window in your Mac app built with Mac Catalyst so users can manage app preferences defined in a Settings bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-a-preferences-window",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying a Preferences window",
+      "type": "topic",
+      "url": "/documentation/uikit/displaying-a-preferences-window"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Create a version of your iPad app that users can run on a Mac device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/mac-catalyst",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/mac-catalyst"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "1b05ad2e7b73/DetectingChangesInThePreferencesWindow.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-preferences",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/displaying-a-preferences-window"
+      ],
+      "title": "User preferences"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-preferences",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/displaying-a-preferences-window"
+              ],
+              "title": "User preferences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor/title",
+          "value": "UIColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1backgroundColor/title",
+          "value": "backgroundColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1backgroundColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backgroundColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults/title",
+          "value": "NSUserDefaults"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/detecting-changes-in-the-preferences-window"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/detecting-changes-in-the-preferences-window"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1637 @@
+{
+  "abstract": [
+    {
+      "text": "Use the RealityKit Trace template in Instruments to evaluate and improve the performance of your visionOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Analyzing the performance of your visionOS app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maintain the sense of immersion on Apple Vision Pro, the system attempts to provide the device displays with up-to-date imagery at a constant rate and respond to interactions with minimum latency. Any visual choppiness or delay in responsiveness interferes with the spatial experience. Higher power consumption over extended periods of time, or extreme power consumption over shorter periods of time, can trigger thermal mitigations that also impact the quality of the experience. It’s important to minimize your app’s use of system resources to ensure your app performs well on the platform. Many of the same best practices and optimization procedures you use developing for other Apple platforms apply when developing for visionOS as well. For more information about optimizing your app on other platforms, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/improving-your-app-s-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get useful information specific to rendering bottlenecks, high system power use, and other issues that effect the responsiveness of your visionOS app, profile your app with the RealityKit Trace template in Instruments. This template helps you identify:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complex content or content with frequent updates that cause the render server to miss deadlines and drop frames.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Content and tasks that result in high system power use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Long running tasks on the the main thread that interfere with efficient processing of input events.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tasks running on other threads that don’t complete in time to sync back to the main thread for view hierarchy updates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can profile using a real device or a simulator, but to get the most accurate and actionable information, use a real device. Software and hardware differences between a simulator on your Mac and a real device prevent you from relying on timing information. Simulated devices are useful for quick iteration and improving performance aspects that aren’t based on time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Open-a-new-trace-document",
+          "level": 3,
+          "text": "Open a new trace document",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new trace document:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app’s scheme and a visionOS run destination from the Xcode project window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Product > Profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose RealityKit Trace template",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Choose button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "instruments-template-chooser-realitykit-trace",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, launch Instruments and choose a target app from the template selection dialog.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The RealityKit Trace template includes the following instruments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Captures frame render times and lifespans for frames the visionOS render server generates. This instrument indicates when frames miss rendering deadlines and provides average CPU and GPU render rates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "RealityKit Frames",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Captures comprehensive timing information from the entire render pipeline including rendering, commits, animations, physics, and spatial systems. This instrument identifies potential bottlenecks in your app’s process or in the render server as a result of your app’s content and indicates areas of moderate and high system power usage that require optimization.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "RealityKit Metrics",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Captures and displays Runloop execution details.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Runloops",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Profiles running threads on all cores at regular intervals for all processes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Time Profiler",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Captures and displays periods of time when the main thread is unresponsive.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Hangs",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Records Metal app events.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Metal Application",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider adding other instruments to your trace for specific investigations. For example, you can use the Thermal State instrument to record device thermal states to check if thermal pressures are throttling performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-your-workflows",
+          "level": 3,
+          "text": "Profile your workflows",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the record button at the top left of the window to start capturing profile data. Perform the actions in your app that you want to investigate. When you complete the actions, click the record button again to stop recording.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To investigate performance issues or analyze system power impact, profile your app in isolation to understand your app’s impact on system performance and ensure you get the most actionable information. For apps that run alongside other apps, profile your app again with those other apps running to understand how people experience your app in conjunction with other apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-frame-rendering-performance",
+          "level": 3,
+          "text": "Inspect frame rendering performance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maintain a smooth visual experience, the system tries to render new frames for the Apple Vision Pro at 90 frames per second (FPS). The system renders at other frame rates depending on the content it displays and the current surroundings. Each frame has a deadline for rendering based on the target frame rate. Not meeting these deadlines results in dropped frames. This creates a poor spatial experience overall. People tend to notice it in the visual performance of Persona and SharePlay experiences, video playback, and scrolling. The RealityKit Frames instrument displays the time spent rendering each frame in the Frames section of its timeline:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-frames-instrument",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you zoom out, you can identify areas with a high number of frame drops or with frames running close to the rendering deadline. The timeline uses green to identify frames that complete rendering before the deadline, orange for frames that complete rendering close to the deadline, and red for frames that don’t complete rendering that the renderer drops. Dropped frames contribute to a poor spatial experience, but frames that complete close to their rendering deadline indicate performance problems too. Hold the Option key and drag to zoom into a frame, or group of frames, to see their lifespan broken down in stages:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-frames-instrument-zoomed",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This provides you with insight into which portion of the rendering pipeline to investigate further. This timeline also includes sections that visualize the Average CPU Frame Time and Average GPU Frame Time to indicate the type of processing that computes the frames. A region of the timeline without a frame block indicates a period of time without changes to a person’s surroundings or app updates. The render server avoids computing new frames to send to the compositor during these periods which helps optimize power use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Monitor-system-power-usage",
+          "level": 3,
+          "text": "Monitor system power usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When thermal levels rise to levels that trigger thermal mitigations in the system, performance degrades and negatively impacts the responsiveness of your app. Optimize for power to avoid this negative impact. The timeline for the RealityKit Metrics instrument includes a System Power Impact section to identify areas of high power usage in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-metrics-instrument",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the timeline displays green, the tool considers your app’s impact on system power low enough to sustain. Regions that display orange or red indicate the system power usage could cause thermal levels to rise and trigger thermal mitigations. This decreases the availability of system resources, which can cause visual interruptions and responsiveness issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the render server can’t maintain the target frame rate of 90 FPS due to thermal pressure, it might reduce its frame rate in half. When this occurs, all frames in the frames track show up as missing their rendering deadlines. Other factors can cause reduced frame rate, including the complexity and frequency of the content the system is processing. Use the Thermal State instrument to determine if thermal conditions are causing the rate limiting or if it’s due to other factors.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Identify-bottlenecks",
+          "level": 3,
+          "text": "Identify bottlenecks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Bottlenecks section of the timeline for the RealityKit Metrics instrument contains markers that indicate high overhead in your app or the render server that contribute to dropped frames and high system power use. When you encounter either of these issues, check if the timeline identifies bottlenecks you can address. Double-click on any of the markers to display more information in the detail area at the bottom of the instruments window. If the detail area is hidden, choose View > Detail Area > Show Detail Area to reveal it. The render server encounters bottlenecks in either the CPU or GPU. The instrument categorizes bottlenecks by their severity and type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To filter the bottlenecks listed in the detail area to a particular time period, drag inside the timeline to select the region. To see an outline view of the bottlenecks organized by severity and type, select Summary: RealityKit Bottlenecks from the menu at the top left of the detail area. Click the arrow button to the right of the severity or type in the outline view to show the list of bottlenecks in that category.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you select a specific bottleneck, the extended detail provides recommendations for you to address the bottleneck – choose View > Show Extended Detail to reveal the extended detail if it’s hidden.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-metrics-bottleneck-recommendation",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Explore-the-metrics-that-relate-to-bottlenecks",
+          "level": 3,
+          "text": "Explore the metrics that relate to bottlenecks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The trace provides additional information you can use to identify changes to make in your app to address these bottlenecks. Click the expansion arrow for the RealityKit Metrics instrument timeline to reveal graphs specific to each major category of work. Use the metrics associated with these graphs to determine which RealityKit feature has the biggest impact on high CPU frame times in the app process or in the render server. When interpreting these graphs, lower indicates better performance and power. The metrics represent values from all apps running, so profile with just your app running when trying to optimize for these metrics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-metrics-instrument-expanded",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Metrics related to the cost of 3D RealityKit rendering in the render server. This includes the number of draw calls, triangles, and vertices from all apps.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "3D Render",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Metrics related to UI content rendering costs in the render server. This includes the total number of render passes, offscreen render passes, and translucent UI meshes from all apps.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Core Animation Render",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Metrics related to the costs of entity commits in the app and the render server. This includes the number of RealityKit entities shared with the render server from all apps, as well as the number of updates received from all apps over certain intervals.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Entity Commits",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Metrics related to the cost of RealityKit animations in the app and the render server. This includes the number of skeletal animations, across all apps.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "RealityKit Animations",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Metrics related to the cost of RealityKit physics simulations, collisions, and hit testing in the app process and render server. This includes the number of rigid body counts and colliders in use, as well as the type of physics shapes that the UI and other 3D content use, across all apps.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "RealityKit Physics",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Metrics related to the costs of spatial algorithms in the render server. This includes the number of custom anchors, across all apps.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Spatial Systems",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The graphs for some sections combine several individual metrics. The heading indicates this by displaying a graph count. Click on the bottom of the timeline’s heading and drag down to display individual graphs for each metric. For example, the 3D Render Timeline might display 13 Graphs in the heading; expanding that timeline exposes individual graphs for 3D Mesh Draw Calls, 3D Mesh Triangles, 3D Mesh Vertices, and the 10 additional metrics.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The timeline for your app’s process helps summarize information from the instruments about your process and the work the render server completes for your process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-trace-world-track",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose an option from the pop-up in the timeline header to show different graphs in the timeline:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Time each thread spends waiting or busy.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Runloops",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Time the main thread is unresponsive.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Hangs",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "CPU usage and lifecycle status.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Time Profile",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Overhead attributed to RealityKit systems.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "RealityKit System Times",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you select the timeline for your app’s process, you can choose instrument summaries and profile data to display in the detail area from the popup-button at its top-left:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-process-detail-options",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To filter the information in the detail area by time, select periods of time in the timeline  above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-delays-on-the-main-thread",
+          "level": 3,
+          "text": "Detect delays on the main thread",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select Hangs in your app’s process timeline to identify times in the trace that might have interaction delays. Use the RealityKit Metrics and Time Profiler summaries to better understand the work your app is doing. Choose the following options from the detail area pop-up menu:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Shows information from the Time Profiler instrument to determine what your app is doing during a hang.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Profile and Samples",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "RealityKit System CPU times: Shows minimum, maximum, and average times the CPU spends on various RealityKit system operations.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Summary",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optimize any 3D render updates, hit testing, and collision work you find. For more information about addressing hangs in your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/improving-app-responsiveness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-audio-overhead",
+          "level": 3,
+          "text": "Manage audio overhead",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Audio Playback section of your process’s timeline to identify areas of high audio overhead.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system defaults to using spatial audio for your app when running on visionOS. It processes information in real time about your position, surroundings, and the current location of audio sources to generate an immersive audio experience. If you include too many concurrent audio sources that require the system to adapt audio sources to their location within a large space, the increased demand on system resources can lead to delays in the audio output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reduce the spatial audio work, limit:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of concurrently playing audio sources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of moving audio sources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The size of the soundstage",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider creating a pool of audio players to limit the maximum number of players your app uses. Place players on stationary entities, instead of moving entities, when appropriate. Initializing several audio players at the same time causes a high overhead that affects other aspects of the system, such as rendering performance. Consider the other tasks the system completes during these allocations and space them out over time. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2023/10070",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-custom-materials-for-optimization",
+          "level": 3,
+          "text": "Profile custom materials for optimization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Metal System Trace template to profile your custom materials in isolation before adding more visual effects to them. Examine the Metal GPU cost and try to optimize for GPU ALU Instructions and GPU Texture reads and writes per frame. For more information on using this template, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order to use the Metal Application instrument to profile your custom materials accurately, set a fixed performance state:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click and hold the record button and select Recording Options.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the options for the Metal Application instrument.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the Counter Set to Performance Limiters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the Performance State to Minimum or Medium.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "metal-application-recording-options",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A person’s eye position, the distance from the person to the content, and the amount of content the app displays all impact the amount of GPU work done for custom materials from Reality Composer Pro. To compare traces, keep these factors as consistent as possible. For a custom material you use in a Fully Immersive Space, try to remove all other content from the scene while profiling to isolate the overhead of the material. For custom materials you use for other types of content, consider anchoring them to a person’s head in a test scene so the distance from the person remains fixed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Using an unlit or inexpensive custom material becomes even more important when your app uses ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Metal",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CompositorServices",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " framework to present a fully immersive experience due to the number of pixels your app must render.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/CompositorServices"
+    },
+    "doc://com.apple.documentation/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/Metal"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Ensure consistent, smooth rendering by profiling your app’s frame time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your Metal app",
+      "type": "topic",
+      "url": "/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/improving-app-responsiveness": {
+      "abstract": [
+        {
+          "text": "Create a user experience that feels responsive by removing hangs and hitches from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/improving-app-responsiveness",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving app responsiveness",
+      "type": "topic",
+      "url": "/documentation/Xcode/improving-app-responsiveness"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/improving-your-app-s-performance": {
+      "abstract": [
+        {
+          "text": "Model, measure, and boost the performance of your app by using a continuous-improvement cycle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/improving-your-app-s-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving your app’s performance",
+      "type": "topic",
+      "url": "/documentation/Xcode/improving-your-app-s-performance"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app": {
+      "abstract": [
+        {
+          "text": "Identify your app’s performance and power goals and create a plan to measure and assess them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a performance plan for your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-a-performance-plan-for-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s 3D augmented reality content to render efficiently on visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the rendering cost of RealityKit content on visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/reducing-the-rendering-cost-of-realitykit-content-on-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS": {
+      "abstract": [
+        {
+          "text": "Optimize your 2D user interface rendering on visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the rendering cost of your UI on visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/reducing-the-rendering-cost-of-your-ui-on-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline": {
+      "abstract": [
+        {
+          "text": "Compare how visionOS handles events and manages its rendering loop differently from other Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the visionOS render pipeline",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-visionos-render-pipeline"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10070": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10070",
+      "title": "Create a great spatial playback experience",
+      "titleInlineContent": [
+        {
+          "text": "Create a great spatial playback experience",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10070"
+    },
+    "instruments-template-chooser-realitykit-trace": {
+      "alt": "An Instrument template chooser dialog displays several trace templates with the RealityKit Trace template selected. Cancel and Choose buttons appear at the bottom right of the dialog.",
+      "identifier": "instruments-template-chooser-realitykit-trace",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31f261bf62f51ac312b1a31fe04afc03/instruments-template-chooser-realitykit-trace@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9148e528838e80f7463e3a5ada67d624/instruments-template-chooser-realitykit-trace~dark@2x.png"
+        }
+      ]
+    },
+    "metal-application-recording-options": {
+      "alt": "An image the recording options for Instruments. A pop-up button appears at the top of the image with the labeled Options for and Metal Application selected. Under this pop-up button is a section heading titled GPU. This section displays three pop-up buttons labeled Device with M2 selected, Counter Set with Performance Limiters selected, and Performance State with Medium selected, and an unselected checkbox labeled Enabled Shader Timeline.",
+      "identifier": "metal-application-recording-options",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/17fdf54d1cda6fc96816b555077f5efa/metal-application-recording-options@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/84a2869aec6cd65e4382ca3d079a7543/metal-application-recording-options~dark@2x.png"
+        }
+      ]
+    },
+    "realitykit-frames-instrument": {
+      "alt": "A screenshot of the RealityKit Frames instrument timeline displays three visualizations: Frames, Average CPU Frame Time, and Average GPU Frame Time. The Frames visualization represents the time spent rendering each frame. The other two graph the average time spent processing frames in the CPU and GPU.",
+      "identifier": "realitykit-frames-instrument",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/376e0bde17dbcb1c89b73abfce705007/realitykit-frames-instrument@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bfa9929d11dbe27848e4a012c12e04d9/realitykit-frames-instrument~dark@2x.png"
+        }
+      ]
+    },
+    "realitykit-frames-instrument-zoomed": {
+      "alt": "A screenshot of the same RealityKit Frames instrument timeline magnified to show more detail in the Frames visualization. Each block in the Frames visualization represents a frame. Each frame block contains three rows of rectangles representing time spent on different task. The top row contains a frame number and indicates the total time spent on the frame. CPU and GPU blocks in the middle row indicate the process time spent in each. The blocks in the last row indicate the time spent on more granular stages of frame processing.",
+      "identifier": "realitykit-frames-instrument-zoomed",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9e3e27d4ebdc5f7ccaab5d65688fcbe9/realitykit-frames-instrument-zoomed@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d66a82496b69a01480d8993de322edb0/realitykit-frames-instrument-zoomed~dark@2x.png"
+        }
+      ]
+    },
+    "realitykit-metrics-bottleneck-recommendation": {
+      "alt": "An Instruments window shows profile data from the RealityKit Trace template. The top of the window displays timelines for the RealityKit Frames, RealityKit Metrics, Runloops, Time Profiler, and Hangs instruments. The RealityKit Metrics instrument timelines is selected and the detail area at the bottom of the window displays a summary of RealityKit Bottlenecks with an Entity Commits bottleneck selected. The extended detail sidebar, to the right, displays a list of recommendations.",
+      "identifier": "realitykit-metrics-bottleneck-recommendation",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ece97e1b5d17bd4d5c6a9d1f794eaf7/realitykit-metrics-bottleneck-recommendation@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bc36ed27422b4cfbdba93bebb868466b/realitykit-metrics-bottleneck-recommendation~dark@2x.png"
+        }
+      ]
+    },
+    "realitykit-metrics-instrument": {
+      "alt": "A screenshot of RealityKit Metrics instrument timeline displays two visualizations: Bottlenecks and System Power Impact. The Bottlenecks visualization contains orange and red markers to indicate rendering bottlenecks. The System Power Impact visualization contains a graph that varies in height with areas of green, orange, and red.",
+      "identifier": "realitykit-metrics-instrument",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/deccb08b067f46d25c70c9bde77a168e/realitykit-metrics-instrument@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9a59b3a216297a7fcdd87933e9b8c38/realitykit-metrics-instrument~dark@2x.png"
+        }
+      ]
+    },
+    "realitykit-metrics-instrument-expanded": {
+      "alt": "A screenshot of RealityKit Metrics instrument timeline expanded to display additional graphs for 3D Render, Core Animation Render, Entity Commits, RealityKit Animations, RealityKit Physics, and Spacial Systems.",
+      "identifier": "realitykit-metrics-instrument-expanded",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b875fecf6b6cf5a61f643b5703564866/realitykit-metrics-instrument-expanded@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1eb07427ddaf51ad899be60f6065593d/realitykit-metrics-instrument-expanded~dark@2x.png"
+        }
+      ]
+    },
+    "realitykit-process-detail-options": {
+      "alt": "The menu of details you can choose to display for your process organized by instruments: Hangs, RealityKit Metrics, Runloops, and Time Profiler. The options for Hangs include Summary: Hangs, Hangs, and Hangs Risk. The option for the RealityKit Metrics includes Summary: RealityKit Systems CPU Times. The options for Runloops include Summary: Runloop Intervals, Runloop Busy Intervals, and All Runloop Intervals. The options for Time Profiler include Profile, Samples, and App Lifecycle.",
+      "identifier": "realitykit-process-detail-options",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e4917d4c1d64d76785730ef41f289aec/realitykit-process-detail-options@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/15d6ce198ee4578c1f8c155e213be2a8/realitykit-process-detail-options~dark@2x.png"
+        }
+      ]
+    },
+    "realitykit-trace-world-track": {
+      "alt": "A screenshot of the timeline for your app's process displays the name of your app to the left with a pop-up button labeled Process below it. The timeline graphs to the right display RealityKit System Times labeled 3D Render, Audio Playback, Custom Reality System, Entity Commits, and RealityKit Physics.",
+      "identifier": "realitykit-trace-world-track",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b83d069b9b4d728db929aae9e32eeba6/realitykit-trace-world-track@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aaea5f2efe2e70b2f89260bfdc9126bc/realitykit-trace-world-track~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app",
+        "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline"
+      ],
+      "title": "Performance"
+    }
+  ]
+}

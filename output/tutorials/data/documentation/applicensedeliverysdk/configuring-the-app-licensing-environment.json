@@ -1,0 +1,619 @@
+{
+  "abstract": [
+    {
+      "text": "Create your account-level signing assets and build the SDK for your target platform.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App License Delivery SDK"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring your app licensing environment"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your developer account qualifies to build an alternative app marketplace, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to secure the installation of your marketplace app and the apps that you distribute from your alternative marketplace. To set up your development environment for app licensing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create your App License Delivery signing assets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build the SDK on your target platform (macOS or Linux).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about alternative app marketplaces, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-alternative-marketplace-app-licensing-assets",
+          "level": 2,
+          "text": "Generate alternative marketplace app licensing assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To facilitate generating licenses, create the following App License Delivery (ALD) assets in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/account/resources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Decrypts license requests that a device sends to your licensing endpoint.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Encryption certificate",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Signs licenses you create and verifies their authenticity on device.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Signing certificate",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A secret that secures the transport of app key blobs.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "PASK",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about generating these assets, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/create-certificates/create-app-license-delivery-certificates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Secure your PASK secret as you do other credentials, such as private keys and passwords. Don’t share your PASK secret, store secrets in a code repository, or include secrets in client or server code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Build-the-SDK-for-macOS",
+          "level": 2,
+          "text": "Build the SDK for macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the SDK in a Swift project for macOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand the SDK archive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, choose the File menu > Add Package Dependencies…",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the package dependencies window, click Add Local…",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the file bowser, choose the expanded SDK archive folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Import ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ALD",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in your Swift licensing source files:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "/** License creation */",
+            "import ALD",
+            "struct MyLicenseGenerator: ParsableCommand { ... }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Build-the-SDK-for-Linux",
+          "level": 2,
+          "text": "Build the SDK for Linux",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build the SDK for Linux:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download a Swift container from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.swift.org/download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Ubuntu 22.04 for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x86_64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with Swift Docker tag ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "5.9-jammy",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install the Docker container and start it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "aldsdk",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " archive file (with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".tar",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file extension) into the container and expand it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, navigate to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "aldsdk",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " root directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the following command to build the SDK and produce an example license:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "swift test -c release --triple x86_64-unknown-linux-gnu \\",
+            "    -Xbuild-tools-swiftc -Dx86_64_linux_gnu_TRIPLE"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’re using Docker Desktop, disable Rosetta after you install the Docker container.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK": {
+      "abstract": [
+        {
+          "text": "Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App License Delivery SDK",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/account/resources": {
+      "identifier": "https://developer.apple.com/account/resources",
+      "title": "Certificates, Identifiers & Profiles",
+      "titleInlineContent": [
+        {
+          "text": "Certificates, Identifiers & Profiles",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/resources"
+    },
+    "https://developer.apple.com/help/account/create-certificates/create-app-license-delivery-certificates": {
+      "identifier": "https://developer.apple.com/help/account/create-certificates/create-app-license-delivery-certificates",
+      "title": "Create app license delivery certificates",
+      "titleInlineContent": [
+        {
+          "text": "Create app license delivery certificates",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/create-certificates/create-app-license-delivery-certificates"
+    },
+    "https://www.swift.org/download": {
+      "identifier": "https://www.swift.org/download",
+      "title": "https://www.swift.org/download",
+      "titleInlineContent": [
+        {
+          "text": "https://www.swift.org/download",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.swift.org/download"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

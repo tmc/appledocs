@@ -1,0 +1,488 @@
+{
+  "abstract": [
+    {
+      "text": "The states that tell users how to proceed when connecting to and switching between peripherals in a playground page.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/playgroundbluetooth",
+        "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3029500,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:19PlaygroundBluetooth0aB14ConnectionViewC5StateO",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "enum "
+      },
+      {
+        "kind": "identifier",
+        "text": "PlaygroundBluetoothConnectionView.State"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Playground Bluetooth"
+      }
+    ],
+    "parent": {
+      "title": "PlaygroundBluetoothConnectionView"
+    },
+    "platforms": [
+      {
+        "current": "13.2",
+        "introducedAt": "10.2",
+        "name": "Xcode"
+      },
+      {
+        "current": "4.0",
+        "introducedAt": "2.0",
+        "name": "Swift Playgrounds"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "PlaygroundBluetoothConnectionView.State"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Swift Playgrounds"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@M@PlaygroundBluetooth@objc(cs)PlaygroundBluetoothConnectionView",
+              "text": "PlaygroundBluetoothConnectionView"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "kind": "identifier",
+              "text": "State"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how to use the different states as part of adopting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionviewdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension PageViewDelegate: PlaygroundBluetoothConnectionViewDelegate {",
+            "    func connectionView(_ connectionView: PlaygroundBluetoothConnectionView, titleFor state: PlaygroundBluetoothConnectionView.State) -> String {",
+            "        // Pick a name that matches the types of peripheral your playground",
+            "        // supports, such as \"Robot\", \"Speaker\", or \"Light\".",
+            "        let name = \"Peripheral\"",
+            "        switch state {",
+            "        case .noConnection:",
+            "            return \"Connect \\(name)\"",
+            "        case .connecting:",
+            "            return \"Connecting \\(name)\"",
+            "        case .searchingForPeripherals:",
+            "            return \"Searching for \\(name)s\"",
+            "        case .selectingPeripherals:",
+            "            return \"Select a \\(name)\"",
+            "        case .connectedPeripheralFirmwareOutOfDate:",
+            "            return \"Connect to a Different \\(name)\"",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3030060",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/playgroundbluetooth": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Playground Bluetooth",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothConnectionView",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/3029510-delegate": {
+      "abstract": [
+        {
+          "text": "A delegate you supply to make decisions about which peripherals are displayed in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundBluetoothConnectionViewDelegate?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/3029510-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/3029510-delegate"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state": {
+      "abstract": [
+        {
+          "text": "The states that tell users how to proceed when connecting to and switching between peripherals in a playground page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundBluetoothConnectionView.State"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothConnectionView.State",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state#3030060": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state#3030060",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state#3030060"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/3029501": {
+      "abstract": [
+        {
+          "text": "Compares two connection states and returns ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/true",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " if they're different.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(PlaygroundBluetoothConnectionView.State, PlaygroundBluetoothConnectionView.State) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/3029501",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/3029501"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/connectedperipheralfirmwareoutofdate": {
+      "abstract": [
+        {
+          "text": "The currently connected peripheral has outdated firmware and can't be used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectedPeripheralFirmwareOutOfDate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/connectedperipheralfirmwareoutofdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothConnectionView.State.connectedPeripheralFirmwareOutOfDate",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/connectedperipheralfirmwareoutofdate"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/connecting": {
+      "abstract": [
+        {
+          "text": "The peripheral is in the process of connecting to a connection view’s central manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "connecting"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/connecting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothConnectionView.State.connecting",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/connecting"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/noconnection": {
+      "abstract": [
+        {
+          "text": "The connection to a peripheral has been lost.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "noConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/noconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothConnectionView.State.noConnection",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/noconnection"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/searchingforperipherals": {
+      "abstract": [
+        {
+          "text": "A connection view’s central manager is scanning for nearby peripherals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchingForPeripherals"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/searchingforperipherals",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothConnectionView.State.searchingForPeripherals",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/searchingforperipherals"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/selectingperipherals": {
+      "abstract": [
+        {
+          "text": "One or more peripherals have been discovered and can be selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectingPeripherals"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/selectingperipherals",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothConnectionView.State.selectingPeripherals",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/selectingperipherals"
+    },
+    "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionviewdelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionviewdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundBluetoothConnectionViewDelegate",
+      "type": "topic",
+      "url": "/documentation/playgroundbluetooth/playgroundbluetoothconnectionviewdelegate"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/3029510-delegate"
+      ],
+      "title": "Handling State Changes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3030159",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/connecting",
+        "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/noconnection",
+        "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/searchingforperipherals"
+      ],
+      "kind": "taskGroup",
+      "title": "Waiting for Connections"
+    },
+    {
+      "anchor": "3030163",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/selectingperipherals"
+      ],
+      "kind": "taskGroup",
+      "title": "Selecting Connections"
+    },
+    {
+      "anchor": "3030154",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/connectedperipheralfirmwareoutofdate"
+      ],
+      "kind": "taskGroup",
+      "title": "Handling Old Firmware"
+    },
+    {
+      "anchor": "3030152",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state/3029501"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Connection States"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/playgroundbluetooth/playgroundbluetoothconnectionview/state"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

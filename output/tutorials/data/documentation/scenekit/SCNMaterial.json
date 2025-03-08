@@ -1,0 +1,3754 @@
+{
+  "abstract": [
+    {
+      "text": "A set of shading attributes that define the appearance of a geometry’s surface when rendered.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SCNMaterial",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNMaterial"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNMaterial"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SCNMaterial"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNMaterial"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a material, you define a collection of visual attributes and their options, which you can then reuse for multiple geometries in a scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A material has several visual properties, each of which defines a different part of SceneKit’s lighting and shading process. Each visual property is an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class that provides a solid color, texture, or other 2D content for that aspect of SceneKit’s rendering. The material’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/lightingModel-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property then determines the formula SceneKit uses to combine the visual properties with the lights in the scene to produce the final color for each pixel in the rendered scene. For more details on the rendering process, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/LightingModel-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You attach one or more materials to an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class using its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry/firstMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry/materials",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Multiple geometries can reference the same material. In this case, changing the attributes of the material changes the appearance of every geometry that uses it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable": {
+      "abstract": [
+        {
+          "text": "The common interface for attaching animations to nodes, geometries, materials, and other SceneKit objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAnimatable",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNBlendMode": {
+      "abstract": [
+        {
+          "text": "Modes that describe how SceneKit blends source colors rendered using a material with destination colors already in a rendering target, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/blendMode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNBlendMode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNBlendMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNBlendMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNBlendMode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnblendmode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNCamera": {
+      "abstract": [
+        {
+          "text": "A set of camera attributes that can be attached to a node to provide a point of view for displaying the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNCamera",
+      "type": "topic",
+      "url": "/documentation/scenekit/scncamera"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNColorMask": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNColorMask"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNColorMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNColorMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNColorMask",
+      "type": "topic",
+      "url": "/documentation/scenekit/scncolormask"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNCullMode": {
+      "abstract": [
+        {
+          "text": "The modes SceneKit uses to determine which polygons to render in a surface, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/cullMode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNCullMode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNCullMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNCullMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNCullMode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scncullmode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNFillMode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNFillMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNFillMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNFillMode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnfillmode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry": {
+      "abstract": [
+        {
+          "text": "A three-dimensional shape (also called a model or mesh) that can be displayed in a scene, with attached materials that define its appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometry",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometry"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry/firstMaterial": {
+      "abstract": [
+        {
+          "text": "The first material attached to the geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstMaterial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterial",
+          "text": "SCNMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry/firstMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "firstMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "firstMaterial",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometry/firstmaterial"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry/materials": {
+      "abstract": [
+        {
+          "text": "An array of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects that determine the geometry’s appearance when rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "materials"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterial",
+          "text": "SCNMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry/materials",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "materials"
+        }
+      ],
+      "role": "symbol",
+      "title": "materials",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometry/materials"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNLight": {
+      "abstract": [
+        {
+          "text": "A light source that can be attached to a node to illuminate the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNLight"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNLight",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnlight"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial": {
+      "abstract": [
+        {
+          "text": "A set of shading attributes that define the appearance of a geometry’s surface when rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMaterial",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/LightingModel-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants specifying the lighting and shading algorithm to use for rendering a material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LightingModel"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/LightingModel-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LightingModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMaterial.LightingModel",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/lightingmodel-swift.struct"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/ambient": {
+      "abstract": [
+        {
+          "text": "An object that manages the material’s response to ambient lighting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ambient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/ambient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ambient"
+        }
+      ],
+      "role": "symbol",
+      "title": "ambient",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/ambient"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/ambientOcclusion": {
+      "abstract": [
+        {
+          "text": "An object that provides color values to be multiplied with the ambient light affecting the material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ambientOcclusion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/ambientOcclusion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ambientOcclusion"
+        }
+      ],
+      "role": "symbol",
+      "title": "ambientOcclusion",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/ambientocclusion"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/blendMode": {
+      "abstract": [
+        {
+          "text": "The mode that determines how pixel colors rendered using this material blend with other pixel colors in the rendering target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNBlendMode",
+          "text": "SCNBlendMode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/blendMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blendMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "blendMode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/blendmode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoat": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearCoat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clearCoat"
+        }
+      ],
+      "role": "symbol",
+      "title": "clearCoat",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/clearcoat"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoatNormal": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearCoatNormal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoatNormal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clearCoatNormal"
+        }
+      ],
+      "role": "symbol",
+      "title": "clearCoatNormal",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/clearcoatnormal"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoatRoughness": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearCoatRoughness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoatRoughness",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clearCoatRoughness"
+        }
+      ],
+      "role": "symbol",
+      "title": "clearCoatRoughness",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/clearcoatroughness"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/colorBufferWriteMask": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorBufferWriteMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNColorMask",
+          "text": "SCNColorMask"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/colorBufferWriteMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorBufferWriteMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorBufferWriteMask",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/colorbufferwritemask"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/cullMode": {
+      "abstract": [
+        {
+          "text": "The mode determining which faces of a surface SceneKit renders. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cullMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNCullMode",
+          "text": "SCNCullMode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/cullMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cullMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "cullMode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/cullmode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/diffuse": {
+      "abstract": [
+        {
+          "text": "An object that manages the material’s diffuse response to lighting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "diffuse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/diffuse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "diffuse"
+        }
+      ],
+      "role": "symbol",
+      "title": "diffuse",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/diffuse"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/displacement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displacement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/displacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "displacement",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/displacement"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/emission": {
+      "abstract": [
+        {
+          "text": "An object that defines the color emitted by each point on a surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emission"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/emission",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "emission"
+        }
+      ],
+      "role": "symbol",
+      "title": "emission",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/emission"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/fillMode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNFillMode",
+          "text": "SCNFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/fillMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fillMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "fillMode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/fillmode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/fresnelExponent": {
+      "abstract": [
+        {
+          "text": "A factor affecting the material’s reflectivity. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fresnelExponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/fresnelExponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fresnelExponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "fresnelExponent",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/fresnelexponent"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/isDoubleSided": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether SceneKit renders both front and back faces of a surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDoubleSided"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/isDoubleSided",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "doubleSided"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDoubleSided",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/isdoublesided"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/isLitPerPixel": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether SceneKit performs lighting calculations per vertex or per pixel. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLitPerPixel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/isLitPerPixel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "litPerPixel"
+        }
+      ],
+      "role": "symbol",
+      "title": "isLitPerPixel",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/islitperpixel"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/lightingModel-swift.property": {
+      "abstract": [
+        {
+          "text": "The lighting formula that SceneKit uses to render the material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lightingModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterial",
+          "text": "SCNMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNLightingModel",
+          "text": "LightingModel"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/lightingModel-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lightingModelName"
+        }
+      ],
+      "role": "symbol",
+      "title": "lightingModel",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/lightingmodel-swift.property"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/locksAmbientWithDiffuse": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the material responds identically to both ambient and diffuse lighting. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locksAmbientWithDiffuse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/locksAmbientWithDiffuse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locksAmbientWithDiffuse"
+        }
+      ],
+      "role": "symbol",
+      "title": "locksAmbientWithDiffuse",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/locksambientwithdiffuse"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/material": {
+      "abstract": [
+        {
+          "text": "Creates a new material object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "material"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "material"
+        }
+      ],
+      "role": "symbol",
+      "title": "material",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/material"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/materialWithMDLMaterial:": {
+      "abstract": [
+        {
+          "text": "Creates a material from the specified Model I/O material object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "materialWithMDLMaterial:"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/materialWithMDLMaterial:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "materialWithMDLMaterial:"
+        }
+      ],
+      "role": "symbol",
+      "title": "materialWithMDLMaterial:",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/materialwithmdlmaterial:"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/metalness": {
+      "abstract": [
+        {
+          "text": "An object that provides color values to determine how metallic the material’s surface appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metalness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/metalness",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metalness"
+        }
+      ],
+      "role": "symbol",
+      "title": "metalness",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/metalness"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/multiply": {
+      "abstract": [
+        {
+          "text": "An object that provides color values that are multiplied with pixels in a material after all other shading is complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/multiply",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "multiply",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/multiply"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/name": {
+      "abstract": [
+        {
+          "text": "A name associated with the material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/name"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/normal": {
+      "abstract": [
+        {
+          "text": "An object that defines the nominal orientation of the surface at each point for use in lighting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/normal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "normal"
+        }
+      ],
+      "role": "symbol",
+      "title": "normal",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/normal"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/readsFromDepthBuffer": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether SceneKit uses depth information when rendering the material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readsFromDepthBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/readsFromDepthBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readsFromDepthBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "readsFromDepthBuffer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/readsfromdepthbuffer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/reflective": {
+      "abstract": [
+        {
+          "text": "An object that defines the reflected color for each point on a surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reflective"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/reflective",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reflective"
+        }
+      ],
+      "role": "symbol",
+      "title": "reflective",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/reflective"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/roughness": {
+      "abstract": [
+        {
+          "text": "An object that provides color values to determine the apparent smoothness of the surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "roughness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/roughness",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "roughness"
+        }
+      ],
+      "role": "symbol",
+      "title": "roughness",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/roughness"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/selfIllumination": {
+      "abstract": [
+        {
+          "text": "An object that provides color values representing the global illumination of the surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selfIllumination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/selfIllumination",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selfIllumination"
+        }
+      ],
+      "role": "symbol",
+      "title": "selfIllumination",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/selfillumination"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/shininess": {
+      "abstract": [
+        {
+          "text": "The sharpness of specular highlights. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shininess"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/shininess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shininess"
+        }
+      ],
+      "role": "symbol",
+      "title": "shininess",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/shininess"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/specular": {
+      "abstract": [
+        {
+          "text": "An object that manages the material’s specular response to lighting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "specular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/specular",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "specular"
+        }
+      ],
+      "role": "symbol",
+      "title": "specular",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/specular"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparency": {
+      "abstract": [
+        {
+          "text": "The uniform transparency of the material. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transparency"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transparency"
+        }
+      ],
+      "role": "symbol",
+      "title": "transparency",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/transparency"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparencyMode": {
+      "abstract": [
+        {
+          "text": "The mode SceneKit uses to calculate transparency for the material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transparencyMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNTransparencyMode",
+          "text": "SCNTransparencyMode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparencyMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transparencyMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "transparencyMode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/transparencymode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparent": {
+      "abstract": [
+        {
+          "text": "An object that determines the opacity of each point in a material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transparent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transparent"
+        }
+      ],
+      "role": "symbol",
+      "title": "transparent",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/transparent"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/writesToDepthBuffer": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether SceneKit produces depth information when rendering the material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writesToDepthBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/writesToDepthBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writesToDepthBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "writesToDepthBuffer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial/writestodepthbuffer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty": {
+      "abstract": [
+        {
+          "text": "A container for the color or texture of one of a material’s visual properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMaterialProperty",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterialproperty"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable": {
+      "abstract": [
+        {
+          "text": "Methods for customizing SceneKit’s rendering of geometry and materials using Metal or OpenGL shader programs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNShadable"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNShadable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNShadable",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadable"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTransparencyMode": {
+      "abstract": [
+        {
+          "text": "The modes SceneKit uses to calculate the opacity of pixels rendered with a material, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparencyMode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTransparencyMode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTransparencyMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNTransparencyMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNTransparencyMode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntransparencymode"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Lighting-Cameras-and-Shading",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNLight",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNCamera",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty"
+      ],
+      "title": "Lighting, Cameras, and Shading"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Material",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/name"
+      ],
+      "title": "Creating a Material"
+    },
+    {
+      "anchor": "Choosing-a-Shading-Model",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/lightingModel-swift.property",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/LightingModel-swift.struct"
+      ],
+      "title": "Choosing a Shading Model"
+    },
+    {
+      "anchor": "Visual-Properties-for-Physically-Based-Shading",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/diffuse",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/metalness",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/roughness"
+      ],
+      "title": "Visual Properties for Physically Based Shading"
+    },
+    {
+      "anchor": "Visual-Properties-for-Special-Effects",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/normal",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/displacement",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/emission",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/selfIllumination",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/ambientOcclusion"
+      ],
+      "title": "Visual Properties for Special Effects"
+    },
+    {
+      "anchor": "Visual-Properties-for-Basic-Shading",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/diffuse",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/ambient",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/specular",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/reflective",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/multiply",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparent",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/shininess",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/fresnelExponent",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/locksAmbientWithDiffuse"
+      ],
+      "title": "Visual Properties for Basic Shading"
+    },
+    {
+      "anchor": "Managing-Opacity-and-Blending",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparency",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparencyMode",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTransparencyMode",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/blendMode",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNBlendMode"
+      ],
+      "title": "Managing Opacity and Blending"
+    },
+    {
+      "anchor": "Customizing-Rendered-Appearance",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/isLitPerPixel",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/isDoubleSided",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/cullMode",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNCullMode",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/fillMode",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNFillMode"
+      ],
+      "title": "Customizing Rendered Appearance"
+    },
+    {
+      "anchor": "Managing-Render-Targets",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/writesToDepthBuffer",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/readsFromDepthBuffer",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/colorBufferWriteMask",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNColorMask"
+      ],
+      "title": "Managing Render Targets"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoat",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoatNormal",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoatRoughness"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNMaterial"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Material",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/material",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/materialWithMDLMaterial:",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/name"
+              ],
+              "title": "Creating a Material"
+            },
+            {
+              "anchor": "Choosing-a-Shading-Model",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/lightingModel-swift.property",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/LightingModel-swift.struct"
+              ],
+              "title": "Choosing a Shading Model"
+            },
+            {
+              "anchor": "Visual-Properties-for-Physically-Based-Shading",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/diffuse",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/metalness",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/roughness"
+              ],
+              "title": "Visual Properties for Physically Based Shading"
+            },
+            {
+              "anchor": "Visual-Properties-for-Special-Effects",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/normal",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/displacement",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/emission",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/selfIllumination",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/ambientOcclusion"
+              ],
+              "title": "Visual Properties for Special Effects"
+            },
+            {
+              "anchor": "Visual-Properties-for-Basic-Shading",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/diffuse",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/ambient",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/specular",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/reflective",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/multiply",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparent",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/shininess",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/fresnelExponent",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/locksAmbientWithDiffuse"
+              ],
+              "title": "Visual Properties for Basic Shading"
+            },
+            {
+              "anchor": "Managing-Opacity-and-Blending",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparency",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/transparencyMode",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTransparencyMode",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/blendMode",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNBlendMode"
+              ],
+              "title": "Managing Opacity and Blending"
+            },
+            {
+              "anchor": "Customizing-Rendered-Appearance",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/isLitPerPixel",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/isDoubleSided",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/cullMode",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNCullMode",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/fillMode",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNFillMode"
+              ],
+              "title": "Customizing Rendered Appearance"
+            },
+            {
+              "anchor": "Managing-Render-Targets",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/writesToDepthBuffer",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/readsFromDepthBuffer",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/colorBufferWriteMask",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNColorMask"
+              ],
+              "title": "Managing Render Targets"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoat",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoatNormal",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial/clearCoatRoughness"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Lighting-Cameras-and-Shading",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNLight",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNCamera",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty"
+              ],
+              "title": "Lighting, Cameras, and Shading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNMaterial"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1roughness/title",
+          "value": "roughness"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1roughness/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "roughness"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1displacement/title",
+          "value": "displacement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1displacement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "displacement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1multiply/title",
+          "value": "multiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1multiply/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "multiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLight/title",
+          "value": "SCNLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1transparency/title",
+          "value": "transparency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1transparency/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transparency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1specular/title",
+          "value": "specular"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1specular/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "specular"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1readsFromDepthBuffer/title",
+          "value": "readsFromDepthBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1readsFromDepthBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "readsFromDepthBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1clearCoat/title",
+          "value": "clearCoat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1clearCoat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "clearCoat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1metalness/title",
+          "value": "metalness"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1metalness/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "metalness"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1cullMode/title",
+          "value": "cullMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1cullMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cullMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1isDoubleSided/title",
+          "value": "doubleSided"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1isDoubleSided/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "doubleSided"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/title",
+          "value": "SCNGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNColorMask/title",
+          "value": "SCNColorMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNColorMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNColorMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNColorMask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNColorMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1lightingModel-swift.property/title",
+          "value": "lightingModelName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1lightingModel-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lightingModelName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1selfIllumination/title",
+          "value": "selfIllumination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1selfIllumination/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selfIllumination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1clearCoatNormal/title",
+          "value": "clearCoatNormal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1clearCoatNormal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "clearCoatNormal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1reflective/title",
+          "value": "reflective"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1reflective/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reflective"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1transparent/title",
+          "value": "transparent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1transparent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transparent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry~1materials/title",
+          "value": "materials"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry~1materials/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "materials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1colorBufferWriteMask/title",
+          "value": "colorBufferWriteMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1colorBufferWriteMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorBufferWriteMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial/title",
+          "value": "SCNMaterial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty/title",
+          "value": "SCNMaterialProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1normal/title",
+          "value": "normal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1normal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "normal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCullMode/title",
+          "value": "SCNCullMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCullMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCullMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCullMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCullMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCamera/title",
+          "value": "SCNCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCamera/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable/title",
+          "value": "SCNShadable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShadable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShadable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1transparencyMode/title",
+          "value": "transparencyMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1transparencyMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transparencyMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1clearCoatRoughness/title",
+          "value": "clearCoatRoughness"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1clearCoatRoughness/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "clearCoatRoughness"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNFillMode/title",
+          "value": "SCNFillMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNFillMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNFillMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNFillMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNFillMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1writesToDepthBuffer/title",
+          "value": "writesToDepthBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1writesToDepthBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "writesToDepthBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1diffuse/title",
+          "value": "diffuse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1diffuse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "diffuse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry~1firstMaterial/title",
+          "value": "firstMaterial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry~1firstMaterial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "firstMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1fresnelExponent/title",
+          "value": "fresnelExponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1fresnelExponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fresnelExponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1LightingModel-swift.struct/title",
+          "value": "SCNLightingModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1LightingModel-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLightingModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1LightingModel-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLightingModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBlendMode/title",
+          "value": "SCNBlendMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBlendMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNBlendMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBlendMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNBlendMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1isLitPerPixel/title",
+          "value": "litPerPixel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1isLitPerPixel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "litPerPixel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransparencyMode/title",
+          "value": "SCNTransparencyMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransparencyMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTransparencyMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransparencyMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTransparencyMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1shininess/title",
+          "value": "shininess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1shininess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shininess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1emission/title",
+          "value": "emission"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1emission/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "emission"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/title",
+          "value": "SCNAnimatable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1ambient/title",
+          "value": "ambient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1ambient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ambient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1blendMode/title",
+          "value": "blendMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1blendMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blendMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1fillMode/title",
+          "value": "fillMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1fillMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fillMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1ambientOcclusion/title",
+          "value": "ambientOcclusion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1ambientOcclusion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ambientOcclusion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1locksAmbientWithDiffuse/title",
+          "value": "locksAmbientWithDiffuse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial~1locksAmbientWithDiffuse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "locksAmbientWithDiffuse"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scnmaterial"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scnmaterial"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

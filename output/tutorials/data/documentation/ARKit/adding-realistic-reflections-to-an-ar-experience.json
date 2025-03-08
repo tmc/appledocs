@@ -1,0 +1,1810 @@
+{
+  "abstract": [
+    {
+      "text": "Use ARKit to generate environment probe textures from camera imagery and render reflective virtual objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/adding-realistic-reflections-to-an-ar-experience"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adding realistic reflections to an AR experience"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app provides a simple AR experience demonstrating the environment texturing features in ARKit 2 and SceneKit. After you build and run the app, explore your surroundings in the camera view. Then, tap a nearby horizontal surface to place a virtual object: a mirror-finish sphere. After you place the object, you can drag it around or tap to move it to another location. You can also pinch to make the object bigger or smaller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Screenshots",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notice the surface of the virtual sphere shows a generally realistic (if not perfectly accurate) reflection of its real-world surroundings. To create reflective virtual surfaces, a renderer (such as SceneKit) needs an  ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "environment texture",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "—an image that captures the view in all directions from a certain point in the scene (called an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "environment probe",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "). Realistically rendering reflections for multiple objects, or moving objects, may require multiple environment textures, each capturing the scene from a different point of view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit generates environment textures by collecting camera imagery during the AR session. Because ARKit cannot see the scene in all directions, it uses machine learning to extrapolate a realistic environment from available imagery.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-started",
+          "level": 2,
+          "text": "Getting started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can run the sample code project, you’ll need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 10 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 12 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS device with an A9 processor or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Set-up-environment-texturing",
+          "level": 2,
+          "text": "Set up environment texturing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with any AR experience, you run a session with a world tracking configuration and whatever other options you want to enable. (For example, this app allows you to place virtual objects on flat surfaces, so it enables horizontal plane detection.) To generate environment textures, also set the configuration’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/automatic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let configuration = ARWorldTrackingConfiguration()",
+            "configuration.planeDetection = .horizontal",
+            "configuration.environmentTexturing = .automatic",
+            "sceneView.session.run(configuration)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/automatic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " environment texturing (the default for this app) ARKit automatically chooses when and where to generate textures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-virtual-objects-with-reflection",
+          "level": 2,
+          "text": "Render virtual objects with reflection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this app also uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display AR content, SceneKit automatically uses the appropriate environment texture to render each virtual object in the scene. In SceneKit, any asset using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNMaterial/LightingModel-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " materials automatically uses ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "environmental lighting",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". With environmental lighting, the shading for each point on a surface depends on nearby light probe textures or the global lighting environment in the direction that point faces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The visual effect of environment texturing depends on how you configure the properties of a physically based material. (Typically, ) For example, materials with a high ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNMaterial/roughness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " pick up some diffuse color from the texture, and materials with low ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNMaterial/roughness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and high ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNMaterial/metalness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reflect their surroundings with a mirror-like finish.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Roughness",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your AR experience uses a rendering technology other than SceneKit, you’ll need to retrieve the generated textures yourself and determine how to use them appropriately in your shading engine. First, implement the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " delegate method to be notified when ARKit generates environment probe textures. In that method, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor/environmentTexture",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property of each ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object to get the texture.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Place-environment-probes-manually-for-enhanced-results",
+          "level": 2,
+          "text": "Place environment probes manually for enhanced results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Automatic environment texturing is all you need for basic environmental lighting or reflection effects. To render reflections more realistically, however, each reflective object needs an environment probe texture that accurately captures the area close to that object. For example, in the images above, the virtual sphere reflects the real cup when the cup is close to the sphere’s real-world position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To more precisely define environment probes, choose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/manual",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " environment texturing when you configure your AR session, then create your own ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance for each virtual object you want to use environmental lighting with. Initialize each probe’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor/extent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and position (using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " based on the size of the corresponding virtual object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Make sure the probe encompasses the object and provides some surrounding area to appear in reflections.",
+            "var extent = object.extents * object.simdScale",
+            "extent.x *= 3 // Reflect an area 3x the width of the object.",
+            "extent.z *= 3 // Reflect an area 3x the depth of the object.",
+            "",
+            "// Also include some vertical area around the object, but keep the bottom of the probe at the",
+            "// bottom of the object so that it captures the real-world surface underneath.",
+            "let verticalOffset = SIMD3<Float>(0, extent.y, 0)",
+            "let transform = float4x4(translation: object.simdPosition + verticalOffset)",
+            "extent.y *= 2",
+            "",
+            "// Create the new environment probe anchor and add it to the session.",
+            "let probeAnchor = AREnvironmentProbeAnchor(transform: transform, extent: extent)",
+            "sceneView.session.add(anchor: probeAnchor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code applies the rules below to optimally capture the area around each virtual object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The probe’s position should be at the top center of the virtual object, and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component of its extent should be twice the height of the object. This ensures that the bottom of the probe extent aligns with the bottom of the virtual object, accurately capturing the real surface the object sits on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " components of the probe’s extent should be three times the width and depth of the object, ensuring that the probe captures the area beneath and around the object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ProbeExtent",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-environment-texturing-wisely",
+          "level": 2,
+          "text": "Use environment texturing wisely",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these tips to keep your app’s use of environment texturing realistic and efficient:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Avoid virtual content that requires accurate reflections, such as mirror-finish surfaces.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, an AR experience doesn’t have all the information needed to produce a perfect imitation of reality. Good AR experiences carefully design content to hide limitations in realism, preserving the illusion that virtual objects inhabit the user’s real-world surroundings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit environment textures don’t image the environment in all directions around the user, and don’t update in real time, so some kinds of content aren’t well suited for use in AR. For example, a user encountering a virtual mirror may expect to see their own reflection. Design virtual content to use fully-reflective surfaces only in small or highly-detailed parts, and use less reflectivity in large flat surfaces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Handle moving objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rendering a virtual object with realistic reflections require an environment probe that captures a small area around that object. If the object changes position, the corresponding environment probe needs to change to reflect the object’s new surroundings. When manually placing probes, consider one or more of these strategies for handling objects that move:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the path of an object’s movement is known ahead of time, create multiple environment probe anchors and place them along that path.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a global environment probe with an extra-large extent to fall back to when rendering objects that have moved outside the extent of nearby probes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After an object moves, create a new probe to capture the area around its new position, and remove environment probes associated with earlier positions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you display AR content with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", SceneKit automatically interpolates between environment textures for any objects that overlap the extents of multiple environment probes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t generate environment textures too often.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit requires some time to collect camera imagery, and combining and extrapolating that imagery to produce environment textures requires computational resources. Frequently adding new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances to your AR session may not produce noticeable changes in the displayed scene, but does cost battery power and reduce the performance overhead available for other aspects of your AR experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app creates new environment probes whenever the user moves or resizes the virtual object, but limits such updates to occur no more often than once per second. (See the sample ",
+              "type": "text"
+            },
+            {
+              "code": "updateEnvironmentProbe(atTime:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Avoid abrupt transitions between different environment textures.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", if the environment probe texture(s) affecting an object change (either because the object moves or because a new texture becomes available for its current position), SceneKit automatically uses a short fade-in animation to transition to the new result. Depending on what environment textures are in use before and after the transition, that change may be jarring to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid unrealistic transitions, this sample app waits until the first environment texture becomes available before allowing the user to place virtual content. In automatic mode, as soon as the session begins, ARKit automatically begins generating a fallback environment texture covering a large area. In manual mode, the app creates its own fallback environment probe. (See the sample ",
+              "type": "text"
+            },
+            {
+              "code": "updateSceneEnvironmentProbe(for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.) Waiting until this environment texture is available ensures that virtual objects always reflect an environment appropriate to the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, your app may include a static environment-map texture for use as a fallback when environment texturing is not available (for example, to support earlier iOS versions). In this case, try to design or select a texture that appears realistic in a wide variety of situations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "21925afe4ac7/AddingRealisticReflectionsToAnARExperience.zip": {
+      "checksum": "21925afe4ac72d45a8b26e4c53abeecfcf6c5b0bbd00c9886c8251a443cd965330cd71bc5623fe70ffaf55aad4fdd6877b8f3c655be257b36a8678747ade98c5",
+      "identifier": "21925afe4ac7/AddingRealisticReflectionsToAnARExperience.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/21925afe4ac7/AddingRealisticReflectionsToAnARExperience.zip"
+    },
+    "ProbeExtent": {
+      "alt": "Diagram indicating the recommended extent for an environment probe anchor around a virtual object: double the object's height and three times its width and depth, centered at the top of the object.",
+      "identifier": "ProbeExtent",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d993b9291118ec512ef9d4c4f322a542/ProbeExtent.png"
+        }
+      ]
+    },
+    "Roughness": {
+      "alt": "Detail screenshots showing the effect of three different environment textures on both smooth and rough virtual spheres.",
+      "identifier": "Roughness",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e00c718b92ef4a1fcb9c7c53292d313f/Roughness.png"
+        }
+      ]
+    },
+    "Screenshots": {
+      "alt": "Screenshots of the sample app, showing UI prompts for placing a virtual object, the shiny virtual sphere, and the virtual sphere showing the reflection of a real object.",
+      "identifier": "Screenshots",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c91fbc006b62c26b4e97784ab5dddfc0/Screenshots.png"
+        }
+      ]
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform": {
+      "abstract": [
+        {
+          "text": "A matrix encoding the position, orientation, and scale of the anchor relative to the world coordinate space of the AR session the anchor is placed in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor/transform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARDirectionalLightEstimate": {
+      "abstract": [
+        {
+          "text": "Estimated environmental lighting information associated with a captured video frame in a face-tracking AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARDirectionalLightEstimate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDirectionalLightEstimate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARDirectionalLightEstimate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARDirectionalLightEstimate",
+      "type": "topic",
+      "url": "/documentation/arkit/ardirectionallightestimate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor": {
+      "abstract": [
+        {
+          "text": "An object that provides environmental lighting information for a specific area of space in a world-tracking AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentProbeAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentProbeAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AREnvironmentProbeAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arenvironmentprobeanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor/environmentTexture": {
+      "abstract": [
+        {
+          "text": "A cube-map texture that represents the view in all directions from the probe anchor’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environmentTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor/environmentTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "environmentTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "environmentTexture",
+      "type": "topic",
+      "url": "/documentation/arkit/arenvironmentprobeanchor/environmenttexture"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor/extent": {
+      "abstract": [
+        {
+          "text": "The area around the anchor’s position that contains the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor/extent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extent"
+        }
+      ],
+      "role": "symbol",
+      "title": "extent",
+      "type": "topic",
+      "url": "/documentation/arkit/arenvironmentprobeanchor/extent"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARLightEstimate": {
+      "abstract": [
+        {
+          "text": "Estimated scene lighting information associated with a captured video frame in an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARLightEstimate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARLightEstimate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARLightEstimate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARLightEstimate",
+      "type": "topic",
+      "url": "/documentation/arkit/arlightestimate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView": {
+      "abstract": [
+        {
+          "text": "A view that blends virtual 3D content from SceneKit into your augmented reality experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNView"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNView",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw": {
+      "abstract": [
+        {
+          "text": "Provides a newly captured camera image and accompanying AR information to the delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didUpdateFrame:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didupdate:)-9v2kw"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/automatic": {
+      "abstract": [
+        {
+          "text": "The framework automatically determines when and where to generate environment textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/automatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentTexturingAutomatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration.EnvironmentTexturing.automatic",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/automatic"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/manual": {
+      "abstract": [
+        {
+          "text": "The framework generates environment textures only for probe anchors you explicitly add to the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "manual"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/manual",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentTexturingManual"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration.EnvironmentTexturing.manual",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/manual"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects": {
+      "abstract": [
+        {
+          "text": "Determine the camera position and lighting for the current session, and apply effects, such as occlusion, to elements of the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Camera, Lighting, and Effects",
+      "type": "topic",
+      "url": "/documentation/arkit/camera-lighting-and-effects"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNMaterial/LightingModel-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants specifying the lighting and shading algorithm to use for rendering a material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LightingModel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNMaterial/LightingModel-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNMaterial.LightingModel",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNMaterial/LightingModel-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNMaterial/metalness": {
+      "abstract": [
+        {
+          "text": "An object that provides color values to determine how metallic the material’s surface appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metalness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNMaterial/metalness",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "metalness",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNMaterial/metalness"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNMaterial/roughness": {
+      "abstract": [
+        {
+          "text": "An object that provides color values to determine the apparent smoothness of the surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "roughness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNMaterial/roughness",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "roughness",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNMaterial/roughness"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "21925afe4ac7/AddingRealisticReflectionsToAnARExperience.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Lighting-Effects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+        "doc://com.apple.arkit/documentation/ARKit/ARLightEstimate",
+        "doc://com.apple.arkit/documentation/ARKit/ARDirectionalLightEstimate"
+      ],
+      "title": "Lighting Effects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Lighting-Effects",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+                "doc://com.apple.arkit/documentation/ARKit/ARLightEstimate",
+                "doc://com.apple.arkit/documentation/ARKit/ARDirectionalLightEstimate"
+              ],
+              "title": "Lighting Effects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNMaterial~1LightingModel-swift.struct/title",
+          "value": "SCNLightingModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNMaterial~1LightingModel-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNLightingModel"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARLightEstimate/title",
+          "value": "ARLightEstimate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARLightEstimate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARLightEstimate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARLightEstimate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARLightEstimate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum~1manual/title",
+          "value": "AREnvironmentTexturingManual"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum~1manual/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturingManual"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor~1extent/title",
+          "value": "extent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor~1extent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNMaterial~1metalness/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+              "text": "SCNMaterialProperty"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "metalness"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-9v2kw/title",
+          "value": "session:didUpdateFrame:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-9v2kw/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didUpdateFrame:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum~1automatic/title",
+          "value": "AREnvironmentTexturingAutomatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum~1automatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturingAutomatic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor/title",
+          "value": "AREnvironmentProbeAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentProbeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentProbeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor~1environmentTexture/title",
+          "value": "environmentTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor~1environmentTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "environmentTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNMaterial~1roughness/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+              "text": "SCNMaterialProperty"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "roughness"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/title",
+          "value": "ARSCNView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDirectionalLightEstimate/title",
+          "value": "ARDirectionalLightEstimate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDirectionalLightEstimate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARDirectionalLightEstimate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDirectionalLightEstimate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARDirectionalLightEstimate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/adding-realistic-reflections-to-an-ar-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/adding-realistic-reflections-to-an-ar-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

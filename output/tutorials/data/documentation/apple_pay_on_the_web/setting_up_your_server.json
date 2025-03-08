@@ -1,0 +1,641 @@
+{
+  "abstract": [
+    {
+      "text": "Set up your server for secure communications with Apple Pay.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server"
+  },
+  "kind": "article",
+  "legacy_identifier": 2930230,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting Up Your Server"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These are the requirements for incorporating Apple Pay on your website:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must serve all pages that include Apple Pay over HTTPS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your domain must have a valid SSL certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your server must support the Transport Layer Security (TLS) protocol version 1.2 or later, and one of the cipher suites listed here:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "2930807",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cipher suite value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0x13, 0x01 ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "TLS_AES_128_GCM_SHA256",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0x13, 0x02 ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "TLS_AES_256_GCM_SHA384",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0xC0,0x2B",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ECDHE-ECDSA-AES128-GCM-SHA256 ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0xC0,0x2F",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ECDHE-RSA-AES128-GCM-SHA256",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0xC0,0x2C",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ECDHE-ECDSA-AES256-GCM-SHA384 ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0xC0,0x30",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ECDHE-RSA-AES256-GCM-SHA384 ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "3172426",
+          "level": 3,
+          "text": "Allow Apple Pay IP Addresses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To successfully connect with Apple Pay IP addresses and domains, your server needs to allow access over HTTPS (TCP over port 443)  and include the TLS Server Name Indication (SNI) extension. Apple Pay requires SNI on all connections. Your server needs to connect to the Apple Pay IP addresses and domains provided listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3172427",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", below. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use a strict allow list for Apple IP addresses and domains provided in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3172427",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Do not allow your server to access any other IP addresses or domains.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "Domain",
+            "apple-pay-gateway.apple.com (Global)",
+            "",
+            "This name resolves to the IP addresses / CIDR block below:",
+            "17.171.78.7/32, 17.171.78.71/32, 17.171.78.135/32, 17.171.78.199/32, 17.171.79.12/32",
+            "17.141.128.7/32, 17.141.128.71/32, 17.141.128.135/32, 17.141.128.199/32, 17.141.129.12/32",
+            "17.32.214.7/32, 17.157.96.181/32",
+            "17.33.194.239/32, 17.33.192.38/32, 17.33.193.110/32",
+            "17.33.202.35/32, 17.33.201.101/32, 17.33.200.169/32",
+            "",
+            "",
+            "Domain",
+            "cn-apple-pay-gateway.apple.com (China Region)",
+            "",
+            "This name resolves to the IP addresses / CIDR block below:",
+            "101.230.204.232/32, 101.230.204.242/32, 101.230.204.240/32",
+            "60.29.205.104/32, 60.29.205.106/32, 60.29.205.108/32"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Apple Pay IP addresses and domain names for production.",
+                "type": "text"
+              }
+            ],
+            "anchor": "3172427",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use the IP addresses, in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#4472941",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for development and sandbox testing only. Do not allow your production apps or production servers to use these testing services in production.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "For sandbox testing only:",
+            "Domain",
+            "apple-pay-gateway-cert.apple.com (Global)",
+            "",
+            "This name resolves to the IP addresses / CIDR block below:",
+            "17.171.85.7/32",
+            "17.179.124.181/32, 17.32.214.56/32",
+            "17.33.194.218/32, 17.33.192.145/32, 17.33.193.45/32",
+            "17.33.200.47/32, 17.33.202.99/32, 17.33.201.105/32",
+            "",
+            "Domain",
+            "cn-apple-pay-gateway-cert.apple.com (China Region)",
+            "",
+            "This name resolves to the IP addresses / CIDR block below:",
+            "101.230.204.235/32"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Apple Pay IP addresses and domain names for testing (development sandbox).",
+                "type": "text"
+              }
+            ],
+            "anchor": "4472941",
+            "title": "Listing 2"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about merchant validation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3179116",
+          "level": 3,
+          "text": "Allow Apple IP Addresses for Domain Verification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple uses the following IP addresses when you register or verify your merchant domain. If you protect your domain from public access and you wish to complete domain verification, you need to allow the following IP address ranges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "17.32.139.128/27",
+            "17.32.139.160/27",
+            "17.140.126.0/27",
+            "17.140.126.32/27",
+            "17.179.144.128/27",
+            "17.179.144.160/27",
+            "17.179.144.192/27",
+            "17.179.144.224/27",
+            "17.253.0.0/16"
+          ],
+          "metadata": {
+            "anchor": "3179117",
+            "title": "Listing 3"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment#3179109",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing Merchant Validation",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment": {
+      "abstract": [
+        {
+          "text": "Create your Apple Pay merchant ID and certificates, and verify your domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Your Environment",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/configuring_your_environment"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment#3179109": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment#3179109",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Register and Verify Your Domain",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/configuring_your_environment#3179109"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/maintaining_your_environment": {
+      "abstract": [
+        {
+          "text": "Prevent interruptions in your Apple Pay service by keeping certificates and domain verification current.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/maintaining_your_environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Maintaining Your Environment",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/maintaining_your_environment"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server": {
+      "abstract": [
+        {
+          "text": "Set up your server for secure communications with Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Your Server",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#2930807": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#2930807",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server#2930807"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3172427": {
+      "abstract": [
+        {
+          "text": "Apple Pay IP addresses and domain names for production.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3172427",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server#3172427"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3179117": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3179117",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server#3179117"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#4472941": {
+      "abstract": [
+        {
+          "text": "Apple Pay IP addresses and domain names for testing (development sandbox).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#4472941",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server#4472941"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/maintaining_your_environment"
+      ],
+      "title": "Apple Pay setup"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/setting_up_your_server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

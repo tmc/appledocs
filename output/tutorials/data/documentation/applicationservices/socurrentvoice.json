@@ -1,0 +1,255 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552228-speech-channel_information_constants"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/socurrentvoice"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1458992,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@Ea@soStatus@soCurrentVoice",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "soCurrentVoice"
+      },
+      {
+        "kind": "text",
+        "text": ": OSType"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "data",
+    "title": "soCurrentVoice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "soCurrentVoice"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSType",
+              "text": "OSType"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the current voice on the current speechchannel to the specified voice. The ",
+              "type": "text"
+            },
+            {
+              "code": "speechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameteris a pointer to a voice specification structure. Your applicationshould create the structure by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461446-makevoicespec",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "SetSpeechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " willreturn an ",
+              "type": "text"
+            },
+            {
+              "code": "incompatibleVoice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " errorif the specified voice is incompatible with the speech synthesizerassociated with the speech channel. If you have a speech channelopen using a voice from a particular synthesizer and you try toswitch to a voice that works with a different synthesizer, you receivean ",
+              "type": "text"
+            },
+            {
+              "code": "incompatibleVoice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error.You need to create a new channel to use with the new voice.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This selector works with the ",
+              "type": "text"
+            },
+            {
+              "code": "SetSpeechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461446-makevoicespec": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461446-makevoicespec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MakeVoiceSpec(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461446-makevoicespec"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552228-speech-channel_information_constants": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552228-speech-channel_information_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech-Channel Information Constants",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/1552228-speech-channel_information_constants"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1552228-speech-channel_information_constants/socurrentvoice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/socurrentvoice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

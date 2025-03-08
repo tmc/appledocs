@@ -1,0 +1,899 @@
+{
+  "abstract": [
+    {
+      "text": "Demonstrates how to enable drag and drop for a ",
+      "type": "text"
+    },
+    {
+      "code": "UIImageView",
+      "type": "codeVoice"
+    },
+    {
+      "text": " instance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/drag-and-drop"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-custom-view"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adopting drag and drop in a custom view"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to show how any instance or subclass of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class can act as a drag source or a drop destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable drag and drop, you add one or more interaction objects to a view. To provide or consume data, you implement the protocol methods in the interaction delegates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-started",
+          "level": 3,
+          "text": "Get started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Deploy this sample code project on iPad, which supports drag and drop between apps. When you first launch this project’s built app, you see an image view containing an image. Use this app along with a second app that has images, such as Photos. For example, configure the iPad screen to Split View, with this app side by side with Photos. Then drag the image from this app into Photos, or drag an image from Photos into this app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-drag-and-drop-interactions",
+          "level": 3,
+          "text": "Enable drag and drop interactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable dragging, dropping, or both, attach interactions to views. A convenient place for this code is in an app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the drag interaction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let dragInteraction = UIDragInteraction(delegate: self)",
+            "imageView.addInteraction(dragInteraction)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the drop interaction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let dropInteraction = UIDropInteraction(delegate: self)",
+            "view.addInteraction(dropInteraction)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enabling drag and drop for an image view, which this project uses, requires an additional step. You must explicitly enable user interaction, like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "imageView.isUserInteractionEnabled = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-data-for-a-drag-session",
+          "level": 3,
+          "text": "Provide data for a drag session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragInteractionDelegate/dragInteraction(_:itemsForBeginning:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is the one essential method for allowing dragging from a view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {",
+            "    guard let image = imageView.image else { return [] }",
+            "",
+            "    let provider = NSItemProvider(object: image)",
+            "    let item = UIDragItem(itemProvider: provider)",
+            "    item.localObject = image",
+            "    ",
+            "    /*",
+            "         Returning a non-empty array, as shown here, enables dragging. You",
+            "         can disable dragging by instead returning an empty array.",
+            "    */",
+            "    return [item]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls this delegate method in response to the user gesture that initiates dragging. In your implementation, return an array of one or more drag items, each with one item provider. In each item provider, specify one or more data representations of the model object to be dragged. The model object must conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting",
+              "isActive": true,
+              "overridingTitle": "NSItemProviderWriting",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSItemProviderWriting",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more about providing data for dragging, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Consume-data-from-a-drop-session",
+          "level": 3,
+          "text": "Consume data from a drop session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable a view to consume data from a drop session, you implement three delegate methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, your app can refuse the drag items based on their uniform type identifiers (UTIs), the state of your app, or other requirements. Here, the implementation allows a user to drop only a single item that conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "kUTTypeImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " UTI:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {",
+            "    return session.hasItemsConforming(toTypeIdentifiers: [kUTTypeImage as String]) && session.items.count == 1",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Second, you must tell the system how you want to consume the data, which is typically by copying it. You specify this choice by way of a drop proposal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {",
+            "    let dropLocation = session.location(in: view)",
+            "    updateLayers(forDropLocation: dropLocation)",
+            "",
+            "    let operation: UIDropOperation",
+            "",
+            "    if imageView.frame.contains(dropLocation) {",
+            "        /*",
+            "             If you add in-app drag-and-drop support for the .move operation,",
+            "             you must write code to coordinate between the drag interaction",
+            "             delegate and the drop interaction delegate.",
+            "        */",
+            "        operation = session.localDragSession == nil ? .copy : .move",
+            "    } else {",
+            "        // Do not allow dropping outside of the image view.",
+            "        operation = .cancel",
+            "    }",
+            "",
+            "    return UIDropProposal(operation: operation)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, after the user lifts their finger from the screen, indicating their intent to drop the drag items, your view has one opportunity to request particular data representations of the drag items:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {",
+            "    // Consume drag items (in this example, of type UIImage).",
+            "    session.loadObjects(ofClass: UIImage.self) { imageItems in",
+            "        let images = imageItems as! [UIImage]",
+            "",
+            "        /*",
+            "             If you do not employ the loadObjects(ofClass:completion:) convenience",
+            "             method of the UIDropSession class, which automatically employs",
+            "             the main thread, explicitly dispatch UI work to the main thread.",
+            "             For example, you can use `DispatchQueue.main.async` method.",
+            "        */",
+            "        self.imageView.image = images.first",
+            "    }",
+            "",
+            "    // Perform additional UI updates as needed.",
+            "    let dropLocation = session.location(in: view)",
+            "    updateLayers(forDropLocation: dropLocation)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to these three methods, drag and drop offers additional API hooks for customizing your adoption of the feature. For more about consuming data from a drop session, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "64088647bd17/AdoptingDragAndDropInACustomView.zip": {
+      "checksum": "64088647bd174f4e11533dd2fa4c4698219a57dacdad07076b2cee50c7d5a698c61e37159363da13dd55ba80ee5828655f5ede390ed321072319b1743d4720c0",
+      "identifier": "64088647bd17/AdoptingDragAndDropInACustomView.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/64088647bd17/AdoptingDragAndDropInACustomView.zip"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting": {
+      "abstract": [
+        {
+          "text": "The protocol for implementing a class to allow an item provider to retrieve data from an instance of the class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderWriting"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderWriting",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderwriting"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDragInteractionDelegate/dragInteraction(_:itemsForBeginning:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for the array of drag items for an impending drag interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dragInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDragInteraction",
+          "text": "UIDragInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemsForBeginning"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDragSession",
+          "text": "UIDragSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDragItem",
+          "text": "UIDragItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragInteractionDelegate/dragInteraction(_:itemsForBeginning:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dragInteraction:itemsForBeginningSession:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "dragInteraction(_:itemsForBeginning:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidraginteractiondelegate/draginteraction(_:itemsforbeginning:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImageView": {
+      "abstract": [
+        {
+          "text": "A view that displays a single image or a sequence of animated images in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImageView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImageView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimageview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewdidload()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view": {
+      "abstract": [
+        {
+          "text": "Demonstrates how to enable and implement drag and drop for a table view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting drag and drop in a table view",
+      "type": "topic",
+      "url": "/documentation/uikit/adopting-drag-and-drop-in-a-table-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Bring drag and drop to your app by using interaction APIs with your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/uikit/drag-and-drop"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source": {
+      "abstract": [
+        {
+          "text": "Adopt drag interaction APIs to provide items for dragging.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a view into a drag source",
+      "type": "topic",
+      "url": "/documentation/uikit/making-a-view-into-a-drag-source"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination": {
+      "abstract": [
+        {
+          "text": "Adopt drop interaction APIs to selectively consume dragged content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a view into a drop destination",
+      "type": "topic",
+      "url": "/documentation/uikit/making-a-view-into-a-drop-destination"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise": {
+      "abstract": [
+        {
+          "text": "Use drag items to convey data representation promises between a source app and a destination app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding a drag item as a promise",
+      "type": "topic",
+      "url": "/documentation/uikit/understanding-a-drag-item-as-a-promise"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "64088647bd17/AdoptingDragAndDropInACustomView.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise",
+        "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source",
+        "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination",
+        "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise",
+                "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source",
+                "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination",
+                "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/title",
+          "value": "UIImageView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragInteractionDelegate~1dragInteraction(_:itemsForBeginning:)/title",
+          "value": "dragInteraction:itemsForBeginningSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragInteractionDelegate~1dragInteraction(_:itemsForBeginning:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dragInteraction:itemsForBeginningSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/adopting-drag-and-drop-in-a-custom-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/adopting-drag-and-drop-in-a-custom-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,577 @@
+{
+  "abstract": [
+    {
+      "text": "Reinterpret a sprite’s alpha property to react differently to the objects below it.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/blending-a-sprite-with-different-interpretations-of-alpha"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Blending a Sprite with Different Interpretations of Alpha"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The final stage of rendering is to blend the sprite’s texture into its destination frame buffer. The default behavior uses the alpha values of the texture to blend the texture with the destination pixels. However, you can use other blend modes when you want to add other special effects to a scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You control the sprite’s blending behavior using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/blendMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. For example, an additive blend mode is useful to combine multiple sprites together, for effects such as for fire or lighting. The following code shows how to position three overlapping sprite nodes in a circle to demonstrate the effect of different blend modes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let blendMode = SKBlendMode.alpha",
+            "let imageNames = [\"redCircle\", \"greenCircle\", \"blueCircle\"]",
+            "",
+            "for (index, imageName) in imageNames.enumerated() {",
+            "    let node = SKSpriteNode(imageNamed: imageName)",
+            "    ",
+            "    node.alpha = 0.5",
+            "    node.blendMode = blendMode",
+            "    ",
+            "    let angle = (CGFloat.pi * 2) / CGFloat(colors.count) * CGFloat(index)",
+            "    ",
+            "    let positionX = 320 + sin(angle) * radius / 2",
+            "    let positionY = 320 + cos(angle) * radius / 2",
+            "    ",
+            "    node.position = CGPoint(x: positionX, y: positionY)",
+            "    ",
+            "    scene.addChild(node)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the default blend mode of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKBlendMode/alpha",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the thee circles look like:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2983070",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, with a blend mode of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKBlendMode/add",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the color values are added together, creating a scene that looks like:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2983071",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKBlendMode": {
+      "abstract": [
+        {
+          "text": "The modes that describe how the source and destination pixel colors are used to calculate the new destination color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKBlendMode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKBlendMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKBlendMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKBlendMode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skblendmode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKBlendMode/add": {
+      "abstract": [
+        {
+          "text": "The source and destination colors are added together.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKBlendMode/add",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKBlendModeAdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKBlendMode.add",
+      "type": "topic",
+      "url": "/documentation/spritekit/skblendmode/add"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKBlendMode/alpha": {
+      "abstract": [
+        {
+          "text": "The source and destination colors are blended by multiplying the source alpha value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKBlendMode/alpha",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKBlendModeAlpha"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKBlendMode.alpha",
+      "type": "topic",
+      "url": "/documentation/spritekit/skblendmode/alpha"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode": {
+      "abstract": [
+        {
+          "text": "An image or solid color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSpriteNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/blendMode": {
+      "abstract": [
+        {
+          "text": "The blend mode used to draw the sprite into the parent’s framebuffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKBlendMode",
+          "text": "SKBlendMode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/blendMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blendMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "blendMode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode/blendmode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    },
+    "media-2983070": {
+      "alt": "Overlapping sprite nodes using alpha blending",
+      "identifier": "media-2983070",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e34b1c98fde069ffaa6370565f6ffe14/media-2983070@2x.png"
+        }
+      ]
+    },
+    "media-2983071": {
+      "alt": "Overlapping sprite nodes using additive blending",
+      "identifier": "media-2983071",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/636dc48fdc112899bd9ac3ccad739e71/media-2983071@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-Alpha-Blendling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/blendMode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKBlendMode"
+      ],
+      "title": "Configuring Alpha Blendling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-Alpha-Blendling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/blendMode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKBlendMode"
+              ],
+              "title": "Configuring Alpha Blendling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode~1blendMode/title",
+          "value": "blendMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode~1blendMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blendMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKBlendMode~1add/title",
+          "value": "SKBlendModeAdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKBlendMode~1add/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKBlendModeAdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/title",
+          "value": "SKSpriteNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKBlendMode/title",
+          "value": "SKBlendMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKBlendMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKBlendMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKBlendMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKBlendMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKBlendMode~1alpha/title",
+          "value": "SKBlendModeAlpha"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKBlendMode~1alpha/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKBlendModeAlpha"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/blending-a-sprite-with-different-interpretations-of-alpha"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/blending-a-sprite-with-different-interpretations-of-alpha"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

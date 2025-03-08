@@ -1,0 +1,838 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a Thumbnail Extension to allow the operating system and other apps to display thumbnails of your custom files.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/providing-thumbnails-of-your-custom-file-types"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Quick Look Thumbnailing"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Providing Thumbnails of Your Custom File Types"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a Thumbnail Extension to your app to enable other apps to create thumbnails of your custom file types using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailGenerator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. In addition, this allows the operating system to display rich thumbnails for your custom file types instead of a generic file icon. For example, if your app implements a Thumbnail extension, the iOS Files app and Finder on macOS display thumbnails for your custom file types when the user installs your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding a Thumbnail Extension also enables iCloud to generate a thumbnail alongside your custom file, enabling other devices to display the thumbnail once the file has been synced with iCloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Thumbnail-Extension-to-Your-App",
+          "level": 3,
+          "text": "Add a Thumbnail Extension to Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a Thumbnail Extension to your app, select your project in Xcode’s Project navigator and make sure the General pane is visible. Select the + button and add a new Thumbnail extension to your app. Make sure to allow Xcode to create and activate a new build scheme for the extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the new scheme for the Thumbnail extension, Xcode adds the following files to your project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A new group in the Project navigator for the extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass that contains the code to generate a thumbnail representation of your custom file types.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The extension’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with information about the custom file types to associate with your app and the thumbnails’ minimum dimension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Update-the-Extensions-Infoplist",
+          "level": 3,
+          "text": "Update the Extension’s Info.plist",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode creates an ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for your new Thumbnail Extension that contains two important entries below the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionAttributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. Update the following entries in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This entry contains an array of all custom file types for which your app provides thumbnails. Make sure to declare all file types that you support, using the exact Uniform Type Identifiers (UTI). QuickLookThumbnailing only uses your extension for a file type if the listed UTI matches the file type. It’s not sufficient to list a parent UTI to which a file type may conform.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "QLSupportedContentTypes",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Some content types, such as text-heavy content, may not present a good representation at very small sizes. The value of this entry describes the minimum dimension of the thumbnails that your Thumbnail Extension provides, instructing the QuickLookThumbnailing framework to avoid calling your extension if an app or operating systems requests a thumbnail smaller than the specified size, and instead provide a generic file icon.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "QLThumbnailMinimumDimension",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Create-Thumbnails-for-Your-Custom-File-Types",
+          "level": 3,
+          "text": "Create Thumbnails for Your Custom File Types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using Xcode’s Thumbnail Extension template adds a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your project that contains an empty implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailProvider/provideThumbnail(for:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Decide which of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailReply",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "’s initializers you want to use and add your implementation to create thumbnails for each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailRepresentation/RepresentationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This decision depends on your app and its requirements; make sure to optimize your code that generates the thumbnails and keep any files as small as possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func provideThumbnail(for request: QLFileThumbnailRequest, _ handler: @escaping (QLThumbnailReply?, Error?) -> Void) {",
+            "    ",
+            "    // There are three ways to provide a thumbnail through a QLThumbnailReply. Only one of them should be used.",
+            "    ",
+            "    // First way: Draw the thumbnail into the current context, set up with UIKit's coordinate system.",
+            "    handler(QLThumbnailReply(contextSize: request.maximumSize, currentContextDrawing: { () -> Bool in",
+            "        // Draw the thumbnail here.",
+            "        ",
+            "        // Return true if the thumbnail was successfully drawn inside this block.",
+            "        return true",
+            "    }), nil)",
+            "    ",
+            "    /*",
+            "    ",
+            "    // Second way: Draw the thumbnail into a context passed to your block, set up with Core Graphics's coordinate system.",
+            "    handler(QLThumbnailReply(contextSize: request.maximumSize, drawing: { (context) -> Bool in",
+            "        // Draw the thumbnail here.",
+            "     ",
+            "        // Return true if the thumbnail was successfully drawn inside this block.",
+            "        return true",
+            "    }), nil)",
+            "     ",
+            "    // Third way: Set an image file URL.",
+            "    handler(QLThumbnailReply(imageFileURL: Bundle.main.url(forResource: \"fileThumbnail\", withExtension: \"jpg\")!), nil)",
+            "    ",
+            "    */",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing": {
+      "abstract": [
+        {
+          "text": "Generate thumbnails for common file types and add a Thumbnail Extension to your app to enable others to create thumbnails of your custom files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quick Look Thumbnailing",
+      "type": "topic",
+      "url": "/documentation/quicklookthumbnailing"
+    },
+    "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLFileThumbnailRequest": {
+      "abstract": [
+        {
+          "text": "A request to generate a thumbnail for a custom file type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLFileThumbnailRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLFileThumbnailRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLFileThumbnailRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLFileThumbnailRequest",
+      "type": "topic",
+      "url": "/documentation/quicklookthumbnailing/qlfilethumbnailrequest"
+    },
+    "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailGenerator": {
+      "abstract": [
+        {
+          "text": "An object that generates thumbnail images based on provided requirements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailGenerator",
+      "type": "topic",
+      "url": "/documentation/quicklookthumbnailing/qlthumbnailgenerator"
+    },
+    "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class for creating thumbnails of custom file types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailProvider",
+      "type": "topic",
+      "url": "/documentation/quicklookthumbnailing/qlthumbnailprovider"
+    },
+    "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailProvider/provideThumbnail(for:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a thumbnail of a custom file type for a specific request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "provideThumbnail"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)QLFileThumbnailRequest",
+          "text": "QLFileThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)QLThumbnailReply",
+          "text": "QLThumbnailReply"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailProvider/provideThumbnail(for:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "provideThumbnailForFileRequest:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "provideThumbnail(for:_:)",
+      "type": "topic",
+      "url": "/documentation/quicklookthumbnailing/qlthumbnailprovider/providethumbnail(for:_:)"
+    },
+    "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailReply": {
+      "abstract": [
+        {
+          "text": "The object that provides a thumbnail for a custom file type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailReply"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailReply",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailReply"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailReply",
+      "type": "topic",
+      "url": "/documentation/quicklookthumbnailing/qlthumbnailreply"
+    },
+    "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailRepresentation/RepresentationType": {
+      "abstract": [
+        {
+          "text": "The different types of thumbnails that you can create.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RepresentationType"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailRepresentation/RepresentationType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RepresentationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRepresentation.RepresentationType",
+      "type": "topic",
+      "url": "/documentation/quicklookthumbnailing/qlthumbnailrepresentation/representationtype"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Thumbnails-for-Custom-File-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailProvider",
+        "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLFileThumbnailRequest",
+        "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailReply"
+      ],
+      "title": "Thumbnails for Custom File Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Thumbnails-for-Custom-File-Types",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailProvider",
+                "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLFileThumbnailRequest",
+                "doc://com.apple.quicklookthumbnailing/documentation/QuickLookThumbnailing/QLThumbnailReply"
+              ],
+              "title": "Thumbnails for Custom File Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailProvider/title",
+          "value": "QLThumbnailProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailRepresentation~1RepresentationType/title",
+          "value": "QLThumbnailRepresentationType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailRepresentation~1RepresentationType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRepresentationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailRepresentation~1RepresentationType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRepresentationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailProvider~1provideThumbnail(for:_:)/title",
+          "value": "provideThumbnailForFileRequest:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailProvider~1provideThumbnail(for:_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "provideThumbnailForFileRequest:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailGenerator/title",
+          "value": "QLThumbnailGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailReply/title",
+          "value": "QLThumbnailReply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailReply/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailReply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLThumbnailReply/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailReply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLFileThumbnailRequest/title",
+          "value": "QLFileThumbnailRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLFileThumbnailRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLFileThumbnailRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklookthumbnailing~1documentation~1QuickLookThumbnailing~1QLFileThumbnailRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLFileThumbnailRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicklookthumbnailing/providing-thumbnails-of-your-custom-file-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quicklookthumbnailing/providing-thumbnails-of-your-custom-file-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

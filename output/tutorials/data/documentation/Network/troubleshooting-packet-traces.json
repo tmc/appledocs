@@ -1,0 +1,783 @@
+{
+  "abstract": [
+    {
+      "text": "Take action to address packet tracing problems.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network",
+        "doc://com.apple.network/documentation/Network/recording-a-packet-trace"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Troubleshooting Packet Traces"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re having problems recording a packet trace, read this document for some troubleshooting tips.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Troubleshoot-the-Remote-Virtual-Interface-RVI",
+          "level": 3,
+          "text": "Troubleshoot the Remote Virtual Interface (RVI)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you first launch Xcode, it installs the ",
+              "type": "text"
+            },
+            {
+              "code": "rvictl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool. If Terminal is unable to find the tool:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure you have the latest version of Xcode installed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/usr/bin/",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is in your shell search path.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "rvictl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fails with the message ",
+              "type": "text"
+            },
+            {
+              "code": "bootstrap_look_up(): 1102",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", make sure that the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.rpmuxd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " daemon is installed and loaded. The following command should print information about the daemon:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sudo launchctl list com.apple.rpmuxd"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the daemon is installed correctly, you should see output like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ sudo launchctl list com.apple.rpmuxd",
+            "{",
+            "    \"Label\" = \"com.apple.rpmuxd\";",
+            "    …",
+            "};"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the daemon isn’t installed correctly you’ll see this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ sudo launchctl list com.apple.rpmuxd",
+            "Could not find service \"com.apple.rpmuxd\" in domain for system"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This message can indicate that the daemon is unloaded. You can force it to load as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.rpmuxd.plist"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Understand-How-Your-Network-Debugging-Tool-Deals-with-Local-Traffic",
+          "level": 3,
+          "text": "Understand How Your Network Debugging Tool Deals with Local Traffic",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some network debugging tools have problems dealing with traffic to or from the local machine, and some work best with that arrangement. Consult the documentation that comes with your tool for up-to-date information about its limitations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "tcpdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool may flag the TCP checksum of packets sent by the local machine as bad. This is because of TCP checksum offloading. It’s not a fatal problem, but if the bad checksums bother you, turn off this check by passing the ",
+              "type": "text"
+            },
+            {
+              "code": "-K",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option to ",
+              "type": "text"
+            },
+            {
+              "code": "tcpdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Avoid-Dropped-Packets-by-Increasing-the-Recording-Buffer-Size",
+          "level": 3,
+          "text": "Avoid Dropped Packets by Increasing the Recording Buffer Size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you record all the bytes of each packet, it’s possible to overrun the kernel’s packet recording buffer. In this case, your packet trace tool should report a problem. For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "tcpdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool prints a summary of how many packets were recorded, filtered, and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dropped",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " when you stop the recording.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ sudo tcpdump -i en0 -w trace.pcap",
+            "tcpdump: listening on en0, link-type EN10MB (Ethernet), capture size 65535 bytes",
+            "^C",
+            "94 packets captured",
+            "177 packets received by filter",
+            "0 packets dropped by kernel"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the dropped count is non-zero, increase the packet recording buffer size by passing the ",
+              "type": "text"
+            },
+            {
+              "code": "-B",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option to ",
+              "type": "text"
+            },
+            {
+              "code": "tcpdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information about this and other ",
+                  "type": "text"
+                },
+                {
+                  "code": "tcpdump",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " options, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-Promiscuous-Mode-Effectively",
+          "level": 3,
+          "text": "Use Promiscuous Mode Effectively",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On modern systems it’s generally best to run your packet trace tool on one of the machines involved in the communication you’re investigating. However, in some cases that’s not practical, so you have to run your tool on a different machine entirely. When doing so, be aware of these challenges:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The target interface must support promiscuous mode, that is, the ability to record packets that aren’t destined for that interface. Most Ethernet interfaces support promiscuous mode. Most Wi-Fi interfaces also support promiscuous mode, but that’s not useful because of network topology restrictions. Other interface types typically don’t support promiscuous mode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The network topology must allow the interface to see the packets. Historically, you could ensure this by connecting your machines using a hub. However, hubs are almost unheard of these days: Your DSL gateway might claim to have “an embedded four-port hub”, but actually that’s a switch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By default, switches don’t forward all traffic to all ports. If you have a simple switch, there’s no way to override this default. For promiscuous mode to be useful, you’ll need an advanced switch that supports port mirroring, that is, the ability to forward all traffic to a specific port.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re trying to use promiscuous mode on Wi-Fi, be aware that Wi-Fi access points act like switches, with standard traffic being seen only by the stations involved and the access point. Only a low-level Wi-Fi packet trace can take advantage of Wi-Fi promiscuous mode; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace#Record-Low-Level-Details-of-Wi-Fi-Traffic-Management",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Get-More-Hints-from-the-Wireshark-Wiki",
+          "level": 3,
+          "text": "Get More Hints from the Wireshark Wiki",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://wiki.wireshark.org/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " has some useful information about how to set up your packet tracing environment:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://wiki.wireshark.org/CaptureSetup/Ethernet",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " page contains background information on how to set up your network for monitoring.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://wiki.wireshark.org/HubReference",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " page contains information on various types of hubs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://wiki.wireshark.org/SwitchReference",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " page contains information on analysis features, such as port mirroring, found on various models of switches, including links to online documentation for those switches.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-packet-trace": {
+      "abstract": [
+        {
+          "text": "Learn how to record a low-level trace of network traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recording a Packet Trace",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-packet-trace"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace": {
+      "abstract": [
+        {
+          "text": "Record traces of Wi-Fi traffic and traffic management.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace",
+      "kind": "article",
+      "role": "article",
+      "title": "Recording a Wi-Fi Packet Trace",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-wi-fi-packet-trace"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace#Record-Low-Level-Details-of-Wi-Fi-Traffic-Management": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace#Record-Low-Level-Details-of-Wi-Fi-Traffic-Management",
+      "kind": "section",
+      "title": "Record Low-Level Details of Wi-Fi Traffic Management",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-wi-fi-packet-trace#Record-Low-Level-Details-of-Wi-Fi-Traffic-Management"
+    },
+    "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple": {
+      "abstract": [
+        {
+          "text": "Learn the best way to record a packet trace when communicating with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Submitting a Packet Trace to Apple",
+      "type": "topic",
+      "url": "/documentation/network/submitting-a-packet-trace-to-apple"
+    },
+    "https://wiki.wireshark.org/": {
+      "identifier": "https://wiki.wireshark.org/",
+      "title": "Wireshark wiki",
+      "titleInlineContent": [
+        {
+          "text": "Wireshark wiki",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://wiki.wireshark.org/"
+    },
+    "https://wiki.wireshark.org/CaptureSetup/Ethernet": {
+      "identifier": "https://wiki.wireshark.org/CaptureSetup/Ethernet",
+      "title": "Ethernet Capture Setup",
+      "titleInlineContent": [
+        {
+          "text": "Ethernet Capture Setup",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://wiki.wireshark.org/CaptureSetup/Ethernet"
+    },
+    "https://wiki.wireshark.org/HubReference": {
+      "identifier": "https://wiki.wireshark.org/HubReference",
+      "title": "Hub Reference",
+      "titleInlineContent": [
+        {
+          "text": "Hub Reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://wiki.wireshark.org/HubReference"
+    },
+    "https://wiki.wireshark.org/SwitchReference": {
+      "identifier": "https://wiki.wireshark.org/SwitchReference",
+      "title": "Switch Reference",
+      "titleInlineContent": [
+        {
+          "text": "Switch Reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://wiki.wireshark.org/SwitchReference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Working-with-Packet-Traces",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace",
+        "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple"
+      ],
+      "title": "Working with Packet Traces"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Working-with-Packet-Traces",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace",
+                "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple"
+              ],
+              "title": "Working with Packet Traces"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/troubleshooting-packet-traces"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/troubleshooting-packet-traces"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

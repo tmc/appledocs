@@ -1,0 +1,1859 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about the fundamental properties that provide a foundation for all other nodes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-nodes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting Started with Nodes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Nodes are organized hierarchically into node trees, similar to how views and subviews work. Most commonly, a node tree is defined with a scene node (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") as the root node and other content nodes as descendants. The scene node runs an animation loop that processes actions on the nodes, simulates physics, and renders the contents of the node tree for display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every node in a node tree provides a coordinate system to its children. After a child is added to the node tree, you position it inside its parent’s coordinate system by setting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zPosition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. A node’s coordinate system can be scaled and rotated by changing its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/xScale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/yScale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zRotation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. When a node’s coordinate system is scaled or rotated, this transformation is applied both to the node’s own content and to that of its descendants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-Important-Properties",
+          "level": 3,
+          "text": "Review Important Properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SKNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class does not perform any drawing of its own. However, many ",
+              "type": "text"
+            },
+            {
+              "code": "SKNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclasses render visual content and so the ",
+              "type": "text"
+            },
+            {
+              "code": "SKNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class understands some visual concepts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/frame",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property provides the bounding rectangle for a node’s visual content, modified by the scale and rotation properties. The frame is nonempty if the node’s class draws content. Each node subclass determines the size of this content differently. In some subclasses, the size of the node’s content is declared explicitly, such as in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class. In other subclasses, the content size is calculated implicitly by the class using other object properties. For example, an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object determines its content size using the label’s message text and font characteristics.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A node’s accumulated frame, retrieved by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/calculateAccumulatedFrame()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, is the largest rectangle that includes the frame of the node and the frames of all its descendants.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Other properties, such as the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/alpha",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isHidden",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " properties, affect how the node and its descendants are drawn.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All nodes are responder objects that can respond directly to user interaction with the node onscreen. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/controlling-user-interaction-on-nodes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also convert between coordinate systems and perform hit testing to determine which nodes a point lies in, and perform intersections between nodes in the tree to determine if their physical areas overlap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any node in the tree may run ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "actions",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ", which are used to animate the properties of a node, add or remove nodes, play sounds, or perform other custom tasks. Actions are the heart of the animation system in SpriteKit. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-actions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A node can support a physics body, which is an object that simulates the physical properties of the object. When a node has a physics body, the physics simulation automatically computes a new position for the physics body and then moves and rotates the node to match that position. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A node can supply constraints that express relationships with other nodes or locations in the scene. These constraints are automatically applied by the scene before the scene is rendered. Another set of constraints is used in conjunction with actions to perform inverse-kinematic animations. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/working-with-inverse-kinematics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-Node-Access-on-the-Main-Thread",
+          "level": 3,
+          "text": "Ensure Node Access on the Main Thread",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All of the SpriteKit callbacks for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " occur in the main thread and therefore, these are safe places to access or manipulate nodes. If you are performing other work in the background, you should adopt an approach similar to",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Manipulating a node within a scene update callback",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class ViewController: UIViewController {",
+            "    let queue = DispatchQueue.global()",
+            "    ",
+            "    var makeNodeModifications = false",
+            "    ",
+            "    func backgroundComputation() {",
+            "        queue.async {",
+            "            // Perform background calculations but do not modify ",
+            "            // SpriteKit objects",
+            "            ",
+            "            // Set a flag for later modification within the ",
+            "            // SKScene or SKSceneDelegate callback of your choosing",
+            "            ",
+            "            self.makeNodeModifications = true",
+            "        }",
+            "    }",
+            "}",
+            "extension ViewController: SKSceneDelegate {",
+            "    func update(_ currentTime: TimeInterval, for scene: SKScene) {",
+            "        if makeNodeModifications {",
+            "            makeNodeModifications = false",
+            "            ",
+            "            // Make node modifications",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Lay-Out-Your-Scene-with-Basic-Nodes",
+          "level": 3,
+          "text": "Lay Out Your Scene with Basic Nodes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even though ",
+              "type": "text"
+            },
+            {
+              "code": "SKNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects cannot directly draw content, there are useful ways to use them in your app. Here are some ideas to get you started:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You have content that is built up from multiple node objects, either sprites or other content nodes. However, you want this content to be thought of as a single object within your game, without promoting any one of the content nodes to be the root. A basic node is appropriate, because you can give it a position in the scene tree and then make all of the other nodes its descendants. These individual pieces can also be moved or adjusted relative to the parent’s location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You want to organize your drawn content into a series of layers. For example, many games have a background layer for the world, another layer for characters, and a third layer for text and other game information. Other games have many more layers. Create the layers as basic nodes, and insert them into the scene in order. Then, as necessary, you can make individual layers visible or invisible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You need an object in the scene that is invisible but that performs some other necessary function. For example, in a dungeon-exploring game, an invisible node might be used to represent a hidden trap. When another node intersects it, the trap is triggered. For another example, you might add a node as a child of another node that represents the position of the player’s point of view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are advantages to having a node in the tree to represent these concepts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can add or remove entire subtrees by adding or removing a single node. This makes scene management efficient.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can adjust properties of a node in the tree and have the effects of those properties propagate down to the node’s descendants. For example, if the basic node has sprite nodes as its children, rotating the basic node also rotates all of the sprite content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can take advantage of actions, physics contacts, and other SpriteKit features to implement the concept.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode": {
+      "abstract": [
+        {
+          "text": "A graphical element that draws text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKLabelNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKLabelNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKLabelNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sklabelnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode": {
+      "abstract": [
+        {
+          "text": "The base class of all SpriteKit nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/alpha": {
+      "abstract": [
+        {
+          "text": "The transparency value applied to the node’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/alpha",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        }
+      ],
+      "role": "symbol",
+      "title": "alpha",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/alpha"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/calculateAccumulatedFrame()": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle in the parent’s coordinate system that contains the position and size of itself and all child nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "calculateAccumulatedFrame"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/calculateAccumulatedFrame()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "calculateAccumulatedFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "calculateAccumulatedFrame()",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/calculateaccumulatedframe()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/frame": {
+      "abstract": [
+        {
+          "text": "A rectangle in the parent’s coordinate system that contains the node’s content, ignoring the node’s children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/frame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frame"
+        }
+      ],
+      "role": "symbol",
+      "title": "frame",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/frame"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init()": {
+      "abstract": [
+        {
+          "text": "Initializes a blank node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/init()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(coder:)": {
+      "abstract": [
+        {
+          "text": "Called when a node is initialized from an .sks file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/init(coder:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(fileNamed:)": {
+      "abstract": [
+        {
+          "text": "Creates a new node by loading an archive file from the game’s main bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fileNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(fileNamed:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nodeWithFileNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(fileNamed:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/init(filenamed:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(fileNamed:securelyWithClasses:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fileNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "securelyWithClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(fileNamed:securelyWithClasses:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nodeWithFileNamed:securelyWithClasses:andError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(fileNamed:securelyWithClasses:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/init(filenamed:securelywithclasses:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isHidden": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether a node and its descendants are rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isHidden",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hidden"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHidden",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/ishidden"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/node": {
+      "abstract": [
+        {
+          "text": "Creates a new node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "node"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/node",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "node"
+        }
+      ],
+      "role": "symbol",
+      "title": "node",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/node"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/xScale": {
+      "abstract": [
+        {
+          "text": "A scaling factor that multiplies the width of a node and its children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xScale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/xScale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xScale"
+        }
+      ],
+      "role": "symbol",
+      "title": "xScale",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/xscale"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/yScale": {
+      "abstract": [
+        {
+          "text": "A scaling factor that multiplies the height of a node and its children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "yScale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/yScale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "yScale"
+        }
+      ],
+      "role": "symbol",
+      "title": "yScale",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/yscale"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zPosition": {
+      "abstract": [
+        {
+          "text": "The height of the node relative to its parent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zPosition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zPosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zPosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "zPosition",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/zposition"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zRotation": {
+      "abstract": [
+        {
+          "text": "The Euler rotation about the z axis (in radians).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zRotation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zRotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zRotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "zRotation",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/zrotation"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene": {
+      "abstract": [
+        {
+          "text": "An object that organizes all of the active SpriteKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKScene",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate": {
+      "abstract": [
+        {
+          "text": "Methods that, when implemented, allow any class to participate in the SpriteKit render loop callbacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscenedelegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode": {
+      "abstract": [
+        {
+          "text": "An image or solid color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSpriteNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods to take custom control over the view’s render rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKViewDelegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skviewdelegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/controlling-user-interaction-on-nodes": {
+      "abstract": [
+        {
+          "text": "Enable your node to respond to user input, like touches or mouse clicks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/controlling-user-interaction-on-nodes",
+      "kind": "article",
+      "role": "article",
+      "title": "Controlling User Interaction on Nodes",
+      "type": "topic",
+      "url": "/documentation/spritekit/controlling-user-interaction-on-nodes"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-actions": {
+      "abstract": [
+        {
+          "text": "Create, configure, and run actions in SpriteKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-actions",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting Started with Actions",
+      "type": "topic",
+      "url": "/documentation/spritekit/getting-started-with-actions"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics": {
+      "abstract": [
+        {
+          "text": "Simulate gravity, acceleration, collision detection, or joints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting Started with Physics",
+      "type": "topic",
+      "url": "/documentation/spritekit/getting-started-with-physics"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/working-with-inverse-kinematics": {
+      "abstract": [
+        {
+          "text": "Gain fine-tuned control of objects that are connected by joints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/working-with-inverse-kinematics",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Inverse Kinematics",
+      "type": "topic",
+      "url": "/documentation/spritekit/working-with-inverse-kinematics"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "First-Steps",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init()",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(fileNamed:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(coder:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(fileNamed:securelyWithClasses:)"
+      ],
+      "title": "First Steps"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "First-Steps",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init()",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/node",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(fileNamed:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(coder:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/init(fileNamed:securelyWithClasses:)"
+              ],
+              "title": "First Steps"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKViewDelegate/title",
+          "value": "SKViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1xScale/title",
+          "value": "xScale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1xScale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLabelNode/title",
+          "value": "SKLabelNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLabelNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKLabelNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLabelNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKLabelNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1yScale/title",
+          "value": "yScale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1yScale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "yScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1frame/title",
+          "value": "frame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1frame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1zPosition/title",
+          "value": "zPosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1zPosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zPosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/title",
+          "value": "SKScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1alpha/title",
+          "value": "alpha"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1alpha/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alpha"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1init(fileNamed:securelyWithClasses:)/title",
+          "value": "nodeWithFileNamed:securelyWithClasses:andError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1init(fileNamed:securelyWithClasses:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "nodeWithFileNamed:securelyWithClasses:andError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1init(fileNamed:)/title",
+          "value": "nodeWithFileNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1init(fileNamed:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "nodeWithFileNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1isHidden/title",
+          "value": "hidden"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1isHidden/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hidden"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/title",
+          "value": "SKNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1zRotation/title",
+          "value": "zRotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1zRotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zRotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1calculateAccumulatedFrame()/title",
+          "value": "calculateAccumulatedFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1calculateAccumulatedFrame()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "calculateAccumulatedFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/title",
+          "value": "SKSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/title",
+          "value": "SKSpriteNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/getting-started-with-nodes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/getting-started-with-nodes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2504 @@
+{
+  "abstract": [
+    {
+      "text": "An object that draws pages of content to print, with or without the assistance of print formatters.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIPrintPageRenderer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIPrintPageRenderer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIPrintPageRenderer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.2",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.2",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIPrintPageRenderer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPrintPageRenderer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A page renderer is an instance of a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When you compose a print job using the shared instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you assign the page renderer to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionController/printPageRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of that instance. The subclass typically overrides one or more of the five ",
+              "type": "text"
+            },
+            {
+              "code": "draw...",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawPage(at:in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by default calls each of the other draw methods, in the order listed below. Your app can override it if you want to have complete control over what to draw for printing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawHeaderForPage(at:in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to draw content in the header.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawContentForPage(at:in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to draw the main content of the print job in the area between the header and the footer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawPrintFormatter(_:forPageAt:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to intermix custom drawing with the drawing that an associated print formatter performs. The system calls this method for each print formatter associated with a particular page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawFooterForPage(at:in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to draw content in the footer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " usually requires you to specify the number of pages of printable content by overriding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/numberOfPages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It also allows you to specify the heights of page headers and footers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may assign one or more print formatters — ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintFormatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that can lay out printable content of a certain kind — to specific page ranges of the content. For example, if your printable content is partially HTML, you may assign an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMarkupTextPrintFormatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to the starting page of HTML content. You assign a print formatter using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/addPrintFormatter(_:startingAtPageAt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and you can get the print formatters for a particular page by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printFormattersForPage(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMarkupTextPrintFormatter": {
+      "abstract": [
+        {
+          "text": "An object that lays out HTML text for a multipage print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMarkupTextPrintFormatter"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMarkupTextPrintFormatter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMarkupTextPrintFormatter"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMarkupTextPrintFormatter",
+      "type": "topic",
+      "url": "/documentation/uikit/uimarkuptextprintformatter"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintFormatter": {
+      "abstract": [
+        {
+          "text": "An abstract base class for print formatters, which are objects that lay out custom printable content that can cross page boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrintFormatter"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintFormatter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintFormatter"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintFormatter",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintformatter"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionController": {
+      "abstract": [
+        {
+          "text": "A user interface that manages the printing of documents, images, and other printable content in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrintInteractionController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintInteractionController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintInteractionController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinteractioncontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionController/printPageRenderer": {
+      "abstract": [
+        {
+          "text": "An object that draws pages of printable content when UIKit requests it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "printPageRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintPageRenderer",
+          "text": "UIPrintPageRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionController/printPageRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printPageRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "printPageRenderer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinteractioncontroller/printpagerenderer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer": {
+      "abstract": [
+        {
+          "text": "An object that draws pages of content to print, with or without the assistance of print formatters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrintPageRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintPageRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintPageRenderer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/addPrintFormatter(_:startingAtPageAt:)": {
+      "abstract": [
+        {
+          "text": "Adds a print formatter to the page renderer starting at the specified page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addPrintFormatter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintFormatter",
+          "text": "UIPrintFormatter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAtPageAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/addPrintFormatter(_:startingAtPageAt:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addPrintFormatter:startingAtPageAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addPrintFormatter(_:startingAtPageAt:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/addprintformatter(_:startingatpageat:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/currentRenderingQuality(forRequested:)": {
+      "abstract": [
+        {
+          "text": "Determines the actual print-rendering quality according to the requested rendering quality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentRenderingQuality"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forRequested"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIPrintRenderingQuality",
+          "text": "UIPrintRenderingQuality"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIPrintRenderingQuality",
+          "text": "UIPrintRenderingQuality"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/currentRenderingQuality(forRequested:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentRenderingQualityForRequestedRenderingQuality:"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentRenderingQuality(forRequested:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/currentrenderingquality(forrequested:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawContentForPage(at:in:)": {
+      "abstract": [
+        {
+          "text": "Draws the content of a page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawContentForPage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawContentForPage(at:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawContentForPageAtIndex:inRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawContentForPage(at:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/drawcontentforpage(at:in:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawFooterForPage(at:in:)": {
+      "abstract": [
+        {
+          "text": "Draws the footer of a page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawFooterForPage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawFooterForPage(at:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawFooterForPageAtIndex:inRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawFooterForPage(at:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/drawfooterforpage(at:in:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawHeaderForPage(at:in:)": {
+      "abstract": [
+        {
+          "text": "Draws the header of a page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawHeaderForPage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawHeaderForPage(at:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawHeaderForPageAtIndex:inRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawHeaderForPage(at:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/drawheaderforpage(at:in:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawPage(at:in:)": {
+      "abstract": [
+        {
+          "text": "Draws a page of content for the printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawPage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawPage(at:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawPageAtIndex:inRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawPage(at:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/drawpage(at:in:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawPrintFormatter(_:forPageAt:)": {
+      "abstract": [
+        {
+          "text": "Performs custom drawing in addition to the specified print formatter’s drawing for a page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawPrintFormatter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintFormatter",
+          "text": "UIPrintFormatter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forPageAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawPrintFormatter(_:forPageAt:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawPrintFormatter:forPageAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawPrintFormatter(_:forPageAt:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/drawprintformatter(_:forpageat:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/footerHeight": {
+      "abstract": [
+        {
+          "text": "The height of the page footer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "footerHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/footerHeight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "footerHeight"
+        }
+      ],
+      "role": "symbol",
+      "title": "footerHeight",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/footerheight"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/headerHeight": {
+      "abstract": [
+        {
+          "text": "The height of the page header.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headerHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/headerHeight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "headerHeight"
+        }
+      ],
+      "role": "symbol",
+      "title": "headerHeight",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/headerheight"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/numberOfPages": {
+      "abstract": [
+        {
+          "text": "The number of pages to render.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfPages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/numberOfPages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfPages"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberOfPages",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/numberofpages"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/paperRect": {
+      "abstract": [
+        {
+          "text": "The size of the paper for printing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paperRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/paperRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paperRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "paperRect",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/paperrect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/prepare(forDrawingPages:)": {
+      "abstract": [
+        {
+          "text": "Prepares the renderer for drawing a range of pages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forDrawingPages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/prepare(forDrawingPages:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareForDrawingPages:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepare(forDrawingPages:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/prepare(fordrawingpages:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printFormatters": {
+      "abstract": [
+        {
+          "text": "The print formatters for the page renderer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "printFormatters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintFormatter",
+          "text": "UIPrintFormatter"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printFormatters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printFormatters"
+        }
+      ],
+      "role": "symbol",
+      "title": "printFormatters",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/printformatters"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printFormattersForPage(at:)": {
+      "abstract": [
+        {
+          "text": "Returns the print formatters for a specified page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "printFormattersForPage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintFormatter",
+          "text": "UIPrintFormatter"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printFormattersForPage(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printFormattersForPageAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "printFormattersForPage(at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/printformattersforpage(at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printableRect": {
+      "abstract": [
+        {
+          "text": "The area in which printing can occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "printableRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printableRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printableRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "printableRect",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/printablerect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintRenderingQuality": {
+      "abstract": [
+        {
+          "text": "Constants that represent the rendering quality for a print operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrintRenderingQuality"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintRenderingQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintRenderingQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintRenderingQuality",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintrenderingquality"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Improve your iPadOS app with Mac Catalyst by supporting native controls, multiple windows, sharing, printing, menus and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building and improving your app with Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/building-and-improving-your-app-with-mac-catalyst"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Renderer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst"
+      ],
+      "title": "Renderer"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-information-about-the-print-job",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/numberOfPages",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/paperRect",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printableRect"
+      ],
+      "title": "Accessing information about the print job"
+    },
+    {
+      "anchor": "Specifying-header-and-footer-heights",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/headerHeight",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/footerHeight"
+      ],
+      "title": "Specifying header and footer heights"
+    },
+    {
+      "anchor": "Managing-print-formatters",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/addPrintFormatter(_:startingAtPageAt:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printFormattersForPage(at:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printFormatters"
+      ],
+      "title": "Managing print formatters"
+    },
+    {
+      "anchor": "Preparing-for-drawing",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/prepare(forDrawingPages:)"
+      ],
+      "title": "Preparing for drawing"
+    },
+    {
+      "anchor": "Drawing-a-page",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawPage(at:in:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawHeaderForPage(at:in:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawContentForPage(at:in:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawPrintFormatter(_:forPageAt:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawFooterForPage(at:in:)"
+      ],
+      "title": "Drawing a page"
+    },
+    {
+      "anchor": "Managing-the-rendering-quality",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/currentRenderingQuality(forRequested:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintRenderingQuality"
+      ],
+      "title": "Managing the rendering quality"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.2",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.2",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIPrintPageRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintPageRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintPageRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-information-about-the-print-job",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/numberOfPages",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/paperRect",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printableRect"
+              ],
+              "title": "Accessing information about the print job"
+            },
+            {
+              "anchor": "Specifying-header-and-footer-heights",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/headerHeight",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/footerHeight"
+              ],
+              "title": "Specifying header and footer heights"
+            },
+            {
+              "anchor": "Managing-print-formatters",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/addPrintFormatter(_:startingAtPageAt:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printFormattersForPage(at:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/printFormatters"
+              ],
+              "title": "Managing print formatters"
+            },
+            {
+              "anchor": "Preparing-for-drawing",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/prepare(forDrawingPages:)"
+              ],
+              "title": "Preparing for drawing"
+            },
+            {
+              "anchor": "Drawing-a-page",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawPage(at:in:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawHeaderForPage(at:in:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawContentForPage(at:in:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawPrintFormatter(_:forPageAt:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/drawFooterForPage(at:in:)"
+              ],
+              "title": "Drawing a page"
+            },
+            {
+              "anchor": "Managing-the-rendering-quality",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/currentRenderingQuality(forRequested:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintRenderingQuality"
+              ],
+              "title": "Managing the rendering quality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Renderer",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst"
+              ],
+              "title": "Renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIPrintPageRenderer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1drawPage(at:in:)/title",
+          "value": "drawPageAtIndex:inRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1drawPage(at:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawPageAtIndex:inRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMarkupTextPrintFormatter/title",
+          "value": "UIMarkupTextPrintFormatter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMarkupTextPrintFormatter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMarkupTextPrintFormatter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMarkupTextPrintFormatter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMarkupTextPrintFormatter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1paperRect/title",
+          "value": "paperRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1paperRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paperRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionController~1printPageRenderer/title",
+          "value": "printPageRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionController~1printPageRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "printPageRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1addPrintFormatter(_:startingAtPageAt:)/title",
+          "value": "addPrintFormatter:startingAtPageAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1addPrintFormatter(_:startingAtPageAt:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addPrintFormatter:startingAtPageAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1numberOfPages/title",
+          "value": "numberOfPages"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1numberOfPages/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "numberOfPages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1footerHeight/title",
+          "value": "footerHeight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1footerHeight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "footerHeight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1drawHeaderForPage(at:in:)/title",
+          "value": "drawHeaderForPageAtIndex:inRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1drawHeaderForPage(at:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawHeaderForPageAtIndex:inRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1printableRect/title",
+          "value": "printableRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1printableRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "printableRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1drawContentForPage(at:in:)/title",
+          "value": "drawContentForPageAtIndex:inRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1drawContentForPage(at:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawContentForPageAtIndex:inRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer/title",
+          "value": "UIPrintPageRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintPageRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintPageRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintRenderingQuality/title",
+          "value": "UIPrintRenderingQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintRenderingQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintRenderingQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintRenderingQuality/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintRenderingQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1printFormattersForPage(at:)/title",
+          "value": "printFormattersForPageAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1printFormattersForPage(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "printFormattersForPageAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintFormatter/title",
+          "value": "UIPrintFormatter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintFormatter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintFormatter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintFormatter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintFormatter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1drawPrintFormatter(_:forPageAt:)/title",
+          "value": "drawPrintFormatter:forPageAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1drawPrintFormatter(_:forPageAt:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawPrintFormatter:forPageAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1drawFooterForPage(at:in:)/title",
+          "value": "drawFooterForPageAtIndex:inRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1drawFooterForPage(at:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawFooterForPageAtIndex:inRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1currentRenderingQuality(forRequested:)/title",
+          "value": "currentRenderingQualityForRequestedRenderingQuality:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1currentRenderingQuality(forRequested:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "currentRenderingQualityForRequestedRenderingQuality:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1printFormatters/title",
+          "value": "printFormatters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1printFormatters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "printFormatters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1prepare(forDrawingPages:)/title",
+          "value": "prepareForDrawingPages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1prepare(forDrawingPages:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareForDrawingPages:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1headerHeight/title",
+          "value": "headerHeight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1headerHeight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "headerHeight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionController/title",
+          "value": "UIPrintInteractionController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInteractionController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiprintpagerenderer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiprintpagerenderer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

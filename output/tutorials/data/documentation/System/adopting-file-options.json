@@ -1,0 +1,1710 @@
+{
+  "abstract": [
+    {
+      "text": "Migrate existing C code to Swift, using the file-operation options provided by the System module.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftSystem/documentation/System"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftSystem/documentation/System/adopting-file-options"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "System"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adopting Swift File Options"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The C options for how to open a file map to Swift as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_RDONLY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/AccessMode/readOnly",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_WRONLY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/AccessMode/writeOnly",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_RDWR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/AccessMode/readWrite",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The C constants for specifying options when opening a file map to Swift as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_NONBLOCK",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/nonBlocking",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_APPEND",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/append",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_CREAT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/create",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_TRUNC",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/truncate",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_EXCL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/exclusiveCreate",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_SHLOCK",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/sharedLock",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_EXLOCK",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/exclusiveLock",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_NOFOLLOW",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/noFollow",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_SYMLINK",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/symlink",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_EVTONLY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/eventOnly",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "O_CLOEXEC",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/closeOnExec",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The C constants for specify seek offsets map to Swift as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SEEK_SET",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/start",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SEEK_CUR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/current",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SEEK_END",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/end",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SEEK_HOLE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/nextHole",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SEEK_DATA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ⟶ ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/nextData",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SwiftSystem/documentation/System": {
+      "abstract": [
+        {
+          "text": "Perform low-level file operations using type-safe APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System",
+      "type": "topic",
+      "url": "/documentation/system"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/AccessMode/readOnly": {
+      "abstract": [
+        {
+          "text": "Opens the file for reading only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10AccessModeV",
+          "text": "AccessMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/AccessMode/readOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readOnly",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/accessmode/readonly"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/AccessMode/readWrite": {
+      "abstract": [
+        {
+          "text": "Opens the file for reading and writing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readWrite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10AccessModeV",
+          "text": "AccessMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/AccessMode/readWrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readWrite",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/accessmode/readwrite"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/AccessMode/writeOnly": {
+      "abstract": [
+        {
+          "text": "Opens the file for writing only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10AccessModeV",
+          "text": "AccessMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/AccessMode/writeOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeOnly",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/accessmode/writeonly"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/append": {
+      "abstract": [
+        {
+          "text": "Indicates that each write operation appends to the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/append",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/append"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/closeOnExec": {
+      "abstract": [
+        {
+          "text": "Indicates that executing a program closes the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeOnExec"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/closeOnExec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "closeOnExec",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/closeonexec"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/create": {
+      "abstract": [
+        {
+          "text": "Indicates that opening the file creates the file if it doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "create"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "create",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/create"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/eventOnly": {
+      "abstract": [
+        {
+          "text": "Indicates that opening the file monitors a file for changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/eventOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eventOnly",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/eventonly"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/exclusiveCreate": {
+      "abstract": [
+        {
+          "text": "Indicates that opening the file creates the file,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "expecting that it doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exclusiveCreate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/exclusiveCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exclusiveCreate",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/exclusivecreate"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/exclusiveLock": {
+      "abstract": [
+        {
+          "text": "Indicates that opening the file",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "atomically obtains an exclusive lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exclusiveLock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/exclusiveLock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exclusiveLock",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/exclusivelock"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/noFollow": {
+      "abstract": [
+        {
+          "text": "Indicates that opening the file doesn’t follow symlinks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "noFollow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/noFollow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "noFollow",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/nofollow"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/nonBlocking": {
+      "abstract": [
+        {
+          "text": "Indicates that opening the file doesn’t",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "wait for the file or device to become available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nonBlocking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/nonBlocking",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nonBlocking",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/nonblocking"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/sharedLock": {
+      "abstract": [
+        {
+          "text": "Indicates that opening the file",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "atomically obtains a shared lock on the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedLock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/sharedLock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedLock",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/sharedlock"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/symlink": {
+      "abstract": [
+        {
+          "text": "Indicates that opening the file",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "opens symbolic links instead of following them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symlink"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/symlink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symlink",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/symlink"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/truncate": {
+      "abstract": [
+        {
+          "text": "Indicates that opening the file truncates the file if it exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "truncate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/OpenOptions/truncate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "truncate",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/openoptions/truncate"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/current": {
+      "abstract": [
+        {
+          "text": "Indicates that the offset should be set",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to the specified number of bytes after the current location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10SeekOriginV",
+          "text": "SeekOrigin"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/seekorigin/current"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/end": {
+      "abstract": [
+        {
+          "text": "Indicates that the offset should be set",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to the size of the file plus the specified number of bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10SeekOriginV",
+          "text": "SeekOrigin"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/end",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "end",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/seekorigin/end"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/nextData": {
+      "abstract": [
+        {
+          "text": "Indicates that the offset should be set",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to the start of the next file region",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that isn’t a hole",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and is greater than or equal to the supplied offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10SeekOriginV",
+          "text": "SeekOrigin"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/nextData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nextData",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/seekorigin/nextdata"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/nextHole": {
+      "abstract": [
+        {
+          "text": "Indicates that the offset should be set",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to the next hole after the specified number of bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextHole"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10SeekOriginV",
+          "text": "SeekOrigin"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/nextHole",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nextHole",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/seekorigin/nexthole"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/start": {
+      "abstract": [
+        {
+          "text": "Indicates that the offset should be set to the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10SeekOriginV",
+          "text": "SeekOrigin"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor/SeekOrigin/start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor/seekorigin/start"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/adopting-errno": {
+      "abstract": [
+        {
+          "text": "Migrate existing C code to Swift, using the error constants provided by the System module.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/adopting-errno",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting Swift Error Constants",
+      "type": "topic",
+      "url": "/documentation/system/adopting-errno"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/adopting-file-operations": {
+      "abstract": [
+        {
+          "text": "Migrate existing C code to Swift, using the file operations provided by the System module.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/adopting-file-operations",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting Swift File Operations",
+      "type": "topic",
+      "url": "/documentation/system/adopting-file-operations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adopting-System",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/adopting-file-operations",
+        "doc://com.apple.SwiftSystem/documentation/System/adopting-errno"
+      ],
+      "title": "Adopting System"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/system/adopting-file-options"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

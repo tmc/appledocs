@@ -1,0 +1,1725 @@
+{
+  "abstract": [
+    {
+      "text": "A URL load request that is independent of protocol or URL scheme.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/urlrequest"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2011412,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation10URLRequestV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "URLRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "8.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "URLRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "URLRequest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " encapsulates two essential properties of a load request: the URL to load and the policies used to load it. In addition, for HTTP and HTTPS requests, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " includes the HTTP method (",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so on) and the HTTP headers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " only represents information about the request. Use other classes, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to send the request to a server. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for an introduction to these techniques.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When writing Swift code, favor this structure over the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Certain header fields are reserved; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest#1776617",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customdebugstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomReflectable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomReflectable",
+      "type": "topic",
+      "url": "/documentation/swift/customreflectable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpurlresponse": {
+      "abstract": [
+        {
+          "text": "The metadata associated with the response to an HTTP protocol URL load request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "HTTPURLResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpurlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPURLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/httpurlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/mutableurlrequest": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "MutableURLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/mutableurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MutableURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/mutableurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest": {
+      "abstract": [
+        {
+          "text": "A mutable URL load request that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and you use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableURLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest": {
+      "abstract": [
+        {
+          "text": "A representation of a URL load request that you use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest#1776617": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest#1776617",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Reserved HTTP headers",
+      "type": "section",
+      "url": "/documentation/foundation/nsurlrequest#1776617"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy": {
+      "abstract": [
+        {
+          "text": "The constants used to specify interaction with the cached responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLRequest.CachePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.CachePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype": {
+      "abstract": [
+        {
+          "text": "Constants that specify how a request uses network resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLRequest.NetworkServiceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.NetworkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/referenceconvertible": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/referenceconvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReferenceConvertible",
+      "type": "topic",
+      "url": "/documentation/foundation/referenceconvertible"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching website data into memory",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/fetching_website_data_into_memory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading data to a website",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/uploading_data_to_a_website"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "abstract": [
+        {
+          "text": "A URL load request that is independent of protocol or URL scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011370-hashvalue": {
+      "abstract": [
+        {
+          "text": "The computed hash value for the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011370-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011370-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011390-httpbody": {
+      "abstract": [
+        {
+          "text": "The data sent as the message body of a request, such as for an HTTP POST request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "httpBody"
+        },
+        {
+          "kind": "text",
+          "text": ": Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011390-httpbody",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "httpBody",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011390-httpbody"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011399-description": {
+      "abstract": [
+        {
+          "text": "A textual description of the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011399-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011399-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011409-networkservicetype": {
+      "abstract": [
+        {
+          "text": "The type of network service for all tasks within network sessions to enable Cellular Network Slicing. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "networkServiceType"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest.NetworkServiceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011409-networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "networkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011409-networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011415-httpmethod": {
+      "abstract": [
+        {
+          "text": "The HTTP request method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "httpMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011415-httpmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "httpMethod",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011415-httpmethod"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011416-url": {
+      "abstract": [
+        {
+          "text": "The URL of the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011416-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011416-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011426-value": {
+      "abstract": [
+        {
+          "text": "Retrieves a header value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forHTTPHeaderField"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011426-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(forHTTPHeaderField:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011426-value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011447-setvalue": {
+      "abstract": [
+        {
+          "text": "Sets a value for the header field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setValue"
+        },
+        {
+          "kind": "text",
+          "text": "(String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forHTTPHeaderField"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011447-setvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setValue(_:forHTTPHeaderField:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011447-setvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011457-init": {
+      "abstract": [
+        {
+          "text": "Creates and initializes a URL request with the given URL, cache policy, and timeout interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "cachePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest.CachePolicy, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeoutInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011457-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(url:cachePolicy:timeoutInterval:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011457-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011502-allhttpheaderfields": {
+      "abstract": [
+        {
+          "text": "A dictionary containing all of the HTTP header fields for a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allHTTPHeaderFields"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : String]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011502-allhttpheaderfields",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allHTTPHeaderFields",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011502-allhttpheaderfields"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011508-httpshouldusepipelining": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the request should transmit before the previous response is received.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "httpShouldUsePipelining"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011508-httpshouldusepipelining",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "httpShouldUsePipelining",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011508-httpshouldusepipelining"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011509-timeoutinterval": {
+      "abstract": [
+        {
+          "text": "The timeout interval of the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeoutInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011509-timeoutinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeoutInterval",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011509-timeoutinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011522-addvalue": {
+      "abstract": [
+        {
+          "text": "Adds a value to the header field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addValue"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forHTTPHeaderField"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011522-addvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addValue(_:forHTTPHeaderField:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011522-addvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011548-httpshouldhandlecookies": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether cookies will be sent with and set for this request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "httpShouldHandleCookies"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011548-httpshouldhandlecookies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "httpShouldHandleCookies",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011548-httpshouldhandlecookies"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011552-maindocumenturl": {
+      "abstract": [
+        {
+          "text": "The main document URL associated with this request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainDocumentURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011552-maindocumenturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mainDocumentURL",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011552-maindocumenturl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011584-httpbodystream": {
+      "abstract": [
+        {
+          "text": "The stream used to deliver the HTTP body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "httpBodyStream"
+        },
+        {
+          "kind": "text",
+          "text": ": InputStream?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011584-httpbodystream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "httpBodyStream",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011584-httpbodystream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011593-cachepolicy": {
+      "abstract": [
+        {
+          "text": "The request’s cache policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cachePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest.CachePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011593-cachepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cachePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011593-cachepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011599-debugdescription": {
+      "abstract": [
+        {
+          "text": "A textual description of the request suitable for debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011599-debugdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011599-debugdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011607-allowscellularaccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the request is allowed to use the built-in cellular radios to satisfy the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsCellularAccess"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011607-allowscellularaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsCellularAccess",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011607-allowscellularaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2293653": {
+      "abstract": [
+        {
+          "text": "Indicates whether two URL requests are the same.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(URLRequest, URLRequest) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2293653",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2293653"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2427226-custommirror": {
+      "abstract": [
+        {
+          "text": "A mirror that reflects the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "customMirror"
+        },
+        {
+          "kind": "text",
+          "text": ": Mirror"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2427226-custommirror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customMirror",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2427226-custommirror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2883222": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(URLRequest, URLRequest) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2883222",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2883222"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/3236804-hash": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/3236804-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/3236804-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/3358304-allowsconstrainednetworkaccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the request may use the network when the user has specified Low Data Mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsConstrainedNetworkAccess"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/3358304-allowsconstrainednetworkaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsConstrainedNetworkAccess",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/3358304-allowsconstrainednetworkaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/3358305-allowsexpensivenetworkaccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether connections may use a network interface that the system considers expensive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsExpensiveNetworkAccess"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/3358305-allowsexpensivenetworkaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsExpensiveNetworkAccess",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/3358305-allowsexpensivenetworkaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/3738175-assumeshttp3capable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "assumesHTTP3Capable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/3738175-assumeshttp3capable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assumesHTTP3Capable",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/3738175-assumeshttp3capable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/3767318-attribution": {
+      "abstract": [
+        {
+          "text": "The entity that initiates the network request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attribution"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest.Attribution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/3767318-attribution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attribution",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/3767318-attribution"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/4020253-requiresdnssecvalidation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiresDNSSECValidation"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/4020253-requiresdnssecvalidation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiresDNSSECValidation",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/4020253-requiresdnssecvalidation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/4341401-allowspersistentdns": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsPersistentDNS"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/4341401-allowspersistentdns",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsPersistentDNS",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/4341401-allowspersistentdns"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/4485367-cookiepartitionidentifier": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cookiePartitionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/4485367-cookiepartitionidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cookiePartitionIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/4485367-cookiepartitionidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/attribution": {
+      "abstract": [
+        {
+          "text": "A type that indicates the entities that can make a network request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest.Attribution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/attribution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest.Attribution",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/attribution"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/cachepolicy": {
+      "abstract": [
+        {
+          "text": "An alias for the cache policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest.CachePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/cachepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest.CachePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/cachepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/networkservicetype": {
+      "abstract": [
+        {
+          "text": "An alias for the network service type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest.NetworkServiceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest.NetworkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresponse": {
+      "abstract": [
+        {
+          "text": "The metadata associated with the response to a URL load request, independent of protocol and URL scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.documentation/documentation/foundation/referenceconvertible",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlresponse",
+        "doc://com.apple.documentation/documentation/foundation/httpurlresponse"
+      ],
+      "title": "Requests and responses"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2850857",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011457-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a request"
+    },
+    {
+      "anchor": "2902670",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011593-cachepolicy",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/cachepolicy",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with a cache policy"
+    },
+    {
+      "anchor": "2850858",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011415-httpmethod",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011416-url",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011390-httpbody",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011584-httpbodystream",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011552-maindocumenturl"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing request components"
+    },
+    {
+      "anchor": "2850859",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011502-allhttpheaderfields",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011522-addvalue",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011447-setvalue",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011426-value"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing header fields"
+    },
+    {
+      "anchor": "2902665",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011509-timeoutinterval",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011548-httpshouldhandlecookies",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011508-httpshouldusepipelining",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011607-allowscellularaccess"
+      ],
+      "kind": "taskGroup",
+      "title": "Controlling request behavior"
+    },
+    {
+      "anchor": "3384823",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/3358304-allowsconstrainednetworkaccess",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/3358305-allowsexpensivenetworkaccess"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting limited modes"
+    },
+    {
+      "anchor": "2902664",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011409-networkservicetype",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/networkservicetype",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the service type"
+    },
+    {
+      "anchor": "3801206",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/3767318-attribution",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/attribution"
+      ],
+      "kind": "taskGroup",
+      "title": "Indicating the source of the request"
+    },
+    {
+      "anchor": "2850860",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2883222",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2293653"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing requests"
+    },
+    {
+      "anchor": "2902659",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011399-description",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011599-debugdescription",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2427226-custommirror",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/2011370-hashvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing requests"
+    },
+    {
+      "anchor": "2881039",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+        "doc://com.apple.documentation/documentation/foundation/mutableurlrequest",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/referencetype"
+      ],
+      "kind": "taskGroup",
+      "title": "Using reference types"
+    },
+    {
+      "anchor": "4309192",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/4341401-allowspersistentdns",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/3738175-assumeshttp3capable",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/4485367-cookiepartitionidentifier",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/4020253-requiresdnssecvalidation"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "4309193",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/3236804-hash"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/urlrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

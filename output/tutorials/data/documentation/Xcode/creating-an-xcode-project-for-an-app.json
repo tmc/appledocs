@@ -1,0 +1,1047 @@
+{
+  "abstract": [
+    {
+      "text": "Start developing your app by creating an Xcode project from a template.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/creating-an-xcode-project-for-an-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an Xcode project for an app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an Xcode project for your app, choose a template for the platform on which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app will run, and select the type of app you wish to develop, such as a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view, game, or document-based for iOS. Xcode templates include essential project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configuration and files that help you start developing your app quickly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-configuration-information",
+          "level": 3,
+          "text": "Prepare configuration information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you create a project, collect the information that Xcode needs to identify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app and you as a developer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Product name.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The name of your app as it will appear in the App Store and appear",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "on a device when installed. The product name must be at least 2 characters and no",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "more than 255 bytes, and should be similar to the app name that you enter later in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "App Store Connect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Organization identifier.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " A reverse DNS string that uniquely identifies your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "organization. If you don’t have a company identifier, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " followed",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "by your organization name, and replace it before you distribute your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Organization name.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The name that appears in boilerplate text throughout your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "project folder. For example, the source and header file copyright strings contain",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the organization name. The organization name in your project isn’t the same as the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "organization name that appears in the App Store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The organization identifier is part of the bundle ID (",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ")",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "by default. Xcode uses the bundle ID to register an App ID when you first run your",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "app on a device. The number of App IDs are limited if you are not a member of the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apple Developer Program, and you can’t change the App ID after you upload a build",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to App Store Connect, so choose the organization identifier carefully.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-project",
+          "level": 3,
+          "text": "Create a project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Launch Xcode, then click “Create a new Xcode project” in the Welcome to Xcode window",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or choose File > New > Project. In the sheet that appears, select the target operating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system or platform and a template under Application. In the following sheets, fill",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "out the forms and choose options to configure your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-xcode-project-for-an-app-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must provide a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "product name",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "organization identifier",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " because they are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "used to create the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "bundle identifier",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that identifies your app throughout the system.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Also enter an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "organization name",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". If you don’t belong to an organization, enter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-xcode-project-for-an-app-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To develop for all platforms and see an interactive preview of your layout, choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI as the user interface before you click Next on this sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-files-in-the-main-window",
+          "level": 3,
+          "text": "Manage files in the main window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a project or open an existing project, the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "main window",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " appears,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "showing the necessary files and resources for developing your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can access different parts of your project from the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "navigator area",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in the main",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window. Use the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "project navigator",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to select files you want to edit in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "editor",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "area",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". For example, when you select a Swift file in the project navigator, the file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "opens in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "source editor,",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " where you can modify the code and set breakpoints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-xcode-project-for-an-app-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Details about the selected file also appear in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "inspector area",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " on the right.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the inspector area, you can select the Attributes inspector to edit properties",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a file or user interface element. If you want to hide the inspector to make more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "room for the editor, click the “Hide or show the Inspectors” button in the upper-right",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "corner of the toolbar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "toolbar",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to build and run your app on a simulated or real device. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iOS apps, choose the app target and a simulator or device from the run destination",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "menu in the toolbar, then click the Run button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For macOS apps, just click the Run button. When your app launches, the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "debug area",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "opens, where you can control the execution of your app and inspect variables. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app stops at the breakpoint, use the controls in the debug area to step through",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the code or continue execution. When you are done running the app, click the Stop",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "button in the toolbar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use SwiftUI, you can see an interactive preview of the user interface while",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you create your app. Xcode keeps the changes you make in the source file, the canvas",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the right, and the inspector in sync. You can use the controls in the preview",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to run the app with the debugger, too. For details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-your-app-s-interface-with-swiftui",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change properties you entered when creating your project, select the project name",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the project navigator that appears at the top, then the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "project editor",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " opens",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the editor area. Most of the properties you entered appear on the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "General pane",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the project editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-xcode-project-for-an-app-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-xcode-project-for-an-app-1": {
+      "alt": "Screenshot of an Xcode window depicting the choices for a template for a new project. At the top are a list of platforms from which to choose, including iOS, watchOS, and so on. In the lower half of the window, options for types of applications are displayed, such as a game and an augmented reality app. The type “Single View App” is highlighted.",
+      "identifier": "creating-an-xcode-project-for-an-app-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/714daaca83de4a304e3a9c351f0d468d/creating-an-xcode-project-for-an-app-1@2x.png"
+        }
+      ]
+    },
+    "creating-an-xcode-project-for-an-app-2": {
+      "alt": "Screenshot showing new project options where you enter a product name, organization name, and organization identifier, and choose a Team and a programming language.",
+      "identifier": "creating-an-xcode-project-for-an-app-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc17beb75b820e8ebb654513906e95fd/creating-an-xcode-project-for-an-app-2@2x.png"
+        }
+      ]
+    },
+    "creating-an-xcode-project-for-an-app-3": {
+      "alt": "Screenshot showing the location of the main window areas: the toolbar at the top, navigator area on the left, editor area to the right, debug area below, and inspector area on the right.",
+      "identifier": "creating-an-xcode-project-for-an-app-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7df07db6e97c54d87701e9fa161ef946/creating-an-xcode-project-for-an-app-3@2x.png"
+        }
+      ]
+    },
+    "creating-an-xcode-project-for-an-app-4": {
+      "alt": "Screenshot showing the General pane of the project editor with the Identity and Deployment Info settings revealed.",
+      "identifier": "creating-an-xcode-project-for-an-app-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ad8ace328b4d964404e745d30c8629f4/creating-an-xcode-project-for-an-app-4@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-and-running-an-app": {
+      "abstract": [
+        {
+          "text": "Compile your source files and assemble an app bundle to run on a device or simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-and-running-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Building and running an app",
+      "type": "topic",
+      "url": "/documentation/xcode/building-and-running-an-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-your-app-s-interface-with-swiftui": {
+      "abstract": [
+        {
+          "text": "Develop apps in SwiftUI with an interactive preview that keeps the code and layout",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in sync.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-your-app-s-interface-with-swiftui",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating your app’s interface with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-your-app-s-interface-with-swiftui"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/previewing-your-apps-interface-in-xcode": {
+      "abstract": [
+        {
+          "text": "Iterate designs quickly and preview your apps’ displays across different Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/previewing-your-apps-interface-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing your app’s interface in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/previewing-your-apps-interface-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/Updates/Xcode": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/Xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode updates",
+      "type": "topic",
+      "url": "/documentation/Updates/Xcode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-your-app-s-interface-with-swiftui",
+        "doc://com.apple.Xcode/documentation/Xcode/previewing-your-apps-interface-in-xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/building-and-running-an-app",
+        "doc://com.apple.documentation/documentation/Updates/Xcode"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

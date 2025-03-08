@@ -1,0 +1,940 @@
+{
+  "abstract": [
+    {
+      "text": "Locate people and the stance of their bodies by analyzing an image with a PoseNet model.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML",
+        "doc://com.apple.coreml/documentation/CoreML/model-integration-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/detecting-human-body-poses-in-an-image"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Detecting human body poses in an image"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project provides an illustrative example of using a third-party ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML",
+              "isActive": true,
+              "overridingTitle": "Core ML",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Core ML",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " model, PoseNet, to detect human body poses from frames captured using a camera. PoseNet models detect 17 different body parts or joints: eyes, ears, nose, shoulders, hips, elbows, knees, wrists, and ankles. Collectively these joints form a pose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "PoseNetPipeline.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample finds the locations of the 17 joints for each person in the image and draws a wireframe pose on top of them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Starting in iOS 14 and macOS 11, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Vision",
+                  "isActive": true,
+                  "overridingTitle": "Vision",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Vision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " adds the ability to detect human body poses. For details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Vision/detecting-human-body-poses-in-images",
+                  "isActive": true,
+                  "overridingTitle": "Detecting Human Body Poses in Images",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Detecting Human Body Poses in Images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-capture-session",
+          "level": 3,
+          "text": "Configure the capture session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample starts by getting an image from the device’s built-in camera using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "overridingTitle": "AVCaptureSession",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCaptureSession",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+              "isActive": true,
+              "overridingTitle": "Setting Up a Capture Session",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Setting Up a Capture Session",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if captureSession.isRunning {",
+            "    captureSession.stopRunning()",
+            "}",
+            "",
+            "captureSession.beginConfiguration()",
+            "",
+            "captureSession.sessionPreset = .vga640x480",
+            "",
+            "try setCaptureSessionInput()",
+            "",
+            "try setCaptureSessionOutput()",
+            "",
+            "captureSession.commitConfiguration()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Acquire-the-captured-image",
+          "level": 3,
+          "text": "Acquire the captured image",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "// Attempt to lock the image buffer to gain access to its memory.",
+            "guard CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly) == kCVReturnSuccess",
+            "    else {",
+            "        return",
+            "}",
+            "",
+            "// Create Core Graphics image placeholder.",
+            "var image: CGImage?",
+            "",
+            "// Create a Core Graphics bitmap image from the pixel buffer.",
+            "VTCreateCGImageFromCVPixelBuffer(pixelBuffer, options: nil, imageOut: &image)",
+            "",
+            "// Release the image buffer.",
+            "CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)",
+            "",
+            "DispatchQueue.main.sync {",
+            "    delegate.videoCapture(self, didCaptureFrame: image)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Prepare-the-input-for-the-PoseNet-model",
+          "level": 3,
+          "text": "Prepare the input for the PoseNet model",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "// Wrap the image in an instance of PoseNetInput to have it resized",
+            "// before being passed to the PoseNet model.",
+            "let input = PoseNetInput(image: image, size: self.modelInputSize)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Pass-the-input-to-the-PoseNet-model",
+          "level": 3,
+          "text": "Pass the input to the PoseNet model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app then proceeds to pass the input to the PoseNet’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModel/prediction(from:)-9y2aa",
+              "isActive": true,
+              "overridingTitle": "prediction",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "prediction",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " function to obtain its outputs, which the app uses to detect poses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let prediction = try? self.poseNetMLModel.prediction(from: input) else {",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "let poseNetOutput = PoseNetOutput(prediction: prediction,",
+            "                                  modelInputSize: self.modelInputSize,",
+            "                                  modelOutputStride: self.outputStride)",
+            "",
+            "DispatchQueue.main.async {",
+            "    self.delegate?.poseNet(self, didPredict: poseNetOutput)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Analyze-the-PoseNet-output-to-locate-joints",
+          "level": 3,
+          "text": "Analyze the PoseNet output to locate joints",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses one of two algorithms to locate the joints of either one person or multiple persons. The single-person algorithm, the simplest and fastest, inspects the model’s outputs to locate the most prominent joints in the image and uses these joints to construct a single pose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var pose = Pose()",
+            "",
+            "// For each joint, find its most likely position and associated confidence",
+            "// by querying the heatmap array for the cell with the greatest",
+            "// confidence and using this to compute its position.",
+            "pose.joints.values.forEach { joint in",
+            "    configure(joint: joint)",
+            "}",
+            "",
+            "// Compute and assign the confidence for the pose.",
+            "pose.confidence = pose.joints.values",
+            "    .map { $0.confidence }.reduce(0, +) / Double(Joint.numberOfJoints)",
+            "",
+            "// Map the pose joints positions back onto the original image.",
+            "pose.joints.values.forEach { joint in",
+            "    joint.position = joint.position.applying(modelToInputTransformation)",
+            "}",
+            "",
+            "return pose"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The multiple-person algorithm first identifies a set of candidate root joints as starting points. It uses these root joints to find neighboring joints and repeats the process until it has located all 17 joints of each person. For example, the algorithm may find a left knee with a high confidence, and then search for its adjacent joints, the left ankle and left hip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var detectedPoses = [Pose]()",
+            "",
+            "// Iterate through the joints with the greatest confidence, referred to here as",
+            "// candidate roots, using each as a starting point to assemble a pose.",
+            "for candidateRoot in candidateRoots {",
+            "    // Ignore any candidates that are in the proximity of joints of the",
+            "    // same type and have already been assigned to an existing pose.",
+            "    let maxDistance = configuration.matchingJointDistance",
+            "    guard !detectedPoses.contains(candidateRoot, within: maxDistance) else {",
+            "        continue",
+            "    }",
+            "",
+            "    var pose = assemblePose(from: candidateRoot)",
+            "",
+            "    // Compute the pose's confidence by dividing the sum of all",
+            "    // non-overlapping joints, from existing poses, by the total",
+            "    // number of joints.",
+            "    pose.confidence = confidence(for: pose, detectedPoses: detectedPoses)",
+            "",
+            "    // Ignore any pose that has a confidence less than the assigned threshold.",
+            "    guard pose.confidence >= configuration.poseConfidenceThreshold else {",
+            "        continue",
+            "    }",
+            "",
+            "    detectedPoses.append(pose)",
+            "",
+            "    // Exit early if enough poses have been detected.",
+            "    if detectedPoses.count >= configuration.maxPoseCount {",
+            "        break",
+            "    }",
+            "}",
+            "",
+            "// Map the pose joints positions back onto the original image using",
+            "// the pre-computed transformation matrix.",
+            "detectedPoses.forEach { pose in",
+            "    pose.joints.values.forEach { joint in",
+            "        joint.position = joint.position.applying(modelToInputTransformation)",
+            "    }",
+            "}",
+            "",
+            "return detectedPoses"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Visualize-the-detected-poses",
+          "level": 3,
+          "text": "Visualize the detected poses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each detected pose, the sample app draws a wireframe over the input image, connecting the lines between the joints and then drawing circles for the joints themselves.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "PoseNetVisualization.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let dstImageSize = CGSize(width: frame.width, height: frame.height)",
+            "let dstImageFormat = UIGraphicsImageRendererFormat()",
+            "",
+            "dstImageFormat.scale = 1",
+            "let renderer = UIGraphicsImageRenderer(size: dstImageSize,",
+            "                                       format: dstImageFormat)",
+            "",
+            "let dstImage = renderer.image { rendererContext in",
+            "    // Draw the current frame as the background for the new image.",
+            "    draw(image: frame, in: rendererContext.cgContext)",
+            "",
+            "    for pose in poses {",
+            "        // Draw the segment lines.",
+            "        for segment in PoseImageView.jointSegments {",
+            "            let jointA = pose[segment.jointA]",
+            "            let jointB = pose[segment.jointB]",
+            "",
+            "            guard jointA.isValid, jointB.isValid else {",
+            "                continue",
+            "            }",
+            "",
+            "            drawLine(from: jointA,",
+            "                     to: jointB,",
+            "                     in: rendererContext.cgContext)",
+            "        }",
+            "",
+            "        // Draw the joints as circles above the segment lines.",
+            "        for joint in pose.joints.values.filter({ $0.isValid }) {",
+            "            draw(circle: joint, in: rendererContext.cgContext)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "3e1c865293a0/DetectingHumanBodyPosesInAnImage.zip": {
+      "checksum": "3e1c865293a0f50bb0db3b7602e4521159510518faf8f8cdd3bfcba89a46d8442d7f2e99613faca108131e28ff6b36b6de0b1b4b565c5282598a50530bfcaac1",
+      "identifier": "3e1c865293a0/DetectingHumanBodyPosesInAnImage.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/3e1c865293a0/DetectingHumanBodyPosesInAnImage.zip"
+    },
+    "PoseNetPipeline.png": {
+      "alt": "Flow diagram illustrating the sequence of activities for estimating a pose. The flow begins on the left with an iPhone’s camera, proceeding to a PoseNet model, followed by a generic human figure with the 17 labeled joints, and ends with the same human figure but with the joints connected in a wireframe.",
+      "identifier": "PoseNetPipeline.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1ff62d703f30b89a46aec980da6524d9/PoseNetPipeline@2x.png"
+        }
+      ]
+    },
+    "PoseNetVisualization.png": {
+      "alt": "Illustration of a wireframe of connected joints drawn over a generic human figure performing a yoga tree pose.",
+      "identifier": "PoseNetVisualization.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/91060e4ca16a558f9c6bac9f3a2af3e5/PoseNetVisualization@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-integration-samples": {
+      "abstract": [
+        {
+          "text": "Integrate tabular, image, and text classifcation models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-integration-samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Integration Samples",
+      "type": "topic",
+      "url": "/documentation/coreml/model-integration-samples"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/using-core-ml-for-semantic-image-segmentation": {
+      "abstract": [
+        {
+          "text": "Identify multiple objects in an image by using the DEtection TRansformer image-segmentation model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/using-core-ml-for-semantic-image-segmentation",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Core ML for semantic image segmentation",
+      "type": "topic",
+      "url": "/documentation/coreml/using-core-ml-for-semantic-image-segmentation"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session": {
+      "abstract": [
+        {
+          "text": "Configure input devices, output media, preview views, and basic settings before capturing photos or video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Capture Session",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/setting-up-a-capture-session"
+    },
+    "doc://com.apple.documentation/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/CoreML"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLModel/prediction(from:)-9y2aa": {
+      "abstract": [
+        {
+          "text": "Generates a prediction from the feature values within the input feature provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prediction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MLFeatureProvider",
+          "text": "MLFeatureProvider"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MLFeatureProvider",
+          "text": "MLFeatureProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModel/prediction(from:)-9y2aa",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prediction(from:)",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLModel/prediction(from:)-9y2aa"
+    },
+    "doc://com.apple.documentation/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/Vision"
+    },
+    "doc://com.apple.documentation/documentation/Vision/detecting-human-body-poses-in-images": {
+      "abstract": [
+        {
+          "text": "Add the capability to detect human body poses to your app using the Vision framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/detecting-human-body-poses-in-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting Human Body Poses in Images",
+      "type": "topic",
+      "url": "/documentation/Vision/detecting-human-body-poses-in-images"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml": {
+      "abstract": [
+        {
+          "text": "Crop and scale photos using the Vision framework and classify them with a Core ML model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying Images with Vision and Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection": {
+      "abstract": [
+        {
+          "text": "Detect dice position and values shown in a camera frame, and determine the end of a roll by leveraging a dice detection model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Understanding a Dice Roll with Vision and Object Detection",
+      "type": "topic",
+      "url": "/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "3e1c865293a0/DetectingHumanBodyPosesInAnImage.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Classification-Models",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/using-core-ml-for-semantic-image-segmentation",
+        "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+        "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection"
+      ],
+      "title": "Image Classification Models"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Image-Classification-Models",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+                "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection"
+              ],
+              "title": "Image Classification Models"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModel~1prediction(from:)-9y2aa/title",
+          "value": "predictionFromFeatures:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModel~1prediction(from:)-9y2aa/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MLFeatureProvider",
+              "text": "id<MLFeatureProvider>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "predictionFromFeatures:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MLFeatureProvider",
+              "text": "id<MLFeatureProvider>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "input"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/detecting-human-body-poses-in-an-image"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml/detecting-human-body-poses-in-an-image"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

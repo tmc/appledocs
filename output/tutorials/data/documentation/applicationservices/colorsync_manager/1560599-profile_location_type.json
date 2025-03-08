@@ -1,0 +1,466 @@
+{
+  "abstract": [
+    {
+      "text": "Defines profile location kinds.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560599-profile_location_type"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1560599,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Profile Location Type"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your application specifies the location for a profile using a profile location structure of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofilelocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". A ColorSync profile that you open or create is typically stored in one of the following locations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " In a disk file. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "u",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field (a union) of the profile location data structure contains a file specification for a profile that is disk-file based. This is the most common way to store a ColorSync profile. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " In relocatable memory. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "u",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field of the profile location data structure contains a handle specification for a profile that is stored in a handle. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " In nonrelocatable memory. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "u",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field of the profile location data structure contains a pointer specification for a profile that is pointer based. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " In an arbitrary location, accessed by a procedure you provide. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "u",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field of the profile location data structure contains a universal procedure pointer to your access procedure, as well as a pointer that may point to data associated with your procedure. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, your application can create a new or duplicate temporary profile. For example, you can use a temporary profile for a color-matching session and the profile is not saved after the session. For this case, the ColorSync Manager allows you to specify the profile location as having no specific location. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a pointer to a data structure of type ",
+              "type": "text"
+            },
+            {
+              "code": "CMProfileLocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to identify a profile’s location when your application calls",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CMOpenProfile",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function to obtain a reference to a profile ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CMNewProfile",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CWNewLinkProfile,",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CMCopyProfile",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " functions to create a new profile ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CMGetProfileLocation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function to get the location of an existing profile ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your application identifies the type of data the ",
+              "type": "text"
+            },
+            {
+              "code": "CMProfileLocation ",
+              "type": "codeVoice"
+            },
+            {
+              "code": "u",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field holds—a file specification, a handle, and so on—in the ",
+              "type": "text"
+            },
+            {
+              "code": "CMProfileLocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure’s ",
+              "type": "text"
+            },
+            {
+              "code": "locType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field. You use the constants defined by this enumeration to identify the location type.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbufferbasedprofile": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmBufferBasedProfile"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbufferbasedprofile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmBufferBasedProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbufferbasedprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmnoprofilebase": {
+      "abstract": [
+        {
+          "text": "The profile is temporary. It will not persist in memory after its use for a color session. You can specify this type of profile location with the ",
+          "type": "text"
+        },
+        {
+          "code": "CMNewProfile",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and the ",
+          "type": "text"
+        },
+        {
+          "code": "CMCopyProfile",
+          "type": "codeVoice"
+        },
+        {
+          "text": " functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmNoProfileBase"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmnoprofilebase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmNoProfileBase",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmnoprofilebase"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmpathbasedprofile": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmPathBasedProfile"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmpathbasedprofile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmPathBasedProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmpathbasedprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmprofilelocation": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofilelocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMProfileLocation",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmprofilelocation"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1603555",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/cmnoprofilebase",
+        "doc://com.apple.documentation/documentation/applicationservices/cmpathbasedprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/cmbufferbasedprofile"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1560599-profile_location_type"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1560599-profile_location_type"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

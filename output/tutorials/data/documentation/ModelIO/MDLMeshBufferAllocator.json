@@ -1,0 +1,2013 @@
+{
+  "abstract": [
+    {
+      "text": "The general interface for managing allocation of data buffers to be used in loading, processing, and rendering meshes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.modelio/documentation/ModelIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MDLMeshBufferAllocator",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MDLMeshBufferAllocator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Model I/O"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MDLMeshBufferAllocator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MDLMeshBufferAllocator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferAllocator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Classes adopting this protocol provide different ways of handling mesh buffer data. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBufferAllocator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class can share mesh data with Metal buffers for use in rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you load meshes from a file with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class or generate meshes with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, you must specify an allocator. By choosing an allocator specific to how you use a mesh, you can ensure that vertex and index data for the mesh is copied and transformed a minimal number of times between loading and use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBufferAllocator": {
+      "abstract": [
+        {
+          "text": "An interface for allocating a MetalKit buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKMeshBufferAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKMeshBufferAllocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKMeshBufferAllocator",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKMeshBufferAllocator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO": {
+      "abstract": [
+        {
+          "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Model I/O",
+      "type": "topic",
+      "url": "/documentation/modelio"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAsset": {
+      "abstract": [
+        {
+          "text": "An indexed container for 3D objects and associated information, such as transform hierarchies, meshes, cameras, and lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAsset",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlasset"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMesh": {
+      "abstract": [
+        {
+          "text": "A container for vertex buffer data to be used in rendering a 3D object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMesh"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMesh"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMesh",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmesh"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBuffer": {
+      "abstract": [
+        {
+          "text": "The general interface for managing storage of vertex and index data used in loading, processing, and rendering meshes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBuffer",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbuffer"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator": {
+      "abstract": [
+        {
+          "text": "The general interface for managing allocation of data buffers to be used in loading, processing, and rendering meshes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferAllocator"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferAllocator",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferallocator"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(_:type:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer of the specified length.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMeshBufferType",
+          "text": "MDLMeshBufferType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLMeshBuffer",
+          "text": "MDLMeshBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(_:type:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newBuffer:type:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "newBuffer(_:type:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferallocator/newbuffer(_:type:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(from:data:type:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer containing the specified data in the specified zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLMeshBufferZone",
+          "text": "MDLMeshBufferZone"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMeshBufferType",
+          "text": "MDLMeshBufferType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLMeshBuffer",
+          "text": "MDLMeshBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(from:data:type:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newBufferFromZone:data:type:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "newBuffer(from:data:type:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferallocator/newbuffer(from:data:type:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(from:length:type:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer of the specified length in the specified zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLMeshBufferZone",
+          "text": "MDLMeshBufferZone"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMeshBufferType",
+          "text": "MDLMeshBufferType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLMeshBuffer",
+          "text": "MDLMeshBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(from:length:type:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newBufferFromZone:length:type:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "newBuffer(from:length:type:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferallocator/newbuffer(from:length:type:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(with:type:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer containing the specified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMeshBufferType",
+          "text": "MDLMeshBufferType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLMeshBuffer",
+          "text": "MDLMeshBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(with:type:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newBufferWithData:type:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "newBuffer(with:type:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferallocator/newbuffer(with:type:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newZone(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a zone for related memory allocations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newZone"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLMeshBufferZone",
+          "text": "MDLMeshBufferZone"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newZone(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newZone:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "newZone(_:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferallocator/newzone(_:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newZoneForBuffers(withSize:andType:)": {
+      "abstract": [
+        {
+          "text": "Creates a zone large enough to fit the specified group of allocation sizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newZoneForBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSize"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "andType"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLMeshBufferZone",
+          "text": "MDLMeshBufferZone"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newZoneForBuffers(withSize:andType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newZoneForBuffersWithSize:andType:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "newZoneForBuffers(withSize:andType:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferallocator/newzoneforbuffers(withsize:andtype:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferData": {
+      "abstract": [
+        {
+          "text": "A memory buffer that stores vertex or index data for a Model I/O mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferData"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferData"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferData",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferdata"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferDataAllocator": {
+      "abstract": [
+        {
+          "text": "A basic allocator implementation that allocates from main memory using data objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferDataAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferDataAllocator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferDataAllocator"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferDataAllocator",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferdataallocator"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferMap": {
+      "abstract": [
+        {
+          "text": "An object that manages access to a memory buffer used for the data storage of a Model I/O mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferMap"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferMap",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbuffermap"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZone": {
+      "abstract": [
+        {
+          "text": "The general interface for logical pools of memory used in allocation of related mesh data buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferZone"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferZone"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferZone",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferzone"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZoneDefault": {
+      "abstract": [
+        {
+          "text": "A standard implementation of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZone",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferZoneDefault"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZoneDefault",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferZoneDefault"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferZoneDefault",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferzonedefault"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute": {
+      "abstract": [
+        {
+          "text": "A description of the format of per-vertex data for a single vertex attribute in a mesh object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVertexAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexAttribute",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexattribute"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttributeData": {
+      "abstract": [
+        {
+          "text": "An object that provides convenience access to vertex data for a specific vertex attribute of a mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVertexAttributeData"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttributeData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexAttributeData"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexAttributeData",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexattributedata"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexBufferLayout": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexBufferLayout",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object describes layout information for a vertex buffer in a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object. A collection of vertex layer objects, vertex attribute objects, and additional information forms a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object, which completely describes the layout of vertex buffers for a mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVertexBufferLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexBufferLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexBufferLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexBufferLayout",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexbufferlayout"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of the structure, format, and layout for vertex data buffers associated with a mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVertexDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexDescriptor",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexdescriptor"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferDataAllocator"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Mesh-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBuffer",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferData",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferDataAllocator",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferMap",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZone",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZoneDefault",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttributeData",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexBufferLayout",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor"
+      ],
+      "title": "Managing Mesh Data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Allocating-Mesh-Buffers",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newZone(_:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newZoneForBuffers(withSize:andType:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(_:type:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(from:length:type:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(with:type:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(from:data:type:)"
+      ],
+      "title": "Allocating Mesh Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MDLMeshBufferAllocator"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.modelio/documentation/ModelIO"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Allocating-Mesh-Buffers",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newZone(_:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newZoneForBuffers(withSize:andType:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(_:type:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(from:length:type:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(with:type:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator/newBuffer(from:data:type:)"
+              ],
+              "title": "Allocating Mesh Buffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferDataAllocator"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-Mesh-Data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBuffer",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferData",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferDataAllocator",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferMap",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZone",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZoneDefault",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttributeData",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexBufferLayout",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor"
+              ],
+              "title": "Managing Mesh Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MDLMeshBufferAllocator"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferDataAllocator/title",
+          "value": "MDLMeshBufferDataAllocator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferDataAllocator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferDataAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferDataAllocator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferDataAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBuffer/title",
+          "value": "MDLMeshBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZone/title",
+          "value": "MDLMeshBufferZone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZone/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferData/title",
+          "value": "MDLMeshBufferData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/title",
+          "value": "MDLMesh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexBufferLayout/title",
+          "value": "MDLVertexBufferLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexBufferLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexBufferLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexBufferLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexBufferLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferMap/title",
+          "value": "MDLMeshBufferMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newBuffer(from:data:type:)/title",
+          "value": "newBufferFromZone:data:type:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newBuffer(from:data:type:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newBufferFromZone:data:type:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator/title",
+          "value": "MDLMeshBufferAllocator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttributeData/title",
+          "value": "MDLVertexAttributeData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttributeData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexAttributeData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttributeData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexAttributeData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/title",
+          "value": "MDLAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newZone(_:)/title",
+          "value": "newZone:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newZone(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newZone:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttribute/title",
+          "value": "MDLVertexAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newBuffer(_:type:)/title",
+          "value": "newBuffer:type:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newBuffer(_:type:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newBuffer:type:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKMeshBufferAllocator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKMeshBufferAllocator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newZoneForBuffers(withSize:andType:)/title",
+          "value": "newZoneForBuffersWithSize:andType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newZoneForBuffers(withSize:andType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newZoneForBuffersWithSize:andType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexDescriptor/title",
+          "value": "MDLVertexDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newBuffer(with:type:)/title",
+          "value": "newBufferWithData:type:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newBuffer(with:type:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newBufferWithData:type:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZoneDefault/title",
+          "value": "MDLMeshBufferZoneDefault"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZoneDefault/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferZoneDefault"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZoneDefault/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferZoneDefault"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newBuffer(from:length:type:)/title",
+          "value": "newBufferFromZone:length:type:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator~1newBuffer(from:length:type:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newBufferFromZone:length:type:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/modelio/mdlmeshbufferallocator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/modelio/mdlmeshbufferallocator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

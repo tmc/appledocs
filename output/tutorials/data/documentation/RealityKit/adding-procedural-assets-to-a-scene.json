@@ -1,0 +1,851 @@
+{
+  "abstract": [
+    {
+      "text": "Create procedurally generated shape primitives to your Reality Composer scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding procedural assets to a scene"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit can generate several types of shape primitives, such as cubes, spheres,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and planes. Shape primitives are useful for a variety of debugging and development",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "purposes; for example, you might use them as proxies for unfinished assets. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also use them instead of artist-created assets for some production purposes. You",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might, for example, use a generated sphere instead of an artist-modeled ball when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creating a sports game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-a-mesh-resource",
+          "level": 3,
+          "text": "Generate a mesh resource",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Several ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class methods generate instances for different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shape primitives. You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances to create entities",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code shows you how to generate a procedural, 5-centimeter sphere ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using a generator method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sphereResource = MeshResource.generateSphere(radius: 0.05)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code shows an example of creating a box ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let boxResource = MeshResource.generateBox(size: 0.08)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "All ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " generator methods require measurement parameters",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to be expressed in meters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Define-the-appearance-of-the-procedural-asset",
+          "level": 3,
+          "text": "Define the appearance of the procedural asset",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that describes the desired color and other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "aspects of the procedural asset’s appearance. You typically do so by creating an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example shows you how to display a generated shape with a shiny, metallic-blue",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "surface:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let myMaterial = SimpleMaterial(color: .blue, roughness: 0, isMetallic: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-an-entity-from-a-mesh-resource",
+          "level": 3,
+          "text": "Create an entity from a mesh resource",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t add a generated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " asset directly to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene. Instead, generate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object based on the asset and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pass it as a single-element array to specify the material you created in the previous",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let myEntity = ModelEntity(mesh: myMeshResource, materials: [itemMaterial])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve created a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that represents your procedural",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object, place it in your scene by adding it as a descendant of any of your scene’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "anchors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let anchor = myScene.findEntity(named: \"My Anchor Entity\") {",
+            "    anchor.addChild(myEntity)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also create a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to hold your procedural object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a new Anchor Entity at the world origin.",
+            "let anchorEntity = AnchorEntity(world: .zero)",
+            "",
+            "// Add the entity as a child of the new anchor.",
+            "anchorEntity.addChild(myEntity)",
+            "",
+            "// Add the anchor to the scene.",
+            "arView.scene.addAnchor(anchorEntity)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity": {
+      "abstract": [
+        {
+          "text": "An anchor that tethers entities to a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchorEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnchorEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchorEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchorentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Material": {
+      "abstract": [
+        {
+          "text": "A type that describes the material aspects of a mesh, like color and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/realitykit/material"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource": {
+      "abstract": [
+        {
+          "text": "A high-level representation of a collection of vertices and edges that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "define a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity": {
+      "abstract": [
+        {
+          "text": "A representation of a physical object that RealityKit renders and optionally",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial": {
+      "abstract": [
+        {
+          "text": "A basic material that responds to lights in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SimpleMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SimpleMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "SimpleMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene": {
+      "abstract": [
+        {
+          "text": "Add assets to your scene from Reality Composer’s library, or import custom assets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding elements to a 3D scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-elements-to-a-3d-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Manipulate objects to complete your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Arranging elements in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/arranging-elements-in-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Define the appearance and behavior of objects in a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring elements in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/configuring-elements-in-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer": {
+      "abstract": [
+        {
+          "text": "Assemble assets into a dynamic 3D composition that you can add to a scene in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app, or share with AR Quick Look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating 3D Content with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-3d-content-with-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps": {
+      "abstract": [
+        {
+          "text": "Incorporate assistive technologies in your augmented reality app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the Accessibility of RealityKit Apps",
+      "type": "topic",
+      "url": "/documentation/realitykit/improving-the-accessibility-of-realitykit-apps"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code": {
+      "abstract": [
+        {
+          "text": "Load Reality Composer files that aren’t part of your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading Reality Composer files manually without generated code",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-reality-composer-files-manually-without-generated-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code": {
+      "abstract": [
+        {
+          "text": "Leverage automatically generated code to load scenes from Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading Reality Composer files using generated code",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-reality-composer-files-using-generated-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code": {
+      "abstract": [
+        {
+          "text": "Make programmatic changes to your scenes at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Manipulating Reality Composer scenes from code",
+      "type": "topic",
+      "url": "/documentation/realitykit/manipulating-reality-composer-scenes-from-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps"
+      ],
+      "title": "Scene creation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/adding-procedural-assets-to-a-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

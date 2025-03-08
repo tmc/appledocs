@@ -1,0 +1,887 @@
+{
+  "abstract": [
+    {
+      "text": "Runs an executable tool with root privileges.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use a ",
+          "type": "text"
+        },
+        {
+          "code": "launchd",
+          "type": "codeVoice"
+        },
+        {
+          "text": "-launched helper tool and/or the Service Management framework for this functionality.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/AuthorizationExecuteWithPrivileges"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@AuthorizationExecuteWithPrivileges",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "AuthorizationExecuteWithPrivileges"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AuthorizationExecuteWithPrivileges"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.7",
+        "introducedAt": "10.1",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "AuthorizationExecuteWithPrivileges"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AuthorizationExecuteWithPrivileges"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AuthorizationRef",
+              "text": "AuthorizationRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "authorization"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pathToTool"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFlags",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@AuthorizationFlags",
+              "text": "AuthorizationFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "arguments"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@__sFILE",
+              "text": "FILE"
+            },
+            {
+              "kind": "text",
+              "text": " * * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "communicationsPipe"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An authorization reference referring to the authorization session.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "authorization"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The full POSIX pathname of the tool to execute.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pathToTool"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reserved options. Pass the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFlags/kAuthorizationFlagDefaults",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " constant.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "options"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "code": "argv",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "-style vector of strings (array of null-terminated ",
+                  "type": "text"
+                },
+                {
+                  "code": "char *",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " pointers ending with a ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " pointer) to send to the tool. (You do not need to pass the name of the command as the first argument.)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "arguments"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a file structure. The Security Server creates the file, opens it for reading and writing, and connects it to the tool’s standard input and output. On return, you must close and dispose of this file using ",
+                  "type": "text"
+                },
+                {
+                  "code": "fclose",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " when your communication is complete. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you do not need a communications channel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "communicationsPipe"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/authorization-services-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This function is deprecated.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use a ",
+                  "type": "text"
+                },
+                {
+                  "code": "launchd",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "-launched helper tool and/or the Service Management framework for this functionality.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function enables you to execute the tool you specify in the ",
+              "type": "text"
+            },
+            {
+              "code": "pathToTool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter as a separate, privileged process. The new process will run with root privileges regardless of the privileges of the invoking process. The new process can retrieve the authorization reference by calling the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyPrivilegedReference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The arguments you pass in the ",
+              "type": "text"
+            },
+            {
+              "code": "arguments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter are relayed to the new process’s ",
+              "type": "text"
+            },
+            {
+              "code": "argv",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. A set of file descriptors is linked to the new process’s standard input and output so that your process may communicate with the new process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check if the user is authorized to perform this operation, you should preauthorize the ",
+              "type": "text"
+            },
+            {
+              "code": "kAuthorizationRightExecute",
+              "type": "codeVoice"
+            },
+            {
+              "text": " right. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a description of what information is included in the authorization item for this right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Special-Considerations",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should use this function only to allow installers to run as root and to allow a ",
+              "type": "text"
+            },
+            {
+              "code": "setuid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool to repair its ",
+              "type": "text"
+            },
+            {
+              "code": "setuid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bit if lost. This function works only if the Security Server establishes proper authorization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function poses a security concern because it will indiscriminately run any tool or application, severely increasing the security risk. You should avoid the use of this function if possible. One alternative is to split your code into two parts—the application and a setuid tool. The application invokes the setuid tool using standard methods. The setuid tool can then perform the privileged operations. If the tool loses its setuid bit, use the ",
+              "type": "text"
+            },
+            {
+              "code": "AuthorizationExecuteWithPrivileges",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to repair it. Factoring your program minimizes the use of this function and reduces the risk of harm. Read ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Inside macOS: Performing Privileged Operations With Authorization Services",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that this function respects the setuid bit, if it is set. That is, if the tool you are executing has its setuid bit set and its owner set to foo, the tool will be executed with the user foo’s privileges, not root privileges. To ensure that your call to the ",
+              "type": "text"
+            },
+            {
+              "code": "AuthorizationExecuteWithPrivileges",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function works as intended, make sure the setuid bit of the tool you wish to execute is cleared before calling ",
+              "type": "text"
+            },
+            {
+              "code": "AuthorizationExecuteWithPrivileges",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to execute the tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCopyPrivilegedReference": {
+      "abstract": [
+        {
+          "text": "Retrieves the authorization reference passed by the AuthorizationExecuteWithPrivileges function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyPrivilegedReference"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyPrivilegedReference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCopyPrivilegedReference",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcopyprivilegedreference"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationExecuteWithPrivileges": {
+      "abstract": [
+        {
+          "text": "Runs an executable tool with root privileges.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationExecuteWithPrivileges"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationExecuteWithPrivileges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationExecuteWithPrivileges",
+      "type": "topic",
+      "url": "/documentation/security/authorizationexecutewithprivileges"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationFlags": {
+      "abstract": [
+        {
+          "text": "The flags used to specify authorization options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationFlags",
+      "type": "topic",
+      "url": "/documentation/security/authorizationflags"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationFlags/kAuthorizationFlagDefaults": {
+      "abstract": [
+        {
+          "text": "An empty flag set that you use as a placeholder when you don’t want any of the other flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationFlagDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFlags/kAuthorizationFlagDefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationFlagDefaults",
+      "type": "topic",
+      "url": "/documentation/security/authorizationflags/kauthorizationflagdefaults"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationItem": {
+      "abstract": [
+        {
+          "text": "A structure containing information about an authorization right or the authorization environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationItem"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationItem",
+      "type": "topic",
+      "url": "/documentation/security/authorizationitem"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationRef": {
+      "abstract": [
+        {
+          "text": "A pointer to an opaque authorization reference structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationRef",
+      "type": "topic",
+      "url": "/documentation/security/authorizationref"
+    },
+    "doc://com.apple.security/documentation/Security/authorization-services-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the authorization services API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/authorization-services-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Services Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/authorization-services-result-codes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationItem/title",
+          "value": "AuthorizationItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFlags/title",
+          "value": "AuthorizationFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRef/title",
+          "value": "AuthorizationRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/authorizationexecutewithprivileges"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

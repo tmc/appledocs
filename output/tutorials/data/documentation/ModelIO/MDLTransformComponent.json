@@ -1,0 +1,1608 @@
+{
+  "abstract": [
+    {
+      "text": "The general interface for classes that manage local coordinate space transforms for 3D objects",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.modelio/documentation/ModelIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MDLTransformComponent",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MDLTransformComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Model I/O"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MDLTransformComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MDLTransformComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MDLTransformComponent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MDLComponent",
+              "text": "MDLComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Transform information—that is, the combination of an object’s position, orientation, shear, and scale—can be static, or in the case of resources that describe animations, time-based. By default, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class manages transform information for objects loaded from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. By providing your own class that adopts this protocol, you can support other ways to associate transform information with objects—for example, when defining a custom asset file format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO": {
+      "abstract": [
+        {
+          "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Model I/O",
+      "type": "topic",
+      "url": "/documentation/modelio"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAsset": {
+      "abstract": [
+        {
+          "text": "An indexed container for 3D objects and associated information, such as transform hierarchies, meshes, cameras, and lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAsset",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlasset"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLComponent": {
+      "abstract": [
+        {
+          "text": "The base protocol for extensible file format support in Model I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlcomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer": {
+      "abstract": [
+        {
+          "text": "A default implementation for handling object hierarchy relationships in a 3D asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLObjectContainer",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobjectcontainer"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent": {
+      "abstract": [
+        {
+          "text": "The general interface for classes that can act as containers in an object hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainerComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainerComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLObjectContainerComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobjectcontainercomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransform": {
+      "abstract": [
+        {
+          "text": "A description of the local coordinate space transformations for a 3D object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransform",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransform"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent": {
+      "abstract": [
+        {
+          "text": "The general interface for classes that manage local coordinate space transforms for 3D objects",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/globalTransform(with:atTime:)": {
+      "abstract": [
+        {
+          "text": "Returns the absolute coordinate transformation for an object in a transform hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "globalTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLObject",
+          "text": "MDLObject"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@matrix_float4x4",
+          "text": "matrix_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/globalTransform(with:atTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "globalTransformWithObject:atTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "globalTransform(with:atTime:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent/globaltransform(with:attime:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/keyTimes": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyTimes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/keyTimes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyTimes"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "keyTimes",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent/keytimes"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/localTransform(atTime:)": {
+      "abstract": [
+        {
+          "text": "Returns the local transform matrix as of the specified time sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@matrix_float4x4",
+          "text": "matrix_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/localTransform(atTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localTransformAtTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "localTransform(atTime:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent/localtransform(attime:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/matrix": {
+      "abstract": [
+        {
+          "text": "The transform matrix that defines the local coordinate space relative to a parent coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matrix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@matrix_float4x4",
+          "text": "matrix_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/matrix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matrix"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "matrix",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent/matrix"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/maximumTime": {
+      "abstract": [
+        {
+          "text": "The timestamp for the last timed data sample in the transform component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/maximumTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumTime"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "maximumTime",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent/maximumtime"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/minimumTime": {
+      "abstract": [
+        {
+          "text": "The timestamp for the first timed data sample in the transform component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/minimumTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumTime"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "minimumTime",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent/minimumtime"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/resetsTransform": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetsTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/resetsTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resetsTransform"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "resetsTransform",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent/resetstransform"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/setLocalTransform(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a new static transform matrix, overriding any time-based transform information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLocalTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@matrix_float4x4",
+          "text": "matrix_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/setLocalTransform(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setLocalTransform:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setLocalTransform(_:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent/setlocaltransform(_:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/setLocalTransform(_:forTime:)": {
+      "abstract": [
+        {
+          "text": "Sets a new local transform matrix for the specified time sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLocalTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@matrix_float4x4",
+          "text": "matrix_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/setLocalTransform(_:forTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setLocalTransform:forTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setLocalTransform(_:forTime:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent/setlocaltransform(_:fortime:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformStack"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformStack",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformstack"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransform",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extensible-Asset-Format-Support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent"
+      ],
+      "title": "Extensible Asset Format Support"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Working-with-Static-Transforms",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/matrix",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/setLocalTransform(_:)"
+      ],
+      "title": "Working with Static Transforms"
+    },
+    {
+      "anchor": "Working-with-Animated-Transforms",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/minimumTime",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/maximumTime",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/localTransform(atTime:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/setLocalTransform(_:forTime:)"
+      ],
+      "title": "Working with Animated Transforms"
+    },
+    {
+      "anchor": "Deriving-a-Global-Transformation",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/globalTransform(with:atTime:)"
+      ],
+      "title": "Deriving a Global Transformation"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/keyTimes",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/resetsTransform"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MDLTransformComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.modelio/documentation/ModelIO"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Working-with-Static-Transforms",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/matrix",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/setLocalTransform(_:)"
+              ],
+              "title": "Working with Static Transforms"
+            },
+            {
+              "anchor": "Working-with-Animated-Transforms",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/minimumTime",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/maximumTime",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/localTransform(atTime:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/setLocalTransform(_:forTime:)"
+              ],
+              "title": "Working with Animated Transforms"
+            },
+            {
+              "anchor": "Deriving-a-Global-Transformation",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/globalTransform(with:atTime:)"
+              ],
+              "title": "Deriving a Global Transformation"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/keyTimes",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent/resetsTransform"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLComponent"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransform",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extensible-Asset-Format-Support",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent"
+              ],
+              "title": "Extensible Asset Format Support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MDLTransformComponent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)MDLComponent",
+                    "text": "MDLComponent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1keyTimes/title",
+          "value": "keyTimes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1keyTimes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyTimes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1localTransform(atTime:)/title",
+          "value": "localTransformAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1localTransform(atTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "localTransformAtTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLComponent/title",
+          "value": "MDLComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/title",
+          "value": "MDLAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1matrix/title",
+          "value": "matrix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1matrix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1setLocalTransform(_:)/title",
+          "value": "setLocalTransform:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1setLocalTransform(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setLocalTransform:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformStack/title",
+          "value": "MDLTransformStack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformStack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformStack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformStack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformStack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1maximumTime/title",
+          "value": "maximumTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1maximumTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransform/title",
+          "value": "MDLTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainerComponent/title",
+          "value": "MDLObjectContainerComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainerComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainerComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainerComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainerComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1setLocalTransform(_:forTime:)/title",
+          "value": "setLocalTransform:forTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1setLocalTransform(_:forTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setLocalTransform:forTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1minimumTime/title",
+          "value": "minimumTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1minimumTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1resetsTransform/title",
+          "value": "resetsTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1resetsTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "resetsTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1globalTransform(with:atTime:)/title",
+          "value": "globalTransformWithObject:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent~1globalTransform(with:atTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "globalTransformWithObject:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainer/title",
+          "value": "MDLObjectContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent/title",
+          "value": "MDLTransformComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformComponent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/modelio/mdltransformcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/modelio/mdltransformcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

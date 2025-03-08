@@ -1,0 +1,1770 @@
+{
+  "abstract": [
+    {
+      "text": "Bundle executable or shareable code into a standalone Swift package.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/swift-packages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a standalone Swift package with Xcode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift packages are reusable components of Swift, Objective-C, Objective-C++, C, or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "C++ code. They can bundle resources, vend their code as binaries, or depend on other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "packages. Use Swift packages to bundle executable code, for example a script, as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "executable product",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", or create a package to vend shareable code as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "library",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "product",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Packages that vend a library product help promote modularity in your code,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make it easy to share code with others, and enable other developers to add functionality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to their apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Xcode, you can create a new Swift package, add code, resource files, and binaries,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build the Swift package, and run its unit tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-swift-package-with-xcode-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Swift-package",
+          "level": 3,
+          "text": "Create a Swift package",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new Swift package, open Xcode and select File > New > Package.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Choose a name and select a file location. Select “Create Git repository on my Mac”",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to put your package under version control. On completion, the Swift package opens",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Xcode and looks similar to a standard Xcode project. Xcode generates all necessary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files and folders as it creates a Swift package:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "README.md",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file resides at the root level of the package. It describes the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "functionality of your Swift package.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Package.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, or ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "package manifest",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", describes the configuration for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the Swift package. You can double-click it in Finder to open the package in Xcode.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The package manifest uses Swift and the PackageDescription framework to define the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "package’s name, products, targets, dependencies on other packages, and so on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Source files reside in a folder named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Sources",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and are scoped per ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "A Swift package can contain several targets, and, as a convention, each target’s",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "code resides in its own subfolder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unit test targets reside in a folder named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Tests",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and, following the same convention",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "as standard targets, each test target’s code resides in its own subfolder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-swift-package-with-xcode-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-Swift-package",
+          "level": 3,
+          "text": "Configure your Swift package",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift packages don’t use ",
+              "type": "text"
+            },
+            {
+              "code": ".xcodeproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": ".xcworkspace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " but rely on their folder",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structure and use the package manifest for additional configuration. The following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code listing shows a simple package manifest. It declares the MyLibrary target, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "vends it as a library product with the same name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// swift-tools-version:5.3",
+            "import PackageDescription",
+            "",
+            "let package = Package(",
+            "    name: \"MyLibrary\",",
+            "    platforms: [",
+            "        .macOS(.v10_14), .iOS(.v13), .tvOS(.v13)",
+            "    ],",
+            "    products: [",
+            "        // Products define the executables and libraries a package produces, and make them visible to other packages.",
+            "        .library(",
+            "            name: \"MyLibrary\",",
+            "            targets: [\"MyLibrary\", \"SomeRemoteBinaryPackage\", \"SomeLocalBinaryPackage\"])",
+            "    ],",
+            "    dependencies: [",
+            "        // Dependencies declare other packages that this package depends on.",
+            "    ],",
+            "    targets: [",
+            "        // Targets are the basic building blocks of a package. A target can define a module or a test suite.",
+            "        // Targets can depend on other targets in this package, and on products in packages this package depends on.",
+            "        .target(",
+            "            name: \"MyLibrary\",",
+            "            exclude: [\"instructions.md\"],",
+            "            resources: [",
+            "                .process(\"text.txt\"),",
+            "                .process(\"example.png\"),",
+            "                .copy(\"settings.plist\")",
+            "            ]",
+            "        ),",
+            "        .binaryTarget(",
+            "            name: \"SomeRemoteBinaryPackage\",",
+            "            url: \"https://url/to/some/remote/binary/package.zip\",",
+            "            checksum: \"The checksum of the XCFramework inside the ZIP archive.\"",
+            "        ),",
+            "        .binaryTarget(",
+            "            name: \"SomeLocalBinaryPackage\",",
+            "            path: \"path/to/some.xcframework\"",
+            "        )",
+            "        .testTarget(",
+            "            name: \"MyLibraryTests\",",
+            "            dependencies: [\"MyLibrary\"]),",
+            "    ]",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The package manifest must begin with the string ",
+              "type": "text"
+            },
+            {
+              "code": "// swift-tools-version:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", followed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by a version number such as ",
+              "type": "text"
+            },
+            {
+              "code": "// swift-tools-version:5.3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Swift tools version declares:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The version of the PackageDescription framework",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Swift language compatibility version to process the manifest",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The required minimum version of the Swift tools to use the package",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each version of Swift can introduce updates to the PackageDescription framework,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but the previous API version is available to packages that declare a prior Swift",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tools version. This behavior allows you take advantage of new releases of Swift,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Swift tools, and the PackageDescription framework, without having to update your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package manifest and without losing access to existing packages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about the ",
+              "type": "text"
+            },
+            {
+              "code": "PackageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode provides code completion when you edit the package manifest.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-your-code",
+          "level": 3,
+          "text": "Add your code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Per convention, source files reside in a subfolder of the package’s ",
+              "type": "text"
+            },
+            {
+              "code": "Sources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that has the same name as the target they belong to. Note how the package manifest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "above declares the ",
+              "type": "text"
+            },
+            {
+              "code": "MyLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target. Its source files reside in ",
+              "type": "text"
+            },
+            {
+              "code": "Sources/MyLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while source files for tests reside in ",
+              "type": "text"
+            },
+            {
+              "code": "Tests/MyLibraryTests",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can use additional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subfolders to structure them. Per default, Xcode includes all valid source files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inside a target’s folder. If you prefer to declare included source files explicitly,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pass them using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target/sources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter when you initialize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also pass paths to directories.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-swift-package-with-xcode-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add source files to a Swift package, use workflows that you already know. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you can add a source file to a package by dragging it into the Project navigator,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or by using the File > Add Files to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "[packageName]",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " menu. Targets can contain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift, Objective-C/C++, or C/C++ code, but an individual target can’t mix Swift with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "C-family languages. For example, a Swift package can have two targets, one that contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Objective-C, Objective-C++, and C code, and a second one that contains Swift code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-dependency-on-another-Swift-package",
+          "level": 3,
+          "text": "Add a dependency on another Swift package",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Just like apps, Swift packages can have ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "package dependencies",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". To declare a dependency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on a remote package, use one of the functions that take the URL of the remote package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a parameter. To add a local package as a dependency, use one of the functions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that take a path to the local package as a parameter. The following code snipped",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shows both options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dependencies: [    ",
+            "    // Dependencies declare other packages that this package depends on.",
+            "    .package(url: \"https://url/of/another/package.git\", from: \"1.0.0\"),",
+            "    .package(path: \"path/to/a/local/package/\", \"1.0.0\"..<\"2.0.0\")],"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Package/Dependency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for all possible ways to declare a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package dependency. When you add the dependency, you can use its vended product as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target/Dependency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or make it a part of your package’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Product",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Distribute-binaries-as-a-Swift-package",
+          "level": 3,
+          "text": "Distribute binaries as a Swift package",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of distributing a Swift package that vends source files, you can choose to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "distribute binaries instead. For example, creators of proprietary closed-source libraries",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "often make them available as binaries. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to learn more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-package-resources",
+          "level": 3,
+          "text": "Add package resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declare a Swift tools version of 5.3 or later in your manifest file to add asset",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files as package resources to your Swift package. For example, Swift packages can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contain user interface components that use asset catalogs, storyboards, ",
+              "type": "text"
+            },
+            {
+              "code": ".strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files, and so on. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to learn more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-your-Swift-package-cross-platform-compatible",
+          "level": 3,
+          "text": "Make your Swift package cross-platform compatible",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While Swift packages are platform-independent by nature and include, for example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Linux as a target platform, Swift packages can be platform-specific. Use conditional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compilation blocks to handle platform-specific code and achieve cross-platform compatibility.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example shows how to use conditional compilation blocks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if os(Linux)",
+            "",
+            "// Code specific to Linux",
+            "",
+            "#elseif os(macOS)",
+            "",
+            "// Code specific to macOS",
+            "",
+            "#endif",
+            "",
+            "#if canImport(UIKit)",
+            "",
+            "// Code specific to platforms where UIKit is available",
+            "",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, you may need to define a minimum deployment target. Note how the package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manifest below declares minimum deployment targets by passing them in as a value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the ",
+              "type": "text"
+            },
+            {
+              "code": "platforms",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer. However,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "passing minimum deployment targets to the initializer doesn’t restrict the package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the listed platforms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// swift-tools-version:5.3",
+            "import PackageDescription",
+            "",
+            "let package = Package(",
+            "    name: \"MyLibrary\",",
+            "    platforms: [",
+            "        .macOS(.v10_14), .iOS(.v13), .tvOS(.v13)",
+            "    ],",
+            "    products: [",
+            "        // Products define the executables and libraries a package produces, and make them visible to other packages.",
+            "        .library(",
+            "            name: \"MyLibrary\",",
+            "            targets: [\"MyLibrary\", \"SomeRemoteBinaryPackage\", \"SomeLocalBinaryPackage\"])",
+            "    ],",
+            "    dependencies: [",
+            "        // Dependencies declare other packages that this package depends on.",
+            "    ],",
+            "    targets: [",
+            "        // Targets are the basic building blocks of a package. A target can define a module or a test suite.",
+            "        // Targets can depend on other targets in this package, and on products in packages this package depends on.",
+            "        .target(",
+            "            name: \"MyLibrary\",",
+            "            exclude: [\"instructions.md\"],",
+            "            resources: [",
+            "                .process(\"text.txt\"),",
+            "                .process(\"example.png\"),",
+            "                .copy(\"settings.plist\")",
+            "            ]",
+            "        ),",
+            "        .binaryTarget(",
+            "            name: \"SomeRemoteBinaryPackage\",",
+            "            url: \"https://url/to/some/remote/binary/package.zip\",",
+            "            checksum: \"The checksum of the XCFramework inside the ZIP archive.\"",
+            "        ),",
+            "        .binaryTarget(",
+            "            name: \"SomeLocalBinaryPackage\",",
+            "            path: \"path/to/some.xcframework\"",
+            "        )",
+            "        .testTarget(",
+            "            name: \"MyLibraryTests\",",
+            "            dependencies: [\"MyLibrary\"]),",
+            "    ]",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you plan to publish a Swift package that doesn’t support all platforms,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "consider mentioning the supported platforms in your ",
+                  "type": "text"
+                },
+                {
+                  "code": "README.md",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file. In addition,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "think about adding support for other platforms to grow its audience.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Build-your-targets-and-run-unit-tests",
+          "level": 3,
+          "text": "Build your targets and run unit tests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode creates a scheme for each product in the package manifest. Select a scheme",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the package’s build-and-run destination, and build it as you’d build an app target.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each source target usually has at least one corresponding test target. If your package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains multiple products, Xcode creates an additional scheme with the name ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "[packageName]",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "-Package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to build all targets and run all unit tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "creating-a-swift-package-with-xcode-1": {
+      "alt": "Flowchart showing the development lifecycle for a Swift package.",
+      "identifier": "creating-a-swift-package-with-xcode-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ce439cc5d6ba4621ef3eb70fe9168526/creating-a-swift-package-with-xcode-1@2x.png"
+        }
+      ]
+    },
+    "creating-a-swift-package-with-xcode-2": {
+      "alt": "Screenshot showing a newly created standalone Swift package named ExamplePackage. The Editor area shows the package’s manifest file while the Navigator area shows the package’s contents and the Utilities area displays the information about the package manifest.",
+      "identifier": "creating-a-swift-package-with-xcode-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e21715f0e1aca7e69152ba05ec2a3d3/creating-a-swift-package-with-xcode-2@2x.png"
+        }
+      ]
+    },
+    "creating-a-swift-package-with-xcode-3": {
+      "alt": "Screenshot showing a standalone Swift package with two added source files and two unit test files.",
+      "identifier": "creating-a-swift-package-with-xcode-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/84b9475b2001d600f4672ff32d716930/creating-a-swift-package-with-xcode-3@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package": {
+      "abstract": [
+        {
+          "text": "Add resource files to your Swift package and access them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Bundling resources with a Swift package",
+      "type": "topic",
+      "url": "/documentation/xcode/bundling-resources-with-a-swift-package"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app": {
+      "abstract": [
+        {
+          "text": "Add your published Swift package as a local package to your app’s project and develop",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the package and the app in tandem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a Swift package in tandem with an app",
+      "type": "topic",
+      "url": "/documentation/xcode/developing-a-swift-package-in-tandem-with-an-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages": {
+      "abstract": [
+        {
+          "text": "Make binaries available to other developers by creating Swift packages that include",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "one or more XCFrameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing binary frameworks as Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/distributing-binary-frameworks-as-swift-packages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources": {
+      "abstract": [
+        {
+          "text": "Ensure that your Swift package provides localized resources for many locales.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing package resources",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-package-resources"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages": {
+      "abstract": [
+        {
+          "text": "Simplify maintenance, promote modularity, and encourage reuse by organizing your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app’s code into local Swift packages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Organizing your code with local packages",
+      "type": "topic",
+      "url": "/documentation/xcode/organizing-your-code-with-local-packages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-packages": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across Xcode projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-packages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-packages"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/PackageDescription"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Package": {
+      "abstract": [
+        {
+          "text": "The configuration of a Swift package.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Package"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Package",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Package"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Package/Dependency": {
+      "abstract": [
+        {
+          "text": "A package dependency of a Swift package.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dependency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Package/Dependency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package.Dependency",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Package/Dependency"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Product": {
+      "abstract": [
+        {
+          "text": "The object that defines a package product.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Product",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Product",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Product"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Target": {
+      "abstract": [
+        {
+          "text": "The basic building block of a Swift package.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Target"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Target",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Target"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Target/Dependency": {
+      "abstract": [
+        {
+          "text": "The different types of a target’s dependency on another entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dependency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target/Dependency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Target.Dependency",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Target/Dependency"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Target/sources": {
+      "abstract": [
+        {
+          "text": "The source files in this target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sources"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target/sources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sources",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Target/sources"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Package-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package",
+        "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources",
+        "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+        "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app",
+        "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages",
+        "doc://com.apple.documentation/documentation/PackageDescription"
+      ],
+      "title": "Package creation"
+    }
+  ]
+}

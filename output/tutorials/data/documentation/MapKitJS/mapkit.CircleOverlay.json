@@ -1,0 +1,480 @@
+{
+  "abstract": [
+    {
+      "text": "A circular overlay with a configurable radius that centers on a specific geographic coordinate.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "MapKit JS",
+      "versions": [
+        "5.0",
+        "5.78.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "cl/mapkit.CircleOverlay",
+    "modules": [
+      {
+        "name": "MapKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "MapKit JS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "mapkit.CircleOverlay"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: MapKit JS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "mapkit.CircleOverlay"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The circle overlay provides a built-in object for creating circles. MapKit JS defines ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/mapkit.CircleOverlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by a coordinate and a radius (in meters). All ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions/style",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties apply to circle overlays except ",
+              "type": "text"
+            },
+            {
+              "code": "lineCap",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "lineJoin",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "fillRule",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". MapKit JS ignores properties that don’t apply.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/mapkit.CircleOverlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " doesn’t implement methods of its own. For more information, see the base object, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Overlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example uses circle overlays to show the relative population sizes of three cities in the San Francisco Bay Area:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var stats = [",
+            "    { name: \"San Francisco\", coordinate: [37.783333, -122.416667], population: 852469 },",
+            "    { name: \"Oakland\", coordinate: [37.804444, -122.270833], population: 390724 },",
+            "    { name: \"San Jose\", coordinate: [37.333333, -121.9], population: 1000536 },",
+            "];",
+            "",
+            "var style = new mapkit.Style({",
+            "    lineWidth: 2,         // 2 CSS pixels.",
+            "    strokeColor: \"#999\",",
+            "    fillColor: \"#FFF\"",
+            "});",
+            "",
+            "var circles = stats.map(function(stat) {",
+            "    var coordinate = new mapkit.Coordinate(stat.coordinate[0], stat.coordinate[1]),",
+            "        radius = stat.population / 85, // The radius is in meters.",
+            "        circle = new mapkit.CircleOverlay(coordinate, radius);",
+            "    circle.data = { population: stat.population };",
+            "    circle.style = style;",
+            "    return circle;",
+            "});",
+            "",
+            "map.addOverlays(circles);"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS": {
+      "abstract": [
+        {
+          "text": "Embed interactive Apple Maps on your website, annotate points of interest, and perform georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit JS",
+      "type": "topic",
+      "url": "/documentation/mapkitjs"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/OverlayOptions": {
+      "abstract": [
+        {
+          "text": "A dictionary of options that determines an overlay’s data, and indicates whether it’s visible, in an enabled state, and in a selected state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/OverlayOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OverlayOptions",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/overlayoptions"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions": {
+      "abstract": [
+        {
+          "text": "An observable set of style attributes for an overlay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StylesOverlayOptions",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/stylesoverlayoptions"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions/style": {
+      "abstract": [
+        {
+          "text": "An object literal of style properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions/style",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "style",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/stylesoverlayoptions/style"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/adding-interactivity-to-overlays": {
+      "abstract": [
+        {
+          "text": "Configure and respond to overlays to make them interactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/adding-interactivity-to-overlays",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding interactivity to overlays",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/adding-interactivity-to-overlays"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay": {
+      "abstract": [
+        {
+          "text": "A circular overlay with a configurable radius that centers on a specific geographic coordinate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.CircleOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.circleoverlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/coordinate": {
+      "abstract": [
+        {
+          "text": "The coordinate of the circle overlay’s center.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/coordinate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coordinate",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.circleoverlay/coordinate"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/mapkit.CircleOverlay": {
+      "abstract": [
+        {
+          "text": "Creates a circle overlay with a center coordinate, radius, and style options.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/mapkit.CircleOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.CircleOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.circleoverlay/mapkit.circleoverlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/radius": {
+      "abstract": [
+        {
+          "text": "The circle overlay’s radius, in meters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/radius",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "radius",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.circleoverlay/radius"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Overlay": {
+      "abstract": [
+        {
+          "text": "An abstract base object that defines the methods and attributes for map overlays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Overlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.Overlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.overlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay": {
+      "abstract": [
+        {
+          "text": "An overlay consisting of one or more points that forms a closed shape.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.PolygonOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.polygonoverlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolylineOverlay": {
+      "abstract": [
+        {
+          "text": "An overlay of connected line segments that don’t form a closed shape.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolylineOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.PolylineOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.polylineoverlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Style": {
+      "abstract": [
+        {
+          "text": "A set of observable attributes for overlays, including the color and opacity of strokes and fills, and line styles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Style",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.Style",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.style"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay": {
+      "abstract": [
+        {
+          "text": "An overlay that covers an area of the map with bitmapped tiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.TileOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.tileoverlay"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Overlay"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Overlays",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/adding-interactivity-to-overlays",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Overlay",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Style",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolylineOverlay",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/OverlayOptions",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay"
+      ],
+      "title": "Overlays"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-circle-overlay",
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/mapkit.CircleOverlay",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions"
+      ],
+      "title": "Creating a circle overlay"
+    },
+    {
+      "anchor": "Defining-the-circle",
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/coordinate",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay/radius"
+      ],
+      "title": "Defining the circle"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkitjs/mapkit.circleoverlay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

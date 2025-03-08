@@ -1,0 +1,1584 @@
+{
+  "abstract": [
+    {
+      "text": "Discover how many people subscribe to your broadcast channels, and how many messages they receive.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pushkit/documentation/PushKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pushkit/documentation/PushKit/exporting-broadcast-push-notification-metrics"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PushKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Exporting broadcast push notification metrics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the CloudKit Console to export Apple Push Notification service (APNs) broadcast notification metrics for your application and channels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To download the broadcast push notification metrics report, create a data export token, request data from iCloud Web Services, and download the results when the request completes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about CloudKit and CloudKit Console, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/icloud/cloudkit/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you have questions about the data made available in this API, including how Apple applies privacy measures to protect user privacy and complies with legal obligations, contact Apple through Feedback Assistant by selecting the following option:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Developer Tools & Resources > CloudKit Console > Data Export",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "identifier": "https://support.apple.com/guide/feedback-assistant/welcome/mac",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " about how to use Feedback Assistant.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-data-export-token",
+          "level": 2,
+          "text": "Create a data export token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access log data for your apps, create a data export token by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://icloud.developer.apple.com/dashboard/notifications/teams?settings=account",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and log in.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Tokens.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Create Data Export Token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Give the token a name and an optional description.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the bundle identifier of the app for which you want to download data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the appropriate dataset:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "To download data aggregated across all channels for your app, choose Broadcast Push Notification Application Metrics.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "To download data for a specific channel for your app, choose Broadcast Push Notification Channel Metrics.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set an expiration date for the token, up to a maximum of six months in the future.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Create Data Export Token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Securely store the token that you created in step 8.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you navigate back to the CloudKit console later, you cannot see the data export token value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The token you create is restricted to your developer account, and only gives you access to the APNs dataset for the specified app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-data-export-request",
+          "level": 2,
+          "text": "Create a data export request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make an HTTPS ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to the appropriate data export request endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "https://api.icloud.apple.com/v1/dataExports/apns/teams/{teamId}/appId/{appId}/datasetName/broadcastapplicationmetric/request",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Application metrics",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "https://api.icloud.apple.com/v1/dataExports/apns/teams/{teamId}/appId/{appId}/datasetName/broadcastchannelmetrics/request",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Channel metrics",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Substitute these values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Your Apple Developer team identifier",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "{teamId}",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Your app’s bundle identifier",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "{appId}",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supply your data export token in the ",
+              "type": "text"
+            },
+            {
+              "code": "X-Apple-CloudKit-Management-Token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header, and provide a JSON object in the body which contains these keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The earliest date for which to include data, in the format ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "yyyy-MM-dd",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", at most 30 days in the past.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "startDate",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The latest date for which to include data, in the format ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "yyyy-MM-dd",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". This date must be later than ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "startDate",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and at least one day in the past.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "endDate",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of minutes after you receive the download for which the download URL needs to remain valid, between ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "20",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "60",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "dataDownloadUrlExpiresInMinutes",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For channel metrics requests, you also need to include a ",
+              "type": "text"
+            },
+            {
+              "code": "channelId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key, with a value that’s the base64-encoded bytes, that identifies the channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On success, the server responds with a JSON object that contains these fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A URL you use to check the status of your request.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "statusUrl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The time at which you requested the data export, in ISO8601 format.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "requestedAt",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "curl -X POST \\",
+                    "-H \"Content-Type: application/json\" \\",
+                    "-H \"X-Apple-CloudKit-Management-Token: {data-export-token}\" \\",
+                    "-d \\",
+                    "'{",
+                    "    \"startDate\": \"2024-11-03\",",
+                    "    \"endDate\": \"2024-11-10\",",
+                    "    \"dataDownloadUrlExpiresInMinutes\": 60,",
+                    "    \"channelId\": \"dHN0LXNyY2gtY2hubA==\",",
+                    "}' \\",
+                    "https://api.icloud.apple.com/v1/dataExports/apns/teams/{teamId}/appId/{appId}/datasetName/broadcastchannelmetrics/request "
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Example request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"statusUrl\": \"https://example.com/statusURL\",",
+                    "    \"requestedAt\": \"2024-11-11 18:01:00Z\"",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data export request endpoint might return the following HTTP status codes that represent errors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The request is badly formed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "400",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The data export token is invalid.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "401",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The channel identifier isn’t found.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "404",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An internal error occurred.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "500",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can request a download that covers the same date range as a previous download.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you make a repeat request within 24 hours, the server returns the same status URL as the original request.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you make a repeat request after 24 hours, the server creates a new request with a new status URL, and any events within the requested time range logged after the original request is made are in the new report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The status URLs for all requests are available for 6 months after you make the request.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use the latest URLs for checking status and downloading reports.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make an HTTPS ",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to the status URL, passing your data export token in the ",
+              "type": "text"
+            },
+            {
+              "code": "X-Apple-CloudKit-Management-Token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The server responds with a JSON object that contains these fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "One of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "PROCESSING",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "FAILED",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXPIRED",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SUCCESS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "status",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The time at which you requested the data export, in ISO8601 format.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "requestedAt",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If the status is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "PROCESSING",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXPIRED",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "FAILED",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", this key isn’t set. If the status is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SUCCESS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", it’s a JSON object that contains these fields:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "items": [
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "The URL you use to get the exported data.",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "code": "dataURL",
+                              "type": "codeVoice"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "The time at which the data URL expires.",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "code": "expiresAt",
+                              "type": "codeVoice"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "type": "termList"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "downloadDetails",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "curl -X GET -H \"X-Apple-CloudKit-Management-Token: {data-export-token}\" \\",
+                    "https://example.com/statusURL"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Example Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"requestedAt\": \"2024-02-14T18:32:30.947Z\",",
+                    "    \"status\": \"SUCCESS\",",
+                    "    \"downloadDetails\": {",
+                    "        \"dataUrl\": \"https://example.com/download/data.csv\",",
+                    "        \"expiresAt\": \"2024-02-14T18:53:14.762922Z\"",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data export status endpoint might return the following HTTP status codes that represent errors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The request is badly formed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "400",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The data export token is invalid.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "401",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An internal error occurred.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "500",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Download-the-exported-data",
+          "level": 2,
+          "text": "Download the exported data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make an HTTPS GET request to URL in the status object’s ",
+              "type": "text"
+            },
+            {
+              "code": "downloadDetails.dataUrl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to receive a CSV file that contains your exported data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "curl –compressed -X GET “https://example.com/download/data.csv” -o export.csv",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CSV file contains these fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The date at which APNs reported the metrics.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Date (UTC)",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An integer that’s the number of broadcast push notifications published to APNs. For channels that don’t have enough subscribers to deanonymize people, the value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "-1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " instead.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Broadcasts Published",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An integer that’s the number of broadcast push notifications delivered to devices from APNs. For channels that don’t have enough subscribers to deanonymize people, the value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "-1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " instead.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Broadcasts Delivered",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An integer that’s a snapshot count of devices subscribed. APNs records subscription snapshots throughout the day and reports the highest value for each day. For channels that don’t have enough subscribers to deanonymize people, the value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "-1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " instead.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Total Subscriptions",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An integer that’s a snapshot count of unique devices subscribed to any channel for your app. APNs records subscription snapshots throughout the day and reports the highest value for each day. This value is only included in the application metrics report.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Unique Subscribers",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple servers retain the exported data for six months. To re-download the data, make another GET request to the status URL and download the data from the new download URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit": {
+      "abstract": [
+        {
+          "text": "Respond to push notifications related to your app’s complications, file providers, and VoIP services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PushKit",
+      "type": "topic",
+      "url": "/documentation/pushkit"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/exporting-delivery-metrics-logs": {
+      "abstract": [
+        {
+          "text": "Download and analyze push-notification metrics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/exporting-delivery-metrics-logs",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting delivery metrics logs",
+      "type": "topic",
+      "url": "/documentation/pushkit/exporting-delivery-metrics-logs"
+    },
+    "https://developer.apple.com/icloud/cloudkit/": {
+      "identifier": "https://developer.apple.com/icloud/cloudkit/",
+      "title": "Build apps using CloudKit",
+      "titleInlineContent": [
+        {
+          "text": "Build apps using CloudKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/icloud/cloudkit/"
+    },
+    "https://icloud.developer.apple.com/dashboard/notifications/teams?settings=account": {
+      "identifier": "https://icloud.developer.apple.com/dashboard/notifications/teams?settings=account",
+      "title": "CloudKit Console settings",
+      "titleInlineContent": [
+        {
+          "text": "CloudKit Console settings",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://icloud.developer.apple.com/dashboard/notifications/teams?settings=account"
+    },
+    "https://support.apple.com/guide/feedback-assistant/welcome/mac": {
+      "identifier": "https://support.apple.com/guide/feedback-assistant/welcome/mac",
+      "title": "Learn more",
+      "titleInlineContent": [
+        {
+          "text": "Learn more",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/feedback-assistant/welcome/mac"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-export",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pushkit/documentation/PushKit/exporting-delivery-metrics-logs"
+      ],
+      "title": "Data export"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data-export",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pushkit/documentation/PushKit/exporting-delivery-metrics-logs"
+              ],
+              "title": "Data export"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pushkit/exporting-broadcast-push-notification-metrics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pushkit/exporting-broadcast-push-notification-metrics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

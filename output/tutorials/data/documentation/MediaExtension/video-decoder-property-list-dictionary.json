@@ -1,0 +1,967 @@
+{
+  "abstract": [
+    {
+      "text": "Include a property list dictionary to describe a video decoder.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaextension/documentation/MediaExtension"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaextension/documentation/MediaExtension",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MediaExtension"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Video decoder property list dictionary"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A MediaExtension video decoder needs to include an ",
+              "type": "text"
+            },
+            {
+              "code": "EXAppExtensionAttributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that contains the following keys and values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderClassImplementationIDKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": The identifier for the decoder. Format similarly to the bundle identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXExtensionPointIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The extension point name for video decoders. Set to the value for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderExtensionPointName",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXPrincipalClass",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The name of the video decoder factory class that conforms to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderObjectNameKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": A user-readable string that describes the codec format. This string is used for uniquely identifying video decoders and possibly for debug logging but is typically not visible to users.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecInfoKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": An array of one or more dictionaries describing the formats that the video decoder supports. Each dictionary must include the following keys:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecTypeKey",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ": A string describing the four-character code of the codec associated with the video decoder. Each string should be exactly four characters long and use ASCII character set encoding.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecNameKey",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ": A user-readable string describing the name of the codec format. This string might be displayed as format information for the video track in a player application.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension": {
+      "abstract": [
+        {
+          "text": "This framework provides a means for developers to create format readers, video decoders, and RAW processors for media that the system doesn’t natively support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MediaExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions": {
+      "abstract": [
+        {
+          "text": "An object that guides the video decoder operation on a per-frame basis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEDecodeFrameOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEDecodeFrameOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEDecodeFrameOptions",
+      "type": "topic",
+      "url": "/documentation/mediaextension/medecodeframeoptions"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the requirements for a video decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEVideoDecoder",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a factory to create new video decoders for a codec type that the extension implements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEVideoDecoderExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager": {
+      "abstract": [
+        {
+          "text": "Describes pixel buffer requirements and creates new pixel buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderPixelBufferManager"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderPixelBufferManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEVideoDecoderPixelBufferManager",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderpixelbuffermanager"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderClassImplementationIDKey": {
+      "abstract": [
+        {
+          "text": "The unique identifier for the video decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderClassImplementationIDKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderClassImplementationIDKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderClassImplementationIDKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEVideoDecoderClassImplementationIDKey",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmevideodecoderclassimplementationidkey"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecInfoKey": {
+      "abstract": [
+        {
+          "text": "An array of one or more dictionaries describing the codecs that the decoder supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderCodecInfoKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderCodecInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEVideoDecoderCodecInfoKey",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmevideodecodercodecinfokey"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecNameKey": {
+      "abstract": [
+        {
+          "text": "A user-readable string describing the name of the codec format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderCodecNameKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecNameKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderCodecNameKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEVideoDecoderCodecNameKey",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmevideodecodercodecnamekey"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecTypeKey": {
+      "abstract": [
+        {
+          "text": "A string describing the four-character code of the codec that the decoder supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderCodecTypeKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecTypeKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderCodecTypeKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEVideoDecoderCodecTypeKey",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmevideodecodercodectypekey"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderExtensionPointName": {
+      "abstract": [
+        {
+          "text": "The extension point name for video decoders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderExtensionPointName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderExtensionPointName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderExtensionPointName"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEVideoDecoderExtensionPointName",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmevideodecoderextensionpointname"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderObjectNameKey": {
+      "abstract": [
+        {
+          "text": "A user-readable string describing the decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderObjectNameKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderObjectNameKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEVideoDecoderObjectNameKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEVideoDecoderObjectNameKey",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmevideodecoderobjectnamekey"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement": {
+      "abstract": [
+        {
+          "text": "Include an entitlement to indicate your extension is a MediaExtension video decoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement",
+      "kind": "article",
+      "role": "article",
+      "title": "Video decoder entitlement",
+      "type": "topic",
+      "url": "/documentation/mediaextension/video-decoder-entitlement"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Video-decoders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement"
+      ],
+      "title": "Video decoders"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Property-list-keys",
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderClassImplementationIDKey",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderExtensionPointName",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderObjectNameKey",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecInfoKey",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecTypeKey",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecNameKey"
+      ],
+      "title": "Property list keys"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Property-list-keys",
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderClassImplementationIDKey",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderExtensionPointName",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderObjectNameKey",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecInfoKey",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecTypeKey",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEVideoDecoderCodecNameKey"
+              ],
+              "title": "Property list keys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Video-decoders",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement"
+              ],
+              "title": "Video decoders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager/title",
+          "value": "MEVideoDecoderPixelBufferManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderPixelBufferManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderPixelBufferManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderObjectNameKey/title",
+          "value": "kMEVideoDecoderObjectNameKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderObjectNameKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEVideoDecoderObjectNameKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderExtensionPointName/title",
+          "value": "kMEVideoDecoderExtensionPointName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderExtensionPointName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEVideoDecoderExtensionPointName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderClassImplementationIDKey/title",
+          "value": "kMEVideoDecoderClassImplementationIDKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderClassImplementationIDKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEVideoDecoderClassImplementationIDKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension/title",
+          "value": "MEVideoDecoderExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderCodecInfoKey/title",
+          "value": "kMEVideoDecoderCodecInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderCodecInfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEVideoDecoderCodecInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderCodecTypeKey/title",
+          "value": "kMEVideoDecoderCodecTypeKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderCodecTypeKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEVideoDecoderCodecTypeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder/title",
+          "value": "MEVideoDecoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameOptions/title",
+          "value": "MEDecodeFrameOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEDecodeFrameOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEDecodeFrameOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderCodecNameKey/title",
+          "value": "kMEVideoDecoderCodecNameKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEVideoDecoderCodecNameKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEVideoDecoderCodecNameKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaextension/video-decoder-property-list-dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaextension/video-decoder-property-list-dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

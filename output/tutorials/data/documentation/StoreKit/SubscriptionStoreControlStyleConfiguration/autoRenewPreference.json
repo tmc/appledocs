@@ -1,0 +1,664 @@
+{
+  "abstract": [
+    {
+      "text": "The auto-renewable subscripton product that renews at the next billing cycle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/autoRenewPreference"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV19autoRenewPreference0aB07ProductVSgvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "autoRenewPreference"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8StoreKit7ProductV",
+        "text": "Product"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "autoRenewPreference"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "autoRenewPreference"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8StoreKit7ProductV",
+              "text": "Product"
+            },
+            {
+              "kind": "text",
+              "text": "? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/autoRenewPreference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to identify the subscription that renews in the next billing cycle, if there is one. The property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the customer doesn’t have an auto-renewable subscription that renews in the next billing period. This indicates that the customer turned off the auto-renew preference, or that they don’t have a current subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Display the subscription in the auto-renew preference only if it appears in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/options",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/sections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " arrays. However, disable its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Option/subscribe()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " control so the customer doesn’t try to subscribe to it again, to prevent a system dialog that explains that the customer is already subscribed. The following code example shows how to check for the auto-renew preference and disable the subscribe functionality:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ForEach(configuration.options) { option in ",
+            "    Button(option.displayName, action: option.subscribe)",
+            "        .disabled(option.id == configuration.autoRenewPreference?.id)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/autoRenewPreference",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property to determine whether to grant access to a service. Always check the full transaction information before granting access to a paid service.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product": {
+      "abstract": [
+        {
+          "text": "Information about a product that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product",
+      "type": "topic",
+      "url": "/documentation/storekit/product"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of a subscription store control that includes the list of auto-renewable subscriptions to merchandise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Option/subscribe()": {
+      "abstract": [
+        {
+          "text": "Initiates a purchase when a customer activates a control to subscribe to the option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscribe"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Option/subscribe()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscribe()",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/option/subscribe()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/allOptions": {
+      "abstract": [
+        {
+          "text": "All subscription options in the subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/allOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allOptions",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/alloptions"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/autoRenewPreference": {
+      "abstract": [
+        {
+          "text": "The auto-renewable subscripton product that renews at the next billing cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoRenewPreference"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/autoRenewPreference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autoRenewPreference",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/autorenewpreference"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/groupDisplayName": {
+      "abstract": [
+        {
+          "text": "The localized display name of the subscription group that the subscription store view merchandises.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "groupDisplayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/groupDisplayName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "groupDisplayName",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/groupdisplayname"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/options": {
+      "abstract": [
+        {
+          "text": "An array of subscription options for the subscription store view to merchandise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV6OptionV",
+          "text": "Option"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "options",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/options"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/sections": {
+      "abstract": [
+        {
+          "text": "The subscription options to merchandise by sections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sections"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV7SectionV",
+          "text": "Section"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/sections",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sections",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/sections"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-subscription-group-properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/groupDisplayName",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/allOptions"
+      ],
+      "title": "Getting subscription group properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/autorenewpreference"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

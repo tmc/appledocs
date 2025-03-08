@@ -1,0 +1,659 @@
+{
+  "abstract": [
+    {
+      "text": "Use high-level APIs to get the most out of Apple File System.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system"
+  },
+  "kind": "article",
+  "legacy_identifier": 2985629,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About Apple File System"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple File System replaces HFS Plus as the default file system for iOS 10.3 and later, and for macOS High Sierra and later. Apple File System offers improved file system fundamentals as well as several new features, including cloning, snapshots, space sharing, fast directory sizing, atomic safe-save, and sparse files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using high-level APIs in Foundation, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to interact with files takes advantage of the new behavior provided by Apple File System automatically, without requiring changes your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to interact with the file system directly, without using any frameworks or the operating system, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3033304",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2985645",
+          "level": 3,
+          "text": "Clones Reduce the Cost of Copying",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A clone is a copy of a file or directory that occupies no additional space on disk. Clones let you make fast, power-efficient file copies on the same volume. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412957-copyitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407903-copyitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically create a clone for Apple File System volumes, as shown in the listing below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let origin = URL(fileURLWithPath: \"/path/to/origin\")",
+            "let destination = URL(fileURLWithPath: \"/path/to/destination\")",
+            "do {",
+            "    // Creates a clone for Apple File System volumes, or makes",
+            "    // a copy immediately for other file systems.",
+            "    try FileManager.default.copyItem(at: origin, to: destination)",
+            "} catch {",
+            "    // ... Handle the error ...",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2985644",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modifications to the data are written elsewhere, and both files continue to share the unmodified blocks. You can use this behavior, for example, to reduce storage space required for document revisions and copies. The figure below shows a file named “My file” and its copy “My file copy” that have two blocks in common and one block that varies between them. On file systems like HFS Plus, they’d each need three on-disk blocks, but on an Apple File System volume, the two common blocks are shared.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2991758",
+              "metadata": {
+                "anchor": "2991758",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2990506",
+          "level": 3,
+          "text": "Free Space Is Shared Between Volumes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many files systems, including HFS Plus, support only a single volume per partition. Because free space can’t be shared across partitions, each volume’s size is set when partitioning the storage device, and each volume can only grow into its available free space. In contrast, Apple File System supports multiple volumes within a single partition, which allows all of those volumes to share their free space. All of the volumes in an Apple File System partition can grow and shrink independently; space that’s freed when one volume shrinks can be used when another volume grows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3001372",
+              "metadata": {
+                "anchor": "3001372",
+                "title": "Figure 2"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each volume in the container can use the shared free space, so they all include that amount when reporting the available free space. For example, when you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1411896-attributesoffilesystem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the amount that’s reported includes all of the shared free space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let attributes = try? FileManager.default.attributesOfFileSystem(forPath: \"/\") {",
+            "    let availableFreeSpace = attributes[.systemFreeSize] ",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2991735",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Computing the sum of each volume’s available free space isn’t a reliable way to determine the total free space within a partition. In general, check whether the space required to perform a particular operation is available on the volume, rather than trying to calculate the partition’s total free space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2990507",
+          "level": 3,
+          "text": "Sparse Files Don’t Allocate Empty Blocks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In file systems that support sparse files, including Apple File System, on-disk blocks are allocated only when those blocks are actually written to. This behavior lets files that contain blank sections, such as disk images and database dumps, be saved on disk more efficiently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to create a new write handle, a sparse file is created automatically. For example, if you write a block of data, then seek one block by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1412135-seek",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and then write another block, the data stored on disk is organized as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2991755",
+              "metadata": {
+                "anchor": "2991755",
+                "title": "Figure 3"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HFS Plus and other formats that don’t support sparse files allocate three blocks for the file, one for each block that was written, and one empty block in the middle. With support for sparse files, only two blocks are allocated, and the empty block is omitted.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the sparse file in the Apple File system example above doesn’t contain a blank second block on disk, writing to the second block later results in blocks that are out of order, as shown in the figure below. High-level APIs like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " handle this fragmentation for you, and the performance loss due to fragmentation isn’t usually significant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2991757",
+              "metadata": {
+                "anchor": "2991757",
+                "title": "Figure 4"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a sparse file from an existing file that has blank data already stored on disk.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system": {
+      "abstract": [
+        {
+          "text": "Use high-level APIs to get the most out of Apple File System.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system",
+      "kind": "article",
+      "role": "article",
+      "title": "About Apple File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system/about_apple_file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system#2985644": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system#2985644",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/file_system/about_apple_file_system#2985644"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system#2991735": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system#2991735",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/file_system/about_apple_file_system#2991735"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system": {
+      "abstract": [
+        {
+          "text": "Prevent data loss and app crashes by interacting with the file system in a coordinated, asynchronous manner and by avoiding unnecessary disk I/O.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving performance and stability when accessing the file system",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileHandle",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1412135-seek": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1412135-seek",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seek(toFileOffset:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1412135-seek"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1407903-copyitem": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407903-copyitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyItem(atPath:toPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1407903-copyitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1411896-attributesoffilesystem": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1411896-attributesoffilesystem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributesOfFileSystem(forPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1411896-attributesoffilesystem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1412957-copyitem": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412957-copyitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyItem(at:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1412957-copyitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate": {
+      "abstract": [
+        {
+          "text": "The interface a file manager's delegate uses to intervene during operations or if an error occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-3033304": {
+      "identifier": "link-3033304",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple File System Reference",
+      "type": "topic",
+      "url": "https://developer.apple.com/go/?id=apfs-file-format-spec\n"
+    },
+    "link-media-2991755": {
+      "identifier": "link-media-2991755",
+      "title": "Figure 3",
+      "type": "link",
+      "url": "/documentation/foundation/file_system/about_apple_file_system#2991755"
+    },
+    "link-media-2991757": {
+      "identifier": "link-media-2991757",
+      "title": "Figure 4",
+      "type": "link",
+      "url": "/documentation/foundation/file_system/about_apple_file_system#2991757"
+    },
+    "link-media-2991758": {
+      "identifier": "link-media-2991758",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/file_system/about_apple_file_system#2991758"
+    },
+    "link-media-3001372": {
+      "identifier": "link-media-3001372",
+      "title": "Figure 2",
+      "type": "link",
+      "url": "/documentation/foundation/file_system/about_apple_file_system#3001372"
+    },
+    "media-2991755": {
+      "identifier": "media-2991755",
+      "title": "Figure 3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9d39bf05d/1bdc9439-72b3-49a0-8f2b-849a03a5190b.png"
+        }
+      ]
+    },
+    "media-2991757": {
+      "identifier": "media-2991757",
+      "title": "Figure 4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00fb314b61/814521bd-7cd5-4bef-b7f1-7fea8d4a6582.png"
+        }
+      ]
+    },
+    "media-2991758": {
+      "identifier": "media-2991758",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/844d707c4f/ac5e1344-2f57-4c6b-afd2-24332ccace7a.png"
+        }
+      ]
+    },
+    "media-3001372": {
+      "identifier": "media-3001372",
+      "title": "Figure 2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/badf048b93/66d169cf-1b29-447b-84ca-59be90e79a65.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system",
+        "doc://com.apple.documentation/documentation/foundation/filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate"
+      ],
+      "title": "File system operations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/file_system/about_apple_file_system"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/file_system/about_apple_file_system"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

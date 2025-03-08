@@ -1,0 +1,1832 @@
+{
+  "abstract": [
+    {
+      "text": "A component that applies a visual effect to a hierarchy of entities when a person looks at or selects an entity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation20HoverEffectComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HoverEffectComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HoverEffectComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "HoverEffectComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HoverEffectComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a HoverEffectComponent to an entity to convey the entity can receive gestures or to separate parts that can be interacted with independently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On visionOS, you hover over an entity by looking at or directly touching it. On other platforms, you hover over an entity by moving your mouse cursor over it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Entities also need to have an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/InputTargetComponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to receive hover effects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "let boxSize = SIMD3<Float>(0.5, 0.1, 0.05)",
+            "",
+            "let modelComponent = ModelComponent(",
+            "    mesh: MeshResource.generateBox(size: boxSize),",
+            "    materials: [SimpleMaterial(color: .black, roughness: 0.5, isMetallic: false)]",
+            ")",
+            "let collisionComponent = CollisionComponent(",
+            "    shapes: [ShapeResource.generateBox(size: boxSize)]",
+            ")",
+            "let inputTargetComponent = InputTargetComponent()",
+            "let hoverEffectComponent = HoverEffectComponent()",
+            "",
+            "let entityA = Entity()",
+            "entityA.components.set([modelComponent, collisionComponent, inputTargetComponent, hoverEffectComponent])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example code above produces the following scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "hovereffectcomponent-scene-default-effect-1",
+          "type": "video"
+        },
+        {
+          "anchor": "Hierarchical-behavior",
+          "level": 3,
+          "text": "Hierarchical behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "HoverEffectComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " applies its effect to an entity’s entire hierarchy, which means that all the entity’s descendent entities inherit the effect when a person looks at (or selects) an entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let boxSize = SIMD3<Float>(0.5, 0.1, 0.05)",
+            "",
+            "// Create a black box model, a matching collision component, and an input target component.",
+            "let modelComponent = ModelComponent(",
+            "    mesh: MeshResource.generateBox(size: boxSize),",
+            "    materials: [SimpleMaterial(color: .black, roughness: 0.5, isMetallic: false)]",
+            ")",
+            "let collisionComponent = CollisionComponent(",
+            "    shapes: [ShapeResource.generateBox(size: boxSize)]",
+            ")",
+            "let inputTargetComponent = InputTargetComponent()",
+            "",
+            "// Create a default hover effect component.",
+            "let hoverEffectComponent = HoverEffectComponent()",
+            "",
+            "let entityA = Entity()",
+            "entityA.components.set([modelComponent, collisionComponent, inputTargetComponent])",
+            "",
+            "let entityB = entityA.clone(recursive: true)",
+            "let entityC = entityB.clone(recursive: true)",
+            "",
+            "// B is a child of A.",
+            "entityA.addChild(entityB)",
+            "// C is a child of B.",
+            "entityB.addChild(entityC)",
+            "",
+            "// Place B above its parent, A.",
+            "entityB.position.y = 0.1",
+            "// Place C above its parent, B.",
+            "entityC.position.y = 0.1",
+            "",
+            "entityA.components.set(hoverEffectComponent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example only the highest entity in the hierarchy has a ",
+              "type": "text"
+            },
+            {
+              "code": "HoverEffectComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Activating this hover effect causes all of its children to display the same effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "hovereffectcomponent-scene-default-effect-3",
+          "type": "video"
+        },
+        {
+          "anchor": "Styles",
+          "level": 3,
+          "text": "Styles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize the visual effect of the ",
+              "type": "text"
+            },
+            {
+              "code": "HoverEffectComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " through the use of styles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/SpotlightHoverEffectStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " represents a feathered effect that follows the hover location on the entity. This is the default effect RealityKit uses if you create a ",
+              "type": "text"
+            },
+            {
+              "code": "HoverEffectComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the default initializer, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/init()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can customize the color and strength of this effect by passing values into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/SpotlightHoverEffectStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constructor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let hoverComponent = HoverEffectComponent(.spotlight(",
+            "    HoverEffectComponent.SpotlightHoverEffectStyle(",
+            "        color: .green, strength: 2.0",
+            "    )",
+            "))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "identifier": "hovereffectcomponent-spotlight",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HighlightHoverEffectStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " applies a uniform glow to the entity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in addition to the feathered effect from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/SpotlightHoverEffectStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can customize the color and strength of this effect by passing values into the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HighlightHoverEffectStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constructor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let hoverComponent = HoverEffectComponent(.highlight(",
+            "    HoverEffectComponent.HighlightHoverEffectStyle(",
+            "        color: .green, strength: 2.0",
+            "    )",
+            "))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "identifier": "hovereffectcomponent-highlight",
+          "type": "video"
+        },
+        {
+          "anchor": "Opacity-functions",
+          "level": 3,
+          "text": "Opacity functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize how a ",
+              "type": "text"
+            },
+            {
+              "code": "HoverEffectComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " presents on a partially or fully transparent material with the following opacity functions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An opacity function that causes the effect to draw at full opacity regardless of opacity of the base material. This is the default opacity function.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction/full",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An opacity function that draws the hover effect at full opacity when the entity’s base material opacity is greater than ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0.05",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and fades out the hover effect with the entity’s base material when its opacity is equal to or less than ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0.05",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction/mask",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An opacity function that draws the hover effect with an opacity that’s equal to the product of the entity’s base material and the shader’s output.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction/blend",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".full",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "identifier": "hovereffectcomponent-opacityfunction-full",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".mask",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "identifier": "hovereffectcomponent-opacityfunction-mask",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".blend",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "identifier": "hovereffectcomponent-opacityfunction-blend",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 3,
+          "type": "row"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Opacity functions can’t be applied to ",
+                  "type": "text"
+                },
+                {
+                  "code": "HoverEffectComponents",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " that use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/ShaderHoverEffectInputs",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Shader-inputs",
+          "level": 3,
+          "text": "Shader inputs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/ShaderHoverEffectInputs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "HoverEffectComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "constructor with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HoverEffect-swift.struct/shader(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to activate the ",
+              "type": "text"
+            },
+            {
+              "code": "Hover State",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Shader Graph node in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apply the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the entity’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when using this effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let boxSize = SIMD3<Float>(0.5, 0.1, 0.05)",
+            "",
+            "let customMaterial = try! await ShaderGraphMaterial(",
+            "   named: \"/Root/HoverEffectComponentDemo\",",
+            "   from: Bundle.main.url(forResource: \"DemoScene\", withExtension: \"usda\")!",
+            ")",
+            "",
+            "let entity = ModelEntity(",
+            "    mesh: MeshResource.generateBox(size: boxSize),",
+            "    materials: [customMaterial]",
+            ")",
+            "",
+            "// ...",
+            "",
+            "let hoverComponent = HoverEffectComponent(.shader(",
+            "    HoverEffectComponent.ShaderHoverEffectInputs(",
+            "        fadeInDuration: 1.0, fadeOutDuration: 1.0",
+            "    )",
+            "))",
+            "entity.components.set(hoverComponent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This shader graph represents a red and blue effect that interpolates between each color using a sine wave.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "hovereffectcomponent-shader-graph",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hovering over the entity displays the following effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "hovereffectcomponent-shader",
+          "type": "video"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BillboardComponent": {
+      "abstract": [
+        {
+          "text": "A component that orients an entity instance so that it continuously points toward",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the active camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BillboardComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BillboardComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BillboardComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "BillboardComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/billboardcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to collide with other entities",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that also have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent": {
+      "abstract": [
+        {
+          "text": "A component that applies a visual effect to a hierarchy of entities when a person looks at or selects an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HoverEffectComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HoverEffectComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "HoverEffectComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HighlightHoverEffectStyle": {
+      "abstract": [
+        {
+          "text": "A type that configures the visual aspects of a highlight hover effect for an entity",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HighlightHoverEffectStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HighlightHoverEffectStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HighlightHoverEffectStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "HoverEffectComponent.HighlightHoverEffectStyle",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/highlighthovereffectstyle"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HoverEffect-swift.struct": {
+      "abstract": [
+        {
+          "text": "An effect that applies when a person looks at or directly touches the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HoverEffect-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HoverEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "HoverEffectComponent.HoverEffect",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/hovereffect-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HoverEffect-swift.struct/shader(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a hover effect style that applies hover state data to a custom shader that applies to the entity’s model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20HoverEffectComponentV",
+          "text": "HoverEffectComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20HoverEffectComponentV06ShadercD6InputsV",
+          "text": "ShaderHoverEffectInputs"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20HoverEffectComponentV",
+          "text": "HoverEffectComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20HoverEffectComponentV0cD0V",
+          "text": "HoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HoverEffect-swift.struct/shader(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shader(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/hovereffect-swift.struct/shader(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction": {
+      "abstract": [
+        {
+          "text": "The blending technique options a hover effect applies to its entity’s base material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpacityFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpacityFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "HoverEffectComponent.OpacityFunction",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/opacityfunction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction/blend": {
+      "abstract": [
+        {
+          "text": "Draws the hover effect with an opacity that’s equal to the product of the entity’s base material and the shader’s output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blend"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction/blend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HoverEffectComponent.OpacityFunction.blend",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/opacityfunction/blend"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction/full": {
+      "abstract": [
+        {
+          "text": "Applies an opaque hover effect and ignores the opacity of the entity’s base material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "full"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction/full",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HoverEffectComponent.OpacityFunction.full",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/opacityfunction/full"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction/mask": {
+      "abstract": [
+        {
+          "text": "Applies a hover effect with full opacity when the opacity of the entity’s base material is greater than five percent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mask"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction/mask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HoverEffectComponent.OpacityFunction.mask",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/opacityfunction/mask"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/ShaderHoverEffectInputs": {
+      "abstract": [
+        {
+          "text": "A type that configures the visual aspects of a hover effect that applies a custom material",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShaderHoverEffectInputs"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/ShaderHoverEffectInputs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShaderHoverEffectInputs"
+        }
+      ],
+      "role": "symbol",
+      "title": "HoverEffectComponent.ShaderHoverEffectInputs",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/shaderhovereffectinputs"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/SpotlightHoverEffectStyle": {
+      "abstract": [
+        {
+          "text": "A type that configures the visual aspects of a spotlight hover effect for an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpotlightHoverEffectStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/SpotlightHoverEffectStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpotlightHoverEffectStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "HoverEffectComponent.SpotlightHoverEffectStyle",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/spotlighthovereffectstyle"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/hoverEffect-swift.property": {
+      "abstract": [
+        {
+          "text": "The current hover effect of the hover effect component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20HoverEffectComponentV",
+          "text": "HoverEffectComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20HoverEffectComponentV0cD0V",
+          "text": "HoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/hoverEffect-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffect",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/hovereffect-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/init()": {
+      "abstract": [
+        {
+          "text": "Creates a hover effect component with a default spotlight effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/init()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a hover effect component with a particular",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "visualization effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20HoverEffectComponentV",
+          "text": "HoverEffectComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20HoverEffectComponentV0cD0V",
+          "text": "HoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/hovereffectcomponent/init(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/InputTargetComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to receive system input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InputTargetComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/InputTargetComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InputTargetComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "InputTargetComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/inputtargetcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShaderGraphMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShaderGraphMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShaderGraphMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/shadergraphmaterial"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "hovereffectcomponent-highlight": {
+      "alt": "A screen recording of a living room with a black rectangle in the center of it. The rectangle begins to glow with a bright green feathered effect.",
+      "identifier": "hovereffectcomponent-highlight",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d27b4cac6bb6af75b58bd8852ba14cd/hovereffectcomponent-highlight.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31e7f190a6b901302663732a5ccedc94/hovereffectcomponent-highlight~dark.mp4"
+        }
+      ]
+    },
+    "hovereffectcomponent-opacityfunction-blend": {
+      "alt": "A screen recording of an empty living room. After a short delay a green rectangle slowly fades in and then fades back out.",
+      "identifier": "hovereffectcomponent-opacityfunction-blend",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ea6b065e362fcd973a8be114d97a573/hovereffectcomponent-opacityfunction-blend.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f48e283c0262a8e307360353849b764/hovereffectcomponent-opacityfunction-blend~dark.mp4"
+        }
+      ]
+    },
+    "hovereffectcomponent-opacityfunction-full": {
+      "alt": "A screen recording of a living room with a partially transparent green rectangle in the center of it. The green rectangle fades in to full opacity and becomes darker before fading out again and becoming partially transparent.",
+      "identifier": "hovereffectcomponent-opacityfunction-full",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ce07b08082a8a463c0413e59c32baec/hovereffectcomponent-opacityfunction-full.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/de8478db576f657bc8132be3ede7dd74/hovereffectcomponent-opacityfunction-full~dark.mp4"
+        }
+      ]
+    },
+    "hovereffectcomponent-opacityfunction-mask": {
+      "alt": "A screen recording of an empty living room. After a short delay a partially transparent green rectangle appears in the middle of the living room. The rectangle slowly fades in to become fully opaque before it fades out to be partially transparent and then disappears entirely.",
+      "identifier": "hovereffectcomponent-opacityfunction-mask",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/65de368b21f17bd9667f24bd5776e94f/hovereffectcomponent-opacityfunction-mask.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dfd88994a2ddd970b5f88f1b969c730b/hovereffectcomponent-opacityfunction-mask~dark.mp4"
+        }
+      ]
+    },
+    "hovereffectcomponent-scene-default-effect-1": {
+      "alt": "A video of a living room scene with 1 3D black rectangle in the center of it. The rectangle starts glowing with a feathered effect that moves around slowly.",
+      "identifier": "hovereffectcomponent-scene-default-effect-1",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ee5c7689e25a30e8dbb458d3a2377475/hovereffectcomponent-scene-default-effect-1.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/453f0886bce58e77ea4772ace6216542/hovereffectcomponent-scene-default-effect-1~dark.mp4"
+        }
+      ]
+    },
+    "hovereffectcomponent-scene-default-effect-3": {
+      "alt": "A video of a living room scene with three black rectangles arranged in a column. All three of the rectangles start glowing with a feathered effect that moves around slowly.",
+      "identifier": "hovereffectcomponent-scene-default-effect-3",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eaac9761becfed950557cd00397e44c9/hovereffectcomponent-scene-default-effect-3.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab3dc1ceb4c647b3b2345baed530da33/hovereffectcomponent-scene-default-effect-3~dark.mp4"
+        }
+      ]
+    },
+    "hovereffectcomponent-shader": {
+      "alt": "A screen recording of a living room with a single black rectangle in the middle of the room. The rectangle fades to a red color and back to black several times, and then stops at black.",
+      "identifier": "hovereffectcomponent-shader",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9e594a601bea09bf7b8dda06760f74fb/hovereffectcomponent-shader.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/abcb61ac42db848da63165e5aa78f861/hovereffectcomponent-shader~dark.mp4"
+        }
+      ]
+    },
+    "hovereffectcomponent-shader-graph": {
+      "alt": "A screenshot of an app window with a shader graph visible. The shader graph represents a red and blue effect that interpolates between each color using a sine wave. On the bottom right is a purple cube representing the effect halfway between red and blue.",
+      "identifier": "hovereffectcomponent-shader-graph",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87a01f2abcf75f901637dca380b007c7/hovereffectcomponent-shader-graph.jpg"
+        }
+      ]
+    },
+    "hovereffectcomponent-spotlight": {
+      "alt": "A screen recording of a living room with a black rectangle in the center of it. The rectangle begins to glow with a faint green feathered effect that moves around slowly.",
+      "identifier": "hovereffectcomponent-spotlight",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/35263b03e102b546b07cb20af4e1adb9/hovereffectcomponent-spotlight.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/837fcb2985f119d24204d826c394283b/hovereffectcomponent-spotlight~dark.mp4"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Visual-adjustments",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BillboardComponent"
+      ],
+      "title": "Visual adjustments"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HighlightHoverEffectStyle",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/HoverEffect-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/ShaderHoverEffectInputs",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/SpotlightHoverEffectStyle"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/init()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/init(_:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/hoverEffect-swift.property"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/OpacityFunction"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/HoverEffectComponent/Component-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/hovereffectcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

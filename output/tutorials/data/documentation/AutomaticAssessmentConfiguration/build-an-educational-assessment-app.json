@@ -1,0 +1,781 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure the academic integrity of your assessment app by using Automatic Assessment Configuration.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/build-an-educational-assessment-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Automatic Assessment Configuration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Build an Educational Assessment App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Academic assessment apps need to ensure that students can’t use certain system resources, like network access, the dictionary, and the calculator. However, depending on the assessment, you might want to allow students to use one or more of these resources. Use the Automatic Assessment Configuration framework to enable assessment administrators to chose which of these system resources, if any, students can use during an assessment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app is a web browser, with a Lock and Unlock button to enter and exit from Assessment mode, and additional buttons that can configure and launch the participating Calculator and Dictionary apps with varying participant app configurations. These configurations are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No access, where the participant app is prevented from launching",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed, with no network access, where the participant app can launch, but it can’t access the network",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed, with full network access, where the participant app can launch, and it has full network access",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can choose either Objective-C or Swift to build and run the same sample app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build and run this sample on your device, you must first select your development team for the project’s target using these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the sample project’s bundle ID to something unique.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure your team has been granted the  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_automatic-assessment-configuration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlement for macOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an App ID with this capability on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/account/resources/certificates/list",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Make sure the ID matches the bundle ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a Provisioning Profile for Mac Development with the App ID you created.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the project’s target, choose your team from the Team menu in the Signing & Capabilities pane, and deselect the checkbox so Xcode won’t automatically manage code signing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Provisioning Profiles drop-down, chose to download profiles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Start-the-Assessment-Session",
+          "level": 3,
+          "text": "Start the Assessment Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the app can start an assessment session, it needs to initialize the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Start with an assessment configuration.",
+            "AEAssessmentConfiguration *config = [[AEAssessmentConfiguration alloc] init];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the app configures one or more apps that the student is allowed to use during the assessment. The sample creates ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances to allow or disallow network access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A configuration that allows network access.",
+            "AEAssessmentParticipantConfiguration *networkAllowedConfig = [[AEAssessmentParticipantConfiguration alloc] init];",
+            "networkAllowedConfig.allowsNetworkAccess = true;",
+            "",
+            "// A configuration that prevents network access.",
+            "AEAssessmentParticipantConfiguration *noNetworkConfig = [[AEAssessmentParticipantConfiguration alloc] init];",
+            "noNetworkConfig.allowsNetworkAccess = false;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample then configures an app with one of the previously created ",
+              "type": "text"
+            },
+            {
+              "code": "AEAssessmentParticipantConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances, as appropriate, by calling an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/setconfiguration(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AEAssessmentApplication *calculator = [[AEAssessmentApplication alloc] initWithBundleIdentifier:calculatorBundleID];",
+            "",
+            "switch ( [self.calculatorOptions selectedSegment] ) {",
+            "    case 0: // Not allowed.",
+            "        [self log:@\"Calculator will not be allowed when locked\"];",
+            "        break;",
+            "    case 1: // Allowed, no network.",
+            "        [self log:@\"Calculator will be allowed when locked, with no network access.\"];",
+            "        [config setConfiguration:noNetworkConfig forApplication:calculator];",
+            "        break;",
+            "    case 2:  // Allowed, with network.",
+            "        [self log:@\"Calculator will be allowed when locked, with network access.\"];",
+            "        [config setConfiguration:networkAllowedConfig forApplication:calculator];",
+            "        break;",
+            "    default:",
+            "        [self log:@\"Unexpected segment; Calculator not allowed.\"];",
+            "        break;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the sample starts the assessment session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[self.session begin];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-Assessment-Session-Events",
+          "level": 3,
+          "text": "Handle Assessment Session Events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to be notified of assessment session lifecycle events. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate/assessmentSession(_:wasinterruptedwitherror:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method handles the case of a system failure interrupting the assessment session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)assessmentSession:(AEAssessmentSession *)session wasInterruptedWithError:(NSError *)error {",
+            "    [self log:@\"Session interrupted - %@\", [error localizedDescription]];",
+            "    [session end];",
+            "    [self updateLockButton];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "End-the-Session",
+          "level": 3,
+          "text": "End the Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the student finishes taking the assessment, save the results and end the assessment session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[self.session end];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8901fc522f09/BuildAnEducationalAssessmentApp.zip": {
+      "checksum": "8901fc522f0994034efdfc85a43f124316ab3cfb2245264e9c89f4244310c1e09e30dab5d964eef68964d131c9ce2fa56cde24ddbacdeb13640108854c38b45f",
+      "identifier": "8901fc522f09/BuildAnEducationalAssessmentApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8901fc522f09/BuildAnEducationalAssessmentApp.zip"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration": {
+      "abstract": [
+        {
+          "text": "Enter single-app mode and prevent students from accessing specific system features while taking an exam.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Automatic Assessment Configuration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration information for an assessment session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentConfiguration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession": {
+      "abstract": [
+        {
+          "text": "A session that your app uses to protect an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentSession"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentSession",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentsession"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/preparing-an-educational-assessment-app-for-distribution": {
+      "abstract": [
+        {
+          "text": "Ensure your app maintains academic integrity by reviewing assessment practices and managing system capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/preparing-an-educational-assessment-app-for-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing an educational assessment app for distribution",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/preparing-an-educational-assessment-app-for-distribution"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/account/resources/certificates/list": {
+      "identifier": "https://developer.apple.com/account/resources/certificates/list",
+      "title": "Provisioning Portal",
+      "titleInlineContent": [
+        {
+          "text": "Provisioning Portal",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/resources/certificates/list"
+    },
+    "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration": {
+      "identifier": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration",
+      "title": "AEAssessmentConfiguration",
+      "titleInlineContent": [
+        {
+          "code": "AEAssessmentConfiguration",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration"
+    },
+    "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/setconfiguration(_:for:)": {
+      "identifier": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/setconfiguration(_:for:)",
+      "title": "setConfiguration(_:for:)",
+      "titleInlineContent": [
+        {
+          "code": "setConfiguration(_:for:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/setconfiguration(_:for:)"
+    },
+    "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration": {
+      "identifier": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration",
+      "title": "AEAssessmentParticipantConfiguration",
+      "titleInlineContent": [
+        {
+          "code": "AEAssessmentParticipantConfiguration",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration"
+    },
+    "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate": {
+      "identifier": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate",
+      "title": "AEAssessmentSessionDelegate",
+      "titleInlineContent": [
+        {
+          "code": "AEAssessmentSessionDelegate",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate"
+    },
+    "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate/assessmentSession(_:wasinterruptedwitherror:)": {
+      "identifier": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate/assessmentSession(_:wasinterruptedwitherror:)",
+      "title": "assessmentSession(_:wasInterruptedWithError:)",
+      "titleInlineContent": [
+        {
+          "code": "assessmentSession(_:wasInterruptedWithError:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate/assessmentSession(_:wasinterruptedwitherror:)"
+    },
+    "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_automatic-assessment-configuration": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_automatic-assessment-configuration",
+      "title": "com.apple.developer.automatic-assessment-configuration",
+      "titleInlineContent": [
+        {
+          "code": "com.apple.developer.automatic-assessment-configuration",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_automatic-assessment-configuration"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8901fc522f09/BuildAnEducationalAssessmentApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/preparing-an-educational-assessment-app-for-distribution",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession"
+      ],
+      "title": "Sessions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sessions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/preparing-an-educational-assessment-app-for-distribution",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession"
+              ],
+              "title": "Sessions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/title",
+          "value": "AEAssessmentSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/title",
+          "value": "AEAssessmentConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/automaticassessmentconfiguration/build-an-educational-assessment-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/automaticassessmentconfiguration/build-an-educational-assessment-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

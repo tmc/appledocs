@@ -1,0 +1,1798 @@
+{
+  "abstract": [
+    {
+      "text": "A reader session for detecting ISO7816, ISO15693, FeliCa, and MIFARE tags.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corenfc/documentation/CoreNFC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NFCTagReaderSession",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NFCTagReaderSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core NFC"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NFCTagReaderSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NFCTagReaderSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NFCTagReaderSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use NFCTagReaderSession to interact with one of the tag types listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To use this reader session, you must:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Include the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.readersession.formats",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a non-empty string for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key in your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To interact with ISO 7816 tags, add the list of the application identifiers supported in your app to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/com.apple.developer.nfc.readersession.iso7816.select-identifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " information property list key. If you include the application identifier ",
+              "type": "text"
+            },
+            {
+              "code": "D2760000850101",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—the identifier for the NDEF application on MIFARE DESFire tags (NFC Forum T4T tag platform)—and the reader session finds a tag matching this identifier, it sends the delegate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCISO7816Tag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tag object. To get the MIFARE DESFire tag as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCMiFareTag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, don’t include ",
+              "type": "text"
+            },
+            {
+              "code": "D2760000850101",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the application identifier list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only one reader session of any type can be active in the system at a time. The system puts additional sessions in a queue and processes them in first-in, first-out (FIFO) order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Core NFC doesn’t support payment-related Application IDs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corenfc/documentation/CoreNFC": {
+      "abstract": [
+        {
+          "text": "Detect NFC tags, read messages that contain NDEF data, and save data to writable tags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core NFC",
+      "type": "topic",
+      "url": "/documentation/corenfc"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCISO7816Tag": {
+      "abstract": [
+        {
+          "text": "An interface for interacting with an ISO 7816 tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCISO7816Tag"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCISO7816Tag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCISO7816Tag"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCISO7816Tag",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfciso7816tag"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCMiFareTag": {
+      "abstract": [
+        {
+          "text": "An interface for interacting with a MIFARE® tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCMiFareTag"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCMiFareTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCMiFareTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCMiFareTag",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcmifaretag"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFReaderSession": {
+      "abstract": [
+        {
+          "text": "A reader session for detecting NFC Data Exchange Format (NDEF) tags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCNDEFReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCNDEFReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCNDEFReaderSession",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcndefreadersession"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class": {
+      "abstract": [
+        {
+          "text": "The abstract base class that represents a reader session for detecting NFC tags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCReaderSession",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcreadersession-swift.class"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSessionDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of callbacks that provide information about the status of an NFC reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NFCReaderSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSessionDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCReaderSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcreadersessiondelegate"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSessionProtocol": {
+      "abstract": [
+        {
+          "text": "A general interface for interacting with a reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCReaderSessionProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSessionProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCReaderSessionProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCReaderSessionProtocol",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcreadersessionprotocol"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession": {
+      "abstract": [
+        {
+          "text": "A reader session for detecting ISO7816, ISO15693, FeliCa, and MIFARE tags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCTagReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCTagReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCTagReaderSession",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersession"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/PollingOption": {
+      "abstract": [
+        {
+          "text": "Options that determine the type of tags that a reader session should detect during a polling sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PollingOption"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/PollingOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PollingOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCTagReaderSession.PollingOption",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersession/pollingoption"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connect(to:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC6NFCTagO",
+          "text": "NFCTag"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connect(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connect(to:)",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersession/connect(to:)"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connect(to:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Connects the reader session to a tag and activates that tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC6NFCTagO",
+          "text": "NFCTag"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connect(to:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connect(to:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersession/connect(to:completionhandler:)"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connectToTag:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Connects the reader session to a tag and activates that tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectToTag:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connectToTag:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "connectToTag:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "connectToTag:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersession/connecttotag:completionhandler:"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connectedTag-1mnjc": {
+      "abstract": [
+        {
+          "text": "The tag connected to the reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "connectedTag"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connectedTag-1mnjc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectedTag",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersession/connectedtag-1mnjc"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connectedTag-3mlqu": {
+      "abstract": [
+        {
+          "text": "The tag connected to the reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectedTag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC6NFCTagO",
+          "text": "NFCTag"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connectedTag-3mlqu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectedTag",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersession/connectedtag-3mlqu"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/init(pollingOption:delegate:queue:)": {
+      "abstract": [
+        {
+          "text": "Creates an NFC tag reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pollingOption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NFCTagReaderSession",
+          "text": "NFCTagReaderSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NFCPollingOption",
+          "text": "PollingOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC27NFCTagReaderSessionDelegateP",
+          "text": "NFCTagReaderSessionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_dispatch_queue",
+          "text": "DispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/init(pollingOption:delegate:queue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(pollingOption:delegate:queue:)",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersession/init(pollingoption:delegate:queue:)"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/initWithPollingOption:delegate:queue:": {
+      "abstract": [
+        {
+          "text": "Intializes an NFC tag reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithPollingOption:delegate:queue:"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/initWithPollingOption:delegate:queue:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithPollingOption:delegate:queue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithPollingOption:delegate:queue:",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersession/initwithpollingoption:delegate:queue:"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/restartPolling()": {
+      "abstract": [
+        {
+          "text": "Restarts the polling sequence so the reader session can discover new tags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restartPolling"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/restartPolling()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restartPolling"
+        }
+      ],
+      "role": "symbol",
+      "title": "restartPolling()",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersession/restartpolling()"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSessionDelegate-2joku": {
+      "abstract": [
+        {
+          "text": "A protocol that an object implements to receive callbacks sent from an NFC tag reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCTagReaderSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSessionDelegate-2joku",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCTagReaderSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCTagReaderSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersessiondelegate-2joku"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSessionDelegate-5gxiw": {
+      "abstract": [
+        {
+          "text": "A protocol that an object implements to receive callbacks sent from an NFC tag reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NFCTagReaderSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSessionDelegate-5gxiw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCTagReaderSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagreadersessiondelegate-5gxiw"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagType": {
+      "abstract": [
+        {
+          "text": "Constants that identify the type of an NFC tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NFCTagType"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCTagType",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagtype"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCVASReaderSession": {
+      "abstract": [
+        {
+          "text": "A reader session for processing Value Added Service (VAS) tags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCVASReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCVASReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCVASReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCVASReaderSession",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcvasreadersession"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.readersession.formats": {
+      "abstract": [
+        {
+          "text": "The Near Field Communication data formats an app can read.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.readersession.formats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Near Field Communication Tag Reader Session Formats Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.nfc.readersession.formats"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s NFC hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCReaderUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/com.apple.developer.nfc.readersession.iso7816.select-identifiers": {
+      "abstract": [
+        {
+          "text": "A list of application identifiers that the app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/com.apple.developer.nfc.readersession.iso7816.select-identifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.nfc.readersession.iso7816.select-identifiers",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/com.apple.developer.nfc.readersession.iso7816.select-identifiers"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSessionProtocol",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reader-sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFReaderSession",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCVASReaderSession",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSessionProtocol",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.readersession.formats"
+      ],
+      "title": "Reader sessions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Tag-Reader-Session",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/init(pollingOption:delegate:queue:)",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/PollingOption",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSessionDelegate-2joku"
+      ],
+      "title": "Creating a Tag Reader Session"
+    },
+    {
+      "anchor": "Connecting-to-a-Tag",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connect(to:completionHandler:)",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connectedTag-3mlqu"
+      ],
+      "title": "Connecting to a Tag"
+    },
+    {
+      "anchor": "Restarting-the-Polling-Sequence",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/restartPolling()"
+      ],
+      "title": "Restarting the Polling Sequence"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connect(to:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NFCTagReaderSession"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCTagReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCTagReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corenfc/documentation/CoreNFC"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Tag-Reader-Session",
+              "identifiers": [
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/initWithPollingOption:delegate:queue:",
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/PollingOption",
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSessionDelegate-5gxiw"
+              ],
+              "title": "Creating a Tag Reader Session"
+            },
+            {
+              "anchor": "Connecting-to-a-Tag",
+              "identifiers": [
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connectToTag:completionHandler:",
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/connectedTag-1mnjc"
+              ],
+              "title": "Connecting to a Tag"
+            },
+            {
+              "anchor": "Restarting-the-Polling-Sequence",
+              "identifiers": [
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagReaderSession/restartPolling()"
+              ],
+              "title": "Restarting the Polling Sequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Reader-sessions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFReaderSession",
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCVASReaderSession",
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class",
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSessionProtocol",
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class",
+                "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSessionDelegate",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.readersession.formats"
+              ],
+              "title": "Reader sessions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NFCTagReaderSession"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NFCReaderSession",
+                    "text": "NFCReaderSession"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagReaderSession~1restartPolling()/title",
+          "value": "restartPolling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagReaderSession~1restartPolling()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restartPolling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagReaderSession~1PollingOption/title",
+          "value": "NFCPollingOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagReaderSession~1PollingOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCPollingOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagReaderSession~1PollingOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCPollingOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCISO7816Tag/title",
+          "value": "NFCISO7816Tag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCISO7816Tag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCISO7816Tag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCISO7816Tag/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCISO7816Tag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagReaderSession/title",
+          "value": "NFCTagReaderSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagReaderSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCTagReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagReaderSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCTagReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCVASReaderSession/title",
+          "value": "NFCVASReaderSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCVASReaderSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCVASReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCVASReaderSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCVASReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFReaderSession/title",
+          "value": "NFCNDEFReaderSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFReaderSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCNDEFReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFReaderSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCNDEFReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCMiFareTag/title",
+          "value": "NFCMiFareTag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCMiFareTag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCMiFareTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCMiFareTag/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCMiFareTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSessionProtocol/title",
+          "value": "NFCReaderSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSessionProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSessionProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSession-swift.class/title",
+          "value": "NFCReaderSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSession-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSession-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corenfc/nfctagreadersession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corenfc/nfctagreadersession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1117 @@
+{
+  "abstract": [
+    {
+      "text": "The number of bits used to represent the type’s exponent.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/Double"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Double/exponentBitCount"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Swift",
+    "externalID": "s:Sd16exponentBitCountSivpZ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "exponentBitCount"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Si",
+        "text": "Int"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "exponentBitCount"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "exponentBitCount"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A binary floating-point type’s ",
+              "type": "text"
+            },
+            {
+              "code": "exponentBitCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " imposes a limit on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "range of the exponent for normal, finite values. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "exponent bias",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a type ",
+              "type": "text"
+            },
+            {
+              "code": "F",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can be calculated as the following, where ",
+              "type": "text"
+            },
+            {
+              "code": "**",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exponentiation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let bias = 2 ** (F.exponentBitCount - 1) - 1"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The least normal exponent for values of the type ",
+              "type": "text"
+            },
+            {
+              "code": "F",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "1 - bias",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the largest finite exponent is ",
+              "type": "text"
+            },
+            {
+              "code": "bias",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". An all-zeros exponent is reserved",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for subnormals and zeros, and an all-ones exponent is reserved for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "infinity and NaN.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "Float",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type has an ",
+              "type": "text"
+            },
+            {
+              "code": "exponentBitCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of 8, which gives",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an exponent bias of ",
+              "type": "text"
+            },
+            {
+              "code": "127",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by the calculation above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let bias = 2 ** (Float.exponentBitCount - 1) - 1",
+            "// bias == 127",
+            "print(Float.greatestFiniteMagnitude.exponent)",
+            "// Prints \"127\"",
+            "print(Float.leastNormalMagnitude.exponent)",
+            "// Prints \"-126\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/swift/double"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/Exponent-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A type that can represent any written exponent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Exponent"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/Exponent-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Exponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "Double.Exponent",
+      "type": "topic",
+      "url": "/documentation/swift/double/exponent-swift.typealias"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/RawExponent": {
+      "abstract": [
+        {
+          "text": "A type that represents the encoded exponent of a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawExponent"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/RawExponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RawExponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "Double.RawExponent",
+      "type": "topic",
+      "url": "/documentation/swift/double/rawexponent"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/RawSignificand": {
+      "abstract": [
+        {
+          "text": "A type that represents the encoded significand of a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawSignificand"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/RawSignificand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RawSignificand"
+        }
+      ],
+      "role": "symbol",
+      "title": "Double.RawSignificand",
+      "type": "topic",
+      "url": "/documentation/swift/double/rawsignificand"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/bitPattern": {
+      "abstract": [
+        {
+          "text": "The bit pattern of the value’s encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitPattern"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/bitPattern",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bitPattern",
+      "type": "topic",
+      "url": "/documentation/swift/double/bitpattern"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/exponentBitCount": {
+      "abstract": [
+        {
+          "text": "The number of bits used to represent the type’s exponent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exponentBitCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/exponentBitCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exponentBitCount",
+      "type": "topic",
+      "url": "/documentation/swift/double/exponentbitcount"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/exponentBitPattern": {
+      "abstract": [
+        {
+          "text": "The raw encoding of the value’s exponent field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exponentBitPattern"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/exponentBitPattern",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exponentBitPattern",
+      "type": "topic",
+      "url": "/documentation/swift/double/exponentbitpattern"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/init(bitPattern:)": {
+      "abstract": [
+        {
+          "text": "Creates a new value with the given bit pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bitPattern"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/init(bitPattern:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bitPattern:)",
+      "type": "topic",
+      "url": "/documentation/swift/double/init(bitpattern:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/init(nan:signaling:)": {
+      "abstract": [
+        {
+          "text": "Creates a NaN (“not a number”) value with the specified payload.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "nan"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd14RawSignificanda",
+          "text": "RawSignificand"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "signaling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/init(nan:signaling:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(nan:signaling:)",
+      "type": "topic",
+      "url": "/documentation/swift/double/init(nan:signaling:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/init(sign:exponentBitPattern:significandBitPattern:)": {
+      "abstract": [
+        {
+          "text": "Creates a new instance from the specified sign and bit patterns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sign"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s17FloatingPointSignO",
+          "text": "FloatingPointSign"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "exponentBitPattern"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "significandBitPattern"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/init(sign:exponentBitPattern:significandBitPattern:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(sign:exponentBitPattern:significandBitPattern:)",
+      "type": "topic",
+      "url": "/documentation/swift/double/init(sign:exponentbitpattern:significandbitpattern:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/radix": {
+      "abstract": [
+        {
+          "text": "The radix, or base of exponentiation, for a floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "radix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/radix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "radix",
+      "type": "topic",
+      "url": "/documentation/swift/double/radix"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/significandBitCount": {
+      "abstract": [
+        {
+          "text": "The available number of fractional significand bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "significandBitCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/significandBitCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "significandBitCount",
+      "type": "topic",
+      "url": "/documentation/swift/double/significandbitcount"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/significandBitPattern": {
+      "abstract": [
+        {
+          "text": "The raw encoding of the value’s significand field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "significandBitPattern"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/significandBitPattern",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "significandBitPattern",
+      "type": "topic",
+      "url": "/documentation/swift/double/significandbitpattern"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double/significandWidth": {
+      "abstract": [
+        {
+          "text": "The number of bits required to represent the value’s significand.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "significandWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double/significandWidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "significandWidth",
+      "type": "topic",
+      "url": "/documentation/swift/double/significandwidth"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-Binary-Representation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Double/bitPattern",
+        "doc://com.apple.Swift/documentation/Swift/Double/significandBitPattern",
+        "doc://com.apple.Swift/documentation/Swift/Double/significandWidth",
+        "doc://com.apple.Swift/documentation/Swift/Double/exponentBitPattern",
+        "doc://com.apple.Swift/documentation/Swift/Double/significandBitCount",
+        "doc://com.apple.Swift/documentation/Swift/Double/radix",
+        "doc://com.apple.Swift/documentation/Swift/Double/init(bitPattern:)",
+        "doc://com.apple.Swift/documentation/Swift/Double/init(sign:exponentBitPattern:significandBitPattern:)",
+        "doc://com.apple.Swift/documentation/Swift/Double/init(nan:signaling:)",
+        "doc://com.apple.Swift/documentation/Swift/Double/Exponent-swift.typealias",
+        "doc://com.apple.Swift/documentation/Swift/Double/RawSignificand",
+        "doc://com.apple.Swift/documentation/Swift/Double/RawExponent"
+      ],
+      "title": "Working with Binary Representation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/double/exponentbitcount"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

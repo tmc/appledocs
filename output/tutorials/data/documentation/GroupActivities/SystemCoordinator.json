@@ -1,0 +1,1160 @@
+{
+  "abstract": [
+    {
+      "text": "A type you use to coordinate your interface’s behavior when an",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "active SharePlay session supports spatial placement of content.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15GroupActivities17SystemCoordinatorC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SystemCoordinator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SystemCoordinator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SystemCoordinator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SystemCoordinator"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object helps you coordinate the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "presentation of your app’s content when spatial placement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is active. In visionOS, the system can present a SharePlay",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity as if the participants were together in the same room",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the content. Each participant views the content from a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "particular vantage point, and sees the changes that others make. The system handles the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "placement of each participant’s spatial Persona relative to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the content, but you handle any changes to the content itself",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the help of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object directly. After",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you receive a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for an activity,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "retrieve the system coordinator from the session’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GroupActivities/GroupSession/systemCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property. When you first retrieve the object, update its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/configuration-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to tell the system how you want to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "arrange participants in the scene. After that, use the information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the system coordinator’s properties to keep your app’s interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "up to date. When participants support spatial placement,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "send additional data to synchronize your content for those participants.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, when one person scrolls the contents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a window, update the scroll position in the window of other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "spatially aware participants to preserve the shared context for everyone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You choose what information to share among participants,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and you choose how to manage the corresponding updates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A system coordinator object only helps you know when to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make those changes. Observe the object’s published properties to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receive automatic updates when the values change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession": {
+      "abstract": [
+        {
+          "text": "A session for an in-progress activity that synchronizes content among participant devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator": {
+      "abstract": [
+        {
+          "text": "A type you use to coordinate your interface’s behavior when an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "active SharePlay session supports spatial placement of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemCoordinator",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that specifies your app’s support for activities that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "take place in a shared simulation space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemCoordinator.Configuration",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/configuration-swift.struct"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/GroupImmersionStyles": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that contains one or more incoming immersion",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "styles for you to process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupImmersionStyles"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/GroupImmersionStyles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupImmersionStyles"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemCoordinator.GroupImmersionStyles",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/groupimmersionstyles"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState": {
+      "abstract": [
+        {
+          "text": "A structure that tells you whether a participant supports",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a shared simulation space for the current activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParticipantState"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParticipantState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemCoordinator.ParticipantState",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/participantstate"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantStates": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that reports the current person’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "ability to participate in a shared context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParticipantStates"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantStates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParticipantStates"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemCoordinator.ParticipantStates",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/participantstates"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/assignRole(_:)": {
+      "abstract": [
+        {
+          "text": "Assigns the given spatial template role to the local participant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assignRole"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities19SpatialTemplateRoleP",
+          "text": "SpatialTemplateRole"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/assignRole(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assignRole(_:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/assignrole(_:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/configuration-swift.property": {
+      "abstract": [
+        {
+          "text": "The current configuration of the system coordinator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC",
+          "text": "SystemCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC13ConfigurationV",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/configuration-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configuration",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/configuration-swift.property"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/groupImmersionStyle": {
+      "abstract": [
+        {
+          "text": "The presentation style to apply to an immersive space for the current activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "groupImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC",
+          "text": "SystemCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC01_aB8_SwiftUIE0A15ImmersionStylesV",
+          "text": "GroupImmersionStyles"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/groupImmersionStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "groupImmersionStyle",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/groupimmersionstyle"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/localParticipantState": {
+      "abstract": [
+        {
+          "text": "The current participant’s level of support for an activity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that takes place in a shared simulation space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localParticipantState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC",
+          "text": "SystemCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC16ParticipantStateV",
+          "text": "ParticipantState"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/localParticipantState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localParticipantState",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/localparticipantstate"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/localParticipantStates": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that reports changes to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "local participant’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localParticipantStates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC",
+          "text": "SystemCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC17ParticipantStatesV",
+          "text": "ParticipantStates"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/localParticipantStates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localParticipantStates",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/localparticipantstates"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/resignRole()": {
+      "abstract": [
+        {
+          "text": "Resigns the local participant from their current spatial template role.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resignRole"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/resignRole()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resignRole()",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/resignrole()"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity": {
+      "abstract": [
+        {
+          "text": "Update your SharePlay activities to support spatial Personas and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the shared context when running in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding spatial Persona support to an activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/adding-spatial-persona-support-to-an-activity"
+    },
+    "doc://com.apple.documentation/documentation/GroupActivities/GroupSession/systemCoordinator": {
+      "abstract": [
+        {
+          "text": "The system coordinator associated with an active session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC",
+          "text": "SystemCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GroupActivities/GroupSession/systemCoordinator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "systemCoordinator",
+      "type": "topic",
+      "url": "/documentation/GroupActivities/GroupSession/systemCoordinator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Spatial-activities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState"
+      ],
+      "title": "Spatial activities"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-system-coordinator",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/configuration-swift.property",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/Configuration-swift.struct"
+      ],
+      "title": "Configuring the system coordinator"
+    },
+    {
+      "anchor": "Getting-the-participant-state",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/localParticipantState",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/localParticipantStates",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantStates"
+      ],
+      "title": "Getting the participant state"
+    },
+    {
+      "anchor": "Getting-the-current-immersion-level",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/groupImmersionStyle",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/GroupImmersionStyles"
+      ],
+      "title": "Getting the current immersion level"
+    },
+    {
+      "anchor": "Assigning-the-local-participant-role",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/assignRole(_:)",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/resignRole()"
+      ],
+      "title": "Assigning the local participant role"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/groupactivities/systemcoordinator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

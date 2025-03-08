@@ -1,0 +1,764 @@
+{
+  "abstract": [
+    {
+      "text": "The pixel formats, depth mask, texture layout,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "and other drawing-related settings you use to configure your drawing code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/layer-renderer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/layer-configuration"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Layer configuration"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "cp_layer_configuration_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type stores the configuration options for your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "cp_layer_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. When configuring the content for your app’s immersive space,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use this type to specify information about the texture layouts, pixel formats,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and rendering options you want.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system uses the provided information to initialize the ",
+              "type": "text"
+            },
+            {
+              "code": "cp_layer_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also uses the information to create the Metal textures",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and other data structures that you use for each frame of content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create this type directly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When implementing the ",
+              "type": "text"
+            },
+            {
+              "code": "makeConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of your ",
+              "type": "text"
+            },
+            {
+              "code": "CompositorConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system passes a set of default configuration values for you to modify.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout": {
+      "abstract": [
+        {
+          "text": "Constants that specify the organization of the textures you use for drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Layout",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/layout"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_color_format": {
+      "abstract": [
+        {
+          "text": "Returns the pixel format to use for the layer’s color textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_get_color_format"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_color_format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_get_color_format",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_get_color_format"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_color_usage": {
+      "abstract": [
+        {
+          "text": "Returns the texture usage value to apply to the layer’s color textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_get_color_usage"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_color_usage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_get_color_usage",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_get_color_usage"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_default_depth_range": {
+      "abstract": [
+        {
+          "text": "Returns the distances for the far and near clipping planes you use during drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_get_default_depth_range"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_default_depth_range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_get_default_depth_range",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_get_default_depth_range"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_depth_format": {
+      "abstract": [
+        {
+          "text": "Returns the pixel format to use for the layer’s depth textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_get_depth_format"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_depth_format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_get_depth_format",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_get_depth_format"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_depth_usage": {
+      "abstract": [
+        {
+          "text": "Returns the texture usage value to apply to the layer’s depth textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_get_depth_usage"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_depth_usage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_get_depth_usage",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_get_depth_usage"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_foveation_enabled": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the layer supports variable rasterization rates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_get_foveation_enabled"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_foveation_enabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_get_foveation_enabled",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_get_foveation_enabled"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the layer renderer provides rasterization rate maps flipped around the y-axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_layout": {
+      "abstract": [
+        {
+          "text": "Returns the texture configuration for the drawable views in the layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_get_layout"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_layout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_get_layout",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_get_layout"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_color_format": {
+      "abstract": [
+        {
+          "text": "Sets the pixel format for the layer’s color textures to the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_set_color_format"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_color_format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_set_color_format",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_set_color_format"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_color_usage": {
+      "abstract": [
+        {
+          "text": "Sets the texture usage for the layer’s color textures to the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_set_color_usage"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_color_usage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_set_color_usage",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_set_color_usage"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_default_depth_range": {
+      "abstract": [
+        {
+          "text": "Sets the default distances to the far and near clipping planes you use during drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_set_default_depth_range"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_default_depth_range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_set_default_depth_range",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_set_default_depth_range"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_depth_format": {
+      "abstract": [
+        {
+          "text": "Sets the pixel format for the layer’s depth textures to the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_set_depth_format"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_depth_format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_set_depth_format",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_set_depth_format"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_depth_usage": {
+      "abstract": [
+        {
+          "text": "Sets the texture usage for the layer’s depth textures to the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_set_depth_usage"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_depth_usage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_set_depth_usage",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_set_depth_usage"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_foveation_enabled": {
+      "abstract": [
+        {
+          "text": "Changes the setting that indicates whether the layer supports variable rasterization rates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_set_foveation_enabled"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_foveation_enabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_set_foveation_enabled",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_set_foveation_enabled"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps": {
+      "abstract": [
+        {
+          "text": "Changes the layer renderer setting that provides rasterization rate maps flipped around the y-axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_layout": {
+      "abstract": [
+        {
+          "text": "Changes the layout configuration for the drawable views in the layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_set_layout"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_layout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_set_layout",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_set_layout"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_t": {
+      "abstract": [
+        {
+          "text": "A type that stores the texture formats, layout information, and other details you use to configure your rendering loop code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_get_configuration": {
+      "abstract": [
+        {
+          "text": "Returns the configuration details for the specified layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_get_configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_get_configuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_get_configuration",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_get_configuration"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/layer-capabilities": {
+      "abstract": [
+        {
+          "text": "The color formats, depth formats, and features that you can use to configure your rendering engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/layer-capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layer capabilities",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layer-capabilities"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/layer-properties": {
+      "abstract": [
+        {
+          "text": "Information about the textures and views that the system created for your drawing code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/layer-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layer properties",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layer-properties"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/layer-renderer": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/layer-renderer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layer renderer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layer-renderer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-the-layer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/layer-capabilities",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/layer-properties"
+      ],
+      "title": "Configuring the layer"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-layers-current-configuration",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_get_configuration"
+      ],
+      "title": "Getting the layer’s current configuration"
+    },
+    {
+      "anchor": "Configuring-the-color-textures",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_color_format",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_color_format",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_color_usage",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_color_usage"
+      ],
+      "title": "Configuring the color textures"
+    },
+    {
+      "anchor": "Configuring-the-depth-information",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_depth_format",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_depth_format",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_depth_usage",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_depth_usage",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_default_depth_range",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_default_depth_range"
+      ],
+      "title": "Configuring the depth information"
+    },
+    {
+      "anchor": "Configuring-the-texture-layout",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_layout",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_layout",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Layout"
+      ],
+      "title": "Configuring the texture layout"
+    },
+    {
+      "anchor": "Configuring-the-foveation-setting",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_foveation_enabled",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_foveation_enabled",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps"
+      ],
+      "title": "Configuring the foveation setting"
+    },
+    {
+      "anchor": "Getting-the-configuration-type",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_t"
+      ],
+      "title": "Getting the configuration type"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Layout/title",
+          "value": "cp_layer_renderer_layout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Layout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_layout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Layout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_layout"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/layer-configuration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

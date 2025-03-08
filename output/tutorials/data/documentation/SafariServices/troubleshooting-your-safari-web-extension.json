@@ -1,0 +1,745 @@
+{
+  "abstract": [
+    {
+      "text": "Use developer resources to investigate and resolve common problems with Safari web extensions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Troubleshooting your Safari web extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you experience issues with your Safari web extension, choose the right developer tool or resource to troubleshoot and resolve the issue, based on the type of issue you experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Install-and-enable-the-extension-in-Safari",
+          "level": 3,
+          "text": "Install and enable the extension in Safari",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re not able to see your extension running in Safari when you expect, try these steps to install and enable your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run your Safari web extension. You need to run the containing macOS or iOS app for your extension at least once to install it in Safari. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the Safari web extension in macOS. Open Safari and choose Safari > Settings. Select the Extensions tab, find your extension, and select its checkbox. If you’re developing your extension and it isn’t visible in Safari Settings, you need to allow unsigned extensions in Safari. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the Safari web extension in iOS. In Safari, tap the More menu, then tap Extensions to select and enable your extension. Alternatively, open the Settings app, then choose Safari > Extensions. Find your extension in the list, tap it, then tap the switch to enable it, if necessary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the Safari web extension for a profile in Safari 17 and later. In macOS, choose Safari > Settings, click the Profiles tab, select a profile, and then click the Extensions tab to manage the permission status for each extension for a profile. In iOS, open the Settings app, then select a profile in the Profiles group, and toggle permission for that profile’s available extensions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the Safari web extension in a Mac web app in macOS 15 and later. In the Mac web app, choose Settings from the menu. Select the Extensions tab, find your extension, and select its checkbox. If you’re developing your extension and it isn’t visible in the web app’s settings, you need to allow unsigned extensions for the web app. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compare your deployment target to your system version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To compare your deployment target to your system version, you need to check the deployment target for both your app and the extension targets (for both macOS and iOS, if applicable):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose  > About This Mac to get your macOS system version number. In iOS, open the Settings app, and choose General > About to see the software version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your web extension project in the Project navigator pane to see the project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the app or extension target under the Targets section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the General pane, then find the deployment target version number in the Deployment Info section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check that the deployment targets for your app and extension are the same, and are earlier than or the same as the version of the system you’re testing on. If not, lower the deployment targets or update your system, if possible. Note that your project may encounter errors if you set the deployment target below the minimum level required to support features in your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you complete these steps for macOS, verify that Safari sees your extension. In the Terminal app, type the following command to see a list of installed extensions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pluginkit -mAvvv -p com.apple.Safari.web-extension"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your extension is installed and visible to Safari, the command lists information about it. If it isn’t visible, recheck the other steps above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Safaris-Develop-menu",
+          "level": 3,
+          "text": "Enable Safari’s Develop menu",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Safari’s macOS developer tools to gain insight into your extension and debug issues. In Safari, choose Safari > Settings, click Advanced, and then select the “Show Develop menu in menu bar” option at the bottom. Safari adds a Develop menu item with a number of useful inspectors and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/safari/tools/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you enable the Develop menu, Control-click any element and select Inspect Element to see it in the Elements inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use Safari’s Web Inspector for iOS, first enable the Web Inspector on your device. Open the Settings app, then choose Safari > Advanced. Find the Web Inspector item, then tap the switch to enable it. Attach your device to your computer with a cable, and access your device from the Develop menu in Safari on your computer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-your-content-and-background-scripts",
+          "level": 3,
+          "text": "Debug your content and background scripts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari’s developer tools include a debugger that you can use to debug scripts in your Safari web extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug your JavaScript content scripts in macOS, choose Develop > Show Web Inspector from the Safari menu bar. In iOS, have a simulator open with your extension or attach your iOS device to your computer, then select your simulator or device from Safari’s Develop menu on your computer, and select the page with your extension. Click the Sources tab, and select your content script file from the Extension Scripts folder at the lower left. Then select your extension’s execution context by using the selector in the lower-right corner of the inspector. Set breakpoints by clicking the gutter with line numbers in the source view. Inspect other source files for your extension, such as style sheets, in the Sources area at the lower left.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3734526",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug background scripts in macOS, choose Develop > Web Extension Background Pages and select your background script. In Safari 17 and later in macOS, choose Develop > Web Extension Background Content, then select your background script and profile. In iOS, connect the device to a Mac. In Safari on the Mac, choose Develop > Device, and then select the item containing your extension name, “Extension Background Page,” and the filename of your background script.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug your extension’s pop-up in macOS, click the button for your extension in the Safari toolbar to display the pop-up. Control-click the pop-up and select Inspect Element to display the Web Inspector for the pop-up. In iOS, connect the device to a Mac. In Safari on the Mac, choose Develop > Device, and then select the item containing your extension name, “Extension Popup Page,” and the filename of your pop-up’s HTML.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Log-messages-to-the-system-console",
+          "level": 3,
+          "text": "Log messages to the system console",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re having issues messaging between your native app and your web extension in macOS, log messages to the system console to perform basic debugging. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/diagnosing-and-resolving-bugs-in-your-running-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to use Xcode’s debugger to inspect your native app when you need more comprehensive debugging tools.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the native part of the macOS or iOS app or extension, make calls to ",
+              "type": "text"
+            },
+            {
+              "code": "NSLog",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (for Objective-C) or ",
+              "type": "text"
+            },
+            {
+              "code": "print",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (for Swift) to log messages in the system console, and view them in Console.app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Console.app, filter for other messages using the name of your app extension. For example, if the system terminates your app extension because of an error, it sends a message to the console and generates a crash log.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-permissions-and-compatibility",
+          "level": 3,
+          "text": "Check permissions and compatibility",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your web extension works on one webpage, but doesn’t work on another, make sure your website access permissions and allowed domain patterns are correct. For more information, see Mozilla’s match pattern documentation at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your web extension works in another browser, but doesn’t work in Safari, check for potential compatibility issues. Review your ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys and JavaScript APIs to confirm that Safari supports them. If Safari doesn’t support them, implement the recommended workaround. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/diagnosing-and-resolving-bugs-in-your-running-app": {
+      "abstract": [
+        {
+          "text": "Inspect your app to isolate bugs, locate crashes, identify excess system-resource usage, visualize memory bugs, and investigate problems in its appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/diagnosing-and-resolving-bugs-in-your-running-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing and resolving bugs in your running app",
+      "type": "topic",
+      "url": "/documentation/Xcode/diagnosing-and-resolving-bugs-in-your-running-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis": {
+      "abstract": [
+        {
+          "text": "Improve your web extension in Safari with a non-persistent background page and new tab-override customization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting New Safari Web Extension APIs",
+      "type": "topic",
+      "url": "/documentation/safariservices/adopting-new-safari-web-extension-apis"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility": {
+      "abstract": [
+        {
+          "text": "Review your Safari web extension implementation plan, manifest keys, and JavaScript API usage for compatibility with other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Assessing your Safari web extension’s browser compatibility",
+      "type": "topic",
+      "url": "/documentation/safariservices/assessing-your-safari-web-extension-s-browser-compatibility"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari": {
+      "abstract": [
+        {
+          "text": "Support Dark Mode, reduce memory and power usage, and ensure feature compatibility to improve your web extension experience in Safari and web apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing your web extension for Safari",
+      "type": "topic",
+      "url": "/documentation/safariservices/optimizing-your-web-extension-for-safari"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Install and update your extension in Safari as you make changes in development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Running your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/running-your-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions",
+      "kind": "section",
+      "title": "Configure Safari in macOS to run unsigned extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms": {
+      "abstract": [
+        {
+          "text": "Let users install your extension on one device and then use and manage the extension on all their other iOS and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Syncing Safari web extensions across devices and platforms",
+      "type": "topic",
+      "url": "/documentation/safariservices/syncing-safari-web-extensions-across-devices-and-platforms"
+    },
+    "https://developer.apple.com/safari/tools/": {
+      "identifier": "https://developer.apple.com/safari/tools/",
+      "title": "web development tools",
+      "titleInlineContent": [
+        {
+          "text": "web development tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/safari/tools/"
+    },
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns": {
+      "identifier": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns",
+      "title": "Match patterns in extension manifests",
+      "titleInlineContent": [
+        {
+          "text": "Match patterns in extension manifests",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns"
+    },
+    "media-3734526": {
+      "alt": "A screenshot that shows the Safari web inspector view, showing a selected content script file in the Sources tab with a breakpoint set.",
+      "identifier": "media-3734526",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6b0c1c8291dc6787d5d21d5d631bda66/media-3734526@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0e634eed31319cb2cada3a43365cd017/media-3734526~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extension-improvements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+        "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+        "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+        "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility"
+      ],
+      "title": "Extension improvements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extension-improvements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+                "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+                "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+                "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility"
+              ],
+              "title": "Extension improvements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/troubleshooting-your-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/troubleshooting-your-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

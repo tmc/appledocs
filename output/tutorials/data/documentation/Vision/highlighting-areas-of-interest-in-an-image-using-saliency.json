@@ -1,0 +1,396 @@
+{
+  "abstract": [
+    {
+      "text": "Quantify and visualize where people are likely to look in an image.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/highlighting-areas-of-interest-in-an-image-using-saliency"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Highlighting Areas of Interest in an Image Using Saliency"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information about this sample code project, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/222/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNGenerateAttentionBasedSaliencyImageRequest": {
+      "abstract": [
+        {
+          "text": "An object that produces a heat map that identifies the parts of an image most likely to draw attention.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNGenerateAttentionBasedSaliencyImageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNGenerateAttentionBasedSaliencyImageRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNGenerateAttentionBasedSaliencyImageRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNGenerateAttentionBasedSaliencyImageRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vngenerateattentionbasedsaliencyimagerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNGenerateObjectnessBasedSaliencyImageRequest": {
+      "abstract": [
+        {
+          "text": "A request that generates a heat map that identifies the parts of an image most likely to represent objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNGenerateObjectnessBasedSaliencyImageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNGenerateObjectnessBasedSaliencyImageRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNGenerateObjectnessBasedSaliencyImageRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNGenerateObjectnessBasedSaliencyImageRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vngenerateobjectnessbasedsaliencyimagerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNSaliencyImageObservation": {
+      "abstract": [
+        {
+          "text": "An observation that contains a grayscale heat map of important areas across an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNSaliencyImageObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNSaliencyImageObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNSaliencyImageObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNSaliencyImageObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnsaliencyimageobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/cropping-images-using-saliency": {
+      "abstract": [
+        {
+          "text": "Isolate regions in an image that are most likely to draw people’s attention.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/cropping-images-using-saliency",
+      "kind": "article",
+      "role": "article",
+      "title": "Cropping Images Using Saliency",
+      "type": "topic",
+      "url": "/documentation/vision/cropping-images-using-saliency"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "fd1b32ea151d/HighlightingAreasOfInterestInAnImageUsingSaliency.zip": {
+      "checksum": "fd1b32ea151dc15abbaf5d3b006972dbda17f4b85d1b72987528d2bf4620fe417171a599ebe1e729753ca884c9b646b584acff8d5a0f48cb90e87467e504f39a",
+      "identifier": "fd1b32ea151d/HighlightingAreasOfInterestInAnImageUsingSaliency.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/fd1b32ea151d/HighlightingAreasOfInterestInAnImageUsingSaliency.zip"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/222/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/222/",
+      "title": "WWDC 2019 Session 222: Understanding Images in Vision Framework",
+      "titleInlineContent": [
+        {
+          "text": "WWDC 2019 Session 222: Understanding Images in Vision Framework",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/222/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "fd1b32ea151d/HighlightingAreasOfInterestInAnImageUsingSaliency.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Saliency-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/cropping-images-using-saliency",
+        "doc://com.apple.vision/documentation/Vision/VNGenerateAttentionBasedSaliencyImageRequest",
+        "doc://com.apple.vision/documentation/Vision/VNGenerateObjectnessBasedSaliencyImageRequest",
+        "doc://com.apple.vision/documentation/Vision/VNSaliencyImageObservation"
+      ],
+      "title": "Saliency analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateObjectnessBasedSaliencyImageRequest/title",
+          "value": "VNGenerateObjectnessBasedSaliencyImageRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateObjectnessBasedSaliencyImageRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateObjectnessBasedSaliencyImageRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateObjectnessBasedSaliencyImageRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateObjectnessBasedSaliencyImageRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateAttentionBasedSaliencyImageRequest/title",
+          "value": "VNGenerateAttentionBasedSaliencyImageRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateAttentionBasedSaliencyImageRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateAttentionBasedSaliencyImageRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateAttentionBasedSaliencyImageRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateAttentionBasedSaliencyImageRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNSaliencyImageObservation/title",
+          "value": "VNSaliencyImageObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNSaliencyImageObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNSaliencyImageObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNSaliencyImageObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNSaliencyImageObservation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/highlighting-areas-of-interest-in-an-image-using-saliency"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

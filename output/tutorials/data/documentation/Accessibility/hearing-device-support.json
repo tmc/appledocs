@@ -1,0 +1,1046 @@
+{
+  "abstract": [
+    {
+      "text": "Access information about paired hearing aid devices and streaming status.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-api"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/hearing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Accessibility/documentation/Accessibility/hearing-device-support"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accessibility"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Hearing device support"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Companion apps for hearing device manufacturers might offer certain features, like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "remote fitting and hearing device health checks, that rely on streaming audio to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the hearing devices. If a user disables audio streaming on their Apple device, these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features might become unavailable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This API gives your app the ability to check the state of the streaming preferences,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so you can ask users to temporarily enable streaming to use your app’s features.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also query other information about streaming capabilities and paired hearing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this API to check:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The state of the streaming preferences for the hearing device in each ear",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Whether the iOS device supports bidirectional streaming",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Bluetooth UUIDs of the paired hearing devices that match your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hearing.aid.app",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "entitlement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "accessibility-card-hearing.png": {
+      "alt": "An illustration that shows a person wearing a hearing aid and a camping backpack. The person is walking and using an iPhone.",
+      "identifier": "accessibility-card-hearing.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/08122f4b2e9f57caf30f8e244ccd3dfe/accessibility-card-hearing@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db59daa0db79629fb85282bf8a9e4908/accessibility-card-hearing~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice": {
+      "abstract": [
+        {
+          "text": "A namespace for hearing device accessibility symbols in Swift.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXMFiHearingDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXMFiHearingDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXMFiHearingDevice",
+      "type": "topic",
+      "url": "/documentation/accessibility/axmfihearingdevice"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/Ear": {
+      "abstract": [
+        {
+          "text": "Constants that represent a hearing device ear.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Ear"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/Ear",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Ear"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXMFiHearingDevice.Ear",
+      "type": "topic",
+      "url": "/documentation/accessibility/axmfihearingdevice/ear"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/pairedDeviceIdentifiers()": {
+      "abstract": [
+        {
+          "text": "Returns the UUIDs of the hearing device peripherals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pairedDeviceIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/pairedDeviceIdentifiers()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXMFiHearingDevicePairedUUIDs"
+        }
+      ],
+      "role": "symbol",
+      "title": "pairedDeviceIdentifiers()",
+      "type": "topic",
+      "url": "/documentation/accessibility/axmfihearingdevice/paireddeviceidentifiers()"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/pairedUUIDsDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that the system posts when there’s a change to the UUIDs of the hearing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "device peripherals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pairedUUIDsDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/pairedUUIDsDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXMFiHearingDevicePairedUUIDsDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "pairedUUIDsDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/accessibility/axmfihearingdevice/paireduuidsdidchangenotification"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/streamingEar()": {
+      "abstract": [
+        {
+          "text": "Returns which ears enable streaming.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "streamingEar"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AXMFiHearingDevice",
+          "text": "AXMFiHearingDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AXHearingDeviceEar",
+          "text": "Ear"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/streamingEar()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXMFiHearingDeviceStreamingEar"
+        }
+      ],
+      "role": "symbol",
+      "title": "streamingEar()",
+      "type": "topic",
+      "url": "/documentation/accessibility/axmfihearingdevice/streamingear()"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/streamingEarDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that the system posts when there’s a change to which ears enable streaming.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "streamingEarDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/streamingEarDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXMFiHearingDeviceStreamingEarDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "streamingEarDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/accessibility/axmfihearingdevice/streamingeardidchangenotification"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/supportsBidirectionalStreaming()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the iOS device supports bidirectional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "streaming.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsBidirectionalStreaming"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/supportsBidirectionalStreaming()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXSupportsBidirectionalAXMFiHearingDeviceStreaming"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsBidirectionalStreaming()",
+      "type": "topic",
+      "url": "/documentation/accessibility/axmfihearingdevice/supportsbidirectionalstreaming()"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXNameFromColor(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a localized description of the color to use in accessibility attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXNameFromColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXNameFromColor(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXNameFromColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXNameFromColor(_:)",
+      "type": "topic",
+      "url": "/documentation/accessibility/axnamefromcolor(_:)"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-api": {
+      "abstract": [
+        {
+          "text": "Browse API in the Accessibility framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility API",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibility-api"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/audio-graphs": {
+      "abstract": [
+        {
+          "text": "Define an accessible representation of your chart for VoiceOver to generate an audio",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "graph.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/audio-graphs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio graphs",
+      "type": "topic",
+      "url": "/documentation/accessibility/audio-graphs"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays": {
+      "abstract": [
+        {
+          "text": "Display a graphical representation of images, icons, data, and more on a two-dimensional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "braille display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Braille displays",
+      "type": "topic",
+      "url": "/documentation/accessibility/braille-displays"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/customized-accessibility-content": {
+      "abstract": [
+        {
+          "text": "Customize your apps to deliver accessibility information to your users in measured",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "portions as they need it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/customized-accessibility-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Customized accessibility content",
+      "type": "topic",
+      "url": "/documentation/accessibility/customized-accessibility-content"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/hearing": {
+      "abstract": [
+        {
+          "text": "A person may be deaf, have partial hearing loss, or have difficulty hearing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "sounds within a certain range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/hearing",
+      "images": [
+        {
+          "identifier": "accessibility-card-hearing.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hearing",
+      "type": "topic",
+      "url": "/documentation/accessibility/hearing"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/customized-accessibility-content",
+        "doc://com.apple.Accessibility/documentation/Accessibility/audio-graphs",
+        "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXNameFromColor(_:)"
+      ],
+      "title": "Features"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Hearing-devices",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice"
+      ],
+      "title": "Hearing devices"
+    },
+    {
+      "anchor": "Streaming-status",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/Ear",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/streamingEar()",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/streamingEarDidChangeNotification"
+      ],
+      "title": "Streaming status"
+    },
+    {
+      "anchor": "Streaming-type",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/supportsBidirectionalStreaming()"
+      ],
+      "title": "Streaming type"
+    },
+    {
+      "anchor": "Paired-hearing-devices",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/pairedDeviceIdentifiers()",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/pairedUUIDsDidChangeNotification"
+      ],
+      "title": "Paired hearing devices"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Streaming-status",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/Ear",
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/streamingEar()",
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/streamingEarDidChangeNotification"
+              ],
+              "title": "Streaming status"
+            },
+            {
+              "anchor": "Streaming-type",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/supportsBidirectionalStreaming()"
+              ],
+              "title": "Streaming type"
+            },
+            {
+              "anchor": "Paired-hearing-devices",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/pairedDeviceIdentifiers()",
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXMFiHearingDevice/pairedUUIDsDidChangeNotification"
+              ],
+              "title": "Paired hearing devices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Features",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/customized-accessibility-content",
+                "doc://com.apple.Accessibility/documentation/Accessibility/audio-graphs",
+                "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays",
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXNameFromColor(_:)"
+              ],
+              "title": "Features"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1streamingEar()/title",
+          "value": "AXMFiHearingDeviceStreamingEar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1streamingEar()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXMFiHearingDeviceStreamingEar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1pairedUUIDsDidChangeNotification/title",
+          "value": "AXMFiHearingDevicePairedUUIDsDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1pairedUUIDsDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXMFiHearingDevicePairedUUIDsDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1Ear/title",
+          "value": "AXHearingDeviceEar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1Ear/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXHearingDeviceEar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1Ear/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXHearingDeviceEar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1supportsBidirectionalStreaming()/title",
+          "value": "AXSupportsBidirectionalAXMFiHearingDeviceStreaming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1supportsBidirectionalStreaming()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXSupportsBidirectionalAXMFiHearingDeviceStreaming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXNameFromColor(_:)/title",
+          "value": "AXNameFromColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXNameFromColor(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXNameFromColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1pairedDeviceIdentifiers()/title",
+          "value": "AXMFiHearingDevicePairedUUIDs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1pairedDeviceIdentifiers()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXMFiHearingDevicePairedUUIDs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1streamingEarDidChangeNotification/title",
+          "value": "AXMFiHearingDeviceStreamingEarDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXMFiHearingDevice~1streamingEarDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXMFiHearingDeviceStreamingEarDidChangeNotification"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessibility/hearing-device-support"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessibility/hearing-device-support"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

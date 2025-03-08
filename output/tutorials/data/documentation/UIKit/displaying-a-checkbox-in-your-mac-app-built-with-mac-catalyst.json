@@ -1,0 +1,790 @@
+{
+  "abstract": [
+    {
+      "text": "Present a switch control as a Mac-style checkbox when your app runs in the Mac user interface idiom.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/mac-catalyst"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/UISwitch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/displaying-a-checkbox-in-your-mac-app-built-with-mac-catalyst"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Displaying a checkbox in your Mac app built with Mac Catalyst"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Mac app built with Mac Catalyst that uses the Mac user interface idiom displays a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as a checkbox when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/preferredStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/Style-swift.enum/automatic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (the default value) or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/Style-swift.enum/checkbox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your app doesn’t use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " idiom, the switch appears as a slider switch. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/choosing-a-user-interface-idiom-for-your-mac-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-text-to-the-checkbox",
+          "level": 3,
+          "text": "Add text to the checkbox",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display text alongside the checkbox, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let showFavoritesAtTop = UISwitch()",
+            "showFavoritesAtTop.title = \"Always show favorite recipes at the top\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Resize-the-checkbox",
+          "level": 3,
+          "text": "Resize the checkbox",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A checkbox-style switch has a default frame size of zero. If you’re not using Auto Layout to determine the size and position of the switch, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/sizeToFit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to resize it so that it uses the appropriate amount of space needed to display the checkbox and its title.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/touch-bar": {
+      "abstract": [
+        {
+          "text": "Display interactive content and controls in the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/touch-bar",
+      "kind": "article",
+      "role": "article",
+      "title": "Touch Bar",
+      "type": "topic",
+      "url": "/documentation/AppKit/touch-bar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch": {
+      "abstract": [
+        {
+          "text": "A control that offers a binary choice, such as on/off.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISwitch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwitch",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch/Style-swift.enum/automatic": {
+      "abstract": [
+        {
+          "text": "A style indicating that the system chooses the appearance of the switch according to the current user interface idiom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/Style-swift.enum/automatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwitchStyleAutomatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwitch.Style.automatic",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch/style-swift.enum/automatic"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch/Style-swift.enum/checkbox": {
+      "abstract": [
+        {
+          "text": "A style indicating that the switch appears as a Mac-style checkbox.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkbox"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/Style-swift.enum/checkbox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwitchStyleCheckbox"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwitch.Style.checkbox",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch/style-swift.enum/checkbox"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch/preferredStyle": {
+      "abstract": [
+        {
+          "text": "The preferred display style for the switch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISwitch",
+          "text": "UISwitch"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UISwitchStyle",
+          "text": "Style"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/preferredStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch/preferredstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch/title": {
+      "abstract": [
+        {
+          "text": "The title displayed next to a checkbox-style switch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch/title"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac": {
+      "abstract": [
+        {
+          "text": "An interface designed for the Mac.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mac"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserInterfaceIdiomMac"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserInterfaceIdiom.mac",
+      "type": "topic",
+      "url": "/documentation/uikit/uiuserinterfaceidiom/mac"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/sizeToFit()": {
+      "abstract": [
+        {
+          "text": "Resizes and moves the receiver view so it just encloses its subviews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeToFit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/sizeToFit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sizeToFit"
+        }
+      ],
+      "role": "symbol",
+      "title": "sizeToFit()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/sizetofit()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Improve your iPadOS app with Mac Catalyst by supporting native controls, multiple windows, sharing, printing, menus and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building and improving your app with Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/building-and-improving-your-app-with-mac-catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/choosing-a-user-interface-idiom-for-your-mac-app": {
+      "abstract": [
+        {
+          "text": "Select the iPad or the Mac user interface idiom in your Mac app built with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/choosing-a-user-interface-idiom-for-your-mac-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a user interface idiom for your Mac app",
+      "type": "topic",
+      "url": "/documentation/uikit/choosing-a-user-interface-idiom-for-your-mac-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Create a version of your iPad app that users can run on a Mac device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/mac-catalyst",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/mac-catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/removing-the-title-bar-in-your-mac-app-built-with-mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Display content that fills the entire height of a window by removing the title bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/removing-the-title-bar-in-your-mac-app-built-with-mac-catalyst",
+      "kind": "article",
+      "role": "article",
+      "title": "Removing the title bar in your Mac app built with Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/removing-the-title-bar-in-your-mac-app-built-with-mac-catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/toolbar": {
+      "abstract": [
+        {
+          "text": "Provide a space for controls under a window’s title bar and above your custom content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/toolbar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbar",
+      "type": "topic",
+      "url": "/documentation/uikit/toolbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls": {
+      "abstract": [
+        {
+          "text": "Customize your app’s user interface with views and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "UIKit Catalog: Creating and customizing views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/uikit-catalog-creating-and-customizing-views-and-controls"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst",
+        "doc://com.apple.uikit/documentation/UIKit/removing-the-title-bar-in-your-mac-app-built-with-mac-catalyst",
+        "doc://com.apple.uikit/documentation/UIKit/toolbar",
+        "doc://com.apple.documentation/documentation/AppKit/touch-bar"
+      ],
+      "title": "User interface"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls",
+                "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst",
+                "doc://com.apple.uikit/documentation/UIKit/removing-the-title-bar-in-your-mac-app-built-with-mac-catalyst",
+                "doc://com.apple.uikit/documentation/UIKit/toolbar",
+                "doc://com.apple.documentation/documentation/AppKit/touch-bar"
+              ],
+              "title": "User interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1Style-swift.enum~1checkbox/title",
+          "value": "UISwitchStyleCheckbox"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1Style-swift.enum~1checkbox/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitchStyleCheckbox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/title",
+          "value": "UISwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1preferredStyle/title",
+          "value": "preferredStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1preferredStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1sizeToFit()/title",
+          "value": "sizeToFit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1sizeToFit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sizeToFit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserInterfaceIdiom~1mac/title",
+          "value": "UIUserInterfaceIdiomMac"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserInterfaceIdiom~1mac/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserInterfaceIdiomMac"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1Style-swift.enum~1automatic/title",
+          "value": "UISwitchStyleAutomatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1Style-swift.enum~1automatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitchStyleAutomatic"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/displaying-a-checkbox-in-your-mac-app-built-with-mac-catalyst"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/displaying-a-checkbox-in-your-mac-app-built-with-mac-catalyst"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

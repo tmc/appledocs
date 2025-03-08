@@ -1,0 +1,3362 @@
+{
+  "abstract": [
+    {
+      "text": "A definition for one specific aspect of the rendering parameters for a material.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.modelio/documentation/ModelIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MDLMaterialProperty",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MDLMaterialProperty"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Model I/O"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MDLMaterialProperty"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MDLMaterialProperty"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialProperty"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The collection of material properties in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance defines the intended surface appearance for rendering a 3D object. A material property object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/semantic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property identifies which aspect of material rendering it affects, and its value (which can be any of several types) determines how the material property contributes to that aspect of rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you initialize a material property with a specific value (using one of the initializers listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty#Creating-a-Material-Property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or set the value of an existing material property (using one of the property setters listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty#Working-with-a-Material-Propertys-Value",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property changes to reflect the data type of the stored value. To retrieve the material property’s value, you must use the property accessor appropriate to its type. If you read a material property’s value using an accessor for a different type, the result is undefined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO": {
+      "abstract": [
+        {
+          "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Model I/O",
+      "type": "topic",
+      "url": "/documentation/modelio"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterial": {
+      "abstract": [
+        {
+          "text": "A collection of material properties that together describe the intended surface appearance for rendering a 3D object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterial",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterial"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty": {
+      "abstract": [
+        {
+          "text": "A definition for one specific aspect of the rendering parameters for a material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterialProperty",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty#Creating-a-Material-Property": {
+      "abstract": [],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty#Creating-a-Material-Property",
+      "kind": "section",
+      "title": "Creating a Material Property",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty#Creating-a-Material-Property"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty#Working-with-a-Material-Propertys-Value": {
+      "abstract": [],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty#Working-with-a-Material-Propertys-Value",
+      "kind": "section",
+      "title": "Working with a Material Property’s Value",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty#Working-with-a-Material-Propertys-Value"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/color": {
+      "abstract": [
+        {
+          "text": "The color value for the material property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/color",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "color"
+        }
+      ],
+      "role": "symbol",
+      "title": "color",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/color"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float2Value": {
+      "abstract": [
+        {
+          "text": "The 2-component floating-point vector value for the material property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float2Value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vector_float2",
+          "text": "vector_float2"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float2Value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "float2Value"
+        }
+      ],
+      "role": "symbol",
+      "title": "float2Value",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/float2value"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float3Value": {
+      "abstract": [
+        {
+          "text": "The 3-component floating-point vector value for the material property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float3Value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vector_float3",
+          "text": "vector_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float3Value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "float3Value"
+        }
+      ],
+      "role": "symbol",
+      "title": "float3Value",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/float3value"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float4Value": {
+      "abstract": [
+        {
+          "text": "The 4-component floating-point vector value for the material property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float4Value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vector_float4",
+          "text": "vector_float4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float4Value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "float4Value"
+        }
+      ],
+      "role": "symbol",
+      "title": "float4Value",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/float4value"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/floatValue": {
+      "abstract": [
+        {
+          "text": "The scalar floating-point value for the material property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "floatValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/floatValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "floatValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "floatValue",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/floatvalue"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:)": {
+      "abstract": [
+        {
+          "text": "Initializes a material property without a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:semantic:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:semantic:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/init(name:semantic:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:color:)": {
+      "abstract": [
+        {
+          "text": "Initializes a material property with a color value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:color:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:semantic:color:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:semantic:color:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/init(name:semantic:color:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float2:)": {
+      "abstract": [
+        {
+          "text": "Initializes a material property with a 2-component vector value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "float2"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vector_float2",
+          "text": "vector_float2"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float2:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:semantic:float2:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:semantic:float2:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/init(name:semantic:float2:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float3:)": {
+      "abstract": [
+        {
+          "text": "Initializes a material property with a 3-component vector value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "float3"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vector_float3",
+          "text": "vector_float3"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float3:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:semantic:float3:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:semantic:float3:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/init(name:semantic:float3:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float4:)": {
+      "abstract": [
+        {
+          "text": "Initializes a material property with a 4-component vector value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "float4"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vector_float4",
+          "text": "vector_float4"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float4:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:semantic:float4:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:semantic:float4:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/init(name:semantic:float4:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float:)": {
+      "abstract": [
+        {
+          "text": "Initializes a material property with a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "float"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:semantic:float:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:semantic:float:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/init(name:semantic:float:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:matrix4x4:)": {
+      "abstract": [
+        {
+          "text": "Initializes a material property with a 4 x 4 matrix value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "matrix4x4"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@matrix_float4x4",
+          "text": "matrix_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:matrix4x4:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:semantic:matrix4x4:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:semantic:matrix4x4:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/init(name:semantic:matrix4x4:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:string:)": {
+      "abstract": [
+        {
+          "text": "Initializes a material property with a string value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:string:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:semantic:string:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:semantic:string:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/init(name:semantic:string:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:textureSampler:)": {
+      "abstract": [
+        {
+          "text": "Initializes a material property with a texture sampler object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "textureSampler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLTextureSampler",
+          "text": "MDLTextureSampler"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:textureSampler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:semantic:textureSampler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:semantic:textureSampler:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/init(name:semantic:texturesampler:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:url:)": {
+      "abstract": [
+        {
+          "text": "Initializes a material property with a URL value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:url:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:semantic:URL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:semantic:url:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/init(name:semantic:url:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/luminance": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "luminance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/luminance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "luminance"
+        }
+      ],
+      "role": "symbol",
+      "title": "luminance",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/luminance"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/matrix4x4": {
+      "abstract": [
+        {
+          "text": "The 4 x 4 floating-point matrix value for the material property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matrix4x4"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@matrix_float4x4",
+          "text": "matrix_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/matrix4x4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matrix4x4"
+        }
+      ],
+      "role": "symbol",
+      "title": "matrix4x4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/matrix4x4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/name": {
+      "abstract": [
+        {
+          "text": "A descriptive name for the material property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/name"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/semantic": {
+      "abstract": [
+        {
+          "text": "The semantic meaning for the material property’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialSemantic",
+          "text": "MDLMaterialSemantic"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/semantic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "semantic"
+        }
+      ],
+      "role": "symbol",
+      "title": "semantic",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/semantic"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/setProperties(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the material property’s attributes to those of the specified material property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperties"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLMaterialProperty",
+          "text": "MDLMaterialProperty"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/setProperties(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setProperties:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setProperties(_:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/setproperties(_:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/stringValue": {
+      "abstract": [
+        {
+          "text": "The string value for the material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/stringValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "stringValue",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/stringvalue"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/textureSamplerValue": {
+      "abstract": [
+        {
+          "text": "A texture sampler object that provides the texture image value for the material property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureSamplerValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLTextureSampler",
+          "text": "MDLTextureSampler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/textureSamplerValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureSamplerValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureSamplerValue",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/texturesamplervalue"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/type": {
+      "abstract": [
+        {
+          "text": "The data type stored in the material property’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLMaterialPropertyType",
+          "text": "MDLMaterialPropertyType"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/type"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/urlValue": {
+      "abstract": [
+        {
+          "text": "The URL value for the material property—typically, the URL to a texture image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/urlValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URLValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "urlValue",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty/urlvalue"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyConnection": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterialPropertyConnection",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialpropertyconnection"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyGraph": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyGraph"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyGraph",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyGraph"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterialPropertyGraph",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialpropertygraph"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyNode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyNode"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterialPropertyNode",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialpropertynode"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyType": {
+      "abstract": [
+        {
+          "text": "Options for the data type of a material property, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/type",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyType"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterialPropertyType",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialpropertytype"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialSemantic": {
+      "abstract": [
+        {
+          "text": "Options for the semantic use of a material property’s value in rendering a particular surface appearance; used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/semantic",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialSemantic"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialSemantic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialSemantic"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterialSemantic",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialsemantic"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLNamed": {
+      "abstract": [
+        {
+          "text": "The common interface for Model I/O objects that expose a human-readable name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLNamed"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLNamed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLNamed"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLNamed",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlnamed"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleScatteringFunction": {
+      "abstract": [
+        {
+          "text": "A set of material properties that describes a physically realistic shading model for materials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLPhysicallyPlausibleScatteringFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleScatteringFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLPhysicallyPlausibleScatteringFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLPhysicallyPlausibleScatteringFunction",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlphysicallyplausiblescatteringfunction"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLScatteringFunction": {
+      "abstract": [
+        {
+          "text": "A set of material properties that describes a basic shading model for materials, and the superclass for more complex shading models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLScatteringFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLScatteringFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLScatteringFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLScatteringFunction",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlscatteringfunction"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLNamed",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Materials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterial",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyConnection",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyGraph",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyNode",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLScatteringFunction",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleScatteringFunction"
+      ],
+      "title": "Materials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Material-Property",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:string:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:url:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:textureSampler:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:color:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float2:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float3:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float4:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:matrix4x4:)"
+      ],
+      "title": "Creating a Material Property"
+    },
+    {
+      "anchor": "Using-a-Material-Property",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/name",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/semantic",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/type"
+      ],
+      "title": "Using a Material Property"
+    },
+    {
+      "anchor": "Working-with-a-Material-Propertys-Value",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/stringValue",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/urlValue",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/textureSamplerValue",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/color",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/floatValue",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float2Value",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float3Value",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float4Value",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/matrix4x4"
+      ],
+      "title": "Working with a Material Property’s Value"
+    },
+    {
+      "anchor": "Copying-a-Material-Property",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/setProperties(_:)"
+      ],
+      "title": "Copying a Material Property"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialSemantic",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyType"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/luminance"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MDLMaterialProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.modelio/documentation/ModelIO"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Material-Property",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:string:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:url:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:textureSampler:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:color:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float2:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float3:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:float4:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/init(name:semantic:matrix4x4:)"
+              ],
+              "title": "Creating a Material Property"
+            },
+            {
+              "anchor": "Using-a-Material-Property",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/name",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/semantic",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/type"
+              ],
+              "title": "Using a Material Property"
+            },
+            {
+              "anchor": "Working-with-a-Material-Propertys-Value",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/stringValue",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/urlValue",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/textureSamplerValue",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/color",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/floatValue",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float2Value",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float3Value",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/float4Value",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/matrix4x4"
+              ],
+              "title": "Working with a Material Property’s Value"
+            },
+            {
+              "anchor": "Copying-a-Material-Property",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/setProperties(_:)"
+              ],
+              "title": "Copying a Material Property"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialSemantic",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyType"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty/luminance"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLNamed",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Materials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterial",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyConnection",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyGraph",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyNode",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLScatteringFunction",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleScatteringFunction"
+              ],
+              "title": "Materials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MDLMaterialProperty"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1textureSamplerValue/title",
+          "value": "textureSamplerValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1textureSamplerValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textureSamplerValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyConnection/title",
+          "value": "MDLMaterialPropertyConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyConnection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyConnection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleScatteringFunction/title",
+          "value": "MDLPhysicallyPlausibleScatteringFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleScatteringFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhysicallyPlausibleScatteringFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleScatteringFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhysicallyPlausibleScatteringFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:url:)/title",
+          "value": "initWithName:semantic:URL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:url:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:semantic:URL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterial/title",
+          "value": "MDLMaterial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterial/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1urlValue/title",
+          "value": "URLValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1urlValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "URLValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1semantic/title",
+          "value": "semantic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1semantic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "semantic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:float:)/title",
+          "value": "initWithName:semantic:float:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:float:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:semantic:float:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1float2Value/title",
+          "value": "float2Value"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1float2Value/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "float2Value"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:matrix4x4:)/title",
+          "value": "initWithName:semantic:matrix4x4:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:matrix4x4:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:semantic:matrix4x4:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:float2:)/title",
+          "value": "initWithName:semantic:float2:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:float2:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:semantic:float2:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1float3Value/title",
+          "value": "float3Value"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1float3Value/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "float3Value"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1float4Value/title",
+          "value": "float4Value"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1float4Value/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "float4Value"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:float4:)/title",
+          "value": "initWithName:semantic:float4:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:float4:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:semantic:float4:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1setProperties(_:)/title",
+          "value": "setProperties:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1setProperties(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setProperties:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:float3:)/title",
+          "value": "initWithName:semantic:float3:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:float3:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:semantic:float3:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1floatValue/title",
+          "value": "floatValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1floatValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "floatValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:color:)/title",
+          "value": "initWithName:semantic:color:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:color:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:semantic:color:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:)/title",
+          "value": "initWithName:semantic:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:semantic:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty/title",
+          "value": "MDLMaterialProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:string:)/title",
+          "value": "initWithName:semantic:string:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:string:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:semantic:string:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:textureSampler:)/title",
+          "value": "initWithName:semantic:textureSampler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1init(name:semantic:textureSampler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:semantic:textureSampler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1matrix4x4/title",
+          "value": "matrix4x4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1matrix4x4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matrix4x4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1stringValue/title",
+          "value": "stringValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1stringValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stringValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyType/title",
+          "value": "MDLMaterialPropertyType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyNode/title",
+          "value": "MDLMaterialPropertyNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyGraph/title",
+          "value": "MDLMaterialPropertyGraph"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyGraph/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyGraph/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialSemantic/title",
+          "value": "MDLMaterialSemantic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialSemantic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialSemantic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialSemantic/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialSemantic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/title",
+          "value": "MDLNamed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNamed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNamed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1luminance/title",
+          "value": "luminance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1luminance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "luminance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLScatteringFunction/title",
+          "value": "MDLScatteringFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLScatteringFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLScatteringFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLScatteringFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLScatteringFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1color/title",
+          "value": "color"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty~1color/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "color"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/modelio/mdlmaterialproperty"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/modelio/mdlmaterialproperty"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4080 @@
+{
+  "abstract": [
+    {
+      "text": "Perform cryptographic functions like encoding, encryption, signing, and signature verification.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/security-transforms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Security Transforms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use security transforms to assemble a chain of security-related operations that you apply to a stream of data in macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecDecodeTransformCreate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a decode transform object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecDecodeTransformCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecDecodeTransformCreate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecDecodeTransformCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecDecodeTransformCreate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secdecodetransformcreate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecDecryptTransformCreate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a decryption transform object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecDecryptTransformCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecDecryptTransformCreate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecDecryptTransformCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecDecryptTransformCreate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secdecrypttransformcreate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecDecryptTransformGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a decryption transform belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecDecryptTransformGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecDecryptTransformGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecDecryptTransformGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecDecryptTransformGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secdecrypttransformgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecDigestTransformCreate(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a digest transform object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecDigestTransformCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecDigestTransformCreate(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecDigestTransformCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecDigestTransformCreate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secdigesttransformcreate(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecDigestTransformGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a digest transform belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecDigestTransformGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecDigestTransformGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecDigestTransformGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecDigestTransformGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secdigesttransformgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecEncodeTransformCreate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an encode transform object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecEncodeTransformCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecEncodeTransformCreate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecEncodeTransformCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecEncodeTransformCreate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secencodetransformcreate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecEncryptTransformCreate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an encryption transform object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecEncryptTransformCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecEncryptTransformCreate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecEncryptTransformCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecEncryptTransformCreate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secencrypttransformcreate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecEncryptTransformGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which an encryption transform belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecEncryptTransformGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecEncryptTransformGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecEncryptTransformGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecEncryptTransformGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secencrypttransformgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecGroupTransform": {
+      "abstract": [
+        {
+          "text": "A Core Foundation type that represents a container holding a group of transforms.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecGroupTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecGroupTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecGroupTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecGroupTransform",
+      "type": "topic",
+      "url": "/documentation/security/secgrouptransform"
+    },
+    "doc://com.apple.security/documentation/Security/SecGroupTransformGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the Core Foundation type ID for a transform group container.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecGroupTransformGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecGroupTransformGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecGroupTransformGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecGroupTransformGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secgrouptransformgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecMessageBlock": {
+      "abstract": [
+        {
+          "text": "A block that delivers messages during asynchronous operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecMessageBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecMessageBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecMessageBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecMessageBlock",
+      "type": "topic",
+      "url": "/documentation/security/secmessageblock"
+    },
+    "doc://com.apple.security/documentation/Security/SecSignTransformCreate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a signing transform object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecSignTransformCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecSignTransformCreate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecSignTransformCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecSignTransformCreate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secsigntransformcreate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTranformCustomGetAttribute": {
+      "abstract": [
+        {
+          "text": "Gets an attribute value from a custom transform.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecTranformCustomGetAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTranformCustomGetAttribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecTranformCustomGetAttribute",
+      "type": "topic",
+      "url": "/documentation/security/sectranformcustomgetattribute"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransform": {
+      "abstract": [
+        {
+          "text": "A Core Foundation type that represents a security transform.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransform",
+      "type": "topic",
+      "url": "/documentation/security/sectransform"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformActionBlock": {
+      "abstract": [
+        {
+          "text": "A block that overrides the default behavior of a custom transform.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformActionBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformActionBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformActionBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformActionBlock",
+      "type": "topic",
+      "url": "/documentation/security/sectransformactionblock"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformAttribute": {
+      "abstract": [
+        {
+          "text": "A direct reference to a security transform attribute.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformAttribute",
+      "type": "topic",
+      "url": "/documentation/security/sectransformattribute"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformAttributeActionBlock": {
+      "abstract": [
+        {
+          "text": "A block used to override the default attribute handling for when an attribute is set.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformAttributeActionBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformAttributeActionBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformAttributeActionBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformAttributeActionBlock",
+      "type": "topic",
+      "url": "/documentation/security/sectransformattributeactionblock"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformConnectTransforms(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Chains transforms together.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformConnectTransforms"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecGroupTransformRef",
+          "text": "SecGroupTransform"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecGroupTransformRef",
+          "text": "SecGroupTransform"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformConnectTransforms(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformConnectTransforms"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformConnectTransforms(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformconnecttransforms(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformCopyExternalRepresentation(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary that contains enough information to be able to recreate a transform.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformCopyExternalRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformCopyExternalRepresentation(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformCopyExternalRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformCopyExternalRepresentation(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformcopyexternalrepresentation(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformCreate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a transform computation object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformCreate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformCreate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformcreate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformCreateFP": {
+      "abstract": [
+        {
+          "text": "A pointer to a function that creates a new instance of a custom transform.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformCreateFP"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformCreateFP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformCreateFP"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformCreateFP",
+      "type": "topic",
+      "url": "/documentation/security/sectransformcreatefp"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformCreateFromExternalRepresentation(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a transform instance from a dictionary of parameters.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformCreateFromExternalRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformCreateFromExternalRepresentation(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformCreateFromExternalRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformCreateFromExternalRepresentation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformcreatefromexternalrepresentation(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformCreateGroupTransform()": {
+      "abstract": [
+        {
+          "text": "Creates an object that acts as a container for a set of connected transforms.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformCreateGroupTransform"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecGroupTransformRef",
+          "text": "SecGroupTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformCreateGroupTransform()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformCreateGroupTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformCreateGroupTransform()",
+      "type": "topic",
+      "url": "/documentation/security/sectransformcreategrouptransform()"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformCreateReadTransformWithReadStream(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a read transform from a read stream reference.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformCreateReadTransformWithReadStream"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFReadStreamRef",
+          "text": "CFReadStream"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformCreateReadTransformWithReadStream(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformCreateReadTransformWithReadStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformCreateReadTransformWithReadStream(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformcreatereadtransformwithreadstream(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformCustomGetAttribute(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets an attribute value from a custom transform.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformCustomGetAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformImplementationRef",
+          "text": "SecTransformImplementationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformStringOrAttributeRef",
+          "text": "SecTransformStringOrAttribute"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecTransformMetaAttributeType",
+          "text": "SecTransformMetaAttributeType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformCustomGetAttribute(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformCustomGetAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformCustomGetAttribute(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformcustomgetattribute(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformCustomSetAttribute(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets an attribute value on a custom transform.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformCustomSetAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformImplementationRef",
+          "text": "SecTransformImplementationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformStringOrAttributeRef",
+          "text": "SecTransformStringOrAttribute"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecTransformMetaAttributeType",
+          "text": "SecTransformMetaAttributeType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformCustomSetAttribute(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformCustomSetAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformCustomSetAttribute(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformcustomsetattribute(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformDataBlock": {
+      "abstract": [
+        {
+          "text": "A block used to override the default data handling for a transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformDataBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformDataBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformDataBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformDataBlock",
+      "type": "topic",
+      "url": "/documentation/security/sectransformdatablock"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformExecute(_:_:)": {
+      "abstract": [
+        {
+          "text": "Executes a transform or transform group synchronously.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformExecute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformExecute(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformExecute"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformExecute(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformexecute(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformExecuteAsync(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Executes transform or transform group asynchronously.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformExecuteAsync"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecMessageBlock",
+          "text": "SecMessageBlock"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformExecuteAsync(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformExecuteAsync"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformExecuteAsync(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformexecuteasync(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformFindByName(_:_:)": {
+      "abstract": [
+        {
+          "text": "Finds a member of a transform group by its name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformFindByName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecGroupTransformRef",
+          "text": "SecGroupTransform"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformFindByName(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformFindByName"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformFindByName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformfindbyname(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformGetAttribute(_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the current value of a transform attribute.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformGetAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformGetAttribute(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformGetAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformGetAttribute(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformgetattribute(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a security transform object belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/sectransformgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformImplementationRef": {
+      "abstract": [
+        {
+          "text": "An opaque pointer to a block that implements an instance of a transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformImplementationRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformImplementationRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformImplementationRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformImplementationRef",
+      "type": "topic",
+      "url": "/documentation/security/sectransformimplementationref"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformInstanceBlock": {
+      "abstract": [
+        {
+          "text": "A block that you return from a transform creation function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformInstanceBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformInstanceBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformInstanceBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformInstanceBlock",
+      "type": "topic",
+      "url": "/documentation/security/sectransforminstanceblock"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformMetaAttributeType": {
+      "abstract": [
+        {
+          "text": "The keys that describe the metadata attributes of transform attributes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformMetaAttributeType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformMetaAttributeType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformMetaAttributeType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformMetaAttributeType",
+      "type": "topic",
+      "url": "/documentation/security/sectransformmetaattributetype"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformNoData()": {
+      "abstract": [
+        {
+          "text": "Returns an object from inside a ProcessData override that says that although no data is being returned the transform is still active and awaiting data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformNoData"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformNoData()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformNoData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformNoData()",
+      "type": "topic",
+      "url": "/documentation/security/sectransformnodata()"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformPushbackAttribute(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Pushes a single value back for a specific attribute.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformPushbackAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformImplementationRef",
+          "text": "SecTransformImplementationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformStringOrAttributeRef",
+          "text": "SecTransformStringOrAttribute"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformPushbackAttribute(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformPushbackAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformPushbackAttribute(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformpushbackattribute(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformRegister(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Registers a custom transform.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformRegister"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformCreateFP",
+          "text": "SecTransformCreateFP"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformRegister(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformRegister"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformRegister(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformregister(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformSetAttribute(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets a static value for an attribute in a transform.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformSetAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformSetAttribute(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformSetAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformSetAttribute(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformsetattribute(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformSetAttributeAction(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Requests a callback when an attribute is set.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformSetAttributeAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformImplementationRef",
+          "text": "SecTransformImplementationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformStringOrAttributeRef",
+          "text": "SecTransformStringOrAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformAttributeActionBlock",
+          "text": "SecTransformAttributeActionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformSetAttributeAction(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformSetAttributeAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformSetAttributeAction(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformsetattributeaction(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformSetDataAction(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Changes the way a custom transform processes data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformSetDataAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformImplementationRef",
+          "text": "SecTransformImplementationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformDataBlock",
+          "text": "SecTransformDataBlock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformSetDataAction(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformSetDataAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformSetDataAction(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformsetdataaction(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformSetTransformAction(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Changes the way that a transform deals with transform lifecycle behaviors.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformSetTransformAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformImplementationRef",
+          "text": "SecTransformImplementationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformActionBlock",
+          "text": "SecTransformActionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformSetTransformAction(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformSetTransformAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformSetTransformAction(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectransformsettransformaction(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTransformStringOrAttribute": {
+      "abstract": [
+        {
+          "text": "A type that may be either a string or an attribute reference.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTransformStringOrAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTransformStringOrAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTransformStringOrAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTransformStringOrAttribute",
+      "type": "topic",
+      "url": "/documentation/security/sectransformstringorattribute"
+    },
+    "doc://com.apple.security/documentation/Security/SecVerifyTransformCreate(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a verify transform object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecVerifyTransformCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTransformRef",
+          "text": "SecTransform"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecVerifyTransformCreate(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecVerifyTransformCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecVerifyTransformCreate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secverifytransformcreate(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/actions": {
+      "abstract": [
+        {
+          "text": "Use actions to trigger particular behaviors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/actions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Actions",
+      "type": "topic",
+      "url": "/documentation/security/actions"
+    },
+    "doc://com.apple.security/documentation/Security/kSecTransformAbortOriginatorKey": {
+      "abstract": [
+        {
+          "text": "The key in an error’s ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary whose value indicates the transform that caused the chain to abort.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecTransformAbortOriginatorKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecTransformAbortOriginatorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecTransformAbortOriginatorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecTransformAbortOriginatorKey",
+      "type": "topic",
+      "url": "/documentation/security/ksectransformabortoriginatorkey"
+    },
+    "doc://com.apple.security/documentation/Security/kSecTransformErrorDomain": {
+      "abstract": [
+        {
+          "text": "The domain of any error object created by a transform on failure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecTransformErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecTransformErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecTransformErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecTransformErrorDomain",
+      "type": "topic",
+      "url": "/documentation/security/ksectransformerrordomain"
+    },
+    "doc://com.apple.security/documentation/Security/kSecTransformPreviousErrorKey": {
+      "abstract": [
+        {
+          "text": "The key in an error’s ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary whose value specifies the previous error when multiple errors occur during transform evaluation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecTransformPreviousErrorKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecTransformPreviousErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecTransformPreviousErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecTransformPreviousErrorKey",
+      "type": "topic",
+      "url": "/documentation/security/ksectransformpreviouserrorkey"
+    },
+    "doc://com.apple.security/documentation/Security/security-transform-error-codes": {
+      "abstract": [
+        {
+          "text": "Recognize the error codes used in error objects created by a transform on failure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-transform-error-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Transform Error Codes",
+      "type": "topic",
+      "url": "/documentation/security/security-transform-error-codes"
+    },
+    "doc://com.apple.security/documentation/Security/transform-attributes": {
+      "abstract": [
+        {
+          "text": "Specify the attributes of a transform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/transform-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transform Attributes",
+      "type": "topic",
+      "url": "/documentation/security/transform-attributes"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecTransformPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010801": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecTransformPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010801",
+      "title": "Security Transforms Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "Security Transforms Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecTransformPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010801"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecTransformPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010801"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Transforms",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecTransformCreateReadTransformWithReadStream(_:)",
+        "doc://com.apple.security/documentation/Security/SecTransform",
+        "doc://com.apple.security/documentation/Security/SecTransformGetTypeID()"
+      ],
+      "title": "Transforms"
+    },
+    {
+      "anchor": "Encoding",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecEncodeTransformCreate(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecDecodeTransformCreate(_:_:)"
+      ],
+      "title": "Encoding"
+    },
+    {
+      "anchor": "Encrypting",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecEncryptTransformCreate(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecDecryptTransformCreate(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecEncryptTransformGetTypeID()",
+        "doc://com.apple.security/documentation/Security/SecDecryptTransformGetTypeID()"
+      ],
+      "title": "Encrypting"
+    },
+    {
+      "anchor": "Signing",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecSignTransformCreate(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecVerifyTransformCreate(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecDigestTransformCreate(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecDigestTransformGetTypeID()"
+      ],
+      "title": "Signing"
+    },
+    {
+      "anchor": "Custom-Transforms",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecTransformCreate(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformRegister(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformCreateFP",
+        "doc://com.apple.security/documentation/Security/SecTransformInstanceBlock",
+        "doc://com.apple.security/documentation/Security/SecTransformImplementationRef"
+      ],
+      "title": "Custom Transforms"
+    },
+    {
+      "anchor": "Transform-Groups",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecTransformCreateGroupTransform()",
+        "doc://com.apple.security/documentation/Security/SecTransformFindByName(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecGroupTransform",
+        "doc://com.apple.security/documentation/Security/SecGroupTransformGetTypeID()"
+      ],
+      "title": "Transform Groups"
+    },
+    {
+      "anchor": "Transform-Characteristics",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecTransformSetAttribute(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformGetAttribute(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformCustomSetAttribute(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformCustomGetAttribute(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformPushbackAttribute(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/transform-attributes",
+        "doc://com.apple.security/documentation/Security/SecTransformAttribute",
+        "doc://com.apple.security/documentation/Security/SecTransformStringOrAttribute",
+        "doc://com.apple.security/documentation/Security/SecTransformMetaAttributeType"
+      ],
+      "title": "Transform Characteristics"
+    },
+    {
+      "anchor": "Actions",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecTransformSetDataAction(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformSetAttributeAction(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformSetTransformAction(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformActionBlock",
+        "doc://com.apple.security/documentation/Security/SecTransformAttributeActionBlock",
+        "doc://com.apple.security/documentation/Security/SecTransformDataBlock",
+        "doc://com.apple.security/documentation/Security/actions"
+      ],
+      "title": "Actions"
+    },
+    {
+      "anchor": "Piping",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecTransformConnectTransforms(_:_:_:_:_:_:)"
+      ],
+      "title": "Piping"
+    },
+    {
+      "anchor": "Execution",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecTransformExecute(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformExecuteAsync(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformNoData()",
+        "doc://com.apple.security/documentation/Security/SecMessageBlock"
+      ],
+      "title": "Execution"
+    },
+    {
+      "anchor": "Import-and-Export",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecTransformCopyExternalRepresentation(_:)",
+        "doc://com.apple.security/documentation/Security/SecTransformCreateFromExternalRepresentation(_:_:)"
+      ],
+      "title": "Import and Export"
+    },
+    {
+      "anchor": "Reporting-Errors",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/kSecTransformErrorDomain",
+        "doc://com.apple.security/documentation/Security/security-transform-error-codes",
+        "doc://com.apple.security/documentation/Security/kSecTransformPreviousErrorKey",
+        "doc://com.apple.security/documentation/Security/kSecTransformAbortOriginatorKey"
+      ],
+      "title": "Reporting Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Transforms",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecTransformCreateReadTransformWithReadStream(_:)",
+                "doc://com.apple.security/documentation/Security/SecTransform",
+                "doc://com.apple.security/documentation/Security/SecTransformGetTypeID()"
+              ],
+              "title": "Transforms"
+            },
+            {
+              "anchor": "Encoding",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecEncodeTransformCreate(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecDecodeTransformCreate(_:_:)"
+              ],
+              "title": "Encoding"
+            },
+            {
+              "anchor": "Encrypting",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecEncryptTransformCreate(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecDecryptTransformCreate(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecEncryptTransformGetTypeID()",
+                "doc://com.apple.security/documentation/Security/SecDecryptTransformGetTypeID()"
+              ],
+              "title": "Encrypting"
+            },
+            {
+              "anchor": "Signing",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecSignTransformCreate(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecVerifyTransformCreate(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecDigestTransformCreate(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecDigestTransformGetTypeID()"
+              ],
+              "title": "Signing"
+            },
+            {
+              "anchor": "Custom-Transforms",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecTransformCreate(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformRegister(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformCreateFP",
+                "doc://com.apple.security/documentation/Security/SecTransformInstanceBlock",
+                "doc://com.apple.security/documentation/Security/SecTransformImplementationRef"
+              ],
+              "title": "Custom Transforms"
+            },
+            {
+              "anchor": "Transform-Groups",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecTransformCreateGroupTransform()",
+                "doc://com.apple.security/documentation/Security/SecTransformFindByName(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecGroupTransform",
+                "doc://com.apple.security/documentation/Security/SecGroupTransformGetTypeID()"
+              ],
+              "title": "Transform Groups"
+            },
+            {
+              "anchor": "Transform-Characteristics",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecTransformSetAttribute(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformGetAttribute(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformCustomSetAttribute(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformCustomGetAttribute(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTranformCustomGetAttribute",
+                "doc://com.apple.security/documentation/Security/SecTransformPushbackAttribute(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/transform-attributes",
+                "doc://com.apple.security/documentation/Security/SecTransformAttribute",
+                "doc://com.apple.security/documentation/Security/SecTransformStringOrAttribute",
+                "doc://com.apple.security/documentation/Security/SecTransformMetaAttributeType"
+              ],
+              "title": "Transform Characteristics"
+            },
+            {
+              "anchor": "Actions",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecTransformSetDataAction(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformSetAttributeAction(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformSetTransformAction(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformActionBlock",
+                "doc://com.apple.security/documentation/Security/SecTransformAttributeActionBlock",
+                "doc://com.apple.security/documentation/Security/SecTransformDataBlock",
+                "doc://com.apple.security/documentation/Security/actions"
+              ],
+              "title": "Actions"
+            },
+            {
+              "anchor": "Piping",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecTransformConnectTransforms(_:_:_:_:_:_:)"
+              ],
+              "title": "Piping"
+            },
+            {
+              "anchor": "Execution",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecTransformExecute(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformExecuteAsync(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformNoData()",
+                "doc://com.apple.security/documentation/Security/SecMessageBlock"
+              ],
+              "title": "Execution"
+            },
+            {
+              "anchor": "Import-and-Export",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecTransformCopyExternalRepresentation(_:)",
+                "doc://com.apple.security/documentation/Security/SecTransformCreateFromExternalRepresentation(_:_:)"
+              ],
+              "title": "Import and Export"
+            },
+            {
+              "anchor": "Reporting-Errors",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/kSecTransformErrorDomain",
+                "doc://com.apple.security/documentation/Security/security-transform-error-codes",
+                "doc://com.apple.security/documentation/Security/kSecTransformPreviousErrorKey",
+                "doc://com.apple.security/documentation/Security/kSecTransformAbortOriginatorKey"
+              ],
+              "title": "Reporting Errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecTransformPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010801"
+              ],
+              "title": "Related Documentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformNoData()/title",
+          "value": "SecTransformNoData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformNoData()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformNoData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformPushbackAttribute(_:_:_:)/title",
+          "value": "SecTransformPushbackAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformPushbackAttribute(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformPushbackAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformAttributeActionBlock/title",
+          "value": "SecTransformAttributeActionBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformAttributeActionBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformAttributeActionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformAttributeActionBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformAttributeActionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformDataBlock/title",
+          "value": "SecTransformDataBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformDataBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformDataBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformDataBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformDataBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecMessageBlock/title",
+          "value": "SecMessageBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecMessageBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecMessageBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecMessageBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecMessageBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformGetTypeID()/title",
+          "value": "SecTransformGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecEncryptTransformCreate(_:_:)/title",
+          "value": "SecEncryptTransformCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecEncryptTransformCreate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecEncryptTransformCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecTransformAbortOriginatorKey/title",
+          "value": "kSecTransformAbortOriginatorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecTransformAbortOriginatorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecTransformAbortOriginatorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGroupTransform/title",
+          "value": "SecGroupTransformRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGroupTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecGroupTransformRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGroupTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecGroupTransformRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecDecodeTransformCreate(_:_:)/title",
+          "value": "SecDecodeTransformCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecDecodeTransformCreate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecDecodeTransformCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecTransformPreviousErrorKey/title",
+          "value": "kSecTransformPreviousErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecTransformPreviousErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecTransformPreviousErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformMetaAttributeType/title",
+          "value": "SecTransformMetaAttributeType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformMetaAttributeType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformMetaAttributeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformMetaAttributeType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformMetaAttributeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformSetAttribute(_:_:_:_:)/title",
+          "value": "SecTransformSetAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformSetAttribute(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformSetAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformImplementationRef/title",
+          "value": "SecTransformImplementationRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformImplementationRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformImplementationRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformImplementationRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformImplementationRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformAttribute/title",
+          "value": "SecTransformAttributeRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformAttributeRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformAttributeRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreateGroupTransform()/title",
+          "value": "SecTransformCreateGroupTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreateGroupTransform()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformCreateGroupTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformConnectTransforms(_:_:_:_:_:_:)/title",
+          "value": "SecTransformConnectTransforms"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformConnectTransforms(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformConnectTransforms"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreate(_:_:)/title",
+          "value": "SecTransformCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformSetDataAction(_:_:_:)/title",
+          "value": "SecTransformSetDataAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformSetDataAction(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformSetDataAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformRegister(_:_:_:)/title",
+          "value": "SecTransformRegister"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformRegister(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformRegister"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformExecuteAsync(_:_:_:)/title",
+          "value": "SecTransformExecuteAsync"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformExecuteAsync(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformExecuteAsync"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecDecryptTransformGetTypeID()/title",
+          "value": "SecDecryptTransformGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecDecryptTransformGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecDecryptTransformGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecTransformErrorDomain/title",
+          "value": "kSecTransformErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecTransformErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecTransformErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreateReadTransformWithReadStream(_:)/title",
+          "value": "SecTransformCreateReadTransformWithReadStream"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreateReadTransformWithReadStream(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformCreateReadTransformWithReadStream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCustomSetAttribute(_:_:_:_:)/title",
+          "value": "SecTransformCustomSetAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCustomSetAttribute(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformCustomSetAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformFindByName(_:_:)/title",
+          "value": "SecTransformFindByName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformFindByName(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformFindByName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCopyExternalRepresentation(_:)/title",
+          "value": "SecTransformCopyExternalRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCopyExternalRepresentation(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformCopyExternalRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGroupTransformGetTypeID()/title",
+          "value": "SecGroupTransformGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGroupTransformGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecGroupTransformGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecDigestTransformCreate(_:_:_:)/title",
+          "value": "SecDigestTransformCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecDigestTransformCreate(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecDigestTransformCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreateFP/title",
+          "value": "SecTransformCreateFP"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreateFP/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformCreateFP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreateFP/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformCreateFP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransform/title",
+          "value": "SecTransformRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformExecute(_:_:)/title",
+          "value": "SecTransformExecute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformExecute(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformExecute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecDigestTransformGetTypeID()/title",
+          "value": "SecDigestTransformGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecDigestTransformGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecDigestTransformGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformActionBlock/title",
+          "value": "SecTransformActionBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformActionBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformActionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformActionBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformActionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformSetTransformAction(_:_:_:)/title",
+          "value": "SecTransformSetTransformAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformSetTransformAction(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformSetTransformAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformStringOrAttribute/title",
+          "value": "SecTransformStringOrAttributeRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformStringOrAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformStringOrAttributeRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformStringOrAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformStringOrAttributeRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreateFromExternalRepresentation(_:_:)/title",
+          "value": "SecTransformCreateFromExternalRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCreateFromExternalRepresentation(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformCreateFromExternalRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformGetAttribute(_:_:)/title",
+          "value": "SecTransformGetAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformGetAttribute(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformGetAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecVerifyTransformCreate(_:_:_:)/title",
+          "value": "SecVerifyTransformCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecVerifyTransformCreate(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecVerifyTransformCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecSignTransformCreate(_:_:)/title",
+          "value": "SecSignTransformCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecSignTransformCreate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecSignTransformCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformInstanceBlock/title",
+          "value": "SecTransformInstanceBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformInstanceBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformInstanceBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformInstanceBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformInstanceBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecDecryptTransformCreate(_:_:)/title",
+          "value": "SecDecryptTransformCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecDecryptTransformCreate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecDecryptTransformCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecEncryptTransformGetTypeID()/title",
+          "value": "SecEncryptTransformGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecEncryptTransformGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecEncryptTransformGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecEncodeTransformCreate(_:_:)/title",
+          "value": "SecEncodeTransformCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecEncodeTransformCreate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecEncodeTransformCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCustomGetAttribute(_:_:_:)/title",
+          "value": "SecTransformCustomGetAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformCustomGetAttribute(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformCustomGetAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformSetAttributeAction(_:_:_:_:)/title",
+          "value": "SecTransformSetAttributeAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTransformSetAttributeAction(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTransformSetAttributeAction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/security-transforms"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/security-transforms"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

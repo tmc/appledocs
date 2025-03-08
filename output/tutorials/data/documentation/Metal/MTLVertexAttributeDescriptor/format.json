@@ -1,0 +1,1248 @@
+{
+  "abstract": [
+    {
+      "text": "The format of the vertex attribute.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/format"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MTLVertexAttributeDescriptor(py)format",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "format"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@MTLVertexFormat",
+        "text": "MTLVertexFormat"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "format"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "format"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "format"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLVertexFormat",
+              "text": "MTLVertexFormat"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property specifies the data type of the vertex attribute that corresponds to an input argument of a shading language function. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " may be converted to the data type in the shading function argument with the following specified limitations. Invalid type conversion causes a compilation error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Conversion of vectors of different lengths is valid. The length of vectors can be reduced. For example,  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/int4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " data can be reduced to a single ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader argument is valid, and the last three values of the vector are discarded. Vectors can also be expanded; for example, expanding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/int",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to an ",
+              "type": "text"
+            },
+            {
+              "code": "int4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " vector shader argument is valid. When expanding, the extra components are filled with the corresponding components of (0,0,0,1).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sign of an integer ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can not be cast to a shader argument with an integer type of a different sign. For example, casting the signed format ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/int",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to an ",
+              "type": "text"
+            },
+            {
+              "code": "uint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader argument is invalid. Casting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/uint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to an ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument is also invalid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Integer truncation is not supported. For example, casting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/int",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "code": "short",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is invalid. However, casting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/short2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a vector of ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values is valid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Casting any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "code": "float",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "half",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is valid. Casting normalized ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/short2Normalized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") are only valid to ",
+              "type": "text"
+            },
+            {
+              "code": "float",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "half",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that determines how to store attribute data in memory and map it to the arguments of a vertex function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVertexAttributeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexAttributeDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexAttributeDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexattributedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/bufferIndex": {
+      "abstract": [
+        {
+          "text": "The index in the argument table for the associated vertex buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/bufferIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bufferIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "bufferIndex",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexattributedescriptor/bufferindex"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/format": {
+      "abstract": [
+        {
+          "text": "The format of the vertex attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLVertexFormat",
+          "text": "MTLVertexFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/format",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "format"
+        }
+      ],
+      "role": "symbol",
+      "title": "format",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexattributedescriptor/format"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/offset": {
+      "abstract": [
+        {
+          "text": "The location of an attribute in vertex data, determined by the byte offset from the start of the vertex data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/offset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "offset"
+        }
+      ],
+      "role": "symbol",
+      "title": "offset",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexattributedescriptor/offset"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexFormat": {
+      "abstract": [
+        {
+          "text": "Values that specify the organization of function vertex data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVertexFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexFormat",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexformat"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/int": {
+      "abstract": [
+        {
+          "text": "One signed 32-bit two’s complement value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/int",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexFormatInt"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexFormat.int",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexformat/int"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/int4": {
+      "abstract": [
+        {
+          "text": "Four signed 32-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/int4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexFormatInt4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexFormat.int4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexformat/int4"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/short2": {
+      "abstract": [
+        {
+          "text": "Two signed 16-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/short2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexFormatShort2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexFormat.short2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexformat/short2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/short2Normalized": {
+      "abstract": [
+        {
+          "text": "Two signed normalized 16-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short2Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/short2Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexFormatShort2Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexFormat.short2Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexformat/short2normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/uint": {
+      "abstract": [
+        {
+          "text": "One unsigned 32-bit value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uint"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat/uint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexFormatUInt"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexFormat.uint",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexformat/uint"
+    },
+    "https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364",
+      "title": "Metal Shading Language Guide",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364"
+    },
+    "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014221": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014221",
+      "title": "Metal Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "Metal Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014221"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364",
+        "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014221"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Organizing-the-Vertex-Attribute",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/offset",
+        "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/bufferIndex"
+      ],
+      "title": "Organizing the Vertex Attribute"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "format"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "format"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal",
+                "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364",
+                "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014221"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Organizing-the-Vertex-Attribute",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/offset",
+                "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor/bufferIndex"
+              ],
+              "title": "Organizing the Vertex Attribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "assign"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexFormat",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@MTLVertexFormat",
+                    "text": "MTLVertexFormat"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "format"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor~1format/title",
+          "value": "format"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor~1format/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "format"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat~1short2/title",
+          "value": "MTLVertexFormatShort2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat~1short2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexFormatShort2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat~1short2Normalized/title",
+          "value": "MTLVertexFormatShort2Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat~1short2Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexFormatShort2Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor~1offset/title",
+          "value": "offset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor~1offset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "offset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor/title",
+          "value": "MTLVertexAttributeDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexAttributeDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexAttributeDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat/title",
+          "value": "MTLVertexFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat~1int4/title",
+          "value": "MTLVertexFormatInt4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat~1int4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexFormatInt4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat~1uint/title",
+          "value": "MTLVertexFormatUInt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat~1uint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexFormatUInt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat~1int/title",
+          "value": "MTLVertexFormatInt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexFormat~1int/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexFormatInt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor~1bufferIndex/title",
+          "value": "bufferIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor~1bufferIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bufferIndex"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlvertexattributedescriptor/format"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlvertexattributedescriptor/format"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1033 @@
+{
+  "abstract": [
+    {
+      "text": "Add camera-based features to enterprise apps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/accessing-the-main-camera"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Accessing the main camera"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to use ARKit to access and display the left main camera frame in your visionOS app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use this functionality to implement computer vision-powered experiences or live streaming in your enterprise app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For instance, support technicians can live stream their surroundings to remote experts for improved guidance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace ",
+              "type": "text"
+            },
+            {
+              "code": "Enterprise.license",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with your license file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample app requires a valid license file to display the main camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-the-entitlement",
+          "level": 3,
+          "text": "Request the entitlement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Main camera access is a part of enterprise APIs for visionOS, a collection of APIs that unlock capabilities for enterprise customers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To use main camera access, you need to apply for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.main-camera-access.allow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, including how to apply for this entitlement, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-usage-descriptions-for-ARKit-data-access",
+          "level": 3,
+          "text": "Add usage descriptions for ARKit data access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help protect people’s privacy, visionOS limits app access to cameras and other sensors in Apple Vision Pro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You need to add an ",
+              "type": "text"
+            },
+            {
+              "code": "NSEnterpriseMCAMUsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your app’s information property list to provide a usage description that explains how your app uses the data these sensors provide.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "People see this description when your app prompts for access to camera data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In visionOS, ARKit is only available in an immersive space.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to learn more about opening an immersive space and requesting authorization for ARKit data access.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To learn more about best practices for privacy, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/visionOS/adopting-best-practices-for-privacy",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Access-and-display-main-camera-frames",
+          "level": 3,
+          "text": "Access and display main camera frames",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example accesses and displays the left main camera at the highest available resolution.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To access the camera, start an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrameProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and then request ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrameProvider/CameraFrameUpdates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a given format.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ARKit delivers a stream of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances; each frame includes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrame/Sample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " containing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrame/Sample/pixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrame/Sample/Parameters-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describing the frame’s characteristics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import ARKit",
+            "import RealityKit",
+            "import SwiftUI",
+            "",
+            "struct MainCameraView: View {",
+            "    @State private var arkitSession = ARKitSession()",
+            "    @State private var pixelBuffer: CVPixelBuffer?",
+            "    ",
+            "    let emptyImage = Image(systemName: \"camera\")",
+            "",
+            "    var body: some View {",
+            "        let image = pixelBuffer?.image ?? emptyImage",
+            "        ",
+            "        image",
+            "        .resizable()",
+            "        .scaledToFit()",
+            "        .task {",
+            "            ",
+            "            // Check wether there's support for camera access; otherwise, handle this case.",
+            "            guard CameraFrameProvider.isSupported else {",
+            "                return",
+            "            }",
+            "            ",
+            "            let cameraFrameProvider = CameraFrameProvider()",
+            "",
+            "            try? await arkitSession.run([cameraFrameProvider])",
+            "            ",
+            "            // Read the video formats that the left main camera supports.",
+            "            let formats = CameraVideoFormat.supportedVideoFormats(for: .main, cameraPositions: [.left])",
+            "        ",
+            "            // Find the highest resolution format.",
+            "            let highResolutionFormat = formats.max { $0.frameSize.height < $1.frameSize.height }",
+            "",
+            "            // Request an asynchronous sequence of camera frames.",
+            "            guard let highResolutionFormat,",
+            "                  let cameraFrameUpdates = cameraFrameProvider.cameraFrameUpdates(for: highResolutionFormat) else {",
+            "                return",
+            "            }",
+            "            ",
+            "            for await cameraFrame in cameraFrameUpdates {",
+            "",
+            "                if let sample = cameraFrame.sample(for: .left) {",
+            "                    ",
+            "                    // Update the `pixelBuffer` to render the frame's image.",
+            "                    pixelBuffer = sample.pixelBuffer",
+            "                    ",
+            "                    let parameters = sample.parameters",
+            "                    ",
+            "                    // If needed, take action with the frame's parameters.",
+            "                    print(",
+            "                         \"\"\"",
+            "",
+            "                         Intrinsics: \\(parameters.intrinsics)",
+            "                         Extrinsics: \\(parameters.extrinsics)",
+            "                         \"\"\")",
+            "                }",
+            "",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the frame’s content, convert its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhoto/pixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the following extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension CVPixelBuffer {",
+            "    var image: Image? {",
+            "        let ciImage = CIImage(cvPixelBuffer: self)",
+            "        let context = CIContext(options: nil)",
+            "        ",
+            "        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {",
+            "            return nil",
+            "        }",
+            "",
+            "        let uiImage = UIImage(cgImage: cgImage)",
+            "",
+            "        return Image(uiImage: uiImage)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "aa01a224fb4b/AccessingTheMainCamera.zip": {
+      "checksum": "aa01a224fb4bd63e3eb1c06d75817bcfd2d7e5104d380b4e34e18697fb2bfb761c4b18200623c3a72ab70bd93210245072ce265c685021b3c2eddffed45719f9",
+      "identifier": "aa01a224fb4b/AccessingTheMainCamera.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/aa01a224fb4b/AccessingTheMainCamera.zip"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession": {
+      "abstract": [
+        {
+          "text": "The main entry point for receiving data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARKitSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/CameraFrame": {
+      "abstract": [
+        {
+          "text": "The representation of a camera frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CameraFrame",
+      "type": "topic",
+      "url": "/documentation/ARKit/CameraFrame"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/CameraFrame/Sample": {
+      "abstract": [
+        {
+          "text": "Information that describes a sample from a camera frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sample"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrame/Sample",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CameraFrame.Sample",
+      "type": "topic",
+      "url": "/documentation/ARKit/CameraFrame/Sample"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/CameraFrame/Sample/Parameters-swift.struct": {
+      "abstract": [
+        {
+          "text": "A frame’s parameters, such as the camera type, intrinsics, timestamps, exposure, and so on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Parameters"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrame/Sample/Parameters-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CameraFrame.Sample.Parameters",
+      "type": "topic",
+      "url": "/documentation/ARKit/CameraFrame/Sample/Parameters-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/CameraFrame/Sample/pixelBuffer": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrame/Sample/pixelBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelBuffer",
+      "type": "topic",
+      "url": "/documentation/ARKit/CameraFrame/Sample/pixelBuffer"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/CameraFrameProvider": {
+      "abstract": [
+        {
+          "text": "An object that provides camera streams.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraFrameProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrameProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CameraFrameProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/CameraFrameProvider"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/CameraFrameProvider/CameraFrameUpdates": {
+      "abstract": [
+        {
+          "text": "A sequence of camera frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraFrameUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/CameraFrameProvider/CameraFrameUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CameraFrameProvider.CameraFrameUpdates",
+      "type": "topic",
+      "url": "/documentation/ARKit/CameraFrameProvider/CameraFrameUpdates"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhoto/pixelBuffer": {
+      "abstract": [
+        {
+          "text": "The uncompressed or RAW image sample buffer for the photo, if requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhoto/pixelBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelBuffer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCapturePhoto/pixelBuffer"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.main-camera-access.allow": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can use ARKit to access the main cameras on Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.arkit.main-camera-access.allow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Main camera access",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.arkit.main-camera-access.allow"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Image": {
+      "abstract": [
+        {
+          "text": "A view that displays an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Image"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/adopting-best-practices-for-privacy": {
+      "abstract": [
+        {
+          "text": "Minimize your use of sensitive information and provide a clear statement of what information you do use and how you use it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/adopting-best-practices-for-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting best practices for privacy and user preferences",
+      "type": "topic",
+      "url": "/documentation/visionOS/adopting-best-practices-for-privacy"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis": {
+      "abstract": [
+        {
+          "text": "Grant enhanced sensor access and increased platform control to your visionOS app by using entitlements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Building spatial experiences for business apps with enterprise APIs for visionOS",
+      "type": "topic",
+      "url": "/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data": {
+      "abstract": [
+        {
+          "text": "Check whether your app can use ARKit and respect people’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up access to ARKit data",
+      "type": "topic",
+      "url": "/documentation/visionOS/setting-up-access-to-arkit-data"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis": {
+      "abstract": [
+        {
+          "text": "Grant enhanced sensor access and increased platform control to your visionOS app by using entitlements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Building spatial experiences for business apps with enterprise APIs for visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/building-spatial-experiences-for-business-apps-with-enterprise-apis"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/displaying-video-from-connected-devices": {
+      "abstract": [
+        {
+          "text": "Show video from devices connected with the Developer Strap in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/displaying-video-from-connected-devices",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying video from connected devices",
+      "type": "topic",
+      "url": "/documentation/visionos/displaying-video-from-connected-devices"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/locating-and-decoding-barcodes-in-3d-space": {
+      "abstract": [
+        {
+          "text": "Create engaging, hands-free experiences based on barcodes in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/locating-and-decoding-barcodes-in-3d-space",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Locating and decoding barcodes in 3D space",
+      "type": "topic",
+      "url": "/documentation/visionos/locating-and-decoding-barcodes-in-3d-space"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "aa01a224fb4b/AccessingTheMainCamera.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Enterprise-APIs-for-visionOS",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/building-spatial-experiences-for-business-apps-with-enterprise-apis",
+        "doc://com.apple.visionOS/documentation/visionOS/displaying-video-from-connected-devices",
+        "doc://com.apple.visionOS/documentation/visionOS/locating-and-decoding-barcodes-in-3d-space"
+      ],
+      "title": "Enterprise APIs for visionOS"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCapturePhoto~1pixelBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVPixelBufferRef",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "pixelBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

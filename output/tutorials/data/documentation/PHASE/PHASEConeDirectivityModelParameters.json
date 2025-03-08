@@ -1,0 +1,1215 @@
+{
+  "abstract": [
+    {
+      "text": "An object that directs sound in a cone-shaped curve that extends from a sound source.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.phase/documentation/PHASE"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHASEConeDirectivityModelParameters",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHASEConeDirectivityModelParameters"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PHASE"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHASEConeDirectivityModelParameters"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHASEConeDirectivityModelParameters"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHASEConeDirectivityModelParameters"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class determines that a particular frequency range in the audio spectrum emits sound in an area defined by a mathematical cone. PHASE refers to each frequency segment along the audio spectrum as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "subband",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". This class contains an array of ",
+              "type": "text"
+            },
+            {
+              "code": "subbands",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that each direct sound in a unique cone shape. The framework outputs a blend of a frequency’s adjacent subbands for all frequencies that lie outside of those specified in the ",
+              "type": "text"
+            },
+            {
+              "code": "subbands",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Emit-Sound-in-the-Shape-of-a-Cone",
+          "level": 3,
+          "text": "Emit Sound in the Shape of a Cone",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code defines a cone directivity model with two subbands. The first subband emits sound in a narrow region and the second subband outputs sound in a wider region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let simpleCone = PHASEConeDirectivityModelParameters()",
+                    "",
+                    "let coneSegment1 = PHASEConeDirectivityModelSubbandParameters()",
+                    "coneSegment1.frequency = 500.0",
+                    "coneSegment1.innerAngle = 60.0",
+                    "coneSegment1.outerAngle = 80.0",
+                    "coneSegment1.outerGain = 0.5",
+                    "",
+                    "let coneSegment2 = PHASEConeDirectivityModelSubbandParameters()",
+                    "coneSegment2.frequency = 5000.0",
+                    "coneSegment2.innerAngle = 30.0",
+                    "coneSegment2.outerAngle = 40.0",
+                    "coneSegment2.outerGain = 0.3",
+                    "",
+                    "simpleCone.subbands.add(coneSegment1)",
+                    "simpleCone.subbands.add(coneSegment2)",
+                    "",
+                    "spatialMixer.listenerDirectivityModelParameters = simpleCone"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "PHASEConeDirectivityModelParameters* simpleCone = ",
+                    "    [[PHASEConeDirectivityModelParameters alloc] init];",
+                    "",
+                    "PHASEConeDirectivityModelSubbandParameters* coneSegment1 = ",
+                    "    [[PHASEConeDirectivityModelSubbandParameters alloc] init];",
+                    "coneSegment1.frequency = 5000.f;",
+                    "coneSegment1.innerAngle = 30.f;",
+                    "coneSegment1.outerAngle = 40.f;",
+                    "coneSegment1.outerGain = .3f;",
+                    "",
+                    "PHASEConeDirectivityModelSubbandParameters* coneSegment2 = ",
+                    "    [[PHASEConeDirectivityModelSubbandParameters alloc] init];",
+                    "coneSegment2.frequency = 500.f;",
+                    "coneSegment2.innerAngle = 60.f;",
+                    "coneSegment2.outerAngle = 80.f;",
+                    "coneSegment2.outerGain = .5f;",
+                    "",
+                    "[simpleCone.subbands addObject:coneSegment1];",
+                    "[simpleCone.subbands addObject:coneSegment2];",
+                    "",
+                    "spatialMixer.listenerDirectivityModelParameters = simpleCone;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3887365",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.phase/documentation/PHASE": {
+      "abstract": [
+        {
+          "text": "Create dynamic audio experiences in your game or app that react to events and cues in the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PHASE",
+      "type": "topic",
+      "url": "/documentation/phase"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECardioidDirectivityModelParameters": {
+      "abstract": [
+        {
+          "text": "An object that directs sound in a heart-shaped curve surrounding a sound source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASECardioidDirectivityModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECardioidDirectivityModelParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECardioidDirectivityModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECardioidDirectivityModelParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasecardioiddirectivitymodelparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECardioidDirectivityModelSubbandParameters": {
+      "abstract": [
+        {
+          "text": "A data set that projects sound of a certain frequency outward in the shape of a heart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASECardioidDirectivityModelSubbandParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECardioidDirectivityModelSubbandParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECardioidDirectivityModelSubbandParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECardioidDirectivityModelSubbandParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasecardioiddirectivitymodelsubbandparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters": {
+      "abstract": [
+        {
+          "text": "An object that directs sound in a cone-shaped curve that extends from a sound source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEConeDirectivityModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEConeDirectivityModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEConeDirectivityModelParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phaseconedirectivitymodelparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters/init(subbandParameters:)": {
+      "abstract": [
+        {
+          "text": "Creates an object that directs sound in a cone-shaped curve that extends from a sound source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subbandParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEConeDirectivityModelSubbandParameters",
+          "text": "PHASEConeDirectivityModelSubbandParameters"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters/init(subbandParameters:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithSubbandParameters:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(subbandParameters:)",
+      "type": "topic",
+      "url": "/documentation/phase/phaseconedirectivitymodelparameters/init(subbandparameters:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters/subbandParameters": {
+      "abstract": [
+        {
+          "text": "An array of frequencies that describe varying sound emission across the spectrum.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subbandParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEConeDirectivityModelSubbandParameters",
+          "text": "PHASEConeDirectivityModelSubbandParameters"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters/subbandParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subbandParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "subbandParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phaseconedirectivitymodelparameters/subbandparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters": {
+      "abstract": [
+        {
+          "text": "A data set that projects sound of a certain frequency outward in the shape of a cone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEConeDirectivityModelSubbandParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEConeDirectivityModelSubbandParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEConeDirectivityModelSubbandParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phaseconedirectivitymodelsubbandparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEDirectivityModelParameters": {
+      "abstract": [
+        {
+          "text": "A base class for objects that direct sound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEDirectivityModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDirectivityModelParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEDirectivityModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEDirectivityModelParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasedirectivitymodelparameters"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-3887365": {
+      "alt": "An illustration of two different cone directivity configurations. On the left, a narrow cone contains a slightly narrower cone. A callout extends from the outer cone’s point that indicates its angle is 40 degrees. A callout extends from the inner cone’s point that indicates its angle is 30 degrees. On the right, a wide cone rests inside a slightly wider cone. A callout extends from the outer cone’s point that indicates its angle is 80 degrees. A callout extends from the inner cone’s point that indicates its angle is 60 degrees. In both configurations, a sphere rests on the cone’s point to indicate the user’s position in relation to the cone. ",
+      "identifier": "media-3887365",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/404f1ffecbdcd82570920028c583e831/media-3887365@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8c5a27d8be895376cf0cf6e74d41e877/media-3887365~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEDirectivityModelParameters"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sound-Directivity",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASECardioidDirectivityModelParameters",
+        "doc://com.apple.phase/documentation/PHASE/PHASECardioidDirectivityModelSubbandParameters",
+        "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters",
+        "doc://com.apple.phase/documentation/PHASE/PHASEDirectivityModelParameters"
+      ],
+      "title": "Sound Directivity"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-Cone-Directivity-Model-Parameters",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters/init(subbandParameters:)"
+      ],
+      "title": "Creating the Cone Directivity Model Parameters"
+    },
+    {
+      "anchor": "Defining-Subbands",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters/subbandParameters"
+      ],
+      "title": "Defining Subbands"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHASEConeDirectivityModelParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEConeDirectivityModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEConeDirectivityModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.phase/documentation/PHASE"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-the-Cone-Directivity-Model-Parameters",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters/init(subbandParameters:)"
+              ],
+              "title": "Creating the Cone Directivity Model Parameters"
+            },
+            {
+              "anchor": "Defining-Subbands",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelParameters/subbandParameters"
+              ],
+              "title": "Defining Subbands"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEDirectivityModelParameters"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sound-Directivity",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASECardioidDirectivityModelParameters",
+                "doc://com.apple.phase/documentation/PHASE/PHASECardioidDirectivityModelSubbandParameters",
+                "doc://com.apple.phase/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters",
+                "doc://com.apple.phase/documentation/PHASE/PHASEDirectivityModelParameters"
+              ],
+              "title": "Sound Directivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHASEConeDirectivityModelParameters"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDirectivityModelParameters",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)PHASEDirectivityModelParameters",
+                    "text": "PHASEDirectivityModelParameters"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECardioidDirectivityModelSubbandParameters/title",
+          "value": "PHASECardioidDirectivityModelSubbandParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECardioidDirectivityModelSubbandParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECardioidDirectivityModelSubbandParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECardioidDirectivityModelSubbandParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECardioidDirectivityModelSubbandParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEConeDirectivityModelParameters~1init(subbandParameters:)/title",
+          "value": "initWithSubbandParameters:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEConeDirectivityModelParameters~1init(subbandParameters:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithSubbandParameters:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECardioidDirectivityModelParameters/title",
+          "value": "PHASECardioidDirectivityModelParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECardioidDirectivityModelParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECardioidDirectivityModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECardioidDirectivityModelParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECardioidDirectivityModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDirectivityModelParameters/title",
+          "value": "PHASEDirectivityModelParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDirectivityModelParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDirectivityModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDirectivityModelParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDirectivityModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEConeDirectivityModelParameters/title",
+          "value": "PHASEConeDirectivityModelParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEConeDirectivityModelParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEConeDirectivityModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEConeDirectivityModelParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEConeDirectivityModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEConeDirectivityModelSubbandParameters/title",
+          "value": "PHASEConeDirectivityModelSubbandParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEConeDirectivityModelSubbandParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEConeDirectivityModelSubbandParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEConeDirectivityModelSubbandParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEConeDirectivityModelSubbandParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEConeDirectivityModelParameters~1subbandParameters/title",
+          "value": "subbandParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEConeDirectivityModelParameters~1subbandParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "subbandParameters"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/phase/phaseconedirectivitymodelparameters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/phase/phaseconedirectivitymodelparameters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1837 @@
+{
+  "abstract": [
+    {
+      "text": "Tell Final Cut Pro about the kind of data your users want to receive in your app through a custom share destination.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Responding to Apple Events from Final Cut Pro"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An Apple event is a type of interprocess message that can specify complex operations and data. Apple events provide a message transport through which an app can send a request to another app and receive an answer. (For more information about Apple events, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventmanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The information in this article applies only to situations in which your app is receiving projects or clips from Final Cut Pro through a custom share destination.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app must tell Final Cut Pro what kind of information your users want to receive and must provide a location for that data. Final Cut Pro uses the following Apple events (in the order shown) to get this information from your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Create Asset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Tells your app to identify a newly created asset object to serve as a placeholder. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Create-Asset-Apple-Event",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Get Location Info Property",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Your app should return an asset location record that tells Final Cut Pro where to put the exported output files and indicate whether it wants to receive rendered media, project editing decisions (in FCPXML), or both. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Location-Info-Property-Apple-Event",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Get Library Info Property",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Your app should return a library location record that tells Final Cut Pro where to put the library archive, if your user wants one. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Library-Info-Property-Apple-Event",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Get Metadata Property",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Your app should return a user record containing the share metadata keys and values for the share metadata your users want to receive. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Metadata-Property-Apple-Event",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Get Data Options Property",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " . Your app should return a user record with key-value pairs that specify the DTD version and the metadata view to use for the exported files. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Data-Options-Property-Apple-Event",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Open Document",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". When the export process is complete, Final Cut Pro sends an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Open Document",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " Apple event to notify your app that the export output files are available, and includes URLs to the files. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Open-Document-Apple-Event",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The synopsis for each Apple event is represented in AppleScript syntax; for more information, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html#//apple_ref/doc/uid/TP40000983",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For more information about handling Apple events in your app, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When responding to Apple events, you should also know how to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid conflicts with automated workflows by checking user interaction levels. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Monitor-User-Interaction-Levels-When-Using-Apple-Events",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support conversions between the Apple event descriptor types used by Final Cut Pro and the respective Foundation object classes. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-conversions-with-scripting-class-extensions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use an AppleScript script to test your app and its ability to interact with Final Cut Pro. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Test-Your-App-with-AppleScript",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Respond-to-the-Create-Asset-Apple-Event",
+          "level": 3,
+          "text": "Respond to the Create Asset Apple Event",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a Final Cut Pro user chooses File > Share and selects your app’s custom share destination, Final Cut Pro inspects your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to see if your app can respond to Apple events from Final Cut Pro. (See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Signal-Your-Apps-Capabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".) Once it confirms your app’s capability, Final Cut Pro sends your app a ",
+              "type": "text"
+            },
+            {
+              "code": "Create Asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Apple event containing the name of the asset, the set of share metadata, and a list of metadata views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "make new asset with properties { name: <asset name>, metadata: <metadata record>, data options: <options record> }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response to a ",
+              "type": "text"
+            },
+            {
+              "code": "Create Asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event, your app should:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a placeholder asset object with which to associate the exported data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return an object specifier that identifies the newly created placeholder asset. Final Cut Pro uses the object specifier to reference this asset object in subsequent events.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The properties for the ",
+              "type": "text"
+            },
+            {
+              "code": "Create Asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Apple event include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "name",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The asset name. Final Cut Pro derives this information from the project name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "metadata",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A record representing the set of share metadata, where the keys are reverse DNS-style metadata keys and the values are the associated metadata values. (For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "data options",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A record containing the possible options for the exported output. This record holds the available choices for these ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data options",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "availableMetadataSets",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "list",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "): A list of available metadata views in Final Cut Pro. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "availableDescriptionVersions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "list",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "): A list of available document type definition (DTD) versions that Final Cut Pro can export. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Your app indicates its choices in response to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Get Data Options Property",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " Apple event (sent later) that asks for the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data options",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While handling the ",
+              "type": "text"
+            },
+            {
+              "code": "Create Asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event, your app can bring up its UI before Final Cut Pro starts a possibly time-consuming transcoding operation. Use this opportunity to request information relevant to the operation your app is about to perform, such as which custom metadata is stored along with the media or the location of the exported output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid initiating user interactions while your app is handling Apple events as part of an automated workflow, be sure to check the user interaction levels for incoming Apple events. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Monitor-User-Interaction-Levels-When-Using-Apple-Events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-the-Get-Location-Info-Property-Apple-Event",
+          "level": 3,
+          "text": "Respond to the Get Location Info Property Apple Event",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final Cut Pro sends a ",
+              "type": "text"
+            },
+            {
+              "code": "Get Location Info Property",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Apple event to ask your app for the location of the exported output files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "get location info of <asset object specifier>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app should return an asset location record as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The record’s ",
+              "type": "text"
+            },
+            {
+              "code": "folder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property specifies the location of the folder to contain the exported output files. The ",
+              "type": "text"
+            },
+            {
+              "code": "base name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property provides the base name for the exported output files: Exported media files have an extension that reflects their file format, and exported FCPXML files have an ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxml",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your user wants an FCPXML file, be sure to set the ",
+              "type": "text"
+            },
+            {
+              "code": "has description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in the asset location record to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If your user wants a media file, set the ",
+              "type": "text"
+            },
+            {
+              "code": "has media",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in the asset location record to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-the-Get-Library-Info-Property-Apple-Event",
+          "level": 3,
+          "text": "Respond to the Get Library Info Property Apple Event",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final Cut Pro sends a ",
+              "type": "text"
+            },
+            {
+              "code": "Get Library Info Property",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event asking for the location of the library output files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "get library info of <asset object specifier>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app should return a library location record as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The record’s ",
+              "type": "text"
+            },
+            {
+              "code": "library folder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property should specify the location of the folder for the exported library output files. The ",
+              "type": "text"
+            },
+            {
+              "code": "library base name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property provides the base name for the exported library output files: The exported library archive file has an ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpbundle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension, and the exported FCPXML file has an ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxml",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your user wants library files, be sure to set the ",
+              "type": "text"
+            },
+            {
+              "code": "has archive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "has library description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the library location record. If you don’t specify the ",
+              "type": "text"
+            },
+            {
+              "code": "library folder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, Final Cut Pro uses the asset location folder. If you don’t specify the ",
+              "type": "text"
+            },
+            {
+              "code": "library base name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, Final Cut Pro uses the asset name with a suffix to show that it is the FCPXML for the library, such as ",
+              "type": "text"
+            },
+            {
+              "code": "MyProject-Library",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If your app doesn’t respond to this event, Final Cut Pro assumes your user doesn’t want library files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-the-Get-Metadata-Property-Apple-Event",
+          "level": 3,
+          "text": "Respond to the Get Metadata Property Apple Event",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final Cut Pro sends a ",
+              "type": "text"
+            },
+            {
+              "code": "Get Metadata Property",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event to get an updated set of share metadata. Final Cut Pro supplied the original set of metadata through the ",
+              "type": "text"
+            },
+            {
+              "code": "Create Asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "get metadata of <asset object specifier>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app must return a user record containing the share metadata keys and their values. Final Cut Pro updates the project being shared and includes the returned share metadata in the exported output. If the user record that your app returns contains keys for metadata other than the share metadata, those keys are ignored. (For a list of share metadata keys, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Review-Share-Metadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specifically, your app can generate a unique ID using the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.proapps.share.id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " metadata key that represents the unique ID for the media asset your user is sharing (usually a project). Final Cut Pro includes the metadata for that key in the exported media files so your app can track the files associated with the asset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-the-Get-Data-Options-Property-Apple-Event",
+          "level": 3,
+          "text": "Respond to the Get Data Options Property Apple Event",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final Cut Pro sends a ",
+              "type": "text"
+            },
+            {
+              "code": "Get Data Options Property",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Apple event to request the data options to be used when it generates the exported output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "get data options of <asset object specifier>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app should return a user record with the following keys and their associated values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "descriptionVersion",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "text",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The DTD (document type definition) version to use for the FCPXML export. The default is the version used in the last FCPXML export.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "metadataSet",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "text",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the metadata view containing the metadata item to be included in the project FCPXML.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If no metadata view is specified, Final Cut Pro uses the currently selected metadata view to filter the share metadata. (For a list of keys for share metadata, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Review-Share-Metadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-the-Open-Document-Apple-Event",
+          "level": 3,
+          "text": "Respond to the Open Document Apple Event",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once Final Cut Pro completes exporting the files your app requested, it sends an ",
+              "type": "text"
+            },
+            {
+              "code": "Open Document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Apple event to notify your app that output files are available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "open <list of export output files>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Open Document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Apple event contains URLs to the exported output files. Your app should return the object specifier for the ",
+              "type": "text"
+            },
+            {
+              "code": "asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and associate the files to the asset object it has created, matching the ",
+              "type": "text"
+            },
+            {
+              "code": "base name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the files with the asset’s location information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Cocoa scripting handles the ",
+              "type": "text"
+            },
+            {
+              "code": "Open Document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Apple event, your app doesn’t need a command-handler class specifically for the event. If your ",
+              "type": "text"
+            },
+            {
+              "code": "asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object class is a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", Cocoa scripting support instantiates the class according to standard conventions. Alternatively, you can intercept the request by implementing an appropriate ",
+              "type": "text"
+            },
+            {
+              "code": "NSApplicationDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that is involved when Final Cut Pro asks your app to open the URLs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, Final Cut Pro creates multiple media files (for example, when your custom share destination is configured to export each role as a separate file). In these cases, the export filename is the asset name returned as the ",
+              "type": "text"
+            },
+            {
+              "code": "base name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the asset location record, followed by a hyphen (-) and a suffix that indicates the role of the data, such as dialogue or effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Monitor-User-Interaction-Levels-When-Using-Apple-Events",
+          "level": 3,
+          "text": "Monitor User Interaction Levels When Using Apple Events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid initiating user interactions while handling Apple events sent by an automated workflow, make sure your app checks the user interaction level of the Apple events ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "before",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " initiating your user interaction. In the scripting command handler for the ",
+              "type": "text"
+            },
+            {
+              "code": "make",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command (or the ",
+              "type": "text"
+            },
+            {
+              "code": "Create Asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Apple event), get the current Apple event and its ",
+              "type": "text"
+            },
+            {
+              "code": "keyInteractLevelAttr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to check the user interaction level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value of the ",
+              "type": "text"
+            },
+            {
+              "code": "keyInteractLevelAttr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute can be one of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kAENeverInteract    = 0x00000010, /* server should not interact with user */",
+            "kAECanInteract      = 0x00000020, /* server may try to interact with user */",
+            "kAEAlwaysInteract   = 0x00000030, /* server should always interact with user where appropriate */",
+            "kAECanSwitchLayer   = 0x00000040, /* interaction may switch layer */"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventmanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Class Reference for details on getting the current Apple event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-Your-App-with-AppleScript",
+          "level": 3,
+          "text": "Test Your App with AppleScript",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the following AppleScript script to test your app’s ability to interact with Final Cut Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "tell application \"SimpleAssetManager\"",
+            "    make new asset with properties ¬",
+            "        {name:\"MyNewAsset\", metadata:{|com.apple.proapps.share.episodeID|:\"MyNewEpisode\"}, data options:{|availableMetadataSets|:{\"Camera View\", \"General View\"}}} ¬",
+            " ",
+            "    set newAsset to result",
+            "    set theLocation to location info of newAsset",
+            "    set theLibraryLocation to library info of newAsset",
+            "    set theMetadata to metadata of newAsset",
+            "    set theDataOptions to data options of newAsset",
+            "end tell",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following Apple event trace outlines the events and replies you get from running the previous AppleScript script:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "tell application \"SimpleAssetManager\"",
+            "    make new asset with properties {name:\"MyNewAsset\", metadata:{|com.apple.proapps.share.episodeid|:\"MyNewEpisode\"}, data options:{availableMetadataSets:{\"Camera View\", \"General View\"}}}",
+            "        --> asset id \"SSO-29842-2\" of document \"Untitled\"",
+            "    get location info of asset id \"SSO-29842-2\" of document \"Untitled\"",
+            "        --> {has media:true, has description:true, base name:\"MyNewAsset\", folder:file \"Lucca:Users:jane:Movies:\"}",
+            "    get library info of asset id \"SSO-29842-2\" of document \"Untitled\"",
+            "        --> {has library description:true, has archive:true, library folder:file \"Lucca:Users:jane:Movies:\", library base name:\"MyNewAssetLibrary\"}",
+            "    get metadata of asset id \"SSO-29842-2\" of document \"Untitled\"",
+            "        --> {|com.apple.simpleassetmanager.preparedasset|:\"1\", |com.apple.simpleassetmanager.managedasset|:\"1\", |com.apple.quicktime.description|:\"\", |com.apple.simpleassetmanager.expeirationdate|:\"2016-09-30 00:57:09 +0000\", |com.apple.proapps.share.episodeid|:\"MyNewEpisode\", |com.apple.proapps.share.id|:\"\", |com.apple.proapps.share.episodenumber|:\"0\"}",
+            "    get data options of asset id \"SSO-29842-2\" of document \"Untitled\"",
+            "        --> {metadataSet:\"None\", descriptionVersion:\"Previous Version\"}",
+            "end tell",
+            " ",
+            "Result:",
+            "{metadataSet:\"None\", descriptionVersion:\"Previous Version\"}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventmanager": {
+      "abstract": [
+        {
+          "text": "A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppleEventManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventmanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleEventManager",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventmanager"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media": {
+      "abstract": [
+        {
+          "text": "Organize and annotate the media and projects your users send to and receive from Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating Ratings, Keywords, Markers, and Metadata with Media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Review-Share-Metadata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/associating-ratings-keywords-markers-and-metadata-with-media#Review-Share-Metadata",
+      "kind": "section",
+      "title": "Review Share Metadata",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/associating-ratings-keywords-markers-and-metadata-with-media#Review-Share-Metadata"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Send media assets and timeline sequences to Final Cut Pro for editing, and receive rendered media and editing decisions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content and Metadata Exchanges with Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/content-and-metadata-exchanges-with-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations": {
+      "abstract": [
+        {
+          "text": "Define the record types, object classes, and event types that let your app interact with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Scripting Definitions for Custom Share Destinations",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/creating-scripting-definitions-for-custom-share-destinations"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination": {
+      "abstract": [
+        {
+          "text": "Receive rendered media (movies), editing descriptions for project timelines, library archives, and FCPXML for other Final Cut Pro items in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving Media and Data Through a Custom Share Destination",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Signal-Your-Apps-Capabilities": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Signal-Your-Apps-Capabilities",
+      "kind": "section",
+      "title": "Signal Your App’s Capabilities",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination#Signal-Your-Apps-Capabilities"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Monitor-User-Interaction-Levels-When-Using-Apple-Events": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Monitor-User-Interaction-Levels-When-Using-Apple-Events",
+      "kind": "section",
+      "title": "Monitor User Interaction Levels When Using Apple Events",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro#Monitor-User-Interaction-Levels-When-Using-Apple-Events"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Create-Asset-Apple-Event": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Create-Asset-Apple-Event",
+      "kind": "section",
+      "title": "Respond to the Create Asset Apple Event",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Create-Asset-Apple-Event"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Data-Options-Property-Apple-Event": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Data-Options-Property-Apple-Event",
+      "kind": "section",
+      "title": "Respond to the Get Data Options Property Apple Event",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Data-Options-Property-Apple-Event"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Library-Info-Property-Apple-Event": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Library-Info-Property-Apple-Event",
+      "kind": "section",
+      "title": "Respond to the Get Library Info Property Apple Event",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Library-Info-Property-Apple-Event"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Location-Info-Property-Apple-Event": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Location-Info-Property-Apple-Event",
+      "kind": "section",
+      "title": "Respond to the Get Location Info Property Apple Event",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Location-Info-Property-Apple-Event"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Metadata-Property-Apple-Event": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Metadata-Property-Apple-Event",
+      "kind": "section",
+      "title": "Respond to the Get Metadata Property Apple Event",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Get-Metadata-Property-Apple-Event"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Open-Document-Apple-Event": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Open-Document-Apple-Event",
+      "kind": "section",
+      "title": "Respond to the Open Document Apple Event",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro#Respond-to-the-Open-Document-Apple-Event"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Test-Your-App-with-AppleScript": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro#Test-Your-App-with-AppleScript",
+      "kind": "section",
+      "title": "Test Your App with AppleScript",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro#Test-Your-App-with-AppleScript"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-conversions-with-scripting-class-extensions": {
+      "abstract": [
+        {
+          "text": "Support conversions between the Apple event descriptor types and Foundation object classes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-conversions-with-scripting-class-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Conversions with Scripting Class Extensions",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/supporting-conversions-with-scripting-class-extensions"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html#//apple_ref/doc/uid/TP40000983": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html#//apple_ref/doc/uid/TP40000983",
+      "title": "AppleScript Language Guide",
+      "titleInlineContent": [
+        {
+          "text": "AppleScript Language Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html#//apple_ref/doc/uid/TP40000983"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164",
+      "title": "Cocoa Scripting Guide",
+      "titleInlineContent": [
+        {
+          "text": "Cocoa Scripting Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-Apple-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-conversions-with-scripting-class-extensions",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations"
+      ],
+      "title": "Handling Apple Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Handling-Apple-Events",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-conversions-with-scripting-class-extensions",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations"
+              ],
+              "title": "Handling Apple Events"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

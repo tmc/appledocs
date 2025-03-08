@@ -1,0 +1,918 @@
+{
+  "abstract": [
+    {
+      "text": "Enhance your iPad app’s user experience by supporting drawing, handwriting, and other features of Apple Pencil.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ApplePencil/documentation/ApplePencil"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collection",
+    "roleHeading": "Technology",
+    "title": "Apple Pencil"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Pencil is an input accessory for iPad that people rely on for tasks like drawing, sketching, painting, jotting notes, marking up documents, and more.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition to drawing and handwriting, Apple Pencil can also serve as a pointer and UI interaction tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "apple-pencil-framework-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you optimize your app for iPad, there are many ways you can enhance it with Apple Pencil features.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Choose the features that make the most sense in the context of your app, and adopt those features using APIs from PencilKit, SwiftUI, and UIKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Apple Pencil integrates seamlessly with PencilKit, a framework that lets you incorporate hand-drawn content into your app. PencilKit provides tools for creating, erasing, and selecting pencil strokes on a drawing canvas. You can also implement drawing with high-precision touches from UIKit. Input from Apple Pencil provides data like azimuth, altitude, roll angle, and the amount of force recorded at its tip, which you can use to create rich drawing experiences.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Drawing",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "With Apple Pencil, people can enter handwritten text in any text field, and Scribble automatically converts their handwriting into typed text input. Scribble is available in multiple languages and is on by default. You can also customize Scribble behavior to meet your app’s needs using the Scribble API in UIKit.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Handwriting",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "People can double-tap and squeeze certain models of Apple Pencil to perform actions quickly. People choose which action they want to perform in response to a double tap or squeeze in Settings, or you can implement a custom action that’s specific to your app. You handle a double tap or squeeze using SwiftUI or UIKit.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Double tap and squeeze",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Apple Pencil Pro can provide tactile feedback by playing haptics. Used sparingly and consistently, haptic feedback can enhance the experience of using Apple Pencil Pro to perform tasks like snapping objects to a grid. You provide haptic feedback using the sensory feedback API in SwiftUI or the feedback generators API in UIKit.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Haptics",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When a person holds a supported model of Apple Pencil close above the screen without touching it, the pencil can provide information about the distance of the tip from the screen. You can use this hover distance to create more expressive drawing and input experiences with Apple Pencil. You get this information using hover gestures in UIKit.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Hover",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Apple Pencil can behave similar to a pointer, like a trackpad or mouse. For example, you can configure your views to provide visual feedback when a person holds Apple Pencil over the view. Add visual feedback to your views during hover using hover events in SwiftUI or pointer interactions in UIKit.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Pointers",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details on Apple Pencil features and compatibility, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/apple-pencil/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2019/221",
+            "doc://com.apple.documentation/videos/play/wwdc2020/10107",
+            "doc://com.apple.documentation/videos/play/wwdc2020/10106",
+            "doc://com.apple.documentation/videos/play/wwdc2020/10148"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "085F6BEA-F6CA-41C9-98F3-4CB7996219C2": {
+      "alt": null,
+      "identifier": "085F6BEA-F6CA-41C9-98F3-4CB7996219C2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/49/085F6BEA-F6CA-41C9-98F3-4CB7996219C2/3525_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/49/085F6BEA-F6CA-41C9-98F3-4CB7996219C2/3525_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/49/085F6BEA-F6CA-41C9-98F3-4CB7996219C2/3525_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "69B52191-ABB4-415F-A57D-123250966BE9": {
+      "alt": null,
+      "identifier": "69B52191-ABB4-415F-A57D-123250966BE9",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/49/69B52191-ABB4-415F-A57D-123250966BE9/3523_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/49/69B52191-ABB4-415F-A57D-123250966BE9/3523_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/49/69B52191-ABB4-415F-A57D-123250966BE9/3523_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "844F5C49-C3CE-4042-887B-32A6E09A1B05": {
+      "alt": null,
+      "identifier": "844F5C49-C3CE-4042-887B-32A6E09A1B05",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/49/844F5C49-C3CE-4042-887B-32A6E09A1B05/3832_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/49/844F5C49-C3CE-4042-887B-32A6E09A1B05/3832_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/49/844F5C49-C3CE-4042-887B-32A6E09A1B05/3832_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "85A7EF6D-2BC8-4A6C-9EB7-B03A7FB9F75A": {
+      "alt": null,
+      "identifier": "85A7EF6D-2BC8-4A6C-9EB7-B03A7FB9F75A",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/48/85A7EF6D-2BC8-4A6C-9EB7-B03A7FB9F75A/2682_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/48/85A7EF6D-2BC8-4A6C-9EB7-B03A7FB9F75A/2682_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/48/85A7EF6D-2BC8-4A6C-9EB7-B03A7FB9F75A/2682_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "apple-pencil-and-scribble.svg": {
+      "alt": null,
+      "identifier": "apple-pencil-and-scribble.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "apple-pencil-and-scribble",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9fff5d6083b43afa7225143c2f1b22f2/apple-pencil-and-scribble.svg"
+        }
+      ]
+    },
+    "apple-pencil-framework-hero": {
+      "alt": "An illustration that shows a hand holding Apple Pencil and making a mark on a digital drawing canvas.",
+      "identifier": "apple-pencil-framework-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b7c189fda3e9265eb48c610772c7e699/apple-pencil-framework-hero@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.ApplePencil/documentation/ApplePencil/handling-double-taps-from-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Detect and respond to double taps a person makes on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ApplePencil/documentation/ApplePencil/handling-double-taps-from-apple-pencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling double taps from Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/applepencil/handling-double-taps-from-apple-pencil"
+    },
+    "doc://com.apple.ApplePencil/documentation/ApplePencil/handling-squeezes-from-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Detect and respond to squeezes a person makes on Apple Pencil Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ApplePencil/documentation/ApplePencil/handling-squeezes-from-apple-pencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling squeezes from Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/applepencil/handling-squeezes-from-apple-pencil"
+    },
+    "doc://com.apple.ApplePencil/documentation/ApplePencil/playing-haptic-feedback-in-your-app": {
+      "abstract": [
+        {
+          "text": "Provide tactile feedback when people perform certain actions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ApplePencil/documentation/ApplePencil/playing-haptic-feedback-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing haptic feedback in your app",
+      "type": "topic",
+      "url": "/documentation/applepencil/playing-haptic-feedback-in-your-app"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/apple-pencil-and-scribble": {
+      "abstract": [
+        {
+          "text": "Apple Pencil helps make drawing, handwriting, and marking effortless and natural, in addition to performing well as a pointer and UI interaction tool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/apple-pencil-and-scribble",
+      "images": [
+        {
+          "identifier": "apple-pencil-and-scribble.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "inputs-apple-pencil-and-scribble-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Pencil and Scribble",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/apple-pencil-and-scribble"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/playing-haptics": {
+      "abstract": [
+        {
+          "text": "Playing haptics can engage people’s sense of touch and bring their familiarity with the physical world into your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/playing-haptics",
+      "images": [
+        {
+          "identifier": "playing-haptics.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "patterns-playing-haptics-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Playing haptics",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/playing-haptics"
+    },
+    "doc://com.apple.documentation/documentation/PencilKit/customizing-scribble-with-interactions": {
+      "abstract": [
+        {
+          "text": "Enable writing on a non-text-input view by adding interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PencilKit/customizing-scribble-with-interactions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Scribble with Interactions",
+      "type": "topic",
+      "url": "/documentation/PencilKit/customizing-scribble-with-interactions"
+    },
+    "doc://com.apple.documentation/documentation/PencilKit/drawing-with-pencilkit": {
+      "abstract": [
+        {
+          "text": "Add expressive, low-latency drawing to your app using PencilKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PencilKit/drawing-with-pencilkit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Drawing with PencilKit",
+      "type": "topic",
+      "url": "/documentation/PencilKit/drawing-with-pencilkit"
+    },
+    "doc://com.apple.documentation/documentation/PencilKit/inspecting-modifying-and-constructing-pencilkit-drawings": {
+      "abstract": [
+        {
+          "text": "Score users’ ability to match PencilKit drawings generated from text, by accessing the strokes and points inside PencilKit drawings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PencilKit/inspecting-modifying-and-constructing-pencilkit-drawings",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Inspecting, Modifying, and Constructing PencilKit Drawings",
+      "type": "topic",
+      "url": "/documentation/PencilKit/inspecting-modifying-and-constructing-pencilkit-drawings"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Input-events": {
+      "abstract": [
+        {
+          "text": "Respond to input from a hardware device, like a keyboard or a Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Input-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Input events",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Input-events"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/adopting-hover-support-for-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Enhance user feedback for your iPadOS app with a hover preview for Apple Pencil input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/adopting-hover-support-for-apple-pencil",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting hover support for Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/UIKit/adopting-hover-support-for-apple-pencil"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/apple-pencil-interactions": {
+      "abstract": [
+        {
+          "text": "Handle user interactions like double tap and squeeze on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/apple-pencil-interactions",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Pencil interactions",
+      "type": "topic",
+      "url": "/documentation/UIKit/apple-pencil-interactions"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/getting-high-fidelity-input-with-coalesced-touches": {
+      "abstract": [
+        {
+          "text": "Learn how to support high-precision touches in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/getting-high-fidelity-input-with-coalesced-touches",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting high-fidelity input with coalesced touches",
+      "type": "topic",
+      "url": "/documentation/UIKit/getting-high-fidelity-input-with-coalesced-touches"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/handwriting-recognition": {
+      "abstract": [
+        {
+          "text": "Configure text fields and custom views that accept text to handle input from Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/handwriting-recognition",
+      "kind": "article",
+      "role": "article",
+      "title": "Handwriting recognition",
+      "type": "topic",
+      "url": "/documentation/UIKit/handwriting-recognition"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/implementing-coalesced-touch-support-in-an-app": {
+      "abstract": [
+        {
+          "text": "Learn how to create a simple app that handles coalesced touches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/implementing-coalesced-touch-support-in-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing coalesced touch support in an app",
+      "type": "topic",
+      "url": "/documentation/UIKit/implementing-coalesced-touch-support-in-an-app"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/integrating-pointer-interactions-into-your-ipad-app": {
+      "abstract": [
+        {
+          "text": "Support touch interactions in your iPad app by adding pointer interactions to your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/integrating-pointer-interactions-into-your-ipad-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating pointer interactions into your iPad app",
+      "type": "topic",
+      "url": "/documentation/UIKit/integrating-pointer-interactions-into-your-ipad-app"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/pointer-interactions": {
+      "abstract": [
+        {
+          "text": "Support pointer interactions in your custom controls and views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/pointer-interactions",
+      "kind": "article",
+      "role": "article",
+      "title": "Pointer interactions",
+      "type": "topic",
+      "url": "/documentation/UIKit/pointer-interactions"
+    },
+    "doc://com.apple.documentation/documentation/Updates/ApplePencil": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/ApplePencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Pencil updates",
+      "type": "topic",
+      "url": "/documentation/Updates/ApplePencil"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2019/221": {
+      "abstract": [
+        {
+          "text": "Meet PencilKit, Apple's feature-rich drawing and annotation framework. With just a few lines of code, you can add a full drawing experience to your app — with access to a canvas, responsive inks, rich tool palette and drawing model. Hear the technical details that make a great Apple Pencil experience. Learn about the new screenshot editor and how you can adopt just a few small APIs to enable your full content to be captured beyond the size of the screen, with or without your app's user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2019/221",
+      "images": [
+        {
+          "identifier": "85A7EF6D-2BC8-4A6C-9EB7-B03A7FB9F75A",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Introducing PencilKit",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2019/221"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2020/10106": {
+      "abstract": [
+        {
+          "text": "Scribble offers a lightweight, ergonomic, and enjoyable way of entering text on iPad with Apple Pencil. Discover how people can take advantage of Scribble and handwritten text in apps that use standard text input controls or that implement a custom text editing experience. You’ll learn how it integrates into TextKit, and when you’ll need to adopt the new UIScribbleInteraction and UIIndirectScribbleInteraction APIs to provide a delightful and consistent experience with Scribble in your app.\n\nTo get the most out of this session, you should be familiar with UIKit text input controls, as well as keyboard input technologies. To get started, watch “Keyboard Input in iOS”. If you’re building a custom text editor, you should be familiar with the UITextInput protocol, TextKit, and related text input APIs. For more information, we recommend checking out “TextKit Best Practices” and “The Keys to a Better Text Input Experience.” And for design guidelines on pencil-based interaction, check out “Apple Pencil Design Essentials.”",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2020/10106",
+      "images": [
+        {
+          "identifier": "69B52191-ABB4-415F-A57D-123250966BE9",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Meet Scribble for iPad",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10106"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2020/10107": {
+      "abstract": [
+        {
+          "text": "PencilKit helps power creativity, writing, drawing, and animation in your iPad apps. Explore the latest improvements to our drawing and annotation framework, and discover how you can take advantage of APIs like PKToolPicker, PKCanvasView, and PKStroke to support new features in illustration and writing apps. \n\nTo get the most out of this session, you should have a basic understanding of PencilKit. If you want to a refresher, “Introduction to PencilKit” from WWDC19 is a great place to start.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2020/10107",
+      "images": [
+        {
+          "identifier": "085F6BEA-F6CA-41C9-98F3-4CB7996219C2",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "What's new in PencilKit",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10107"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2020/10148": {
+      "abstract": [
+        {
+          "text": "Make Apple Pencil an even more useful tool for drawing and writing within your app. With PencilKit, you can delve into the strokes, inks, paths, and points that comprise a drawing, use these to build features that use recognition, and modify drawings in response to input. Discover how you can dynamically generate shapes and drawings and learn more about APIs like PKDrawings and PKStrokes.\n\nTo get the most out of this session, we recommend first checking out “Introducing PencilKit,” which provides an overview of the PencilKit framework in its WWDC19 debut, and WWDC20’s “What's new in PencilKit.”",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2020/10148",
+      "images": [
+        {
+          "identifier": "844F5C49-C3CE-4042-887B-32A6E09A1B05",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Inspect, modify, and construct PencilKit drawings",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10148"
+    },
+    "https://www.apple.com/apple-pencil/": {
+      "identifier": "https://www.apple.com/apple-pencil/",
+      "title": "Apple Pencil",
+      "titleInlineContent": [
+        {
+          "text": "Apple Pencil",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/apple-pencil/"
+    },
+    "inputs-apple-pencil-and-scribble-thumbnail.png": {
+      "alt": null,
+      "identifier": "inputs-apple-pencil-and-scribble-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1c27f322f32d21494b8ec55bc21dde3b/inputs-apple-pencil-and-scribble-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d853f54ac5685da5bab9ee1eded2fae3/inputs-apple-pencil-and-scribble-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "patterns-playing-haptics-thumbnail.png": {
+      "alt": null,
+      "identifier": "patterns-playing-haptics-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a47c10af5708176330339c157d95382/patterns-playing-haptics-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5e673bb3e754f23f31b63b56c7babe6/patterns-playing-haptics-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "playing-haptics.svg": {
+      "alt": null,
+      "identifier": "playing-haptics.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "playing-haptics",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b20b126df9416ca649e7b6d772e56896/playing-haptics.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/ApplePencil"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Drawing",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/PencilKit/drawing-with-pencilkit",
+        "doc://com.apple.documentation/documentation/PencilKit/inspecting-modifying-and-constructing-pencilkit-drawings",
+        "doc://com.apple.documentation/documentation/UIKit/getting-high-fidelity-input-with-coalesced-touches",
+        "doc://com.apple.documentation/documentation/UIKit/implementing-coalesced-touch-support-in-an-app"
+      ],
+      "title": "Drawing"
+    },
+    {
+      "anchor": "Handwriting",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/PencilKit/customizing-scribble-with-interactions",
+        "doc://com.apple.documentation/documentation/UIKit/handwriting-recognition"
+      ],
+      "title": "Handwriting"
+    },
+    {
+      "anchor": "Double-tap-and-squeeze",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/UIKit/apple-pencil-interactions",
+        "doc://com.apple.ApplePencil/documentation/ApplePencil/handling-squeezes-from-apple-pencil",
+        "doc://com.apple.ApplePencil/documentation/ApplePencil/handling-double-taps-from-apple-pencil"
+      ],
+      "title": "Double tap and squeeze"
+    },
+    {
+      "anchor": "Haptics",
+      "identifiers": [
+        "doc://com.apple.ApplePencil/documentation/ApplePencil/playing-haptic-feedback-in-your-app"
+      ],
+      "title": "Haptics"
+    },
+    {
+      "anchor": "Hover",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/UIKit/adopting-hover-support-for-apple-pencil"
+      ],
+      "title": "Hover"
+    },
+    {
+      "anchor": "Pointers",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/Input-events",
+        "doc://com.apple.documentation/documentation/UIKit/pointer-interactions",
+        "doc://com.apple.documentation/documentation/UIKit/integrating-pointer-interactions-into-your-ipad-app"
+      ],
+      "title": "Pointers"
+    },
+    {
+      "anchor": "Design",
+      "identifiers": [
+        "doc://com.apple.documentation/design/Human-Interface-Guidelines/apple-pencil-and-scribble",
+        "doc://com.apple.documentation/design/Human-Interface-Guidelines/playing-haptics"
+      ],
+      "title": "Design"
+    }
+  ]
+}

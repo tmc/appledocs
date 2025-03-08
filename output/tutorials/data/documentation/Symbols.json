@@ -1,0 +1,1995 @@
+{
+  "abstract": [
+    {
+      "text": "Apply universal animations to symbol-based images.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.symbols/documentation/Symbols"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Symbols",
+    "modules": [
+      {
+        "name": "Symbols"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Symbols"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Symbols framework provides access to symbol effects you can use to animate ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/sf-symbols",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your AppKit, UIKit, and SwiftUI apps. These animations exhibit different behaviors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An effect that runs from start to finish.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Discrete",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An effect that lasts until you remove or disable it.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Indefinite",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An effect that animates a symbol in or out of visibility.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Transition",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An effect that replaces one symbol with another symbol, or with a different configuration of itself.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Content Transition",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A symbol effect can exhibit multiple types of behavior. For instance, you can add a pulse effect with an option to occur a finite number of times — a discrete behavior. You can also add a pulse effect with an option to loop forever — an indefinite behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add an effect in SwiftUI.",
+            "Image(systemName: \"globe\")",
+            "    // Add effect with discrete behavior to image view.",
+            "    .symbolEffect(.pulse, options: .repeat(3))",
+            "",
+            "Image(systemName: \"globe\")",
+            "    // Add effect with indefinite behavior to image view.",
+            "    .symbolEffect(.pulse)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can apply universal animation effects to symbol-based images that you display in image views. The Symbols framework provides a consistent set of effects to use regardless of your UI framework or langauge choices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider a SwiftUI app that displays a variable color effect on a Wi-Fi symbol while the system searches for Wi-Fi networks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add an effect in SwiftUI.",
+            "Image(systemName: \"wifi\")",
+            "    .symbolEffect(.variableColor.reversing)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now consider an AppKit or UIKit version of the app. You can apply the same effect to animate the search for Wi-Fi networks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Add an effect in AppKit and UIKit.",
+                    "imageView.addSymbolEffect(.variableColor.reversing)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Add an effect in AppKit and UIKit.",
+                    "[self.imageView",
+                    "  addSymbolEffect:[[NSSymbolVariableColorEffect effect] effectWithReversing]];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.symbols/documentation/Symbols": {
+      "abstract": [
+        {
+          "text": "Apply universal animations to symbol-based images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Symbols",
+      "type": "topic",
+      "url": "/documentation/symbols"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/AppearSymbolEffect": {
+      "abstract": [
+        {
+          "text": "A type that makes the layers of a symbol-based image appear separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppearSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/AppearSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppearSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppearSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/appearsymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/AutomaticSymbolEffect": {
+      "abstract": [
+        {
+          "text": "A type that applies the default animation to a symbol-based image in a context-sensitive manner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutomaticSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/AutomaticSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutomaticSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "AutomaticSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/automaticsymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/BounceSymbolEffect": {
+      "abstract": [
+        {
+          "text": "A type that applies a transitory scaling effect, or bounce, to the layers in a symbol-based image separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BounceSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/BounceSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BounceSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "BounceSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/bouncesymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/BreatheSymbolEffect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BreatheSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/BreatheSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BreatheSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "BreatheSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/breathesymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/ContentTransitionSymbolEffect": {
+      "abstract": [
+        {
+          "text": "An effect that animates between symbols or different configurations of the same symbol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentTransitionSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/ContentTransitionSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentTransitionSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentTransitionSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/contenttransitionsymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/DisappearSymbolEffect": {
+      "abstract": [
+        {
+          "text": "A type that makes the layers of a symbol-based image disappear separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisappearSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/DisappearSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisappearSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "DisappearSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/disappearsymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/DiscreteSymbolEffect": {
+      "abstract": [
+        {
+          "text": "An effect that performs a transient animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DiscreteSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/DiscreteSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DiscreteSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "DiscreteSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/discretesymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/IndefiniteSymbolEffect": {
+      "abstract": [
+        {
+          "text": "An animation that continually affects a symbol until it’s disabled or removed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndefiniteSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/IndefiniteSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IndefiniteSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "IndefiniteSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/indefinitesymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolAppearEffect": {
+      "abstract": [
+        {
+          "text": "A type that makes the layers of a symbol-based image appear separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolAppearEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolAppearEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolAppearEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolappeareffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolAutomaticContentTransition": {
+      "abstract": [
+        {
+          "text": "A type that applies the default animation to a symbol-based image in a context-sensitive manner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolAutomaticContentTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolAutomaticContentTransition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolAutomaticContentTransition",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolautomaticcontenttransition"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolBounceEffect": {
+      "abstract": [
+        {
+          "text": "A type that applies a transitory scaling effect, or bounce, to the layers in a symbol-based image separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolBounceEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolBounceEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolBounceEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolbounceeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolBreatheEffect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolBreatheEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolBreatheEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolBreatheEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolbreatheeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolContentTransition": {
+      "abstract": [
+        {
+          "text": "An abstract base class for transitions you can apply to symbol-based images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolContentTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolContentTransition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolContentTransition",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolcontenttransition"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolDisappearEffect": {
+      "abstract": [
+        {
+          "text": "A type that makes the layers of a symbol-based image disappear separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolDisappearEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolDisappearEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolDisappearEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymboldisappeareffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffect": {
+      "abstract": [
+        {
+          "text": "An abstract base class for effects that you can apply to a symbol-based image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffectOptions": {
+      "abstract": [
+        {
+          "text": "Options that configure how effects apply to symbol-based images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolEffectOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffectOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolEffectOptions",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymboleffectoptions"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffectOptionsRepeatBehavior": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolEffectOptionsRepeatBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffectOptionsRepeatBehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolEffectOptionsRepeatBehavior",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymboleffectoptionsrepeatbehavior"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolMagicReplaceContentTransition": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolMagicReplaceContentTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolMagicReplaceContentTransition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolMagicReplaceContentTransition",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolmagicreplacecontenttransition"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolPulseEffect": {
+      "abstract": [
+        {
+          "text": "A type that fades the opacity of some or all layers in a symbol-based image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolPulseEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolPulseEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolPulseEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolpulseeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolReplaceContentTransition": {
+      "abstract": [
+        {
+          "text": "A type that replaces the layers of one symbol-based image with those of another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolReplaceContentTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolReplaceContentTransition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolReplaceContentTransition",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolreplacecontenttransition"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolRotateEffect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolRotateEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolRotateEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolRotateEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolrotateeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolScaleEffect": {
+      "abstract": [
+        {
+          "text": "A type that scales the layers in a symbol-based image separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolScaleEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolScaleEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolScaleEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolscaleeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect": {
+      "abstract": [
+        {
+          "text": "A type that replaces the opacity of variable layers in a symbol-based image in a repeatable sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolVariableColorEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolVariableColorEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolvariablecoloreffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolWiggleEffect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolWiggleEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolWiggleEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolWiggleEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolwiggleeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/PulseSymbolEffect": {
+      "abstract": [
+        {
+          "text": "A type that fades the opacity of some or all layers in a symbol-based image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PulseSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/PulseSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PulseSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "PulseSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/pulsesymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/ReplaceSymbolEffect": {
+      "abstract": [
+        {
+          "text": "A type that replaces the layers of one symbol-based image with those of another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReplaceSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/ReplaceSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReplaceSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReplaceSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/replacesymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/RotateSymbolEffect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RotateSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/RotateSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RotateSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "RotateSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/rotatesymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/ScaleSymbolEffect": {
+      "abstract": [
+        {
+          "text": "A type that scales the layers in a symbol-based image separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScaleSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/ScaleSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScaleSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScaleSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/scalesymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/SymbolEffect": {
+      "abstract": [
+        {
+          "text": "A presentation effect that you apply to a symbol-based image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/SymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "SymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/symboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/appear": {
+      "abstract": [
+        {
+          "text": "An animation that makes the layers of a symbol-based image appear separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AppearSymbolEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appear"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Symbols18AppearSymbolEffectV",
+          "text": "AppearSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/appear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appear",
+      "type": "topic",
+      "url": "/documentation/symbols/symboleffect/appear"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/automatic": {
+      "abstract": [
+        {
+          "text": "A transition that applies the default animation to a symbol-based image in a context-sensitive manner.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AutomaticSymbolEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Symbols21AutomaticSymbolEffectV",
+          "text": "AutomaticSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automatic",
+      "type": "topic",
+      "url": "/documentation/symbols/symboleffect/automatic"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/bounce": {
+      "abstract": [
+        {
+          "text": "An animation that applies a transitory scaling effect, or bounce, to the layers in a symbol-based image separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "BounceSymbolEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bounce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Symbols18BounceSymbolEffectV",
+          "text": "BounceSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/bounce",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bounce",
+      "type": "topic",
+      "url": "/documentation/symbols/symboleffect/bounce"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/disappear": {
+      "abstract": [
+        {
+          "text": "An animation that makes the layers of a symbol-based image disappear separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "DisappearSymbolEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disappear"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Symbols21DisappearSymbolEffectV",
+          "text": "DisappearSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/disappear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disappear",
+      "type": "topic",
+      "url": "/documentation/symbols/symboleffect/disappear"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/pulse": {
+      "abstract": [
+        {
+          "text": "An animation that fades the opacity of some or all layers in a symbol-based image.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "PulseSymbolEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pulse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Symbols17PulseSymbolEffectV",
+          "text": "PulseSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/pulse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pulse",
+      "type": "topic",
+      "url": "/documentation/symbols/symboleffect/pulse"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/replace": {
+      "abstract": [
+        {
+          "text": "An animation that replaces the layers of one symbol-based image with those of another.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ReplaceSymbolEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Symbols19ReplaceSymbolEffectV",
+          "text": "ReplaceSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/replace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace",
+      "type": "topic",
+      "url": "/documentation/symbols/symboleffect/replace"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/scale": {
+      "abstract": [
+        {
+          "text": "An animation that scales the layers in a symbol-based image separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ScaleSymbolEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Symbols17ScaleSymbolEffectV",
+          "text": "ScaleSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/scale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scale",
+      "type": "topic",
+      "url": "/documentation/symbols/symboleffect/scale"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/variableColor": {
+      "abstract": [
+        {
+          "text": "An animation that replaces the opacity of variable layers in a symbol-based image in a repeatable sequence.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "VariableColorSymbolEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "variableColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Symbols25VariableColorSymbolEffectV",
+          "text": "VariableColorSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/variableColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "variableColor",
+      "type": "topic",
+      "url": "/documentation/symbols/symboleffect/variablecolor"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/SymbolEffectOptions": {
+      "abstract": [
+        {
+          "text": "Options that configure how effects apply to symbol-based images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolEffectOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/SymbolEffectOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymbolEffectOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "SymbolEffectOptions",
+      "type": "topic",
+      "url": "/documentation/symbols/symboleffectoptions"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/TransitionSymbolEffect": {
+      "abstract": [
+        {
+          "text": "An effect that animates a symbol in or out.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransitionSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/TransitionSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransitionSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransitionSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/transitionsymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/VariableColorSymbolEffect": {
+      "abstract": [
+        {
+          "text": "A type that replaces the opacity of variable layers in a symbol-based image in a repeatable sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VariableColorSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/VariableColorSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VariableColorSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "VariableColorSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/variablecolorsymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/WiggleSymbolEffect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WiggleSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/WiggleSymbolEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WiggleSymbolEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "WiggleSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/wigglesymboleffect"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/sf-symbols": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/sf-symbols",
+      "title": "SF Symbols",
+      "titleInlineContent": [
+        {
+          "text": "SF Symbols",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/sf-symbols"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Symbol-effects",
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/appear",
+        "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/bounce",
+        "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/disappear",
+        "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/pulse",
+        "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/scale",
+        "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/variableColor"
+      ],
+      "title": "Symbol effects"
+    },
+    {
+      "anchor": "Symbol-content-transitions",
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/replace",
+        "doc://com.apple.symbols/documentation/Symbols/SymbolEffect/automatic"
+      ],
+      "title": "Symbol content transitions"
+    },
+    {
+      "anchor": "Symbol-effect-types",
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/AppearSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/AutomaticSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/BounceSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/DisappearSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/PulseSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/ReplaceSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/ScaleSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/VariableColorSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/BreatheSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/RotateSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/WiggleSymbolEffect"
+      ],
+      "title": "Symbol effect types"
+    },
+    {
+      "anchor": "Symbol-effect-options",
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/SymbolEffectOptions"
+      ],
+      "title": "Symbol effect options"
+    },
+    {
+      "anchor": "Symbol-effect-protocols",
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/SymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/DiscreteSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/IndefiniteSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/ContentTransitionSymbolEffect",
+        "doc://com.apple.symbols/documentation/Symbols/TransitionSymbolEffect"
+      ],
+      "title": "Symbol effect protocols"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Symbol-effects",
+              "identifiers": [
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolAppearEffect",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolBounceEffect",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolDisappearEffect",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolPulseEffect",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolScaleEffect",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolBreatheEffect",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolRotateEffect",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolWiggleEffect"
+              ],
+              "title": "Symbol effects"
+            },
+            {
+              "anchor": "Symbol-content-transitions",
+              "identifiers": [
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolReplaceContentTransition",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolAutomaticContentTransition",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolMagicReplaceContentTransition"
+              ],
+              "title": "Symbol content transitions"
+            },
+            {
+              "anchor": "Symbol-effect-options",
+              "identifiers": [
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffectOptions",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffectOptionsRepeatBehavior"
+              ],
+              "title": "Symbol effect options"
+            },
+            {
+              "anchor": "Symbol-effect-classes",
+              "identifiers": [
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffect",
+                "doc://com.apple.symbols/documentation/Symbols/NSSymbolContentTransition"
+              ],
+              "title": "Symbol effect classes"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/symbols"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/symbols"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

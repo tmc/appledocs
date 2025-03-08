@@ -1,0 +1,2083 @@
+{
+  "abstract": [
+    {
+      "text": "Exchange data streams by using proxy-provider classes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling Flow Copying"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the context of a Network Extension provider, a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "flow",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a bidirectional stream of data. A TCP flow represents a TCP connection. A UDP flow represents a sequence of incoming and outgoing datagrams you can identify based on a local IP address and port and a remote IP address and port.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Flow copying",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " has two components: inbound and outbound data. Think of handling inbound data as reading from the remote side of the connection and writing to the local flow. Likewise, handling outbound data is comparable to reading from the local flow and writing to the remote side of the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some proxy providers may only want to flow copy for a specific set of traffic, such as only Safari flows. Starting with macOS 11,  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " gives the provider the option to handle the flow or let the system do it. This is the only provider you can use to do this. The only other way to limit flows claimed by the provider is to alter the ",
+              "type": "text"
+            },
+            {
+              "code": "NETunnelNetworkSettings",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When implementing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you must deal with flows. The system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewFlow(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method for a flow that the proxy provider claims, based on network settings configured in the provider. A flow enters this method in a closed state, so returning ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in this method indicates the flow remains closed and the system discards it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Starting with macOS 11, you can use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to flow copy specific data streams.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Decide-How-to-Handle-a-Flow",
+          "level": 3,
+          "text": "Decide How to Handle a Flow",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NETransparentProxyProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " gives the proxy provider the option to handle the flow or let the system do it. This means you can choose the best approach for your situation. For example, when the flow enters ",
+              "type": "text"
+            },
+            {
+              "code": "handleNewFlow",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the provider logic handles the flow based on the application from which the traffic originated or the destination IP of the flow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To handle a desired flow, return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "handleNewFlow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To let the operating system handle the flow, return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NETransparentProxyProvider",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All other proxy providers must handle the flow if returning ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "handleNewFlow.",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Returning ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NEAppProxyProvider",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NEDNSProxyProvider",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", results in the flow being discarded by the system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Open-the-Connection",
+          "level": 3,
+          "text": "Open the Connection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve decided how you want to handle the flow, the next step is to set up the remote side of the connection. You can decide how the provider handles the remote side of the connection, but this article assumes usage of an API such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_connection_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The steps to open the connection are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cast the original ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object provided from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "handleNewFlow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " into the transport protocol object that represents the flow the provider is going to copy. For example, if the provider flow copies TCP, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and for UDP, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NEAppProxyTCPFlow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " provides the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "remoteEndpoint",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object with which you set up the remote connection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the remote connection and wait until it transitions to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection/State-swift.enum/ready",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After the remote connection is ready, open the local flow using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NWHostEndpoint",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object to represent a local Endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Handle-Inbound-Data",
+          "level": 3,
+          "text": "Handle Inbound Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When both sides of the connection move into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection/State-swift.enum/ready",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your next step is to define flow copying methods to read and write inbound data to both sides of the connection. Using ",
+              "type": "text"
+            },
+            {
+              "code": "NWConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "NEAppProxyTCPFlow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as an example, you use the following APIs, as shown in the code below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(Remote side) ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection/receive(minimumIncompleteLength:maximumLength:completion:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(Flow side) ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow/write(_:withCompletionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "let flow: NEAppProxyTCPFlow",
+            "let connection: NWConnection",
+            "",
+            "// Read from the remote connection and write to the flow.",
+            "func inboundCopier() {",
+            "",
+            "    connection.receive(minimumIncompleteLength: 1, ",
+            "                       maximumLength: 2048) { (data, _, isComplete, error) in",
+            "",
+            "        switch (data, isComplete, error) {",
+            "            case (let data?, _, _):",
+            "                flow.write(data) { writeError in",
+            "                    if writeError == nil {",
+            "                        // Set up another read on the remote connection if no error is present.",
+            "                        self.inboundCopier()",
+            "                    }",
+            "                }",
+            "            case (_, true, _):",
+            "                // The connection is finished; cancel the remote connection and mark flow as closed.",
+            "                connection.stateUpdateHandler = nil",
+            "                connection.cancel()",
+            "                flow.closeReadWithError(error)",
+            "                flow.closeWriteWithError(error)",
+            "            case (_, _, let error?):",
+            "                // Handle any error.",
+            "            default:",
+            "                // Handle default case.   ",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-Outbound-Data",
+          "level": 3,
+          "text": "Handle Outbound Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Handle outbound data as you do inbound data, by creating an outbound copier that reads from the local flow and writes to the remote connection. Using ",
+              "type": "text"
+            },
+            {
+              "code": "NWConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "NEAppProxyTCPFlow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " once again as examples, the methods are listed here and the code is below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(Flow side) ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow/readData(completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(Remote side) ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "send(content:contentContext:isComplete:completion:)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "let flow: NEAppProxyTCPFlow",
+            "let connection: NWConnection",
+            "",
+            "// Reads from the flow and writes to the remote connection.",
+            "func outboundCopier() {",
+            "",
+            "    flow.readData { (data, error) in",
+            "        if error == nil, let readData = data, !readData.isEmpty {",
+            "            connection.send(content: readData, ",
+            "                            completion: .contentProcessed( { connectionError in",
+            "                // Handle completion success or error.",
+            "                // Set up another read if there is no error.",
+            "                if connectionError == nil {",
+            "                    self.outboundCopier()",
+            "                }",
+            "            }))",
+            "        } else {",
+            "            // Handle error case or the read that contains empty data.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-Flow-Control",
+          "level": 3,
+          "text": "Implement Flow Control",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Flow control is important because it keeps the Network Extension from allocating unbounded amounts of memory that can lead to slow performance or even a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "jetsam event",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", where the system frees memory by terminating applications. Such conditions can occur when a device experiences poor network conditions or large volumes of data pass through the provider. For more on a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "jetsam event",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can implement flow control by using an implicit technique, where all data is written before any more is read.  This prevents buffering too much data at any one time.  Buffering larger amounts of data can lead to memory problems. If the provider must buffer data, set an upper bound on the buffer and don’t read until the buffer has space to hold more data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Close-the-Connections",
+          "level": 3,
+          "text": "Close the Connections",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system marks the connection as complete, the flow copying process is finished. Once finished, the flow copying process calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection/cancel()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the remote side of the connection, and calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow/closeReadWithError(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow/closeWriteWithError(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  on the flow. Note that you need to apply the same cancellation and close process when an error takes place on either side of the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Network/NWConnection": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWConnection",
+      "type": "topic",
+      "url": "/documentation/Network/NWConnection"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWConnection/State-swift.enum/ready": {
+      "abstract": [
+        {
+          "text": "The connection is established, and ready to send and receive data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ready"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection/State-swift.enum/ready",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWConnection.State.ready",
+      "type": "topic",
+      "url": "/documentation/Network/NWConnection/State-swift.enum/ready"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWConnection/cancel()": {
+      "abstract": [
+        {
+          "text": "Cancels the connection and gracefully disconnects any established network protocols.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection/cancel()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/Network/NWConnection/cancel()"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWConnection/receive(minimumIncompleteLength:maximumLength:completion:)": {
+      "abstract": [
+        {
+          "text": "Schedules a single receive completion handler, with a range indicating how many bytes the handler can receive at one time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "receive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumIncompleteLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWConnectionC",
+          "text": "NWConnection"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWConnectionC14ContentContextC",
+          "text": "ContentContext"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network7NWErrorO",
+          "text": "NWError"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection/receive(minimumIncompleteLength:maximumLength:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "receive(minimumIncompleteLength:maximumLength:completion:)",
+      "type": "topic",
+      "url": "/documentation/Network/NWConnection/receive(minimumIncompleteLength:maximumLength:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/Network/nw_connection_t": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": " = any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)OS_nw_connection",
+          "text": "OS_nw_connection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/nw_connection_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_connection_t",
+      "type": "topic",
+      "url": "/documentation/Network/nw_connection_t"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports": {
+      "abstract": [
+        {
+          "text": "Discover why the operating system terminated your app when available memory was low.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying high-memory use with jetsam event reports",
+      "type": "topic",
+      "url": "/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by NEAppProxyTCPFlow and NEAppProxyUDPFlow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow/closeReadWithError(_:)": {
+      "abstract": [
+        {
+          "text": "Close the flow for further read operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeReadWithError"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow/closeReadWithError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "closeReadWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "closeReadWithError(_:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyflow/closereadwitherror(_:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow/closeWriteWithError(_:)": {
+      "abstract": [
+        {
+          "text": "Close the flow for further write operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeWriteWithError"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow/closeWriteWithError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "closeWriteWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "closeWriteWithError(_:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyflow/closewritewitherror(_:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for an app proxy provider app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewFlow(_:)": {
+      "abstract": [
+        {
+          "text": "Handle a new flow of network data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleNewFlow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEAppProxyFlow",
+          "text": "NEAppProxyFlow"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewFlow(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleNewFlow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleNewFlow(_:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider/handlenewflow(_:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow": {
+      "abstract": [
+        {
+          "text": "An object for reading and writing data to and from a TCP connection being proxied by the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyTCPFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyTCPFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyTCPFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxytcpflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow/readData(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Read data from the flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow/readData(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readDataWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "readData(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxytcpflow/readdata(completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow/write(_:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Write data to the flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow/write(_:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeData:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "write(_:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxytcpflow/write(_:withcompletionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow": {
+      "abstract": [
+        {
+          "text": "An object for reading and writing data to and from a UDP conversation being proxied by the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyUDPFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyudpflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for a DNS proxy provider app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEDNSProxyProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEDNSProxyProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEDNSProxyProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nednsproxyprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData": {
+      "abstract": [
+        {
+          "text": "Additional information about data flowing through a per-app VPN provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFlowMetaData"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFlowMetaData"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFlowMetaData",
+      "type": "topic",
+      "url": "/documentation/networkextension/neflowmetadata"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider": {
+      "abstract": [
+        {
+          "text": "An object that implements the client side of a custom transparent network proxy solution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETransparentProxyProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/netransparentproxyprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider": {
+      "abstract": [
+        {
+          "text": "Implement a VPN client for a flow-oriented, custom VPN protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App proxy provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/app-proxy-provider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/in-provider-networking": {
+      "abstract": [
+        {
+          "text": "Network APIs for use by all types of NetworkExtension providers and by hotspot helpers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/in-provider-networking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Provider Networking",
+      "type": "topic",
+      "url": "/documentation/networkextension/in-provider-networking"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Flow-handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/in-provider-networking"
+      ],
+      "title": "Flow handling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Flow-handling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/in-provider-networking"
+              ],
+              "title": "Flow handling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow~1closeWriteWithError(_:)/title",
+          "value": "closeWriteWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow~1closeWriteWithError(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "closeWriteWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/title",
+          "value": "NEAppProxyUDPFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyUDPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyUDPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProvider/title",
+          "value": "NEDNSProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow~1write(_:withCompletionHandler:)/title",
+          "value": "writeData:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow~1write(_:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeData:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/title",
+          "value": "NEAppProxyTCPFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyTCPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyTCPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_connection_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_nw_connection",
+              "text": "NSObject<OS_nw_connection>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "nw_connection_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/title",
+          "value": "NEAppProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow~1closeReadWithError(_:)/title",
+          "value": "closeReadWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow~1closeReadWithError(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "closeReadWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFlowMetaData/title",
+          "value": "NEFlowMetaData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFlowMetaData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFlowMetaData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFlowMetaData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFlowMetaData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyProvider/title",
+          "value": "NETransparentProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/title",
+          "value": "NEAppProxyFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow~1readData(completionHandler:)/title",
+          "value": "readDataWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow~1readData(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "readDataWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1handleNewFlow(_:)/title",
+          "value": "handleNewFlow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1handleNewFlow(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleNewFlow:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/handling-flow-copying"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/handling-flow-copying"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,596 @@
+{
+  "abstract": [
+    {
+      "text": "Configure a device to act as a beacon and to detect surrounding beacons.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/ranging-for-beacons"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Ranging for Beacons"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Beacons make location-based products and services available to users by broadcasting information to your device. Ranging is the process of reading the characteristics of a beacon region, such as signal strength, advertising interval, and measured power.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project configures a device to act as a beacon, and configures a device to use ranging to find surrounding beacons. Use two iOS devices to run the sample, with one acting as a beacon, and the other ranging for the beacon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This project is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/705/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-a-Device-to-Act-as-a-Beacon",
+          "level": 3,
+          "text": "Configure a Device to Act as a Beacon",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run the sample app on the first iOS device. Select the option to Configure a Beacon. The project hardcodes a default value for the UUID that can be changed in ",
+              "type": "text"
+            },
+            {
+              "code": "ConfigureBeaconViewController.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let beaconUUID = UUID(uuidString: \"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally modify the major and minor value for the beacon, then select the Enabled switch on the configuration screen to start advertising.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "ConfigureBeaconViewController.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a view controller object that configures the iOS device running this app to act as a beacon.  The ",
+              "type": "text"
+            },
+            {
+              "code": "configureBeaconRegion()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method sets up the region and starts advertising itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if peripheralManager.state == .poweredOn {",
+            "    peripheralManager.stopAdvertising()",
+            "    if enabled {",
+            "        let bundleURL = Bundle.main.bundleIdentifier!",
+            "        ",
+            "        // Defines the beacon identity characteristics the device broadcasts.",
+            "        let constraint = CLBeaconIdentityConstraint(uuid: beaconUUID!, major: major, minor: minor)",
+            "        region = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: bundleURL)",
+            "        ",
+            "        let peripheralData = region.peripheralData(withMeasuredPower: nil) as? [String: Any]",
+            "        ",
+            "        // Start broadcasting the beacon identity characteristics.",
+            "        peripheralManager.startAdvertising(peripheralData)",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-a-Device-to-Range-for-Beacons",
+          "level": 3,
+          "text": "Configure a Device to Range for Beacons",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using a second iOS device, run the sample app and tap Range for Beacons to scan for beacons. Add a UUID to range for by tapping the Add button in the upper corner of the screen. The hardcoded UUID appears by default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "RangeBeaconViewController.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a view controller object that ranges a set of beacon regions that the user adds. As in any location-based service, first request authorization. Use a ",
+              "type": "text"
+            },
+            {
+              "code": "CLLocationManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to request that authorization, set up the constraint based on the hardcoded UUID, then tell the instance to start monitoring.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.locationManager.requestWhenInUseAuthorization()",
+            "",
+            "// Create a new constraint and add it to the dictionary.",
+            "let constraint = CLBeaconIdentityConstraint(uuid: uuid)",
+            "self.beaconConstraints[constraint] = []",
+            "",
+            "/*",
+            "By monitoring for the beacon before ranging, the app is more",
+            "energy efficient if the beacon is not immediately observable.",
+            "*/",
+            "let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: uuid.uuidString)",
+            "self.locationManager.startMonitoring(for: beaconRegion)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the device enters the specified region, the ",
+              "type": "text"
+            },
+            {
+              "code": "locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delegate method receives the region state and starts ranging beacons.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While one or more beacons are in range, the ",
+              "type": "text"
+            },
+            {
+              "code": "locationManager(_ manager: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delegate method receives their characteristics in the passed array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "d7d2b5ab19c1/RangingForBeacons.zip": {
+      "checksum": "d7d2b5ab19c1659d4dcb6431d42ae7f18968fe6de6716e2eb6048267a0bb9fed4cdd6a339bd328a6d32e9ea2c930d49a4cf62610f1f4097acc5dd88afba87932",
+      "identifier": "d7d2b5ab19c1/RangingForBeacons.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/d7d2b5ab19c1/RangingForBeacons.zip"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBeacon": {
+      "abstract": [
+        {
+          "text": "Information about an observed iBeacon device and its relative distance to a person’s device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLBeacon"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeacon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLBeacon"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLBeacon",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbeacon"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconIdentityCondition": {
+      "abstract": [
+        {
+          "text": "A condition that describes the identity characteristics of a beacon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLBeaconIdentityCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconIdentityCondition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLBeaconIdentityCondition",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbeaconidentitycondition"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLCircularGeographicCondition": {
+      "abstract": [
+        {
+          "text": "A circular geographic condition that a center point and radius define.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLCircularGeographicCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLCircularGeographicCondition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLCircularGeographicCondition",
+      "type": "topic",
+      "url": "/documentation/corelocation/clcirculargeographiccondition"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-c.class": {
+      "abstract": [
+        {
+          "text": "The abstract base class that all other conditions derive from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLCondition",
+      "type": "topic",
+      "url": "/documentation/corelocation/clcondition-c.class"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-swift.protocol": {
+      "abstract": [
+        {
+          "text": "The abstract base class for all other monitor conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLCondition"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLCondition",
+      "type": "topic",
+      "url": "/documentation/corelocation/clcondition-swift.protocol"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device": {
+      "abstract": [
+        {
+          "text": "Detect beacons and determine the relative distance to them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining the proximity to an iBeacon device",
+      "type": "topic",
+      "url": "/documentation/corelocation/determining-the-proximity-to-an-ibeacon-device"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/turning-an-ios-device-into-an-ibeacon-device": {
+      "abstract": [
+        {
+          "text": "Broadcast iBeacon signals from an iOS device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/turning-an-ios-device-into-an-ibeacon-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Turning an iOS device into an iBeacon device",
+      "type": "topic",
+      "url": "/documentation/corelocation/turning-an-ios-device-into-an-ibeacon-device"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/705/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/705/",
+      "title": "705: What’s New in Location",
+      "titleInlineContent": [
+        {
+          "text": "705: What’s New in Location",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/705/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "d7d2b5ab19c1/RangingForBeacons.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iBeacon",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device",
+        "doc://com.apple.corelocation/documentation/CoreLocation/turning-an-ios-device-into-an-ibeacon-device",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLBeacon",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-swift.protocol"
+      ],
+      "title": "iBeacon"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "iBeacon",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device",
+                "doc://com.apple.corelocation/documentation/CoreLocation/turning-an-ios-device-into-an-ibeacon-device",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLBeacon",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-c.class",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconIdentityCondition",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLCircularGeographicCondition"
+              ],
+              "title": "iBeacon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeacon/title",
+          "value": "CLBeacon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeacon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLBeacon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeacon/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLBeacon"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/ranging-for-beacons"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corelocation/ranging-for-beacons"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

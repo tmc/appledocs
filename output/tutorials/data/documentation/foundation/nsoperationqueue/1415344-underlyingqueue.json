@@ -1,0 +1,411 @@
+{
+  "abstract": [
+    {
+      "text": "The dispatch queue that the operation queue uses to invoke operations.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management",
+        "doc://com.apple.documentation/documentation/foundation/nsoperationqueue"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/nsoperationqueue"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1415344-underlyingqueue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415344,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSOperationQueue(py)underlyingQueue",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSOperationQueue"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "underlyingQueue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": "(assign) "
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_queue_t",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "underlyingQueue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value of this property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can set the value of this property to an existing dispatch queue to have enqueued operations interspersed with blocks submitted to that dispatch queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value of this property should only be set if there are no operations in the queue; setting the value of this property when ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1415115-operationcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is not equal to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " raises an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvalidargumentexception",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The value of this property must not be the value returned by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/dispatch/1452921-dispatch_get_main_queue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The quality-of-service level set for the underlying dispatch queue overrides any value set for the operation queue's ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1417919-qualityofservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This property automatically retains its assigned queue if ",
+                  "type": "text"
+                },
+                {
+                  "code": "OS_OBJECT_IS_OBJC",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t": {
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_t"
+    },
+    "doc://com.apple.documentation/documentation/dispatch/1452921-dispatch_get_main_queue": {
+      "identifier": "doc://com.apple.documentation/documentation/dispatch/1452921-dispatch_get_main_queue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_get_main_queue",
+      "type": "topic",
+      "url": "/documentation/dispatch/1452921-dispatch_get_main_queue"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvalidargumentexception": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvalidargumentexception",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInvalidArgumentException",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvalidargumentexception"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperationqueue": {
+      "abstract": [
+        {
+          "text": "A queue that regulates the execution of operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperationqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOperationQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperationqueue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1415115-operationcount": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1415115-operationcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "operationCount",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperationqueue/1415115-operationcount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1415344-underlyingqueue": {
+      "abstract": [
+        {
+          "text": "The dispatch queue that the operation queue uses to invoke operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1415344-underlyingqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "underlyingQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperationqueue/1415344-underlyingqueue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1417919-qualityofservice": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1417919-qualityofservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "qualityOfService",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperationqueue/1417919-qualityofservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1418063-name": {
+      "abstract": [
+        {
+          "text": "The name of the operation queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1418063-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperationqueue/1418063-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsoperationqueue/1418063-name"
+      ],
+      "title": "Configuring the Queue"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsoperationqueue/1415344-underlyingqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/operationqueue/1415344-underlyingqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

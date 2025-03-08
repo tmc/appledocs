@@ -1,0 +1,1335 @@
+{
+  "abstract": [
+    {
+      "text": "Create a PDF preview of an iWork document using JSON Web Token (JWT) authorization.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI/Create-an-export-job-(v2)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:iWork:post:iwork-api-v2-export",
+    "modules": [
+      {
+        "name": "iWork Document Exporting API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Create an export job (v2)"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iWork",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Export a PDF document from an iWork file"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://iworkpreviewapi.icloud.com/"
+        },
+        {
+          "kind": "path",
+          "text": "iwork/api/v2/export"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The number of bytes in the request body as defined in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://www.rfc-editor.org/info/rfc7230",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The service doesn’t support chunked transfer coding.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "Content-Length",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "int64"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A JWT as defined in the Authentication and as defined in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI/Create-an-export-job-(v2)#Authentication-and-request-payload",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " section, below.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "14.0.0",
+          "name": "authorization",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "header",
+      "title": "Header Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "kind": "text",
+          "text": "binary"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The body of the request. The body contains the iWork document for the service to export in raw binary form. If the original file is a package file, zip it before adding to the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/octet-stream",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Successful export.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the service successfully processed the request and exported the document, the server returns an HTTP 200 response with the exported file in the body.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/octet-stream",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "kind": "text",
+              "text": "binary"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Invalid request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the request is invalid for some reason (such as missing or invalid header values), the server returns an HTTP 400 response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The server returns the reason for the error in the response body, for example: ",
+                  "type": "text"
+                },
+                {
+                  "code": "Invalid filename",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "text/plain",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Authentication failure.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the server can’t validate the signature, either because the signature is invalid, or because the key pair can’t recognize the signature, the server returns an HTTP 403 response with body ",
+                  "type": "text"
+                },
+                {
+                  "code": "Invalid signature",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the document is password-protected, the server responds with a HTTP 403 response with body ",
+                  "type": "text"
+                },
+                {
+                  "code": "Password protected document",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "text/plain",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "mimeType": "text/plain",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "mimeType": "text/plain",
+          "reason": "Length Required",
+          "status": 411,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Request too large.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The server returns this error if the document is over 1 GB.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "text/plain",
+          "reason": "Request Entity Too Large",
+          "status": 413,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Client is sending too many requests.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’re sending too many requests, the server returns an HTTP 429 response. The server may give this response without completely reading the contents of the request. In this case, don’t retry the request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "text/plain",
+          "status": 429,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For other errors, the server returns an HTTP 500 response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For export errors caused by a corrupted document or other irrecoverable errors, the response body contains ",
+                  "type": "text"
+                },
+                {
+                  "code": "Irrecoverable export error",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". In this case, don’t retry exporting the same document. In general, don’t retry unless there is a ",
+                  "type": "text"
+                },
+                {
+                  "code": "Retry-After",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "text/plain",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Server asks client to retry.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "In some situations where the server is under heavy load, the server may return an HTTP 503 response.  The ",
+                  "type": "text"
+                },
+                {
+                  "code": "Retry-After",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " response header specifies the number of seconds after which you may retry. Don’t retry unless there is a ",
+                  "type": "text"
+                },
+                {
+                  "code": "Retry-After",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header. The server may give this response without completely reading the contents of the request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "text/plain",
+          "reason": "Service Unavailable",
+          "status": 503,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Privacy-Notice",
+          "level": 2,
+          "text": "Privacy Notice",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s important for apps to inform people that uploaded iWork documents are temporarily stored on Apple servers for the purpose of conversion. Provide people the option to enable and disable the iWork preview feature, and display a privacy notice when doing so, such as “When using iWork online previews, your files will be temporarily stored on Apple servers.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Supported-files",
+          "level": 2,
+          "text": "Supported files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The maximum file size the service supports is 1 GB and the service can only convert documents not protected with a password.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Authentication-and-request-payload",
+          "level": 2,
+          "text": "Authentication and request payload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each request, the iWork service requires a signature so that the service can confirm that the client has permission to access the API. The service uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/rfc7519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to transfer the signature, information about the client and the details of the document export request. Sign the JWT with an ES256 key acquired from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/account/resources/authkeys/list",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using Open Source libraries recommended by ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://jwt.io/libraries",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " may simplify the process of constructing and signing JWTs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include these claims in the JWT header:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header claims",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alg",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the algorithm used to sign the token. ",
+                      "type": "text"
+                    },
+                    {
+                      "text": " The algorithm the service supports is “ES256”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ID of the Apple Developer Key used to sign the token. ",
+                      "type": "text"
+                    },
+                    {
+                      "text": " The portal displays this ID on the key download page when downloading the key from Apple developer portal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include these claims in the JWT payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Payload claims",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Issuer of the token. This is the ID of the Apple Developer Team, ",
+                      "type": "text"
+                    },
+                    {
+                      "text": " your team’s ID, displayed in the membership details section of the Apple developer portal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "encoded_filename",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The original filename of the file, encoding in UTF-8 and then encoded in URL-safe base64. ",
+                      "type": "text"
+                    },
+                    {
+                      "text": " If the name is too long, or if it contains invalid characters, the service may ignore parts of the filename.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "export_format",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The format to export. Currently, the service only supports ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.adobe.pdf",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The creation time of the token, in terms of the number of seconds since the epoch, in UTC.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "exp",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional. The time at which the token expires, in terms of the number of seconds since the epoch, in UTC. ",
+                      "type": "text"
+                    },
+                    {
+                      "text": " If you don’t provide an expiration time, the default value is four hours from the time specified by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "text": " The actual expiry would be the specified value or four hours, whichever is smaller.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Put the signed JWT as-is in the HTTP ",
+              "type": "text"
+            },
+            {
+              "code": "authorization",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Clients need to ensure that their system clocks are accurate: The service rejects the signed JWT if the current time falls outside of the time window specified by ",
+              "type": "text"
+            },
+            {
+              "code": "iat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "exp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  Reconstruct and sign the JWT with a new ",
+              "type": "text"
+            },
+            {
+              "code": "DateTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for each request even if you’re retrying the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method to authenticate and sign the requests may change in light of new developments in the security field. Apple will give notice to parties using the API if and when this happens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Examples",
+          "level": 2,
+          "text": "Examples",
+          "type": "heading"
+        },
+        {
+          "anchor": "Export-Request",
+          "level": 3,
+          "text": "Export Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example demonstrates an export request using the headers and their associated values you pass to the API:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST /iwork/api/v2/export HTTP/1.1",
+            "authorization: eyJhbGciOiJFUzI1NiIsImtpZCI6IkIzQ1U3TUhQUzgifQ.eyJlbmNvZGVkX2ZpbGVuYW1lIjoiOEorWWdDQmpiRzkxWk9LWWdTNXVkVzFpWlhKeiIsImV4cG9ydF9mb3JtYXQiOiJjb20uYWRvYmUucGRmIiwiaWF0IjoxNjkzMDA0MDQxLCJpc3MiOiI0M0tUTFlYTTRHIiwiZXhwIjoxNjkzMDExMjQxfQ.4Uw6_WeYZgmi2gXC82tBeSXDGwa2ajouG2tQVgNlWPld0mxTHuc0VSNWDUOr5QlPZqjJYMKEdZ4wpTmEfuuVcg",
+            "Content-Type: application/octet-stream",
+            "Host: https://iworkpreviewapi.icloud.com",
+            "Content-Length: 323927",
+            "",
+            "<Binary iWork file goes here>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The filename is “😀 cloud☁.numbers”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generating-a-JWT-using-JSON-Object-Signing-and-Encryption-JOSE",
+          "level": 3,
+          "text": "Generating a JWT using JSON Object Signing and Encryption (JOSE)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/panva/jose",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " NodeJS package, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/panva/jose/blob/main/docs/classes/jwt_sign.SignJWT.md",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import * as jose from 'jose'",
+            "",
+            "const alg = 'ES256'",
+            "const pkcs8 = `-----BEGIN PRIVATE KEY——",
+            "MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg0oCMjI+HiYGjXZCz",
+            "W8BKk4ZNjutgQbRPLDkD3g47djWgCgYIKoZIzj0DAQehRANCAATtEMfktkJxsvLV",
+            "zNZtwllVtt7TCpbaDrJE10lM25cF56mRy6RXfwVyuhCqw7xMMzJH+rfciw9+vnZk",
+            "4csA9gdr",
+            "-----END PRIVATE KEY-----`",
+            "const privateKey = await jose.importPKCS8(pkcs8, alg)",
+            "",
+            "const jwt = await new jose.SignJWT({",
+            "    encoded_filename: Buffer.from('😀 cloud☁.numbers').toString('base64'),",
+            "    export_format: 'com.adobe.pdf'",
+            "})",
+            "    .setProtectedHeader({ alg, kid: 'HBLUFDY367' })",
+            "    .setIssuedAt()",
+            "    .setIssuer('43KTLYXM4G')",
+            "    .setExpirationTime('2h')",
+            "    .sign(privateKey)",
+            "",
+            "console.log(jwt)"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the above Apple Developer key, this is the JWT header and payload the package signs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Header",
+            "{",
+            "  \"alg\": \"ES256\",",
+            "  \"kid\": \"HBLUFDY367\"",
+            "}",
+            "// Payload",
+            "{",
+            "  \"encoded_filename\": \"8J+YgCBjbG91ZOKYgS5udW1iZXJz\",",
+            "  \"export_format\": \"com.adobe.pdf\",",
+            "  \"iat\": 1693005092,",
+            "  \"iss\": \"43KTLYXM4G\",",
+            "  \"exp\": 1693012292",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And the resulting signed JWT is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkhCTFVGRFkzNjcifQ.eyJlbmNvZGVkX2ZpbGVuYW1lIjoiOEorWWdDQmpiRzkxWk9LWWdTNXVkVzFpWlhKeiIsImV4cG9ydF9mb3JtYXQiOiJjb20uYWRvYmUucGRmIiwiaWF0IjoxNjkzMDA1MDkyLCJpc3MiOiI0M0tUTFlYTTRHIiwiZXhwIjoxNjkzMDEyMjkyfQ.o4haQp-Fo-r_-_rELXhMEbOIXU8n-mr8sAogH8b6i8x9_VdHYnTw29r7hu0OjwA_HWNWfwpBvgLNtqr2dcl4Vg",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The signed JWT can be different for the same input.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI": {
+      "abstract": [
+        {
+          "text": "Convert iWork documents to Portable Document Format (PDF) files using a web API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "iWork Document Exporting API",
+      "type": "topic",
+      "url": "/documentation/iworkdocumentexportingapi"
+    },
+    "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI/Create-an-export-job-(v2)": {
+      "abstract": [
+        {
+          "text": "Create a PDF preview of an iWork document using JSON Web Token (JWT) authorization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI/Create-an-export-job-(v2)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create an export job (v2)"
+        }
+      ],
+      "role": "symbol",
+      "title": "Export a PDF document from an iWork file",
+      "type": "topic",
+      "url": "/documentation/iworkdocumentexportingapi/create-an-export-job-(v2)"
+    },
+    "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI/Create-an-export-job-(v2)#Authentication-and-request-payload": {
+      "abstract": [],
+      "identifier": "doc://export.previewapi.docc.iWork/documentation/iWorkDocumentExportingAPI/Create-an-export-job-(v2)#Authentication-and-request-payload",
+      "kind": "section",
+      "title": "Authentication and request payload",
+      "type": "topic",
+      "url": "/documentation/iworkdocumentexportingapi/create-an-export-job-(v2)#Authentication-and-request-payload"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc7519": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc7519",
+      "title": "JSON Web Token (JWT)",
+      "titleInlineContent": [
+        {
+          "text": "JSON Web Token (JWT)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7519"
+    },
+    "https://developer.apple.com/account/resources/authkeys/list": {
+      "identifier": "https://developer.apple.com/account/resources/authkeys/list",
+      "title": "Apple Developer Keys",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Keys",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/resources/authkeys/list"
+    },
+    "https://github.com/panva/jose": {
+      "identifier": "https://github.com/panva/jose",
+      "title": "JOSE",
+      "titleInlineContent": [
+        {
+          "text": "JOSE",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/panva/jose"
+    },
+    "https://github.com/panva/jose/blob/main/docs/classes/jwt_sign.SignJWT.md": {
+      "identifier": "https://github.com/panva/jose/blob/main/docs/classes/jwt_sign.SignJWT.md",
+      "title": "JOSE package documentation",
+      "titleInlineContent": [
+        {
+          "text": "JOSE package documentation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/panva/jose/blob/main/docs/classes/jwt_sign.SignJWT.md"
+    },
+    "https://jwt.io/libraries": {
+      "identifier": "https://jwt.io/libraries",
+      "title": "JWT.io",
+      "titleInlineContent": [
+        {
+          "text": "JWT.io",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://jwt.io/libraries"
+    },
+    "https://www.rfc-editor.org/info/rfc7230": {
+      "identifier": "https://www.rfc-editor.org/info/rfc7230",
+      "title": "RFC 7230",
+      "titleInlineContent": [
+        {
+          "text": "RFC 7230",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.rfc-editor.org/info/rfc7230"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/iworkdocumentexportingapi/create-an-export-job-(v2)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

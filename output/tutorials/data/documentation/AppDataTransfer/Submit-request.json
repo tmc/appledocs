@@ -1,0 +1,485 @@
+{
+  "abstract": [
+    {
+      "text": "Starts preparing someone’s data for download.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Submit-request"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:App Data Transfer:post:api-transfer-appdata-submit",
+    "modules": [
+      {
+        "name": "App Data Transfer"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Submit request"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "App Data Transfer"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Submit request"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://appdatatransfer.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "api/transfer/appdata/submit"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/JobSubmission",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:App Data Transfer:JobSubmission",
+          "text": "JobSubmission"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The description of the new download request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CreatedJob",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:App Data Transfer:CreatedJob",
+              "text": "CreatedJob"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        },
+        {
+          "content": [],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [],
+          "reason": "Forbidden",
+          "status": 403,
+          "type": []
+        },
+        {
+          "content": [],
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Request the ",
+              "type": "text"
+            },
+            {
+              "code": "app-store",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type to get App Store information and app-install activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-a-one-time-download",
+          "level": 3,
+          "text": "Request a one-time download",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "% curl -X POST \\",
+                    "  -H \"Authorization: Bearer [ACCESS_TOKEN]\" \\",
+                    "  -H \"X-Apple-Transaction-Id: E3857B28-7FC4-41C8-AC54-08E121E26F59\" \\",
+                    "  -H \"X-Forwarded-For: 192.168.42.63\" \\",
+                    "  -H \"Content-Type: application/json\" \\",
+                    "  -d '{ \"mode\": \"ONE_TIME\" }' \\",
+                    "  https://appdatatransfer.apple.com/api/transfer/appdata/submit"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"requestId\": \"11619695-72C0-4FFD-858A-1E152DCF0838\",",
+                    "  \"status\": \"in_progress\",",
+                    "  \"statusCheckDelay\": 86400",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Request-a-recurring-download",
+          "level": 3,
+          "text": "Request a recurring download",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "% curl -X POST \\",
+                    "  -H \"Authorization: Bearer [ACCESS_TOKEN]\" \\",
+                    "  -H \"X-Apple-Transaction-Id: E3857B28-7FC4-41C8-AC54-08E121E26F59\" \\",
+                    "  -H \"X-Forwarded-For: 192.168.42.63\" \\",
+                    "  -H \"Content-Type: application/json\" \\",
+                    "  -d '{ \"mode\": \"DAILY_30\" }' \\",
+                    "  https://appdatatransfer.apple.com/api/transfer/appdata/submit"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"parentRequestId\": \"EABD06C0-9210-47FF-83C4-318CF8520644\",",
+                    "  \"requestId\": \"7BBBD45D-638B-4DB5-8B02-F23FDB15EDA7\",",
+                    "  \"status\": \"in_progress\",",
+                    "  \"statusCheckDelay\": 86400",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer": {
+      "abstract": [
+        {
+          "text": "Download App Store information and app-install activity about your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Data Transfer",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CreatedJob": {
+      "abstract": [
+        {
+          "text": "An object that represents a newly created download request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreatedJob"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CreatedJob",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CreatedJob"
+        }
+      ],
+      "role": "symbol",
+      "title": "CreatedJob",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/createdjob"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/JobSubmission": {
+      "abstract": [
+        {
+          "text": "An object that describes a submission that requests someone’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JobSubmission"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/JobSubmission",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JobSubmission"
+        }
+      ],
+      "role": "symbol",
+      "title": "JobSubmission",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/jobsubmission"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionRequest": {
+      "abstract": [
+        {
+          "text": "An object that describes a request to resubmit a recurring download request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResubmissionRequest"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResubmissionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResubmissionRequest",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/resubmissionrequest"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionResponse": {
+      "abstract": [
+        {
+          "text": "An object that represents a resubmitted recurring download request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResubmissionResponse"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResubmissionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResubmissionResponse",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/resubmissionresponse"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Resubmit-request": {
+      "abstract": [
+        {
+          "text": "Enqueue the next instance of a recurring request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Resubmit-request",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Resubmit request"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resubmit request",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/resubmit-request"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Submit-request": {
+      "abstract": [
+        {
+          "text": "Starts preparing someone’s data for download.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Submit-request",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Submit request"
+        }
+      ],
+      "role": "symbol",
+      "title": "Submit request",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/submit-request"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Request-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/JobSubmission",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CreatedJob",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Resubmit-request",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionRequest",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionResponse"
+      ],
+      "title": "Request creation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appdatatransfer/submit-request"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

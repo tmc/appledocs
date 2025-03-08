@@ -1,0 +1,818 @@
+{
+  "abstract": [
+    {
+      "text": "A type that can be the target of text-streaming operations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/TextOutputStream"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s16TextOutputStreamP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TextOutputStream"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TextOutputStream"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "TextOutputStream"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TextOutputStream"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can send the output of the standard library’s ",
+              "type": "text"
+            },
+            {
+              "code": "print(_:to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "dump(_:to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions to an instance of a type that conforms to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "TextOutputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol instead of to standard output. Swift’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "TextOutputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " already, so you can capture",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the output from ",
+              "type": "text"
+            },
+            {
+              "code": "print(_:to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "dump(_:to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in a string instead of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "logging it to standard output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var s = \"\"",
+            "for n in 1...5 {",
+            "    print(n, terminator: \"\", to: &s)",
+            "}",
+            "// s == \"12345\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Conforming-to-the-TextOutputStream-Protocol",
+          "level": 1,
+          "text": "Conforming to the TextOutputStream Protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make your custom type conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "TextOutputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implement the required ",
+              "type": "text"
+            },
+            {
+              "code": "write(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. Functions that use a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "TextOutputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target may call ",
+              "type": "text"
+            },
+            {
+              "code": "write(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " multiple times per writing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an example, here’s an implementation of an output stream that converts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any input to its plain ASCII representation before sending it to standard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ASCIILogger: TextOutputStream {",
+            "    mutating func write(_ string: String) {",
+            "        let ascii = string.unicodeScalars.lazy.map { scalar in",
+            "            scalar == \"\\n\"",
+            "              ? \"\\n\"",
+            "              : scalar.escaped(asASCII: true)",
+            "        }",
+            "        print(ascii.joined(separator: \"\"), terminator: \"\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ASCIILogger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type’s ",
+              "type": "text"
+            },
+            {
+              "code": "write(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method processes its string input by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "escaping each Unicode scalar, with the exception of ",
+              "type": "text"
+            },
+            {
+              "code": "\"\\n\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " line returns.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By sending the output of the ",
+              "type": "text"
+            },
+            {
+              "code": "print(_:to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to an instance of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ASCIILogger",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you invoke its ",
+              "type": "text"
+            },
+            {
+              "code": "write(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let s = \"Hearts ♡ and Diamonds ♢\"",
+            "print(s)",
+            "// Prints \"Hearts ♡ and Diamonds ♢\"",
+            "",
+            "var asciiLogger = ASCIILogger()",
+            "print(s, to: &asciiLogger)",
+            "// Prints \"Hearts \\u{2661} and Diamonds \\u{2662}\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation": {
+      "abstract": [
+        {
+          "text": "Represents a string literal with interpolations while it is being built up.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultStringInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultStringInterpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultStringInterpolation",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.Swift/documentation/Swift/StringProtocol": {
+      "abstract": [
+        {
+          "text": "A type that can represent a string as a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/StringProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StringProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "StringProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/stringprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Substring": {
+      "abstract": [
+        {
+          "text": "A slice of a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Substring"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Substring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Substring"
+        }
+      ],
+      "role": "symbol",
+      "title": "Substring",
+      "type": "topic",
+      "url": "/documentation/swift/substring"
+    },
+    "doc://com.apple.Swift/documentation/Swift/TextOutputStream": {
+      "abstract": [
+        {
+          "text": "A type that can be the target of text-streaming operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextOutputStream"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/TextOutputStream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextOutputStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextOutputStream",
+      "type": "topic",
+      "url": "/documentation/swift/textoutputstream"
+    },
+    "doc://com.apple.Swift/documentation/Swift/TextOutputStream/write(_:)": {
+      "abstract": [
+        {
+          "text": "Appends the given string to the stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/TextOutputStream/write(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "write(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/textoutputstream/write(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/TextOutputStreamable": {
+      "abstract": [
+        {
+          "text": "A source of text-streaming operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextOutputStreamable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/TextOutputStreamable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextOutputStreamable"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextOutputStreamable",
+      "type": "topic",
+      "url": "/documentation/swift/textoutputstreamable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/StringProtocol"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation",
+        "doc://com.apple.Swift/documentation/Swift/String",
+        "doc://com.apple.Swift/documentation/Swift/Substring"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Streams",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/TextOutputStreamable"
+      ],
+      "title": "Streams"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/TextOutputStream/write(_:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/textoutputstream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

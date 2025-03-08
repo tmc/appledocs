@@ -1,0 +1,1416 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates whether the port supports spatial audio playback.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/isSpatialAudioEnabled"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAudioSessionPortDescription(py)spatialAudioEnabled",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "isSpatialAudioEnabled"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "spatialAudioEnabled"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "isSpatialAudioEnabled"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "isSpatialAudioEnabled"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property is only relevant in the context of ports that have a small number of hardware channels (typically 2), but have enhanced capabilities for playing multichannel content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a “Now Playing” app, inform the system if the app supports multichannel audio content by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setSupportsMultichannelContent(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To detect changes in user preferences that affect spatial audio playback, register to receive the notification by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/spatialPlaybackCapabilitiesChangedNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some port types — like USB and HDMI — may support multichannel playback because they have hardware formats supporting more than 2 channels. For example, many HDMI receivers connect to many speakers and are capable of rendering 5.1, 7.1, or other popular surround sound formats. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setPreferredOutputNumberOfChannels(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to set the preferred number of hardware channels, and query the number of channels by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/maximumOutputNumberOfChannels",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about “Now Playing” apps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/becoming-a-now-playable-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/Port": {
+      "abstract": [
+        {
+          "text": "A structure that defines the available input and output port types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Port"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/Port",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Port"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession.Port",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/port"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/maximumOutputNumberOfChannels": {
+      "abstract": [
+        {
+          "text": "The maximum number of output channels available for the current audio route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumOutputNumberOfChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/maximumOutputNumberOfChannels",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumOutputNumberOfChannels"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumOutputNumberOfChannels",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/maximumoutputnumberofchannels"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setPreferredOutputNumberOfChannels(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the preferred number of output channels for the current route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPreferredOutputNumberOfChannels"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setPreferredOutputNumberOfChannels(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPreferredOutputNumberOfChannels:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPreferredOutputNumberOfChannels(_:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/setpreferredoutputnumberofchannels(_:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setSupportsMultichannelContent(_:)": {
+      "abstract": [
+        {
+          "text": "Sets whether your app supplies multichannel audio content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSupportsMultichannelContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setSupportsMultichannelContent(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSupportsMultichannelContent:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSupportsMultichannelContent(_:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/setsupportsmultichannelcontent(_:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/spatialPlaybackCapabilitiesChangedNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when its spatial playback capabilities change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spatialPlaybackCapabilitiesChangedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/spatialPlaybackCapabilitiesChangedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "spatialPlaybackCapabilitiesChangedNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/spatialplaybackcapabilitieschangednotification"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionChannelDescription": {
+      "abstract": [
+        {
+          "text": "A class that describes a hardware channel on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionChannelDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionChannelDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionChannelDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSessionChannelDescription",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessionchanneldescription"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription": {
+      "abstract": [
+        {
+          "text": "Information about the capabilities of the port and the hardware channels it supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionPortDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionPortDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSessionPortDescription",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessionportdescription"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/channels": {
+      "abstract": [
+        {
+          "text": "An array of channel objects that describe the port’s input or output channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channels"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSessionChannelDescription",
+          "text": "AVAudioSessionChannelDescription"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/channels",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channels"
+        }
+      ],
+      "role": "symbol",
+      "title": "channels",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessionportdescription/channels"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/hasHardwareVoiceCallProcessing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the associated hardware port has built-in processing for two-way voice communication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasHardwareVoiceCallProcessing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/hasHardwareVoiceCallProcessing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasHardwareVoiceCallProcessing"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasHardwareVoiceCallProcessing",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessionportdescription/hashardwarevoicecallprocessing"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/isSpatialAudioEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the port supports spatial audio playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSpatialAudioEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/isSpatialAudioEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "spatialAudioEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSpatialAudioEnabled",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/portName": {
+      "abstract": [
+        {
+          "text": "A descriptive name for the port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "portName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/portName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "portName"
+        }
+      ],
+      "role": "symbol",
+      "title": "portName",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessionportdescription/portname"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/portType": {
+      "abstract": [
+        {
+          "text": "The type of the port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "portType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSession",
+          "text": "AVAudioSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioSessionPort",
+          "text": "Port"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/portType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "portType"
+        }
+      ],
+      "role": "symbol",
+      "title": "portType",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessionportdescription/porttype"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/uid": {
+      "abstract": [
+        {
+          "text": "A system-assigned unique identifier (UID) for the port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/uid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UID"
+        }
+      ],
+      "role": "symbol",
+      "title": "uid",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessionportdescription/uid"
+    },
+    "doc://com.apple.documentation/documentation/MediaPlayer/becoming-a-now-playable-app": {
+      "abstract": [
+        {
+          "text": "Ensure your app is eligible to become the Now Playing app by adopting best practices for providing Now Playing info and registering for remote command center actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/becoming-a-now-playable-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Becoming a now playable app",
+      "type": "topic",
+      "url": "/documentation/MediaPlayer/becoming-a-now-playable-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-the-Port-Attributes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/portName",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/portType",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/Port",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/channels",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionChannelDescription",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/uid",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/hasHardwareVoiceCallProcessing"
+      ],
+      "title": "Getting the Port Attributes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "spatialAudioEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "spatialAudioEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfaudio/documentation/AVFAudio",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Getting-the-Port-Attributes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/portName",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/portType",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/Port",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/channels",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionChannelDescription",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/uid",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionPortDescription/hasHardwareVoiceCallProcessing"
+              ],
+              "title": "Getting the Port Attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "getter"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "="
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "isSpatialAudioEnabled"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "spatialAudioEnabled"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1hasHardwareVoiceCallProcessing/title",
+          "value": "hasHardwareVoiceCallProcessing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1hasHardwareVoiceCallProcessing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasHardwareVoiceCallProcessing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription/title",
+          "value": "AVAudioSessionPortDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionPortDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionPortDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1uid/title",
+          "value": "UID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1uid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionChannelDescription/title",
+          "value": "AVAudioSessionChannelDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionChannelDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionChannelDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionChannelDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionChannelDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1setSupportsMultichannelContent(_:)/title",
+          "value": "setSupportsMultichannelContent:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1setSupportsMultichannelContent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSupportsMultichannelContent:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1maximumOutputNumberOfChannels/title",
+          "value": "maximumOutputNumberOfChannels"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1maximumOutputNumberOfChannels/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumOutputNumberOfChannels"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1portName/title",
+          "value": "portName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1portName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "portName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1spatialPlaybackCapabilitiesChangedNotification/title",
+          "value": "AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1spatialPlaybackCapabilitiesChangedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1isSpatialAudioEnabled/title",
+          "value": "spatialAudioEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1isSpatialAudioEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "spatialAudioEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1portType/title",
+          "value": "portType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1portType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "portType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1channels/title",
+          "value": "channels"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionPortDescription~1channels/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "channels"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1setPreferredOutputNumberOfChannels(_:)/title",
+          "value": "setPreferredOutputNumberOfChannels:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1setPreferredOutputNumberOfChannels(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPreferredOutputNumberOfChannels:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1Port/title",
+          "value": "AVAudioSessionPort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1Port/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionPort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1Port/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionPort"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

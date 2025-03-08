@@ -1,0 +1,1014 @@
+{
+  "abstract": [
+    {
+      "text": "This document describes the generic ",
+      "type": "text"
+    },
+    {
+      "code": "CFStream",
+      "type": "codeVoice"
+    },
+    {
+      "text": " functions, data types, and constants. See also ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstream",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " and ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfwritestream",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " for functions and constants specific to read and write streams respectively.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/cfstream"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1666546,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CFStream"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When you use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CFStream",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " API for networking, read and write operations on sockets can block. To prevent blocking:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Call ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539670-cfreadstreamsetclient",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " and ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539678-cfwritestreamsetclient",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " to register to receive stream-related event notifications.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Call ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539611-cfreadstreamschedulewithrunloop",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " and ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539621-cfwritestreamschedulewithrunloop",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " to schedule the stream on a run loop for receiving stream-related event notifications.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Call ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539743-cfreadstreamopen",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " and ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539753-cfwritestreamopen",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " to open each stream.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Read only after receiving a ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstreameventtype/1539600-hasbytesavailable",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " notification. Write only after receiving a ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstreameventtype/1539627-canacceptbytes",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " notification.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "orderedList"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1720248": {
+      "identifier": "devLink-1720248",
+      "title": "CFNetwork Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Networking/Conceptual/CFNetwork/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001132"
+    },
+    "devLink-1741237": {
+      "identifier": "devLink-1741237",
+      "title": "Getting Started with Networking, Internet, and Web",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/referencelibrary/GettingStarted/GS_NetworkingInternetWeb/_index.html#//apple_ref/doc/uid/TP40008807"
+    },
+    "doc://com.apple.documentation/documentation/cfnetwork/1518266-secure_sockets_socks_errors": {
+      "abstract": [
+        {
+          "text": "Error codes returned by the ",
+          "type": "text"
+        },
+        {
+          "code": "kCFStreamErrorDomainSOCKS",
+          "type": "codeVoice"
+        },
+        {
+          "text": " error domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/cfnetwork/1518266-secure_sockets_socks_errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Secure Sockets (SOCKS) Errors ",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/1518266-secure_sockets_socks_errors"
+    },
+    "doc://com.apple.documentation/documentation/cfnetwork/cfsocketstreamsocksgeterror(_:)": {
+      "abstract": [
+        {
+          "text": "This function gets error codes in the ",
+          "type": "text"
+        },
+        {
+          "code": "",
+          "type": "codeVoice"
+        },
+        {
+          "text": " domain from the ",
+          "type": "text"
+        },
+        {
+          "code": "",
+          "type": "codeVoice"
+        },
+        {
+          "text": " returned by a stream operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSocketStreamSOCKSGetError"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CFStreamError>) -> Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/cfnetwork/cfsocketstreamsocksgeterror(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSocketStreamSOCKSGetError(_:)",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/cfsocketstreamsocksgeterror(_:)"
+    },
+    "doc://com.apple.documentation/documentation/cfnetwork/cfsocketstreamsocksgeterrorsubdomain(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the error subdomain associated with errors in the ",
+          "type": "text"
+        },
+        {
+          "code": "",
+          "type": "codeVoice"
+        },
+        {
+          "text": " domain from the ",
+          "type": "text"
+        },
+        {
+          "code": "",
+          "type": "codeVoice"
+        },
+        {
+          "text": " returned by a stream operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSocketStreamSOCKSGetErrorSubdomain"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CFStreamError>) -> Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/cfnetwork/cfsocketstreamsocksgeterrorsubdomain(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSocketStreamSOCKSGetErrorSubdomain(_:)",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/cfsocketstreamsocksgeterrorsubdomain(_:)"
+    },
+    "doc://com.apple.documentation/documentation/cfnetwork/cfstreamcreatepairwithsockettocfhost(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates readable and writable streams connected to a given ",
+          "type": "text"
+        },
+        {
+          "code": "",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamCreatePairWithSocketToCFHost"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator?, CFHost, Int32, UnsafeMutablePointer<Unmanaged<CFReadStream>?>?, UnsafeMutablePointer<Unmanaged<CFWriteStream>?>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/cfnetwork/cfstreamcreatepairwithsockettocfhost(_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamCreatePairWithSocketToCFHost(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/cfstreamcreatepairwithsockettocfhost(_:_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/cfnetwork/cfstreamcreatepairwithsockettonetservice(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a pair of streams for a CFNetService.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamCreatePairWithSocketToNetService"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator?, CFNetService, UnsafeMutablePointer<Unmanaged<CFReadStream>?>?, UnsafeMutablePointer<Unmanaged<CFWriteStream>?>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/cfnetwork/cfstreamcreatepairwithsockettonetservice(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamCreatePairWithSocketToNetService(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/cfstreamcreatepairwithsockettonetservice(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539606-cfwritestreamgeterror": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539606-cfwritestreamgeterror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFWriteStreamGetError(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539606-cfwritestreamgeterror"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539611-cfreadstreamschedulewithrunloop": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539611-cfreadstreamschedulewithrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFReadStreamScheduleWithRunLoop(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539611-cfreadstreamschedulewithrunloop"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539621-cfwritestreamschedulewithrunloop": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539621-cfwritestreamschedulewithrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFWriteStreamScheduleWithRunLoop(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539621-cfwritestreamschedulewithrunloop"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539636-cfreadstreamgeterror": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539636-cfreadstreamgeterror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFReadStreamGetError(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539636-cfreadstreamgeterror"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539642-cfstreamcreatepairwithsocket": {
+      "abstract": [
+        {
+          "text": "Creates readable and writable streams connected to a socket.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamCreatePairWithSocket"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFSocketNativeHandle, UnsafeMutablePointer<Unmanaged<CFReadStream>?>!, UnsafeMutablePointer<Unmanaged<CFWriteStream>?>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539642-cfstreamcreatepairwithsocket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamCreatePairWithSocket(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539642-cfstreamcreatepairwithsocket"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539670-cfreadstreamsetclient": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539670-cfreadstreamsetclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFReadStreamSetClient(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539670-cfreadstreamsetclient"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539678-cfwritestreamsetclient": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539678-cfwritestreamsetclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFWriteStreamSetClient(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539678-cfwritestreamsetclient"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539702-cfstreamcreatepairwithpeersocket": {
+      "abstract": [
+        {
+          "text": "Creates readable and writable streams connected to a socket.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamCreatePairWithPeerSocketSignature"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, UnsafePointer<CFSocketSignature>!, UnsafeMutablePointer<Unmanaged<CFReadStream>?>!, UnsafeMutablePointer<Unmanaged<CFWriteStream>?>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539702-cfstreamcreatepairwithpeersocket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamCreatePairWithPeerSocketSignature(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539702-cfstreamcreatepairwithpeersocket"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539710-cfstreamcreateboundpair": {
+      "abstract": [
+        {
+          "text": "Creates a bound pair of read and write streams.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamCreateBoundPair"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, UnsafeMutablePointer<Unmanaged<CFReadStream>?>!, UnsafeMutablePointer<Unmanaged<CFWriteStream>?>!, CFIndex)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539710-cfstreamcreateboundpair",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamCreateBoundPair(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539710-cfstreamcreateboundpair"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539739-cfstreamcreatepairwithsockettoho": {
+      "abstract": [
+        {
+          "text": "Creates readable and writable streams connected to a TCP/IP port of a particular host.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamCreatePairWithSocketToHost"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFString!, UInt32, UnsafeMutablePointer<Unmanaged<CFReadStream>?>!, UnsafeMutablePointer<Unmanaged<CFWriteStream>?>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539739-cfstreamcreatepairwithsockettoho",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamCreatePairWithSocketToHost(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539739-cfstreamcreatepairwithsockettoho"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539743-cfreadstreamopen": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539743-cfreadstreamopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFReadStreamOpen(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539743-cfreadstreamopen"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539753-cfwritestreamopen": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539753-cfwritestreamopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFWriteStreamOpen(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539753-cfwritestreamopen"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfreadstream": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFReadStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfreadstream"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_error_domain_constants_cfhost": {
+      "abstract": [
+        {
+          "text": "Defines constants for values returned in the domain field of the ",
+          "type": "text"
+        },
+        {
+          "code": "CFStreamError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structure. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_error_domain_constants_cfhost",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFStream Error Domain Constants (CFHost)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstream/cfstream_error_domain_constants_cfhost"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_property_ssl_settings_constants": {
+      "abstract": [
+        {
+          "text": "Constants for use in a ",
+          "type": "text"
+        },
+        {
+          "code": "CFDictionary",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that is the value of the ",
+          "type": "text"
+        },
+        {
+          "code": "kCFStreamPropertySSLSettings",
+          "type": "codeVoice"
+        },
+        {
+          "text": " stream property key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_property_ssl_settings_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFStream Property SSL Settings Constants",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstream/cfstream_property_ssl_settings_constants"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_socket_security_level_constants": {
+      "abstract": [
+        {
+          "text": "Constants for setting the security level of a socket stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_socket_security_level_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFStream Socket Security Level Constants",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstream/cfstream_socket_security_level_constants"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_socks_proxy_key_constants": {
+      "abstract": [
+        {
+          "text": "Constants for SOCKS Proxy ",
+          "type": "text"
+        },
+        {
+          "code": "CFDictionary",
+          "type": "codeVoice"
+        },
+        {
+          "text": " keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_socks_proxy_key_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFStream SOCKS Proxy Key Constants",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstream/cfstream_socks_proxy_key_constants"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstream/stream_properties": {
+      "abstract": [
+        {
+          "text": "Stream property names that can be set or copied.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstream/stream_properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Stream Properties",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstream/stream_properties"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstream/stream_service_types": {
+      "abstract": [
+        {
+          "text": "String constants that specify the service type of a stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstream/stream_service_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Stream Service Types",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstream/stream_service_types"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstreamclientcontext": {
+      "abstract": [
+        {
+          "text": "A structure that contains program-defined data and callbacks with which you can configure a stream’s client behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamClientContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstreamclientcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamClientContext",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstreamclientcontext"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstreamerror": {
+      "abstract": [
+        {
+          "text": "The structure returned by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539636-cfreadstreamgeterror",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539606-cfwritestreamgeterror",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstreamerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamError",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstreamerror"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstreamerrordomain": {
+      "abstract": [
+        {
+          "text": "Defines constants for values returned in the domain field of the ",
+          "type": "text"
+        },
+        {
+          "code": "CFStreamError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structure. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamErrorDomain"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstreamerrordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamErrorDomain",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstreamerrordomain"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstreameventtype": {
+      "abstract": [
+        {
+          "text": "Defines constants for stream-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamEventType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstreameventtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamEventType",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstreameventtype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstreameventtype/1539600-hasbytesavailable": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstreameventtype/1539600-hasbytesavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasBytesAvailable",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstreameventtype/1539600-hasbytesavailable"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstreameventtype/1539627-canacceptbytes": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstreameventtype/1539627-canacceptbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canAcceptBytes",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstreameventtype/1539627-canacceptbytes"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstreamstatus": {
+      "abstract": [
+        {
+          "text": "Constants that describe the status of a stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFStreamStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstreamstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStreamStatus",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstreamstatus"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfwritestream": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfwritestream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFWriteStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfwritestream"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1741237",
+        "devLink-1720248"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1666570",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1539702-cfstreamcreatepairwithpeersocket",
+        "doc://com.apple.documentation/documentation/corefoundation/1539739-cfstreamcreatepairwithsockettoho",
+        "doc://com.apple.documentation/documentation/corefoundation/1539642-cfstreamcreatepairwithsocket",
+        "doc://com.apple.documentation/documentation/corefoundation/1539710-cfstreamcreateboundpair",
+        "doc://com.apple.documentation/documentation/cfnetwork/cfstreamcreatepairwithsockettocfhost(_:_:_:_:_:)",
+        "doc://com.apple.documentation/documentation/cfnetwork/cfstreamcreatepairwithsockettonetservice(_:_:_:_:)"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Streams"
+    },
+    {
+      "anchor": "1666646",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/cfnetwork/cfsocketstreamsocksgeterror(_:)",
+        "doc://com.apple.documentation/documentation/cfnetwork/cfsocketstreamsocksgeterrorsubdomain(_:)"
+      ],
+      "kind": "taskGroup",
+      "title": "Obtaining Errors"
+    },
+    {
+      "anchor": "1666717",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfstreamerror",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstreamclientcontext"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "1666810",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfstreamstatus",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstreamerrordomain",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_error_domain_constants_cfhost",
+        "doc://com.apple.documentation/documentation/cfnetwork/1518266-secure_sockets_socks_errors",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstreameventtype",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstream/stream_properties",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_property_ssl_settings_constants",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_socket_security_level_constants",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstream/cfstream_socks_proxy_key_constants",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstream/stream_service_types"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/cfstream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/cfstream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

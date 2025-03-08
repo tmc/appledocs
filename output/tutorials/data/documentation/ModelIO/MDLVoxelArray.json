@@ -1,0 +1,3374 @@
+{
+  "abstract": [
+    {
+      "text": "A model of a 3D object’s solid volume as a collection of ",
+      "type": "text"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "voxels",
+          "type": "text"
+        }
+      ],
+      "type": "emphasis"
+    },
+    {
+      "text": ", or cubic units.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.modelio/documentation/ModelIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MDLVoxelArray",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MDLVoxelArray"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Model I/O"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MDLVoxelArray"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MDLVoxelArray"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelArray"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike a mesh, which models only surface topology, a voxel array models the solid volume of a 3D object. Voxels are useful for modeling volumetric phenomena (such as clouds and fire), performing solid geometry operations (such as intersection and union), and preparing a 3D design for real-world physical production.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO": {
+      "abstract": [
+        {
+          "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Model I/O",
+      "type": "topic",
+      "url": "/documentation/modelio"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLNamed": {
+      "abstract": [
+        {
+          "text": "The common interface for Model I/O objects that expose a human-readable name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLNamed"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLNamed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLNamed"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLNamed",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlnamed"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObject": {
+      "abstract": [
+        {
+          "text": "The base class for objects that are part of a 3D asset, including meshes, cameras, and lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLObject"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLObject",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobject"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray": {
+      "abstract": [
+        {
+          "text": "A model of a 3D object’s solid volume as a collection of ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "voxels",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ", or cubic units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVoxelArray"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVoxelArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVoxelArray",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/boundingBox": {
+      "abstract": [
+        {
+          "text": "The extent of the voxel array’s volume in world coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingBox"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MDLAxisAlignedBoundingBox",
+          "text": "MDLAxisAlignedBoundingBox"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/boundingBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boundingBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "boundingBox",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/boundingbox"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/coarseMesh()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coarseMesh"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLMesh",
+          "text": "MDLMesh"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/coarseMesh()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coarseMesh"
+        }
+      ],
+      "role": "symbol",
+      "title": "coarseMesh()",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/coarsemesh()"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/coarseMesh(using:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coarseMesh"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLMeshBufferAllocator",
+          "text": "MDLMeshBufferAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLMesh",
+          "text": "MDLMesh"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/coarseMesh(using:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coarseMeshUsingAllocator:"
+        }
+      ],
+      "role": "symbol",
+      "title": "coarseMesh(using:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/coarsemesh(using:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/convertToSignedShellField()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertToSignedShellField"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/convertToSignedShellField()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertToSignedShellField"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertToSignedShellField()",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/converttosignedshellfield()"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/count": {
+      "abstract": [
+        {
+          "text": "The number of voxels in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/count",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "count"
+        }
+      ],
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/count"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/difference(with:)": {
+      "abstract": [
+        {
+          "text": "Reduces the voxel array to cover only the portion of its volume not covered by another voxel array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "difference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLVoxelArray",
+          "text": "MDLVoxelArray"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/difference(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "differenceWithVoxels:"
+        }
+      ],
+      "role": "symbol",
+      "title": "difference(with:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/difference(with:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/index(ofSpatialLocation:)": {
+      "abstract": [
+        {
+          "text": "Returns voxel information corresponding to the specified point in the world coordinate space of the asset from which the voxel array was created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofSpatialLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vector_float3",
+          "text": "vector_float3"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MDLVoxelIndex",
+          "text": "MDLVoxelIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/index(ofSpatialLocation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexOfSpatialLocation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "index(ofSpatialLocation:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/index(ofspatiallocation:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)": {
+      "abstract": [
+        {
+          "text": "Initializes a voxel array that models the volume of 3D objects in the specified asset, creating voxel shells for the specified distances from the object’s surface.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "asset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLAsset",
+          "text": "MDLAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "divisions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interiorNBWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "exteriorNBWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "patchRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAsset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(asset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/init(asset:divisions:interiornbwidth:exteriornbwidth:patchradius:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:interiorShells:exteriorShells:patchRadius:)": {
+      "abstract": [
+        {
+          "text": "Initializes a voxel array that models the volume of 3D objects in the specified asset and creates the specified number of voxel shells.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "asset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLAsset",
+          "text": "MDLAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "divisions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interiorShells"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "exteriorShells"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "patchRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:interiorShells:exteriorShells:patchRadius:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAsset:divisions:interiorShells:exteriorShells:patchRadius:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(asset:divisions:interiorShells:exteriorShells:patchRadius:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/init(asset:divisions:interiorshells:exteriorshells:patchradius:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:patchRadius:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "asset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLAsset",
+          "text": "MDLAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "divisions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "patchRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:patchRadius:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAsset:divisions:patchRadius:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(asset:divisions:patchRadius:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/init(asset:divisions:patchradius:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(data:boundingBox:voxelExtent:)": {
+      "abstract": [
+        {
+          "text": "Initializes a voxel array with the specified voxel data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundingBox"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MDLAxisAlignedBoundingBox",
+          "text": "MDLAxisAlignedBoundingBox"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "voxelExtent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(data:boundingBox:voxelExtent:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithData:boundingBox:voxelExtent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(data:boundingBox:voxelExtent:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/init(data:boundingbox:voxelextent:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/intersect(with:)": {
+      "abstract": [
+        {
+          "text": "Reduces the voxel array to cover only the volume within both it and another voxel array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLVoxelArray",
+          "text": "MDLVoxelArray"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/intersect(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "intersectWithVoxels:"
+        }
+      ],
+      "role": "symbol",
+      "title": "intersect(with:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/intersect(with:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/isValidSignedShellField": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValidSignedShellField"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/isValidSignedShellField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isValidSignedShellField"
+        }
+      ],
+      "role": "symbol",
+      "title": "isValidSignedShellField",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/isvalidsignedshellfield"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/mesh(using:)": {
+      "abstract": [
+        {
+          "text": "Generates a closed polygon mesh around the volume of space the voxel array describes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mesh"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLMeshBufferAllocator",
+          "text": "MDLMeshBufferAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLMesh",
+          "text": "MDLMesh"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/mesh(using:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "meshUsingAllocator:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mesh(using:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/mesh(using:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelAtIndex(_:)": {
+      "abstract": [
+        {
+          "text": "Sets voxel characteristics at the specified index in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVoxelAtIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MDLVoxelIndex",
+          "text": "MDLVoxelIndex"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelAtIndex(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVoxelAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVoxelAtIndex(_:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/setvoxelatindex(_:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)": {
+      "abstract": [
+        {
+          "text": "Sets voxel values in the array to model the volume of the specified mesh and creates voxel shells for the specified distances from the object’s surface.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVoxelsFor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLMesh",
+          "text": "MDLMesh"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "divisions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interiorNBWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "exteriorNBWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "patchRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVoxelsForMesh:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVoxelsFor(_:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/setvoxelsfor(_:divisions:interiornbwidth:exteriornbwidth:patchradius:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:interiorShells:exteriorShells:patchRadius:)": {
+      "abstract": [
+        {
+          "text": "Sets voxel values in the array to model the volume of the specified mesh and creates the specified number of voxel shells.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVoxelsFor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLMesh",
+          "text": "MDLMesh"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "divisions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interiorShells"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "exteriorShells"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "patchRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:interiorShells:exteriorShells:patchRadius:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVoxelsForMesh:divisions:interiorShells:exteriorShells:patchRadius:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVoxelsFor(_:divisions:interiorShells:exteriorShells:patchRadius:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/setvoxelsfor(_:divisions:interiorshells:exteriorshells:patchradius:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:patchRadius:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVoxelsFor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLMesh",
+          "text": "MDLMesh"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "divisions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "patchRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:patchRadius:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVoxelsForMesh:divisions:patchRadius:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVoxelsFor(_:divisions:patchRadius:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/setvoxelsfor(_:divisions:patchradius:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/shellFieldExteriorThickness": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shellFieldExteriorThickness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/shellFieldExteriorThickness",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shellFieldExteriorThickness"
+        }
+      ],
+      "role": "symbol",
+      "title": "shellFieldExteriorThickness",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/shellfieldexteriorthickness"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/shellFieldInteriorThickness": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shellFieldInteriorThickness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/shellFieldInteriorThickness",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shellFieldInteriorThickness"
+        }
+      ],
+      "role": "symbol",
+      "title": "shellFieldInteriorThickness",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/shellfieldinteriorthickness"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/spatialLocation(ofIndex:)": {
+      "abstract": [
+        {
+          "text": "Returns the location of the specified voxel in world coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spatialLocation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MDLVoxelIndex",
+          "text": "MDLVoxelIndex"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vector_float3",
+          "text": "vector_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/spatialLocation(ofIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "spatialLocationOfIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "spatialLocation(ofIndex:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/spatiallocation(ofindex:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/union(with:)": {
+      "abstract": [
+        {
+          "text": "Extends the voxel array to also cover the volume of the specified voxel array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "union"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLVoxelArray",
+          "text": "MDLVoxelArray"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/union(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unionWithVoxels:"
+        }
+      ],
+      "role": "symbol",
+      "title": "union(with:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/union(with:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelBoundingBox(atIndex:)": {
+      "abstract": [
+        {
+          "text": "Returns the extent of the specified voxel’s volume in the world coordinate space of the asset from which the voxel array was created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "voxelBoundingBox"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MDLVoxelIndex",
+          "text": "MDLVoxelIndex"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MDLAxisAlignedBoundingBox",
+          "text": "MDLAxisAlignedBoundingBox"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelBoundingBox(atIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voxelBoundingBoxAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "voxelBoundingBox(atIndex:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/voxelboundingbox(atindex:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelExists(atIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the voxel array contains voxel data for the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "voxelExists"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MDLVoxelIndex",
+          "text": "MDLVoxelIndex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowAnyX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowAnyY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowAnyZ"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowAnyShell"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelExists(atIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voxelExistsAtIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:"
+        }
+      ],
+      "role": "symbol",
+      "title": "voxelExists(atIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/voxelexists(atindex:allowanyx:allowanyy:allowanyz:allowanyshell:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelIndexExtent": {
+      "abstract": [
+        {
+          "text": "The indexes that define the corners of the three-dimensional voxel grid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "voxelIndexExtent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MDLVoxelIndexExtent",
+          "text": "MDLVoxelIndexExtent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelIndexExtent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voxelIndexExtent"
+        }
+      ],
+      "role": "symbol",
+      "title": "voxelIndexExtent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/voxelindexextent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelIndices()": {
+      "abstract": [
+        {
+          "text": "Returns a data object containing all voxels within the voxel array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "voxelIndices"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelIndices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voxelIndices"
+        }
+      ],
+      "role": "symbol",
+      "title": "voxelIndices()",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/voxelindices()"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxels(within:)": {
+      "abstract": [
+        {
+          "text": "Returns a data object containing all voxels within the specified volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "voxels"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "within"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MDLVoxelIndexExtent",
+          "text": "MDLVoxelIndexExtent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxels(within:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voxelsWithinExtent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "voxels(within:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray/voxels(within:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelIndex": {
+      "abstract": [
+        {
+          "text": "A 4-component vector encoding the location of a voxel in a voxel array and describing its relation to an object’s volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVoxelIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVoxelIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVoxelIndex",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelindex"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelIndexExtent": {
+      "abstract": [
+        {
+          "text": "The corner voxel indices defining a solid rectangular volume of voxels. Used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelIndexExtent",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxels(within:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVoxelIndexExtent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelIndexExtent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVoxelIndexExtent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVoxelIndexExtent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelindexextent"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLNamed",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Voxel-Array",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:interiorShells:exteriorShells:patchRadius:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(data:boundingBox:voxelExtent:)"
+      ],
+      "title": "Creating a Voxel Array"
+    },
+    {
+      "anchor": "Examining-Voxels",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/count",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelIndexExtent",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelExists(atIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxels(within:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelIndices()"
+      ],
+      "title": "Examining Voxels"
+    },
+    {
+      "anchor": "Modifying-Voxels",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelAtIndex(_:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:interiorShells:exteriorShells:patchRadius:)"
+      ],
+      "title": "Modifying Voxels"
+    },
+    {
+      "anchor": "Performing-Constructive-Solid-Geometry-Operations",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/union(with:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/intersect(with:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/difference(with:)"
+      ],
+      "title": "Performing Constructive Solid Geometry Operations"
+    },
+    {
+      "anchor": "Relating-Voxels-to-Scene-Space",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/boundingBox",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/index(ofSpatialLocation:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/spatialLocation(ofIndex:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelBoundingBox(atIndex:)"
+      ],
+      "title": "Relating Voxels to Scene Space"
+    },
+    {
+      "anchor": "Creating-a-Mesh-from-Voxels",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/mesh(using:)"
+      ],
+      "title": "Creating a Mesh from Voxels"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelIndex",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelIndexExtent"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:patchRadius:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/isValidSignedShellField",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/shellFieldExteriorThickness",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/shellFieldInteriorThickness"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/coarseMesh()",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/coarseMesh(using:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/convertToSignedShellField()",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:patchRadius:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MDLVoxelArray"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.modelio/documentation/ModelIO"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Voxel-Array",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:interiorShells:exteriorShells:patchRadius:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(data:boundingBox:voxelExtent:)"
+              ],
+              "title": "Creating a Voxel Array"
+            },
+            {
+              "anchor": "Examining-Voxels",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/count",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelIndexExtent",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelExists(atIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxels(within:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelIndices()"
+              ],
+              "title": "Examining Voxels"
+            },
+            {
+              "anchor": "Modifying-Voxels",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelAtIndex(_:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:interiorShells:exteriorShells:patchRadius:)"
+              ],
+              "title": "Modifying Voxels"
+            },
+            {
+              "anchor": "Performing-Constructive-Solid-Geometry-Operations",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/union(with:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/intersect(with:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/difference(with:)"
+              ],
+              "title": "Performing Constructive Solid Geometry Operations"
+            },
+            {
+              "anchor": "Relating-Voxels-to-Scene-Space",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/boundingBox",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/index(ofSpatialLocation:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/spatialLocation(ofIndex:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/voxelBoundingBox(atIndex:)"
+              ],
+              "title": "Relating Voxels to Scene Space"
+            },
+            {
+              "anchor": "Creating-a-Mesh-from-Voxels",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/mesh(using:)"
+              ],
+              "title": "Creating a Mesh from Voxels"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelIndex",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelIndexExtent"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/isValidSignedShellField",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/shellFieldExteriorThickness",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/shellFieldInteriorThickness"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/coarseMesh()",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/coarseMesh(using:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/convertToSignedShellField()",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/init(asset:divisions:patchRadius:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray/setVoxelsFor(_:divisions:patchRadius:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MDLVoxelArray"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)MDLObject",
+                    "text": "MDLObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1intersect(with:)/title",
+          "value": "intersectWithVoxels:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1intersect(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "intersectWithVoxels:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1setVoxelsFor(_:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)/title",
+          "value": "setVoxelsForMesh:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1setVoxelsFor(_:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVoxelsForMesh:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1setVoxelsFor(_:divisions:interiorShells:exteriorShells:patchRadius:)/title",
+          "value": "setVoxelsForMesh:divisions:interiorShells:exteriorShells:patchRadius:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1setVoxelsFor(_:divisions:interiorShells:exteriorShells:patchRadius:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVoxelsForMesh:divisions:interiorShells:exteriorShells:patchRadius:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1union(with:)/title",
+          "value": "unionWithVoxels:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1union(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unionWithVoxels:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1boundingBox/title",
+          "value": "boundingBox"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1boundingBox/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "boundingBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1spatialLocation(ofIndex:)/title",
+          "value": "spatialLocationOfIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1spatialLocation(ofIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "spatialLocationOfIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1index(ofSpatialLocation:)/title",
+          "value": "indexOfSpatialLocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1index(ofSpatialLocation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "indexOfSpatialLocation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1voxels(within:)/title",
+          "value": "voxelsWithinExtent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1voxels(within:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "voxelsWithinExtent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/title",
+          "value": "MDLNamed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNamed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNamed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/title",
+          "value": "MDLObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1init(data:boundingBox:voxelExtent:)/title",
+          "value": "initWithData:boundingBox:voxelExtent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1init(data:boundingBox:voxelExtent:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithData:boundingBox:voxelExtent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1coarseMesh()/title",
+          "value": "coarseMesh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1coarseMesh()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "coarseMesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray/title",
+          "value": "MDLVoxelArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1isValidSignedShellField/title",
+          "value": "isValidSignedShellField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1isValidSignedShellField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isValidSignedShellField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1setVoxelAtIndex(_:)/title",
+          "value": "setVoxelAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1setVoxelAtIndex(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVoxelAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1voxelIndexExtent/title",
+          "value": "voxelIndexExtent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1voxelIndexExtent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "voxelIndexExtent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1convertToSignedShellField()/title",
+          "value": "convertToSignedShellField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1convertToSignedShellField()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertToSignedShellField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1voxelExists(atIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:)/title",
+          "value": "voxelExistsAtIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1voxelExists(atIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "voxelExistsAtIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelIndex/title",
+          "value": "MDLVoxelIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelIndex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1voxelBoundingBox(atIndex:)/title",
+          "value": "voxelBoundingBoxAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1voxelBoundingBox(atIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "voxelBoundingBoxAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1voxelIndices()/title",
+          "value": "voxelIndices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1voxelIndices()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "voxelIndices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1mesh(using:)/title",
+          "value": "meshUsingAllocator:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1mesh(using:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "meshUsingAllocator:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1shellFieldExteriorThickness/title",
+          "value": "shellFieldExteriorThickness"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1shellFieldExteriorThickness/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shellFieldExteriorThickness"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1count/title",
+          "value": "count"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1count/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "count"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1init(asset:divisions:interiorShells:exteriorShells:patchRadius:)/title",
+          "value": "initWithAsset:divisions:interiorShells:exteriorShells:patchRadius:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1init(asset:divisions:interiorShells:exteriorShells:patchRadius:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAsset:divisions:interiorShells:exteriorShells:patchRadius:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1difference(with:)/title",
+          "value": "differenceWithVoxels:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1difference(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "differenceWithVoxels:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1coarseMesh(using:)/title",
+          "value": "coarseMeshUsingAllocator:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1coarseMesh(using:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "coarseMeshUsingAllocator:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelIndexExtent/title",
+          "value": "MDLVoxelIndexExtent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelIndexExtent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelIndexExtent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelIndexExtent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelIndexExtent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1init(asset:divisions:patchRadius:)/title",
+          "value": "initWithAsset:divisions:patchRadius:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1init(asset:divisions:patchRadius:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAsset:divisions:patchRadius:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1shellFieldInteriorThickness/title",
+          "value": "shellFieldInteriorThickness"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1shellFieldInteriorThickness/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shellFieldInteriorThickness"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1init(asset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)/title",
+          "value": "initWithAsset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1init(asset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAsset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1setVoxelsFor(_:divisions:patchRadius:)/title",
+          "value": "setVoxelsForMesh:divisions:patchRadius:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray~1setVoxelsFor(_:divisions:patchRadius:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVoxelsForMesh:divisions:patchRadius:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/modelio/mdlvoxelarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/modelio/mdlvoxelarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

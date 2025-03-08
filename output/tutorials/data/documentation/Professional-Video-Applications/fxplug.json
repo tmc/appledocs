@@ -1,0 +1,2007 @@
+{
+  "abstract": [
+    {
+      "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "FxPlug",
+      "versions": [
+        "4.0",
+        "4.2.9"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "FxPlug"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the effect or look you want to achieve can’t be created with the filters or generators provided with Final Cut Pro or Motion, use the FxPlug software development kit (SDK) to write your own custom visual effects. FxPlug is a compact, powerful image-processing plug-in architecture that lets you create unique, hardware-accelerated or CPU-based effects plug-ins with customized UI and onscreen controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug consists primarily of Objective-C protocol definitions. You create a plug-in by writing code in Objective-C, Objective-C++, or Swift that conforms to these protocols, implementing the methods declared by the protocols. The host application provides the capabilities in all the protocols that have the API suffix. Your plug-in is responsible for implementing the other protocols.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3385875",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug 4 introduces fully “out-of-process” FxPlug plug-ins, which have no component that runs inside of the host application process. Out-of-process plug-ins provide improved security for end users and allow plug-in developers the freedom to choose from a variety of rendering technologies, such as OpenGL, Core Graphics, Core Image, or Metal to develop unique plug-ins that include on-screen controls and custom user interface elements—all running seamlessly in the host application. Plug-in developers can choose to implement in either Swift or Objective-C.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "OpenGL and OpenCL are deprecated in macOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, the new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API lets third-party plug-ins render only portions of the output (known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tiles",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") for more efficiency, in the same manner as Apple’s own plug-ins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This documentation highlights new and updated concepts and APIs in FxPlug 4. You can find documentation for legacy plug-ins created with FxPlug 3 in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/FXPlug_overview/FXPlugSDKOverview/FXPlugSDKOverview.html#//apple_ref/doc/uid/TP40002180",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "FxPlug 3 isn’t supported in Final Cut Pro or Motion.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins": {
+      "abstract": [
+        {
+          "text": "Simplify user interaction by using onscreen controls for your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding onscreen controls to plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adding-onscreen-controls-to-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins": {
+      "abstract": [
+        {
+          "text": "Create standard and custom user-facing parameters for your plug-in that will appear in the inspector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding parameters to plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adding-parameters-to-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media": {
+      "abstract": [
+        {
+          "text": "Use the FxPlug analysis API to analyze frames of source media before rendering them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing media",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/analyzing-media"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template": {
+      "abstract": [
+        {
+          "text": "Create a plug-in in Xcode with the FxPlug template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in from an Xcode template",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-from-an-xcode-template"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually": {
+      "abstract": [
+        {
+          "text": "Create your own plug-in in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in manually",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-manually"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state": {
+      "abstract": [
+        {
+          "text": "Prepare the necessary information, such as parameter values, for your FxPlug plug-in to render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Communicating with the plug-in state",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/communicating-with-the-plug-in-state"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/create-an-effect-template-for-use-in-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Use Motion to create custom filters, generators, and transitions for Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/create-an-effect-template-for-use-in-final-cut-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Create an effect template for use in Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/create-an-effect-template-for-use-in-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Modify the way hosts recognize and display your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing property lists for FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/editing-property-lists-for-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug-macros": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug macros",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug-macros"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/managing-color-space-and-gamut-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Control the appearance of your rendering by using the color gamut API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/managing-color-space-and-gamut-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing color space and gamut in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/managing-color-space-and-gamut-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4": {
+      "abstract": [
+        {
+          "text": "Update existing FxPlug 3 plug-ins to out-of-process FxPlug 4 plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating FxPlug 3 plug-ins to FxPlug 4",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/migrating-fxplug-3-plug-ins-to-fxplug-4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/notarizing-your-fxplug-plug-in": {
+      "abstract": [
+        {
+          "text": "Give users confidence in your FxPlug plug-in by enabling notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/notarizing-your-fxplug-plug-in",
+      "kind": "article",
+      "role": "article",
+      "title": "Notarizing your FxPlug plug-in",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/notarizing-your-fxplug-plug-in"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Maintain consistent rendering at all resolutions and aspect ratios by using pixel transforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/optimizing-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Add a plug-in to a Motion effect template to use in Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing plug-ins for use in Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/preparing-plug-ins-for-use-in-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug": {
+      "abstract": [
+        {
+          "text": "Use Metal or other frameworks to render images with your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering in FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/rendering-in-fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Use the scheduling APIs in FxPlug to retrieve frames from different times.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Scheduling media in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/scheduling-media-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development": {
+      "abstract": [
+        {
+          "text": "Download and install the required software to develop FxPlug plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up for FxPlug development",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/setting-up-for-fxplug-development"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/testing-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Test and debug FxPlug plug-ins using a variety of methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/testing-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/testing-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Learn about reentrancy for plug-ins and best practices to make them thread safe.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Thread safety in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/thread-safety-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug": {
+      "abstract": [
+        {
+          "text": "Learn about time handling in host apps and plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding time in FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/understanding-time-in-fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis": {
+      "abstract": [
+        {
+          "text": "Use various FxPlug APIs to communicate with host apps like Motion or Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Using FxPlug APIs",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/using-fxplug-apis"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Register and render FxPlug plug-ins with Motion and Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Using out-of-process FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/using-out-of-process-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins": {
+      "abstract": [
+        {
+          "text": "Version plug-ins to add new capabilities, or obsolete them to remove them from the Motion Library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Versioning and obsoleting old plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/versioning-and-obsoleting-old-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images": {
+      "abstract": [
+        {
+          "text": "Render only the necessary tiles of an image in your FxPlug plug-in to improve efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with tiled images",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/working-with-tiled-images"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/Fx3DAPI_v5": {
+      "abstract": [
+        {
+          "text": "An API that defines the methods the host application provides to get information about the 3D environment, including camera and object transforms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Fx3DAPI_v5"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/Fx3DAPI_v5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fx3DAPI_v5"
+        }
+      ],
+      "role": "symbol",
+      "title": "Fx3DAPI_v5",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fx3dapi_v5"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI": {
+      "abstract": [
+        {
+          "text": "A protocol that host applications implement to provide information to plug-ins that support the FxAnalyzer protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalysisAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalysisapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2": {
+      "abstract": [
+        {
+          "text": "A protocol that host applications implement to provide information to plug-ins that support the FxAnalyzer protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalysisAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalysisAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalysisapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer": {
+      "abstract": [
+        {
+          "text": "A protocol you implement in your plug-in to analyze frames that the plug-in is applied to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxAnalyzer",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxanalyzer"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2": {
+      "abstract": [
+        {
+          "text": "A protocol that handles plug-in queries to the host for the project’s color gamut.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxColorGamutAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxColorGamutAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxColorGamutAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcolorgamutapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI": {
+      "abstract": [
+        {
+          "text": "Commands that you can tell the host to perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCommandAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcommandapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2": {
+      "abstract": [
+        {
+          "text": "Adds functionality to move the playhead to a specific timeline time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCommandAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcommandapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3": {
+      "abstract": [
+        {
+          "text": "A collection of methods for manipulating the keyframes of your FxPlug 4 plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxKeyframeAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxKeyframeAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxKeyframeAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxkeyframeapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxLightingAPI_v3": {
+      "abstract": [
+        {
+          "text": "An API you use to get information about lights in a scene in a Motion project.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxLightingAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxLightingAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxLightingAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxLightingAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxlightingapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxMatrix44": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "FxMatrix",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class encapsulates a 4x4 matrix object and provides matrix inversion and transforming of 2D and 3D points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxMatrix44"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxMatrix44",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxMatrix44"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxMatrix44",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxmatrix44"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3": {
+      "abstract": [
+        {
+          "text": "An API that defines the methods to retrieve information about paths, shapes, and masks the user has drawn on an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPathAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPathAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPathAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxProjectAPI": {
+      "abstract": [
+        {
+          "text": "Methods you use to get information about the project in which your plug-in instance is running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxProjectAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxProjectAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxProjectAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxProjectAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxprojectapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxProjectAPI_v2": {
+      "abstract": [
+        {
+          "text": "The method you use to get aspect ratio information about the project in which your plug-in instance is running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxProjectAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxProjectAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxProjectAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxProjectAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxprojectapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI": {
+      "abstract": [
+        {
+          "text": "A protocol that allows the plug-in to request that the host create a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxRemoteWindowAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxremotewindowapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2": {
+      "abstract": [
+        {
+          "text": "A protocol that allows the plug-in to request that the host create a window with a defined minimum and maximum size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxRemoteWindowAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxremotewindowapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect": {
+      "abstract": [
+        {
+          "text": "The designated initializer for your plug-in for rendering only certain portions of the plug-in’s output, referred to as tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTileableEffect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods provided by the host, so that a plug-in can query the timing properties of its input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTimingAPI_v4"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTimingAPI_v4"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTimingAPI_v4",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtimingapi_v4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI": {
+      "abstract": [
+        {
+          "text": "An API that defines the methods that the host app implements to handle plug-in management of the host app’s undo queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxUndoAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxUndoAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxUndoAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxundoapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI": {
+      "abstract": [
+        {
+          "text": "A collection of methods that a host application implements to identify the plug-in version used by a project when it was first created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxVersioningAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxVersioningAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxVersioningAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxversioningapi"
+    },
+    "https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/FXPlug_overview/FXPlugSDKOverview/FXPlugSDKOverview.html#//apple_ref/doc/uid/TP40002180": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/FXPlug_overview/FXPlugSDKOverview/FXPlugSDKOverview.html#//apple_ref/doc/uid/TP40002180",
+      "title": "archived FxPlug 3.1.1 documentation",
+      "titleInlineContent": [
+        {
+          "text": "archived FxPlug 3.1.1 documentation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/FXPlug_overview/FXPlugSDKOverview/FXPlugSDKOverview.html#//apple_ref/doc/uid/TP40002180"
+    },
+    "media-3385875": {
+      "alt": "A screenshot of a frame in a Motion file depicting a filter called “Light Rays” applied to an image of a tower in an Italian town.",
+      "identifier": "media-3385875",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b830042c04b8993aff76b4901b116b93/media-3385875@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/298a6ecedb31175b84b00280db059028/media-3385875~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Effects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/create-an-effect-template-for-use-in-final-cut-pro"
+      ],
+      "title": "Effects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Plug-in-fundamentals",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+      ],
+      "title": "Plug-in fundamentals"
+    },
+    {
+      "anchor": "Rendering",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect"
+      ],
+      "title": "Rendering"
+    },
+    {
+      "anchor": "User-interface",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2"
+      ],
+      "title": "User interface"
+    },
+    {
+      "anchor": "3D-and-lighting",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/Fx3DAPI_v5",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxLightingAPI_v3",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxMatrix44"
+      ],
+      "title": "3D and lighting"
+    },
+    {
+      "anchor": "Color",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/managing-color-space-and-gamut-in-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2"
+      ],
+      "title": "Color"
+    },
+    {
+      "anchor": "Time-and-analysis",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer"
+      ],
+      "title": "Time and analysis"
+    },
+    {
+      "anchor": "Accessing-host-data",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxProjectAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxProjectAPI_v2"
+      ],
+      "title": "Accessing host data"
+    },
+    {
+      "anchor": "Testing-and-deployment",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/testing-fxplug-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/notarizing-your-fxplug-plug-in"
+      ],
+      "title": "Testing and deployment"
+    },
+    {
+      "anchor": "Legacy-plug-ins",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI"
+      ],
+      "title": "Legacy plug-ins"
+    },
+    {
+      "anchor": "Macros",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug-macros"
+      ],
+      "title": "Macros"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/setting-up-for-fxplug-development",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Plug-in-fundamentals",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+              ],
+              "title": "Plug-in fundamentals"
+            },
+            {
+              "anchor": "Rendering",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect"
+              ],
+              "title": "Rendering"
+            },
+            {
+              "anchor": "User-interface",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2"
+              ],
+              "title": "User interface"
+            },
+            {
+              "anchor": "3D-and-lighting",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/Fx3DAPI_v5",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxLightingAPI_v3",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxMatrix44"
+              ],
+              "title": "3D and lighting"
+            },
+            {
+              "anchor": "Color",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/managing-color-space-and-gamut-in-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2"
+              ],
+              "title": "Color"
+            },
+            {
+              "anchor": "Time-and-analysis",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/understanding-time-in-fxplug",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTimingAPI_v4",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxKeyframeAPI_v3",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/analyzing-media",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalysisAPI_v2",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxAnalyzer"
+              ],
+              "title": "Time and analysis"
+            },
+            {
+              "anchor": "Accessing-host-data",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxProjectAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxProjectAPI_v2"
+              ],
+              "title": "Accessing host data"
+            },
+            {
+              "anchor": "Testing-and-deployment",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/testing-fxplug-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/preparing-plug-ins-for-use-in-final-cut-pro",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/notarizing-your-fxplug-plug-in"
+              ],
+              "title": "Testing and deployment"
+            },
+            {
+              "anchor": "Legacy-plug-ins",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/versioning-and-obsoleting-old-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxVersioningAPI"
+              ],
+              "title": "Legacy plug-ins"
+            },
+            {
+              "anchor": "Macros",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug-macros"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Effects",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/create-an-effect-template-for-use-in-final-cut-pro"
+              ],
+              "title": "Effects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxMatrix44/title",
+          "value": "FxMatrix44"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxMatrix44/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxMatrix44"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxMatrix44/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxMatrix44"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxProjectAPI_v2/title",
+          "value": "FxProjectAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxProjectAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxProjectAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxProjectAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxProjectAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/title",
+          "value": "FxRemoteWindowAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/title",
+          "value": "FxTileableEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/title",
+          "value": "FxUndoAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxUndoAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxUndoAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/title",
+          "value": "FxTimingAPI_v4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTimingAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTimingAPI_v4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTimingAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/title",
+          "value": "FxAnalysisAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/title",
+          "value": "FxCommandAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/title",
+          "value": "FxAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/title",
+          "value": "FxAnalysisAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxAnalysisAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxAnalysisAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2/title",
+          "value": "FxColorGamutAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxColorGamutAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxColorGamutAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/title",
+          "value": "FxRemoteWindowAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/title",
+          "value": "FxPathAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/title",
+          "value": "FxKeyframeAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxKeyframeAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxKeyframeAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxKeyframeAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxLightingAPI_v3/title",
+          "value": "FxLightingAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxLightingAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxLightingAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxLightingAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxLightingAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxProjectAPI/title",
+          "value": "FxProjectAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxProjectAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxProjectAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxProjectAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxProjectAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/title",
+          "value": "FxVersioningAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxVersioningAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxVersioningAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxVersioningAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/title",
+          "value": "FxCommandAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1Fx3DAPI_v5/title",
+          "value": "Fx3DAPI_v5"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1Fx3DAPI_v5/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Fx3DAPI_v5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1Fx3DAPI_v5/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Fx3DAPI_v5"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/fxplug"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/fxplug"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

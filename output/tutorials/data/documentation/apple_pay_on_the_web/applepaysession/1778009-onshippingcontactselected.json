@@ -1,0 +1,481 @@
+{
+  "abstract": [
+    {
+      "text": "An event handler to call when the user selects a shipping contact in the payment sheet.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778009-onshippingcontactselected"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1778009,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "instp/ApplePaySession/onshippingcontactselected",
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      }
+    ],
+    "parent": {
+      "title": "ApplePaySession"
+    },
+    "platforms": [
+      {
+        "current": "18.0",
+        "introducedAt": "10.0",
+        "name": "Safari Desktop"
+      },
+      {
+        "current": "18.0",
+        "introducedAt": "10.0",
+        "name": "Safari Mobile"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "onshippingcontactselected"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Safari Desktop",
+            "Safari Mobile"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "attribute"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "EventHandler"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "onshippingcontactselected"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This attribute must be set to a function that accepts an ",
+              "type": "text"
+            },
+            {
+              "code": "events",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument; for example, ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "session.onshippingcontactselected = function(event) {}",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "event",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter contains the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontactselectedevent/1778003-shippingcontact",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute. Access this attribute using the ",
+              "type": "text"
+            },
+            {
+              "code": "event",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, for example,",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "var myShippingContact = event.shippingContact;",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778009-onshippingcontactselected",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " function must respond by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778008-completeshippingcontactselection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before the 30 second timeout, after which a message appears stating that the payment could not be completed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypayment/1916097-shippingcontact",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute contains the information you requested by specifying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216121-requiredshippingcontactfields",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the user authorizes the transaction, you receive redacted shipping contact information in a callback event. The redacted information includes only the necessary data for completing transaction tasks, such as calculating taxes or shipping costs. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"locality\": \"Cupertino\",",
+            "    \"country\": \"United States\",",
+            "    \"postalCode\": \"95014\",",
+            "    \"administrativeArea\": \"CA\",",
+            "    \"countryCode\": \"us\"",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "An example of redacted shipping contact information",
+                "type": "text"
+              }
+            ],
+            "anchor": "2930472",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The data returned may differ based on the user's geographic region. For Canada and United Kingdom, a redacted shipping address excludes the  last three characters of the postal code.  For US addresses, the redacted zip code contains the first five digits. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The full postal code is provided after the user authorizes the transaction.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypayment/1916097-shippingcontact": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypayment/1916097-shippingcontact",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shippingContact",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypayment/1916097-shippingcontact"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216121-requiredshippingcontactfields": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216121-requiredshippingcontactfields",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiredShippingContactFields",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest/2216121-requiredshippingcontactfields"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession": {
+      "abstract": [
+        {
+          "text": "A session object for managing the payment process on the web. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePaySession",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778008-completeshippingcontactselection": {
+      "abstract": [
+        {
+          "text": "Completes the selection of a shipping contact with an update.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778008-completeshippingcontactselection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completeShippingContactSelection",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/1778008-completeshippingcontactselection"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778009-onshippingcontactselected": {
+      "abstract": [
+        {
+          "text": "An event handler to call when the user selects a shipping contact in the payment sheet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778009-onshippingcontactselected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onshippingcontactselected",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/1778009-onshippingcontactselected"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778009-onshippingcontactselected#2930472": {
+      "abstract": [
+        {
+          "text": "An example of redacted shipping contact information",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778009-onshippingcontactselected#2930472",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/1778009-onshippingcontactselected#2930472"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontactselectedevent": {
+      "abstract": [
+        {
+          "text": "An event object that contains the shipping address the user selects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontactselectedevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayShippingContactSelectedEvent",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingcontactselectedevent"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontactselectedevent/1778003-shippingcontact": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontactselectedevent/1778003-shippingcontact",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shippingContact",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingcontactselectedevent/1778003-shippingcontact"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontactupdate": {
+      "abstract": [
+        {
+          "text": "Updated transaction details that result from a change in shipping contact, including any errors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontactupdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayShippingContactUpdate",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingcontactupdate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778008-completeshippingcontactselection",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontactselectedevent",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingcontactupdate"
+      ],
+      "title": "Handling shipping contact updates"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/applepaysession/1778009-onshippingcontactselected"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

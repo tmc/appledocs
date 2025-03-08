@@ -1,0 +1,1057 @@
+{
+  "abstract": [
+    {
+      "text": "A random-access disk device abstraction.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iomedia"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1420233,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOMedia",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOMedia"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOMedia"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOStorage",
+              "text": "IOStorage"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOMedia class is a random-access disk device abstraction. It provides a consistent interface for both real and virtual disk devices, for subdivisions of disks such as partitions, for supersets of disks such as RAID volumes, and so on. It extends the IOStorage class by implementing the appropriate open, close, read, write, and matching semantics for media objects. The properties it has reflect the properties of real disk devices, such as ejectability and writability.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The read and write interfaces support byte-level access to the storage space, with the appropriate deblocking handled by the block storage driver, however, a typical client will want to get the natural block size in order to optimize access to the real disk device. A read or write is accepted so long as the client's access is valid, the media is formatted and the transfer is within the bounds of the media. An optional non-zero base (offset) is then applied before the read or write is passed to provider object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mass Storage",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/mass_storage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobdmedia": {
+      "abstract": [
+        {
+          "text": "The IOBDMedia class is a random-access disk device abstraction for BDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobdmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBDMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/iobdmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia": {
+      "abstract": [
+        {
+          "text": "The IOCDMedia class is a random-access disk device abstraction for CDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCDMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmediabsdclient": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmediabsdclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCDMediaBSDClient",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmediabsdclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdpartitionscheme": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdpartitionscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCDPartitionScheme",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdpartitionscheme"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodvdmedia": {
+      "abstract": [
+        {
+          "text": "The IODVDMedia class is a random-access disk device abstraction for DVDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodvdmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODVDMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/iodvdmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodvdmediabsdclient": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodvdmediabsdclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODVDMediaBSDClient",
+      "type": "topic",
+      "url": "/documentation/kernel/iodvdmediabsdclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia": {
+      "abstract": [
+        {
+          "text": "A random-access disk device abstraction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420235-attachtochild": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "attachToChild"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420235-attachtochild",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attachToChild",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420235-attachtochild"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420239-getsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420239-getsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420239-getsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420242-read": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420242-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420242-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420248-lockphysicalextents": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockPhysicalExtents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420248-lockphysicalextents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420248-lockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420251-getbase": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBase"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420251-getbase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBase",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420251-getbase"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420258-getprovider": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420258-getprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getProvider",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420258-getprovider"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420264-isejectable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEjectable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420264-isejectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEjectable",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420264-isejectable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420266-synchronize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420266-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420266-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420270-getattributes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420270-getattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAttributes",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420270-getattributes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420272-unmap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unmap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420272-unmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unmap",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420272-unmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420277-write": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420277-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420277-write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420283-isformatted": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFormatted"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420283-isformatted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isFormatted",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420283-isformatted"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420285-handleisopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleIsOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420285-handleisopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420285-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420288-matchpropertytable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchPropertyTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420288-matchpropertytable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchPropertyTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420288-matchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420290-iswhole": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWhole"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420290-iswhole",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isWhole",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420290-iswhole"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420292-iswritable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWritable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420292-iswritable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isWritable",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420292-iswritable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420298-handleclose": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleClose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420298-handleclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420298-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420300-copyphysicalextent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyPhysicalExtent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420300-copyphysicalextent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyPhysicalExtent",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420300-copyphysicalextent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420302-unlockphysicalextents": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockPhysicalExtents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420302-unlockphysicalextents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unlockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420302-unlockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420304-handleopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420304-handleopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420304-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420306-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420306-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420306-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420311-getpreferredblocksize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPreferredBlockSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420311-getpreferredblocksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPreferredBlockSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420311-getpreferredblocksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420314-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420314-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420314-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420316-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420316-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420316-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420318-getcontenthint": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getContentHint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420318-getcontenthint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getContentHint",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420318-getcontenthint"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420322-detachfromchild": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachFromChild"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420322-detachfromchild",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachFromChild",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420322-detachfromchild"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420328-setpriority": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420328-setpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPriority",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420328-setpriority"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1420330-getcontent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getContent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1420330-getcontent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getContent",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1420330-getcontent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1644058-getprovisionstatus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getProvisionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1644058-getprovisionstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getProvisionStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1644058-getprovisionstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813424-copyphysicalextent": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813424-copyphysicalextent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyPhysicalExtent",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813424-copyphysicalextent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813444-getattributes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813444-getattributes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAttributes",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813444-getattributes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813468-getbase": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813468-getbase",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBase",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813468-getbase"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813495-getcontent": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813495-getcontent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getContent",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813495-getcontent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813522-getcontenthint": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813522-getcontenthint",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getContentHint",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813522-getcontenthint"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813553-getpreferredblocksize": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813553-getpreferredblocksize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPreferredBlockSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813553-getpreferredblocksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813585-getsize": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813585-getsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813585-getsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813614-handleclose": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813614-handleclose",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813614-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813630-handleisopen": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813630-handleisopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813630-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813647-handleopen": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813647-handleopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813647-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813657-init": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813657-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813657-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813664-isejectable": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813664-isejectable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEjectable",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813664-isejectable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813670-isformatted": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813670-isformatted",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isFormatted",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813670-isformatted"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813677-iswhole": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813677-iswhole",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isWhole",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813677-iswhole"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813683-iswritable": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813683-iswritable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isWritable",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813683-iswritable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813689-lockphysicalextents": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813689-lockphysicalextents",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813689-lockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813696-read": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813696-read",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "read",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813696-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813702-synchronizecache": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813702-synchronizecache",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "synchronizeCache",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813702-synchronizecache"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813710-unlockphysicalextents": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813710-unlockphysicalextents",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unlockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813710-unlockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813719-unmap": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813719-unmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unmap",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813719-unmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomedia/1813725-write": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomedia/1813725-write",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "write",
+      "type": "topic",
+      "url": "/documentation/kernel/iomedia/1813725-write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOStorage",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostorage"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia",
+        "doc://com.apple.documentation/documentation/kernel/iobdmedia",
+        "doc://com.apple.documentation/documentation/kernel/iocdmediabsdclient",
+        "doc://com.apple.documentation/documentation/kernel/iocdpartitionscheme",
+        "doc://com.apple.documentation/documentation/kernel/iodvdmedia",
+        "doc://com.apple.documentation/documentation/kernel/iodvdmediabsdclient"
+      ],
+      "title": "Data Storage"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1674926",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813424-copyphysicalextent",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813444-getattributes",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813468-getbase",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813495-getcontent",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813522-getcontenthint",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813553-getpreferredblocksize",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813585-getsize",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813614-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813630-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813647-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813657-init",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813664-isejectable",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813670-isformatted",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813677-iswhole",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813683-iswritable",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813689-lockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813696-read",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813702-synchronizecache",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813710-unlockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813719-unmap",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1813725-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2859822",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420235-attachtochild",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420300-copyphysicalextent",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420322-detachfromchild",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420316-free",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420270-getattributes",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420251-getbase",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420330-getcontent",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420318-getcontenthint",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420314-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420311-getpreferredblocksize",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420258-getprovider",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1644058-getprovisionstatus",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420239-getsize",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420298-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420285-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420304-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420306-init",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420264-isejectable",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420283-isformatted",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420290-iswhole",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420292-iswritable",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420248-lockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420288-matchpropertytable",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420242-read",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420328-setpriority",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420266-synchronize",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420302-unlockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420272-unmap",
+        "doc://com.apple.documentation/documentation/kernel/iomedia/1420277-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iomedia"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,740 @@
+{
+  "abstract": [
+    {
+      "text": "An enum that represents the requirement for a package dependency.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "PackageDescription",
+    "externalID": "s:18PackageDescription0A0C10DependencyC24SourceControlRequirementO",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SourceControlRequirement"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PackageDescription"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SourceControlRequirement"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.6",
+        "name": "SwiftPM",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "Package.Dependency.SourceControlRequirement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SourceControlRequirement"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dependency requirement can be defined as one of three different version requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A version-based requirement.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Decide whether your project accepts updates to a package dependency up",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the next major version or up to the next minor version. To be more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "restrictive, select a specific version range or an exact version.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Major versions tend to have more significant changes than minor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "versions, and may require you to modify your code when they update.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The version rule requires Swift packages to conform to semantic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "versioning. To learn more about the semantic versioning standard,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://semver.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Selecting the version requirement is the recommended way to add a package dependency. It allows you to create a balance between restricting changes and obtaining improvements and features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A branch-based requirement",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the name of the branch for your package dependency to follow.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use branch-based dependencies when you’re developing multiple packages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in tandem or when you don’t want to publish versions of your package dependencies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that packages which use branch-based dependency requirements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can’t be added as dependencies to packages that use version-based dependency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requirements; you should remove branch-based dependency requirements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before publishing a version of your package.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A commit-based requirement",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the commit hash for your package dependency to follow.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Choosing this option isn’t recommended, and should be limited to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exceptional cases. While pinning your package dependency to a specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "commit ensures that the package dependency doesn’t change and your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code remains stable, you don’t receive any updates at all. If you worry about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the stability of a remote package, consider one of the more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "restrictive options of the version-based requirement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that packages which use commit-based dependency requirements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can’t be added as dependencies to packages that use version-based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dependency requirements; you should remove commit-based dependency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requirements before publishing a version of your package.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/packagedescription"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package": {
+      "abstract": [
+        {
+          "text": "The configuration of a Swift package.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Package"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Package"
+        }
+      ],
+      "role": "symbol",
+      "title": "Package",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency": {
+      "abstract": [
+        {
+          "text": "A package dependency of a Swift package.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dependency"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Dependency"
+        }
+      ],
+      "role": "symbol",
+      "title": "Package.Dependency",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement": {
+      "abstract": [
+        {
+          "text": "An enum that represents the requirement for a package dependency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SourceControlRequirement"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SourceControlRequirement"
+        }
+      ],
+      "role": "symbol",
+      "title": "Package.Dependency.SourceControlRequirement",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/sourcecontrolrequirement"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/branch(_:)": {
+      "abstract": [
+        {
+          "text": "A branch based requirement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "branch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/branch(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package.Dependency.SourceControlRequirement.branch(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/sourcecontrolrequirement/branch(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/exact(_:)": {
+      "abstract": [
+        {
+          "text": "An exact version based requirement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exact"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription7VersionV",
+          "text": "Version"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/exact(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package.Dependency.SourceControlRequirement.exact(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/sourcecontrolrequirement/exact(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/range(_:)": {
+      "abstract": [
+        {
+          "text": "A requirement based on a range of versions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription7VersionV",
+          "text": "Version"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/range(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package.Dependency.SourceControlRequirement.range(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/sourcecontrolrequirement/range(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/revision(_:)": {
+      "abstract": [
+        {
+          "text": "A commit based requirement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/revision(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package.Dependency.SourceControlRequirement.revision(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/sourcecontrolrequirement/revision(_:)"
+    },
+    "https://semver.org": {
+      "identifier": "https://semver.org",
+      "title": "Semantic Versioning 2.0.0",
+      "titleInlineContent": [
+        {
+          "text": "Semantic Versioning 2.0.0",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://semver.org"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Enumeration-Cases",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/branch(_:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/exact(_:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/range(_:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/SourceControlRequirement/revision(_:)"
+      ],
+      "title": "Enumeration Cases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/packagedescription/package/dependency/sourcecontrolrequirement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

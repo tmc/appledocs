@@ -1,0 +1,426 @@
+{
+  "abstract": [
+    {
+      "text": "Segment the foreground subjects of an image and composite them to a new background with visual effects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/applying-visual-effects-to-foreground-subjects"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Applying visual effects to foreground subjects"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 10176: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/10176/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode, set the run destination to an iOS 17 device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "870d284c2b71/ApplyingVisualEffectsToForegroundSubjects.zip": {
+      "checksum": "870d284c2b716dc984795beb708e6e6f887b6a5bab8a5fa9b3d1521a3f81aceaa8f2802c52da417955751fc113dce548d8cbec5fb943981248c9020138ee8215",
+      "identifier": "870d284c2b71/ApplyingVisualEffectsToForegroundSubjects.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/870d284c2b71/ApplyingVisualEffectsToForegroundSubjects.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNGenerateForegroundInstanceMaskRequest": {
+      "abstract": [
+        {
+          "text": "A request that generates an instance mask of noticable objects to separate from the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNGenerateForegroundInstanceMaskRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNGenerateForegroundInstanceMaskRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNGenerateForegroundInstanceMaskRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNGenerateForegroundInstanceMaskRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vngenerateforegroundinstancemaskrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNGenerateForegroundInstanceMaskRequestRevision1": {
+      "abstract": [
+        {
+          "text": "A constant for specifying the first revision of the foreground instance mask request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNGenerateForegroundInstanceMaskRequestRevision1"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNGenerateForegroundInstanceMaskRequestRevision1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNGenerateForegroundInstanceMaskRequestRevision1"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNGenerateForegroundInstanceMaskRequestRevision1",
+      "type": "topic",
+      "url": "/documentation/vision/vngenerateforegroundinstancemaskrequestrevision1"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNInstanceMaskObservation": {
+      "abstract": [
+        {
+          "text": "An observation that contains an instance mask that labels instances in the mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNInstanceMaskObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNInstanceMaskObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNInstanceMaskObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNInstanceMaskObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vninstancemaskobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "https://developer.apple.com/wwdc23/10176/": {
+      "identifier": "https://developer.apple.com/wwdc23/10176/",
+      "title": "Lift subjects from images in your app",
+      "titleInlineContent": [
+        {
+          "text": "Lift subjects from images in your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/10176/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "870d284c2b71/ApplyingVisualEffectsToForegroundSubjects.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-background-removal",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/VNInstanceMaskObservation",
+        "doc://com.apple.vision/documentation/Vision/VNGenerateForegroundInstanceMaskRequest",
+        "doc://com.apple.vision/documentation/Vision/VNGenerateForegroundInstanceMaskRequestRevision1"
+      ],
+      "title": "Image background removal"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Image-background-removal",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/VNInstanceMaskObservation",
+                "doc://com.apple.vision/documentation/Vision/VNGenerateForegroundInstanceMaskRequest",
+                "doc://com.apple.vision/documentation/Vision/VNGenerateForegroundInstanceMaskRequestRevision1"
+              ],
+              "title": "Image background removal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateForegroundInstanceMaskRequest/title",
+          "value": "VNGenerateForegroundInstanceMaskRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateForegroundInstanceMaskRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateForegroundInstanceMaskRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateForegroundInstanceMaskRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateForegroundInstanceMaskRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNInstanceMaskObservation/title",
+          "value": "VNInstanceMaskObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNInstanceMaskObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNInstanceMaskObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNInstanceMaskObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNInstanceMaskObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateForegroundInstanceMaskRequestRevision1/title",
+          "value": "VNGenerateForegroundInstanceMaskRequestRevision1"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateForegroundInstanceMaskRequestRevision1/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateForegroundInstanceMaskRequestRevision1"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/applying-visual-effects-to-foreground-subjects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/applying-visual-effects-to-foreground-subjects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

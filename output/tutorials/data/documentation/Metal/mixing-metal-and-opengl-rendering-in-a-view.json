@@ -1,0 +1,816 @@
+{
+  "abstract": [
+    {
+      "text": "Draw with Metal and OpenGL in the same view using an interoperable texture.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/mixing-metal-and-opengl-rendering-in-a-view"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Mixing Metal and OpenGL Rendering in a View"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re developing a new app and migrating legacy OpenGL code to Metal, interoperable textures make it easy for you to see the results live as you go.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can render Metal or OpenGL content into either view by initializing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that operates as an interoperable texture. When you enable the pixel buffer’s Metal and OpenGL compatibility flags, the textures are capable of being drawn to—and presented by—either rendering technology.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re working with an app you’ve already deployed, the interoperable textures give you the option of incrementally releasing updates throughout the porting process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-Started",
+          "level": 3,
+          "text": "Getting Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Interoperating with Metal and OpenGL requires macOS 10.13 or greater or iOS 11 or greater.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-a-Compatible-Pixel-Format",
+          "level": 3,
+          "text": "Select a Compatible Pixel Format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an interoperable texture, select a Core Video  pixel format, a Metal pixel format, and an OpenGL internal format that are compatible with each other. This sample provides you with a table preloaded with compatible options, and selects one based on the desired Metal pixel format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for(int i = 0; i < AAPLNumInteropFormats; i++) {",
+            "    if(pixelFormat == AAPLInteropFormatTable[i].mtlFormat) {",
+            "        return &AAPLInteropFormatTable[i];",
+            "    }",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-an-Interoperable-Texture",
+          "level": 3,
+          "text": "Create an Interoperable Texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "code": "CVPixelBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as an interoperable texture to get a shared memory backing that’s synchronized across both renderers. To create the ",
+              "type": "text"
+            },
+            {
+              "code": "CVPixelBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", provide your Core Video  pixel format and enable OpenGL and Metal compatibility:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSDictionary* cvBufferProperties = @{",
+            "    (__bridge NSString*)kCVPixelBufferOpenGLCompatibilityKey : @YES,",
+            "    (__bridge NSString*)kCVPixelBufferMetalCompatibilityKey : @YES,",
+            "};",
+            "CVReturn cvret = CVPixelBufferCreate(kCFAllocatorDefault,",
+            "                        size.width, size.height,",
+            "                        _formatInfo->cvPixelFormat,",
+            "                        (__bridge CFDictionaryRef)cvBufferProperties,",
+            "                        &_CVPixelBuffer);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "For-macOS-Create-an-OpenGL-Texture-from-the-Pixel-Buffer",
+          "level": 3,
+          "text": "For macOS, Create an OpenGL Texture from the Pixel Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by creating an OpenGL Core Video texture cache from the pixel buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "cvret  = CVOpenGLTextureCacheCreate(",
+            "                kCFAllocatorDefault,",
+            "                nil,",
+            "                _openGLContext.CGLContextObj,",
+            "                _CGLPixelFormat,",
+            "                nil,",
+            "                &_CVGLTextureCache);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, create a ",
+              "type": "text"
+            },
+            {
+              "code": "CVPixelBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-backed OpenGL texture image from the texture cache:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "cvret = CVOpenGLTextureCacheCreateTextureFromImage(",
+            "                kCFAllocatorDefault,",
+            "                _CVGLTextureCache,",
+            "                _CVPixelBuffer,",
+            "                nil,",
+            "                &_CVGLTexture);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, get an OpenGL texture name from the ",
+              "type": "text"
+            },
+            {
+              "code": "CVPixelBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-backed OpenGL texture image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_openGLTexture = CVOpenGLTextureGetName(_CVGLTexture);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "For-iOS-Create-an-OpenGL-ES-Texture-from-the-Pixel-Buffer",
+          "level": 3,
+          "text": "For iOS, Create an OpenGL ES Texture from the Pixel Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by creating an OpenGL ",
+              "type": "text"
+            },
+            {
+              "code": "ES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Core Video  texture cache from the pixel buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "cvret = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault,",
+            "                nil,",
+            "                _openGLContext,",
+            "                nil,",
+            "                &_CVGLTextureCache);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, create a ",
+              "type": "text"
+            },
+            {
+              "code": "CVPixelBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-backed OpenGL ",
+              "type": "text"
+            },
+            {
+              "code": "ES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " texture image from the texture cache:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "cvret = CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault,",
+            "                _CVGLTextureCache,",
+            "                _CVPixelBuffer,",
+            "                nil,",
+            "                GL_TEXTURE_2D,",
+            "                _formatInfo->glInternalFormat,",
+            "                _size.width, _size.height,",
+            "                _formatInfo->glFormat,",
+            "                _formatInfo->glType,",
+            "                0,",
+            "                &_CVGLTexture);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, get an OpenGL ",
+              "type": "text"
+            },
+            {
+              "code": "ES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " texture name from the ",
+              "type": "text"
+            },
+            {
+              "code": "CVPixelBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-backed OpenGL ",
+              "type": "text"
+            },
+            {
+              "code": "ES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " texture image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_openGLTexture = CVOpenGLESTextureGetName(_CVGLTexture);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Metal-Texture-from-the-Pixel-Buffer",
+          "level": 3,
+          "text": "Create a Metal Texture from the Pixel Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by instantiating a Metal texture cache as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "cvret = CVMetalTextureCacheCreate(",
+            "                kCFAllocatorDefault,",
+            "                nil,",
+            "                _metalDevice,",
+            "                nil,",
+            "                &_CVMTLTextureCache);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, create a ",
+              "type": "text"
+            },
+            {
+              "code": "CVPixelBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-backed Metal texture image from the texture cache:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "cvret = CVMetalTextureCacheCreateTextureFromImage(",
+            "                kCFAllocatorDefault,",
+            "                _CVMTLTextureCache,",
+            "                _CVPixelBuffer, nil,",
+            "                _formatInfo->mtlFormat,",
+            "                _size.width, _size.height,",
+            "                0,",
+            "                &_CVMTLTexture);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, get a Metal texture using the Core Video  Metal texture reference:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_metalTexture = CVMetalTextureGetTexture(_CVMTLTexture);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "In-an-OpenGL-View-Draw-Metal-Content",
+          "level": 3,
+          "text": "In an OpenGL View, Draw Metal Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When porting your app, statement by statement, begin by using Metal to render into an interoperable pixel buffer that OpenGL can draw. Each item in the following list describes the corresponding numbered area in the figure that follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal clears the interoperable texture by applying a green color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal renders a quad with white text and color swatch onto the interoperable texture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "OpenGL clears the background by applying a red color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "OpenGL renders a quad with black text and the interoperable texture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "opengl-interoperability-1-gl-view",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "In-a-Metal-View-Draw-OpenGL-Content",
+          "level": 3,
+          "text": "In a Metal View, Draw OpenGL Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Draw OpenGL content into a Metal view when you’re ready to use Metal but have some legacy OpenGL code that you intend to port incrementally. Each item in the following list describes the corresponding numbered area in the figure that follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "OpenGL clears the interoperable texture by applying a red color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "OpenGL renders a quad with white text and color swatch onto the interoperable texture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal clears the background by applying a green color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal renders a quad with black text and the interoperable texture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "opengl-interoperability-2-metal-view",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8a565bff7854/MixingMetalAndOpenGLRenderingInAView.zip": {
+      "checksum": "8a565bff78540d56b197664e193d15130276160d8c150119e439b397a52ef406c73dad6d07649732add6c2271ca2ac6870217cfdfaddf49e50778e473a852f05",
+      "identifier": "8a565bff7854/MixingMetalAndOpenGLRenderingInAView.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8a565bff7854/MixingMetalAndOpenGLRenderingInAView.zip"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e": {
+      "abstract": [
+        {
+          "text": "An image buffer that holds pixels in main memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+      "kind": "article",
+      "role": "article",
+      "title": "CVPixelBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/cvpixelbuffer-q2e"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/migrating-opengl-code-to-metal": {
+      "abstract": [
+        {
+          "text": "Replace your app’s deprecated OpenGL code with Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/migrating-opengl-code-to-metal",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Migrating OpenGL Code to Metal",
+      "type": "topic",
+      "url": "/documentation/metal/migrating-opengl-code-to-metal"
+    },
+    "opengl-interoperability-1-gl-view": {
+      "alt": "Screenshot of the app showing, in the background, a red color cleared by OpenGL, a green quad cleared by Metal with a black text overlay rendered by OpenGL, and a color swatch with white text rendered by Metal.",
+      "identifier": "opengl-interoperability-1-gl-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f1dd9258fc759141f2f1ba10fa8de19b/opengl-interoperability-1-gl-view.png"
+        }
+      ]
+    },
+    "opengl-interoperability-2-metal-view": {
+      "alt": "Screenshot of the app showing, in the background, a green color cleared by Metal, a red quad cleared by OpenGL with a black text overlay rendered by Metal, and a color swatch with white text rendered by OpenGL.",
+      "identifier": "opengl-interoperability-2-metal-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1f7d3a50ed7b0e2020ab046a4f8e3142/opengl-interoperability-2-metal-view.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8a565bff7854/MixingMetalAndOpenGLRenderingInAView.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "OpenGL",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/migrating-opengl-code-to-metal"
+      ],
+      "title": "OpenGL"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "OpenGL",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/migrating-opengl-code-to-metal"
+              ],
+              "title": "OpenGL"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mixing-metal-and-opengl-rendering-in-a-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mixing-metal-and-opengl-rendering-in-a-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,743 @@
+{
+  "abstract": [
+    {
+      "text": "Submit a report with corrections if you find errors in, or have adjustments to, a successfully submitted transaction.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportcorrections"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "External Purchase Server API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reporting corrections"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you successfully submit a report to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint that you later find to be incorrect, you must correct your submission. To send a correction, fill out the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request body with a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/requestIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the corrections, and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. Send corrected reports promptly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two types of corrections:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A correction to transaction data in a line item. In this type of correction, you restate the entire line item with corrected data. Apple uses only the most recent submission for the line item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A retraction of a line item you previously sent. In this type of correction, you indicate that you erroneously sent the line item, and aren’t including the erroneously-submitted amounts in transaction calculations. Be sure to update the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/netAmountTaxExclusive",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " field so it represents the correct net amount, tax exclusive, of the transaction.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/netAmountTaxExclusive",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " must represent the correct net amount (excluding taxes) for the transaction, including in line items that are corrections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Correct-data-in-a-line-item",
+          "level": 3,
+          "text": "Correct data in a line item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To submit a line item with corrections, use the line item’s original ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/lineItemId",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/restatement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " flag set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Make corrections to any type of line item: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/OneTimeBuyLineItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SubscriptionBuyLineItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/RefundLineItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Restated line items overwrite the originally reported line item. Include all the data in the line item — even fields that are the same as the previous version.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple uses only the most recent version of the line item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retract-an-erroneously-submitted-line-item",
+          "level": 3,
+          "text": "Retract an erroneously submitted line item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you submitted a line item in error and want Apple to ignore it, use the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/lineItemId",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as in the original submission. Set both the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/restatement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/erroneouslySubmitted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " fields to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". (You may undo this action by submitting the line item again, with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/restatement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/erroneouslySubmitted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set to false.) Be sure to include all of the original line item data fields, and recalculate the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/netAmountTaxExclusive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field to correctly represent the net amount with the erroneously submitted line item accounted for.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Successfully submitting a line item with the ",
+              "type": "text"
+            },
+            {
+              "code": "erroneouslySubmitted",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag is an effective “undo” of the original line item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI": {
+      "abstract": [
+        {
+          "text": "Send and manage reports you send to Apple for tokens you receive when your app provides external purchases for digital goods and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Purchase Server API",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport": {
+      "abstract": [
+        {
+          "text": "The contents of an external purchase report for a single token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchaseReport"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchaseReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExternalPurchaseReport",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/externalpurchasereport"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/OneTimeBuyLineItem": {
+      "abstract": [
+        {
+          "text": "The line item that indicates a one-time charge transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OneTimeBuyLineItem"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/OneTimeBuyLineItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OneTimeBuyLineItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "OneTimeBuyLineItem",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/onetimebuylineitem"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/RefundLineItem": {
+      "abstract": [
+        {
+          "text": "The line item that indicates a refund transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RefundLineItem"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/RefundLineItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RefundLineItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "RefundLineItem",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/refundlineitem"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report": {
+      "abstract": [
+        {
+          "text": "Report required information about external purchase tokens and associated transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Send External Purchase Report"
+        }
+      ],
+      "role": "symbol",
+      "title": "Send External Purchase Report",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/send-external-purchase-report"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SubscriptionBuyLineItem": {
+      "abstract": [
+        {
+          "text": "The line item that indicates a subscription-related event or transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionBuyLineItem"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SubscriptionBuyLineItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionBuyLineItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionBuyLineItem",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/subscriptionbuylineitem"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/erroneouslySubmitted": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a line item was submitted in error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "erroneouslySubmitted"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/erroneouslySubmitted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "erroneouslySubmitted"
+        }
+      ],
+      "role": "symbol",
+      "title": "erroneouslySubmitted",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/erroneouslysubmitted"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/lineItemId": {
+      "abstract": [
+        {
+          "text": "A unique identifier for the line item, that you determine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineItemId"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/lineItemId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lineItemId"
+        }
+      ],
+      "role": "symbol",
+      "title": "lineItemId",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/lineitemid"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/lineitems": {
+      "abstract": [
+        {
+          "text": "Properties that describe a single transaction or correction in an external purchase report.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/lineitems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Line item fields",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/lineitems"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/netAmountTaxExclusive": {
+      "abstract": [
+        {
+          "text": "The net amount, in milli-units, that you charged the customer, pre-tax, and after deducting all refunds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "netAmountTaxExclusive"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/netAmountTaxExclusive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "netAmountTaxExclusive"
+        }
+      ],
+      "role": "symbol",
+      "title": "netAmountTaxExclusive",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/netamounttaxexclusive"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithtransactions": {
+      "abstract": [
+        {
+          "text": "Create reports for external purchase tokens that result in completed transactions, including one-time charges, subscriptions and renewals, and refunds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithtransactions",
+      "kind": "article",
+      "role": "article",
+      "title": "Reporting tokens with transactions",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/reportwithtransactions"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/requestIdentifier": {
+      "abstract": [
+        {
+          "text": "A UUID that uniquely identifies an external purchase report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestIdentifier"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/requestIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestIdentifier",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/requestidentifier"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/restatement": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates a line item contains a correction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "restatement"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/restatement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restatement"
+        }
+      ],
+      "role": "symbol",
+      "title": "restatement",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/restatement"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "External-purchase-report-transactions",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithtransactions",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/OneTimeBuyLineItem",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/RefundLineItem",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SubscriptionBuyLineItem",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/lineitems"
+      ],
+      "title": "External purchase report transactions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/externalpurchaseserverapi/reportcorrections"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

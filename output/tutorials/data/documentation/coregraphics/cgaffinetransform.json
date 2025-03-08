@@ -1,0 +1,1293 @@
+{
+  "abstract": [
+    {
+      "text": "An affine transformation matrix for use in drawing 2D graphics.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1455473,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@CGAffineTransform",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "CGAffineTransform"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "CGAffineTransform"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGAffineTransform"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An affine transformation matrix is used to rotate, scale, translate, or skew the objects you draw in a graphics context. The ",
+              "type": "text"
+            },
+            {
+              "code": "CGAffineTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type provides functions for creating, concatenating, and applying affine transformations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Affine transforms are represented by a 3 by 3 matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-1966718",
+              "metadata": {
+                "anchor": "1966718",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the third column is always ",
+              "type": "text"
+            },
+            {
+              "code": "(0,0,1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "CGAffineTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data structure contains values for only the first two columns. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Conceptually, an affine transform multiplies a row vector representing each point (x,y) in your drawing by this matrix, producing a vector that represents the corresponding point (x’,y’):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-1966768",
+              "metadata": {
+                "anchor": "1966768",
+                "title": "Figure 2"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Given the 3 by 3 matrix, the following equations are used to transform a point (x, y) in one coordinate system into a resultant point (x’,y’) in another coordinate system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-1966772",
+              "metadata": {
+                "anchor": "1966772",
+                "title": "Figure 3"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The matrix thereby “links” two coordinate systems—it specifies how points in one coordinate system map to points in another.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that you do not typically need to create affine transforms directly. If you want only to draw an object that is scaled or rotated, for example, it is not necessary to construct an affine transform to do so. The most direct way to manipulate your drawing—whether by movement, scaling, or rotation—is to call the functions ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1455286-translateby",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1454659-scaleby",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1456228-rotate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", respectively. You should generally only create an affine transform if you want to reuse it later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform": {
+      "abstract": [
+        {
+          "text": "An affine transformation matrix for use in drawing 2D graphics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransform",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1454545-b": {
+      "abstract": [
+        {
+          "text": "The entry at position [1,2] in the matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "b"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1454545-b",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "b",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform/1454545-b"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1455693-d": {
+      "abstract": [
+        {
+          "text": "The entry at position [2,2] in the matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "d"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1455693-d",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "d",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform/1455693-d"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456003-a": {
+      "abstract": [
+        {
+          "text": "The entry at position [1,1] in the matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "a"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456003-a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "a",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform/1456003-a"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456271-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456271-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform/1456271-init"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456339-c": {
+      "abstract": [
+        {
+          "text": "The entry at position [2,1] in the matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "c"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456339-c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "c",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform/1456339-c"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456442-ty": {
+      "abstract": [
+        {
+          "text": "The entry at position [3,2] in the matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ty"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456442-ty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ty",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform/1456442-ty"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456540-tx": {
+      "abstract": [
+        {
+          "text": "The entry at position [3,1] in the matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "tx"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456540-tx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tx",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform/1456540-tx"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/3979565-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "a"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "b"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "c"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "d"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tx"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ty"
+        },
+        {
+          "kind": "text",
+          "text": ": Double)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/3979565-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(a:b:c:d:tx:ty:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform/3979565-init"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgfloat": {
+      "abstract": [
+        {
+          "text": "The basic type for floating-point scalar values in Core Graphics and related frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFloat",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgfloat"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgpoint": {
+      "abstract": [
+        {
+          "text": "A structure that contains a point in a two-dimensional coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPoint",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgpoint"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgsize": {
+      "abstract": [
+        {
+          "text": "A structure that contains width and height values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGSize",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgsize"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgvector": {
+      "abstract": [
+        {
+          "text": "A structure that contains a two-dimensional vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGVector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgvector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgvector"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454909-cgaffinetransformmaketranslation": {
+      "abstract": [
+        {
+          "text": "Returns an affine transformation matrix constructed from translation values you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "translationX"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454909-cgaffinetransformmaketranslation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformMakeTranslation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454909-cgaffinetransformmaketranslation"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455016-cgaffinetransformmakescale": {
+      "abstract": [
+        {
+          "text": "Returns an affine transformation matrix constructed from scaling values you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleX"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455016-cgaffinetransformmakescale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformMakeScale(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455016-cgaffinetransformmakescale"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455264-cgaffinetransforminvert": {
+      "abstract": [
+        {
+          "text": "Returns an affine transformation matrix constructed by inverting an existing affine transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "inverted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455264-cgaffinetransforminvert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformInvert(_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455264-cgaffinetransforminvert"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455666-cgaffinetransformmakerotation": {
+      "abstract": [
+        {
+          "text": "Returns an affine transformation matrix constructed from a rotation value you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "rotationAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455666-cgaffinetransformmakerotation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformMakeRotation(_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455666-cgaffinetransformmakerotation"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455732-cgaffinetransformequaltotransfor": {
+      "abstract": [
+        {
+          "text": "Checks whether two affine transforms are equal. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGAffineTransformEqualToTransform"
+        },
+        {
+          "kind": "text",
+          "text": "(CGAffineTransform, CGAffineTransform) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455732-cgaffinetransformequaltotransfor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformEqualToTransform(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455732-cgaffinetransformequaltotransfor"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455754-cgaffinetransformisidentity": {
+      "abstract": [
+        {
+          "text": "Checks whether an affine transform is the identity transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isIdentity"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455754-cgaffinetransformisidentity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformIsIdentity(_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455754-cgaffinetransformisidentity"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455822-cgaffinetransformtranslate": {
+      "abstract": [
+        {
+          "text": "Returns an affine transformation matrix constructed by translating an existing affine transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "translatedBy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat) -> CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455822-cgaffinetransformtranslate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformTranslate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455822-cgaffinetransformtranslate"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455865-cgaffinetransformmake": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455865-cgaffinetransformmake",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformMake(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455865-cgaffinetransformmake"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455882-cgaffinetransformscale": {
+      "abstract": [
+        {
+          "text": "Returns an affine transformation matrix constructed by scaling an existing affine transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaledBy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat) -> CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455882-cgaffinetransformscale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformScale(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455882-cgaffinetransformscale"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455962-cgaffinetransformrotate": {
+      "abstract": [
+        {
+          "text": "Returns an affine transformation matrix constructed by rotating an existing affine transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat) -> CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455962-cgaffinetransformrotate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformRotate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455962-cgaffinetransformrotate"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455996-cgaffinetransformconcat": {
+      "abstract": [
+        {
+          "text": "Returns an affine transformation matrix constructed by combining two existing affine transforms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "concatenating"
+        },
+        {
+          "kind": "text",
+          "text": "(CGAffineTransform) -> CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455996-cgaffinetransformconcat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformConcat(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455996-cgaffinetransformconcat"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgaffinetransformidentity": {
+      "abstract": [
+        {
+          "text": "The identity transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "identity"
+        },
+        {
+          "kind": "text",
+          "text": ": CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgaffinetransformidentity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransformIdentity",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgaffinetransformidentity"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1454659-scaleby": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1454659-scaleby",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scaleBy(x:y:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext/1454659-scaleby"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1455286-translateby": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1455286-translateby",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "translateBy(x:y:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext/1455286-translateby"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1456228-rotate": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1456228-rotate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotate(by:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext/1456228-rotate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-1966718": {
+      "identifier": "link-media-1966718",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/corefoundation/cgaffinetransform#1966718"
+    },
+    "link-media-1966768": {
+      "identifier": "link-media-1966768",
+      "title": "Figure 2",
+      "type": "link",
+      "url": "/documentation/corefoundation/cgaffinetransform#1966768"
+    },
+    "link-media-1966772": {
+      "identifier": "link-media-1966772",
+      "title": "Figure 3",
+      "type": "link",
+      "url": "/documentation/corefoundation/cgaffinetransform#1966772"
+    },
+    "media-1966718": {
+      "alt": "A 3 by 3 matrix.",
+      "identifier": "media-1966718",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a0bbde8e5/equation01_2x_fabc9070-1967-4d6f-a086-17ab5fcfef6d.png"
+        }
+      ]
+    },
+    "media-1966768": {
+      "alt": "A row vector multiplying a 3 by 3 matrix.",
+      "identifier": "media-1966768",
+      "title": "Figure 2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a0bbde8e5/equation02_2x_71f7e62f-7cbe-4670-9b34-924b49e48f72.png"
+        }
+      ]
+    },
+    "media-1966772": {
+      "alt": "Transformation equations.",
+      "identifier": "media-1966772",
+      "title": "Figure 3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a0bbde8e5/equation03_2x_b4b74916-ba29-4c3c-8fa2-ada82ad5c659.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+        "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+        "doc://com.apple.documentation/documentation/corefoundation/cgsize",
+        "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+        "doc://com.apple.documentation/documentation/corefoundation/cgvector"
+      ],
+      "title": "Geometric Data Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1973404",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455666-cgaffinetransformmakerotation",
+        "doc://com.apple.documentation/documentation/coregraphics/1455016-cgaffinetransformmakescale",
+        "doc://com.apple.documentation/documentation/coregraphics/1454909-cgaffinetransformmaketranslation",
+        "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456271-init",
+        "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/3979565-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "1973405",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455754-cgaffinetransformisidentity",
+        "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456003-a",
+        "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1454545-b",
+        "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456339-c",
+        "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1455693-d",
+        "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456540-tx",
+        "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform/1456442-ty"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "1973406",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/cgaffinetransformidentity"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Properties"
+    },
+    {
+      "anchor": "1973407",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455996-cgaffinetransformconcat",
+        "doc://com.apple.documentation/documentation/coregraphics/1455732-cgaffinetransformequaltotransfor",
+        "doc://com.apple.documentation/documentation/coregraphics/1455264-cgaffinetransforminvert",
+        "doc://com.apple.documentation/documentation/coregraphics/1455962-cgaffinetransformrotate",
+        "doc://com.apple.documentation/documentation/coregraphics/1455882-cgaffinetransformscale",
+        "doc://com.apple.documentation/documentation/coregraphics/1455822-cgaffinetransformtranslate"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/cgaffinetransform"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/cgaffinetransform"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

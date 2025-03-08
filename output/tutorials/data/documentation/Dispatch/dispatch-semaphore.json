@@ -1,0 +1,484 @@
+{
+  "abstract": [
+    {
+      "text": "An object that controls access to a resource across multiple execution contexts through use of a traditional counting semaphore.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dispatch/documentation/Dispatch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-semaphore"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Dispatch Semaphore"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A dispatch semaphore is an efficient implementation of a traditional counting semaphore. Dispatch semaphores call down to the kernel only when the calling thread needs to be blocked. If the calling semaphore does not need to block, no kernel call is made.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You increment a semaphore count by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore/signal()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, and decrement a semaphore count by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_wait",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or one of its variants that specifies a timeout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore": {
+      "abstract": [
+        {
+          "text": "An object that controls access to a resource across multiple execution contexts through use of a traditional counting semaphore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchSemaphore"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchSemaphore"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchSemaphore",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsemaphore"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore/init(value:)": {
+      "abstract": [
+        {
+          "text": "Creates new counting semaphore with an initial value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore/init(value:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_semaphore_create"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(value:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsemaphore/init(value:)"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore/signal()": {
+      "abstract": [
+        {
+          "text": "Signals (increments) a semaphore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signal"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore/signal()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "signal()",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchsemaphore/signal()"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/OS_dispatch_semaphore": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OS_dispatch_semaphore"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/OS_dispatch_semaphore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OS_dispatch_semaphore",
+      "type": "topic",
+      "url": "/documentation/dispatch/os_dispatch_semaphore"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-barrier": {
+      "abstract": [
+        {
+          "text": "A synchronization point for tasks executing in a concurrent dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-barrier",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Barrier",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-barrier"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_signal": {
+      "abstract": [
+        {
+          "text": "Signals (increments) a semaphore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_semaphore_signal"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_signal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_semaphore_signal",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_semaphore_signal"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_t": {
+      "abstract": [
+        {
+          "text": "A dispatch semaphore object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_semaphore_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_semaphore_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_semaphore_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_semaphore_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_wait": {
+      "abstract": [
+        {
+          "text": "Waits for (decrements) a semaphore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_semaphore_wait"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_wait",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_semaphore_wait",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_semaphore_wait"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Task-Synchronization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-barrier"
+      ],
+      "title": "Task Synchronization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Semaphore",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore/init(value:)",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_t"
+      ],
+      "title": "Creating a Semaphore"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Semaphore",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/DispatchSemaphore/init(value:)",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/OS_dispatch_semaphore"
+              ],
+              "title": "Creating a Semaphore"
+            },
+            {
+              "anchor": "Signaling-the-Semaphore",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_signal"
+              ],
+              "title": "Signaling the Semaphore"
+            },
+            {
+              "anchor": "Blocking-on-the-Semaphore",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_semaphore_wait"
+              ],
+              "title": "Blocking on the Semaphore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Task-Synchronization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-barrier"
+              ],
+              "title": "Task Synchronization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_semaphore_t/title",
+          "value": "dispatch_semaphore_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_semaphore_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_semaphore_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_semaphore_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_semaphore_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchSemaphore~1init(value:)/title",
+          "value": "dispatch_semaphore_create"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchSemaphore~1init(value:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_semaphore_create"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch-semaphore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch-semaphore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,498 @@
+{
+  "abstract": [
+    {
+      "text": "Logs an error message to the Apple System Log facility.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/errors_and_exceptions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/1395074-nslogv"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1395074,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@NSLogv",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSLogv"
+      },
+      {
+        "kind": "text",
+        "text": "(String, CVaListPointer)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "NSLogv(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSLogv"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "format"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "args"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/CVaListPointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s14CVaListPointerV",
+              "text": "CVaListPointer"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Logs an error message to the Apple System Log facility (see ",
+              "type": "text"
+            },
+            {
+              "code": "man 3 asl",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). If the ",
+              "type": "text"
+            },
+            {
+              "code": "STDERR_FILENO",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file descriptor has been redirected away from the default or is going to a tty, it will also be written there. If you want to direct output elsewhere, you need to use a custom logging facility.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The message consists of a timestamp and the process ID prefixed to the string you pass in. You compose this string with a format string, ",
+              "type": "text"
+            },
+            {
+              "code": "format",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and one or more arguments to be inserted into the string. The format specification allowed by these functions is that which is understood by ",
+              "type": "text"
+            },
+            {
+              "code": "NSString",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s formatting capabilities (which is not necessarily the set of format escapes and flags understood by ",
+              "type": "text"
+            },
+            {
+              "code": "printf",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). The supported format specifiers are described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1729804",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". A final hard return is added to the error message if one is not present in the format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, you should use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/1395275-nslog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function instead of calling this function directly. If you do use this function directly, you must have prepared the variable argument list in the ",
+              "type": "text"
+            },
+            {
+              "code": "args",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument by calling the standard C macro ",
+              "type": "text"
+            },
+            {
+              "code": "va_start",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Upon completion, you must similarly call the standard C macro ",
+              "type": "text"
+            },
+            {
+              "code": "va_end",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for this list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Output from ",
+              "type": "text"
+            },
+            {
+              "code": "NSLogv",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is serialized, in that only one thread in a process can be doing the writing/logging described above at a time. All attempts at writing/logging a message complete before the next thread can begin its attempts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The effects of ",
+              "type": "text"
+            },
+            {
+              "code": "NSLogv",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are not serialized with subsystems other than those discussed above (such as the standard I/O package) and do not produce side effects on those subsystems (such as causing buffered output to be flushed, which may be undesirable).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1729804": {
+      "identifier": "devLink-1729804",
+      "title": "String Format Specifiers",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFStrings/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CVaListPointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CVaListPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVaListPointer",
+      "type": "topic",
+      "url": "/documentation/swift/cvalistpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1395074-nslogv": {
+      "abstract": [
+        {
+          "text": "Logs an error message to the Apple System Log facility.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLogv"
+        },
+        {
+          "kind": "text",
+          "text": "(String, CVaListPointer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1395074-nslogv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLogv(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1395074-nslogv"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1395275-nslog": {
+      "abstract": [
+        {
+          "text": "Logs an error message to the Apple System Log facility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1395275-nslog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLog",
+      "type": "topic",
+      "url": "/documentation/foundation/1395275-nslog"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1409759-nslog": {
+      "abstract": [
+        {
+          "text": "Logs an error message to the Apple System Log facility.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLog"
+        },
+        {
+          "kind": "text",
+          "text": "(String, any CVarArg...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1409759-nslog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLog(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1409759-nslog"
+    },
+    "doc://com.apple.documentation/documentation/foundation/errors_and_exceptions": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/errors_and_exceptions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Errors and Exceptions",
+      "type": "topic",
+      "url": "/documentation/foundation/errors_and_exceptions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/1409759-nslog"
+      ],
+      "title": "Diagnostics and Debugging"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/1395275-nslog"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/1395074-nslogv"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/1395074-nslogv"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

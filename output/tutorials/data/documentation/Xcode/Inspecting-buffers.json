@@ -1,0 +1,1347 @@
+{
+  "abstract": [
+    {
+      "text": "Confirm your buffer formats by examining buffer content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting buffers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Metal debugger, you can validate that the content in your buffer is correct by examining it with the Buffer viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Buffer viewer automatically formats the buffer content based on the current context, for example, by using the currently bound pipeline state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also manually configure the formatting, which may be necessary in some cases, such as when there’s no currently bound pipeline state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After adjusting the formatting, you can copy or export any values that you might need for later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Navigate-your-buffer",
+          "level": 3,
+          "text": "Navigate your buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Buffer viewer displays the contents of your buffer in a large table.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you open your buffer in the Bound Resources viewer for a particular draw command or compute dispatch, Xcode automatically lays out the contents to match any parameter it’s bound to in your shader. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, imagine a vertex shader that takes a ",
+              "type": "text"
+            },
+            {
+              "code": "float3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " position and a ",
+              "type": "text"
+            },
+            {
+              "code": "float3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " normal as input, and outputs a ",
+              "type": "text"
+            },
+            {
+              "code": "float4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " position and a ",
+              "type": "text"
+            },
+            {
+              "code": "float3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " normal.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you open the geometry in the Bound Resources viewer, Xcode shows a column for each parameter in the table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-hero.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the screenshot above, the ",
+              "type": "text"
+            },
+            {
+              "code": "in – float3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " position column shows three float values, whereas the ",
+              "type": "text"
+            },
+            {
+              "code": "out – float4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " position column shows four float values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-the-layout-and-initial-offset",
+          "level": 3,
+          "text": "Change the layout and initial offset",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can change the way that the Buffer viewer lays out your buffer content using the controls at the bottom.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To change the column parameter type, click the Element Type drop-down. To change the number of elements per row, click the Number of Elements per Row drop-down to its right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-formatting-0.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if ",
+              "type": "text"
+            },
+            {
+              "code": "ushort",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the element type, with ",
+              "type": "text"
+            },
+            {
+              "code": "4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements per row, the Buffer viewer displays the content with four columns of type ",
+              "type": "text"
+            },
+            {
+              "code": "ushort",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-formatting-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also adjust the initial offset in the buffer by changing the Offset field at the bottom.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, in the screenshot below, changing the offset to ",
+              "type": "text"
+            },
+            {
+              "code": "0x10",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", Row 0 becomes ",
+              "type": "text"
+            },
+            {
+              "code": "[4 0 2 0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of ",
+              "type": "text"
+            },
+            {
+              "code": "[2 0 1 0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-formatting-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-custom-layout",
+          "level": 3,
+          "text": "Create a custom layout",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create your own custom layout by clicking the Element Type drop-down and choosing Custom Layout > Show Custom Layout Editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-create-custom-layout.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type the raw type (such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "float3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") in the Layout field for the first column and press Return.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type a name for your first column and press Return.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat this for all of the columns in your custom layout.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode automatically calculates the row stride, but you can also configure it manually.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-custom-layout.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The custom layout editor also supports resource types to help you visualize resources in argument buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-custom-layout-resources.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you finish editing the buffer content with your custom layout, click Done. You can access custom layouts from the Element Type drop-down menu, just below Custom Layout > Recent Custom Layouts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-columns",
+          "level": 3,
+          "text": "Configure columns",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure the Buffer viewer to display only the information you need.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Position your pointer over a column header and Control-click. The context menu provides the following options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Visible: Toggles the column visibility.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pinned: Pins the column to the left side of the table, keeping it visible even when scrolling horizontally.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hide Other Columns: Hides all columns except the selected column and any pinned columns.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "View Value As: Casts the value to a different format of the same size, such as casting a float to an unsigned integer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, you can configure any column’s options from the context menu, using the filter field to filter through their names.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-header-context.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you hide any columns, you can restore your configuration by selecting Show All Columns from the context menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Search-for-specific-text-and-values",
+          "level": 3,
+          "text": "Search for specific text and values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can search for values by using the search functionality. Press Command-F to open the search bar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The search bar uses a token system to format your search, and different options appear for different input types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-search.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify a floating-point number with an Equal or Not Equal comparison type, you get an additional token to set up the epsilon value for the comparison (defaults to 0.001).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you specify a decimal or a hexadecimal number, only the exact number appears with a highlight in the results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-search-comparison.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, if you specify the GPU base address of a resource, or the GPU base address value of an argument buffer (with or without the offset), it appears with a highlight in the results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also search for text, such as resource names, errors, and invalid numerical values (nan, inf, -inf).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-search-text.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Export-your-buffer-content",
+          "level": 3,
+          "text": "Export your buffer content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can copy the buffer contents either by selecting full rows or individual cells in the table, and then choosing Edit > Copy. The system uses the current layout format to copy the values, including visibility and any type cast override.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also export the contents of the entire buffer by choosing Editor > Export Buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then you can save it either as raw data or as a CSV file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-export-buffer.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can export the buffer by Control-clicking it in the Bound Resources viewer and choosing Export. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-bv-export.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures": {
+      "abstract": [
+        {
+          "text": "Reveal ray intersection bottlenecks by examining your acceleration structures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting acceleration structures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-acceleration-structures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states": {
+      "abstract": [
+        {
+          "text": "Determine how your render and compute passes behave by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting pipeline states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-pipeline-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states": {
+      "abstract": [
+        {
+          "text": "Verify your sampler state configurations by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting sampler states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-sampler-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders": {
+      "abstract": [
+        {
+          "text": "Improve your app’s shader performance by examining and editing your shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting shaders",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-shaders"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures": {
+      "abstract": [
+        {
+          "text": "Discover issues in your textures by examining their content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting textures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-textures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command": {
+      "abstract": [
+        {
+          "text": "Discover issues by examining the bound resources at any point in an encoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the bound resources for a command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-bound-resources-for-a-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-bv-create-custom-layout.png": {
+      "alt": "A screenshot of the Element Type drop-down menu with the Custom Layout menu item selected.",
+      "identifier": "gputools-metal-debugger-bv-create-custom-layout.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8d073befe3493379ba3b760a0483b836/gputools-metal-debugger-bv-create-custom-layout.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a33e44f645d2849039690e4c79983f48/gputools-metal-debugger-bv-create-custom-layout@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ffd32e5f4bf5ed253d114af8bbbe9a2f/gputools-metal-debugger-bv-create-custom-layout~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/885f30b773d980b005a4befe50eacf7d/gputools-metal-debugger-bv-create-custom-layout~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-custom-layout-resources.png": {
+      "alt": "A screenshot of the Buffer viewer displaying argument buffer resources in custom layouts.",
+      "identifier": "gputools-metal-debugger-bv-custom-layout-resources.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/695dd91598e88896e3eb2c667b76687c/gputools-metal-debugger-bv-custom-layout-resources.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e376dcbc0ffaf16bd04f1b7dc35b00e2/gputools-metal-debugger-bv-custom-layout-resources@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/874f7fadb40f2ebd0c8afe475a7b420d/gputools-metal-debugger-bv-custom-layout-resources~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/11c6ec4f90484002947df218e13f2461/gputools-metal-debugger-bv-custom-layout-resources~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-custom-layout.png": {
+      "alt": "A screenshot of the Buffer viewer displaying various custom layouts.",
+      "identifier": "gputools-metal-debugger-bv-custom-layout.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b353368ca56d8c75811a3e365b9c56fe/gputools-metal-debugger-bv-custom-layout.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7fbafd47a91b5a431f9d2ef4a63e7fcd/gputools-metal-debugger-bv-custom-layout@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/79c3bc0c23635a76d19c08c9661a1b2a/gputools-metal-debugger-bv-custom-layout~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62b1ef64fdac6e1924070afb1364fd72/gputools-metal-debugger-bv-custom-layout~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-export-buffer.png": {
+      "alt": "A screenshot of the Export Buffer menu option selected in the application main menu.",
+      "identifier": "gputools-metal-debugger-bv-export-buffer.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/081963c6c2113a412554239c8065f5b8/gputools-metal-debugger-bv-export-buffer.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bc454faca98c26e879f901eb893601e2/gputools-metal-debugger-bv-export-buffer@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c8e913bf742e28197cef09cd71de311b/gputools-metal-debugger-bv-export-buffer~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/08843c0d69c7f3f51828c166442db417/gputools-metal-debugger-bv-export-buffer~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-export.png": {
+      "alt": "A screenshot of the context menu for a buffer resource in the the Bound Resources viewer. The Export Buffer menu item is highlighted.",
+      "identifier": "gputools-metal-debugger-bv-export.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/16e26d97a9d67c5fd146e9771a31c35b/gputools-metal-debugger-bv-export.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50bf13b69c0e650b0367a8728c790ce7/gputools-metal-debugger-bv-export@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d9ce4e7bef41f5460dd0779f96de71c/gputools-metal-debugger-bv-export~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1b392cf09f86a867625d372987f415f4/gputools-metal-debugger-bv-export~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-formatting-0.png": {
+      "alt": "A screenshot of the layout controls in the Buffer viewer, consisting of the Element Type drop-down and the Number of Elements per Row drop-down.",
+      "identifier": "gputools-metal-debugger-bv-formatting-0.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b68a1396405e321857a6b108700dcd4/gputools-metal-debugger-bv-formatting-0.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/21cdb24ea552353df212d3e38925b069/gputools-metal-debugger-bv-formatting-0@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/09277829785df8d19e3aad51b48516e0/gputools-metal-debugger-bv-formatting-0~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/696daa826a6be03725bb87c154a8ba4d/gputools-metal-debugger-bv-formatting-0~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-formatting-1.png": {
+      "alt": "A screenshot of the Buffer viewer displaying four unsigned short integers per row.",
+      "identifier": "gputools-metal-debugger-bv-formatting-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d49a7b9773797b90c4184ed23db296c/gputools-metal-debugger-bv-formatting-1.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b85ae14f373246ea5415613459d88e8b/gputools-metal-debugger-bv-formatting-1@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4aabdd72efdd898b127e302f6c273ed7/gputools-metal-debugger-bv-formatting-1~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04e1c896800b4239a2f98d585ca6d005/gputools-metal-debugger-bv-formatting-1~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-formatting-2.png": {
+      "alt": "A screenshot of the Buffer viewer highlighting the Offset control.",
+      "identifier": "gputools-metal-debugger-bv-formatting-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a3a38b1919c89cbe04126bac92a8d1ee/gputools-metal-debugger-bv-formatting-2.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5686838c1b6d0c6605fb9a9d0e548afc/gputools-metal-debugger-bv-formatting-2@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8420eebe4295d914a0330cc322a30373/gputools-metal-debugger-bv-formatting-2~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/775a2ad186264536558152b33d543442/gputools-metal-debugger-bv-formatting-2~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-header-context.png": {
+      "alt": "A screenshot of the Buffer viewer table header context menu with a checkmark indicating column visibility.",
+      "identifier": "gputools-metal-debugger-bv-header-context.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ada7f2dafb0c12a8bc1d5299648b0272/gputools-metal-debugger-bv-header-context.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8dcd5b6d87c88c2f7a0c655e8908b154/gputools-metal-debugger-bv-header-context@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dec4cd22487c017849b5a5d099427ec6/gputools-metal-debugger-bv-header-context~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bd6c6a9c3549d51412d849ac358dbf65/gputools-metal-debugger-bv-header-context~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-hero.png": {
+      "alt": "A screenshot of the Buffer viewer highlighting the columns for input float-three and output float-four positions.",
+      "identifier": "gputools-metal-debugger-bv-hero.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/370de70f4fce6591c530e555314ea7c3/gputools-metal-debugger-bv-hero.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/800b0f04b28b1b74cfc4a757f4fd7046/gputools-metal-debugger-bv-hero@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd79ba1739a4c71ae8a8a5e395837562/gputools-metal-debugger-bv-hero~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/da401763a7f74a5487af0103aec12768/gputools-metal-debugger-bv-hero~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-search-comparison.png": {
+      "alt": "A screenshot of the Buffer viewer with the comparison type context menu in the search bar.",
+      "identifier": "gputools-metal-debugger-bv-search-comparison.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a1e6de6011763ca6da1ce72ae0e49f0e/gputools-metal-debugger-bv-search-comparison.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8e788d94ddaffb145b03eb2a481cb2f6/gputools-metal-debugger-bv-search-comparison@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/93ff54d5f042e64e1f4a68a06e3039c6/gputools-metal-debugger-bv-search-comparison~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/310e33875b065bc0e40eee00bbe52eca/gputools-metal-debugger-bv-search-comparison~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-search-text.png": {
+      "alt": "A screenshot of the Buffer viewer with text search results.",
+      "identifier": "gputools-metal-debugger-bv-search-text.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/de666fa2a82617837db50d79dcc5e6d8/gputools-metal-debugger-bv-search-text.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d7503e3731afccc02f59e9b6b833e7db/gputools-metal-debugger-bv-search-text@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2d7cd8374876b94915c9be695a9f3c3/gputools-metal-debugger-bv-search-text~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ee64ab0fd31b21a2cca909f4c506c3c/gputools-metal-debugger-bv-search-text~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-bv-search.png": {
+      "alt": "A screenshot of the Buffer viewer with the search bar visible.",
+      "identifier": "gputools-metal-debugger-bv-search.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b297c48a37e934cfbf19a20b4fa442e/gputools-metal-debugger-bv-search.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c2090673002c753ba8bdb2ff94877af8/gputools-metal-debugger-bv-search@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bde44fde18911c998a705019b052c183/gputools-metal-debugger-bv-search~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7f772f3910a9f85cdd37e1d5c0947cff/gputools-metal-debugger-bv-search~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-resource-inspection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures"
+      ],
+      "title": "Metal resource inspection"
+    }
+  ]
+}

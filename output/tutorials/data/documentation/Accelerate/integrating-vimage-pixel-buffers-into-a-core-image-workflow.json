@@ -1,0 +1,1582 @@
+{
+  "abstract": [
+    {
+      "text": "Share image data between Core Video pixel buffers and vImage buffers to integrate vImage operations into a Core Image workflow.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Integrating vImage pixel buffers into a Core Image workflow"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vImage supports reading from and writing to Core Video pixel buffers. This sample implements ends-in contrast stretching using vImage and makes that operation available to Core Image workflows by subclassing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel",
+              "isActive": true,
+              "overridingTitle": "CIImageProcessorKernel",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CIImageProcessorKernel",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". An image processor kernel uses Core Video pixel buffers for input and output, so the app creates vImage pixel buffers that share data with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer",
+              "isActive": true,
+              "overridingTitle": "CVPixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows a photograph before (left) and after (right) the app has applied ends-in contrast stretching:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "stretch_2x.jpg",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about ends-in contrast stretching, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before exploring the code, try building and running the app to familiarize yourself with the effect of the different parameters on the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-an-ends-in-contrast-stretch-image-processor-kernel",
+          "level": 3,
+          "text": "Define an ends-in contrast-stretch image processor kernel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ContrastStretchImageProcessorKernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " inherits from the Core Image ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel",
+              "isActive": true,
+              "overridingTitle": "CIImageProcessorKernel",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CIImageProcessorKernel",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code defines a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure that represents a four-channel, 8-bit-per-channel interleaved image format. The image processor kernel supports ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437695-r8",
+              "isActive": true,
+              "overridingTitle": "kCIFormatR8",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kCIFormatR8",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1438064-bgra8",
+              "isActive": true,
+              "overridingTitle": "kCIFormatBGRA8",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kCIFormatBGRA8",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437998-rgbah",
+              "isActive": true,
+              "overridingTitle": "kCIFormatRGBAh",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kCIFormatRGBAh",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437756-rgbaf",
+              "isActive": true,
+              "overridingTitle": "kCIFormatRGBAf",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kCIFormatRGBAf",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " input and output formats. For this sample project, the code overrides ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2143065-outputformat",
+              "isActive": true,
+              "overridingTitle": "outputFormat",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "outputFormat",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2138289-formatforinput",
+              "isActive": true,
+              "overridingTitle": "formatForInput(at:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "formatForInput(at:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to return a ",
+              "type": "text"
+            },
+            {
+              "code": "BGRA8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that’s the same as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat/bitmapInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "code": "vImage_CGImageFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var cgImageFormat = vImage_CGImageFormat(",
+            "    bitsPerComponent: 8,",
+            "    bitsPerPixel: 32,",
+            "    colorSpace: nil,",
+            "    bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.last.rawValue),",
+            "    version: 0,",
+            "    decode: nil,",
+            "    renderingIntent: .defaultIntent)",
+            "",
+            "override class var outputFormat: CIFormat {",
+            "    return CIFormat.BGRA8",
+            "}",
+            "",
+            "override class func formatForInput(at input: Int32) -> CIFormat {",
+            "    return CIFormat.BGRA8",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-source-pixel-buffer",
+          "level": 3,
+          "text": "Create the source pixel buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app applies ends-in contrast stretching, Core Image calls the processor kernel’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2138290-process",
+              "isActive": true,
+              "overridingTitle": "process(with:arguments:output:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "process(with:arguments:output:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " function. The following code ensures that the input and output ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer",
+              "isActive": true,
+              "overridingTitle": "CVPixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instances are available:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard",
+            "    let input = inputs?.first,",
+            "    let inputPixelBuffer = input.pixelBuffer,",
+            "    let outputPixelBuffer = output.pixelBuffer else {",
+            "        return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The source ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "overridingTitle": "vImage.PixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "vImage.PixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " shares its memory with the input ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer",
+              "isActive": true,
+              "overridingTitle": "CVPixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". The following code creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that allows the pixel buffer to reference the Core Video buffer’s memory:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CVPixelBufferLockBaseAddress(inputPixelBuffer,",
+            "                             CVPixelBufferLockFlags.readOnly)",
+            "defer {",
+            "    CVPixelBufferUnlockBaseAddress(inputPixelBuffer,",
+            "                                   CVPixelBufferLockFlags.readOnly)",
+            "}",
+            "",
+            "guard let cvImageFormat = vImageCVImageFormat.make(buffer: inputPixelBuffer) else {",
+            "    throw ContrastStretchImageProcessorKernelError.unableToDeriveImageFormat",
+            "}",
+            "",
+            "if cvImageFormat.colorSpace == nil {",
+            "    cvImageFormat.colorSpace = CGColorSpaceCreateDeviceRGB()",
+            "}",
+            "",
+            "guard let converter = try? vImageConverter.make(",
+            "    sourceFormat: cvImageFormat,",
+            "    destinationFormat: cgImageFormat) else {",
+            "    throw ContrastStretchImageProcessorKernelError.vImageConverterCreationFailed",
+            "}",
+            "",
+            "let sourcePixelBuffer = vImage.PixelBuffer<vImage.Interleaved8x4>(",
+            "    referencing: inputPixelBuffer,",
+            "    converter: converter)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-destination-pixel-buffer",
+          "level": 3,
+          "text": "Create the destination pixel buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code app uses the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create the destination pixel buffer, which shares memory with the output Core Video buffer’s memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CVPixelBufferLockBaseAddress(outputPixelBuffer,",
+            "                             CVPixelBufferLockFlags.readOnly)",
+            "defer {",
+            "    CVPixelBufferUnlockBaseAddress(outputPixelBuffer,",
+            "                                   CVPixelBufferLockFlags.readOnly)",
+            "}",
+            "",
+            "let destinationPixelBuffer = vImage.PixelBuffer<vImage.Interleaved8x4>(",
+            "    referencing: outputPixelBuffer,",
+            "    converter: converter)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-ends-in-contrast-stretching",
+          "level": 3,
+          "text": "Apply ends-in contrast stretching",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageEndsInContrastStretch_ARGB8888(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function applies an ends-in contrast-stretch operation to the source pixel buffer and writes the result to the destination pixel buffer. This function works equally well on all channel orderings; for example, RGBA or BGRA.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let error = sourcePixelBuffer.withUnsafePointerToVImageBuffer { src in",
+            "    destinationPixelBuffer.withUnsafePointerToVImageBuffer { dst in",
+            "",
+            "        return vImageEndsInContrastStretch_ARGB8888(",
+            "            src,",
+            "            dst,",
+            "            [UInt32](repeating: UInt32(percentLow), count: 4),",
+            "            [UInt32](repeating: UInt32(percentHigh), count: 4),",
+            "            vImage_Flags(kvImageNoFlags))",
+            "        ",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the destination pixel buffer shares memory with the output Core Video pixel buffer, the operation is complete after the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageEndsInContrastStretch_ARGB8888(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-the-ends-in-contrast-stretching-operation-to-an-image",
+          "level": 3,
+          "text": "Apply the ends-in contrast stretching operation to an image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The  ",
+              "type": "text"
+            },
+            {
+              "code": "apply(withExtent:inputs:arguments:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method generates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "overridingTitle": "CIImage",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CIImage",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance based on the output of the processor’s ",
+              "type": "text"
+            },
+            {
+              "code": "process(with:arguments:output:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let ciResult = try? ContrastStretchImageProcessorKernel.apply(",
+            "    withExtent: ciImage.extent,",
+            "    inputs: [ciImage],",
+            "    arguments: [\"percentLow\": Int(percentLow),",
+            "                \"percentHigh\": Int(percentHigh)])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "72008d4a08b0/IntegratingVImagePixelBuffersIntoACoreImageWorkflow.zip": {
+      "checksum": "72008d4a08b0f4d269ca75305c4b99ae9a80b8fb1a83efb25e66aa590f3472904607ca833a2e20ab000f8cddc27d2277c582e060fa38f25e58fcab67fc36bd50",
+      "identifier": "72008d4a08b0/IntegratingVImagePixelBuffersIntoACoreImageWorkflow.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/72008d4a08b0/IntegratingVImagePixelBuffersIntoACoreImageWorkflow.zip"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Use the vImage convert-any-to-any functionality to perform real-time image processing of video frames streamed from your device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying vImage operations to video sample buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-vimage-operations-to-video-sample-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Video and vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Video interoperability",
+      "type": "topic",
+      "url": "/documentation/accelerate/core-video-interoperability"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation": {
+      "abstract": [
+        {
+          "text": "Enhance and adjust the contrast of an image with histogram equalization and contrast stretching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+      "kind": "article",
+      "role": "article",
+      "title": "Enhancing image contrast with histogram manipulation",
+      "type": "topic",
+      "url": "/documentation/accelerate/enhancing-image-contrast-with-histogram-manipulation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering": {
+      "abstract": [
+        {
+          "text": "Apply dithering to simulate colors that are unavailable in reduced bit depths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Improving the quality of quantized images with dithering",
+      "type": "topic",
+      "url": "/documentation/accelerate/improving-the-quality-of-quantized-images-with-dithering"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects": {
+      "abstract": [
+        {
+          "text": "Render real-time video effects with the vImage Pixel Buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using vImage pixel buffers to generate video effects",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-vimage-pixel-buffers-to-generate-video-effects"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter": {
+      "abstract": [
+        {
+          "text": "A description of a conversion from one image format to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConverter",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageEndsInContrastStretch_ARGB8888(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs ends-in contrast stretching on an 8-bit-per-channel, 4-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageEndsInContrastStretch_ARGB8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageEndsInContrastStretch_ARGB8888(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageEndsInContrastStretch_ARGB8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageEndsInContrastStretch_ARGB8888(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageendsincontraststretch_argb8888(_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat": {
+      "abstract": [
+        {
+          "text": "The description of a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_CGImageFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgimageformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat/bitmapInfo": {
+      "abstract": [
+        {
+          "text": "The component information that describes the color channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitmapInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CGBitmapInfo",
+          "text": "CGBitmapInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat/bitmapInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bitmapInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "bitmapInfo",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgimageformat/bitmapinfo"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate11PixelFormatP",
+          "text": "PixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/Accelerate/vImage/PixelBuffer"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a Core Video pixel buffer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVImageBufferRef",
+          "text": "CVImageBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVPixelBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/CVPixelBuffer"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat/1437695-r8": {
+      "abstract": [
+        {
+          "text": "An 8-bit-per-pixel, fixed-point pixel format in which the sole component is a red color value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "R8"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437695-r8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "R8",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat/1437695-r8"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat/1437756-rgbaf": {
+      "abstract": [
+        {
+          "text": "A 128-bit-per-pixel, floating-point pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "RGBAf"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437756-rgbaf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RGBAf",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat/1437756-rgbaf"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat/1437998-rgbah": {
+      "abstract": [
+        {
+          "text": "A 64-bit-per-pixel, floating-point pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "RGBAh"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437998-rgbah",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RGBAh",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat/1437998-rgbah"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat/1438064-bgra8": {
+      "abstract": [
+        {
+          "text": "A 32-bit-per-pixel, fixed-point pixel format in which the blue, green, and red color components precede the alpha value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGRA8"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1438064-bgra8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BGRA8",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat/1438064-bgra8"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "abstract": [
+        {
+          "text": "A representation of an image to be processed or produced by Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel": {
+      "abstract": [
+        {
+          "text": "The abstract class you extend to create custom image processors that can integrate with Core Image workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImageProcessorKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImageProcessorKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorkernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2138289-formatforinput": {
+      "abstract": [
+        {
+          "text": "Method to override for returning the image processing kernel's input pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatForInput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32) -> CIFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2138289-formatforinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatForInput(at:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorkernel/2138289-formatforinput"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2138290-process": {
+      "abstract": [
+        {
+          "text": "Method to override for customizing the kernel's image processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "process"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": [any CIImageProcessorInput]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": any CIImageProcessorOutput)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2138290-process",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "process(with:arguments:output:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorkernel/2138290-process"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2143065-outputformat": {
+      "abstract": [
+        {
+          "text": "The processor's output pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2143065-outputformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputFormat",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorkernel/2143065-outputformat"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "stretch_2x.jpg": {
+      "alt": "A side-by-side comparison of the original close-up image of some flowers with its contrast-stretched counterpart.",
+      "identifier": "stretch_2x.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d0b52eea619c0fa5faf269f59e673976/stretch_2x.jpg"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "72008d4a08b0/IntegratingVImagePixelBuffersIntoACoreImageWorkflow.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Core-Video-Interoperation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering",
+        "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability"
+      ],
+      "title": "Core Video Interoperation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coreimage~1ciimageprocessorkernel~12138290-process/title",
+          "value": "processWithInputs:arguments:output:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coreimage~1ciformat~11437756-rgbaf/title",
+          "value": "kCIFormatRGBAf"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coreimage~1ciformat~11437695-r8/title",
+          "value": "kCIFormatR8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/title",
+          "value": "vImage_CGImageFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coreimage~1ciimageprocessorkernel~12138289-formatforinput/title",
+          "value": "formatForInputAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coreimage~1ciformat~11438064-bgra8/title",
+          "value": "kCIFormatBGRA8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat~1bitmapInfo/title",
+          "value": "bitmapInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat~1bitmapInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bitmapInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBuffer/title",
+          "value": "CVPixelBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVImageBufferRef",
+              "text": "CVImageBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coreimage~1ciformat~11437998-rgbah/title",
+          "value": "kCIFormatRGBAh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/title",
+          "value": "vImageConverterRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageEndsInContrastStretch_ARGB8888(_:_:_:_:_:)/title",
+          "value": "vImageEndsInContrastStretch_ARGB8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageEndsInContrastStretch_ARGB8888(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageEndsInContrastStretch_ARGB8888"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

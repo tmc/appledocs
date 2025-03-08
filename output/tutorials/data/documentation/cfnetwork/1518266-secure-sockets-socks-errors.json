@@ -1,0 +1,2258 @@
+{
+  "abstract": [
+    {
+      "text": "Error codes returned by the ",
+      "type": "text"
+    },
+    {
+      "code": "kCFStreamErrorDomainSOCKS",
+      "type": "codeVoice"
+    },
+    {
+      "text": " error domain.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cfnetwork/documentation/CFNetwork/1518266-secure-sockets-socks-errors"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CFNetwork"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Secure Sockets (SOCKS) Errors"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Error codes in the ",
+              "type": "text"
+            },
+            {
+              "code": "kCFStreamErrorDomainSOCKS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain can come from multiple parts of the protocol stack, many of which define their own error values as part of outside specifications such as the HTTP specification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid confusion from conflicting error numbers, error codes in the ",
+              "type": "text"
+            },
+            {
+              "code": "kCFStreamErrorDomainSOCKS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain contain two parts: a subdomain, which tells which part of the protocol stack generated the error, and the error code itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/CFSocketStreamSOCKSGetErrorSubdomain(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns an identifier that tells which layer of the protocol stack produced the error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/CFSocketStreamSOCKSGetError(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns the actual error code that the subdomain describes. This list of constants contains the possible values that this function will return. They must be interpreted within the context of the relevant error subdomain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cfnetwork/documentation/CFNetwork": {
+      "abstract": [
+        {
+          "text": "Access network services and handle changes in network configurations. Build on abstractions of network protocols to simplify tasks such as working with BSD sockets, administering HTTP and FTP servers, and managing Bonjour services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CFNetwork",
+      "type": "topic",
+      "url": "/documentation/cfnetwork"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/CFReadStreamCreateForHTTPRequest(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a read stream for a CFHTTP request message.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFReadStreamCreateForHTTPRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFHTTPMessageRef",
+          "text": "CFHTTPMessage"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFReadStreamRef",
+          "text": "CFReadStream"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/CFReadStreamCreateForHTTPRequest(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFReadStreamCreateForHTTPRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFReadStreamCreateForHTTPRequest(_:_:)",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/cfreadstreamcreateforhttprequest(_:_:)"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/CFReadStreamCreateForStreamedHTTPRequest(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a read stream for a CFHTTP request message object whose body is too long to keep in memory.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFReadStreamCreateForStreamedHTTPRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFHTTPMessageRef",
+          "text": "CFHTTPMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFReadStreamRef",
+          "text": "CFReadStream"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFReadStreamRef",
+          "text": "CFReadStream"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/CFReadStreamCreateForStreamedHTTPRequest(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFReadStreamCreateForStreamedHTTPRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFReadStreamCreateForStreamedHTTPRequest(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/cfreadstreamcreateforstreamedhttprequest(_:_:_:)"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/CFReadStreamCreateWithFTPURL(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an FTP read stream.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFReadStreamCreateWithFTPURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFReadStreamRef",
+          "text": "CFReadStream"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/CFReadStreamCreateWithFTPURL(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFReadStreamCreateWithFTPURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFReadStreamCreateWithFTPURL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/cfreadstreamcreatewithftpurl(_:_:)"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/CFSocketStreamSOCKSGetError(_:)": {
+      "abstract": [
+        {
+          "text": "This function gets error codes in the ",
+          "type": "text"
+        },
+        {
+          "code": "kCFStreamErrorDomainSOCKS",
+          "type": "codeVoice"
+        },
+        {
+          "text": " domain from the ",
+          "type": "text"
+        },
+        {
+          "code": "CFStreamError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " returned by a stream operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSocketStreamSOCKSGetError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CFStreamError",
+          "text": "CFStreamError"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/CFSocketStreamSOCKSGetError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFSocketStreamSOCKSGetError"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFSocketStreamSOCKSGetError(_:)",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/cfsocketstreamsocksgeterror(_:)"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/CFSocketStreamSOCKSGetErrorSubdomain(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the error subdomain associated with errors in the ",
+          "type": "text"
+        },
+        {
+          "code": "kCFStreamErrorDomainSOCKS",
+          "type": "codeVoice"
+        },
+        {
+          "text": " domain from the ",
+          "type": "text"
+        },
+        {
+          "code": "CFStreamError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " returned by a stream operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSocketStreamSOCKSGetErrorSubdomain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CFStreamError",
+          "text": "CFStreamError"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/CFSocketStreamSOCKSGetErrorSubdomain(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFSocketStreamSOCKSGetErrorSubdomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFSocketStreamSOCKSGetErrorSubdomain(_:)",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/cfsocketstreamsocksgeterrorsubdomain(_:)"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/CFWriteStreamCreateWithFTPURL(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an FTP write stream.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFWriteStreamCreateWithFTPURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFWriteStreamRef",
+          "text": "CFWriteStream"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/CFWriteStreamCreateWithFTPURL(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFWriteStreamCreateWithFTPURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFWriteStreamCreateWithFTPURL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/cfwritestreamcreatewithftpurl(_:_:)"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4IdConflict": {
+      "abstract": [
+        {
+          "text": "Request rejected by the server because the client program and the ",
+          "type": "text"
+        },
+        {
+          "code": "identd",
+          "type": "codeVoice"
+        },
+        {
+          "text": " daemon reported different user IDs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS4IdConflict"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4IdConflict",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS4IdConflict"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKS4IdConflict",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsocks4idconflict"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4IdentdFailed": {
+      "abstract": [
+        {
+          "text": "Request rejected by the server because it couldn’t connect to the ",
+          "type": "text"
+        },
+        {
+          "code": "identd",
+          "type": "codeVoice"
+        },
+        {
+          "text": " daemon on the client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS4IdentdFailed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4IdentdFailed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS4IdentdFailed"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKS4IdentdFailed",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsocks4identdfailed"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4RequestFailed": {
+      "abstract": [
+        {
+          "text": "Request rejected by the server or request failed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS4RequestFailed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4RequestFailed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS4RequestFailed"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKS4RequestFailed",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsocks4requestfailed"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4SubDomainResponse": {
+      "abstract": [
+        {
+          "text": "The SOCKS4 status code returned by the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS4SubDomainResponse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4SubDomainResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS4SubDomainResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKS4SubDomainResponse",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsocks4subdomainresponse"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5BadResponseAddr": {
+      "abstract": [
+        {
+          "text": "The address returned is not of a known type. This error code is only valid for errors in the ",
+          "type": "text"
+        },
+        {
+          "code": "kCFStreamErrorSOCKSSubDomainNone",
+          "type": "codeVoice"
+        },
+        {
+          "text": " subdomain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS5BadResponseAddr"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5BadResponseAddr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS5BadResponseAddr"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKS5BadResponseAddr",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsocks5badresponseaddr"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5BadState": {
+      "abstract": [
+        {
+          "text": "The stream is not in a state that allows the requested operation. This error code is only valid for errors in the ",
+          "type": "text"
+        },
+        {
+          "code": "kCFStreamErrorSOCKSSubDomainNone",
+          "type": "codeVoice"
+        },
+        {
+          "text": " subdomain..",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS5BadState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5BadState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS5BadState"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKS5BadState",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsocks5badstate"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5SubDomainMethod": {
+      "abstract": [
+        {
+          "text": "The server’s desired negotiation method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS5SubDomainMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5SubDomainMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS5SubDomainMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKS5SubDomainMethod",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsocks5subdomainmethod"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5SubDomainResponse": {
+      "abstract": [
+        {
+          "text": "The response code that the server returned in reply to the connection request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS5SubDomainResponse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5SubDomainResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS5SubDomainResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKS5SubDomainResponse",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsocks5subdomainresponse"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5SubDomainUserPass": {
+      "abstract": [
+        {
+          "text": "The status code that the server returned during authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS5SubDomainUserPass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5SubDomainUserPass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKS5SubDomainUserPass"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKS5SubDomainUserPass",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsocks5subdomainuserpass"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKSSubDomainNone": {
+      "abstract": [
+        {
+          "text": "A general SOCKS error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKSSubDomainNone"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKSSubDomainNone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKSSubDomainNone"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKSSubDomainNone",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsockssubdomainnone"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKSSubDomainVersionCode": {
+      "abstract": [
+        {
+          "text": "The version of SOCKS that the server wants to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKSSubDomainVersionCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKSSubDomainVersionCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKSSubDomainVersionCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKSSubDomainVersionCode",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsockssubdomainversioncode"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKSUnknownClientVersion": {
+      "abstract": [
+        {
+          "text": "The SOCKS server rejected access because it does not support connections with the requested SOCKS version. SOCKS client version. You can query the ",
+          "type": "text"
+        },
+        {
+          "code": "kCFSOCKSVersionKey",
+          "type": "codeVoice"
+        },
+        {
+          "text": " key to find out what version the server requested. This error code is only valid for errors in the ",
+          "type": "text"
+        },
+        {
+          "code": "kCFStreamErrorSOCKSSubDomainNone",
+          "type": "codeVoice"
+        },
+        {
+          "text": " subdomain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKSUnknownClientVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKSUnknownClientVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamErrorSOCKSUnknownClientVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamErrorSOCKSUnknownClientVersion",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreamerrorsocksunknownclientversion"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPAttemptPersistentConnection": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPAttemptPersistentConnection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPAttemptPersistentConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPAttemptPersistentConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPAttemptPersistentConnection",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttpattemptpersistentconnection"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPFinalRequest": {
+      "abstract": [
+        {
+          "text": "HTTP Final Request property. A value of type CFHTTPMessage containing the final message transmitted by the stream after all modifications (including authentication, connection policy, redirects, and so on) have been made. This property cannot be set.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPFinalRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPFinalRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPFinalRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPFinalRequest",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttpfinalrequest"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPFinalURL": {
+      "abstract": [
+        {
+          "text": "HTTP Final URL property. A value of type CFURL containing the final HTTP URL. This value differs from the URL in the original HTTP request if an autoredirection occurred. This property cannot be set.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPFinalURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPFinalURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPFinalURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPFinalURL",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttpfinalurl"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPProxy": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPProxy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPProxy",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttpproxy"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPProxyHost": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPProxyHost"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPProxyHost",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPProxyHost"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPProxyHost",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttpproxyhost"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPProxyPort": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPProxyPort"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPProxyPort",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPProxyPort"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPProxyPort",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttpproxyport"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPRequestBytesWrittenCount": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPRequestBytesWrittenCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPRequestBytesWrittenCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPRequestBytesWrittenCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPRequestBytesWrittenCount",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttprequestbyteswrittencount"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPResponseHeader": {
+      "abstract": [
+        {
+          "text": "HTTP Response Header property. When copied by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539715-cfreadstreamcopyproperty",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", the header of an HTTP response message is returned.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPResponseHeader"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPResponseHeader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPResponseHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPResponseHeader",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttpresponseheader"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPSProxyHost": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPSProxyHost"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPSProxyHost",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPSProxyHost"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPSProxyHost",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttpsproxyhost"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPSProxyPort": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPSProxyPort"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPSProxyPort",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPSProxyPort"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPSProxyPort",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttpsproxyport"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPShouldAutoredirect": {
+      "abstract": [
+        {
+          "text": "HTTP Should Auto Redirect property. Set this property to ",
+          "type": "text"
+        },
+        {
+          "code": "kCFBooleanTrue",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to enable autoredirection; set this property to ",
+          "type": "text"
+        },
+        {
+          "code": "kCFBooleanFalse",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to disable autoredirection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPShouldAutoredirect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPShouldAutoredirect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCFStreamPropertyHTTPShouldAutoredirect"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCFStreamPropertyHTTPShouldAutoredirect",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/kcfstreampropertyhttpshouldautoredirect"
+    },
+    "doc://com.apple.cfnetwork/documentation/CFNetwork/kSOCKS5NoAcceptableMethod": {
+      "abstract": [
+        {
+          "text": "The client and server couldn’t find a mutually agreeable authentication method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSOCKS5NoAcceptableMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cfnetwork/documentation/CFNetwork/kSOCKS5NoAcceptableMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSOCKS5NoAcceptableMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSOCKS5NoAcceptableMethod",
+      "type": "topic",
+      "url": "/documentation/cfnetwork/ksocks5noacceptablemethod"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1539715-cfreadstreamcopyproperty": {
+      "abstract": [
+        {
+          "text": "Returns the value of a property for a stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFReadStreamCopyProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(CFReadStream!, CFStreamPropertyKey!) -> CFTypeRef!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1539715-cfreadstreamcopyproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFReadStreamCopyProperty(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1539715-cfreadstreamcopyproperty"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Streams",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/CFReadStreamCreateForHTTPRequest(_:_:)",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/CFReadStreamCreateForStreamedHTTPRequest(_:_:_:)",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPAttemptPersistentConnection",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPFinalRequest",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPFinalURL",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPProxy",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPProxyHost",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPProxyPort",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPRequestBytesWrittenCount",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPResponseHeader",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPSProxyHost",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPSProxyPort",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamPropertyHTTPShouldAutoredirect",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/CFWriteStreamCreateWithFTPURL(_:_:)",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/CFReadStreamCreateWithFTPURL(_:_:)"
+      ],
+      "title": "Streams"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4IdConflict",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4IdentdFailed",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4RequestFailed",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS4SubDomainResponse",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5SubDomainMethod",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5SubDomainResponse",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5SubDomainUserPass",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKSSubDomainNone",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKSSubDomainVersionCode",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kSOCKS5NoAcceptableMethod",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5BadResponseAddr",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKS5BadState",
+        "doc://com.apple.cfnetwork/documentation/CFNetwork/kCFStreamErrorSOCKSUnknownClientVersion"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPSProxyHost/title",
+          "value": "kCFStreamPropertyHTTPSProxyHost"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPSProxyHost/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPSProxyHost"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS4RequestFailed/title",
+          "value": "kCFStreamErrorSOCKS4RequestFailed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS4RequestFailed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKS4RequestFailed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPResponseHeader/title",
+          "value": "kCFStreamPropertyHTTPResponseHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPResponseHeader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPResponseHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPRequestBytesWrittenCount/title",
+          "value": "kCFStreamPropertyHTTPRequestBytesWrittenCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPRequestBytesWrittenCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPRequestBytesWrittenCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPProxyPort/title",
+          "value": "kCFStreamPropertyHTTPProxyPort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPProxyPort/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPProxyPort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKSSubDomainNone/title",
+          "value": "kCFStreamErrorSOCKSSubDomainNone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKSSubDomainNone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKSSubDomainNone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPShouldAutoredirect/title",
+          "value": "kCFStreamPropertyHTTPShouldAutoredirect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPShouldAutoredirect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPShouldAutoredirect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKSSubDomainVersionCode/title",
+          "value": "kCFStreamErrorSOCKSSubDomainVersionCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKSSubDomainVersionCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKSSubDomainVersionCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKSUnknownClientVersion/title",
+          "value": "kCFStreamErrorSOCKSUnknownClientVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKSUnknownClientVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKSUnknownClientVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFReadStreamCreateForStreamedHTTPRequest(_:_:_:)/title",
+          "value": "CFReadStreamCreateForStreamedHTTPRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFReadStreamCreateForStreamedHTTPRequest(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFReadStreamCreateForStreamedHTTPRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPSProxyPort/title",
+          "value": "kCFStreamPropertyHTTPSProxyPort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPSProxyPort/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPSProxyPort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kSOCKS5NoAcceptableMethod/title",
+          "value": "kSOCKS5NoAcceptableMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kSOCKS5NoAcceptableMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSOCKS5NoAcceptableMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS5BadState/title",
+          "value": "kCFStreamErrorSOCKS5BadState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS5BadState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKS5BadState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS4IdConflict/title",
+          "value": "kCFStreamErrorSOCKS4IdConflict"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS4IdConflict/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKS4IdConflict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS4SubDomainResponse/title",
+          "value": "kCFStreamErrorSOCKS4SubDomainResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS4SubDomainResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKS4SubDomainResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPAttemptPersistentConnection/title",
+          "value": "kCFStreamPropertyHTTPAttemptPersistentConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPAttemptPersistentConnection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPAttemptPersistentConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFSocketStreamSOCKSGetErrorSubdomain(_:)/title",
+          "value": "CFSocketStreamSOCKSGetErrorSubdomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFSocketStreamSOCKSGetErrorSubdomain(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFSocketStreamSOCKSGetErrorSubdomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFReadStreamCreateForHTTPRequest(_:_:)/title",
+          "value": "CFReadStreamCreateForHTTPRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFReadStreamCreateForHTTPRequest(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFReadStreamCreateForHTTPRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPProxyHost/title",
+          "value": "kCFStreamPropertyHTTPProxyHost"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPProxyHost/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPProxyHost"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPFinalRequest/title",
+          "value": "kCFStreamPropertyHTTPFinalRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPFinalRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPFinalRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFReadStreamCreateWithFTPURL(_:_:)/title",
+          "value": "CFReadStreamCreateWithFTPURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFReadStreamCreateWithFTPURL(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFReadStreamCreateWithFTPURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~11539715-cfreadstreamcopyproperty/title",
+          "value": "CFReadStreamCopyProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS5SubDomainMethod/title",
+          "value": "kCFStreamErrorSOCKS5SubDomainMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS5SubDomainMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKS5SubDomainMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFWriteStreamCreateWithFTPURL(_:_:)/title",
+          "value": "CFWriteStreamCreateWithFTPURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFWriteStreamCreateWithFTPURL(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFWriteStreamCreateWithFTPURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS5SubDomainResponse/title",
+          "value": "kCFStreamErrorSOCKS5SubDomainResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS5SubDomainResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKS5SubDomainResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS5SubDomainUserPass/title",
+          "value": "kCFStreamErrorSOCKS5SubDomainUserPass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS5SubDomainUserPass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKS5SubDomainUserPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPFinalURL/title",
+          "value": "kCFStreamPropertyHTTPFinalURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPFinalURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPFinalURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFSocketStreamSOCKSGetError(_:)/title",
+          "value": "CFSocketStreamSOCKSGetError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1CFSocketStreamSOCKSGetError(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFSocketStreamSOCKSGetError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS5BadResponseAddr/title",
+          "value": "kCFStreamErrorSOCKS5BadResponseAddr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS5BadResponseAddr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKS5BadResponseAddr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS4IdentdFailed/title",
+          "value": "kCFStreamErrorSOCKS4IdentdFailed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamErrorSOCKS4IdentdFailed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamErrorSOCKS4IdentdFailed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPProxy/title",
+          "value": "kCFStreamPropertyHTTPProxy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cfnetwork~1documentation~1CFNetwork~1kCFStreamPropertyHTTPProxy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCFStreamPropertyHTTPProxy"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cfnetwork/1518266-secure-sockets-socks-errors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

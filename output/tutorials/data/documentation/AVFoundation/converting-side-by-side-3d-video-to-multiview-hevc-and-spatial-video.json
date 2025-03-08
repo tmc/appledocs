@@ -1,0 +1,4698 @@
+{
+  "abstract": [
+    {
+      "text": "Create video content for visionOS by converting an existing 3D HEVC file to a multiview HEVC format, optionally adding spatial metadata to create a spatial video.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Converting side-by-side 3D video to multiview HEVC and spatial video"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In visionOS, 3D video uses the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Multiview High Efficiency Video Encoding",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (MV-HEVC) format, supported by MPEG4 and QuickTime. Unlike other 3D media, MV-HEVC stores a single track containing multiple layers for the video, where the track and layers share a frame size. This track frame size is different from other 3D video types, such as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "side-by-side video",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Side-by-side videos use a single track, and place the left- and right-eye images next to each other as part of a single video frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert side-by-side video to MV-HEVC, you load the source video, extract each frame, and then split the frame horizontally. Then copy the left and right sides of the split frame into the left- and right-eye layers, writing a frame containing both layers to the output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app demonstrates the process for converting side-by-side video files to MV-HEVC, encoding the output as a QuickTime file. The output is placed in the same directory as the input file, with ",
+              "type": "text"
+            },
+            {
+              "code": "_MVHEVC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " appended to the original filename.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For videos you capture with a consistent camera configuration, you can optionally add spatial metadata to the output file. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Spatial metadata",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " describes properties of the left- and right-eye cameras that captured the stereo scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding spatial metadata to a stereo MV-HEVC video prompts Apple platforms to consider the video as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "spatial",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " instead of just stereo, and opts the video into visual treatments on Apple Vision Pro that can minimize common causes of stereo viewing discomfort.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about when to provide spatial metadata for a stereo MV-HEVC video and the metadata values to provide, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can verify this sample’s MV-HEVC output by opening it with the sample project from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the full details of the MV-HEVC format, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app takes a path to a side-by-side stereo input video file as a single command-line argument. To run the app in Xcode, select Product > Scheme > Edit Scheme (Command-<), and add the path to your file to Arguments Passed On Launch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To also add spatial metadata to the file, add four additional arguments to Arguments Passed On Launch:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--spatial",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-s",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to indicate that you want to include spatial metadata",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--baseline",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-b",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to provide a baseline in millimeters (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--baseline 64.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for a 64mm baseline)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--fov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-f",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to provide a horizontal field of view in degrees (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--fov 80.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for an 80-degree field of view)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--disparityAdjustment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-d",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to provide a disparity adjustment (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--disparityAdjustment 0.02",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for a 2% positive disparity shift)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the project’s scheme loads a side-by-side video from the Xcode project folder named ",
+              "type": "text"
+            },
+            {
+              "code": "Hummingbird.mov",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This video is a sequence of renders of a 3D scene, showing an animated hummingbird model. By default, the app converts this example video to a stereo MV-HEVC file, without spatial metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add spatial metadata to the hummingbird video during conversion, choose Product > Scheme > Edit Scheme (Command-<), and select the checkbox to the left of the second row of arguments in the Arguments Passed On Launch field. This enables the following additional arguments: ",
+              "type": "text"
+            },
+            {
+              "code": "--spatial --baseline 64.0 --fov 80.0 --disparityAdjustment 0.02",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "--spatial",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument tells the app to write spatial metadata to the output video. The virtual cameras used to create these renders were positioned 64mm apart with a horizontal field of view of 80 degrees, and so the value for the ",
+              "type": "text"
+            },
+            {
+              "code": "--baseline",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument is ",
+              "type": "text"
+            },
+            {
+              "code": "64.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "--fov",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument is ",
+              "type": "text"
+            },
+            {
+              "code": "80.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For this video, a disparity adjustment of +2% of the image width produces a comfortable depth effect when the spatial video is presented in a window on Apple Vision Pro. This 2% disparity adjustment value positions the nearest object in the spatial video — the hummingbird — just behind the front of the window, while still keeping an effective illusion of depth between the hummingbird and the background. The scheme’s arguments express the +2% disparity adjustment with a ",
+              "type": "text"
+            },
+            {
+              "code": "--disparityAdjustment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "0.02",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-the-side-by-side-video",
+          "level": 3,
+          "text": "Load the side-by-side video",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app starts by loading the side-by-side video, creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/loadTracks(withMediaCharacteristic:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to load video tracks, and then selects the first track available as the side-by-side input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let asset = AVURLAsset(url: url)",
+            "reader = try AVAssetReader(asset: asset)",
+            "",
+            "// Get the side-by-side video track.",
+            "guard let videoTrack = try await asset.loadTracks(withMediaCharacteristic: .visual).first else {",
+            "    fatalError(\"Error loading side-by-side video input\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also stores the frame size for the side-by-side video, and calculates the size of the output frames.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sideBySideFrameSize = try await videoTrack.load(.naturalSize)",
+            "eyeFrameSize = CGSize(width: sideBySideFrameSize.width / 2, height: sideBySideFrameSize.height)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To finish loading the video, the app creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and then adds this output stream to the ",
+              "type": "text"
+            },
+            {
+              "code": "AVAssetReader",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let readerSettings: [String: Any] = [",
+            "    kCVPixelBufferIOSurfacePropertiesKey as String: [String: String]()",
+            "]",
+            "sideBySideTrack = AVAssetReaderTrackOutput(track: videoTrack, outputSettings: readerSettings)",
+            "",
+            "if reader.canAdd(sideBySideTrack) {",
+            "    reader.add(sideBySideTrack)",
+            "}",
+            "",
+            "if !reader.startReading() {",
+            "    fatalError(reader.error?.localizedDescription ?? \"Unknown error during track read start\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating the reader track output, the app specifies the file’s pixel format and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/IOSurface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " settings in the ",
+              "type": "text"
+            },
+            {
+              "code": "readerSettings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary. The app indicates that output goes to a 32-bit ARGB pixel buffer, using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferPixelFormatTypeKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_32ARGB",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The sample app also manages its own pixel buffer allocations, passing an empty array as the value for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferIOSurfacePropertiesKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-output-MV-HEVC-file",
+          "level": 3,
+          "text": "Configure the output MV-HEVC file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the reader initialized, the app calls the ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "code": "transcodeToMVHEVC(output:spatialMetadata:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to generate the output file. First, the app creates a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " pointing to the video output location, and then configures the necessary information on the output to indicate that the file contains MV-HEVC video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var multiviewCompressionProperties: [CFString: Any] = [",
+            "    kVTCompressionPropertyKey_MVHEVCVideoLayerIDs: MVHEVCVideoLayerIDs,",
+            "    kVTCompressionPropertyKey_MVHEVCViewIDs: MVHEVCViewIDs,",
+            "    kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs: MVHEVCLeftAndRightViewIDs,",
+            "    kVTCompressionPropertyKey_HasLeftStereoEyeView: true,",
+            "    kVTCompressionPropertyKey_HasRightStereoEyeView: true",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_HasLeftStereoEyeView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_HasRightStereoEyeView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", because the output contains a layer for each eye. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCVideoLayerIDs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCViewIDs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " define the layer and view IDs to use for multiview HEVC encoding. In the sample app, these are all the same.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the left eye layer/view ID and ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the right eye layer/view ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let MVHEVCVideoLayerIDs = [0, 1]",
+            "",
+            "// For simplicity, choose view IDs that match the layer IDs.",
+            "let MVHEVCViewIDs = [0, 1]",
+            "",
+            "// The first element in this array is the view ID of the left eye.",
+            "let MVHEVCLeftAndRightViewIDs = [0, 1]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Include-spatial-metadata",
+          "level": 3,
+          "text": "Include spatial metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the person calling this command-line app requested to add spatial metadata to the output file, and provided the necessary spatial metadata, the app converts that metadata to expected units and scales, and adds an additional compression property key for each metadata value. The app also specifies that the input uses a rectilinear projection, to indicate that it has the expected projection for spatial video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let spatialMetadata {",
+            "",
+            "    let baselineInMicrometers = UInt32(1000.0 * spatialMetadata.baselineInMillimeters)",
+            "    let encodedHorizontalFOV = UInt32(1000.0 * spatialMetadata.horizontalFOV)",
+            "    let encodedDisparityAdjustment = Int32(10_000.0 * spatialMetadata.disparityAdjustment)",
+            "",
+            "    multiviewCompressionProperties[kVTCompressionPropertyKey_ProjectionKind] = kCMFormatDescriptionProjectionKind_Rectilinear",
+            "    multiviewCompressionProperties[kVTCompressionPropertyKey_StereoCameraBaseline] = baselineInMicrometers",
+            "    multiviewCompressionProperties[kVTCompressionPropertyKey_HorizontalFieldOfView] = encodedHorizontalFOV",
+            "    multiviewCompressionProperties[kVTCompressionPropertyKey_HorizontalDisparityAdjustment] = encodedDisparityAdjustment",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-MV-HEVC-input-source",
+          "level": 3,
+          "text": "Configure the MV-HEVC input source",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app transcodes video by directly copying pixels from the source frame. Writing track data to a video file requires an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The sample app uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide pixel data from the source, writing to the output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let multiviewSettings: [String: Any] = [",
+            "    AVVideoCodecKey: AVVideoCodecType.hevc,",
+            "    AVVideoWidthKey: self.eyeFrameSize.width,",
+            "    AVVideoHeightKey: self.eyeFrameSize.height,",
+            "    AVVideoCompressionPropertiesKey: multiviewCompressionProperties",
+            "]",
+            "",
+            "guard multiviewWriter.canApply(outputSettings: multiviewSettings, forMediaType: AVMediaType.video) else {",
+            "    fatalError(\"Error applying output settings\")",
+            "}",
+            "",
+            "let frameInput = AVAssetWriterInput(mediaType: .video, outputSettings: multiviewSettings)",
+            "",
+            "let sourcePixelAttributes: [String: Any] = [",
+            "    kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32ARGB,",
+            "    kCVPixelBufferWidthKey as String: self.sideBySideFrameSize.width,",
+            "    kCVPixelBufferHeightKey as String: self.sideBySideFrameSize.height",
+            "]",
+            "",
+            "let bufferInputAdapter = AVAssetWriterInputTaggedPixelBufferGroupAdaptor(assetWriterInput: frameInput, sourcePixelBufferAttributes: sourcePixelAttributes)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AVAssetWriterInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " source uses the same ",
+              "type": "text"
+            },
+            {
+              "code": "outputSettings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as ",
+              "type": "text"
+            },
+            {
+              "code": "videoWriter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the created pixel buffer adapter has the same frame size as the source. The app follows the best practice of calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/canAdd(_:)-6al7j",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to check the input adapter compatibility before calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/add(_:)-4c4d0",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to use it as a source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard multiviewWriter.canAdd(frameInput) else {",
+            "    fatalError(\"Error adding side-by-side video frames as input\")",
+            "}",
+            "multiviewWriter.add(frameInput)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Process-input-as-it-becomes-available",
+          "level": 3,
+          "text": "Process input as it becomes available",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/startWriting()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/startSession(atSourceTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in sequence to start the video writing process, and then iterates over available frame inputs with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/requestMediaDataWhenReady(on:using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard multiviewWriter.startWriting() else {",
+            "    fatalError(\"Failed to start writing multiview output file\")",
+            "}",
+            "multiviewWriter.startSession(atSourceTime: CMTime.zero)",
+            "",
+            "// The dispatch queue executes the closure when media reads from the input file are available.",
+            "frameInput.requestMediaDataWhenReady(on: DispatchQueue(label: \"Multiview HEVC Writer\")) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The closure argument of ",
+              "type": "text"
+            },
+            {
+              "code": "requestMediaDataWhenReady(on:using:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " runs on the provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the first data read is available. The closure itself is responsible for managing resources that process the media data, and running a loop to process data efficiently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-video-frame-transfer-session-and-output-pixel-buffer-pool",
+          "level": 3,
+          "text": "Create the video frame transfer session and output pixel buffer pool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform the data transfer from the source track, the pixel input adapter requires a pixel buffer as a source. The app creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTPixelTransferSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow for reading data from the video source, and uses the ",
+              "type": "text"
+            },
+            {
+              "code": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s existing pixel buffer pool to allocate pixel buffers for the new multiview eye layers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var session: VTPixelTransferSession? = nil",
+            "guard VTPixelTransferSessionCreate(allocator: kCFAllocatorDefault, pixelTransferSessionOut: &session) == noErr, let session else {",
+            "    fatalError(\"Failed to create pixel transfer\")",
+            "}",
+            "guard let pixelBufferPool = bufferInputAdapter.pixelBufferPool else {",
+            "    fatalError(\"Failed to retrieve existing pixel buffer pool\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Copy-frame-images-from-input-to-output",
+          "level": 3,
+          "text": "Copy frame images from input to output",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After preparing resources, the app then begins a loop to process frames until there’s no more data, or the input read has stopped to buffer data. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/isReadyForMoreMediaData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of an input source is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if another frame is immediately available to process. When a frame is ready, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVImageBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance is created from it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app is now ready to handle sampling. If there’s an available sample, the app processes it in the ",
+              "type": "text"
+            },
+            {
+              "code": "convertFrame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, then calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor/appendTaggedBuffers(_:withPresentationTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", copying the side-by-side sample buffer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer/outputPresentationTimeStamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " timestamp to the new multiview timestamp.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "while frameInput.isReadyForMoreMediaData && bufferInputAdapter.assetWriterInput.isReadyForMoreMediaData {",
+            "    if let sampleBuffer = self.sideBySideTrack.copyNextSampleBuffer() {",
+            "        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {",
+            "            fatalError(\"Failed to load source samples as an image buffer\")",
+            "        }",
+            "        let taggedBuffers = self.convertFrame(fromSideBySide: imageBuffer, with: pixelBufferPool, in: session)",
+            "        let newPTS = sampleBuffer.outputPresentationTimeStamp",
+            "        if !bufferInputAdapter.appendTaggedBuffers(taggedBuffers, withPresentationTime: newPTS) {",
+            "            fatalError(\"Failed to append tagged buffers to multiview output\")",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Input reading finishes when there are no more sample buffers to process from the input stream. The app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/markAsFinished()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to close the stream, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/finishWriting(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to complete the multiview video write. The app also calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/CheckedContinuation/resume()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on its associated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/CheckedContinuation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to return to the ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call, then breaks from the processing loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "frameInput.markAsFinished()",
+            "multiviewWriter.finishWriting {",
+            "    continuation.resume()",
+            "}",
+            "",
+            "break"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Convert-side-by-side-inputs-into-video-layer-outputs",
+          "level": 3,
+          "text": "Convert side-by-side inputs into video layer outputs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "convertFrame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, the app processes the left- and right-eye images for the frame by ",
+              "type": "text"
+            },
+            {
+              "code": "layerID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", using ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the left eye and ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the right. First, the app creates a pixel buffer from the pool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var pixelBuffer: CVPixelBuffer?",
+            "CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, pixelBufferPool, &pixelBuffer)",
+            "guard let pixelBuffer else {",
+            "    fatalError(\"Failed to create pixel buffer for layer \\(layerID)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method then uses its passed ",
+              "type": "text"
+            },
+            {
+              "code": "VTPixelTransferSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to copy the pixels from the side-by-side source, placing them into the created output sample buffer by cropping the frame to include only one eye’s image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Crop the transfer region to the current eye.",
+            "let apertureOffset = -(self.eyeFrameSize.width / 2) + CGFloat(layerID) * self.eyeFrameSize.width",
+            "let cropRectDict = [",
+            "    kCVImageBufferCleanApertureHorizontalOffsetKey: apertureOffset,",
+            "    kCVImageBufferCleanApertureVerticalOffsetKey: 0,",
+            "    kCVImageBufferCleanApertureWidthKey: self.eyeFrameSize.width,",
+            "    kCVImageBufferCleanApertureHeightKey: self.eyeFrameSize.height",
+            "]",
+            "CVBufferSetAttachment(imageBuffer, kCVImageBufferCleanApertureKey, cropRectDict as CFDictionary, CVAttachmentMode.shouldPropagate)",
+            "VTSessionSetProperty(session, key: kVTPixelTransferPropertyKey_ScalingMode, value: kVTScalingMode_CropSourceToCleanAperture)",
+            "",
+            "// Transfer the image to the pixel buffer.",
+            "guard VTPixelTransferSessionTransferImage(session, from: imageBuffer, to: pixelBuffer) == noErr else {",
+            "    fatalError(\"Error during pixel transfer session for layer \\(layerID)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting aperture view properties on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVBufferSetAttachment(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines how to capture and crop input images. The aperture here is the size of an eye image, and the center of the capture frame offset with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVImageBufferCleanApertureHorizontalOffsetKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by ",
+              "type": "text"
+            },
+            {
+              "code": "-0.5 * width",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the left eye and ",
+              "type": "text"
+            },
+            {
+              "code": "+0.5 * width",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the right eye, to capture the correct half of the side-by-side frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app then calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to crop the image to the aperture frame with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTScalingMode_CropSourceToCleanAperture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Next, the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTPixelTransferSessionTransferImage(_:from:to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to copy source pixels to the destination buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The final step is to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTaggedBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the eye image to return to the calling output writer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let tags: [CMTag] = [.videoLayerID(Int64(layerID)), .stereoView(eye)]",
+            "let buffer = CMTaggedBuffer(tags: tags, buffer: .pixelBuffer(pixelBuffer))",
+            "taggedBuffers.append(buffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "4a60632cecb7/ConvertingSideBySide3DVideoToMultiviewHEVCAndSpatialVideo.zip": {
+      "checksum": "4a60632cecb76c9ee99034fcbb88b78f44d9b9d79f059f05db95182388927cb526358204a155b45db9c5fe91a3d1f088bf3b3ee924567ca8df61d30d2b0caccf",
+      "identifier": "4a60632cecb7/ConvertingSideBySide3DVideoToMultiviewHEVCAndSpatialVideo.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/4a60632cecb7/ConvertingSideBySide3DVideoToMultiviewHEVCAndSpatialVideo.zip"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/loadTracks(withMediaCharacteristic:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads tracks that contain media of a specified characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaCharacteristic",
+          "text": "AVMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrack",
+          "text": "AVAssetTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/loadTracks(withMediaCharacteristic:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadTracksWithMediaCharacteristic:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadTracks(withMediaCharacteristic:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset/loadtracks(withmediacharacteristic:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader": {
+      "abstract": [
+        {
+          "text": "An object that reads media data from an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReader"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReader",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreader"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads media data from a single track of an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderTrackOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderTrackOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderTrackOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadertrackoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter": {
+      "abstract": [
+        {
+          "text": "An object that writes media data to a container file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriter",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriter"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/add(_:)-4c4d0": {
+      "abstract": [
+        {
+          "text": "Adds an input to an asset writer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetWriterInput",
+          "text": "AVAssetWriterInput"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/add(_:)-4c4d0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addInput:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriter/add(_:)-4c4d0"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/canAdd(_:)-6al7j": {
+      "abstract": [
+        {
+          "text": "Determines whether the asset writer supports adding the input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canAdd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetWriterInput",
+          "text": "AVAssetWriterInput"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/canAdd(_:)-6al7j",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canAddInput:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canAdd(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriter/canadd(_:)-6al7j"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/finishWriting(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Marks all unfinished inputs as finished and completes the writing of the output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishWriting"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/finishWriting(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishWritingWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "finishWriting(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriter/finishwriting(completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/startSession(atSourceTime:)": {
+      "abstract": [
+        {
+          "text": "Starts an asset-writing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atSourceTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/startSession(atSourceTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startSessionAtSourceTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startSession(atSourceTime:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriter/startsession(atsourcetime:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/startWriting()": {
+      "abstract": [
+        {
+          "text": "Tells the writer to start writing its output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startWriting"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter/startWriting()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startWriting"
+        }
+      ],
+      "role": "symbol",
+      "title": "startWriting()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriter/startwriting()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput": {
+      "abstract": [
+        {
+          "text": "An object that appends media samples to a track in an asset writer’s output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/isReadyForMoreMediaData": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the input is ready to accept media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReadyForMoreMediaData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/isReadyForMoreMediaData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readyForMoreMediaData"
+        }
+      ],
+      "role": "symbol",
+      "title": "isReadyForMoreMediaData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput/isreadyformoremediadata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/markAsFinished()": {
+      "abstract": [
+        {
+          "text": "Marks the input as finished to indicate that you’re done appending samples to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "markAsFinished"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/markAsFinished()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "markAsFinished"
+        }
+      ],
+      "role": "symbol",
+      "title": "markAsFinished()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput/markasfinished()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/requestMediaDataWhenReady(on:using:)": {
+      "abstract": [
+        {
+          "text": "Tells the input to request media data, at its convenience, to write to the output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestMediaDataWhenReady"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput/requestMediaDataWhenReady(on:using:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestMediaDataWhenReadyOnQueue:usingBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestMediaDataWhenReady(on:using:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput/requestmediadatawhenready(on:using:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup": {
+      "abstract": [
+        {
+          "text": "A group of inputs with tracks that are mutually exclusive to each other for playback or processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputgroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that appends timed metadata groups to an asset writer input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputMetadataAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputMetadataAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputMetadataAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputmetadataadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that appends video samples to an asset writer input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputPixelBufferAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputPixelBufferAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputPixelBufferAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputpixelbufferadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that appends tagged buffer groups to an asset writer input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputtaggedpixelbuffergroupadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor/appendTaggedBuffers(_:withPresentationTime:)": {
+      "abstract": [
+        {
+          "text": "Appends a tagged buffer group to the adaptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendTaggedBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CoreMedia14CMTaggedBufferV",
+          "text": "CMTaggedBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPresentationTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor/appendTaggedBuffers(_:withPresentationTime:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendTaggedBuffers(_:withPresentationTime:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputtaggedpixelbuffergroupadaptor/appendtaggedbuffers(_:withpresentationtime:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant": {
+      "abstract": [
+        {
+          "text": "An object that builds audio and video output settings dictionaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVOutputSettingsAssistant"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVOutputSettingsAssistant"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVOutputSettingsAssistant",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color": {
+      "abstract": [
+        {
+          "text": "Check color reproduction for a video in your app by using test patterns, video test equipment, and light-measurement instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Evaluating an App’s Video Color",
+      "type": "topic",
+      "url": "/documentation/avfoundation/evaluating-an-app-s-video-color"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing": {
+      "abstract": [
+        {
+          "text": "Read images from video, export to alternative formats, and perform sample-level reading and writing of media data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media reading and writing",
+      "type": "topic",
+      "url": "/documentation/avfoundation/media-reading-and-writing"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files": {
+      "abstract": [
+        {
+          "text": "Render single images for the left eye and right eye from a multiview High Efficiency Video Coding format file by reading individual video frames.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Reading multiview 3D video files",
+      "type": "topic",
+      "url": "/documentation/avfoundation/reading-multiview-3d-video-files"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information": {
+      "abstract": [
+        {
+          "text": "Inspect and set video color space information when writing and transcoding media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Tagging Media with Video Color Information",
+      "type": "topic",
+      "url": "/documentation/avfoundation/tagging-media-with-video-color-information"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming": {
+      "abstract": [
+        {
+          "text": "Create an HTTP Live Streaming presentation by turning a movie file into a sequence of fragmented MPEG-4 files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Writing Fragmented MPEG-4 Files for HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/avfoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer/outputPresentationTimeStamp": {
+      "abstract": [
+        {
+          "text": "The output presentation timestamp of a sample buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputPresentationTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer/outputPresentationTimeStamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputPresentationTimeStamp",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMSampleBuffer/outputPresentationTimeStamp"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTaggedBuffer": {
+      "abstract": [
+        {
+          "text": "An instance of a media buffer containing metadata tags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTaggedBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTaggedBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTaggedBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTaggedBuffer"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/CVBufferSetAttachment(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets or adds an attachment to a Core Video buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVBufferSetAttachment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVBufferRef",
+          "text": "CVBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "attachmentMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CVAttachmentMode",
+          "text": "CVAttachmentMode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVBufferSetAttachment(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVBufferSetAttachment(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/CVBufferSetAttachment(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/CVImageBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a Core Video image buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVImageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVBufferRef",
+          "text": "CVBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVImageBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVImageBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/CVImageBuffer"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVImageBufferCleanApertureHorizontalOffsetKey": {
+      "abstract": [
+        {
+          "text": "A key to the clean aperture horizontal offset value from the center of the image buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVImageBufferCleanApertureHorizontalOffsetKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVImageBufferCleanApertureHorizontalOffsetKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVImageBufferCleanApertureHorizontalOffsetKey",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVImageBufferCleanApertureHorizontalOffsetKey"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferIOSurfacePropertiesKey": {
+      "abstract": [
+        {
+          "text": "A key to the dictionary containing optional properties for the IOSurface framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelBufferIOSurfacePropertiesKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferIOSurfacePropertiesKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelBufferIOSurfacePropertiesKey",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelBufferIOSurfacePropertiesKey"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferPixelFormatTypeKey": {
+      "abstract": [
+        {
+          "text": "A key to one or more pixel buffer format types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelBufferPixelFormatTypeKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferPixelFormatTypeKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelBufferPixelFormatTypeKey",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelBufferPixelFormatTypeKey"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_32ARGB": {
+      "abstract": [
+        {
+          "text": "32-bit ARGB.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_32ARGB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_32ARGB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_32ARGB",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_32ARGB"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue": {
+      "abstract": [
+        {
+          "text": "An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DispatchQueue",
+      "type": "topic",
+      "url": "/documentation/Dispatch/DispatchQueue"
+    },
+    "doc://com.apple.documentation/documentation/IOSurface": {
+      "abstract": [
+        {
+          "text": "Share hardware-accelerated buffer data (framebuffers and textures) across multiple processes. Manage image memory more efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/IOSurface",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOSurface",
+      "type": "topic",
+      "url": "/documentation/IOSurface"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata": {
+      "abstract": [
+        {
+          "text": "Add spatial metadata to stereo photos and videos to create spatial media for viewing on Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating spatial photos and videos with spatial metadata",
+      "type": "topic",
+      "url": "/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata"
+    },
+    "doc://com.apple.documentation/documentation/Swift/CheckedContinuation": {
+      "abstract": [
+        {
+          "text": "A mechanism to interface between synchronous and asynchronous code, logging correctness violations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CheckedContinuation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/CheckedContinuation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CheckedContinuation",
+      "type": "topic",
+      "url": "/documentation/Swift/CheckedContinuation"
+    },
+    "doc://com.apple.documentation/documentation/Swift/CheckedContinuation/resume()": {
+      "abstract": [
+        {
+          "text": "Resume the task awaiting the continuation by having it return normally from its suspension point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": " == ()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/CheckedContinuation/resume()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/Swift/CheckedContinuation/resume()"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTPixelTransferSession": {
+      "abstract": [
+        {
+          "text": "A reference to a VideoToolbox pixel transfer session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTPixelTransferSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTPixelTransferSession",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTPixelTransferSession"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTPixelTransferSessionTransferImage(_:from:to:)": {
+      "abstract": [
+        {
+          "text": "Copies and/or converts an image from one pixel buffer to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSessionTransferImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTPixelTransferSessionRef",
+          "text": "VTPixelTransferSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sourceBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "destinationBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTPixelTransferSessionTransferImage(_:from:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTPixelTransferSessionTransferImage(_:from:to:)",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTPixelTransferSessionTransferImage(_:from:to:)"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)": {
+      "abstract": [
+        {
+          "text": "Sets a property on a VideoToolbox session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTSessionSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTSessionRef",
+          "text": "VTSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "propertyKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "propertyValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTSessionSetProperty(_:key:value:)",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_HasLeftStereoEyeView": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTCompressionPropertyKey_HasLeftStereoEyeView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_HasLeftStereoEyeView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kVTCompressionPropertyKey_HasLeftStereoEyeView",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/kVTCompressionPropertyKey_HasLeftStereoEyeView"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_HasRightStereoEyeView": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTCompressionPropertyKey_HasRightStereoEyeView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_HasRightStereoEyeView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kVTCompressionPropertyKey_HasRightStereoEyeView",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/kVTCompressionPropertyKey_HasRightStereoEyeView"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs": {
+      "abstract": [
+        {
+          "text": "Specifies which view identifier corresponds to the left eye and right eye.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCVideoLayerIDs": {
+      "abstract": [
+        {
+          "text": "The identifiers of the video layers to encode in a multiview encoding operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTCompressionPropertyKey_MVHEVCVideoLayerIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCVideoLayerIDs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kVTCompressionPropertyKey_MVHEVCVideoLayerIDs",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCVideoLayerIDs"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCViewIDs": {
+      "abstract": [
+        {
+          "text": "The identifiers of the views corresponding to the video layers in a multiview encoding operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTCompressionPropertyKey_MVHEVCViewIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCViewIDs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kVTCompressionPropertyKey_MVHEVCViewIDs",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/kVTCompressionPropertyKey_MVHEVCViewIDs"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/kVTScalingMode_CropSourceToCleanAperture": {
+      "abstract": [
+        {
+          "text": "The source image buffer’s clean aperture is scaled to the destination clean aperture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTScalingMode_CropSourceToCleanAperture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTScalingMode_CropSourceToCleanAperture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kVTScalingMode_CropSourceToCleanAperture",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/kVTScalingMode_CropSourceToCleanAperture"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf": {
+      "identifier": "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf",
+      "title": "Apple HEVC Stereo Video - Interoperability Profile (PDF)",
+      "titleInlineContent": [
+        {
+          "text": "Apple HEVC Stereo Video - Interoperability Profile (PDF)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf"
+    },
+    "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf": {
+      "identifier": "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf",
+      "title": "ISO Base Media File Format and Apple HEVC Stereo Video (PDF)",
+      "titleInlineContent": [
+        {
+          "text": "ISO Base Media File Format and Apple HEVC Stereo Video (PDF)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "4a60632cecb7/ConvertingSideBySide3DVideoToMultiviewHEVCAndSpatialVideo.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-writing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming",
+        "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup"
+      ],
+      "title": "Media writing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-writing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming",
+                "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup"
+              ],
+              "title": "Media writing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1loadTracks(withMediaCharacteristic:completionHandler:)/title",
+          "value": "loadTracksWithMediaCharacteristic:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1loadTracks(withMediaCharacteristic:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTracksWithMediaCharacteristic:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1requestMediaDataWhenReady(on:using:)/title",
+          "value": "requestMediaDataWhenReadyOnQueue:usingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1requestMediaDataWhenReady(on:using:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestMediaDataWhenReadyOnQueue:usingBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1markAsFinished()/title",
+          "value": "markAsFinished"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1markAsFinished()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "markAsFinished"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputGroup/title",
+          "value": "AVAssetWriterInputGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/title",
+          "value": "AVAssetReaderTrackOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelBufferIOSurfacePropertiesKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCVPixelBufferIOSurfacePropertiesKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTSessionSetProperty(_:key:value:)/title",
+          "value": "VTSessionSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTSessionSetProperty(_:key:value:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTSessionSetProperty"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@VTSessionRef",
+              "text": "VTSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "propertyKey"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFTypeRef",
+              "text": "CFTypeRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "propertyValue"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1kVTCompressionPropertyKey_HasLeftStereoEyeView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kVTCompressionPropertyKey_HasLeftStereoEyeView"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelBufferPixelFormatTypeKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCVPixelBufferPixelFormatTypeKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/title",
+          "value": "AVAssetWriter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1startWriting()/title",
+          "value": "startWriting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1startWriting()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVImageBuffer/title",
+          "value": "CVImageBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVImageBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVBufferRef",
+              "text": "CVBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CVImageBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1isReadyForMoreMediaData/title",
+          "value": "readyForMoreMediaData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput~1isReadyForMoreMediaData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "readyForMoreMediaData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1startSession(atSourceTime:)/title",
+          "value": "startSessionAtSourceTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1startSession(atSourceTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startSessionAtSourceTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVBufferSetAttachment(_:_:_:_:)/title",
+          "value": "CVBufferSetAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVBufferSetAttachment(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CVBufferSetAttachment"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVBufferRef",
+              "text": "CVBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "buffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "key"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFTypeRef",
+              "text": "CFTypeRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "value"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CVAttachmentMode",
+              "text": "CVAttachmentMode"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "attachmentMode"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1kVTCompressionPropertyKey_MVHEVCViewIDs/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kVTCompressionPropertyKey_MVHEVCViewIDs"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_32ARGB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_32ARGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTPixelTransferSession/title",
+          "value": "VTPixelTransferSessionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTPixelTransferSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OpaqueVTPixelTransferSession",
+              "text": "OpaqueVTPixelTransferSession"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTPixelTransferSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1kVTCompressionPropertyKey_MVHEVCVideoLayerIDs/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kVTCompressionPropertyKey_MVHEVCVideoLayerIDs"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVImageBufferCleanApertureHorizontalOffsetKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCVImageBufferCleanApertureHorizontalOffsetKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/title",
+          "value": "AVAssetWriterInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/title",
+          "value": "AVAssetReader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputTaggedPixelBufferGroupAdaptor/title",
+          "value": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputTaggedPixelBufferGroupAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputTaggedPixelBufferGroupAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1add(_:)-4c4d0/title",
+          "value": "addInput:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1add(_:)-4c4d0/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addInput:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPixelBufferAdaptor/title",
+          "value": "AVAssetWriterInputPixelBufferAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPixelBufferAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputPixelBufferAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPixelBufferAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputPixelBufferAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTPixelTransferSessionTransferImage(_:from:to:)/title",
+          "value": "VTPixelTransferSessionTransferImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTPixelTransferSessionTransferImage(_:from:to:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTPixelTransferSessionTransferImage"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@VTPixelTransferSessionRef",
+              "text": "VTPixelTransferSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVPixelBufferRef",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sourceBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVPixelBufferRef",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "destinationBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1kVTScalingMode_CropSourceToCleanAperture/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kVTScalingMode_CropSourceToCleanAperture"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1kVTCompressionPropertyKey_HasRightStereoEyeView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kVTCompressionPropertyKey_HasRightStereoEyeView"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1canAdd(_:)-6al7j/title",
+          "value": "canAddInput:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1canAdd(_:)-6al7j/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canAddInput:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant/title",
+          "value": "AVOutputSettingsAssistant"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1finishWriting(completionHandler:)/title",
+          "value": "finishWritingWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter~1finishWriting(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishWritingWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputMetadataAdaptor/title",
+          "value": "AVAssetWriterInputMetadataAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputMetadataAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputMetadataAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

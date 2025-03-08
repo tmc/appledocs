@@ -1,0 +1,743 @@
+{
+  "abstract": [
+    {
+      "text": "The base class for the queues that manage the packets moving to and from your device.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserNetworkPacketQueue",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOUserNetworkPacketQueue"
+      }
+    ],
+    "modules": [
+      {
+        "name": "NetworkingDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOUserNetworkPacketQueue"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOUserNetworkPacketQueue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOUserNetworkPacketQueue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class provides the common functionality for the submission and completion queues you use to manage network packets. You do not create instances of this class directly. Instead, you instantiate the following concrete subclasses:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Submission queues contain the packets that your driver dequeues and processes. After you process the dequeued packets, you place them on the matching completion queue to let the system know that you are finished with them. The system eventually recycles the completed packets back to the corresponding submission queue so that the cycle may begin again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for Ethernet networking devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "NetworkingDriverKit",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue": {
+      "abstract": [
+        {
+          "text": "The base class for the queues that manage the packets moving to and from your device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkPacketQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkPacketQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/CopyDataQueue": {
+      "abstract": [
+        {
+          "text": "Returns the dispatch queue that this object uses to execute tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyDataQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/CopyDataQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyDataQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/copydataqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/DequeuePacket": {
+      "abstract": [
+        {
+          "text": "Retrieves a single network packet from the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DequeuePacket"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/DequeuePacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DequeuePacket",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/dequeuepacket"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/DequeuePackets": {
+      "abstract": [
+        {
+          "text": "Retrieves multiple network packets from the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DequeuePackets"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/DequeuePackets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DequeuePackets",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/dequeuepackets"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/EnqueuePacket": {
+      "abstract": [
+        {
+          "text": "Adds a single network packet to the queue for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "EnqueuePacket"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/EnqueuePacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnqueuePacket",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/enqueuepacket"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/EnqueuePackets-qzx": {
+      "abstract": [
+        {
+          "text": "Adds multiple network packets to the queue for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "EnqueuePackets"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/EnqueuePackets-qzx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnqueuePackets",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/enqueuepackets-qzx"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetDataQueue": {
+      "abstract": [
+        {
+          "text": "Assigns the specified dispatch source to this object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetDataQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetDataQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetDataQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/setdataqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetEnable-76sm5": {
+      "abstract": [
+        {
+          "text": "Enables or disables the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetEnable-76sm5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetEnable",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/setenable-76sm5"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetPacketBufferPool": {
+      "abstract": [
+        {
+          "text": "Assigns the specified buffer pool with this queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetPacketBufferPool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetPacketBufferPool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetPacketBufferPool",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/setpacketbufferpool"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetPacketDirection": {
+      "abstract": [
+        {
+          "text": "Specifies whether packets flow into or out of the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetPacketDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetPacketDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetPacketDirection",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/setpacketdirection"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/enqueuePackets-13ln6": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "enqueuePackets"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/enqueuePackets-13ln6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueuePackets",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/enqueuepackets-13ln6"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/free"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/init": {
+      "abstract": [
+        {
+          "text": "Initializes the packet submission queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/init"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/requestDequeue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "requestDequeue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/requestDequeue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestDequeue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/requestdequeue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/requestEnqueue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "requestEnqueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/requestEnqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestEnqueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/requestenqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/setEnable-8eikm": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/setEnable-8eikm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setEnable",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/setenable-8eikm"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/setPacketPoller": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setPacketPoller"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/setPacketPoller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPacketPoller",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue/setpacketpoller"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue": {
+      "abstract": [
+        {
+          "text": "The queue you use to store packets that you successfully transferred to the networking stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkRxCompletionQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkRxCompletionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkrxcompletionqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue": {
+      "abstract": [
+        {
+          "text": "The queue that receives packets from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkRxSubmissionQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkRxSubmissionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkrxsubmissionqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue": {
+      "abstract": [
+        {
+          "text": "The queue you use to store packets that you successfully transferred to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkTxCompletionQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkTxCompletionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworktxcompletionqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue": {
+      "abstract": [
+        {
+          "text": "The queue that receives packets from the networking stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkTxSubmissionQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkTxSubmissionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworktxsubmissionqueue"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@OSObject": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit objects",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@OSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/driverkit/osobject"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:@S@OSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Packet-Queues",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue"
+      ],
+      "title": "Packet Queues"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-Packet-Queue",
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/init",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/free"
+      ],
+      "title": "Configuring the Packet Queue"
+    },
+    {
+      "anchor": "Enabling-the-Packet-Queue",
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetEnable-76sm5"
+      ],
+      "title": "Enabling the Packet Queue"
+    },
+    {
+      "anchor": "Queueing-and-Dequeueing-Packets",
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/EnqueuePacket",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/EnqueuePackets-qzx",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/DequeuePacket",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/DequeuePackets"
+      ],
+      "title": "Queueing and Dequeueing Packets"
+    },
+    {
+      "anchor": "Configuring-the-Queue-Attributes",
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetPacketBufferPool",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetPacketDirection"
+      ],
+      "title": "Configuring the Queue Attributes"
+    },
+    {
+      "anchor": "Managing-the-Data-Queue",
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/CopyDataQueue",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/SetDataQueue"
+      ],
+      "title": "Managing the Data Queue"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/enqueuePackets-13ln6",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/requestDequeue",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/requestEnqueue",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/setEnable-8eikm",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue/setPacketPoller"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkingdriverkit/iousernetworkpacketqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

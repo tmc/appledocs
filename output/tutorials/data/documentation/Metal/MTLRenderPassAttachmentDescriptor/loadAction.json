@@ -1,0 +1,970 @@
+{
+  "abstract": [
+    {
+      "text": "The action performed by this attachment at the start of a rendering pass for a render command encoder.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/loadAction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MTLRenderPassAttachmentDescriptor(py)loadAction",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "loadAction"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@MTLLoadAction",
+        "text": "MTLLoadAction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "loadAction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "loadAction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadAction"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLLoadAction",
+              "text": "MTLLoadAction"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app renders all pixels of the render target for a given frame, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/dontCare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " action, which allows the GPU to avoid loading the existing contents of the texture. Otherwise, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/clear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " action to clear the previous contents of the render target or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/load",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " action to preserve them. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/clear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " action also avoids the cost of loading the existing texture contents, but it still incurs the cost of filling the destination with a clear color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For color render targets, the default value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/dontCare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For depth or stencil render targets, the default value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/clear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLoadAction": {
+      "abstract": [
+        {
+          "text": "Types of actions performed for an attachment at the start of a rendering pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLLoadAction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLLoadAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLLoadAction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlloadaction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLoadAction/clear": {
+      "abstract": [
+        {
+          "text": "The GPU writes a value to every pixel in the attachment at the start of the render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clear"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/clear",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLLoadActionClear"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLLoadAction.clear",
+      "type": "topic",
+      "url": "/documentation/metal/mtlloadaction/clear"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLoadAction/dontCare": {
+      "abstract": [
+        {
+          "text": "The GPU has permission to discard the existing contents of the attachment at the start of the render pass, replacing them with arbitrary data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dontCare"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/dontCare",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLLoadActionDontCare"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLLoadAction.dontCare",
+      "type": "topic",
+      "url": "/documentation/metal/mtlloadaction/dontcare"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLoadAction/load": {
+      "abstract": [
+        {
+          "text": "The GPU preserves the existing contents of the attachment at the start of the render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/load",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLLoadActionLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLLoadAction.load",
+      "type": "topic",
+      "url": "/documentation/metal/mtlloadaction/load"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A render target that serves as the output destination for pixels generated by a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/loadAction": {
+      "abstract": [
+        {
+          "text": "The action performed by this attachment at the start of a rendering pass for a render command encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLLoadAction",
+          "text": "MTLLoadAction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/loadAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadAction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassattachmentdescriptor/loadaction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeAction": {
+      "abstract": [
+        {
+          "text": "The action performed by this attachment at the end of a rendering pass for a render command encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStoreAction",
+          "text": "MTLStoreAction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storeAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "storeAction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassattachmentdescriptor/storeaction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeActionOptions": {
+      "abstract": [
+        {
+          "text": "The options that modify the store action performed by this attachment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeActionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStoreActionOptions",
+          "text": "MTLStoreActionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeActionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storeActionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "storeActionOptions",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassattachmentdescriptor/storeactionoptions"
+    },
+    "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions": {
+      "abstract": [
+        {
+          "text": "Set actions that define how a render pass loads and stores a render target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Load and Store Actions",
+      "type": "topic",
+      "url": "/documentation/metal/setting-load-and-store-actions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Specifying-Rendering-Pass-Actions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeAction",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeActionOptions"
+      ],
+      "title": "Specifying Rendering Pass Actions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "loadAction"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "loadAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Specifying-Rendering-Pass-Actions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeAction",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeActionOptions"
+              ],
+              "title": "Specifying Rendering Pass Actions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@MTLLoadAction",
+                    "text": "MTLLoadAction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "loadAction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor/title",
+          "value": "MTLRenderPassAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction~1dontCare/title",
+          "value": "MTLLoadActionDontCare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction~1dontCare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadActionDontCare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1storeActionOptions/title",
+          "value": "storeActionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1storeActionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storeActionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1storeAction/title",
+          "value": "storeAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1storeAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storeAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction~1clear/title",
+          "value": "MTLLoadActionClear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction~1clear/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadActionClear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction/title",
+          "value": "MTLLoadAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1loadAction/title",
+          "value": "loadAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1loadAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "loadAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction~1load/title",
+          "value": "MTLLoadActionLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction~1load/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadActionLoad"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlrenderpassattachmentdescriptor/loadaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlrenderpassattachmentdescriptor/loadaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

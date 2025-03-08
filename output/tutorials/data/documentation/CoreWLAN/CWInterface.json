@@ -1,0 +1,4081 @@
+{
+  "abstract": [
+    {
+      "text": "Encapsulates an IEEE 802.11 interface.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corewlan/documentation/CoreWLAN"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CWInterface",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CWInterface"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core WLAN"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CWInterface"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.6",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CWInterface"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CWInterface"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provides access to various WLAN interface parameters, and operations such as scanning for networks, association, and creating computer-to-computer (ad-hoc) networks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Do not instantiate interface objects directly. Instead, use interface objects vended by a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance via the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient/interface()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method or one of its relatives. This enables your app to adopt App Sandbox even when it uses CoreWLAN without the need for any special exceptions. Directly instantiating interface objects causes low level access to system sockets, which by default is not allowed in a sandboxed environment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corewlan/documentation/CoreWLAN": {
+      "abstract": [
+        {
+          "text": "Query AirPort interfaces and choose wireless networks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core WLAN",
+      "type": "topic",
+      "url": "/documentation/corewlan"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWChannel": {
+      "abstract": [
+        {
+          "text": "Encapsulates an IEEE 802.11 channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWChannel"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWChannel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWChannel"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWChannel",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwchannel"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration": {
+      "abstract": [
+        {
+          "text": "Encapsulates an immutable configuration for an AirPort WLAN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWConfiguration",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwconfiguration"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface": {
+      "abstract": [
+        {
+          "text": "Encapsulates an IEEE 802.11 interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWInterface"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWInterface",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/activePHYMode()": {
+      "abstract": [
+        {
+          "text": "The current active PHY modes for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activePHYMode"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CWPHYMode",
+          "text": "CWPHYMode"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/activePHYMode()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activePHYMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "activePHYMode()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/activephymode()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/associate(to:password:)": {
+      "abstract": [
+        {
+          "text": "Associates to a given network using the given network passphrase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "associate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWNetwork",
+          "text": "CWNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/associate(to:password:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "associateToNetwork:password:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "associate(to:password:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/associate(to:password:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/associate(toEnterpriseNetwork:identity:username:password:)": {
+      "abstract": [
+        {
+          "text": "Connects to the given enterprise network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "associate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toEnterpriseNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWNetwork",
+          "text": "CWNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecIdentityRef",
+          "text": "SecIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "username"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/associate(toEnterpriseNetwork:identity:username:password:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "associateToEnterpriseNetwork:identity:username:password:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "associate(toEnterpriseNetwork:identity:username:password:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/associate(toenterprisenetwork:identity:username:password:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/bssid()": {
+      "abstract": [
+        {
+          "text": "The current basic service set identifier (BSSID) for the interface, returned as a UTF-8 string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bssid"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/bssid()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bssid"
+        }
+      ],
+      "role": "symbol",
+      "title": "bssid()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/bssid()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/cachedScanResults()": {
+      "abstract": [
+        {
+          "text": "The networks currently in the scan cache for the WLAN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cachedScanResults"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWNetwork",
+          "text": "CWNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/cachedScanResults()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cachedScanResults"
+        }
+      ],
+      "role": "symbol",
+      "title": "cachedScanResults()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/cachedscanresults()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/commitConfiguration(_:authorization:)": {
+      "abstract": [
+        {
+          "text": "Commit a configuration for the given WLAN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commitConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWConfiguration",
+          "text": "CWConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authorization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFAuthorization",
+          "text": "SFAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/commitConfiguration(_:authorization:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commitConfiguration:authorization:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "commitConfiguration(_:authorization:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/commitconfiguration(_:authorization:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/configuration()": {
+      "abstract": [
+        {
+          "text": "The current configuration for the given WLAN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWConfiguration",
+          "text": "CWConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/configuration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "configuration()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/configuration()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/countryCode()": {
+      "abstract": [
+        {
+          "text": "The current country code (ISO/IEC 3166-1:1997) for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "countryCode"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/countryCode()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "countryCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "countryCode()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/countrycode()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/disassociate()": {
+      "abstract": [
+        {
+          "text": "Disassociates from the current network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disassociate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/disassociate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "disassociate"
+        }
+      ],
+      "role": "symbol",
+      "title": "disassociate()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/disassociate()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/hardwareAddress()": {
+      "abstract": [
+        {
+          "text": "The hardware media access control (MAC) address for the interface, returned as a UTF-8 string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardwareAddress"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/hardwareAddress()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hardwareAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "hardwareAddress()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/hardwareaddress()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/init(interfaceName:)": {
+      "abstract": [
+        {
+          "text": "Convenience method for getting an CWInterface object with the specified name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "interfaceName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/init(interfaceName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithInterfaceName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(interfaceName:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/init(interfacename:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/init(name:)": {
+      "abstract": [
+        {
+          "text": "An instance method for obtaining an CWInterface object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/init(name:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interfaceWithName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/init(name:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interface": {
+      "abstract": [
+        {
+          "text": "Convenience method for getting an CWInterface object for the default WLAN interface.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "interface"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interface",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interface"
+        }
+      ],
+      "role": "symbol",
+      "title": "interface",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/interface"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceMode()": {
+      "abstract": [
+        {
+          "text": "The current mode for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interfaceMode"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CWInterfaceMode",
+          "text": "CWInterfaceMode"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceMode()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interfaceMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "interfaceMode()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/interfacemode()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceName": {
+      "abstract": [
+        {
+          "text": "The BSD name of the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interfaceName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interfaceName"
+        }
+      ],
+      "role": "symbol",
+      "title": "interfaceName",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/interfacename"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceNames()": {
+      "abstract": [
+        {
+          "text": "Returns the list of BSD names for WLAN interfaces available on the current system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interfaceNames"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceNames()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interfaceNames"
+        }
+      ],
+      "role": "symbol",
+      "title": "interfaceNames()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/interfacenames()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/noiseMeasurement()": {
+      "abstract": [
+        {
+          "text": "The current aggregate noise measurement (dBm) for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "noiseMeasurement"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/noiseMeasurement()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "noiseMeasurement"
+        }
+      ],
+      "role": "symbol",
+      "title": "noiseMeasurement()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/noisemeasurement()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/powerOn()": {
+      "abstract": [
+        {
+          "text": "The interface power state is set to “ON”.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerOn"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/powerOn()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "powerOn"
+        }
+      ],
+      "role": "symbol",
+      "title": "powerOn()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/poweron()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/rssiValue()": {
+      "abstract": [
+        {
+          "text": "The current aggregate received signal strength indication (RSSI) measurement (dBm) for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rssiValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/rssiValue()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rssiValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "rssiValue()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/rssivalue()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:)": {
+      "abstract": [
+        {
+          "text": "Scans for networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanForNetworks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWNetwork",
+          "text": "CWNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scanForNetworksWithName:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scanForNetworks(withName:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/scanfornetworks(withname:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:includeHidden:)": {
+      "abstract": [
+        {
+          "text": "Scans for networks with the name you specify, optionally including hidden networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanForNetworks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "includeHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWNetwork",
+          "text": "CWNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:includeHidden:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scanForNetworksWithName:includeHidden:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scanForNetworks(withName:includeHidden:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/scanfornetworks(withname:includehidden:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withSSID:)": {
+      "abstract": [
+        {
+          "text": "Scans for networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanForNetworks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSSID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWNetwork",
+          "text": "CWNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withSSID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scanForNetworksWithSSID:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scanForNetworks(withSSID:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/scanfornetworks(withssid:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withSSID:includeHidden:)": {
+      "abstract": [
+        {
+          "text": "Scans for networks with the SSID you specify, optionally including hidden networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanForNetworks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSSID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "includeHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWNetwork",
+          "text": "CWNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withSSID:includeHidden:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scanForNetworksWithSSID:includeHidden:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scanForNetworks(withSSID:includeHidden:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/scanfornetworks(withssid:includehidden:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/security()": {
+      "abstract": [
+        {
+          "text": "The current security mode for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "security"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CWSecurity",
+          "text": "CWSecurity"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/security()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "security"
+        }
+      ],
+      "role": "symbol",
+      "title": "security()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/security()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/serviceActive()": {
+      "abstract": [
+        {
+          "text": "The interface has its corresponding network service enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serviceActive"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/serviceActive()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "serviceActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "serviceActive()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/serviceactive()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setPairwiseMasterKey(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the interface pairwise primary key (PMK).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPairwiseMasterKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setPairwiseMasterKey(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPairwiseMasterKey:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPairwiseMasterKey(_:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/setpairwisemasterkey(_:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setPower(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the interface power state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPower"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setPower(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPower:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPower(_:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/setpower(_:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setWEPKey(_:flags:index:)": {
+      "abstract": [
+        {
+          "text": "Sets the interface WEP key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWEPKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CWCipherKeyFlags",
+          "text": "CWCipherKeyFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setWEPKey(_:flags:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setWEPKey:flags:index:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setWEPKey(_:flags:index:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/setwepkey(_:flags:index:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setWLANChannel(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the interface channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWLANChannel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWChannel",
+          "text": "CWChannel"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setWLANChannel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setWLANChannel:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setWLANChannel(_:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/setwlanchannel(_:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/ssid()": {
+      "abstract": [
+        {
+          "text": "The current service set identifier (SSID) for the interface, encoded as a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ssid"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/ssid()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ssid"
+        }
+      ],
+      "role": "symbol",
+      "title": "ssid()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/ssid()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/ssidData()": {
+      "abstract": [
+        {
+          "text": "The current service set identifier (SSID) for the interface, returned as data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ssidData"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/ssidData()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ssidData"
+        }
+      ],
+      "role": "symbol",
+      "title": "ssidData()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/ssiddata()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/startIBSSMode(withSSID:security:channel:password:)": {
+      "abstract": [
+        {
+          "text": "Creates a computer-to-computer (ad-hoc) network with the given network name, security type, and password on the specified channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startIBSSMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSSID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "security"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CWIBSSModeSecurity",
+          "text": "CWIBSSModeSecurity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "channel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/startIBSSMode(withSSID:security:channel:password:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startIBSSModeWithSSID:security:channel:password:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startIBSSMode(withSSID:security:channel:password:)",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/startibssmode(withssid:security:channel:password:)"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/supportedWLANChannels()": {
+      "abstract": [
+        {
+          "text": "An array of channels supported by the interface for the active country code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedWLANChannels"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWChannel",
+          "text": "CWChannel"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/supportedWLANChannels()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportedWLANChannels"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportedWLANChannels()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/supportedwlanchannels()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/transmitPower()": {
+      "abstract": [
+        {
+          "text": "The current transmit power (mW) for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transmitPower"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/transmitPower()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transmitPower"
+        }
+      ],
+      "role": "symbol",
+      "title": "transmitPower()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/transmitpower()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/transmitRate()": {
+      "abstract": [
+        {
+          "text": "The current transmit rate (Mbps) for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transmitRate"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/transmitRate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transmitRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "transmitRate()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/transmitrate()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/wlanChannel()": {
+      "abstract": [
+        {
+          "text": "The current channel for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wlanChannel"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWChannel",
+          "text": "CWChannel"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/wlanChannel()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wlanChannel"
+        }
+      ],
+      "role": "symbol",
+      "title": "wlanChannel()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwinterface/wlanchannel()"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableConfiguration": {
+      "abstract": [
+        {
+          "text": "Encapsulates a mutable configuration for an AirPort WLAN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWMutableConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWMutableConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWMutableConfiguration",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwmutableconfiguration"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableNetworkProfile": {
+      "abstract": [
+        {
+          "text": "Encapsulates a mutable network profile entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWMutableNetworkProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableNetworkProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWMutableNetworkProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWMutableNetworkProfile",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwmutablenetworkprofile"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetwork": {
+      "abstract": [
+        {
+          "text": "Encapsulates an IEEE 802.11 network, providing read-only accessors to various properties of the network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWNetwork",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwnetwork"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile": {
+      "abstract": [
+        {
+          "text": "Encapsulates an immutable network profile entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWNetworkProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWNetworkProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWNetworkProfile",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwnetworkprofile"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient": {
+      "abstract": [
+        {
+          "text": "A wrapper around the entire Wi-Fi subsystem that you use to access interfaces and set up event notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CWWiFiClient"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CWWiFiClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "CWWiFiClient",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwwificlient"
+    },
+    "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient/interface()": {
+      "abstract": [
+        {
+          "text": "Returns the default Wi-Fi interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interface"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWInterface",
+          "text": "CWInterface"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient/interface()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interface"
+        }
+      ],
+      "role": "symbol",
+      "title": "interface()",
+      "type": "topic",
+      "url": "/documentation/corewlan/cwwificlient/interface()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWChannel",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableConfiguration",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableNetworkProfile",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetwork",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-interface-parameters",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setPairwiseMasterKey(_:)",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setPower(_:)",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setWEPKey(_:flags:index:)",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setWLANChannel(_:)"
+      ],
+      "title": "Setting interface parameters"
+    },
+    {
+      "anchor": "Scanning-for-networks",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:)",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withSSID:)"
+      ],
+      "title": "Scanning for networks"
+    },
+    {
+      "anchor": "Getting-an-interface",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/init(interfaceName:)",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/init(name:)"
+      ],
+      "title": "Getting an interface"
+    },
+    {
+      "anchor": "Getting-all-attached-interfaces",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceNames()"
+      ],
+      "title": "Getting all attached interfaces"
+    },
+    {
+      "anchor": "Disassociating-from-a-network",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/disassociate()"
+      ],
+      "title": "Disassociating from a network"
+    },
+    {
+      "anchor": "Creating-computer-to-computer-networks",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/startIBSSMode(withSSID:security:channel:password:)"
+      ],
+      "title": "Creating computer-to-computer networks"
+    },
+    {
+      "anchor": "Committing-a-configuration",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/commitConfiguration(_:authorization:)"
+      ],
+      "title": "Committing a configuration"
+    },
+    {
+      "anchor": "Associating-to-a-network",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/associate(toEnterpriseNetwork:identity:username:password:)",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/associate(to:password:)"
+      ],
+      "title": "Associating to a network"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceName"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/activePHYMode()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/bssid()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/cachedScanResults()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/configuration()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/countryCode()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/hardwareAddress()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceMode()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/noiseMeasurement()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/powerOn()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/rssiValue()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:includeHidden:)",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withSSID:includeHidden:)",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/security()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/serviceActive()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/ssid()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/ssidData()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/supportedWLANChannels()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/transmitPower()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/transmitRate()",
+        "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/wlanChannel()"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.6",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CWInterface"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWInterface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWInterface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corewlan/documentation/CoreWLAN"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-interface-parameters",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setPairwiseMasterKey(_:)",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setPower(_:)",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setWEPKey(_:flags:index:)",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/setWLANChannel(_:)"
+              ],
+              "title": "Setting interface parameters"
+            },
+            {
+              "anchor": "Scanning-for-networks",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:)",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withSSID:)"
+              ],
+              "title": "Scanning for networks"
+            },
+            {
+              "anchor": "Getting-an-interface",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/init(interfaceName:)",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interface",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/init(name:)"
+              ],
+              "title": "Getting an interface"
+            },
+            {
+              "anchor": "Getting-all-attached-interfaces",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceNames()"
+              ],
+              "title": "Getting all attached interfaces"
+            },
+            {
+              "anchor": "Disassociating-from-a-network",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/disassociate()"
+              ],
+              "title": "Disassociating from a network"
+            },
+            {
+              "anchor": "Creating-computer-to-computer-networks",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/startIBSSMode(withSSID:security:channel:password:)"
+              ],
+              "title": "Creating computer-to-computer networks"
+            },
+            {
+              "anchor": "Committing-a-configuration",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/commitConfiguration(_:authorization:)"
+              ],
+              "title": "Committing a configuration"
+            },
+            {
+              "anchor": "Associating-to-a-network",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/associate(toEnterpriseNetwork:identity:username:password:)",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/associate(to:password:)"
+              ],
+              "title": "Associating to a network"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceName"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/activePHYMode()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/bssid()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/cachedScanResults()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/configuration()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/countryCode()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/hardwareAddress()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/interfaceMode()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/noiseMeasurement()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/powerOn()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/rssiValue()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:includeHidden:)",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/scanForNetworks(withSSID:includeHidden:)",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/security()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/serviceActive()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/ssid()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/ssidData()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/supportedWLANChannels()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/transmitPower()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/transmitRate()",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWInterface/wlanChannel()"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWChannel",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWConfiguration",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableConfiguration",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWMutableNetworkProfile",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetwork",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWNetworkProfile",
+                "doc://com.apple.corewlan/documentation/CoreWLAN/CWWiFiClient"
+              ],
+              "title": "Classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CWInterface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWWiFiClient~1interface()/title",
+          "value": "interface"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWWiFiClient~1interface()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1scanForNetworks(withName:)/title",
+          "value": "scanForNetworksWithName:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1scanForNetworks(withName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scanForNetworksWithName:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWConfiguration/title",
+          "value": "CWConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1countryCode()/title",
+          "value": "countryCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1countryCode()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "countryCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1disassociate()/title",
+          "value": "disassociate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1disassociate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "disassociate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWChannel/title",
+          "value": "CWChannel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWChannel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWChannel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableConfiguration/title",
+          "value": "CWMutableConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWMutableConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWMutableConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1ssid()/title",
+          "value": "ssid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1ssid()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "ssid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1transmitRate()/title",
+          "value": "transmitRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1transmitRate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "transmitRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1scanForNetworks(withName:includeHidden:)/title",
+          "value": "scanForNetworksWithName:includeHidden:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1scanForNetworks(withName:includeHidden:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scanForNetworksWithName:includeHidden:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1activePHYMode()/title",
+          "value": "activePHYMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1activePHYMode()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activePHYMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1noiseMeasurement()/title",
+          "value": "noiseMeasurement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1noiseMeasurement()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "noiseMeasurement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1commitConfiguration(_:authorization:)/title",
+          "value": "commitConfiguration:authorization:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1commitConfiguration(_:authorization:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commitConfiguration:authorization:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1hardwareAddress()/title",
+          "value": "hardwareAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1hardwareAddress()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hardwareAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1security()/title",
+          "value": "security"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1security()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "security"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1init(interfaceName:)/title",
+          "value": "initWithInterfaceName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1init(interfaceName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithInterfaceName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1configuration()/title",
+          "value": "configuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1configuration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1interfaceMode()/title",
+          "value": "interfaceMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1interfaceMode()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "interfaceMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetworkProfile/title",
+          "value": "CWNetworkProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetworkProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWNetworkProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetworkProfile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWNetworkProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1setWLANChannel(_:)/title",
+          "value": "setWLANChannel:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1setWLANChannel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setWLANChannel:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1scanForNetworks(withSSID:)/title",
+          "value": "scanForNetworksWithSSID:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1scanForNetworks(withSSID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scanForNetworksWithSSID:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1interfaceNames()/title",
+          "value": "interfaceNames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1interfaceNames()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "interfaceNames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1init(name:)/title",
+          "value": "interfaceWithName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1init(name:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "interfaceWithName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface/title",
+          "value": "CWInterface"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWInterface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWInterface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1rssiValue()/title",
+          "value": "rssiValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1rssiValue()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rssiValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1powerOn()/title",
+          "value": "powerOn"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1powerOn()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "powerOn"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1wlanChannel()/title",
+          "value": "wlanChannel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1wlanChannel()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "wlanChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1interfaceName/title",
+          "value": "interfaceName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1interfaceName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interfaceName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1scanForNetworks(withSSID:includeHidden:)/title",
+          "value": "scanForNetworksWithSSID:includeHidden:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1scanForNetworks(withSSID:includeHidden:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scanForNetworksWithSSID:includeHidden:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableNetworkProfile/title",
+          "value": "CWMutableNetworkProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableNetworkProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWMutableNetworkProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWMutableNetworkProfile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWMutableNetworkProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1transmitPower()/title",
+          "value": "transmitPower"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1transmitPower()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "transmitPower"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1setPower(_:)/title",
+          "value": "setPower:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1setPower(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPower:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1serviceActive()/title",
+          "value": "serviceActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1serviceActive()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "serviceActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1cachedScanResults()/title",
+          "value": "cachedScanResults"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1cachedScanResults()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cachedScanResults"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1associate(toEnterpriseNetwork:identity:username:password:)/title",
+          "value": "associateToEnterpriseNetwork:identity:username:password:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1associate(toEnterpriseNetwork:identity:username:password:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "associateToEnterpriseNetwork:identity:username:password:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1bssid()/title",
+          "value": "bssid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1bssid()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bssid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWWiFiClient/title",
+          "value": "CWWiFiClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWWiFiClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWWiFiClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWWiFiClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWWiFiClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1setWEPKey(_:flags:index:)/title",
+          "value": "setWEPKey:flags:index:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1setWEPKey(_:flags:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setWEPKey:flags:index:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1associate(to:password:)/title",
+          "value": "associateToNetwork:password:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1associate(to:password:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "associateToNetwork:password:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1setPairwiseMasterKey(_:)/title",
+          "value": "setPairwiseMasterKey:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1setPairwiseMasterKey(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPairwiseMasterKey:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1ssidData()/title",
+          "value": "ssidData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1ssidData()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "ssidData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetwork/title",
+          "value": "CWNetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWNetwork/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CWNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1supportedWLANChannels()/title",
+          "value": "supportedWLANChannels"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1supportedWLANChannels()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportedWLANChannels"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1startIBSSMode(withSSID:security:channel:password:)/title",
+          "value": "startIBSSModeWithSSID:security:channel:password:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corewlan~1documentation~1CoreWLAN~1CWInterface~1startIBSSMode(withSSID:security:channel:password:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startIBSSModeWithSSID:security:channel:password:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corewlan/cwinterface"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corewlan/cwinterface"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

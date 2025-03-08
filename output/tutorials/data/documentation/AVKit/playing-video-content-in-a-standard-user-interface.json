@@ -1,0 +1,3149 @@
+{
+  "abstract": [
+    {
+      "text": "Play media full screen, embedded inline, or in a floating Picture in Picture (PiP) window using a player view controller.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avkit/documentation/AVKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avkit/documentation/AVKit/playing-video-content-in-a-standard-user-interface"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Playing video content in a standard user interface"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AVKit is a cross-platform media playback UI framework built on top of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It makes it easy to play ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "-based media content using the same user interface as Apple’s own apps. For UIKit apps, AVKit provides ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a view controller that displays content from a player and presents a native user interface to control playback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app demonstrates three display options for media playback using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ": full screen, embedded inline, or in a floating PiP window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in full-screen playback mode to scale the video to fill the display, enabling a distraction-free environment that hides the system and app controls until people take action to reveal them.  To demonstrate video inline playback, the sample embeds the ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view in the app’s user interface. The sample also uses ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to play video in PiP mode, where the video remains in view in a floating video overlay while the user interacts with other apps. The user manages the player using the standard player interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Getting started with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is straightforward. You create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and then create an ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and assign the player to it. And finally, you present the ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When playing full screen, embedded inline, or in a floating PiP window, you implement callback methods to respond to the various ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session 503: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2019/503/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-and-configure-the-player-view-controller",
+          "level": 3,
+          "text": "Create and configure the player view controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "loadPlayerViewControllerIfNeeded",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that it uses to play the videos in the various playback modes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func loadPlayerViewControllerIfNeeded() {",
+            "    if playerViewControllerIfLoaded == nil {",
+            "        playerViewControllerIfLoaded = AVPlayerViewController()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to respond to player view controller events. This allows the sample to handle the app’s user interface based on the player view controller state, along with observing for potential errors. To receive notifications of the player view controller events, the project’s ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerViewControllerCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " assigns itself as the player view controller delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "playerViewController.delegate = self"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A player view controller requires an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to provide the media content to display. The ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " plays media assets that AVFoundation models using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, which represent the media to play. However, an ",
+              "type": "text"
+            },
+            {
+              "code": "AVAsset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " only models the static aspects of the media, such as its duration or creation date, and on its own, is unsuitable for playback with an ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To play an asset, the sample creates an instance of its dynamic counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This object models the timing and presentation state of an asset that an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " plays. The sample creates an ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and assigns the ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if !playerViewController.hasContent(fromVideo: video) {",
+            "    let playerItem = AVPlayerItem(url: video.hlsUrl)",
+            "    playerViewController.player = AVPlayer(playerItem: playerItem)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Play-media-full-screen",
+          "level": 3,
+          "text": "Play media full screen",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user taps on one of the app’s views to play video full screen, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to present the video full screen modally, not as a subview controller of some other view controller. The sample uses the default modal presentation style ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIModalPresentationStyle/automatic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which resolves to a full-screen presentation. To begin playback, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " player’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/play()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let playerViewController = playerViewControllerIfLoaded else { return }",
+            "presentingViewController.present(playerViewController, animated: true) {",
+            "    playerViewController.player?.play()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-player-view-controller-full-screen-events",
+          "level": 3,
+          "text": "Handle player view controller full-screen events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewController(_:willBeginFullScreenPresentationWithAnimationCoordinator:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method to receive notifications when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is about to start displaying its contents full screen. This delegate method passes the player view controller and transition coordinator to use for coordinating animations. When the sample presents or dismisses a view controller, UIKit creates a transition coordinator object automatically and assigns it to the view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/transitionCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The transition coordinator object only lasts for the duration of the transition animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample calls the transition coordinator’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewControllerTransitionCoordinator/animate(alongsideTransition:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to run the animations at the same time as the view controller transition animations. The sample also implements the ",
+              "type": "text"
+            },
+            {
+              "code": "animate(alongsideTransition:completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method’s completion handler that executes after the transition finishes. In the completion handler, the sample updates the playback state string that displays in the content overlay view on top of the player view controller.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample also checks whether the transition succeeds or the user cancels it. If it succeeds, the sample saves a strong reference to the player view controller. The sample uses this reference to dismiss any active player view controllers before restoring the app’s interface when PiP stops.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func playerViewController(",
+            "    _ playerViewController: AVPlayerViewController,",
+            "    willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator",
+            "    ) {",
+            "    status.insert([.fullScreenActive, .beingPresented])",
+            "    ",
+            "    coordinator.animate(alongsideTransition: nil) { context in",
+            "        self.status.remove(.beingPresented)",
+            "        // Check context.isCancelled to determine whether the transition is successful.",
+            "        if context.isCancelled {",
+            "            self.status.remove(.fullScreenActive)",
+            "        } else {",
+            "            // Keep note of the view controller that the system uses to present full screen.",
+            "            self.fullScreenViewController = context.viewController(forKey: .to)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewController(_:willEndFullScreenPresentationWithAnimationCoordinator:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method to receive notifications when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is about to stop displaying its contents full screen. In this method, the sample also calls the transition coordinator’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewControllerTransitionCoordinator/animate(alongsideTransition:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to run the animations at the same time as the view controller transition animations. The sample implements the ",
+              "type": "text"
+            },
+            {
+              "code": "animate(alongsideTransition:completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method’s completion handler to update the debug string that displays in the content overlay view on top of the player view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func playerViewController(",
+            "    _ playerViewController: AVPlayerViewController,",
+            "    willEndFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator",
+            "    ) {",
+            "    status.insert([.beingDismissed])",
+            "    delegate?.playerViewControllerCoordinatorWillDismiss(self)",
+            "    ",
+            "    coordinator.animate(alongsideTransition: nil) { context in",
+            "        self.status.remove(.beingDismissed)",
+            "        if !context.isCancelled {",
+            "            self.status.remove(.fullScreenActive)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-custom-overlays-in-the-player-view-controller",
+          "level": 3,
+          "text": "Display custom overlays in the player view controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/contentOverlayView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property for adding noninteractive custom views, such as a logo or watermark, between the video content and the controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a custom view ",
+              "type": "text"
+            },
+            {
+              "code": "DebugHUD",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for displaying the current playback state (embedded inline, full-screen active, and so on) of a video playback item. The sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "addDebugHUDToPlayerViewControllerIfNeeded",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function adds this custom view to the ",
+              "type": "text"
+            },
+            {
+              "code": "contentOverlayView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func addDebugHUDToPlayerViewControllerIfNeeded() {",
+            "    if status.contains(.embeddedInline) || status.contains(.fullScreenActive) {",
+            "        if let playerViewController = playerViewControllerIfLoaded,",
+            "            let contentOverlayView = playerViewController.contentOverlayView,",
+            "            !debugHud.isDescendant(of: contentOverlayView) {",
+            "            playerViewController.contentOverlayView?.addSubview(debugHud)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerViewControllerCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " declares the ",
+              "type": "text"
+            },
+            {
+              "code": "status",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable that maintains the current playback state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private(set) var status: Status = [] {",
+            "    didSet {",
+            "        debugHud.status = status",
+            "        externalDebugHud.status = status",
+            "        if oldValue.isBeingShown && !status.isBeingShown {",
+            "            playerViewControllerIfLoaded = nil",
+            "        }",
+            "        addDebugHUDToPlayerViewControllerIfNeeded()",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerViewControllerCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " updates the playback state in the ",
+              "type": "text"
+            },
+            {
+              "code": "DebugHUD",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view in response to player view controller events and other state changes. For example, to receive notifications when the player view controller video frames are ready for display, the sample observes the player view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/isReadyForDisplay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. When the property changes, the ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerViewControllerCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " updates the ",
+              "type": "text"
+            },
+            {
+              "code": "status",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to reflect the current playback state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "readyForDisplayObservation = playerViewController.observe(\\.isReadyForDisplay) { [weak self] observed, _ in",
+            "    if observed.isReadyForDisplay {",
+            "        self?.status.insert(.readyForDisplay)",
+            "    } else {",
+            "        self?.status.remove(.readyForDisplay)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Play-media-inline",
+          "level": 3,
+          "text": "Play media inline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "embedInline",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function incorporates the player view controller’s view into the app’s view hierarchy for inline playback.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To do this, the function first checks whether an ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object already exists in the view hierarchy, and if so, removes it. Next, the function adds the ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a subview of the current view controller. After that, it adds the ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the specified containing view so that it resides on top of any subviews. Lastly, the function calls the view controller ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/didMove(toParent:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. Container view controller subclasses need to call ",
+              "type": "text"
+            },
+            {
+              "code": "didMove(toParent:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " after a transition to the new subview completes or, in the case of no transition, immediately after the call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/addChild(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user manages inline playback using the standard player interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func embedInline(in parent: UIViewController, container: UIView) {",
+            "    loadPlayerViewControllerIfNeeded()",
+            "    guard let playerViewController = playerViewControllerIfLoaded, playerViewController.parent != parent else { return }",
+            "    removeFromParentIfNeeded()",
+            "    status.insert(.embeddedInline)",
+            "    parent.addChild(playerViewController)",
+            "    container.addSubview(playerViewController.view)",
+            "    playerViewController.view.translatesAutoresizingMaskIntoConstraints = false",
+            "    NSLayoutConstraint.activate([",
+            "        playerViewController.view.centerXAnchor.constraint(equalTo: container.centerXAnchor),",
+            "        playerViewController.view.centerYAnchor.constraint(equalTo: container.centerYAnchor),",
+            "        playerViewController.view.widthAnchor.constraint(equalTo: container.widthAnchor),",
+            "        playerViewController.view.heightAnchor.constraint(equalTo: container.heightAnchor)",
+            "    ])",
+            "    playerViewController.didMove(toParent: parent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-audio-session-and-background-modes-for-PiP",
+          "level": 3,
+          "text": "Configure audio session and background modes for PiP",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use PiP, the sample configures its audio session and background modes. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/configuring-your-app-for-media-playback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After this configuration, the player view controller automatically supports PiP playback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-PiP-player-view-controller-events",
+          "level": 3,
+          "text": "Handle PiP player view controller events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive notifications when PiP is about to start, or fails to start, the sample implements the delegate methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewControllerWillStartPictureInPicture(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewPictureInPictureDelegate/playerView(_:failedToStartPictureInPictureWithError:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", respectively. To receive notifications when PiP stops, the sample implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewControllerDidStopPictureInPicture(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each of the sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewControllerDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method implementations updates the ",
+              "type": "text"
+            },
+            {
+              "code": "DebugHUD",
+              "type": "codeVoice"
+            },
+            {
+              "text": " custom view to reflect the current playback state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {",
+            "    status.insert(.pictureInPictureActive)",
+            "}",
+            "",
+            "func playerViewControllerDidStopPictureInPicture(_ playerViewController: AVPlayerViewController) {",
+            "    status.remove(.pictureInPictureActive)",
+            "}",
+            "",
+            "func playerViewController(_ playerViewController: AVPlayerViewController, failedToStartPictureInPictureWithError error: Error) {",
+            "    status.remove(.pictureInPictureActive)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Restore-the-video-playback-interface-when-PiP-stops",
+          "level": 3,
+          "text": "Restore the video playback interface when PiP stops",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle the restore process when PiP stops, the sample implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewPictureInPictureDelegate/playerView(_:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The framework calls this method when control returns to the app, giving the app the opportunity to determine how to properly restore its video playback interface. The sample sends the callback up to its own delegate to handle the restore operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func playerViewController(",
+            "    _ playerViewController: AVPlayerViewController,",
+            "    restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void",
+            "    ) {",
+            "    if let delegate = delegate {",
+            "        delegate.playerViewControllerCoordinator(self, restoreUIForPIPStop: completionHandler)",
+            "    } else {",
+            "        completionHandler(false)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "43f2e96e5b3e/PlayingVideoContentInAStandardUserInterface.zip": {
+      "checksum": "43f2e96e5b3edaef9eb56633cc9de13a69fdf99105d1f61120b03b2ad7eb590742723c1acf1debecf5ffe4740c94d1721c3fb2f8010d9cf022650d3fa0359696",
+      "identifier": "43f2e96e5b3e/PlayingVideoContentInAStandardUserInterface.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/43f2e96e5b3e/PlayingVideoContentInAStandardUserInterface.zip"
+    },
+    "doc://com.apple.avkit/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/avkit"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVCaptureEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a user interaction with a system hardware button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVCaptureEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureEvent",
+      "type": "topic",
+      "url": "/documentation/avkit/avcaptureevent"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVCaptureEventInteraction": {
+      "abstract": [
+        {
+          "text": "An object that registers handlers to respond to capture events from system hardware buttons.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureEventInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVCaptureEventInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureEventInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureEventInteraction",
+      "type": "topic",
+      "url": "/documentation/avkit/avcaptureeventinteraction"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/contentOverlayView": {
+      "abstract": [
+        {
+          "text": "A view that displays between the video content and the playback controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentOverlayView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/contentOverlayView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentOverlayView"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentOverlayView",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/contentoverlayview"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/isReadyForDisplay": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the player item’s first video frame is ready for display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReadyForDisplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/isReadyForDisplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readyForDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "isReadyForDisplay",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/isreadyfordisplay"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to respond to player view controller events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewController(_:willBeginFullScreenPresentationWithAnimationCoordinator:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the player view controller is about to start full-screen display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayerViewController",
+          "text": "AVPlayerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willBeginFullScreenPresentationWithAnimationCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerTransitionCoordinator",
+          "text": "UIViewControllerTransitionCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewController(_:willBeginFullScreenPresentationWithAnimationCoordinator:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerViewController:willBeginFullScreenPresentationWithAnimationCoordinator:"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerViewController(_:willBeginFullScreenPresentationWithAnimationCoordinator:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate/playerviewcontroller(_:willbeginfullscreenpresentationwithanimationcoordinator:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewController(_:willEndFullScreenPresentationWithAnimationCoordinator:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the player view controller is about to end full-screen display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayerViewController",
+          "text": "AVPlayerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willEndFullScreenPresentationWithAnimationCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerTransitionCoordinator",
+          "text": "UIViewControllerTransitionCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewController(_:willEndFullScreenPresentationWithAnimationCoordinator:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerViewController:willEndFullScreenPresentationWithAnimationCoordinator:"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerViewController(_:willEndFullScreenPresentationWithAnimationCoordinator:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate/playerviewcontroller(_:willendfullscreenpresentationwithanimationcoordinator:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewControllerDidStopPictureInPicture(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when Picture in Picture stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerViewControllerDidStopPictureInPicture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayerViewController",
+          "text": "AVPlayerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewControllerDidStopPictureInPicture(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerViewControllerDidStopPictureInPicture:"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerViewControllerDidStopPictureInPicture(_:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate/playerviewcontrollerdidstoppictureinpicture(_:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewControllerWillStartPictureInPicture(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when Picture in Picture is about to start.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerViewControllerWillStartPictureInPicture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayerViewController",
+          "text": "AVPlayerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewControllerWillStartPictureInPicture(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerViewControllerWillStartPictureInPicture:"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerViewControllerWillStartPictureInPicture(_:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate/playerviewcontrollerwillstartpictureinpicture(_:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewPictureInPictureDelegate/playerView(_:failedToStartPictureInPictureWithError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that Picture in Picture playback failed to start.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayerView",
+          "text": "AVPlayerView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "failedToStartPictureInPictureWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewPictureInPictureDelegate/playerView(_:failedToStartPictureInPictureWithError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerView:failedToStartPictureInPictureWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerView(_:failedToStartPictureInPictureWithError:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewpictureinpicturedelegate/playerview(_:failedtostartpictureinpicturewitherror:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewPictureInPictureDelegate/playerView(_:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to restore the user interface before Picture in Picture playback stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayerView",
+          "text": "AVPlayerView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restoreUserInterfaceForPictureInPictureStopWithCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewPictureInPictureDelegate/playerView(_:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerView:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerView(_:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewpictureinpicturedelegate/playerview(_:restoreuserinterfaceforpictureinpicturestopwithcompletionhandler:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/AVFoundation"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVAsset": {
+      "abstract": [
+        {
+          "text": "An object that models timed audiovisual media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAsset",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVAsset"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/play()": {
+      "abstract": [
+        {
+          "text": "Begins playback of the current item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "play"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/play()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "play()",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer/play()"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that models the timing and presentation state of an asset during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerItem",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerItem"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/configuring-your-app-for-media-playback": {
+      "abstract": [
+        {
+          "text": "Configure apps to enable standard media playback behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/configuring-your-app-for-media-playback",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your app for media playback",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/configuring-your-app-for-media-playback"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia": {
+      "abstract": [
+        {
+          "text": "Represent time-based audio-visual assets with essential data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media",
+      "type": "topic",
+      "url": "/documentation/CoreMedia"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIModalPresentationStyle/automatic": {
+      "abstract": [
+        {
+          "text": "The default presentation style chosen by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIModalPresentationStyle/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIModalPresentationStyle.automatic",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIModalPresentationStyle/automatic"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/addChild(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified view controller as a child of the current view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "childController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/addChild(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addChild(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/addChild(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/didMove(toParent:)": {
+      "abstract": [
+        {
+          "text": "Called after the view controller is added or removed from a container view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didMove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toParent"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/didMove(toParent:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didMove(toParent:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/didMove(toParent:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/present(_:animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller modally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "viewControllerToPresent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "flag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "present(_:animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/present(_:animated:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/transitionCoordinator": {
+      "abstract": [
+        {
+          "text": "Returns the active transition coordinator object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transitionCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerTransitionCoordinator",
+          "text": "UIViewControllerTransitionCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ")? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/transitionCoordinator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transitionCoordinator",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/transitionCoordinator"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewControllerTransitionCoordinator/animate(alongsideTransition:completion:)": {
+      "abstract": [
+        {
+          "text": "Runs the specified animations at the same time as the view controller transition animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alongsideTransition"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerTransitionCoordinatorContext",
+          "text": "UIViewControllerTransitionCoordinatorContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerTransitionCoordinatorContext",
+          "text": "UIViewControllerTransitionCoordinatorContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewControllerTransitionCoordinator/animate(alongsideTransition:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animate(alongsideTransition:completion:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewControllerTransitionCoordinator/animate(alongsideTransition:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2019/503/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2019/503/",
+      "title": "Delivering Intuitive Media Playback with AVKit",
+      "titleInlineContent": [
+        {
+          "text": "Delivering Intuitive Media Playback with AVKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2019/503/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "43f2e96e5b3e/PlayingVideoContentInAStandardUserInterface.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iOS-Playback-and-Capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+        "doc://com.apple.avkit/documentation/AVKit/AVCaptureEventInteraction",
+        "doc://com.apple.avkit/documentation/AVKit/AVCaptureEvent"
+      ],
+      "title": "iOS Playback and Capture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1isReadyForDisplay/title",
+          "value": "readyForDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1isReadyForDisplay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "readyForDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVAsset/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAsset"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate~1playerViewControllerWillStartPictureInPicture(_:)/title",
+          "value": "playerViewControllerWillStartPictureInPicture:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate~1playerViewControllerWillStartPictureInPicture(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playerViewControllerWillStartPictureInPicture:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewPictureInPictureDelegate~1playerView(_:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:)/title",
+          "value": "playerView:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewPictureInPictureDelegate~1playerView(_:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playerView:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate~1playerViewController(_:willBeginFullScreenPresentationWithAnimationCoordinator:)/title",
+          "value": "playerViewController:willBeginFullScreenPresentationWithAnimationCoordinator:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate~1playerViewController(_:willBeginFullScreenPresentationWithAnimationCoordinator:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playerViewController:willBeginFullScreenPresentationWithAnimationCoordinator:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1didMove(toParent:)/title",
+          "value": "didMoveToParentViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1didMove(toParent:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "didMoveToParentViewController:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "parent"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVCaptureEvent/title",
+          "value": "AVCaptureEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVCaptureEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVCaptureEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/title",
+          "value": "AVPlayerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate~1playerViewControllerDidStopPictureInPicture(_:)/title",
+          "value": "playerViewControllerDidStopPictureInPicture:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate~1playerViewControllerDidStopPictureInPicture(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playerViewControllerDidStopPictureInPicture:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer~1play()/title",
+          "value": "play"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer~1play()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "play"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewControllerTransitionCoordinator~1animate(alongsideTransition:completion:)/title",
+          "value": "animateAlongsideTransition:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewControllerTransitionCoordinator~1animate(alongsideTransition:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "animateAlongsideTransition:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)UIViewControllerTransitionCoordinatorContext",
+              "text": "id<UIViewControllerTransitionCoordinatorContext>"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "animation"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)UIViewControllerTransitionCoordinatorContext",
+              "text": "id<UIViewControllerTransitionCoordinatorContext>"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1transitionCoordinator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)UIViewControllerTransitionCoordinator",
+              "text": "id<UIViewControllerTransitionCoordinator>"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "transitionCoordinator"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1contentOverlayView/title",
+          "value": "contentOverlayView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1contentOverlayView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentOverlayView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1addChild(_:)/title",
+          "value": "addChildViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1addChild(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "addChildViewController:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "childController"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/title",
+          "value": "AVPlayerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVCaptureEventInteraction/title",
+          "value": "AVCaptureEventInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVCaptureEventInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureEventInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVCaptureEventInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureEventInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/title",
+          "value": "presentViewController:animated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewController:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "viewControllerToPresent"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "animated:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flag"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewPictureInPictureDelegate~1playerView(_:failedToStartPictureInPictureWithError:)/title",
+          "value": "playerView:failedToStartPictureInPictureWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewPictureInPictureDelegate~1playerView(_:failedToStartPictureInPictureWithError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playerView:failedToStartPictureInPictureWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate~1playerViewController(_:willEndFullScreenPresentationWithAnimationCoordinator:)/title",
+          "value": "playerViewController:willEndFullScreenPresentationWithAnimationCoordinator:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate~1playerViewController(_:willEndFullScreenPresentationWithAnimationCoordinator:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playerViewController:willEndFullScreenPresentationWithAnimationCoordinator:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIModalPresentationStyle~1automatic/title",
+          "value": "UIModalPresentationAutomatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIModalPresentationStyle~1automatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIModalPresentationAutomatic"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avkit/playing-video-content-in-a-standard-user-interface"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

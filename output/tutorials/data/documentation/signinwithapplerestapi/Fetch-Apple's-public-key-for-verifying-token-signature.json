@@ -1,0 +1,401 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch Apple’s public key to verify the ID token signature.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Fetch-Apple's-public-key-for-verifying-token-signature"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:appleid_signin_server_api:get:auth-keys",
+    "modules": [
+      {
+        "name": "Sign in with Apple REST API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Fetch Apple's public key for verifying token signature"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Sign in with Apple REST API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Fetch Apple’s public key for verifying token signature"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://appleid.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "auth/keys"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/JWKSet",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:appleid_signin_server_api:JWKSet",
+              "text": "JWKSet"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/processing-changes-for-sign-in-with-apple-accounts"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/JWKSet/Keys-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains Apple’s public key",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The endpoint can return multiple keys, and the count of keys can vary over time. From this set of keys, select the key with the matching key identifier (",
+                  "type": "text"
+                },
+                {
+                  "code": "kid",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") to verify the signature of any JSON Web Token (JWT) issued by Apple. For more information, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://tools.ietf.org/html/rfc7515",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " specification.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret": {
+      "abstract": [
+        {
+          "text": "Generate a signed token to identify your client application.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a client secret",
+      "type": "topic",
+      "url": "/documentation/AccountOrganizationalDataSharing/creating-a-client-secret"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI": {
+      "abstract": [
+        {
+          "text": "Communicate between your app servers and Apple’s authentication servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sign in with Apple REST API",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Fetch-Apple's-public-key-for-verifying-token-signature": {
+      "abstract": [
+        {
+          "text": "Fetch Apple’s public key to verify the ID token signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Fetch-Apple's-public-key-for-verifying-token-signature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch Apple's public key for verifying token signature"
+        }
+      ],
+      "role": "symbol",
+      "title": "Fetch Apple’s public key for verifying token signature",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/fetch-apple's-public-key-for-verifying-token-signature"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens": {
+      "abstract": [
+        {
+          "text": "Validate an authorization grant code delivered to your app to obtain tokens, or validate an existing refresh token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Generate and validate tokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "Generate and validate tokens",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/generate-and-validate-tokens"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/JWKSet": {
+      "abstract": [
+        {
+          "text": "A set of JSON Web Key objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWKSet"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/JWKSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JWKSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "JWKSet",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/jwkset"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/JWKSet/Keys-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that defines a single JSON Web Key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWKSet.Keys"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/JWKSet/Keys-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JWKSet.Keys"
+        }
+      ],
+      "role": "symbol",
+      "title": "JWKSet.Keys",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/jwkset/keys-data.dictionary"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Revoke-tokens": {
+      "abstract": [
+        {
+          "text": "Invalidate the tokens and associated user authorizations for a user when they are no longer associated with your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Revoke-tokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Revoke tokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "Revoke tokens",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/revoke-tokens"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/processing-changes-for-sign-in-with-apple-accounts": {
+      "abstract": [
+        {
+          "text": "Manage user-initiated modifications to maintain privacy with server-to-server notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/processing-changes-for-sign-in-with-apple-accounts",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing changes for Sign in with Apple accounts",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/processing-changes-for-sign-in-with-apple-accounts"
+    },
+    "https://tools.ietf.org/html/rfc7515": {
+      "identifier": "https://tools.ietf.org/html/rfc7515",
+      "title": "JSON Web Signature",
+      "titleInlineContent": [
+        {
+          "text": "JSON Web Signature",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7515"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Generating-and-revoking-tokens",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret",
+        "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens",
+        "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Revoke-tokens"
+      ],
+      "title": "Generating and revoking tokens"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/signinwithapplerestapi/fetch-apple's-public-key-for-verifying-token-signature"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

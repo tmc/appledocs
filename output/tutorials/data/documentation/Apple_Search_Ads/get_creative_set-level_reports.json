@@ -1,0 +1,618 @@
+{
+  "abstract": [
+    {
+      "text": "Fetches reports for Creative Sets within a campaign.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_search_ads/get_creative_set-level_reports"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3732789,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:search_ads:post:v4-reports-campaigns-{}-creativesets",
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "5.1",
+        "deprecated": true,
+        "deprecatedAt": "4.0",
+        "introducedAt": "4.0",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "restRequestSymbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpPost",
+    "title": "Get Creative Set-Level Reports"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.searchads.apple.com/api"
+        },
+        {
+          "kind": "path",
+          "text": "/v4/reports/campaigns/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{campaignId}"
+        },
+        {
+          "kind": "path",
+          "text": "/creativesets"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the campaign.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "campaignId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "int64"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:search_ads:ReportingRequest",
+          "text": "ReportingRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The report request body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the call succeeds, the API returns the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object in the response payload with an HTTP status code of ",
+                  "type": "text"
+                },
+                {
+                  "code": "200 (OK)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If unsuccessful, the HTTP status code indicates the error with details in the error message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponseBody",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ReportingResponseBody",
+              "text": "ReportingResponseBody"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An invalid query or missing required parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An unauthenticated call fails to get the requested response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Insufficient rights to the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API can’t locate the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this endpoint to fetch reports for Creative Sets in your campaigns. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/reportingcreativeset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " operators and field values to filter results with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "orderBy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies fields to sort the records list by ",
+              "type": "text"
+            },
+            {
+              "code": "ASCENDING",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "DESCENDING",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". All ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/reportingcreativeset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " fields are available to the ",
+              "type": "text"
+            },
+            {
+              "code": "orderBy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3371416",
+          "level": 3,
+          "text": "Payload example: Get creative set-level report",
+          "type": "heading"
+        },
+        {
+          "request": {
+            "content": [
+              {
+                "code": [
+                  "POST https://api.searchads.apple.com/api/v4/reports/campaigns/{campaignId}/creativesets",
+                  "",
+                  "{",
+                  "    \"startTime\": \"2021-04-08\",",
+                  "    \"endTime\": \"2021-04-09\",",
+                  "    \"selector\": {",
+                  "        \"orderBy\": [",
+                  "            {",
+                  "                \"field\": \"countryOrRegion\",",
+                  "                \"sortOrder\": \"ASCENDING\"",
+                  "            }",
+                  "        ],",
+                  "        \"conditions\": [",
+                  "            {",
+                  "            \"field\": \"countryOrRegion\",",
+                  "            \"operator\": \"EQUALS\",",
+                  "            \"values\": [",
+                  "                \"US\"",
+                  "            ]",
+                  "        }",
+                  "        ],",
+                  "        \"pagination\": {",
+                  "            \"offset\": 0,",
+                  "            \"limit\": 1000",
+                  "        }",
+                  "    },",
+                  "    \"groupBy\": [",
+                  "        \"countryOrRegion\"",
+                  "    ],",
+                  "    \"timeZone\": \"UTC\",",
+                  "    \"returnRecordsWithNoMetrics\": false,",
+                  "    \"returnRowTotals\": true,",
+                  "    \"returnGrandTotals\": true",
+                  "}"
+                ],
+                "collapsible": false
+              }
+            ]
+          },
+          "response": {
+            "content": [
+              {
+                "code": [
+                  "{",
+                  "    \"row\": [",
+                  "      {",
+                  "        \"other\": false,",
+                  "        \"total\": {",
+                  "          \"impressions\": 62393,",
+                  "          \"taps\": 2094,",
+                  "          \"installs\": 144,",
+                  "          \"newDownloads\": 141,",
+                  "          \"redownloads\": 3,",
+                  "          \"latOnInstalls\": 0,",
+                  "          \"latOffInstalls\": 144,",
+                  "          \"ttr\": 0.0336,",
+                  "          \"avgCPA\": {",
+                  "            \"amount\": \"0.7271\",",
+                  "            \"currency\": \"USD\"",
+                  "          },",
+                  "          \"avgCPT\": {",
+                  "            \"amount\": \"0.05\",",
+                  "            \"currency\": \"USD\"",
+                  "          },",
+                  "          \"localSpend\": {",
+                  "            \"amount\": \"104.7\",",
+                  "            \"currency\": \"USD\"",
+                  "          },",
+                  "          \"conversionRate\": 0.0688",
+                  "        },",
+                  "        \"metadata\": {",
+                  "          \"creativeSetId\": -1,",
+                  "          \"creativeSetName\": \"Default Image Ad\",",
+                  "          \"displayStatus\": \"ELIGIBLE\",",
+                  "          \"creativeSetLanguageDisplayName\": null,",
+                  "          \"deleted\": false,",
+                  "          \"status\": \"VALID\",",
+                  "          \"orgId\": 40669820,",
+                  "          \"campaignId\": 542370539,",
+                  "          \"adGroupId\": 427916203,",
+                  "          \"adGroupCreativeSetId\": 542370535,",
+                  "          \"creationTime\": null,",
+                  "          \"modificationTime\": null,",
+                  "          \"adFormat\": \"IMAGE\"",
+                  "        }",
+                  "      }",
+                  "    ]",
+                  "  }",
+                  ""
+                ],
+                "collapsible": false
+              }
+            ]
+          },
+          "type": "endpointExample"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse": {
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "ApiErrorResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apierrorresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition": {
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Condition",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/condition"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingRequest": {
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingRequest",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "ReportingRequest",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/reportingrequest"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponse": {
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponse",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "ReportingResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/reportingresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponseBody": {
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponseBody",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "ReportingResponseBody",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/reportingresponsebody"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector": {
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Selector",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/selector"
+    },
+    "doc://com.apple.documentation/documentation/apple_search_ads": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.documentation/documentation/apple_search_ads/reportingcreativeset": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/reportingcreativeset",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "ReportingCreativeSet",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/reportingcreativeset"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_search_ads/get_creative_set-level_reports"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

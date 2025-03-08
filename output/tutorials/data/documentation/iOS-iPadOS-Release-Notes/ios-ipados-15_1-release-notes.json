@@ -1,0 +1,881 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_1-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "iOS & iPadOS 15.1 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iOS & iPadOS 15 SDK provides support to develop apps for iPhone, iPad, and iPod touch devices running iOS & iPadOS 15.1. The SDK comes bundled with Xcode 13, available from the Mac App Store. For information on the compatibility requirements for Xcode 13, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-13-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "CoreData",
+          "level": 3,
+          "text": "CoreData",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSExpression",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " immediately forbids certain operations that have significant side effects, like creating and destroying objects. Additionally, casting string class names into Class objects with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSConstantValueExpression",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is deprecated. (84017178)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Pass temporary objects to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSExpression",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the context parameter of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1410363-expressionvaluewithobject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPredicate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "substitutionVariables",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1407759-evaluatewithobject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". You can create a derived predicate with all the substitution variables replaced (bound), using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1413227-withsubstitutionvariables",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on an existing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPredicate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " so that code using the object can continue to use a simple ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "evaluate(with object: Any?)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " invocation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Home",
+          "level": 3,
+          "text": "Home",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The query for the connected admin list isn’t supported by Matter accessories. (82398328)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Matter accessory notifications don’t work. (82634464)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Relaunch the Home app to force a refresh of the Matter accessory state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SharePlay",
+          "level": 3,
+          "text": "SharePlay",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SharePlay is now available in iOS 15.1, iPadOS 15.1, and tvOS 15.1. You can submit your apps that support SharePlay now. It’s also enabled in macOS 12.1 beta, so you can build SharePlay experiences across Apple platforms using the  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/GroupActivities",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlement, without the need for the SharePlay Development Profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/BorderedButtonStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " no longer has a default hover effect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/HoverEffect",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (81759097)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Telephony",
+          "level": 3,
+          "text": "Telephony",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Users might experience loss of audio during calls, followed by the call being dropped in some conditions. (83381816)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Toggle Airplane Mode on and off, or reboot.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "VoiceOver",
+          "level": 3,
+          "text": "VoiceOver",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alarms now activate correctly in the Clock app. (82968832)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/GroupActivities"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/BorderedButtonStyle": {
+      "abstract": [
+        {
+          "text": "A button style that applies standard border artwork based on the button’s context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BorderedButtonStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/BorderedButtonStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BorderedButtonStyle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/BorderedButtonStyle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Button": {
+      "abstract": [
+        {
+          "text": "A control that initiates an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Button"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Button",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Button"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/HoverEffect": {
+      "abstract": [
+        {
+          "text": "An effect applied when the pointer hovers over a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/HoverEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HoverEffect",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/HoverEffect"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-13-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-13-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-13-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1410363-expressionvaluewithobject": {
+      "abstract": [
+        {
+          "text": "Evaluates an expression using a specified object and context.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1410363-expressionvaluewithobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expressionValueWithObject:context:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1410363-expressionvaluewithobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1407759-evaluatewithobject": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies after substituting in the values from a specified variables dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1407759-evaluatewithobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluateWithObject:substitutionVariables:",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1407759-evaluatewithobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1413227-withsubstitutionvariables": {
+      "abstract": [
+        {
+          "text": "Returns a copy of the predicate and substitutes the predicates variables with specified values from a specified substitution variables dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSubstitutionVariables"
+        },
+        {
+          "kind": "text",
+          "text": "([String : Any]) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1413227-withsubstitutionvariables",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSubstitutionVariables(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1413227-withsubstitutionvariables"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 15 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-15-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 15.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-15_2-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 15.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-15_3-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 15.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-15_4-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 15.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-15_5-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 15.6 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-15_6-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the iOS & iPadOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "iOS & iPadOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iOS--iPadOS-15",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_6-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_5-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_4-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_3-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15_2-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-15-release-notes"
+      ],
+      "title": "iOS & iPadOS 15"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nspredicate~11413227-withsubstitutionvariables/title",
+          "value": "predicateWithSubstitutionVariables:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nspredicate~11407759-evaluatewithobject/title",
+          "value": "evaluate(with:substitutionVariables:)"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nspredicate~11407759-evaluatewithobject/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "func "
+            },
+            {
+              "kind": "identifier",
+              "text": "evaluate"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "identifier",
+              "text": "with"
+            },
+            {
+              "kind": "text",
+              "text": ": Any?, "
+            },
+            {
+              "kind": "identifier",
+              "text": "substitutionVariables"
+            },
+            {
+              "kind": "text",
+              "text": ": [String : Any]?) -> Bool"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsexpression~11410363-expressionvaluewithobject/title",
+          "value": "expressionValue(with:context:)"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsexpression~11410363-expressionvaluewithobject/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "func "
+            },
+            {
+              "kind": "identifier",
+              "text": "expressionValue"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "identifier",
+              "text": "with"
+            },
+            {
+              "kind": "text",
+              "text": ": Any?, "
+            },
+            {
+              "kind": "identifier",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ": NSMutableDictionary?) -> Any?"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

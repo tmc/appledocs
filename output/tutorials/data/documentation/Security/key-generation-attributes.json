@@ -1,0 +1,1460 @@
+{
+  "abstract": [
+    {
+      "text": "Use attribute dictionary keys during cryptographic key generation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/key-generation-attributes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Key Generation Attributes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these dictionary keys in the ",
+              "type": "text"
+            },
+            {
+              "code": "parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary when you create new cryptographic keys with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateRandomKey(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. The type and size attributes are required, while all others are optional.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the exception of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrTokenID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can specify the optional keys in either the top-level ",
+              "type": "text"
+            },
+            {
+              "code": "parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary or in one of the key-specific sub-dictionaries specified by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecPrivateKeyAttrs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecPublicKeyAttrs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attributes. In the latter case, the given attribute applies only to the private or public key, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these keys in exactly the same way for the ",
+              "type": "text"
+            },
+            {
+              "code": "parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary you supply to the legacy ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyGeneratePair(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCreateRandomKey(_:_:)": {
+      "abstract": [
+        {
+          "text": "Generates a new public-private key pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateRandomKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateRandomKey(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateRandomKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyCreateRandomKey(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycreaterandomkey(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyGeneratePair(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an asymmetric key pair.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyGeneratePair"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyGeneratePair(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyGeneratePair"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyGeneratePair(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeygeneratepair(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrApplicationTag": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the item’s private tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrApplicationTag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrApplicationTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrApplicationTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrApplicationTag",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrapplicationtag"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrCanDecrypt": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean that indicates whether the cryptographic key can be used for decryption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanDecrypt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrCanDecrypt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanDecrypt"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrCanDecrypt",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrcandecrypt"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrCanDerive": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean that indicates whether the cryptographic key can be used for derivation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanDerive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrCanDerive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanDerive"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrCanDerive",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrcanderive"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrCanEncrypt": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean that indicates whether the cryptographic key can be used for encryption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanEncrypt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrCanEncrypt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanEncrypt"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrCanEncrypt",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrcanencrypt"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrCanSign": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean that indicates whether the cryptographic key can be used for digital signing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanSign"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrCanSign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanSign"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrCanSign",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrcansign"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrCanUnwrap": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean that indicates whether the cryptographic key can be used for unwrapping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanUnwrap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrCanUnwrap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanUnwrap"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrCanUnwrap",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrcanunwrap"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrCanVerify": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean that indicates whether the cryptographic key can be used for signature verification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanVerify"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrCanVerify",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanVerify"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrCanVerify",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrcanverify"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrCanWrap": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean that indicates whether the cryptographic key can be used for wrapping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanWrap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrCanWrap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanWrap"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrCanWrap",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrcanwrap"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrEffectiveKeySize": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the effective number of bits in a cryptographic key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrEffectiveKeySize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrEffectiveKeySize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrEffectiveKeySize"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrEffectiveKeySize",
+      "type": "topic",
+      "url": "/documentation/security/ksecattreffectivekeysize"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrIsPermanent": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the item’s permanence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrIsPermanent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrIsPermanent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrIsPermanent"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrIsPermanent",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrispermanent"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrKeySizeInBits": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the number of bits in a cryptographic key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrKeySizeInBits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrKeySizeInBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrKeySizeInBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrKeySizeInBits",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrkeysizeinbits"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrKeyType": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the item’s algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrKeyType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrKeyType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrKeyType"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrKeyType",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrkeytype"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrLabel": {
+      "abstract": [
+        {
+          "text": "A key with a value that’s a string indicating the item’s label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrLabel",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrlabel"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrTokenID": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates that a cryptographic key is in an external store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrTokenID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrTokenID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrTokenID"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrTokenID",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrtokenid"
+    },
+    "doc://com.apple.security/documentation/Security/kSecPrivateKeyAttrs": {
+      "abstract": [
+        {
+          "text": "A key whose value is a dictionary of cryptographic key attributes specific to a private key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecPrivateKeyAttrs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecPrivateKeyAttrs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecPrivateKeyAttrs"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecPrivateKeyAttrs",
+      "type": "topic",
+      "url": "/documentation/security/ksecprivatekeyattrs"
+    },
+    "doc://com.apple.security/documentation/Security/kSecPublicKeyAttrs": {
+      "abstract": [
+        {
+          "text": "A key whose value is a dictionary of cryptographic key attributes specific to a public key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecPublicKeyAttrs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecPublicKeyAttrs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecPublicKeyAttrs"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecPublicKeyAttrs",
+      "type": "topic",
+      "url": "/documentation/security/ksecpublickeyattrs"
+    },
+    "doc://com.apple.security/documentation/Security/keys": {
+      "abstract": [
+        {
+          "text": "Generate, store, and use cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keys",
+      "type": "topic",
+      "url": "/documentation/security/keys"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Required",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/kSecAttrKeyType",
+        "doc://com.apple.security/documentation/Security/kSecAttrKeySizeInBits"
+      ],
+      "title": "Required"
+    },
+    {
+      "anchor": "Key-Specific",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/kSecPrivateKeyAttrs",
+        "doc://com.apple.security/documentation/Security/kSecPublicKeyAttrs"
+      ],
+      "title": "Key Specific"
+    },
+    {
+      "anchor": "Optional",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/kSecAttrLabel",
+        "doc://com.apple.security/documentation/Security/kSecAttrTokenID",
+        "doc://com.apple.security/documentation/Security/kSecAttrIsPermanent",
+        "doc://com.apple.security/documentation/Security/kSecAttrApplicationTag",
+        "doc://com.apple.security/documentation/Security/kSecAttrEffectiveKeySize",
+        "doc://com.apple.security/documentation/Security/kSecAttrCanEncrypt",
+        "doc://com.apple.security/documentation/Security/kSecAttrCanDecrypt",
+        "doc://com.apple.security/documentation/Security/kSecAttrCanDerive",
+        "doc://com.apple.security/documentation/Security/kSecAttrCanSign",
+        "doc://com.apple.security/documentation/Security/kSecAttrCanVerify",
+        "doc://com.apple.security/documentation/Security/kSecAttrCanWrap",
+        "doc://com.apple.security/documentation/Security/kSecAttrCanUnwrap"
+      ],
+      "title": "Optional"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Required",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/kSecAttrKeyType",
+                "doc://com.apple.security/documentation/Security/kSecAttrKeySizeInBits"
+              ],
+              "title": "Required"
+            },
+            {
+              "anchor": "Key-Specific",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/kSecPrivateKeyAttrs",
+                "doc://com.apple.security/documentation/Security/kSecPublicKeyAttrs"
+              ],
+              "title": "Key Specific"
+            },
+            {
+              "anchor": "Optional",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/kSecAttrLabel",
+                "doc://com.apple.security/documentation/Security/kSecAttrTokenID",
+                "doc://com.apple.security/documentation/Security/kSecAttrIsPermanent",
+                "doc://com.apple.security/documentation/Security/kSecAttrApplicationTag",
+                "doc://com.apple.security/documentation/Security/kSecAttrEffectiveKeySize",
+                "doc://com.apple.security/documentation/Security/kSecAttrCanEncrypt",
+                "doc://com.apple.security/documentation/Security/kSecAttrCanDecrypt",
+                "doc://com.apple.security/documentation/Security/kSecAttrCanDerive",
+                "doc://com.apple.security/documentation/Security/kSecAttrCanSign",
+                "doc://com.apple.security/documentation/Security/kSecAttrCanVerify",
+                "doc://com.apple.security/documentation/Security/kSecAttrCanWrap",
+                "doc://com.apple.security/documentation/Security/kSecAttrCanUnwrap"
+              ],
+              "title": "Optional"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrTokenID/title",
+          "value": "kSecAttrTokenID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrTokenID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrTokenID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrLabel/title",
+          "value": "kSecAttrLabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrLabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanUnwrap/title",
+          "value": "kSecAttrCanUnwrap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanUnwrap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrCanUnwrap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanWrap/title",
+          "value": "kSecAttrCanWrap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanWrap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrCanWrap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateRandomKey(_:_:)/title",
+          "value": "SecKeyCreateRandomKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateRandomKey(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyCreateRandomKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrKeySizeInBits/title",
+          "value": "kSecAttrKeySizeInBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrKeySizeInBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrKeySizeInBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPublicKeyAttrs/title",
+          "value": "kSecPublicKeyAttrs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPublicKeyAttrs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecPublicKeyAttrs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPrivateKeyAttrs/title",
+          "value": "kSecPrivateKeyAttrs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPrivateKeyAttrs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecPrivateKeyAttrs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrKeyType/title",
+          "value": "kSecAttrKeyType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrKeyType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrKeyType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrIsPermanent/title",
+          "value": "kSecAttrIsPermanent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrIsPermanent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrIsPermanent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanEncrypt/title",
+          "value": "kSecAttrCanEncrypt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanEncrypt/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrCanEncrypt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanSign/title",
+          "value": "kSecAttrCanSign"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanSign/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrCanSign"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanDecrypt/title",
+          "value": "kSecAttrCanDecrypt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanDecrypt/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrCanDecrypt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanVerify/title",
+          "value": "kSecAttrCanVerify"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanVerify/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrCanVerify"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrApplicationTag/title",
+          "value": "kSecAttrApplicationTag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrApplicationTag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrApplicationTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrEffectiveKeySize/title",
+          "value": "kSecAttrEffectiveKeySize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrEffectiveKeySize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrEffectiveKeySize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyGeneratePair(_:_:_:)/title",
+          "value": "SecKeyGeneratePair"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyGeneratePair(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyGeneratePair"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanDerive/title",
+          "value": "kSecAttrCanDerive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanDerive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrCanDerive"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/key-generation-attributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/key-generation-attributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

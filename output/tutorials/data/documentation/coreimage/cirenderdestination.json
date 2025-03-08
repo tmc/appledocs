@@ -1,0 +1,1009 @@
+{
+  "abstract": [
+    {
+      "text": "A specification for configuring all attributes of a render task's destination and issuing asynchronous render tasks.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2875455,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIRenderDestination",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "CIRenderDestination"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "CIRenderDestination"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CIRenderDestination"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides an API for specifying a render task destination's properties, such as buffer format, alpha mode, clamping behavior, blending, and color space, properties formerly tied to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object for each surface or buffer to which you must render. You can also render multiple times to a single destination with different settings such as colorspace and blend mode by mutating a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object between renders.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Renders issued to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " return to the caller as soon as the CPU has issued the task, rather than after the GPU has performed the task, so you can start render tasks on subsequent frames without waiting for previous renders to finish. If the render fails, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cirendertask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " will return immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIContext",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination": {
+      "abstract": [
+        {
+          "text": "A specification for configuring all attributes of a render task's destination and issuing asynchronous render tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRenderDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRenderDestination",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875427-init": {
+      "abstract": [
+        {
+          "text": "Creates a render destination based on a client-managed buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "bitmapData"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875427-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bitmapData:width:height:bytesPerRow:format:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875427-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875433-height": {
+      "abstract": [
+        {
+          "text": "The render destination's buffer height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875433-height",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875433-height"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875434-width": {
+      "abstract": [
+        {
+          "text": "The render destination's row width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875434-width",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "width",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875434-width"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875436-init": {
+      "abstract": [
+        {
+          "text": "Creates a render destination based on a Core Video pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": CVPixelBuffer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875436-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(pixelBuffer:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875436-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875437-blendsindestinationcolorspace": {
+      "abstract": [
+        {
+          "text": "Indicator of whether to blend in the destination's color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendsInDestinationColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875437-blendsindestinationcolorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blendsInDestinationColorSpace",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875437-blendsindestinationcolorspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875438-init": {
+      "abstract": [
+        {
+          "text": "Creates a render destination based on an OpenGL texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "glTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875438-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(glTexture:target:width:height:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875438-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875439-colorspace": {
+      "abstract": [
+        {
+          "text": "The destination's color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875439-colorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorSpace",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875439-colorspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875441-isdithered": {
+      "abstract": [
+        {
+          "text": "Indicator of whether or not the destination dithers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDithered"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875441-isdithered",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDithered",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875441-isdithered"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875442-isflipped": {
+      "abstract": [
+        {
+          "text": "Indicator of whether the destination is flipped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFlipped"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875442-isflipped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isFlipped",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875442-isflipped"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875443-alphamode": {
+      "abstract": [
+        {
+          "text": "The render destination's representation of alpha (transparency) values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "alphaMode"
+        },
+        {
+          "kind": "text",
+          "text": ": CIRenderDestinationAlphaMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875443-alphamode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alphaMode",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875443-alphamode"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875451-isclamped": {
+      "abstract": [
+        {
+          "text": "Indicator of whether or not the destination clamps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isClamped"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875451-isclamped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isClamped",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875451-isclamped"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875452-blendkernel": {
+      "abstract": [
+        {
+          "text": "The destination's blend kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": CIBlendKernel?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875452-blendkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blendKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875452-blendkernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2876044-init": {
+      "abstract": [
+        {
+          "text": "Creates a render destination based on an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.iosurface/documentation/IOSurface/IOSurface",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ioSurface"
+        },
+        {
+          "kind": "text",
+          "text": ": IOSurface)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2876044-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(ioSurface:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2876044-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2880273-init": {
+      "abstract": [
+        {
+          "text": "Creates a render destination based on a Metal texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "mtlTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLTexture, "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MTLCommandBuffer)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2880273-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mtlTexture:commandBuffer:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2880273-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2880274-init": {
+      "abstract": [
+        {
+          "text": "Creates a render destination based on a Metal texture with specified pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLPixelFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MTLCommandBuffer)?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "mtlTextureProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> any MTLTexture)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2880274-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(width:height:pixelFormat:commandBuffer:mtlTextureProvider:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2880274-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestinationalphamode": {
+      "abstract": [
+        {
+          "text": "Different ways of representing alpha.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRenderDestinationAlphaMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestinationalphamode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRenderDestinationAlphaMode",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestinationalphamode"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderinfo": {
+      "abstract": [
+        {
+          "text": "An encapsulation of a render task's timing, passes, and pixels processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRenderInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRenderInfo",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirendertask": {
+      "abstract": [
+        {
+          "text": "A single render task issued in conjunction with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRenderTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirendertask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRenderTask",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirendertask"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination": {
+      "abstract": [
+        {
+          "text": "Animate a filtered image to a Metal view in a SwiftUI app using a Core Image Render Destination.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating an animation with a Core Image Render Destination",
+      "type": "topic",
+      "url": "/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.iosurface/documentation/IOSurface/IOSurface": {
+      "identifier": "doc://com.apple.iosurface/documentation/IOSurface/IOSurface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSurface",
+      "type": "topic",
+      "url": "/documentation/iosurface/iosurface"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderinfo",
+        "doc://com.apple.documentation/documentation/coreimage/cirendertask",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestinationalphamode"
+      ],
+      "title": "Custom Render Destination"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2880071",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875436-init",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2876044-init",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2880273-init",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2880274-init",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875438-init",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875427-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Render Destination"
+    },
+    {
+      "anchor": "2880072",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875443-alphamode",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestinationalphamode",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875452-blendkernel",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875437-blendsindestinationcolorspace",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875439-colorspace",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875434-width",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875433-height",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875451-isclamped",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875441-isdithered",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875442-isflipped"
+      ],
+      "kind": "taskGroup",
+      "title": "Customizing Rendering"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cirenderdestination"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cirenderdestination"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

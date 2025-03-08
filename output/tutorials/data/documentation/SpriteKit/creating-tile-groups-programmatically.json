@@ -1,0 +1,900 @@
+{
+  "abstract": [
+    {
+      "text": "Paint tiles on a map by putting tile definitions in a group that you create in code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/creating-tile-groups-programmatically"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating Tile Groups Programmatically"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To paint tiles on a map using a tile group, you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode/fill(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the group. The fill behaviors you use depend on the type of group you make:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Group type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fill behavior",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Single tile",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeats the single center tile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Multiple tiles without adjacency rules",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Chooses randomly among the multiple center tiles, abiding by the placement weights you choose.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Multiple tiles with adjacency rules",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeats the center tile and borders all of its edges using the peripheral adjacency tiles you define.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Create-a-Tile-Group-with-a-Single-Tile",
+          "level": 3,
+          "text": "Create a Tile Group with a Single Tile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although a tile group is a container for multiple tiles, you can create one with a single tile, if you wish. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/init(tileDefinition:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer, as shown in the following Swift code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let backgroundTexture = SKTexture(imageNamed: \"BG.png\")",
+            "let backgroundDefinition = SKTileDefinition(texture: backgroundTexture)",
+            "let backgroundGroup = SKTileGroup(tileDefinition: backgroundDefinition)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Heterogenous-Tile-Group-with-Random-Placement",
+          "level": 3,
+          "text": "Create a Heterogenous Tile Group with Random Placement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a tile group with more than one texture, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/init(rules:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer. The following code shows how you can create a tile group containing two definitions—one based on an image named ",
+              "type": "text"
+            },
+            {
+              "code": "RED.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the other on an image named ",
+              "type": "text"
+            },
+            {
+              "code": "BLUE.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let redTexture = SKTexture(imageNamed: \"RED.png\")",
+            "let redDefinition = SKTileDefinition(texture: redTexture)",
+            "redDefinition.placementWeight = 3",
+            " ",
+            "let blueTexture = SKTexture(imageNamed: \"BLUE.png\")",
+            "let blueDefinition = SKTileDefinition(texture: blueTexture)",
+            "blueDefinition.placementWeight = 1",
+            " ",
+            "let redBlueRule = SKTileGroupRule(adjacency: .adjacencyAll,                                                                    tileDefinitions: [redDefinition, blueDefinition])",
+            "let group = SKTileGroup(rules: [redBlueRule])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a tile map node is supplied with a tile set using this group and its tiles are filled with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode/fill(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the placement weights control the random assignment of tiles. In this case, there are three times more red than blue tiles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Tile-Group-Using-Adjacency-Rules",
+          "level": 3,
+          "text": "Create a Tile Group Using Adjacency Rules",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a tile group that uses adjacency, you need to create a set of rules for each of the adjacency values. For a grid-based layout, you need 13 rules, as shown in the following illustration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3111454",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the tile group programmatically, create definitions and rules for each adjacency:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let centerTileDefintion = SKTileDefinition(texture: SKTexture(imageNamed: \"CENTER.png\"))",
+            "let centerRule = SKTileGroupRule(adjacency: .adjacencyAll,",
+            "                                 tileDefinitions: [ centerTileDefintion ])",
+            " ",
+            "let upEdgeDefinition = SKTileDefinition(texture: SKTexture(imageNamed: \"N.png\"))",
+            "let upEdgeRule = SKTileGroupRule(adjacency: .adjacencyUpEdge,",
+            "                                 tileDefinitions: [ upEdgeDefinition ])",
+            " ",
+            "let downEdgeDefinition = SKTileDefinition(texture: SKTexture(imageNamed: \"S.png\"))",
+            "let downEdgeRule = SKTileGroupRule(adjacency: .adjacencyDownEdge,",
+            "                                   tileDefinitions: [ downEdgeDefinition ])",
+            " ",
+            "",
+            "[...]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The 13 rules are used to make a tile group:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let group = SKTileGroup(rules: [centerRule, upEdgeRule, downEdgeRule, ...]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With automapping enabled, when an individual tile is placed on the map using  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode/setTileGroup(_:forColumn:row:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", SpriteKit also sets the tile definitions for the surrounding tiles based on the group’s adjacency rules.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup": {
+      "abstract": [
+        {
+          "text": "A set of tiles that collectively define one type of terrain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTileGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTileGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTileGroup",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktilegroup"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/init(rules:)": {
+      "abstract": [
+        {
+          "text": "Creates and initializes a tile group with the specified tile group rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rules"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTileGroupRule",
+          "text": "SKTileGroupRule"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/init(rules:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRules:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(rules:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktilegroup/init(rules:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/init(tileDefinition:)": {
+      "abstract": [
+        {
+          "text": "Creates and initializes a simple tile group with a single tile definition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "tileDefinition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTileDefinition",
+          "text": "SKTileDefinition"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/init(tileDefinition:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTileDefinition:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(tileDefinition:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktilegroup/init(tiledefinition:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/tileGroupWithRules:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "tileGroupWithRules:"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/tileGroupWithRules:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tileGroupWithRules:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tileGroupWithRules:",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktilegroup/tilegroupwithrules:"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/tileGroupWithTileDefinition:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "tileGroupWithTileDefinition:"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/tileGroupWithTileDefinition:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tileGroupWithTileDefinition:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tileGroupWithTileDefinition:",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktilegroup/tilegroupwithtiledefinition:"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode/fill(with:)": {
+      "abstract": [
+        {
+          "text": "When creating a tile map node programmatically, this function performs a fill operation with the specified tile group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fill"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTileGroup",
+          "text": "SKTileGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode/fill(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fillWithTileGroup:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fill(with:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktilemapnode/fill(with:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode/setTileGroup(_:forColumn:row:)": {
+      "abstract": [
+        {
+          "text": "Set the tile group at the specified tile index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTileGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTileGroup",
+          "text": "SKTileGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "row"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode/setTileGroup(_:forColumn:row:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTileGroup:forColumn:row:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTileGroup(_:forColumn:row:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktilemapnode/settilegroup(_:forcolumn:row:)"
+    },
+    "media-3111454": {
+      "alt": "Adjacency Rules",
+      "identifier": "media-3111454",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/74ac970c89a162f860cb142245f91faf/media-3111454@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-Tile-Groups",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/init(tileDefinition:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/init(rules:)"
+      ],
+      "title": "Creating Tile Groups"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-Tile-Groups",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/init(tileDefinition:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/tileGroupWithTileDefinition:",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/init(rules:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTileGroup/tileGroupWithRules:"
+              ],
+              "title": "Creating Tile Groups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileGroup~1init(rules:)/title",
+          "value": "initWithRules:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileGroup~1init(rules:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithRules:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileMapNode~1setTileGroup(_:forColumn:row:)/title",
+          "value": "setTileGroup:forColumn:row:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileMapNode~1setTileGroup(_:forColumn:row:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTileGroup:forColumn:row:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileGroup~1init(tileDefinition:)/title",
+          "value": "initWithTileDefinition:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileGroup~1init(tileDefinition:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTileDefinition:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileGroup/title",
+          "value": "SKTileGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTileGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTileGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileMapNode~1fill(with:)/title",
+          "value": "fillWithTileGroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileMapNode~1fill(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fillWithTileGroup:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/creating-tile-groups-programmatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/creating-tile-groups-programmatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

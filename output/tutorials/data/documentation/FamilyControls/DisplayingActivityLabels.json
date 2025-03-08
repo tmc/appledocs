@@ -1,0 +1,647 @@
+{
+  "abstract": [
+    {
+      "text": "Provide users with a read-only, visual representation of an application, category, or web domain.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.FamilyControls/documentation/FamilyControls/DisplayingActivityLabels"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "FamilyControls"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Displaying Activity Labels"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display an application, category, or web domain, choose an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ManagedSettings/ApplicationToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ManagedSettings/ActivityCategoryToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ManagedSettings/WebDomainToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that represents an item selected by the user.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can access these tokens from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivitySelection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " bound",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use one of these tokens to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance by passing the token to its initializer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Display the activity item like any SwiftUI view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ExampleView: View {",
+            "    @State var selection = FamilyActivitySelection()",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            FamilyActivityPicker(selection: $selection)",
+            "            if let applicationToken = selection.applicationTokens.first {",
+            "                Label(applicationToken)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.FamilyControls/documentation/FamilyControls": {
+      "abstract": [
+        {
+          "text": "Authorize your app to provide parental controls on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FamilyControls",
+      "type": "topic",
+      "url": "/documentation/familycontrols"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityIconView": {
+      "abstract": [
+        {
+          "text": "A type-erased view representing the icon of the family activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FamilyActivityIconView"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityIconView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FamilyActivityIconView"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyActivityIconView",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivityiconview"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker": {
+      "abstract": [
+        {
+          "text": "A view in which users specify applications, web domains,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and categories without revealing their choices to the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FamilyActivityPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FamilyActivityPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyActivityPicker",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitypicker"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivitySelection": {
+      "abstract": [
+        {
+          "text": "A collection of applications, categories, and web domains selected by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FamilyActivitySelection"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivitySelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FamilyActivitySelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyActivitySelection",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivityselection"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityTitleView": {
+      "abstract": [
+        {
+          "text": "A type-erased view representing the title of the family activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FamilyActivityTitleView"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityTitleView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FamilyActivityTitleView"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyActivityTitleView",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitytitleview"
+    },
+    "doc://com.apple.documentation/documentation/ManagedSettings/ActivityCategoryToken": {
+      "abstract": [
+        {
+          "text": "A token that represents a category of app or website activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityCategoryToken"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings5TokenV",
+          "text": "Token"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings16ActivityCategoryV",
+          "text": "ActivityCategory"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ManagedSettings/ActivityCategoryToken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ActivityCategoryToken",
+      "type": "topic",
+      "url": "/documentation/ManagedSettings/ActivityCategoryToken"
+    },
+    "doc://com.apple.documentation/documentation/ManagedSettings/ApplicationToken": {
+      "abstract": [
+        {
+          "text": "A representation of an application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApplicationToken"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings5TokenV",
+          "text": "Token"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings11ApplicationV",
+          "text": "Application"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ManagedSettings/ApplicationToken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplicationToken",
+      "type": "topic",
+      "url": "/documentation/ManagedSettings/ApplicationToken"
+    },
+    "doc://com.apple.documentation/documentation/ManagedSettings/WebDomainToken": {
+      "abstract": [
+        {
+          "text": "A representation of a web domain that preserves the user’s privacy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebDomainToken"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings5TokenV",
+          "text": "Token"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings9WebDomainV",
+          "text": "WebDomain"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ManagedSettings/WebDomainToken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WebDomainToken",
+      "type": "topic",
+      "url": "/documentation/ManagedSettings/WebDomainToken"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Label"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Label-Constraints",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityTitleView",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityIconView"
+      ],
+      "title": "Label Constraints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/familycontrols/displayingactivitylabels"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

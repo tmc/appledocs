@@ -1,0 +1,484 @@
+{
+  "abstract": [
+    {
+      "text": "Access the content of the Apple Music Catalog in bulk.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "AppleMusicFeed",
+    "modules": [
+      {
+        "name": "Apple Music Feed"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "AppleMusicFeed"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Web Service",
+    "symbolKind": "module",
+    "title": "Apple Music Feed"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Music Feed contains the catalog content of Apple Music products in bulk for consumption as feed exports. These bulk exports are appropriate for offline use cases, complementing Apple Music API, which is best for online use. Apple Music Feed includes content metadata for albums, songs, artists, and popularity charts, and fully refreshes every 24 hours. You access the Apple Music Feed using Apple Media Feed API to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Requesting-A-Feed-Export",
+              "isActive": true,
+              "overridingTitle": "request an export",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "request an export",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " of a data set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With access to the raw data and the information in this documentation, you can use Apple Music Feed in many ways. For example, if you want to build a discovery engine for Apple Music, your team can examine the data and determine endpoint requests to serve such an engine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Music Feed uses the Parquet format, which is an open-source columnar storage file format that optimizes the storage and processing of large datasets. The Parquet format improves query performance and reduces storage costs in scenarios where you need to read or process data selectively. It achieves this by using columns and storing the values of each column together, which allows efficient compression and encoding techniques that you can apply specifically to each column. Many large-scale data-processing frameworks, like Hadoop and Spark, use this format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Although the feed is in Parquet format, this documentation provides data examples in JSON format for illustrative purposes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-sample-scripts",
+          "level": 2,
+          "text": "Use sample scripts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can find sample Java and Python scripts in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/apple/music-feed-examples",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " public GitHub repository that perform the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate a developer token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the token to request metadata for the latest feed export for a specific data set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the token to request links to parts of the data for a feed export.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download the feed data to a specified output directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Load the data files in Parquet and run a simple query.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed": {
+      "abstract": [
+        {
+          "text": "Access the content of the Apple Music Catalog in bulk.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music Feed",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Album": {
+      "abstract": [
+        {
+          "text": "The data structure that represents an Album resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Album"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Album",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Album"
+        }
+      ],
+      "role": "symbol",
+      "title": "Album",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/album"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Artist": {
+      "abstract": [
+        {
+          "text": "The data structure that represents an Artist resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Artist"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Artist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Artist"
+        }
+      ],
+      "role": "symbol",
+      "title": "Artist",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/artist"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Generating-Developer-Tokens": {
+      "abstract": [
+        {
+          "text": "Create a JSON Web Token to authorize your requests to Apple Media Feed API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Generating-Developer-Tokens",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating developer tokens",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/generating-developer-tokens"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Interpreting-Responses": {
+      "abstract": [
+        {
+          "text": "Learn about responses from Apple Media Feed API to your Apple Music Feed requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Interpreting-Responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting responses",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/interpreting-responses"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/PopularityTopChartAlbums": {
+      "abstract": [
+        {
+          "text": "The data structure that represents an album popularity chart resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PopularityTopChartAlbums"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/PopularityTopChartAlbums",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PopularityTopChartAlbums"
+        }
+      ],
+      "role": "symbol",
+      "title": "PopularityTopChartAlbums",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/popularitytopchartalbums"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/PopularityTopChartSongs": {
+      "abstract": [
+        {
+          "text": "The data structure that represents a song popularity chart resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PopularityTopChartSongs"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/PopularityTopChartSongs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PopularityTopChartSongs"
+        }
+      ],
+      "role": "symbol",
+      "title": "PopularityTopChartSongs",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/popularitytopchartsongs"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Requesting-A-Feed-Export": {
+      "abstract": [
+        {
+          "text": "Create requests for Apple Music Catalog metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Requesting-A-Feed-Export",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting a feed export",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/requesting-a-feed-export"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Song": {
+      "abstract": [
+        {
+          "text": "The data structure that represents a Song resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Song"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Song",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Song"
+        }
+      ],
+      "role": "symbol",
+      "title": "Song",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/song"
+    },
+    "https://github.com/apple/music-feed-examples": {
+      "identifier": "https://github.com/apple/music-feed-examples",
+      "title": "music-feed-examples",
+      "titleInlineContent": [
+        {
+          "text": "music-feed-examples",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/music-feed-examples"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Generating-Developer-Tokens",
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Requesting-A-Feed-Export",
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Interpreting-Responses"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Album",
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Song",
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Artist",
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/PopularityTopChartAlbums",
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/PopularityTopChartSongs"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicfeed"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

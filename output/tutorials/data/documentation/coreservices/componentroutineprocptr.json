@@ -1,0 +1,600 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a pointer to your component callback function, which serves as the main entry point into your component and performs the component’s services. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1516587,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@ComponentRoutineProcPtr",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "ComponentRoutineProcPtr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentresult",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ComponentResult",
+              "text": "ComponentResult"
+            },
+            {
+              "kind": "text",
+              "text": " (*"
+            },
+            {
+              "kind": "identifier",
+              "text": "ComponentRoutineProcPtr"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentparameters",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ComponentParameters",
+              "text": "ComponentParameters"
+            },
+            {
+              "kind": "text",
+              "text": " *cp, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Handle",
+              "text": "Handle"
+            },
+            {
+              "kind": "text",
+              "text": " componentStorage);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/componentparameters",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "what",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field of the component parameters structure indicates the action your component should perform. The parameters that the client invoked your function with are contained in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "params",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field of the component parameters structure. Your component can use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1516603-callcomponentfunction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1516610-callcomponentfunctionwithstorage",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to extract the parameters from this structure. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cp"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A handle to any memory that your component has associated with the connection. Typically, upon receiving an open request, your component allocates memory and uses the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1516556-setcomponentinstancestorage",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to associate the allocated memory with the component connection. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "componentStorage"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your component should return a value of type ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentResult",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If your component does not return error information as its function result, it should indicate errors using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516663-setcomponentinstanceerror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. See the description of the ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentResult",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You pass a pointer to your component callback function to the Component Manager when you register your component. The Component Manager can then call your component when another application or component requests its services. When your component receives a request, it should perform the action specified in the ",
+              "type": "text"
+            },
+            {
+              "code": "what",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the component parameters structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The pointer which you pass to the Component Manager should be a universal procedure pointer (UPP). The definition of the UPP data type for your component function is as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef (ComponentRoutineProcPtr) ComponentRoutineUPP;"
+          ],
+          "metadata": {
+            "anchor": "1820414",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before using your component function, you must first create a UPP for your callback function, using the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516579-newcomponentroutineupp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  function, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ComponentRoutineUPP MyComponentRoutineUPP;",
+            "MyComponentRoutineUPP =             NewComponentRoutineUPP(&MyComponentRoutineProc)"
+          ],
+          "metadata": {
+            "anchor": "1820419",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You then pass ",
+              "type": "text"
+            },
+            {
+              "code": "MyComponentRoutineUPP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the Component Manager when you register your component. The Component Manager will call your function each time your component receives a request. If you wish to call your component function yourself, you can use the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516654-invokecomponentroutineupp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "result = InvokeComponentRoutineUPP &myParams, myStorage,              MyComponentRoutineUPP)"
+          ],
+          "metadata": {
+            "anchor": "1820424",
+            "title": "Listing 3"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you are finished with your component callback function, you should dispose of the universal procedure pointer associated with it, using the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516334-disposecomponentroutineupp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DisposeComponentRoutineUPP(MyComponentRoutineUPP);"
+          ],
+          "metadata": {
+            "anchor": "1820429",
+            "title": "Listing 4"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a component, you define a component function and supply the appropriate registration information. You store your component function in a code resource and typically store your component’s registration information as resources in a component file.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516334-disposecomponentroutineupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516334-disposecomponentroutineupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeComponentRoutineUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516334-disposecomponentroutineupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516556-setcomponentinstancestorage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516556-setcomponentinstancestorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetComponentInstanceStorage",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516556-setcomponentinstancestorage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516579-newcomponentroutineupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516579-newcomponentroutineupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewComponentRoutineUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516579-newcomponentroutineupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516603-callcomponentfunction": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516603-callcomponentfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CallComponentFunction",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516603-callcomponentfunction"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516610-callcomponentfunctionwithstorage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516610-callcomponentfunctionwithstorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CallComponentFunctionWithStorage",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516610-callcomponentfunctionwithstorage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516654-invokecomponentroutineupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516654-invokecomponentroutineupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InvokeComponentRoutineUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516654-invokecomponentroutineupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516663-setcomponentinstanceerror": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516663-setcomponentinstanceerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetComponentInstanceError",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516663-setcomponentinstanceerror"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/component_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentmpworkfunctionprocptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentmpworkfunctionprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentMPWorkFunctionProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentmpworkfunctionprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentparameters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentparameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentParameters",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentparameters"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentresult": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentResult",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentresult"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to your component callback function, which serves as the main entry point into your component and performs the component’s services. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentRoutineProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentroutineprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr#1820414": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr#1820414",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreservices/componentroutineprocptr#1820414"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr#1820419": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr#1820419",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/coreservices/componentroutineprocptr#1820419"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr#1820424": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr#1820424",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/coreservices/componentroutineprocptr#1820424"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr#1820429": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr#1820429",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/coreservices/componentroutineprocptr#1820429"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/getmissingcomponentresourceprocptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/getmissingcomponentresourceprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetMissingComponentResourceProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/getmissingcomponentresourceprocptr"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/componentmpworkfunctionprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/getmissingcomponentresourceprocptr"
+      ],
+      "title": "Callbacks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/componentroutineprocptr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

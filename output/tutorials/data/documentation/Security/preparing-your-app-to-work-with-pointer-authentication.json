@@ -1,0 +1,500 @@
+{
+  "abstract": [
+    {
+      "text": "Test your app against the arm64e architecture to ensure that it works seamlessly with enhanced security features.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/preparing-your-app-to-work-with-pointer-authentication"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing your app to work with pointer authentication"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The arm64e architecture introduces pointer authentication codes (PACs) to detect and guard against unexpected changes to pointers in memory. The addition of pointer authentication is transparent to most apps because the compiler manages the process. In rare cases — for example, if your app manipulates the stack directly, or if you pass pointers between C++ and Objective-C++ — you might have to adjust your code to work with PACs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pointer authentication works by offering a special CPU instruction to add a cryptographic signature — or PAC — to unused high-order bits of a pointer before storing the pointer. Another instruction removes and authenticates the signature after reading the pointer back from memory. Any change to the stored value between the write and the read invalidates the signature. The CPU interprets authentication failure as memory corruption and sets a high-order bit in the pointer, making the pointer invalid and causing the app to crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-an-arm64e-binary-to-adopt-pointer-authentication",
+          "level": 3,
+          "text": "Build an arm64e binary to adopt pointer authentication",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You automatically adopt pointer authentication in your app when you build and deploy a binary that targets the arm64e architecture. You can do this starting in Xcode 10.1. To build an arm64e slice, go to your target’s build settings in Xcode and find the Architectures item. Click the current setting and choose Other. In the box that appears, add arm64e.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682831",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices using the Apple A12 or later A-series processor — like the iPhone XS, iPhone XS Max, iPhone XR, and Apple TV 4K (2nd generation) — support the arm64e architecture, as do the Apple Watch Series 4 or later, and Mac and iPads with Apple silicon. To test your adoption, you have to run your app on one of these devices. You can’t test using the Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Recognize-pointer-authentication-failures",
+          "level": 3,
+          "text": "Recognize pointer authentication failures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When pointer authentication fails, the system invalidates the failing pointer by setting a high-order bit. Subsequent use of the pointer results in a segmentation fault. The crash report contains a message that includes the value of the pointer both after and before invalidation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Subtype: KERN_INVALID_ADDRESS at 0x0040000105394398 -> 0x0000000105394398 (possible pointer authentication failure)"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, the compiler adds the CPU instructions for both creating and authenticating the PAC. In the unusual case that you manage these steps yourself — for example, if you’re authoring your own compiler — and if you try to use a signed pointer without first applying the authentication instruction to remove the signature, that also triggers a segmentation fault. In this case, the presence of the signature in the high-order bits invalidates the pointer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Subtype: KERN_INVALID_ADDRESS at 0x217c000105394398 -> 0x0000000105394398 (possible pointer authentication failure)"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be aware that other invalid memory accesses, where high-order bits are erroneously set, can also look like pointer authentication failures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-code-to-avoid-pointer-authentication-failures",
+          "level": 3,
+          "text": "Update your code to avoid pointer authentication failures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most code doesn’t require modification to run with pointer authentication, with the possible exception of some low-level code that relies on arm64-specific behavior. For example, a crash reporting library that examines the stack contents needs to strip the PAC out of return addresses. The Apple Clang compiler provides utilities in the ",
+              "type": "text"
+            },
+            {
+              "code": "ptrauth.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header file — like the ",
+              "type": "text"
+            },
+            {
+              "code": "ptrauth_strip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro — to help with these kinds of tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pointer authentication can also expose latent bugs in existing code. In C++, it’s incorrect to call a virtual method using a declaration that differs from its definition. In practice, such calls typically succeed in arm64, but trigger a pointer authentication failure in arm64e. You might encounter this bug when using ",
+              "type": "text"
+            },
+            {
+              "code": "OS_OBJECT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch/dispatch_queue_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XPC/xpc_connection_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can’t pass instances of these types from C++ code to an Objective-C++ function (or vice versa) because they’re defined differently in Objective-C++ to support automatic reference counting (ARC).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "More generally, the PAC calculation takes into account the pointer value, one of several keys loaded into the CPU, and an optional salt value. To prevent reuse of pointers in different contexts, the PAC calculation depends on the pointer type. Keep these rules in mind when looking for possible issues in your code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return addresses are signed with a key that’s unique per process, using a salt derived from the stack pointer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Function pointers are signed with a key that’s fixed across all processes, allowing sharing of library code between processes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Virtual method table entries are signed with a key that’s shared across all apps, using a salt derived from the method signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Dispatch/dispatch_queue_t": {
+      "abstract": [
+        {
+          "text": "A lightweight object to which your application submits blocks for subsequent execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_dispatch_queue",
+          "text": "DispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/dispatch_queue_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_t",
+      "type": "topic",
+      "url": "/documentation/Dispatch/dispatch_queue_t"
+    },
+    "doc://com.apple.documentation/documentation/XPC/xpc_connection_t": {
+      "abstract": [
+        {
+          "text": "A type that represents a connection to a named service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_object_t",
+          "text": "xpc_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XPC/xpc_connection_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_connection_t",
+      "type": "topic",
+      "url": "/documentation/XPC/xpc_connection_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "media-3682831": {
+      "alt": "Screenshot of Xcode showing the addition of arm64e to the Architectures item in the Build Settings pane for the iOS app target.",
+      "identifier": "media-3682831",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9987567eb3333abe8a1c4a841d58bc78/media-3682831@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Dispatch~1dispatch_queue_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_dispatch_queue",
+              "text": "NSObject<OS_dispatch_queue>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XPC~1xpc_connection_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_object_t",
+              "text": "xpc_object_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "xpc_connection_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/preparing-your-app-to-work-with-pointer-authentication"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/preparing-your-app-to-work-with-pointer-authentication"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

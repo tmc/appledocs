@@ -1,0 +1,692 @@
+{
+  "abstract": [
+    {
+      "text": "Manage your CloudKit containers and databases from JavaScript.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "CKTool JS",
+      "versions": [
+        "1.2.15",
+        "1.3.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.cktooljs/documentation/CKToolJS"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "CKToolJS",
+    "modules": [
+      {
+        "name": "CKTool JS"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.2.15",
+        "name": "CKTool JS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "CKTool JS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CKTool JS gives you access to features provided in the CloudKit Console API, facilitating CloudKit setup operations for local development and integration testing. It’s a JavaScript client library alternative to the macOS ",
+              "type": "text"
+            },
+            {
+              "code": "cktool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line utility distributed with Xcode. To learn more about ",
+              "type": "text"
+            },
+            {
+              "code": "cktool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/icloud/cloudkit/automating/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this library, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apply a CloudKit schema file to Sandbox databases (for more information about CloudKit schema files, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Populate databases with test data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reset Sandbox databases to the production configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write scripts for your integration tests to incorporate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The library consists of three main modules:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolDatabaseModule",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": This package contains all the CloudKit related types and methods, operations to fetch teams and containers for the authorized user, and utility functions and types to communicate with the CloudKit servers. This package also contains operations to work with CloudKit records. You include ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@apple/cktool.database",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as a dependency in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "package.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to access this package.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolNodeJsModule",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": This package contains a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolNodeJsModule/createConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function you use in projects intended to run in Node.js. You include ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@apple/cktool.target.nodejs",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as a dependency in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "package.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to access this package.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolBrowserModule",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": This package contains a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolBrowserModule/createConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function for use in browser-based projects. You include ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@apple/cktool.target.browser",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as a dependency in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "package.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to access this package.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cktooljs/documentation/CKToolJS": {
+      "abstract": [
+        {
+          "text": "Manage your CloudKit containers and databases from JavaScript.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CKTool JS",
+      "type": "topic",
+      "url": "/documentation/cktooljs"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/Blob": {
+      "abstract": [],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/Blob",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Blob",
+      "type": "topic",
+      "url": "/documentation/cktooljs/blob"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/CKEnvironment": {
+      "abstract": [
+        {
+          "text": "An enumeration of container environments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKEnvironment",
+      "type": "topic",
+      "url": "/documentation/cktooljs/ckenvironment"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolBrowserModule": {
+      "abstract": [
+        {
+          "text": "The imported package that supports using the client library within a web browser.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolBrowserModule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKToolBrowserModule",
+      "type": "topic",
+      "url": "/documentation/cktooljs/cktoolbrowsermodule"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolBrowserModule/createConfiguration": {
+      "abstract": [
+        {
+          "text": "This function creates an instance of ",
+          "type": "text"
+        },
+        {
+          "code": "Configuration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with suitable values for use in web browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolBrowserModule/createConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createConfiguration",
+      "type": "topic",
+      "url": "/documentation/cktooljs/cktoolbrowsermodule/createconfiguration"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolDatabaseModule": {
+      "abstract": [
+        {
+          "text": "The imported package that provides access to CloudKit containers and databases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolDatabaseModule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKToolDatabaseModule",
+      "type": "topic",
+      "url": "/documentation/cktooljs/cktooldatabasemodule"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolNodeJsModule": {
+      "abstract": [
+        {
+          "text": "The imported package that supports using the client library within a Node.js environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolNodeJsModule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKToolNodeJsModule",
+      "type": "topic",
+      "url": "/documentation/cktooljs/cktoolnodejsmodule"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolNodeJsModule/createConfiguration": {
+      "abstract": [
+        {
+          "text": "This function creates an instance of ",
+          "type": "text"
+        },
+        {
+          "code": "Configuration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with suitable values for use in Node.js.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolNodeJsModule/createConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createConfiguration",
+      "type": "topic",
+      "url": "/documentation/cktooljs/cktoolnodejsmodule/createconfiguration"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/CancellablePromise": {
+      "abstract": [
+        {
+          "text": "A promise that has a function to cancel its operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CancellablePromise",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CancellablePromise",
+      "type": "topic",
+      "url": "/documentation/cktooljs/cancellablepromise"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/Configuration": {
+      "abstract": [
+        {
+          "text": "An object you use to hold options for communicating with the API server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/Configuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Configuration",
+      "type": "topic",
+      "url": "/documentation/cktooljs/configuration"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/Container": {
+      "abstract": [
+        {
+          "text": "Details about a CloudKit container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/Container",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Container",
+      "type": "topic",
+      "url": "/documentation/cktooljs/container"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/ContainersResponse": {
+      "abstract": [
+        {
+          "text": "An object that represents results of fetching multiple CloudKit containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/ContainersResponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContainersResponse",
+      "type": "topic",
+      "url": "/documentation/cktooljs/containersresponse"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/ContainersSortByField": {
+      "abstract": [
+        {
+          "text": "An enumeration that indicates sorting options for retrieved containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/ContainersSortByField",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContainersSortByField",
+      "type": "topic",
+      "url": "/documentation/cktooljs/containerssortbyfield"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/ErrorBase": {
+      "abstract": [
+        {
+          "text": "The base class of any error emitted by functions in the client library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/ErrorBase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ErrorBase",
+      "type": "topic",
+      "url": "/documentation/cktooljs/errorbase"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/File": {
+      "abstract": [],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/File",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "File",
+      "type": "topic",
+      "url": "/documentation/cktooljs/file"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi": {
+      "abstract": [
+        {
+          "text": "A class that exposes promise-based functions for interacting with the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PromisesApi",
+      "type": "topic",
+      "url": "/documentation/cktooljs/promisesapi"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/SortDirection": {
+      "abstract": [
+        {
+          "text": "An enumeration that indicates sorting direction when applying a custom sort.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/SortDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SortDirection",
+      "type": "topic",
+      "url": "/documentation/cktooljs/sortdirection"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/database-length-validation-and-value-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/database-length-validation-and-value-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Database, Length, Validation, and Value Errors",
+      "type": "topic",
+      "url": "/documentation/cktooljs/database-length-validation-and-value-errors"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/integrating-cloudkit-access-into-your-javascript-automation-scripts": {
+      "abstract": [
+        {
+          "text": "Configure your JavaScript project to use CKTool JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/integrating-cloudkit-access-into-your-javascript-automation-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating CloudKit access into your JavaScript automation scripts",
+      "type": "topic",
+      "url": "/documentation/cktooljs/integrating-cloudkit-access-into-your-javascript-automation-scripts"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow": {
+      "abstract": [
+        {
+          "text": "Define and update your schema with the CloudKit Schema Language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating a Text-Based Schema into Your Workflow",
+      "type": "topic",
+      "url": "/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/icloud/cloudkit/automating/": {
+      "identifier": "https://developer.apple.com/icloud/cloudkit/automating/",
+      "title": "Automating CloudKit Development",
+      "titleInlineContent": [
+        {
+          "text": "Automating CloudKit Development",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/icloud/cloudkit/automating/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.cktooljs/documentation/CKToolJS/integrating-cloudkit-access-into-your-javascript-automation-scripts"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Promises-API",
+      "identifiers": [
+        "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/CancellablePromise",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolDatabaseModule"
+      ],
+      "title": "Promises API"
+    },
+    {
+      "anchor": "Configuration",
+      "identifiers": [
+        "doc://com.apple.cktooljs/documentation/CKToolJS/Configuration",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolNodeJsModule",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/CKToolBrowserModule"
+      ],
+      "title": "Configuration"
+    },
+    {
+      "anchor": "Global-Structures-and-Enumerations",
+      "identifiers": [
+        "doc://com.apple.cktooljs/documentation/CKToolJS/Container",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/ContainersResponse",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/CKEnvironment",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/ContainersSortByField",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/SortDirection"
+      ],
+      "title": "Global Structures and Enumerations"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.cktooljs/documentation/CKToolJS/ErrorBase",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/database-length-validation-and-value-errors"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cktooljs/documentation/CKToolJS/Blob",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/File"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cktooljs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

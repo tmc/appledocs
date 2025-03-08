@@ -1,0 +1,1011 @@
+{
+  "abstract": [
+    {
+      "text": "Obtain policies for establishing trust.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/policies"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Policies"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a certificate that is deemed intact and valid (because the chain of signatures is unbroken back to a trusted root certificate), you evaluate it against a set of rules known as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "trust policy",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The policy indicates how particular fields or extensions of a certificate affect whether it should be trusted for a particular use. For example, the policy may state that a certificate must not be expired or must be marked as valid for encryption, code signing, or some other specific purpose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Usually you use a standard, predefined policy, such as the basic X509 policy or the SSL policy. You can also create custom policies with the certificate, key, and trust services API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicy": {
+      "abstract": [
+        {
+          "text": "An object that represents a trust policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicy",
+      "type": "topic",
+      "url": "/documentation/security/secpolicy"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyCopyProperties(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary containing a policy’s properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCopyProperties"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecPolicyRef",
+          "text": "SecPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCopyProperties(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCopyProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicyCopyProperties(_:)",
+      "type": "topic",
+      "url": "/documentation/security/secpolicycopyproperties(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyCreateBasicX509()": {
+      "abstract": [
+        {
+          "text": "Returns a policy object for the default X.509 policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateBasicX509"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecPolicyRef",
+          "text": "SecPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateBasicX509()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateBasicX509"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicyCreateBasicX509()",
+      "type": "topic",
+      "url": "/documentation/security/secpolicycreatebasicx509()"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyCreateRevocation(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a policy object for checking revocation of certificates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateRevocation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFOptionFlags",
+          "text": "CFOptionFlags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecPolicyRef",
+          "text": "SecPolicy"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateRevocation(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateRevocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicyCreateRevocation(_:)",
+      "type": "topic",
+      "url": "/documentation/security/secpolicycreaterevocation(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyCreateSSL(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a policy object for evaluating SSL certificate chains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateSSL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecPolicyRef",
+          "text": "SecPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateSSL(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateSSL"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicyCreateSSL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secpolicycreatessl(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyCreateWithOID": {
+      "abstract": [
+        {
+          "text": "Returns a policy object for the specified policy type object identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateWithOID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateWithOID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicyCreateWithOID",
+      "type": "topic",
+      "url": "/documentation/security/secpolicycreatewithoid"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyCreateWithProperties(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a policy object based on an object identifier for the policy type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateWithProperties"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecPolicyRef",
+          "text": "SecPolicy"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyCreateWithProperties(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyCreateWithProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicyCreateWithProperties(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secpolicycreatewithproperties(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyGetOID": {
+      "abstract": [
+        {
+          "text": "Retrieves a policy’s object identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyGetOID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyGetOID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicyGetOID",
+      "type": "topic",
+      "url": "/documentation/security/secpolicygetoid"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyGetTPHandle": {
+      "abstract": [
+        {
+          "text": "Retrieves the trust policy handle for a policy object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyGetTPHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyGetTPHandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicyGetTPHandle",
+      "type": "topic",
+      "url": "/documentation/security/secpolicygettphandle"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a policy object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicyGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicyGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secpolicygettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicyGetValue": {
+      "abstract": [
+        {
+          "text": "Retrieves a policy’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicyGetValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicyGetValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicyGetValue",
+      "type": "topic",
+      "url": "/documentation/security/secpolicygetvalue"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicySearch": {
+      "abstract": [
+        {
+          "text": "An object that contains information about a policy search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicySearch"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicySearch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicySearch"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPolicySearch",
+      "type": "topic",
+      "url": "/documentation/security/secpolicysearch"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicySearchCopyNext": {
+      "abstract": [
+        {
+          "text": "Retrieves a policy object for the next policy matching specified search criteria.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicySearchCopyNext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicySearchCopyNext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicySearchCopyNext",
+      "type": "topic",
+      "url": "/documentation/security/secpolicysearchcopynext"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicySearchCreate": {
+      "abstract": [
+        {
+          "text": "Creates a search object for finding policies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicySearchCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicySearchCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicySearchCreate",
+      "type": "topic",
+      "url": "/documentation/security/secpolicysearchcreate"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicySearchGetTypeID": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a ",
+          "type": "text"
+        },
+        {
+          "code": "SecPolicySearch",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicySearchGetTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicySearchGetTypeID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicySearchGetTypeID",
+      "type": "topic",
+      "url": "/documentation/security/secpolicysearchgettypeid"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicySetProperties": {
+      "abstract": [
+        {
+          "text": "Sets properties for a policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicySetProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicySetProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicySetProperties",
+      "type": "topic",
+      "url": "/documentation/security/secpolicysetproperties"
+    },
+    "doc://com.apple.security/documentation/Security/SecPolicySetValue": {
+      "abstract": [
+        {
+          "text": "Sets a policy’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecPolicySetValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPolicySetValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicySetValue",
+      "type": "topic",
+      "url": "/documentation/security/secpolicysetvalue"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/revocation-policy-constants": {
+      "abstract": [
+        {
+          "text": "Use these flags to create a revocation policy object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/revocation-policy-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Revocation Policy Constants",
+      "type": "topic",
+      "url": "/documentation/security/revocation-policy-constants"
+    },
+    "doc://com.apple.security/documentation/Security/security-policy-keys": {
+      "abstract": [
+        {
+          "text": "Use these dictionary keys to get and set policy properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-policy-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Policy Keys",
+      "type": "topic",
+      "url": "/documentation/security/security-policy-keys"
+    },
+    "doc://com.apple.security/documentation/Security/standard-policies-for-specific-certificate-types": {
+      "abstract": [
+        {
+          "text": "Use special OIDs to cause a certificate to be evaluated based on security policies specific to a given type of certificate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/standard-policies-for-specific-certificate-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Standard Policies for Specific Certificate Types",
+      "type": "topic",
+      "url": "/documentation/security/standard-policies-for-specific-certificate-types"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Standard-Policies",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecPolicyCreateBasicX509()",
+        "doc://com.apple.security/documentation/Security/SecPolicyCreateSSL(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecPolicyCreateRevocation(_:)",
+        "doc://com.apple.security/documentation/Security/revocation-policy-constants",
+        "doc://com.apple.security/documentation/Security/SecPolicy",
+        "doc://com.apple.security/documentation/Security/SecPolicyGetTypeID()"
+      ],
+      "title": "Standard Policies"
+    },
+    {
+      "anchor": "Advanced-Policy-Management",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecPolicyCreateWithProperties(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecPolicyCopyProperties(_:)",
+        "doc://com.apple.security/documentation/Security/security-policy-keys",
+        "doc://com.apple.security/documentation/Security/standard-policies-for-specific-certificate-types"
+      ],
+      "title": "Advanced Policy Management"
+    },
+    {
+      "anchor": "Legacy-Symbols",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecPolicySearch"
+      ],
+      "title": "Legacy Symbols"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Standard-Policies",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecPolicyCreateBasicX509()",
+                "doc://com.apple.security/documentation/Security/SecPolicyCreateSSL(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecPolicyCreateRevocation(_:)",
+                "doc://com.apple.security/documentation/Security/revocation-policy-constants",
+                "doc://com.apple.security/documentation/Security/SecPolicy",
+                "doc://com.apple.security/documentation/Security/SecPolicyGetTypeID()"
+              ],
+              "title": "Standard Policies"
+            },
+            {
+              "anchor": "Advanced-Policy-Management",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecPolicyCreateWithProperties(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecPolicyCopyProperties(_:)",
+                "doc://com.apple.security/documentation/Security/security-policy-keys",
+                "doc://com.apple.security/documentation/Security/standard-policies-for-specific-certificate-types"
+              ],
+              "title": "Advanced Policy Management"
+            },
+            {
+              "anchor": "Legacy-Symbols",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecPolicySearch",
+                "doc://com.apple.security/documentation/Security/SecPolicyCreateWithOID",
+                "doc://com.apple.security/documentation/Security/SecPolicyGetOID",
+                "doc://com.apple.security/documentation/Security/SecPolicyGetTPHandle",
+                "doc://com.apple.security/documentation/Security/SecPolicyGetValue",
+                "doc://com.apple.security/documentation/Security/SecPolicySearchCopyNext",
+                "doc://com.apple.security/documentation/Security/SecPolicySearchCreate",
+                "doc://com.apple.security/documentation/Security/SecPolicySetProperties",
+                "doc://com.apple.security/documentation/Security/SecPolicySetValue",
+                "doc://com.apple.security/documentation/Security/SecPolicySearchGetTypeID"
+              ],
+              "title": "Legacy Symbols"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyGetTypeID()/title",
+          "value": "SecPolicyGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCopyProperties(_:)/title",
+          "value": "SecPolicyCopyProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCopyProperties(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyCopyProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateBasicX509()/title",
+          "value": "SecPolicyCreateBasicX509"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateBasicX509()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyCreateBasicX509"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicy/title",
+          "value": "SecPolicyRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateRevocation(_:)/title",
+          "value": "SecPolicyCreateRevocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateRevocation(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyCreateRevocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicySearch/title",
+          "value": "SecPolicySearchRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicySearch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicySearchRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicySearch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicySearchRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateSSL(_:_:)/title",
+          "value": "SecPolicyCreateSSL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateSSL(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyCreateSSL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateWithProperties(_:_:)/title",
+          "value": "SecPolicyCreateWithProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPolicyCreateWithProperties(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPolicyCreateWithProperties"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/policies"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/policies"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

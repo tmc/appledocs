@@ -1,0 +1,1073 @@
+{
+  "abstract": [
+    {
+      "text": "An event that occurs during a sync operation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CKSyncEngineEvent",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "CKSyncEngineEvent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CKSyncEngineEvent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CKSyncEngineEvent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKSyncEngineEvent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All sync operation events descend from this base class, and as such you don’t create instances of it directly. Instead, the sync engine dispatches them to your app’s delegate, periodically, throughout a sync operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to determine the event’s proper type, and then use the corresponding convenience property to retrieve a reference to the event that’s downcast to the appropriate subclass. For example, when ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEventType/stateUpdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/stateUpdateEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to get the downcast reference .",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your app will crash if you access a noncorresponding convenience property.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineAccountChangeEvent": {
+      "abstract": [
+        {
+          "text": "An event that provides information about a change to the device’s iCloud account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineAccountChangeEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineAccountChangeEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineAccountChangeEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineaccountchangeevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p/syncEngine:handleEvent:": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to handle the specified sync event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "syncEngine:handleEvent:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p/syncEngine:handleEvent:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "syncEngine:handleEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "syncEngine:handleEvent:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginedelegate-3c38p/syncengine:handleevent:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents a completed database fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineDidFetchChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineDidFetchChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginedidfetchchangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about a finished record zone fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineDidFetchRecordZoneChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineDidFetchRecordZoneChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginedidfetchrecordzonechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidSendChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about a finished send operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineDidSendChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidSendChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineDidSendChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginedidsendchangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent": {
+      "abstract": [
+        {
+          "text": "An event that occurs during a sync operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/accountChangeEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents a change to the device’s iCloud account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "accountChangeEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/accountChangeEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accountChangeEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/accountchangeevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/didFetchChangesEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents a completed database fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "didFetchChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/didFetchChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didFetchChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/didfetchchangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/didFetchRecordZoneChangesEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents a completed record zone fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "didFetchRecordZoneChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/didFetchRecordZoneChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didFetchRecordZoneChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/didfetchrecordzonechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/didSendChangesEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents a completed send operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "didSendChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/didSendChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didSendChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/didsendchangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/fetchedDatabaseChangesEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents a set of fetched database changes to process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "fetchedDatabaseChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/fetchedDatabaseChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchedDatabaseChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/fetcheddatabasechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/fetchedRecordZoneChangesEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents a set of fetched record zone changes to process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "fetchedRecordZoneChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/fetchedRecordZoneChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchedRecordZoneChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/fetchedrecordzonechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/sentDatabaseChangesEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents a sent batch of database changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "sentDatabaseChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/sentDatabaseChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sentDatabaseChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/sentdatabasechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/sentRecordZoneChangesEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents a sent batch of record zone changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "sentRecordZoneChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/sentRecordZoneChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sentRecordZoneChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/sentrecordzonechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/stateUpdateEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents an update to the sync engine’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "stateUpdateEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/stateUpdateEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stateUpdateEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/stateupdateevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/type": {
+      "abstract": [
+        {
+          "text": "The type of event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/type"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/willFetchChangesEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents an imminent database fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "willFetchChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/willFetchChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "willFetchChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/willfetchchangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/willFetchRecordZoneChangesEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents an imminent fetch of record zone changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "willFetchRecordZoneChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/willFetchRecordZoneChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "willFetchRecordZoneChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/willfetchrecordzonechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/willSendChangesEvent": {
+      "abstract": [
+        {
+          "text": "The event downcast to the subclass that represents an imminent send operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "willSendChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/willSendChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "willSendChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineevent/willsendchangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEventType": {
+      "abstract": [
+        {
+          "text": "Describes an event that occurs during a sync operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineEventType"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEventType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineEventType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKSyncEngineEventType",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineeventtype"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEventType/stateUpdate": {
+      "abstract": [
+        {
+          "text": "An event indicating an update to the sync engine’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEventType/stateUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineEventTypeStateUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKSyncEngineEventType.stateUpdate",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineeventtype/stateupdate"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedDatabaseChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about fetched database changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineFetchedDatabaseChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedDatabaseChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineFetchedDatabaseChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginefetcheddatabasechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedRecordZoneChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about fetched record zone changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineFetchedRecordZoneChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedRecordZoneChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineFetchedRecordZoneChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginefetchedrecordzonechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentDatabaseChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about a sent batch of database changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineSentDatabaseChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentDatabaseChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineSentDatabaseChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginesentdatabasechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about a sent batch of record zone changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineSentRecordZoneChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineSentRecordZoneChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginesentrecordzonechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateUpdateEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about an update to the sync engine’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineStateUpdateEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateUpdateEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineStateUpdateEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestateupdateevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents an imminent database fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineWillFetchChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineWillFetchChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginewillfetchchangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchRecordZoneChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about an imminent fetch of changes in a record zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineWillFetchRecordZoneChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchRecordZoneChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineWillFetchRecordZoneChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginewillfetchrecordzonechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillSendChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about an imminent send of local changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineWillSendChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillSendChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineWillSendChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginewillsendchangesevent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineAccountChangeEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidSendChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedDatabaseChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentDatabaseChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateUpdateEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillSendChangesEvent"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-sync-events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p/syncEngine:handleEvent:"
+      ],
+      "title": "Handling sync events"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Determining-the-type",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/type",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEventType"
+      ],
+      "title": "Determining the type"
+    },
+    {
+      "anchor": "Accessing-account-changes",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/accountChangeEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineAccountChangeEvent"
+      ],
+      "title": "Accessing account changes"
+    },
+    {
+      "anchor": "Accessing-fetch-events",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/willFetchChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/willFetchRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/fetchedDatabaseChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedDatabaseChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/fetchedRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/didFetchRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/didFetchChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchChangesEvent"
+      ],
+      "title": "Accessing fetch events"
+    },
+    {
+      "anchor": "Accessing-send-events",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/willSendChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillSendChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/sentDatabaseChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentDatabaseChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/sentRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/didSendChangesEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidSendChangesEvent"
+      ],
+      "title": "Accessing send events"
+    },
+    {
+      "anchor": "Accessing-state-updates",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineEvent/stateUpdateEvent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateUpdateEvent"
+      ],
+      "title": "Accessing state updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSyncEngineEventType~1stateUpdate/title",
+          "value": "CKSyncEngineEventTypeStateUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSyncEngineEventType~1stateUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKSyncEngineEventTypeStateUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSyncEngineEventType/title",
+          "value": "CKSyncEngineEventType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSyncEngineEventType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKSyncEngineEventType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSyncEngineEventType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKSyncEngineEventType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/cksyncengineevent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

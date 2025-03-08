@@ -1,0 +1,554 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the current selections of the selector.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/SetCurrentSelectedValues"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserAudioSelectorControl@F@SetCurrentSelectedValues#*1i#l#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SetCurrentSelectedValues"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AudioDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SetCurrentSelectedValues"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "21.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "SetCurrentSelectedValues"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SetCurrentSelectedValues"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorValue",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOUserAudioSelectorValue",
+              "text": "IOUserAudioSelectorValue"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "in_values"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@size_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "in_num_values"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorValue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " values to set as the current selection of the control.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "in_values"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of values in ",
+                  "type": "text"
+                },
+                {
+                  "code": "in_values",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "in_num_values"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. For a list of error codes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, changing the control’s selected values sends a notification to the host to update the object state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method synchronizes by using the work queue created by the object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for audio devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AudioDriverKit",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl": {
+      "abstract": [
+        {
+          "text": "A control object that supports selecting from a set of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioSelectorControl"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioSelectorControl",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioselectorcontrol"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/AddControlValueDescriptions": {
+      "abstract": [
+        {
+          "text": "Add value descriptions to the selector control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AddControlValueDescriptions"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/AddControlValueDescriptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AddControlValueDescriptions",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioselectorcontrol/addcontrolvaluedescriptions"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/GetControlValueDescriptions": {
+      "abstract": [
+        {
+          "text": "Gets value descriptions used by the selector control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetControlValueDescriptions"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/GetControlValueDescriptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetControlValueDescriptions",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioselectorcontrol/getcontrolvaluedescriptions"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/GetControlValuesCount": {
+      "abstract": [
+        {
+          "text": "Gets the number of available selector values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetControlValuesCount"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/GetControlValuesCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetControlValuesCount",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioselectorcontrol/getcontrolvaluescount"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/GetCurrentSelectedValues": {
+      "abstract": [
+        {
+          "text": "Gets the current selections of the selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetCurrentSelectedValues"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/GetCurrentSelectedValues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetCurrentSelectedValues",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioselectorcontrol/getcurrentselectedvalues"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/RemoveControlValueDescriptions": {
+      "abstract": [
+        {
+          "text": "Removes value descriptions from the selector control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RemoveControlValueDescriptions"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/RemoveControlValueDescriptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RemoveControlValueDescriptions",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioselectorcontrol/removecontrolvaluedescriptions"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/SetCurrentSelectedValues": {
+      "abstract": [
+        {
+          "text": "Sets the current selections of the selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetCurrentSelectedValues"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/SetCurrentSelectedValues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetCurrentSelectedValues",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioselectorcontrol/setcurrentselectedvalues"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorValue": {
+      "abstract": [
+        {
+          "text": "The type of values managed by a selector control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioSelectorValue"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioSelectorValue",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioselectorvalue"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorValueDescription": {
+      "abstract": [
+        {
+          "text": "A type that describes a value in a selection control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioSelectorValueDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorValueDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioSelectorValueDescription",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioselectorvaluedescription"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "abstract": [
+        {
+          "text": "Determine the reason an operation fails.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@size_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/size_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-the-Selected-Values",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/GetCurrentSelectedValues",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/GetControlValuesCount",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorValue",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/AddControlValueDescriptions",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/RemoveControlValueDescriptions",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorControl/GetControlValueDescriptions",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioSelectorValueDescription"
+      ],
+      "title": "Accessing the Selected Values"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiodriverkit/iouseraudioselectorcontrol/setcurrentselectedvalues"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

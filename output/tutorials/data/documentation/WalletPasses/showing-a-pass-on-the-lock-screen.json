@@ -1,0 +1,439 @@
+{
+  "abstract": [
+    {
+      "text": "Add information to your pass so the system can display it on the Lock Screen at a relevant time and place.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletpasses/documentation/WalletPasses",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Pass"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletpasses/documentation/WalletPasses/showing-a-pass-on-the-lock-screen"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Wallet Passes"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Showing a Pass on the Lock Screen"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make it easier for the user to access your pass by enabling the system to show it on the lock screen when it’s relevant. For example, show a gym membership card at the gym, or a boarding pass when it’s time to board the plane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pass can be relevant on a date, at a location, or both. Set a date by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "relevantDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for boarding passes, event tickets, and generic passes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide relevant locations for a pass by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "locations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Each location includes optional text with an explanation of why the pass is relevant. Coupons, store cards, and generic passes must provide locations if you added any other type of relevance information to the pass object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system displays the pass on the lock screen if both the date and any location matches. Passes with no locations display on the relevant date. Similarly, passes with no relevant date display when one of the locations matches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows the date and location relevance information from a pass:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    ...",
+            "",
+            "    \"locations\" : [",
+            "        {\"latitude\" : 37.3229, \"longitude\" : -122.0323},",
+            "        {\"latitude\" : 37.3286, \"longitude\" : -122.0143},",
+            "        {",
+            "            \"altitude\" : 10.0,",
+            "            \"latitude\" : 37.331,",
+            "            \"longitude\" : -122.029,",
+            "            \"relevantText\" : \"Store nearby on 3rd and Main.\"",
+            "        }",
+            "    ],",
+            "    \"relevantDate\" : \"2014-12-05T09:00-08:00\"",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pass can have only 10 relevant locations. If your pass needs more locations, such as a coupon for a chain of stores, start with the best ones. Update the pass to change the array of relevant locations. For more information updating a pass, see ",
+              "type": "text"
+            },
+            {
+              "code": "Distribute and Update a Pass",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Test your pass relevancy settings on a device. Simulator doesn’t show passes on the lock screen.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-Relevancy-with-iBeacons",
+          "level": 3,
+          "text": "Add Relevancy with iBeacons",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Show your pass on the lock screen when the device comes close to an iBeacon. Add up to ten different UUIDs for iBeacons to the ",
+              "type": "text"
+            },
+            {
+              "code": "beacons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses a combination of the UUID, and the major and minor Bluetooth identifiers to determine beacon relevancy. To include more than ten beacons in the array, use the UUID to group the beacons and give each beacon in a group a different major and minor Bluetooth identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows a pass with one beacon:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   ...",
+            "",
+            "   \"beacons\": [",
+            "      {",
+            "         \"proximityUUID\":\"F8F589E9-C07E-58B0-AEAB-A36BE4D48FAC\",",
+            "         \"relevantText\":\"You're near my store\",",
+            "         \"name\" : \"My Store\"",
+            "      }",
+            "   ]",
+            "}",
+            ""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Pass": {
+      "abstract": [
+        {
+          "text": "An object that represents a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Pass"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Pass"
+        }
+      ],
+      "role": "symbol",
+      "title": "Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Pass/Beacons-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that represents the identifier of a Bluetooth Low Energy beacon the system uses to show a relevant pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Pass.Beacons"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass/Beacons-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Pass.Beacons"
+        }
+      ],
+      "role": "symbol",
+      "title": "Pass.Beacons",
+      "type": "topic",
+      "url": "/documentation/walletpasses/pass/beacons-data.dictionary"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Pass/Locations-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that represents a location that the system uses to show a relevant pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Pass.Locations"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass/Locations-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Pass.Locations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Pass.Locations",
+      "type": "topic",
+      "url": "/documentation/walletpasses/pass/locations-data.dictionary"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Pass/RelevantDates-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that represents a date interval that the system uses to show a relevant pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Pass.RelevantDates"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass/RelevantDates-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Pass.RelevantDates"
+        }
+      ],
+      "role": "symbol",
+      "title": "Pass.RelevantDates",
+      "type": "topic",
+      "url": "/documentation/walletpasses/pass/relevantdates-data.dictionary"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-relevance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Pass/Locations-data.dictionary",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Pass/Beacons-data.dictionary",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Pass/RelevantDates-data.dictionary"
+      ],
+      "title": "Adding relevance"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletpasses/showing-a-pass-on-the-lock-screen"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}
