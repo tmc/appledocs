@@ -1,6 +1,6 @@
 # appledocs
 
-A Go tool that mirrors Apple documentation JSON files to disk with on-disk HTTP caching.
+A Go tool that mirrors Apple documentation JSON files to disk with on-disk HTTP caching, with options to generate HTML and Markdown versions for offline reading.
 
 ## Overview
 
@@ -8,10 +8,18 @@ This tool crawls the Apple documentation site starting from the technologies.jso
 
 The tool recursively extracts URLs from JSON files by looking for fields that look like URLs and point to other JSON files. This allows it to discover and download the entire graph of JSON documentation files.
 
+Key features:
+- Recursive crawling of Apple's documentation 
+- Fast concurrent downloads with adjustable concurrency level
+- On-disk HTTP caching to avoid redundant requests
+- HTML index generation for easy browsing
+- Markdown generation for readable documentation
+- Operation modes for separate crawling and generating output formats
+
 ## Usage
 
 ```
-# Build and run with default settings
+# Build and run with default settings (crawl mode)
 make run
 
 # Clean build artifacts and downloaded content
@@ -22,24 +30,75 @@ make force
 
 # Run with higher concurrency for faster downloads
 make fast
+
+# Skip symbol-level documentation (methods, properties) for smaller output
+./appledocs -mode crawl -skip-symbols
+
+# Generate HTML index only (requires existing JSON files)
+make html
+
+# Generate Markdown documentation only (requires existing JSON files)
+make markdown
+
+# Generate both HTML and Markdown (requires existing JSON files)
+make docs
+
+# Generate specialized EndpointSecurity reference with collapsible sections
+make endpointsecurity
+
+# Do everything: crawl, generate HTML index, Markdown docs, and EndpointSecurity reference
+make all
 ```
 
 ## Command-line options
 
 ```
 ./appledocs -h
-  -base string
-    	base URL for Apple docs (default "https://developer.apple.com")
-  -cache string
-    	directory to store HTTP cache (default ".cache")
-  -concurrency int
-    	number of concurrent downloads (default 10)
-  -force
-    	force refresh all content
+  # Directories and URLs
   -output string
-    	directory to store mirrored content (default "output")
+        directory to store mirrored content (default "output")
+  -cache string
+        directory to store HTTP cache (default ".cache")
+  -base string
+        base URL for Apple docs (default "https://developer.apple.com")
+  
+  # Operation mode
+  -mode string
+        operation mode: crawl, html, markdown, or all (default "crawl")
+  
+  # Crawling options
+  -concurrency int
+        number of concurrent downloads (default 10)
+  -force
+        force refresh all content
+  -timeout duration
+        HTTP request timeout (default 30s)
+  -max-time duration
+        maximum time to run the program (default 1h)
+  -skip-symbols
+        skip individual symbol-level documentation (methods, properties)
+  
+  # Markdown-specific options
+  -md-output string
+        directory to store Markdown documentation (default "markdown")
 ```
 
-## Output
+## Output Formats
 
+### JSON
 The mirrored JSON files are saved to the `output` directory, preserving the original URL paths. The HTTP cache is stored in the `.cache` directory.
+
+### HTML
+An interactive HTML tree view is generated with the JSON files organized in a hierarchical structure. This makes it easy to browse the documentation. Open `output/index.html` in your browser to access it.
+
+### Markdown
+Human-readable documentation is generated in Markdown format, organized by framework and category. The Markdown files include properly formatted headings, code examples with syntax highlighting, and cross-references between related topics.
+
+## Operation Modes
+
+The tool can operate in four different modes:
+
+1. **crawl**: (Default) Only downloads JSON files from Apple's site
+2. **html**: Only generates the HTML index from existing JSON files
+3. **markdown**: Only generates Markdown documentation from existing JSON files
+4. **all**: Performs all operations: crawl, generate HTML index, and generate Markdown

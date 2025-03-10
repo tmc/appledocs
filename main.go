@@ -14,6 +14,7 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"sync"
@@ -22,16 +23,31 @@ import (
 )
 
 var (
+	// Directories and URLs
 	outputDir    = flag.String("output", "output", "directory to store mirrored content")
 	cacheDir     = flag.String("cache", ".cache", "directory to store HTTP cache")
+	baseURL      = flag.String("base", "https://developer.apple.com", "base URL for Apple docs")
+	badURLsFile  = flag.String("bad-urls-file", ".cache/known-bad-urls.txt", "file containing URLs to skip")
+	
+	// Crawling options
 	concurrency  = flag.Int("concurrency", 10, "number of concurrent downloads")
 	forceRefresh = flag.Bool("force", false, "force refresh all content")
-	baseURL      = flag.String("base", "https://developer.apple.com", "base URL for Apple docs")
 	timeout      = flag.Duration("timeout", 30*time.Second, "HTTP request timeout")
 	maxTime      = flag.Duration("max-time", time.Hour, "maximum time to run the program")
-	verbose      = flag.Bool("verbose", false, "enable verbose logging")
+	skipSymbols  = flag.Bool("skip-symbols", false, "skip individual symbol level documentation")
+	
+	// Output options
 	prettyJSON   = flag.Bool("pretty", true, "pretty-print JSON files")
-	badURLsFile  = flag.String("bad-urls-file", ".cache/known-bad-urls.txt", "file containing URLs to skip")
+	verbose      = flag.Bool("verbose", false, "enable verbose logging")
+	
+	// Mode selection
+	mode         = flag.String("mode", "crawl", "operation mode: crawl, html, markdown, or all")
+	
+	// Markdown-specific options
+	mdOutputDir  = flag.String("md-output", "markdown", "directory to store Markdown documentation")
+	
+	// Legacy flags for backward compatibility
+	generateMD   = flag.Bool("markdown", false, "generate Markdown documentation from the JSON files")
 )
 
 // JSONFileEntry represents a found JSON file
@@ -49,44 +65,93 @@ type appledocs struct {
 	entriesMutex   sync.Mutex
 	processedCount int
 	badURLs        map[string]bool // URLs known to be 404s or invalid
+	urlDepths      map[string]int  // Track semantic depth of each URL
+	depthMutex     sync.RWMutex    // Mutex for urlDepths
 
 	// Status tracking metrics
-	cacheHits   int
-	cacheMisses int
-	errors      int
-	skippedURLs int
-	statsMutex  sync.Mutex
+	cacheHits     int
+	cacheMisses   int
+	errors        int
+	skippedURLs   int
+	skippedSymbols int // Count of URLs skipped because they're symbol-level docs
+	statsMutex    sync.Mutex
 }
 
 func main() {
 	flag.Parse()
 
-	// Create output and cache directories
-	for _, dir := range []string{*outputDir, *cacheDir} {
+	// Handle legacy flag conversion for backward compatibility
+	if *generateMD && *mode == "crawl" {
+		*mode = "markdown"
+	}
+
+	// Validate mode
+	validModes := map[string]bool{"crawl": true, "html": true, "markdown": true, "all": true}
+	if !validModes[*mode] {
+		log.Fatalf("Invalid mode: %s. Must be one of: crawl, html, markdown, or all", *mode)
+	}
+
+	// Create necessary directories
+	dirsToCreate := []string{}
+	if *mode == "crawl" || *mode == "all" {
+		dirsToCreate = append(dirsToCreate, *outputDir, *cacheDir)
+	}
+	if *mode == "markdown" || *mode == "all" {
+		dirsToCreate = append(dirsToCreate, *mdOutputDir)
+	}
+	
+	for _, dir := range dirsToCreate {
 		if err := os.MkdirAll(dir, 0755); err != nil {
 			log.Fatalf("Failed to create directory %q: %v", dir, err)
 		}
 	}
 
-	// Setup cancellable context with timeout
-	ctx, cancel := context.WithTimeout(context.Background(), *maxTime)
-	defer cancel()
+	// Crawl mode - fetch JSON files
+	if *mode == "crawl" || *mode == "all" {
+		// Setup cancellable context with timeout
+		ctx, cancel := context.WithTimeout(context.Background(), *maxTime)
+		defer cancel()
 
-	// Setup signal handling for graceful shutdown
-	sigChan := make(chan os.Signal, 1)
-	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
-	go func() {
-		<-sigChan
-		log.Println("Received interrupt signal, shutting down...")
-		cancel()
-	}()
+		// Setup signal handling for graceful shutdown
+		sigChan := make(chan os.Signal, 1)
+		signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
+		go func() {
+			<-sigChan
+			log.Println("Received interrupt signal, shutting down...")
+			cancel()
+		}()
 
-	// Run the crawler
-	if err := run(ctx); err != nil {
-		log.Fatalf("Error: %v", err)
+		// Run the crawler
+		if err := run(ctx); err != nil {
+			log.Fatalf("Error during crawling: %v", err)
+		}
+
+		log.Printf("Mirroring complete.")
 	}
 
-	log.Printf("Mirroring complete.")
+	// HTML mode - generate HTML index
+	if *mode == "html" || *mode == "all" {
+		log.Printf("Generating HTML index...")
+		jsonFiles, err := scanOutputDirectory(*outputDir)
+		if err != nil {
+			log.Fatalf("Error scanning output directory: %v", err)
+		}
+		
+		if err := createJSONIndexHTML(*outputDir, jsonFiles); err != nil {
+			log.Fatalf("Error generating HTML: %v", err)
+		}
+		
+		log.Printf("HTML generation complete. Open %s/index.html to view.", *outputDir)
+	}
+
+	// Markdown mode - generate Markdown files
+	if *mode == "markdown" || *mode == "all" {
+		log.Printf("Generating Markdown documentation...")
+		if err := generateMarkdown(*outputDir, *mdOutputDir); err != nil {
+			log.Fatalf("Error generating Markdown: %v", err)
+		}
+		log.Printf("Markdown generation complete. Output in: %s", *mdOutputDir)
+	}
 }
 
 // run is the main entry point for the application logic
@@ -98,15 +163,26 @@ func run(ctx context.Context) error {
 		client:      client,
 		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
+		urlDepths:   make(map[string]int),
 	}
-	
+
+	// Create bad URLs directory if it doesn't exist
+	if err := os.MkdirAll(filepath.Dir(*badURLsFile), 0755); err != nil {
+		log.Printf("Warning: failed to create directory for bad URLs file: %v", err)
+	}
+
 	// Load known bad URLs if file exists
 	if err := loadBadURLs(app); err != nil && *verbose {
 		log.Printf("Warning: failed to load bad URLs file: %v", err)
+	} else if *verbose {
+		log.Printf("Loaded %d known bad URLs", len(app.badURLs))
 	}
 
-	// Mark the start URL as visited
+	// Mark the start URL as visited and set its depth to 0
 	app.visitedURLs[startURL] = true
+	app.depthMutex.Lock()
+	app.urlDepths[startURL] = 0
+	app.depthMutex.Unlock()
 
 	// Setup progress reporting
 	ticker := time.NewTicker(5 * time.Second)
@@ -201,6 +277,15 @@ func run(ctx context.Context) error {
 	// Now it's safe to close the channel
 	close(urlQueue)
 
+	// Make sure badURLs file is written
+	badURLCount := len(app.badURLs)
+	if badURLCount > 0 {
+		log.Printf("Writing %d bad URLs to %s", badURLCount, *badURLsFile)
+		if err := writeBadURLsFile(app); err != nil {
+			log.Printf("Warning: Failed to write bad URLs file: %v", err)
+		}
+	}
+
 	// Create index.html with the list of JSON files
 	if err := createJSONIndexHTML(*outputDir, app.jsonEntries); err != nil {
 		log.Printf("Failed to create index.html: %v", err)
@@ -213,6 +298,9 @@ func run(ctx context.Context) error {
 	log.Printf("  - Cache: %d hits, %d misses", cacheHits, cacheMisses)
 	log.Printf("  - Errors: %d", errors)
 	log.Printf("  - Skipped URLs: %d", skipped)
+	if *skipSymbols {
+		log.Printf("  - Skipped symbol URLs: %d", app.skippedSymbols)
+	}
 
 	return nil
 }
@@ -242,6 +330,13 @@ func (app *appledocs) incrementSkippedURLs() {
 	app.statsMutex.Unlock()
 }
 
+func (app *appledocs) incrementSkippedSymbols() {
+	app.statsMutex.Lock()
+	app.skippedSymbols++
+	app.skippedURLs++ // Also count in the general skipped URLs
+	app.statsMutex.Unlock()
+}
+
 // getStats returns current statistics in a thread-safe way
 func (app *appledocs) getStats() (int, int, int, int, int) {
 	app.statsMutex.Lock()
@@ -249,6 +344,9 @@ func (app *appledocs) getStats() (int, int, int, int, int) {
 	app.entriesMutex.Lock()
 	processed := len(app.jsonEntries)
 	app.entriesMutex.Unlock()
+	
+	// Note: depthLimits is counted as part of skippedURLs for backward compatibility
+	// with the existing reporting, so we don't need to return it separately
 	return processed, app.cacheHits, app.cacheMisses, app.errors, app.skippedURLs
 }
 
@@ -269,10 +367,29 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 	}
 
 	// Check if this is a valid URL to process
-	// Accept both .json files and index URLs
+	// Accept JSON files, index URLs, and media URLs
 	isJsonFile := strings.HasSuffix(parsed.Path, ".json")
 	isIndexFile := strings.Contains(parsed.Path, "/tutorials/data/index/")
-	
+	isMediaFile := strings.Contains(parsed.Path, "/media-")
+
+	// For specific URLs that we know will always fail or aren't relevant, add them to bad URLs list
+	if isMediaFile ||
+		strings.Contains(parsed.Path, "/assets/") ||
+		strings.HasSuffix(parsed.Path, ".css") ||
+		strings.HasSuffix(parsed.Path, ".js") ||
+		strings.HasSuffix(parsed.Path, ".png") ||
+		strings.HasSuffix(parsed.Path, ".jpg") ||
+		strings.HasSuffix(parsed.Path, ".svg") ||
+		strings.HasSuffix(parsed.Path, ".pdf") {
+		app.badURLs[u] = true
+		appendToBadURLsFile(u)
+		app.incrementSkippedURLs()
+		if *verbose {
+			log.Printf("Added media/asset URL to bad URLs: %s", u)
+		}
+		return fmt.Errorf("not a supported URL type: %s", u)
+	}
+
 	if !isJsonFile && !isIndexFile {
 		app.incrementSkippedURLs()
 		return fmt.Errorf("not a supported URL: %s", u)
@@ -289,9 +406,9 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 	if strings.HasPrefix(outputPath, "/") {
 		outputPath = outputPath[1:]
 	}
-	
+
 	// For index files that don't have a .json extension, add one for consistency
-	if isIndexFile && !strings.HasSuffix(outputPath, ".json") {
+	if strings.Contains(parsed.Path, "/tutorials/data/index/") && !strings.HasSuffix(outputPath, ".json") {
 		outputPath += ".json"
 	}
 
@@ -313,6 +430,26 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 
 	// Extract and enqueue new JSON URLs
 	newURLs := extractJSONURLs(data)
+	
+	// If skipSymbols is enabled, filter out symbol-level documentation URLs
+	if *skipSymbols {
+		filteredURLs := make([]string, 0, len(newURLs))
+		for _, url := range newURLs {
+			if !isSymbolURL(url) {
+				filteredURLs = append(filteredURLs, url)
+			} else {
+				app.incrementSkippedSymbols()
+				if *verbose {
+					log.Printf("Skipping symbol URL: %s", url)
+				}
+			}
+		}
+		if *verbose && len(newURLs) != len(filteredURLs) {
+			log.Printf("Filtered out %d symbol URLs", len(newURLs) - len(filteredURLs))
+		}
+		newURLs = filteredURLs
+	}
+	
 	if *verbose {
 		log.Printf("Found %d URLs in %s", len(newURLs), outputPath)
 	}
@@ -324,17 +461,17 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 		if len(parts) >= 5 {
 			technologyFile := parts[4]
 			technologyName := strings.TrimSuffix(technologyFile, ".json")
-			
+
 			// 1. Add the index URL for the technology
 			indexURL := "/tutorials/data/index/" + strings.ToLower(technologyName)
 			newURLs = append(newURLs, indexURL)
-			
+
 			// 2. Try both capitalization variants for the documentation file
 			lowerURL := "/tutorials/data/documentation/" + strings.ToLower(technologyName) + ".json"
-				
+
 			upperName := strings.Title(technologyName)
 			upperURL := "/tutorials/data/documentation/" + upperName + ".json"
-			
+
 			// Add URLs to the queue if they're different from the current one
 			if lowerURL != parsed.Path {
 				newURLs = append(newURLs, lowerURL)
@@ -342,7 +479,7 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 			if upperURL != parsed.Path {
 				newURLs = append(newURLs, upperURL)
 			}
-			
+
 			if *verbose {
 				log.Printf("Added related URLs for technology %s: index and case variants", technologyName)
 			}
@@ -492,9 +629,9 @@ func fetchWithCache(client *http.Client, u string, app *appledocs) ([]byte, erro
 	if err != nil {
 		app.incrementErrors()
 		// Add to bad URLs list if it's a network error
-		if strings.Contains(err.Error(), "no such host") || 
-		   strings.Contains(err.Error(), "connection refused") ||
-		   strings.Contains(err.Error(), "timeout") {
+		if strings.Contains(err.Error(), "no such host") ||
+			strings.Contains(err.Error(), "connection refused") ||
+			strings.Contains(err.Error(), "timeout") {
 			app.badURLs[u] = true
 			// Save to known-bad-urls file
 			appendToBadURLsFile(u)
@@ -505,11 +642,18 @@ func fetchWithCache(client *http.Client, u string, app *appledocs) ([]byte, erro
 
 	if resp.StatusCode != http.StatusOK {
 		app.incrementErrors()
-		// Add to bad URLs list if it's a 404
-		if resp.StatusCode == http.StatusNotFound {
+		// Add to bad URLs list if it's any client error that won't be resolved by retrying
+		// These include 403 (Forbidden), 404 (Not Found), 405 (Method Not Allowed), 410 (Gone)
+		if resp.StatusCode == http.StatusForbidden ||
+			resp.StatusCode == http.StatusNotFound ||
+			resp.StatusCode == http.StatusMethodNotAllowed ||
+			resp.StatusCode == http.StatusGone {
 			app.badURLs[u] = true
 			// Save to known-bad-urls file
 			appendToBadURLsFile(u)
+			if *verbose {
+				log.Printf("Added bad URL due to %d status: %s", resp.StatusCode, u)
+			}
 		}
 		return nil, fmt.Errorf("fetch %q: %s", u, resp.Status)
 	}
@@ -630,20 +774,73 @@ type TreeNode struct {
 // createJSONIndexHTML creates an index.html file in the output directory
 // that shows a tree view of all the JSON files that were mirrored.
 func createJSONIndexHTML(outputDir string, jsonFiles []JSONFileEntry) error {
-	// Scan the output directory to make sure we include all JSON files
-	scannedFiles, err := scanOutputDirectory(outputDir)
-	if err != nil {
-		log.Printf("Warning: Error scanning output directory: %v", err)
-		// Continue with the files we know about
-	} else if len(scannedFiles) > len(jsonFiles) {
-		// Use the scanned files if we found more
-		log.Printf("Found %d additional files in output directory", len(scannedFiles)-len(jsonFiles))
-		jsonFiles = scannedFiles
+	// Always scan the tutorials directory to get files directly from disk
+	tutorialsDir := filepath.Join(outputDir, "tutorials")
+	var filesFromDisk []JSONFileEntry
+
+	if _, err := os.Stat(tutorialsDir); err == nil {
+		log.Printf("Scanning the tutorials directory for JSON files...")
+
+		// Only scan one directory level deep to keep it manageable
+		_, err := os.ReadDir(tutorialsDir)
+		if err != nil {
+			log.Printf("Warning: Error reading tutorials directory: %v", err)
+		} else {
+			// Process only data directory which contains the main content
+			dataDir := filepath.Join(tutorialsDir, "data")
+			if _, err := os.Stat(dataDir); err == nil {
+				// Process only first 1000 files to avoid timeout
+				const maxFiles = 1000
+				filesAdded := 0
+
+				err := filepath.Walk(dataDir, func(path string, info os.FileInfo, err error) error {
+					if err != nil {
+						return err
+					}
+
+					// Skip directories
+					if info.IsDir() {
+						return nil
+					}
+
+					// Only include JSON files
+					if strings.HasSuffix(strings.ToLower(path), ".json") {
+						// Convert absolute path to relative path from output directory
+						relPath, err := filepath.Rel(outputDir, path)
+						if err != nil {
+							return nil
+						}
+
+						filesFromDisk = append(filesFromDisk, JSONFileEntry{
+							Path: relPath,
+							URL:  relPath, // URL could be reconstructed if needed
+						})
+
+						filesAdded++
+						if filesAdded >= maxFiles {
+							log.Printf("Reached limit of %d files, stopping scan", maxFiles)
+							return filepath.SkipDir
+						}
+					}
+
+					return nil
+				})
+
+				if err != nil {
+					log.Printf("Warning: Error walking data directory: %v", err)
+				}
+			}
+		}
+
+		log.Printf("Found %d JSON files on disk", len(filesFromDisk))
+		jsonFiles = filesFromDisk
+	} else {
+		log.Printf("Tutorials directory not found, using crawled files")
 	}
-	
+
 	// Build tree from files
 	root := buildFileTree(jsonFiles)
-	
+
 	// Calculate stats
 	dirCount := countDirectories(root)
 
@@ -659,48 +856,99 @@ func createJSONIndexHTML(outputDir string, jsonFiles []JSONFileEntry) error {
 		Timestamp: time.Now().Format(time.RFC1123),
 	}
 
-	// Create the HTML file with embedded JavaScript
+	// Generate HTML using the function from html.go
 	indexPath := filepath.Join(outputDir, "index.html")
-	if err := generateHTMLFile(indexPath, data); err != nil {
-		return err
-	}
-
-	log.Printf("Created tree-view index.html with %d files across %d directories at %s", 
-		len(jsonFiles), dirCount, outputDir)
-	return nil
+	return generateHTMLFile(indexPath, data)
 }
 
 // scanOutputDirectory walks the output directory and finds all JSON files
-func scanOutputDirectory(outputDir string) ([]JSONFileEntry, error) {
+func scanOutputDirectory(scanDir string) ([]JSONFileEntry, error) {
 	var files []JSONFileEntry
+	baseDir := *outputDir
 
-	err := filepath.Walk(outputDir, func(path string, info os.FileInfo, err error) error {
+	// Track the total size of all JSON files
+	var totalSize int64
+
+	// Count files by directory to potentially skip directories with too many files
+	dirFileCounts := make(map[string]int)
+
+	// First pass: count files by directory
+	err := filepath.Walk(scanDir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
-		
+
+		// Skip directories in count
+		if info.IsDir() {
+			return nil
+		}
+
+		// Only count JSON files
+		if strings.HasSuffix(strings.ToLower(path), ".json") {
+			dir := filepath.Dir(path)
+			dirFileCounts[dir]++
+			totalSize += info.Size()
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	// Set a reasonable file limit per directory to avoid huge HTML files
+	const maxFilesPerDir = 200
+
+	// Second pass: collect files, limiting per directory
+	err = filepath.Walk(scanDir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
 		// Skip directories
 		if info.IsDir() {
 			return nil
 		}
-		
+
 		// Only include JSON files
 		if strings.HasSuffix(strings.ToLower(path), ".json") {
-			// Convert absolute path to relative path from output directory
-			relPath, err := filepath.Rel(outputDir, path)
+			dir := filepath.Dir(path)
+
+			// Skip if this directory has too many files
+			if dirFileCounts[dir] > maxFilesPerDir {
+				// Include only a marker file for directories with too many files
+				if len(files) == 0 || !strings.Contains(files[len(files)-1].Path, dir) {
+					// Calculate relative directory path
+					dirRelPath, err := filepath.Rel(baseDir, dir)
+					if err != nil {
+						return err
+					}
+
+					files = append(files, JSONFileEntry{
+						Path: filepath.Join(dirRelPath, "_TOO_MANY_FILES_.json"),
+						URL:  "too_many_files", // Special marker
+					})
+				}
+				return nil
+			}
+
+			// Create a relative path from output directory
+			relPath, err := filepath.Rel(baseDir, path)
 			if err != nil {
 				return err
 			}
-			
+
 			files = append(files, JSONFileEntry{
 				Path: relPath,
 				URL:  relPath, // URL could be reconstructed if needed
 			})
 		}
-		
+
 		return nil
 	})
 
+	log.Printf("Scanned %d MB of JSON files, limited to %d files in HTML tree", totalSize/(1024*1024), len(files))
 	return files, err
 }
 
@@ -812,14 +1060,14 @@ func isTechnologyFile(path string) bool {
 	if len(parts) < 4 {
 		return false
 	}
-	
+
 	// Check if this is a top-level technology file
 	// The pattern should be /tutorials/data/documentation/TechnologyName.json
 	if parts[1] == "tutorials" && parts[2] == "data" && parts[3] == "documentation" {
 		// If there are no further subdirectories and it ends with .json
 		return len(parts) == 5 && strings.HasSuffix(parts[4], ".json")
 	}
-	
+
 	return false
 }
 
@@ -831,17 +1079,40 @@ func createIndexURLForTechnology(path string) string {
 	if len(parts) < 5 {
 		return ""
 	}
-	
+
 	technologyFile := parts[4]
 	technologyName := strings.TrimSuffix(technologyFile, ".json")
-	
+
 	// Skip common non-technology files
 	if technologyName == "technologies" {
 		return ""
 	}
-	
+
 	// Create the index URL: /tutorials/data/index/technologyname
 	return "/tutorials/data/index/" + strings.ToLower(technologyName)
+}
+
+// isSymbolURL determines if a URL likely points to individual symbol documentation
+// This helps filter out the deepest level API documentation when using -skip-symbols
+func isSymbolURL(urlPath string) bool {
+	// Check for patterns that indicate symbol-level docs:
+	// URLs with type paths like: /documentation/uikit/uiview/1622418-alpha
+	if match, _ := regexp.MatchString(`/documentation/[^/]+/[^/]+/\d+\-`, urlPath); match {
+		return true
+	}
+
+	// URLs with method or property paths
+	if match, _ := regexp.MatchString(`/documentation/[^/]+/[^/]+/[^/]+/[^/]+$`, urlPath); match {
+		return true
+	}
+
+	// Symbol reference paths with 3+ segments after the framework
+	parts := strings.Split(urlPath, "/")
+	if strings.Contains(urlPath, "/documentation/") && len(parts) >= 6 {
+		return true
+	}
+
+	return false
 }
 
 // loadBadURLs loads the list of known bad URLs from a file
@@ -900,4 +1171,32 @@ func appendToBadURLsFile(url string) {
 	if _, err := file.WriteString(url + "\n"); err != nil {
 		log.Printf("Error writing to bad URLs file: %v", err)
 	}
+}
+
+// writeBadURLsFile writes all bad URLs to the bad URLs file
+func writeBadURLsFile(app *appledocs) error {
+	// Ensure directory exists
+	if err := os.MkdirAll(filepath.Dir(*badURLsFile), 0755); err != nil {
+		return err
+	}
+
+	// Get a sorted list of bad URLs for more consistent file content
+	urls := make([]string, 0, len(app.badURLs))
+	for url := range app.badURLs {
+		urls = append(urls, url)
+	}
+	sort.Strings(urls)
+
+	// Create the file content with a header
+	var content strings.Builder
+	content.WriteString("# Known bad URLs for appledocs\n")
+	content.WriteString("# Last updated: " + time.Now().Format(time.RFC3339) + "\n")
+	content.WriteString("# Do not edit this file manually\n\n")
+
+	for _, url := range urls {
+		content.WriteString(url + "\n")
+	}
+
+	// Write to file
+	return os.WriteFile(*badURLsFile, []byte(content.String()), 0644)
 }
