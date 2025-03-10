@@ -27,27 +27,29 @@ var (
 	outputDir    = flag.String("output", "output", "directory to store mirrored content")
 	cacheDir     = flag.String("cache", ".cache", "directory to store HTTP cache")
 	baseURL      = flag.String("base", "https://developer.apple.com", "base URL for Apple docs")
+	entryPoint   = flag.String("entry-point", "/tutorials/data/documentation/technologies.json", "path to start crawling from")
 	badURLsFile  = flag.String("bad-urls-file", ".cache/known-bad-urls.txt", "file containing URLs to skip")
-	
+	excludePaths = flag.String("exclude-paths", "en-US/docs/Mozilla", "comma-separated list of paths to exclude from crawling")
+
 	// Crawling options
 	concurrency  = flag.Int("concurrency", 10, "number of concurrent downloads")
 	forceRefresh = flag.Bool("force", false, "force refresh all content")
 	timeout      = flag.Duration("timeout", 30*time.Second, "HTTP request timeout")
 	maxTime      = flag.Duration("max-time", time.Hour, "maximum time to run the program")
 	skipSymbols  = flag.Bool("skip-symbols", false, "skip individual symbol level documentation")
-	
+
 	// Output options
-	prettyJSON   = flag.Bool("pretty", true, "pretty-print JSON files")
-	verbose      = flag.Bool("verbose", false, "enable verbose logging")
-	
+	prettyJSON = flag.Bool("pretty", true, "pretty-print JSON files")
+	verbose    = flag.Bool("verbose", false, "enable verbose logging")
+
 	// Mode selection
-	mode         = flag.String("mode", "crawl", "operation mode: crawl, html, markdown, or all")
-	
+	mode = flag.String("mode", "crawl", "operation mode: crawl, html, markdown, or all")
+
 	// Markdown-specific options
-	mdOutputDir  = flag.String("md-output", "markdown", "directory to store Markdown documentation")
-	
+	mdOutputDir = flag.String("md-output", "markdown", "directory to store Markdown documentation")
+
 	// Legacy flags for backward compatibility
-	generateMD   = flag.Bool("markdown", false, "generate Markdown documentation from the JSON files")
+	generateMD = flag.Bool("markdown", false, "generate Markdown documentation from the JSON files")
 )
 
 // JSONFileEntry represents a found JSON file
@@ -69,12 +71,12 @@ type appledocs struct {
 	depthMutex     sync.RWMutex    // Mutex for urlDepths
 
 	// Status tracking metrics
-	cacheHits     int
-	cacheMisses   int
-	errors        int
-	skippedURLs   int
+	cacheHits      int
+	cacheMisses    int
+	errors         int
+	skippedURLs    int
 	skippedSymbols int // Count of URLs skipped because they're symbol-level docs
-	statsMutex    sync.Mutex
+	statsMutex     sync.Mutex
 }
 
 func main() {
@@ -99,7 +101,7 @@ func main() {
 	if *mode == "markdown" || *mode == "all" {
 		dirsToCreate = append(dirsToCreate, *mdOutputDir)
 	}
-	
+
 	for _, dir := range dirsToCreate {
 		if err := os.MkdirAll(dir, 0755); err != nil {
 			log.Fatalf("Failed to create directory %q: %v", dir, err)
@@ -136,11 +138,11 @@ func main() {
 		if err != nil {
 			log.Fatalf("Error scanning output directory: %v", err)
 		}
-		
+
 		if err := createJSONIndexHTML(*outputDir, jsonFiles); err != nil {
 			log.Fatalf("Error generating HTML: %v", err)
 		}
-		
+
 		log.Printf("HTML generation complete. Open %s/index.html to view.", *outputDir)
 	}
 
@@ -157,7 +159,7 @@ func main() {
 // run is the main entry point for the application logic
 func run(ctx context.Context) error {
 	client := &http.Client{Timeout: *timeout}
-	startURL := resolveURL(*baseURL, "/tutorials/data/documentation/technologies.json")
+	startURL := resolveURL(*baseURL, *entryPoint)
 
 	app := &appledocs{
 		client:      client,
@@ -344,16 +346,50 @@ func (app *appledocs) getStats() (int, int, int, int, int) {
 	app.entriesMutex.Lock()
 	processed := len(app.jsonEntries)
 	app.entriesMutex.Unlock()
-	
+
 	// Note: depthLimits is counted as part of skippedURLs for backward compatibility
 	// with the existing reporting, so we don't need to return it separately
 	return processed, app.cacheHits, app.cacheMisses, app.errors, app.skippedURLs
+}
+
+// shouldExcludePath checks if a URL path should be excluded based on user-defined exclude patterns
+func shouldExcludePath(pathToCheck string) bool {
+	if *excludePaths == "" {
+		return false
+	}
+
+	patterns := strings.Split(*excludePaths, ",")
+	for _, pattern := range patterns {
+		pattern = strings.TrimSpace(pattern)
+		if pattern == "" {
+			continue
+		}
+
+		// Check if the path contains this pattern
+		if strings.Contains(pathToCheck, pattern) {
+			if *verbose {
+				log.Printf("Excluding path %q because it matches pattern %q", pathToCheck, pattern)
+			}
+			return true
+		}
+	}
+
+	return false
 }
 
 // processURL handles a single URL, fetching and processing it
 func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- string) error {
 	if *verbose {
 		log.Printf("Processing %s", u)
+	}
+
+	// First, check if this URL is already known to be bad
+	if app.badURLs[u] {
+		if *verbose {
+			log.Printf("Skipping known bad URL: %s", u)
+		}
+		app.incrementSkippedURLs()
+		return fmt.Errorf("known bad URL: %s", u)
 	}
 
 	// The concurrency is now managed by the worker pool
@@ -366,14 +402,36 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 		return fmt.Errorf("parse URL %q: %v", u, err)
 	}
 
+	// Check if this URL matches any exclude patterns
+	if shouldExcludePath(parsed.Path) {
+		// Add to bad URLs to prevent future attempts to process this URL
+		app.badURLs[u] = true
+		appendToBadURLsFile(u)
+		app.incrementSkippedURLs()
+		if *verbose {
+			log.Printf("Skipping excluded path, added to bad URLs: %s", parsed.Path)
+		}
+		return fmt.Errorf("excluded path: %s", parsed.Path)
+	}
+
 	// Check if this is a valid URL to process
-	// Accept JSON files, index URLs, and media URLs
-	isJsonFile := strings.HasSuffix(parsed.Path, ".json")
-	isIndexFile := strings.Contains(parsed.Path, "/tutorials/data/index/")
 	isMediaFile := strings.Contains(parsed.Path, "/media-")
 
+	// Check for UUID-like paths or other patterns that aren't valid tutorial URLs
+	isUUIDLike := false
+	// Only mark URLs as marketing pages if they're not part of the tutorials path
+	isMarketingPage := false
+	isMarketingPage = strings.HasSuffix(parsed.Path, "-hero") ||
+		strings.HasPrefix(parsed.Path, "/devLink-") ||
+		strings.HasPrefix(parsed.Path, "/link-") ||
+		strings.Contains(parsed.Path, "-module") ||
+		strings.Contains(parsed.Path, "-dynamic-") ||
+		strings.Contains(parsed.Path, "#") ||
+		strings.Contains(parsed.Path, "managedapp")
 	// For specific URLs that we know will always fail or aren't relevant, add them to bad URLs list
 	if isMediaFile ||
+		isUUIDLike ||
+		isMarketingPage ||
 		strings.Contains(parsed.Path, "/assets/") ||
 		strings.HasSuffix(parsed.Path, ".css") ||
 		strings.HasSuffix(parsed.Path, ".js") ||
@@ -385,14 +443,9 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 		appendToBadURLsFile(u)
 		app.incrementSkippedURLs()
 		if *verbose {
-			log.Printf("Added media/asset URL to bad URLs: %s", u)
+			log.Printf("Added unsupported URL to bad URLs: %s", u)
 		}
 		return fmt.Errorf("not a supported URL type: %s", u)
-	}
-
-	if !isJsonFile && !isIndexFile {
-		app.incrementSkippedURLs()
-		return fmt.Errorf("not a supported URL: %s", u)
 	}
 
 	// Get content
@@ -405,11 +458,6 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 	outputPath := parsed.Path
 	if strings.HasPrefix(outputPath, "/") {
 		outputPath = outputPath[1:]
-	}
-
-	// For index files that don't have a .json extension, add one for consistency
-	if strings.Contains(parsed.Path, "/tutorials/data/index/") && !strings.HasSuffix(outputPath, ".json") {
-		outputPath += ".json"
 	}
 
 	if err := saveToOutputDir(outputPath, data); err != nil {
@@ -430,7 +478,7 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 
 	// Extract and enqueue new JSON URLs
 	newURLs := extractJSONURLs(data)
-	
+
 	// If skipSymbols is enabled, filter out symbol-level documentation URLs
 	if *skipSymbols {
 		filteredURLs := make([]string, 0, len(newURLs))
@@ -445,11 +493,11 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 			}
 		}
 		if *verbose && len(newURLs) != len(filteredURLs) {
-			log.Printf("Filtered out %d symbol URLs", len(newURLs) - len(filteredURLs))
+			log.Printf("Filtered out %d symbol URLs", len(newURLs)-len(filteredURLs))
 		}
 		newURLs = filteredURLs
 	}
-	
+
 	if *verbose {
 		log.Printf("Found %d URLs in %s", len(newURLs), outputPath)
 	}
@@ -507,6 +555,18 @@ func (app *appledocs) queueNewURLs(newURLs []string, urlQueue chan<- string) int
 		if app.badURLs[resolvedURL] {
 			if *verbose {
 				log.Printf("Skipping known bad URL: %s", resolvedURL)
+			}
+			continue
+		}
+
+		// Parse URL to check if it should be excluded
+		parsedURL, err := url.Parse(resolvedURL)
+		if err == nil && shouldExcludePath(parsedURL.Path) {
+			// Add to bad URLs so we don't attempt it again
+			app.badURLs[resolvedURL] = true
+			appendToBadURLsFile(resolvedURL)
+			if *verbose {
+				log.Printf("Skipping excluded path when queueing: %s", parsedURL.Path)
 			}
 			continue
 		}

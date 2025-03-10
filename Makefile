@@ -1,4 +1,4 @@
-.PHONY: build run clean test json fast force verbose all markdown html docs endpointsecurity compact
+.PHONY: build run clean test json fast force verbose all markdown html docs endpointsecurity compact accessibility
 
 build:
 	go build -o appledocs
@@ -52,6 +52,10 @@ endpointsecurity:
 # Skip symbol-level documentation (methods, properties) for smaller output
 compact: build
 	./appledocs -mode crawl -skip-symbols
+
+# Crawl only accessibility documentation
+accessibility: build
+	./appledocs -mode crawl -entry-point "/tutorials/data/index/accessibility"
 
 # Run the most comprehensive mirror
 all: clean build

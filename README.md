@@ -4,12 +4,12 @@ A Go tool that mirrors Apple documentation JSON files to disk with on-disk HTTP 
 
 ## Overview
 
-This tool crawls the Apple documentation site starting from the technologies.json endpoint and saves all discovered JSON files to disk. It uses an on-disk HTTP cache to avoid unnecessary requests and supports concurrent downloads.
+This tool crawls the Apple documentation site starting from the technologies.json endpoint (or a custom entry point) and saves all discovered JSON files to disk. It uses an on-disk HTTP cache to avoid unnecessary requests and supports concurrent downloads.
 
-The tool recursively extracts URLs from JSON files by looking for fields that look like URLs and point to other JSON files. This allows it to discover and download the entire graph of JSON documentation files.
+The tool recursively extracts URLs from JSON files by looking for fields that look like URLs and point to other JSON files. This allows it to discover and download the entire graph of JSON documentation files. You can specify an alternate entry point to crawl specific sections of the documentation.
 
 Key features:
-- Recursive crawling of Apple's documentation 
+- Recursive crawling of Apple's documentation with customizable entry points
 - Fast concurrent downloads with adjustable concurrency level
 - On-disk HTTP caching to avoid redundant requests
 - HTML index generation for easy browsing
@@ -33,6 +33,9 @@ make fast
 
 # Skip symbol-level documentation (methods, properties) for smaller output
 ./appledocs -mode crawl -skip-symbols
+
+# Crawl a specific entry point (e.g., accessibility documentation)
+./appledocs -mode crawl -entry-point "/tutorials/data/index/accessibility"
 
 # Generate HTML index only (requires existing JSON files)
 make html
@@ -61,6 +64,8 @@ make all
         directory to store HTTP cache (default ".cache")
   -base string
         base URL for Apple docs (default "https://developer.apple.com")
+  -entry-point string
+        path to start crawling from (default "/tutorials/data/documentation/technologies.json")
   
   # Operation mode
   -mode string
@@ -69,6 +74,8 @@ make all
   # Crawling options
   -concurrency int
         number of concurrent downloads (default 10)
+  -exclude-paths string
+        comma-separated list of paths to exclude from crawling (default "en-US/docs/Mozilla")
   -force
         force refresh all content
   -timeout duration
