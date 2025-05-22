@@ -1,17 +1,26 @@
-.PHONY: build run clean test json fast force verbose all markdown html docs endpointsecurity compact accessibility
+VERSION := $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
+GOFLAGS := -ldflags="-s -w -X main.version=$(VERSION)"
+GO ?= go
 
-build:
-	go build -o appledocs
+.PHONY: build run clean test json fast force verbose all markdown html docs endpointsecurity compact accessibility graphql yaml yaml-all yaml-security
+
+build: appledocs appledocs-gql
+
+appledocs:
+	$(GO) build $(GOFLAGS) -o appledocs .
+
+appledocs-gql:
+	$(GO) build $(GOFLAGS) -o appledocs-gql ./cmd/appledocs-gql
 
 run: build
 	./appledocs -mode crawl
 
 clean:
-	rm -f appledocs
-	rm -rf output .cache markdown
+	rm -f appledocs appledocs-gql
+	rm -rf output .cache markdown yaml-output
 
 test:
-	go test ./...
+	$(GO) test ./...
 
 fmt:
 	gofmt -w .
@@ -57,7 +66,44 @@ compact: build
 accessibility: build
 	./appledocs -mode crawl -entry-point "/tutorials/data/index/accessibility"
 
+# Build and run the GraphQL server
+graphql:
+	cd cmd/appledocs-gql && go build -o appledocs-gql
+	cd cmd/appledocs-gql && ./appledocs-gql
+
 # Run the most comprehensive mirror
 all: clean build
 	./appledocs -mode all -concurrency 20 -force
 	go run es-md-test.go
+
+# Convert specific JSON files from cache to YAML
+yaml:
+	@echo "Converting JSON files to YAML..."
+	@mkdir -p yaml-output
+	@find .cache -name "*.json" -type f -print0 | xargs -0 -I{} bash -c 'mkdir -p yaml-output/$$(dirname {}) && cat {} | yq -P > yaml-output/$${1%.json}.yaml' - {}
+	@echo "YAML conversion complete. Files are in yaml-output directory."
+
+# Convert all JSON files from cache to YAML with directory structure preserved
+yaml-all:
+	@echo "Converting all JSON files to YAML..."
+	@mkdir -p yaml-output
+	@find .cache -name "*.json" -type f -print0 | while read -d $$'\0' file; do \
+		dir=$$(dirname "$$file"); \
+		mkdir -p "yaml-output/$$dir"; \
+		filename=$$(basename "$$file" .json); \
+		yq -P "$$file" > "yaml-output/$$dir/$$filename.yaml"; \
+	done
+	@echo "YAML conversion complete. Files are in yaml-output directory with original structure preserved."
+
+# Convert only SecurityFoundation and EndpointSecurity JSON files to YAML
+yaml-security:
+	@echo "Converting SecurityFoundation and EndpointSecurity JSON files to YAML..."
+	@mkdir -p yaml-output
+	@find .cache -path "*/SecurityFoundation*.json" -o -path "*/EndpointSecurity*.json" -type f -print0 | while read -d $$'\0' file; do \
+		dir=$$(dirname "$$file"); \
+		mkdir -p "yaml-output/$$dir"; \
+		filename=$$(basename "$$file" .json); \
+		echo "Converting $$file"; \
+		yq -P "$$file" > "yaml-output/$$dir/$$filename.yaml"; \
+	done
+	@echo "YAML conversion complete. Security-related files are in yaml-output directory with original structure preserved."

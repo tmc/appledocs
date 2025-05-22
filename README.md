@@ -16,6 +16,72 @@ Key features:
 - Markdown generation for readable documentation
 - Operation modes for separate crawling and generating output formats
 
+## Tools
+
+This project includes two main tools:
+
+1. **appledocs** - The main documentation crawler and converter
+2. **appledocs-gql** - A GraphQL API server for the documentation
+
+### appledocs
+
+The main `appledocs` tool can be used to:
+
+- Mirror Apple's documentation JSON files to local disk
+- Convert the JSON to Markdown documentation
+- Generate HTML documentation browser
+
+### appledocs-gql
+
+The `appledocs-gql` tool provides:
+
+- A GraphQL API for querying the documentation
+- REST endpoints for common operations
+- Interactive GraphQL playground
+- Apollo Sandbox for exploring the API
+
+## Building
+
+```bash
+# Build both tools
+make build
+
+# Build only the main tool
+make appledocs
+
+# Build only the GraphQL server
+make appledocs-gql
+```
+
+## Running the Tools
+
+```bash
+# Run the crawler to mirror documentation
+make crawl
+# or
+./appledocs -mode=crawl
+
+# Generate Markdown
+make markdown
+# or
+./appledocs -mode=markdown
+
+# Generate HTML
+make html
+# or
+./appledocs -mode=html
+
+# Generate all documentation formats
+make all-docs
+# or
+./appledocs -mode=all
+
+# Start the GraphQL server
+make gql-server
+# or
+./appledocs-gql
+```
+
 ## Usage
 
 ```
