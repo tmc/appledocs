@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apple Docs API</title>
     <style>
         body {
@@ -11,39 +13,15 @@
             margin: 0 auto;
             padding: 20px;
         }
-        h1 {
+        h1, h2 {
             border-bottom: 1px solid #eee;
             padding-bottom: 10px;
-        }
-        h2 {
-            margin-top: 30px;
-            color: #333;
-        }
-        code {
-            background-color: #f5f5f5;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: monospace;
         }
         pre {
             background-color: #f5f5f5;
             padding: 15px;
             border-radius: 5px;
             overflow-x: auto;
-        }
-        .endpoint {
-            margin-bottom: 40px;
-        }
-        .method {
-            font-weight: bold;
-            color: #008000;
-        }
-        a {
-            color: #0366d6;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
         }
         .btn {
             display: inline-block;
@@ -52,77 +30,77 @@
             color: white;
             border-radius: 4px;
             text-decoration: none;
-            margin-right: 10px;
-            margin-top: 20px;
+            margin: 20px 5px 20px 0;
         }
         .btn:hover {
-            background-color: #0256b9;
+            background-color: #0255b3;
         }
-        .schema {
-            margin-top: 30px;
-        }
-        .schema-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 5px 10px;
+        code {
             background-color: #f5f5f5;
-            border-radius: 4px;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+        .example {
+            margin: 20px 0;
+            border-left: 4px solid #0366d6;
+            padding-left: 16px;
+        }
+        .endpoint {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+        }
+        .endpoint h3 {
+            margin-top: 0;
         }
     </style>
 </head>
 <body>
     <h1>Apple Docs API</h1>
-    <p>This API provides access to the cached Apple documentation.</p>
+    <p>This API provides access to Apple documentation through both REST and GraphQL interfaces.</p>
     
-    <div class="links">
+    <div>
         <a href="/graphql" class="btn">GraphQL Playground</a>
-        <a href="/sandbox" class="btn" style="background-color: #7531f9;">Apollo Sandbox</a>
-        <a href="/schema" class="btn" style="background-color: #2e9c32;">Schema Documentation</a>
+        <a href="/sandbox" class="btn">Apollo Sandbox</a>
+        <a href="/schema" class="btn">GraphQL Schema</a>
     </div>
     
     <h2>REST API Endpoints</h2>
     
     <div class="endpoint">
-        <h3><span class="method">GET</span> /api/document</h3>
-        <p>Retrieve a document by its path.</p>
-        <h4>Parameters:</h4>
-        <ul>
-            <li><code>path</code> - The path to the document (required)</li>
-        </ul>
-        <h4>Example:</h4>
-        <pre>GET /api/document?path=tutorials/data/documentation/swiftui</pre>
+        <h3>Get a document by path</h3>
+        <code>GET /api/document?path=...</code>
+        <p>Retrieve a document by its path relative to the cache directory.</p>
+        <div class="example">
+            Example: <a href="/api/document?path=tutorials/data/documentation/swiftui">/api/document?path=tutorials/data/documentation/swiftui</a>
+        </div>
     </div>
     
     <div class="endpoint">
-        <h3><span class="method">GET</span> /api/search</h3>
-        <p>Search for documents containing a specific query.</p>
-        <h4>Parameters:</h4>
-        <ul>
-            <li><code>q</code> - The search query (required)</li>
-            <li><code>limit</code> - Maximum number of results to return (default: 10)</li>
-        </ul>
-        <h4>Example:</h4>
-        <pre>GET /api/search?q=SwiftUI&limit=5</pre>
+        <h3>Search for documents</h3>
+        <code>GET /api/search?q=...&limit=...</code>
+        <p>Search for documents containing the specified query string. Optionally limit the number of results.</p>
+        <div class="example">
+            Example: <a href="/api/search?q=SwiftUI&limit=5">/api/search?q=SwiftUI&limit=5</a>
+        </div>
     </div>
     
     <div class="endpoint">
-        <h3><span class="method">GET</span> /api/frameworks</h3>
-        <p>Get a list of all available frameworks.</p>
-        <h4>Example:</h4>
-        <pre>GET /api/frameworks</pre>
+        <h3>List all frameworks</h3>
+        <code>GET /api/frameworks</code>
+        <p>Get a list of all frameworks in the documentation.</p>
+        <div class="example">
+            Example: <a href="/api/frameworks">/api/frameworks</a>
+        </div>
     </div>
     
-    <h2>GraphQL Interface</h2>
-    <p>A GraphQL-like interface is available at <a href="/graphql">/graphql</a></p>
+    <h2>GraphQL API</h2>
+    <p>The GraphQL API provides a more flexible way to query documentation data.</p>
+    <p>You can use the GraphQL Playground to explore and test GraphQL queries.</p>
     
-    <div class="schema">
-        <h3>GraphQL Schema</h3>
-        <p>The API supports a rich GraphQL schema with various data types and queries.</p>
-        <a href="/schema" class="schema-link">View schema documentation</a>
-        <a href="/graphql" class="schema-link" style="margin-left: 10px;">Try in GraphQL Playground</a>
-    </div>
-    
-    <p>Example queries:</p>
+    <h3>Example Queries</h3>
     <pre>
 # Get a document by path
 {
@@ -130,13 +108,6 @@
     id
     title
     abstract
-    type
-    framework
-    platforms {
-      name
-      introducedAt
-    }
-    isDeprecated
   }
 }
 
@@ -153,44 +124,19 @@
   }
 }
 
-# Get all frameworks
+# List all frameworks
 {
   frameworks {
     id
     title
     abstract
-    platforms {
-      name
-    }
   }
 }
-
-# Get a specific framework
-{
-  framework(id: "swiftui") {
-    id
-    title
-    abstract
-  }
-}
-
-# Get documents by type
-{
-  documentsByType(type: "class", framework: "swiftui") {
-    id
-    title
-    abstract
-  }
-}
-
-# Get related documents
-{
-  relatedDocuments(path: "tutorials/data/documentation/swiftui", limit: 3) {
-    id
-    title
-    abstract
-  }
-}
-</pre>
+    </pre>
+    
+    <footer style="margin-top: 50px; font-size: 12px; color: #666; text-align: center;">
+        <p>This is an unofficial API for Apple documentation.</p>
+        <p>Part of the <a href="https://github.com/tmc/appledocs" target="_blank">appledocs</a> project.</p>
+    </footer>
 </body>
 </html>

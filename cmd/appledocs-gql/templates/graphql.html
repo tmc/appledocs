@@ -1,379 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Apple Docs GraphQL UI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphiQL - Apple Docs API</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/graphiql@1.0.0/graphiql.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/graphiql@1.0.0/graphiql.min.js"></script>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-        #graphiql {
-            height: calc(100vh - 50px);
-        }
-        .topbar {
-            height: 50px;
-            display: flex;
-            align-items: center;
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        nav {
             background-color: #f5f5f5;
             border-bottom: 1px solid #e0e0e0;
-            padding: 0 16px;
-            font-size: 14px;
+            padding: 10px;
+            display: flex;
+            gap: 20px;
         }
-        .topbar a {
-            color: #0366d6;
+        nav a {
             text-decoration: none;
-            margin-right: 16px;
+            color: #333;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-        .topbar a:hover {
-            text-decoration: underline;
-        }
-        .topbar .title {
-            font-weight: bold;
-            font-size: 18px;
-            margin-right: 24px;
+        #graphiql { 
+            height: calc(100vh - 41px);
         }
     </style>
 </head>
 <body>
-    <div class="topbar">
-        <span class="title">Apple Docs GraphQL Explorer</span>
-        <a href="/">API Home</a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/graphql">GraphiQL</a>
         <a href="/sandbox">Apollo Sandbox</a>
-        <a href="/api/frameworks">Frameworks</a>
-        <a href="/enhanced-schema" target="_blank">Enhanced Schema</a>
-        <a href="https://github.com/tmc/appledocs" target="_blank">GitHub</a>
-    </div>
+        <a href="/schema">Schema</a>
+    </nav>
     <div id="graphiql">Loading GraphiQL...</div>
     <script>
-        // Default query to display when the explorer loads
-        const defaultQuery = `# Welcome to the Apple Docs GraphQL Explorer!
-# Here are some example queries to get you started:
-
-# Get a document by path
-{
-  document(path: "tutorials/data/documentation/swiftui") {
-    id
-    title
-    abstract
-    type
-  }
-}
-
-# Search for documents
-# {
-#   search(query: "SwiftUI", limit: 5) {
-#     documents {
-#       id
-#       title
-#       abstract
-#     }
-#     count
-#     query
-#   }
-# }
-
-# List all frameworks
-# {
-#   frameworks {
-#     id
-#     title
-#     abstract
-#   }
-# }
-
-# Get a specific framework
-# {
-#   framework(id: "swiftui") {
-#     id
-#     title
-#     abstract
-#     platforms {
-#       name
-#       introducedAt
-#     }
-#   }
-# }
-
-# Get documents by type
-# {
-#   documentsByType(type: "class", framework: "swiftui") {
-#     id
-#     title
-#     abstract
-#   }
-# }
-
-# Get documents by platform
-# {
-#   documentsByPlatform(platform: "ios", framework: "swiftui") {
-#     id
-#     title
-#     abstract
-#   }
-# }
-
-# Get related documents
-# {
-#   relatedDocuments(path: "tutorials/data/documentation/swiftui", limit: 3) {
-#     id
-#     title
-#     abstract
-#   }
-# }
-`;
-
-        // Converts REST API to GraphQL-like interface
-        function graphQLFetcher(graphQLParams) {
-            const { query, variables } = graphQLParams;
-            
-            // Parse the GraphQL query
-            if (query.includes('document(path:')) {
-                const pathMatch = query.match(/document\(path:\s*"([^"]+)"\)/);
-                if (pathMatch && pathMatch[1]) {
-                    return fetch('/api/document?path=' + encodeURIComponent(pathMatch[1]))
-                        .then(response => response.json())
-                        .then(data => {
-                            // Extract platforms if available
-                            let platforms = [];
-                            if (data.metadata && data.metadata.platforms) {
-                                platforms = data.metadata.platforms.map(p => ({
-                                    name: p.name || p,
-                                    introducedAt: p.introducedAt || null,
-                                    deprecatedAt: p.deprecatedAt || null
-                                }));
-                            }
-                            
-                            // Extract sections if available
-                            let sections = [];
-                            if (data.content && data.content.primaryContentSections) {
-                                sections = data.content.primaryContentSections.map(s => ({
-                                    title: s.title || "",
-                                    kind: s.kind || "",
-                                    content: s.content || ""
-                                }));
-                            }
-                            
-                            // Extract framework info
-                            let framework = null;
-                            if (data.metadata && data.metadata.frameworks && data.metadata.frameworks.length > 0) {
-                                framework = data.metadata.frameworks[0];
-                            }
-                            
-                            // Extract document type
-                            let type = null;
-                            if (data.metadata && data.metadata.roleHeading) {
-                                type = data.metadata.roleHeading;
-                            }
-                            
-                            // Check if deprecated
-                            let isDeprecated = false;
-                            if (data.metadata && data.metadata.deprecated) {
-                                isDeprecated = true;
-                            }
-                            
-                            const enhancedData = {
-                                ...data,
-                                framework,
-                                type,
-                                isDeprecated,
-                                platforms,
-                                sections
-                            };
-                            
-                            return { data: { document: enhancedData } };
-                        });
-                }
-            }
-            
-            if (query.includes('search(query:')) {
-                const queryMatch = query.match(/search\(query:\s*"([^"]+)"/);
-                const limitMatch = query.match(/limit:\s*(\d+)/);
-                
-                if (queryMatch && queryMatch[1]) {
-                    let url = '/api/search?q=' + encodeURIComponent(queryMatch[1]);
-                    if (limitMatch && limitMatch[1]) {
-                        url += '&limit=' + limitMatch[1];
-                    }
-                    
-                    return fetch(url)
-                        .then(response => response.json())
-                        .then(data => {
-                            return { 
-                                data: { 
-                                    search: {
-                                        documents: data.results,
-                                        count: data.count,
-                                        query: data.query
-                                    } 
-                                } 
-                            };
-                        });
-                }
-            }
-            
-            if (query.includes('frameworks')) {
-                return fetch('/api/frameworks')
-                    .then(response => response.json())
-                    .then(data => {
-                        // Transform frameworks data to match the schema
-                        const enhancedFrameworks = data.map(f => {
-                            // Extract platforms if available
-                            let platforms = [];
-                            if (f.metadata && f.metadata.platforms) {
-                                platforms = f.metadata.platforms.map(p => ({
-                                    name: p.name || p,
-                                    introducedAt: p.introducedAt || null,
-                                    deprecatedAt: p.deprecatedAt || null
-                                }));
-                            }
-                            
-                            return {
-                                ...f,
-                                platforms
-                            };
-                        });
-                        
-                        return { data: { frameworks: enhancedFrameworks } };
-                    });
-            }
-            
-            if (query.includes('framework(id:')) {
-                const idMatch = query.match(/framework\(id:\s*"([^"]+)"\)/);
-                if (idMatch && idMatch[1]) {
-                    return fetch('/api/frameworks')
-                        .then(response => response.json())
-                        .then(frameworks => {
-                            const framework = frameworks.find(f => 
-                                f.id === idMatch[1] || 
-                                f.path.toLowerCase().includes(idMatch[1].toLowerCase())
-                            );
-                            
-                            if (!framework) {
-                                return { data: { framework: null } };
-                            }
-                            
-                            // Extract platforms if available
-                            let platforms = [];
-                            if (framework.metadata && framework.metadata.platforms) {
-                                platforms = framework.metadata.platforms.map(p => ({
-                                    name: p.name || p,
-                                    introducedAt: p.introducedAt || null,
-                                    deprecatedAt: p.deprecatedAt || null
-                                }));
-                            }
-                            
-                            const enhancedFramework = {
-                                ...framework,
-                                platforms
-                            };
-                            
-                            return { data: { framework: enhancedFramework } };
-                        });
-                }
-            }
-            
-            // For documentsByType, documentsByPlatform, and relatedDocuments queries,
-            // we currently don't have specific endpoints but we can provide mock responses
-            // or implement simplified versions based on existing data
-            
-            if (query.includes('documentsByType')) {
-                const typeMatch = query.match(/documentsByType\(type:\s*"([^"]+)"/);
-                const frameworkMatch = query.match(/framework:\s*"([^"]+)"/);
-                
-                if (typeMatch && typeMatch[1]) {
-                    return fetch('/api/search?q=' + encodeURIComponent(typeMatch[1]) + '&limit=10')
-                        .then(response => response.json())
-                        .then(data => {
-                            let results = data.results;
-                            
-                            // Filter by framework if specified
-                            if (frameworkMatch && frameworkMatch[1] && results.length > 0) {
-                                results = results.filter(doc => 
-                                    doc.path.toLowerCase().includes(frameworkMatch[1].toLowerCase())
-                                );
-                            }
-                            
-                            return { data: { documentsByType: results } };
-                        });
-                }
-            }
-            
-            if (query.includes('documentsByPlatform')) {
-                const platformMatch = query.match(/documentsByPlatform\(platform:\s*"([^"]+)"/);
-                const frameworkMatch = query.match(/framework:\s*"([^"]+)"/);
-                
-                if (platformMatch && platformMatch[1]) {
-                    return fetch('/api/search?q=' + encodeURIComponent(platformMatch[1]) + '&limit=10')
-                        .then(response => response.json())
-                        .then(data => {
-                            let results = data.results;
-                            
-                            // Filter by framework if specified
-                            if (frameworkMatch && frameworkMatch[1] && results.length > 0) {
-                                results = results.filter(doc => 
-                                    doc.path.toLowerCase().includes(frameworkMatch[1].toLowerCase())
-                                );
-                            }
-                            
-                            return { data: { documentsByPlatform: results } };
-                        });
-                }
-            }
-            
-            if (query.includes('relatedDocuments')) {
-                const pathMatch = query.match(/relatedDocuments\(path:\s*"([^"]+)"/);
-                const limitMatch = query.match(/limit:\s*(\d+)/);
-                
-                if (pathMatch && pathMatch[1]) {
-                    let limit = 5;
-                    if (limitMatch && limitMatch[1]) {
-                        limit = parseInt(limitMatch[1]);
-                    }
-                    
-                    return fetch('/api/document?path=' + encodeURIComponent(pathMatch[1]))
-                        .then(response => response.json())
-                        .then(doc => {
-                            // Extract framework or category from the document path
-                            const pathParts = doc.path.split('/');
-                            let searchTerm = '';
-                            
-                            if (pathParts.length > 0) {
-                                searchTerm = pathParts[pathParts.length - 1];
-                            }
-                            
-                            // Use extracted term to search for related documents
-                            return fetch('/api/search?q=' + encodeURIComponent(searchTerm) + '&limit=' + limit)
-                                .then(response => response.json())
-                                .then(data => {
-                                    // Filter out the original document from results
-                                    const relatedDocs = data.results.filter(d => d.id !== doc.id);
-                                    return { data: { relatedDocuments: relatedDocs } };
-                                });
-                        });
-                }
-            }
-            
-            return Promise.resolve({ 
-                errors: [{ 
-                    message: 'Unsupported query. Please refer to the schema for supported queries.' 
-                }] 
-            });
+        function graphQLFetcher(params) {
+            return fetch('/graphql', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(params)
+            }).then(response => response.json());
         }
-        
-        // Initialize GraphiQL with the default query
         ReactDOM.render(
-            React.createElement(GraphiQL, { 
-                fetcher: graphQLFetcher,
-                defaultQuery: defaultQuery
-            }),
+            React.createElement(GraphiQL, { fetcher: graphQLFetcher }),
             document.getElementById('graphiql')
         );
     </script>

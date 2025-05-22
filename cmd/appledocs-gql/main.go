@@ -55,22 +55,22 @@ func NewDocumentService(cacheDir string) *DocumentService {
 // GetDocumentByPath retrieves a document by its path
 func (s *DocumentService) GetDocumentByPath(path string) (*Document, error) {
 	fullPath := filepath.Join(s.cacheDir, path)
-	
+
 	// If the path doesn't end with .json, append it
 	if !strings.HasSuffix(fullPath, ".json") {
 		fullPath += ".json"
 	}
-	
+
 	data, err := os.ReadFile(fullPath)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var content map[string]interface{}
 	if err := json.Unmarshal(data, &content); err != nil {
 		return nil, err
 	}
-	
+
 	// Extract title and abstract from metadata if available
 	var title, abstract string
 	if metadata, ok := content["metadata"].(map[string]interface{}); ok {
@@ -78,7 +78,7 @@ func (s *DocumentService) GetDocumentByPath(path string) (*Document, error) {
 			title = t
 		}
 	}
-	
+
 	if sections, ok := content["abstract"].(map[string]interface{}); ok {
 		if contentArr, ok := sections["content"].([]interface{}); ok && len(contentArr) > 0 {
 			if text, ok := contentArr[0].(map[string]interface{}); ok {
@@ -88,7 +88,7 @@ func (s *DocumentService) GetDocumentByPath(path string) (*Document, error) {
 			}
 		}
 	}
-	
+
 	// Create document object
 	doc := &Document{
 		ID:       path,
@@ -96,15 +96,15 @@ func (s *DocumentService) GetDocumentByPath(path string) (*Document, error) {
 		Title:    title,
 		Abstract: abstract,
 	}
-	
+
 	// Add metadata if available
 	if metadata, ok := content["metadata"].(map[string]interface{}); ok {
 		doc.Metadata = metadata
 	}
-	
+
 	// Add full content
 	doc.Content = content
-	
+
 	return doc, nil
 }
 
@@ -112,76 +112,76 @@ func (s *DocumentService) GetDocumentByPath(path string) (*Document, error) {
 func (s *DocumentService) SearchDocuments(query string, limit int) ([]*Document, error) {
 	results := []*Document{}
 	query = strings.ToLower(query)
-	
+
 	// Simple file search for now, can be improved later
 	err := filepath.Walk(s.cacheDir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
-		
+
 		if info.IsDir() || !strings.HasSuffix(path, ".json") {
 			return nil
 		}
-		
+
 		// Read the file and check if it contains the query
 		data, err := os.ReadFile(path)
 		if err != nil {
 			return nil // Skip files we can't read
 		}
-		
+
 		if strings.Contains(strings.ToLower(string(data)), query) {
 			relativePath, err := filepath.Rel(s.cacheDir, path)
 			if err != nil {
 				return nil
 			}
-			
+
 			doc, err := s.GetDocumentByPath(relativePath)
 			if err != nil {
 				return nil
 			}
-			
+
 			results = append(results, doc)
-			
+
 			if limit > 0 && len(results) >= limit {
 				return filepath.SkipAll
 			}
 		}
-		
+
 		return nil
 	})
-	
+
 	return results, err
 }
 
 // GetFrameworks retrieves top-level frameworks
 func (s *DocumentService) GetFrameworks() ([]*Document, error) {
 	techPath := filepath.Join(s.cacheDir, "tutorials", "data", "documentation", "technologies.json")
-	
+
 	data, err := os.ReadFile(techPath)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var content map[string]interface{}
 	if err := json.Unmarshal(data, &content); err != nil {
 		return nil, err
 	}
-	
+
 	frameworks := []*Document{}
-	
+
 	if technologies, ok := content["technologies"].([]interface{}); ok {
 		for _, tech := range technologies {
 			if t, ok := tech.(map[string]interface{}); ok {
 				id, _ := t["identifier"].(string)
 				path, _ := t["path"].(string)
 				title, _ := t["title"].(string)
-				
+
 				framework := &Document{
 					ID:    id,
 					Path:  path,
 					Title: title,
 				}
-				
+
 				if abstract, ok := t["abstract"].(map[string]interface{}); ok {
 					if content, ok := abstract["content"].([]interface{}); ok && len(content) > 0 {
 						if text, ok := content[0].(map[string]interface{}); ok {
@@ -191,12 +191,12 @@ func (s *DocumentService) GetFrameworks() ([]*Document, error) {
 						}
 					}
 				}
-				
+
 				frameworks = append(frameworks, framework)
 			}
 		}
 	}
-	
+
 	return frameworks, nil
 }
 
@@ -219,7 +219,7 @@ func (s *Server) handleDocument(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-	
+
 	// Get the path parameter
 	path := r.URL.Query().Get("path")
 	if path == "" {
@@ -228,7 +228,7 @@ func (s *Server) handleDocument(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(ErrorResponse{Error: "Missing path parameter"})
 		return
 	}
-	
+
 	// Get the document
 	doc, err := s.documentService.GetDocumentByPath(path)
 	if err != nil {
@@ -237,7 +237,7 @@ func (s *Server) handleDocument(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(ErrorResponse{Error: fmt.Sprintf("Document not found: %v", err)})
 		return
 	}
-	
+
 	// Return the document as JSON
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(doc)
@@ -250,7 +250,7 @@ func (s *Server) handleSearch(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-	
+
 	// Get the query parameter
 	query := r.URL.Query().Get("q")
 	if query == "" {
@@ -259,7 +259,7 @@ func (s *Server) handleSearch(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(ErrorResponse{Error: "Missing query parameter"})
 		return
 	}
-	
+
 	// Get the limit parameter
 	limitStr := r.URL.Query().Get("limit")
 	limit := 10 // Default limit
@@ -269,7 +269,7 @@ func (s *Server) handleSearch(w http.ResponseWriter, r *http.Request) {
 			limit = parsedLimit
 		}
 	}
-	
+
 	// Perform the search
 	results, err := s.documentService.SearchDocuments(query, limit)
 	if err != nil {
@@ -278,7 +278,7 @@ func (s *Server) handleSearch(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(ErrorResponse{Error: fmt.Sprintf("Search failed: %v", err)})
 		return
 	}
-	
+
 	// Return the results as JSON
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(SearchResponse{
@@ -296,7 +296,7 @@ func (s *Server) handleFrameworks(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-	
+
 	// Get all frameworks
 	frameworks, err := s.documentService.GetFrameworks()
 	if err != nil {
@@ -305,7 +305,7 @@ func (s *Server) handleFrameworks(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(ErrorResponse{Error: fmt.Sprintf("Failed to get frameworks: %v", err)})
 		return
 	}
-	
+
 	// Return the frameworks as JSON
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(frameworks)
@@ -318,7 +318,7 @@ func (s *Server) handleGraphQL(w http.ResponseWriter, r *http.Request) {
 		s.processGraphQLQuery(w, r)
 		return
 	}
-	
+
 	// For GET requests, serve the GraphiQL interface
 	htmlContent, err := templateFS.ReadFile("templates/graphql.html")
 	if err != nil {
@@ -378,7 +378,7 @@ func (s *Server) handleGraphQL(w http.ResponseWriter, r *http.Request) {
 </html>`
 		htmlContent = []byte(html)
 	}
-	
+
 	w.Header().Set("Content-Type", "text/html")
 	w.Write(htmlContent)
 }
@@ -389,7 +389,7 @@ func (s *Server) handleHome(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	
+
 	// Read template from embedded filesystem
 	htmlContent, err := templateFS.ReadFile("templates/home.html")
 	if err != nil {
@@ -445,7 +445,7 @@ func (s *Server) handleHome(w http.ResponseWriter, r *http.Request) {
 </html>`
 		htmlContent = []byte(html)
 	}
-	
+
 	w.Header().Set("Content-Type", "text/html")
 	w.Write(htmlContent)
 }
@@ -508,18 +508,18 @@ func (s *Server) handleSchema(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		// If that fails, serve the raw schema GraphQL file
 		schemaContent, schemaErr := os.ReadFile("enhanced-schema.graphql")
-		
+
 		if schemaErr == nil {
 			w.Header().Set("Content-Type", "text/plain")
 			w.Write(schemaContent)
 			return
 		}
-		
+
 		// If all else fails, return a 404
 		http.NotFound(w, r)
 		return
 	}
-	
+
 	w.Header().Set("Content-Type", "text/html")
 	w.Write(htmlContent)
 }
@@ -528,7 +528,7 @@ func (s *Server) handleSchema(w http.ResponseWriter, r *http.Request) {
 func (s *Server) processGraphQLQuery(w http.ResponseWriter, r *http.Request) {
 	// Set JSON content type for all responses
 	w.Header().Set("Content-Type", "application/json")
-	
+
 	// Parse the request body
 	var params map[string]interface{}
 	if err := json.NewDecoder(r.Body).Decode(&params); err != nil {
@@ -539,7 +539,7 @@ func (s *Server) processGraphQLQuery(w http.ResponseWriter, r *http.Request) {
 		})
 		return
 	}
-	
+
 	// Extract the query
 	query, ok := params["query"].(string)
 	if !ok {
@@ -550,29 +550,29 @@ func (s *Server) processGraphQLQuery(w http.ResponseWriter, r *http.Request) {
 		})
 		return
 	}
-	
+
 	// Handle introspection queries
 	if strings.Contains(query, "__schema") || strings.Contains(query, "__type") {
 		s.handleIntrospection(w, query, params)
 		return
 	}
-	
+
 	// Handle regular queries
 	if strings.Contains(query, "document(path:") {
 		s.handleDocumentQuery(w, query, params)
 		return
 	}
-	
+
 	if strings.Contains(query, "search(query:") {
 		s.handleSearchQuery(w, query, params)
 		return
 	}
-	
+
 	if strings.Contains(query, "frameworks") {
 		s.handleFrameworksQuery(w, query, params)
 		return
 	}
-	
+
 	// Unsupported query
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"errors": []map[string]interface{}{
@@ -593,7 +593,7 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 		})
 		return
 	}
-	
+
 	// Handle __schema query
 	if strings.Contains(query, "__schema") {
 		// Build a basic schema response
@@ -601,19 +601,19 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 			"name": "Query",
 			"kind": "OBJECT",
 		}
-		
+
 		types := []map[string]interface{}{
 			{
-				"name": "Query",
-				"kind": "OBJECT",
+				"name":        "Query",
+				"kind":        "OBJECT",
 				"description": "Root query type",
 				"fields": []map[string]interface{}{
 					{
-						"name": "document",
+						"name":        "document",
 						"description": "Get a document by its path",
 						"args": []map[string]interface{}{
 							{
-								"name": "path",
+								"name":        "path",
 								"description": "Path to the document",
 								"type": map[string]interface{}{
 									"kind": "NON_NULL",
@@ -630,11 +630,11 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 						},
 					},
 					{
-						"name": "search",
+						"name":        "search",
 						"description": "Search for documents",
 						"args": []map[string]interface{}{
 							{
-								"name": "query",
+								"name":        "query",
 								"description": "Search query",
 								"type": map[string]interface{}{
 									"kind": "NON_NULL",
@@ -645,7 +645,7 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 								},
 							},
 							{
-								"name": "limit",
+								"name":        "limit",
 								"description": "Maximum number of results",
 								"type": map[string]interface{}{
 									"kind": "SCALAR",
@@ -659,9 +659,9 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 						},
 					},
 					{
-						"name": "frameworks",
+						"name":        "frameworks",
 						"description": "List all frameworks",
-						"args": []map[string]interface{}{},
+						"args":        []map[string]interface{}{},
 						"type": map[string]interface{}{
 							"kind": "NON_NULL",
 							"ofType": map[string]interface{}{
@@ -679,8 +679,8 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 				},
 			},
 			{
-				"name": "Document",
-				"kind": "OBJECT",
+				"name":        "Document",
+				"kind":        "OBJECT",
 				"description": "Apple documentation item",
 				"fields": []map[string]interface{}{
 					{
@@ -720,8 +720,8 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 				},
 			},
 			{
-				"name": "SearchResult",
-				"kind": "OBJECT",
+				"name":        "SearchResult",
+				"kind":        "OBJECT",
 				"description": "Search result",
 				"fields": []map[string]interface{}{
 					{
@@ -763,8 +763,8 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 				},
 			},
 			{
-				"name": "Framework",
-				"kind": "OBJECT",
+				"name":        "Framework",
+				"kind":        "OBJECT",
 				"description": "Framework information",
 				"fields": []map[string]interface{}{
 					{
@@ -807,7 +807,7 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 				},
 			},
 		}
-		
+
 		// Add scalar types
 		for _, name := range []string{"String", "Int", "Float", "Boolean", "ID", "JSON"} {
 			types = append(types, map[string]interface{}{
@@ -815,7 +815,7 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 				"kind": "SCALAR",
 			})
 		}
-		
+
 		schemaResponse := map[string]interface{}{
 			"queryType": queryType,
 			"types":     types,
@@ -859,7 +859,7 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 			},
 			"mutationType": nil,
 		}
-		
+
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"data": map[string]interface{}{
 				"__schema": schemaResponse,
@@ -867,7 +867,7 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 		})
 		return
 	}
-	
+
 	// Handle __type query
 	if strings.Contains(query, "__type") {
 		// Extract type name
@@ -880,10 +880,10 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 			})
 			return
 		}
-		
+
 		typeName := typeNameMatch[1]
 		typeInfo := map[string]interface{}{}
-		
+
 		// Basic type info for common types
 		switch typeName {
 		case "Query":
@@ -893,11 +893,11 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 				"description": "Root query type",
 				"fields": []map[string]interface{}{
 					{
-						"name": "document",
+						"name":        "document",
 						"description": "Get a document by its path",
 						"args": []map[string]interface{}{
 							{
-								"name": "path",
+								"name":        "path",
 								"description": "Path to the document",
 								"type": map[string]interface{}{
 									"kind": "NON_NULL",
@@ -914,11 +914,11 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 						},
 					},
 					{
-						"name": "search",
+						"name":        "search",
 						"description": "Search for documents",
 						"args": []map[string]interface{}{
 							{
-								"name": "query",
+								"name":        "query",
 								"description": "Search query",
 								"type": map[string]interface{}{
 									"kind": "NON_NULL",
@@ -929,7 +929,7 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 								},
 							},
 							{
-								"name": "limit",
+								"name":        "limit",
 								"description": "Maximum number of results",
 								"type": map[string]interface{}{
 									"kind": "SCALAR",
@@ -943,9 +943,9 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 						},
 					},
 					{
-						"name": "frameworks",
+						"name":        "frameworks",
 						"description": "List all frameworks",
-						"args": []map[string]interface{}{},
+						"args":        []map[string]interface{}{},
 						"type": map[string]interface{}{
 							"kind": "NON_NULL",
 							"ofType": map[string]interface{}{
@@ -1057,7 +1057,7 @@ func (s *Server) handleIntrospection(w http.ResponseWriter, query string, params
 			// Return null for unknown types
 			typeInfo = nil
 		}
-		
+
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"data": map[string]interface{}{
 				"__type": typeInfo,
@@ -1079,9 +1079,9 @@ func (s *Server) handleDocumentQuery(w http.ResponseWriter, query string, params
 		})
 		return
 	}
-	
+
 	path := pathMatch[1]
-	
+
 	// Get the document
 	doc, err := s.documentService.GetDocumentByPath(path)
 	if err != nil {
@@ -1092,7 +1092,7 @@ func (s *Server) handleDocumentQuery(w http.ResponseWriter, query string, params
 		})
 		return
 	}
-	
+
 	// Return the document
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"data": map[string]interface{}{
@@ -1113,9 +1113,9 @@ func (s *Server) handleSearchQuery(w http.ResponseWriter, query string, params m
 		})
 		return
 	}
-	
+
 	searchQuery := queryMatch[1]
-	
+
 	// Extract limit if provided
 	limit := 10 // Default
 	limitMatch := regexp.MustCompile(`limit:\s*(\d+)`).FindStringSubmatch(query)
@@ -1125,7 +1125,7 @@ func (s *Server) handleSearchQuery(w http.ResponseWriter, query string, params m
 			limit = parsedLimit
 		}
 	}
-	
+
 	// Perform the search
 	results, err := s.documentService.SearchDocuments(searchQuery, limit)
 	if err != nil {
@@ -1136,7 +1136,7 @@ func (s *Server) handleSearchQuery(w http.ResponseWriter, query string, params m
 		})
 		return
 	}
-	
+
 	// Return the search results
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"data": map[string]interface{}{
@@ -1161,7 +1161,7 @@ func (s *Server) handleFrameworksQuery(w http.ResponseWriter, query string, para
 		})
 		return
 	}
-	
+
 	// Return the frameworks
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"data": map[string]interface{}{
@@ -1175,10 +1175,10 @@ func main() {
 	port := flag.String("port", "8080", "HTTP server port")
 	cacheDir := flag.String("cache", ".cache", "Directory containing cached documentation")
 	flag.Parse()
-	
+
 	// Create server
 	server := NewServer(*cacheDir)
-	
+
 	// Set up routes
 	http.HandleFunc("/", server.handleHome)
 	http.HandleFunc("/api/document", server.handleDocument)
@@ -1187,7 +1187,7 @@ func main() {
 	http.HandleFunc("/graphql", server.handleGraphQL)
 	http.HandleFunc("/sandbox", server.handleSandbox)
 	http.HandleFunc("/schema", server.handleSchema)
-	
+
 	// Start server
 	log.Printf("Apple Docs API server started. Connect to http://localhost:%s/ for documentation", *port)
 	log.Printf("GraphQL Playground: http://localhost:%s/graphql", *port)
