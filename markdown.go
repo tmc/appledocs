@@ -300,38 +300,61 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 
 	fmt.Fprintf(w, "# %s\n\n", title)
 
-	// Write metadata
+	// Write breadcrumb navigation if hierarchy exists
+	if len(doc.Hierarchy.Paths) > 0 && len(doc.Hierarchy.Paths[0]) > 1 {
+		fmt.Fprintf(w, "**Navigation:** ")
+		path := doc.Hierarchy.Paths[0]
+		for i, component := range path {
+			if i > 0 {
+				fmt.Fprintf(w, " › ")
+			}
+			// Convert component to a more readable format
+			readable := strings.ReplaceAll(component, "_", " ")
+			readable = strings.Title(readable)
+			fmt.Fprintf(w, "%s", readable)
+		}
+		fmt.Fprintf(w, "\n\n")
+	}
+
+	// Write metadata with enhanced styling
 	// Only include metadata section if we have actual metadata to show
 	hasMetadata := doc.Metadata.RoleHeading != "" || len(doc.Metadata.Modules) > 0 || len(doc.Metadata.Platforms) > 0
 
 	if hasMetadata {
-		fmt.Fprintf(w, "## Metadata\n\n")
+		fmt.Fprintf(w, "---\n\n")
 
 		if doc.Metadata.RoleHeading != "" {
-			fmt.Fprintf(w, "**Type:** %s\n\n", doc.Metadata.RoleHeading)
+			fmt.Fprintf(w, "**Type:** `%s`\n\n", doc.Metadata.RoleHeading)
 		}
 
 		if len(doc.Metadata.Modules) > 0 {
 			modules := make([]string, 0, len(doc.Metadata.Modules))
 			for _, module := range doc.Metadata.Modules {
-				modules = append(modules, module.Name)
+				modules = append(modules, fmt.Sprintf("`%s`", module.Name))
 			}
 			fmt.Fprintf(w, "**Framework:** %s\n\n", strings.Join(modules, ", "))
 		}
 
 		if len(doc.Metadata.Platforms) > 0 {
-			fmt.Fprintf(w, "**Platforms:**\n\n")
+			fmt.Fprintf(w, "**Platform Availability:**\n\n")
 			for _, platform := range doc.Metadata.Platforms {
 				status := ""
+				badge := ""
 				if platform.Deprecated {
 					status = " (Deprecated)"
+					badge = " ⚠️"
 				} else if platform.Beta {
 					status = " (Beta)"
+					badge = " 🧪"
+				} else {
+					badge = " ✅"
 				}
-				fmt.Fprintf(w, "- %s %s%s\n", platform.Name, platform.IntroducedAt, status)
+				fmt.Fprintf(w, "- %s%s **%s**%s\n", badge, platform.Name, platform.IntroducedAt, status)
 			}
 			fmt.Fprintf(w, "\n")
 		}
+
+		fmt.Fprintf(w, "---\n\n")
 	}
 
 	// Write abstract
@@ -349,21 +372,40 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 		if section.Kind == "declarations" && len(section.Declarations) > 0 {
 			fmt.Fprintf(w, "## Declaration\n\n")
 
-			for _, decl := range section.Declarations {
+			for i, decl := range section.Declarations {
 				// Determine language for code block
 				language := "swift"
+				languageDisplay := "Swift"
 				if len(decl.Languages) > 0 {
 					// Use first language in list
-					language = strings.ToLower(decl.Languages[0])
-					// Map common language names to markdown code block identifiers
+					originalLang := decl.Languages[0]
+					language = strings.ToLower(originalLang)
+					languageDisplay = originalLang
+					
+					// Map common language names to markdown code block identifiers and display names
 					switch language {
+					case "swift":
+						languageDisplay = "Swift"
 					case "objective-c":
 						language = "objectivec"
+						languageDisplay = "Objective-C"
 					case "objective-c++":
 						language = "objectivec"
+						languageDisplay = "Objective-C++"
 					case "c++":
 						language = "cpp"
+						languageDisplay = "C++"
+					default:
+						// Capitalize first letter for display
+						if len(originalLang) > 0 {
+							languageDisplay = strings.Title(strings.ToLower(originalLang))
+						}
 					}
+				}
+
+				// Add language heading for multi-language declarations
+				if len(section.Declarations) > 1 {
+					fmt.Fprintf(w, "### %s\n\n", languageDisplay)
 				}
 
 				fmt.Fprintf(w, "```%s\n", language)
@@ -373,6 +415,16 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 					fmt.Fprintf(w, "%s", token.Text)
 				}
 				fmt.Fprintf(w, "\n```\n\n")
+
+				// Add platform information if available
+				if len(decl.Platforms) > 0 {
+					fmt.Fprintf(w, "*Available on:* %s\n\n", strings.Join(decl.Platforms, ", "))
+				}
+
+				// Add separator between declarations if there are multiple
+				if i < len(section.Declarations)-1 {
+					fmt.Fprintf(w, "---\n\n")
+				}
 			}
 		}
 	}
@@ -394,31 +446,62 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 		for _, section := range doc.TopicSections {
 			fmt.Fprintf(w, "### %s\n\n", section.Title)
 
+			// Group items by type for better organization
+			itemsByType := make(map[string][]Reference)
+			ungroupedItems := []Reference{}
+
 			for _, id := range section.Identifiers {
 				if ref, ok := doc.References[id]; ok {
-					// Get abstract if available
-					abstract := ""
-					if len(ref.Abstract) > 0 && len(ref.Abstract[0].Text) > 0 {
-						// Truncate long abstracts for better readability
-						if len(ref.Abstract[0].Text) > 100 {
-							abstract = ref.Abstract[0].Text[:97] + "..."
-						} else {
-							abstract = ref.Abstract[0].Text
-						}
-					}
-
-					// Format URL for markdown compatibility
-					url := formatURL(ref.URL)
-
-					if abstract != "" {
-						fmt.Fprintf(w, "- [%s](%s) - %s\n", ref.Title, url, abstract)
+					if ref.Role != "" {
+						itemsByType[ref.Role] = append(itemsByType[ref.Role], ref)
 					} else {
-						fmt.Fprintf(w, "- [%s](%s)\n", ref.Title, url)
+						ungroupedItems = append(ungroupedItems, ref)
 					}
 				}
 			}
 
-			fmt.Fprintf(w, "\n")
+			// Write grouped items
+			typeOrder := []string{"class", "protocol", "struct", "enum", "function", "method", "property", "type", "symbol"}
+			for _, itemType := range typeOrder {
+				if items, exists := itemsByType[itemType]; exists {
+					if len(itemsByType) > 1 {
+						fmt.Fprintf(w, "#### %ss\n\n", strings.Title(itemType))
+					}
+					for _, ref := range items {
+						writeTopicReference(w, ref)
+					}
+					fmt.Fprintf(w, "\n")
+				}
+			}
+
+			// Write any remaining types not in our predefined order
+			for itemType, items := range itemsByType {
+				found := false
+				for _, knownType := range typeOrder {
+					if itemType == knownType {
+						found = true
+						break
+					}
+				}
+				if !found && len(items) > 0 {
+					if len(itemsByType) > 1 {
+						fmt.Fprintf(w, "#### %ss\n\n", strings.Title(itemType))
+					}
+					for _, ref := range items {
+						writeTopicReference(w, ref)
+					}
+					fmt.Fprintf(w, "\n")
+				}
+			}
+
+			// Write ungrouped items
+			for _, ref := range ungroupedItems {
+				writeTopicReference(w, ref)
+			}
+
+			if len(ungroupedItems) > 0 {
+				fmt.Fprintf(w, "\n")
+			}
 		}
 	}
 
@@ -477,6 +560,60 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 	}
 
 	return nil
+}
+
+// writeTopicReference writes a single topic reference with enhanced formatting
+func writeTopicReference(w io.Writer, ref Reference) {
+	// Get abstract if available
+	abstract := ""
+	if len(ref.Abstract) > 0 && len(ref.Abstract[0].Text) > 0 {
+		// Truncate long abstracts for better readability
+		if len(ref.Abstract[0].Text) > 120 {
+			abstract = ref.Abstract[0].Text[:117] + "..."
+		} else {
+			abstract = ref.Abstract[0].Text
+		}
+	}
+
+	// Format URL for markdown compatibility
+	url := formatURL(ref.URL)
+
+	// Add type indicator
+	typeIndicator := ""
+	if ref.Role != "" {
+		switch ref.Role {
+		case "class":
+			typeIndicator = " 🏛️"
+		case "protocol":
+			typeIndicator = " 📋"
+		case "struct":
+			typeIndicator = " 🧱"
+		case "enum":
+			typeIndicator = " 📝"
+		case "function":
+			typeIndicator = " ⚡"
+		case "method":
+			typeIndicator = " 🔧"
+		case "property":
+			typeIndicator = " 📊"
+		case "type":
+			typeIndicator = " 🏷️"
+		default:
+			typeIndicator = " 🔗"
+		}
+	}
+
+	// Add beta indicator
+	betaIndicator := ""
+	if ref.Beta {
+		betaIndicator = " 🧪"
+	}
+
+	if abstract != "" {
+		fmt.Fprintf(w, "- **[%s](%s)**%s%s  \n  %s\n", ref.Title, url, typeIndicator, betaIndicator, abstract)
+	} else {
+		fmt.Fprintf(w, "- **[%s](%s)**%s%s\n", ref.Title, url, typeIndicator, betaIndicator)
+	}
 }
 
 // formatURL ensures URLs are properly formatted for markdown links
