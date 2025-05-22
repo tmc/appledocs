@@ -278,7 +278,7 @@ func convertJSONToMarkdown(jsonPath, mdPath string) error {
 
 // writeMarkdownContent writes the Markdown content to a file
 func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
-	// Write title
+	// Write title with enhanced formatting
 	title := doc.Metadata.Title
 	if title == "" {
 		// Try to find title in abstract
@@ -298,7 +298,28 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 		}
 	}
 
-	fmt.Fprintf(w, "# %s\n\n", title)
+	// Add role indicator to title for enhanced clarity
+	roleIndicator := ""
+	switch doc.Metadata.Role {
+	case "framework":
+		roleIndicator = " Framework"
+	case "class":
+		roleIndicator = " Class"
+	case "protocol":
+		roleIndicator = " Protocol"
+	case "struct":
+		roleIndicator = " Structure"
+	case "enum":
+		roleIndicator = " Enumeration"
+	case "function":
+		roleIndicator = " Function"
+	case "method":
+		roleIndicator = " Method"
+	case "property":
+		roleIndicator = " Property"
+	}
+
+	fmt.Fprintf(w, "# %s%s\n\n", title, roleIndicator)
 
 	// Write breadcrumb navigation if hierarchy exists
 	if len(doc.Hierarchy.Paths) > 0 && len(doc.Hierarchy.Paths[0]) > 1 {
@@ -316,42 +337,73 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 		fmt.Fprintf(w, "\n\n")
 	}
 
-	// Write metadata with enhanced styling
+	// Write metadata with enhanced styling that matches Apple's documentation
 	// Only include metadata section if we have actual metadata to show
 	hasMetadata := doc.Metadata.RoleHeading != "" || len(doc.Metadata.Modules) > 0 || len(doc.Metadata.Platforms) > 0
 
 	if hasMetadata {
 		fmt.Fprintf(w, "---\n\n")
 
+		// Enhanced type display with icon
 		if doc.Metadata.RoleHeading != "" {
-			fmt.Fprintf(w, "**Type:** `%s`\n\n", doc.Metadata.RoleHeading)
+			typeIcon := getTypeIcon(doc.Metadata.Role)
+			fmt.Fprintf(w, "**%s Type:** `%s`\n\n", typeIcon, doc.Metadata.RoleHeading)
 		}
 
+		// Framework display with enhanced formatting
 		if len(doc.Metadata.Modules) > 0 {
 			modules := make([]string, 0, len(doc.Metadata.Modules))
 			for _, module := range doc.Metadata.Modules {
 				modules = append(modules, fmt.Sprintf("`%s`", module.Name))
 			}
-			fmt.Fprintf(w, "**Framework:** %s\n\n", strings.Join(modules, ", "))
+			fmt.Fprintf(w, "**📦 Framework:** %s\n\n", strings.Join(modules, ", "))
 		}
 
+		// Enhanced platform availability with better visual hierarchy
 		if len(doc.Metadata.Platforms) > 0 {
-			fmt.Fprintf(w, "**Platform Availability:**\n\n")
+			fmt.Fprintf(w, "**🎯 Platform Availability**\n\n")
+			
+			// Group platforms by status for better presentation
+			available := []Platform{}
+			beta := []Platform{}
+			deprecated := []Platform{}
+			
 			for _, platform := range doc.Metadata.Platforms {
-				status := ""
-				badge := ""
 				if platform.Deprecated {
-					status = " (Deprecated)"
-					badge = " ⚠️"
+					deprecated = append(deprecated, platform)
 				} else if platform.Beta {
-					status = " (Beta)"
-					badge = " 🧪"
+					beta = append(beta, platform)
 				} else {
-					badge = " ✅"
+					available = append(available, platform)
 				}
-				fmt.Fprintf(w, "- %s%s **%s**%s\n", badge, platform.Name, platform.IntroducedAt, status)
 			}
-			fmt.Fprintf(w, "\n")
+			
+			// Display available platforms first
+			if len(available) > 0 {
+				fmt.Fprintf(w, "**Available:**\n")
+				for _, platform := range available {
+					fmt.Fprintf(w, "- ✅ **%s** %s\n", platform.Name, platform.IntroducedAt)
+				}
+				fmt.Fprintf(w, "\n")
+			}
+			
+			// Display beta platforms
+			if len(beta) > 0 {
+				fmt.Fprintf(w, "**Beta:**\n")
+				for _, platform := range beta {
+					fmt.Fprintf(w, "- 🧪 **%s** %s\n", platform.Name, platform.IntroducedAt)
+				}
+				fmt.Fprintf(w, "\n")
+			}
+			
+			// Display deprecated platforms
+			if len(deprecated) > 0 {
+				fmt.Fprintf(w, "**Deprecated:**\n")
+				for _, platform := range deprecated {
+					fmt.Fprintf(w, "- ⚠️ **%s** %s\n", platform.Name, platform.IntroducedAt)
+				}
+				fmt.Fprintf(w, "\n")
+			}
 		}
 
 		fmt.Fprintf(w, "---\n\n")
@@ -373,7 +425,7 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 			fmt.Fprintf(w, "## Declaration\n\n")
 
 			for i, decl := range section.Declarations {
-				// Determine language for code block
+				// Determine language for code block with enhanced mapping
 				language := "swift"
 				languageDisplay := "Swift"
 				if len(decl.Languages) > 0 {
@@ -382,19 +434,50 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 					language = strings.ToLower(originalLang)
 					languageDisplay = originalLang
 					
-					// Map common language names to markdown code block identifiers and display names
+					// Enhanced language mapping for better syntax highlighting
 					switch language {
 					case "swift":
+						language = "swift"
 						languageDisplay = "Swift"
-					case "objective-c":
-						language = "objectivec"
+					case "objective-c", "objc":
+						language = "objective-c"
 						languageDisplay = "Objective-C"
-					case "objective-c++":
-						language = "objectivec"
+					case "objective-c++", "objc++":
+						language = "objective-c"
 						languageDisplay = "Objective-C++"
-					case "c++":
+					case "c++", "cpp":
 						language = "cpp"
 						languageDisplay = "C++"
+					case "c":
+						language = "c"
+						languageDisplay = "C"
+					case "javascript", "js":
+						language = "javascript"
+						languageDisplay = "JavaScript"
+					case "typescript", "ts":
+						language = "typescript"
+						languageDisplay = "TypeScript"
+					case "python":
+						language = "python"
+						languageDisplay = "Python"
+					case "java":
+						language = "java"
+						languageDisplay = "Java"
+					case "kotlin":
+						language = "kotlin"
+						languageDisplay = "Kotlin"
+					case "shell", "bash", "zsh", "sh":
+						language = "bash"
+						languageDisplay = "Shell"
+					case "json":
+						language = "json"
+						languageDisplay = "JSON"
+					case "xml":
+						language = "xml"
+						languageDisplay = "XML"
+					case "yaml", "yml":
+						language = "yaml"
+						languageDisplay = "YAML"
 					default:
 						// Capitalize first letter for display
 						if len(originalLang) > 0 {
@@ -439,12 +522,14 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 		}
 	}
 
-	// Write topic sections
+	// Write topic sections with enhanced formatting
 	if len(doc.TopicSections) > 0 {
-		fmt.Fprintf(w, "## Topics\n\n")
+		fmt.Fprintf(w, "## 📚 Topics\n\n")
 
 		for _, section := range doc.TopicSections {
-			fmt.Fprintf(w, "### %s\n\n", section.Title)
+			// Add section icon based on content type
+			sectionIcon := getSectionIcon(section.Title)
+			fmt.Fprintf(w, "### %s %s\n\n", sectionIcon, section.Title)
 
 			// Group items by type for better organization
 			itemsByType := make(map[string][]Reference)
@@ -460,13 +545,22 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 				}
 			}
 
-			// Write grouped items
+			// Enhanced type organization with better visual hierarchy
 			typeOrder := []string{"class", "protocol", "struct", "enum", "function", "method", "property", "type", "symbol"}
+			hasMultipleTypes := len(itemsByType) > 1
+
 			for _, itemType := range typeOrder {
 				if items, exists := itemsByType[itemType]; exists {
-					if len(itemsByType) > 1 {
-						fmt.Fprintf(w, "#### %ss\n\n", strings.Title(itemType))
+					if hasMultipleTypes {
+						typeIcon := getTypeIcon(itemType)
+						fmt.Fprintf(w, "#### %s %ss\n\n", typeIcon, strings.Title(itemType))
 					}
+					
+					// Sort items alphabetically for better navigation
+					sort.Slice(items, func(i, j int) bool {
+						return items[i].Title < items[j].Title
+					})
+					
 					for _, ref := range items {
 						writeTopicReference(w, ref)
 					}
@@ -484,9 +578,16 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 					}
 				}
 				if !found && len(items) > 0 {
-					if len(itemsByType) > 1 {
-						fmt.Fprintf(w, "#### %ss\n\n", strings.Title(itemType))
+					if hasMultipleTypes {
+						typeIcon := getTypeIcon(itemType)
+						fmt.Fprintf(w, "#### %s %ss\n\n", typeIcon, strings.Title(itemType))
 					}
+					
+					// Sort items alphabetically
+					sort.Slice(items, func(i, j int) bool {
+						return items[i].Title < items[j].Title
+					})
+					
 					for _, ref := range items {
 						writeTopicReference(w, ref)
 					}
@@ -495,28 +596,39 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 			}
 
 			// Write ungrouped items
-			for _, ref := range ungroupedItems {
-				writeTopicReference(w, ref)
-			}
-
 			if len(ungroupedItems) > 0 {
+				if hasMultipleTypes {
+					fmt.Fprintf(w, "#### 🔗 Other\n\n")
+				}
+				
+				// Sort ungrouped items
+				sort.Slice(ungroupedItems, func(i, j int) bool {
+					return ungroupedItems[i].Title < ungroupedItems[j].Title
+				})
+				
+				for _, ref := range ungroupedItems {
+					writeTopicReference(w, ref)
+				}
 				fmt.Fprintf(w, "\n")
 			}
 		}
 	}
 
-	// Write relationship sections
+	// Write relationship sections with enhanced formatting
 	if len(doc.RelationshipsSections) > 0 {
-		fmt.Fprintf(w, "## Relationships\n\n")
+		fmt.Fprintf(w, "## 🔗 Relationships\n\n")
 
 		for _, section := range doc.RelationshipsSections {
-			fmt.Fprintf(w, "### %s\n\n", section.Title)
+			// Add appropriate icon for relationship type
+			relationIcon := getRelationshipIcon(section.Type)
+			fmt.Fprintf(w, "### %s %s\n\n", relationIcon, section.Title)
 
 			for _, id := range section.Identifiers {
 				if ref, ok := doc.References[id]; ok {
 					// Format URL for markdown compatibility
 					url := formatURL(ref.URL)
-					fmt.Fprintf(w, "- [%s](%s)\n", ref.Title, url)
+					typeIcon := getTypeIcon(ref.Role)
+					fmt.Fprintf(w, "- %s **[%s](%s)**\n", typeIcon, ref.Title, url)
 				}
 			}
 
@@ -524,12 +636,13 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 		}
 	}
 
-	// Write see also sections
+	// Write see also sections with enhanced formatting
 	if len(doc.SeeAlsoSections) > 0 {
-		fmt.Fprintf(w, "## See Also\n\n")
+		fmt.Fprintf(w, "## 👀 See Also\n\n")
 
 		for _, section := range doc.SeeAlsoSections {
-			fmt.Fprintf(w, "### %s\n\n", section.Title)
+			sectionIcon := getSectionIcon(section.Title)
+			fmt.Fprintf(w, "### %s %s\n\n", sectionIcon, section.Title)
 
 			for _, id := range section.Identifiers {
 				if ref, ok := doc.References[id]; ok {
@@ -537,8 +650,8 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 					abstract := ""
 					if len(ref.Abstract) > 0 && len(ref.Abstract[0].Text) > 0 {
 						// Truncate long abstracts for better readability
-						if len(ref.Abstract[0].Text) > 100 {
-							abstract = ref.Abstract[0].Text[:97] + "..."
+						if len(ref.Abstract[0].Text) > 120 {
+							abstract = ref.Abstract[0].Text[:117] + "..."
 						} else {
 							abstract = ref.Abstract[0].Text
 						}
@@ -546,11 +659,12 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 
 					// Format URL for markdown compatibility
 					url := formatURL(ref.URL)
+					typeIcon := getTypeIcon(ref.Role)
 
 					if abstract != "" {
-						fmt.Fprintf(w, "- [%s](%s) - %s\n", ref.Title, url, abstract)
+						fmt.Fprintf(w, "- %s **[%s](%s)**  \n  %s\n", typeIcon, ref.Title, url, abstract)
 					} else {
-						fmt.Fprintf(w, "- [%s](%s)\n", ref.Title, url)
+						fmt.Fprintf(w, "- %s **[%s](%s)**\n", typeIcon, ref.Title, url)
 					}
 				}
 			}
@@ -613,6 +727,155 @@ func writeTopicReference(w io.Writer, ref Reference) {
 		fmt.Fprintf(w, "- **[%s](%s)**%s%s  \n  %s\n", ref.Title, url, typeIndicator, betaIndicator, abstract)
 	} else {
 		fmt.Fprintf(w, "- **[%s](%s)**%s%s\n", ref.Title, url, typeIndicator, betaIndicator)
+	}
+}
+
+// getTypeIcon returns an emoji icon for the given type/role
+func getTypeIcon(role string) string {
+	switch role {
+	case "framework":
+		return "📱"
+	case "class":
+		return "🏛️"
+	case "protocol":
+		return "📋"
+	case "struct":
+		return "🧱"
+	case "enum":
+		return "📝"
+	case "function":
+		return "⚡"
+	case "method":
+		return "🔧"
+	case "property":
+		return "📊"
+	case "type":
+		return "🏷️"
+	case "symbol":
+		return "🔗"
+	default:
+		return "📄"
+	}
+}
+
+// getRelationshipIcon returns an appropriate icon for relationship types
+func getRelationshipIcon(relType string) string {
+	switch strings.ToLower(relType) {
+	case "inheritsfrom", "inherits":
+		return "⬆️"
+	case "conformsto", "conforms":
+		return "📋"
+	case "usedby", "used":
+		return "🔄"
+	case "contains", "contain":
+		return "📦"
+	case "extends", "extend":
+		return "🔌"
+	case "overrides", "override":
+		return "🔄"
+	case "implements", "implement":
+		return "⚙️"
+	case "references", "reference":
+		return "🔗"
+	default:
+		return "🔗"
+	}
+}
+
+// getSectionIcon returns an appropriate icon for topic section titles
+func getSectionIcon(title string) string {
+	titleLower := strings.ToLower(title)
+	switch {
+	case strings.Contains(titleLower, "class"):
+		return "🏛️"
+	case strings.Contains(titleLower, "protocol"):
+		return "📋"
+	case strings.Contains(titleLower, "struct"):
+		return "🧱"
+	case strings.Contains(titleLower, "enum"):
+		return "📝"
+	case strings.Contains(titleLower, "function"):
+		return "⚡"
+	case strings.Contains(titleLower, "method"):
+		return "🔧"
+	case strings.Contains(titleLower, "property"):
+		return "📊"
+	case strings.Contains(titleLower, "type"):
+		return "🏷️"
+	case strings.Contains(titleLower, "initializer"):
+		return "🚀"
+	case strings.Contains(titleLower, "variable"):
+		return "📊"
+	case strings.Contains(titleLower, "constant"):
+		return "💎"
+	case strings.Contains(titleLower, "operator"):
+		return "🔣"
+	case strings.Contains(titleLower, "macro"):
+		return "🎯"
+	case strings.Contains(titleLower, "extension"):
+		return "🔌"
+	case strings.Contains(titleLower, "example"):
+		return "💡"
+	case strings.Contains(titleLower, "tutorial"):
+		return "📖"
+	case strings.Contains(titleLower, "guide"):
+		return "🗺️"
+	case strings.Contains(titleLower, "sample"):
+		return "🧪"
+	case strings.Contains(titleLower, "overview"):
+		return "👁️"
+	case strings.Contains(titleLower, "getting"):
+		return "🚀"
+	case strings.Contains(titleLower, "basic"):
+		return "🔰"
+	case strings.Contains(titleLower, "advanced"):
+		return "🎓"
+	case strings.Contains(titleLower, "creating"):
+		return "✨"
+	case strings.Contains(titleLower, "configuring"):
+		return "⚙️"
+	case strings.Contains(titleLower, "customizing"):
+		return "🎨"
+	case strings.Contains(titleLower, "managing"):
+		return "📋"
+	case strings.Contains(titleLower, "handling"):
+		return "🤝"
+	case strings.Contains(titleLower, "working"):
+		return "⚡"
+	case strings.Contains(titleLower, "using"):
+		return "🔧"
+	case strings.Contains(titleLower, "understand"):
+		return "🧠"
+	case strings.Contains(titleLower, "implement"):
+		return "⚙️"
+	case strings.Contains(titleLower, "perform"):
+		return "🎯"
+	case strings.Contains(titleLower, "error"):
+		return "⚠️"
+	case strings.Contains(titleLower, "delegate"):
+		return "👥"
+	case strings.Contains(titleLower, "data"):
+		return "💾"
+	case strings.Contains(titleLower, "network"):
+		return "🌐"
+	case strings.Contains(titleLower, "ui"):
+		return "🖼️"
+	case strings.Contains(titleLower, "view"):
+		return "👁️"
+	case strings.Contains(titleLower, "control"):
+		return "🎛️"
+	case strings.Contains(titleLower, "animation"):
+		return "🎬"
+	case strings.Contains(titleLower, "drawing"):
+		return "🎨"
+	case strings.Contains(titleLower, "security"):
+		return "🔒"
+	case strings.Contains(titleLower, "performance"):
+		return "⚡"
+	case strings.Contains(titleLower, "memory"):
+		return "🧠"
+	default:
+		return "📑"
 	}
 }
 
