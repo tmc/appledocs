@@ -32,11 +32,13 @@ var (
 	excludePaths = flag.String("exclude-paths", "en-US/docs/Mozilla", "comma-separated list of paths to exclude from crawling")
 
 	// Crawling options
-	concurrency  = flag.Int("concurrency", 10, "number of concurrent downloads")
+	concurrency  = flag.Int("concurrency", 1, "number of concurrent downloads")
+	delay        = flag.Duration("delay", 0, "delay between urls")
 	forceRefresh = flag.Bool("force", false, "force refresh all content")
 	timeout      = flag.Duration("timeout", 30*time.Second, "HTTP request timeout")
 	maxTime      = flag.Duration("max-time", time.Hour, "maximum time to run the program")
 	skipSymbols  = flag.Bool("skip-symbols", false, "skip individual symbol level documentation")
+	printURLs    = flag.Bool("print-urls", false, "only print discovered URLs from entry point and exit")
 
 	// Output options
 	prettyJSON = flag.Bool("pretty", true, "pretty-print JSON files")
@@ -79,12 +81,194 @@ type appledocs struct {
 	statsMutex     sync.Mutex
 }
 
+// buildFrameworkURLs constructs URLs for a specific framework
+func buildFrameworkURLs(frameworkName string) []string {
+	// Normalize framework name
+	frameworkName = strings.TrimSuffix(frameworkName, ".json")
+
+	// Create lowercase version for index URLs
+	lowerFramework := strings.ToLower(frameworkName)
+
+	// Use both documentation and index URLs
+	urls := []string{
+		// Main documentation URL
+		fmt.Sprintf("tutorials/data/documentation/%s.json", frameworkName),
+		// Index URL (uses lowercase without .json extension)
+		fmt.Sprintf("tutorials/data/index/%s", lowerFramework),
+	}
+
+	return urls
+}
+
+// fetchAndExtractURLs fetches a URL and extracts URLs from its content
+func fetchAndExtractURLs(client *http.Client, app *appledocs, fetchURL string) ([]string, error) {
+	log.Printf("Fetching URL: %s", fetchURL)
+	data, err := fetchWithCache(client, fetchURL, app)
+	if err != nil {
+		return nil, fmt.Errorf("failed to fetch %s: %v", fetchURL, err)
+	}
+
+	// Extract URLs
+	urls := extractJSONURLs(data)
+	log.Printf("Found %d URLs in %s", len(urls), fetchURL)
+
+	// Return the extracted URLs
+	return urls, nil
+}
+
+// isDataURL checks if the URL is a tutorial data URL
+func isDataURL(url string) bool {
+	// Only include URLs with tutorials/data/ path component which indicates Apple data files
+	return strings.Contains(url, "/tutorials/data/")
+}
+
+// printURLsOnly fetches the entry point URL and prints all discovered URLs
+func printURLsOnly() error {
+	client := &http.Client{Timeout: *timeout}
+
+	// Create simple app instance for cache tracking
+	app := &appledocs{
+		client:      client,
+		visitedURLs: make(map[string]bool),
+		badURLs:     make(map[string]bool),
+	}
+
+	// Ensure we have a cache directory
+	if err := os.MkdirAll(*cacheDir, 0755); err != nil {
+		return fmt.Errorf("failed to create cache directory: %v", err)
+	}
+
+	// Load bad URLs to avoid known problem URLs
+	if err := loadBadURLs(app); err != nil && *verbose {
+		log.Printf("Warning: failed to load bad URLs file: %v", err)
+	}
+
+	var allURLs []string
+
+	// Check if a specific entry point was specified, not the default technologies.json
+	if *entryPoint != "/tutorials/data/documentation/technologies.json" {
+		// Remove any leading slash and .json suffix
+		cleanEntry := strings.TrimPrefix(*entryPoint, "/")
+		cleanEntry = strings.TrimSuffix(cleanEntry, ".json")
+
+		// Split the entry into components
+		components := strings.Split(cleanEntry, "/")
+
+		// Determine if we have a framework or framework/class pattern
+		var frameworkURLs []string
+
+		if len(components) >= 2 {
+			// We have a class-specific path
+			framework := components[0]
+			class := components[1]
+			log.Printf("Fetching URLs for class: %s in framework: %s", class, framework)
+
+			// For a class, we just use the direct class URL
+			frameworkURLs = []string{
+				fmt.Sprintf("tutorials/data/documentation/%s/%s.json", framework, class),
+			}
+		} else if len(components) == 1 {
+			// We just have a framework
+			framework := components[0]
+			log.Printf("Fetching URLs for framework: %s", framework)
+
+			// For a framework, use both doc and index URLs
+			frameworkURLs = buildFrameworkURLs(framework)
+		}
+
+		// Use a map to track unique URLs
+		uniqueURLs := make(map[string]bool)
+
+		// Try each URL
+		for _, urlPath := range frameworkURLs {
+			fullURL := resolveURL(*baseURL, urlPath)
+			extractedURLs, err := fetchAndExtractURLs(client, app, fullURL)
+			if err != nil {
+				// Log but don't fail - some paths might not exist
+				log.Printf("Warning: %v", err)
+				continue
+			}
+
+			// Add extracted URLs to our collection, ensuring uniqueness
+			for _, u := range extractedURLs {
+				resolvedURL := resolveURL(*baseURL, u)
+				// Only include tutorial data URLs
+				if isDataURL(resolvedURL) && !uniqueURLs[resolvedURL] {
+					uniqueURLs[resolvedURL] = true
+					allURLs = append(allURLs, resolvedURL)
+				}
+			}
+
+			// Also add the source URL itself if it's not already included
+			if !uniqueURLs[fullURL] {
+				uniqueURLs[fullURL] = true
+				allURLs = append(allURLs, fullURL)
+			}
+		}
+	} else {
+		// Default to technologies.json (removed leading slash)
+		startURL := resolveURL(*baseURL, "tutorials/data/documentation/technologies.json")
+
+		// Fetch the technologies index
+		log.Printf("Fetching technologies index: %s", startURL)
+		extractedURLs, err := fetchAndExtractURLs(client, app, startURL)
+		if err != nil {
+			return fmt.Errorf("failed to fetch technologies index: %v", err)
+		}
+
+		// Use a map to track unique URLs
+		uniqueURLs := make(map[string]bool)
+
+		// Process the extracted URLs
+		for _, u := range extractedURLs {
+			resolvedURL := resolveURL(*baseURL, u)
+			if !uniqueURLs[resolvedURL] {
+				uniqueURLs[resolvedURL] = true
+				allURLs = append(allURLs, resolvedURL)
+			}
+		}
+	}
+
+	// Filter to only include tutorial data URLs
+	var filteredURLs []string
+
+	for _, url := range allURLs {
+		// Only include URLs with the proper pattern
+		if isDataURL(url) {
+			filteredURLs = append(filteredURLs, url)
+		}
+	}
+
+	log.Printf("Found a total of %d unique data URLs", len(filteredURLs))
+
+	// Ensure log messages are flushed before printing URLs
+	time.Sleep(100 * time.Millisecond)
+
+	// Sort URLs for consistent output
+	sort.Strings(filteredURLs)
+
+	// Print URLs to stdout
+	for _, resolvedURL := range filteredURLs {
+		fmt.Println(resolvedURL)
+	}
+
+	return nil
+}
+
 func main() {
 	flag.Parse()
 
 	// Handle legacy flag conversion for backward compatibility
 	if *generateMD && *mode == "crawl" {
 		*mode = "markdown"
+	}
+
+	// Special case for print-urls mode
+	if *printURLs {
+		if err := printURLsOnly(); err != nil {
+			log.Fatalf("Error: %v", err)
+		}
+		return
 	}
 
 	// Validate mode
@@ -288,11 +472,6 @@ func run(ctx context.Context) error {
 		}
 	}
 
-	// Create index.html with the list of JSON files
-	if err := createJSONIndexHTML(*outputDir, app.jsonEntries); err != nil {
-		log.Printf("Failed to create index.html: %v", err)
-	}
-
 	// Report final statistics
 	processed, cacheHits, cacheMisses, errors, skipped := app.getStats()
 	log.Printf("Final statistics:")
@@ -381,6 +560,10 @@ func shouldExcludePath(pathToCheck string) bool {
 func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- string) error {
 	if *verbose {
 		log.Printf("Processing %s", u)
+		if *delay > time.Duration(0) {
+			log.Println("waiting", *delay)
+			time.Sleep(*delay)
+		}
 	}
 
 	// First, check if this URL is already known to be bad
@@ -502,38 +685,6 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 		log.Printf("Found %d URLs in %s", len(newURLs), outputPath)
 	}
 
-	// Check if this is a technology file and try to fetch its related URLs
-	if isTechnologyFile(parsed.Path) {
-		// Get the technology name
-		parts := strings.Split(parsed.Path, "/")
-		if len(parts) >= 5 {
-			technologyFile := parts[4]
-			technologyName := strings.TrimSuffix(technologyFile, ".json")
-
-			// 1. Add the index URL for the technology
-			indexURL := "/tutorials/data/index/" + strings.ToLower(technologyName)
-			newURLs = append(newURLs, indexURL)
-
-			// 2. Try both capitalization variants for the documentation file
-			lowerURL := "/tutorials/data/documentation/" + strings.ToLower(technologyName) + ".json"
-
-			upperName := strings.Title(technologyName)
-			upperURL := "/tutorials/data/documentation/" + upperName + ".json"
-
-			// Add URLs to the queue if they're different from the current one
-			if lowerURL != parsed.Path {
-				newURLs = append(newURLs, lowerURL)
-			}
-			if upperURL != parsed.Path {
-				newURLs = append(newURLs, upperURL)
-			}
-
-			if *verbose {
-				log.Printf("Added related URLs for technology %s: index and case variants", technologyName)
-			}
-		}
-	}
-
 	// Queue new URLs for processing
 	newURLsAdded := app.queueNewURLs(newURLs, urlQueue)
 
@@ -633,6 +784,32 @@ func prettyPrintJSON(data []byte) ([]byte, error) {
 	return out.Bytes(), nil
 }
 
+// addBrowserLikeHeaders adds headers to a request to make it look like a browser request
+func addBrowserLikeHeaders(req *http.Request) {
+	// Standard browser-like headers
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36")
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("Accept-Language", "en-US,en;q=0.9")
+	req.Header.Set("Cache-Control", "no-cache")
+	req.Header.Set("Connection", "keep-alive")
+	req.Header.Set("DNT", "1")
+	req.Header.Set("Pragma", "no-cache")
+	req.Header.Set("Sec-Fetch-Dest", "empty")
+	req.Header.Set("Sec-Fetch-Mode", "cors")
+	req.Header.Set("Sec-Fetch-Site", "same-origin")
+	req.Header.Set("sec-ch-ua", "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\"")
+	req.Header.Set("sec-ch-ua-mobile", "?0")
+	req.Header.Set("sec-ch-ua-platform", "\"macOS\"")
+
+	// Set referer based on URL
+	if strings.Contains(req.URL.Path, ".json") {
+		docPath := strings.TrimSuffix(req.URL.Path, ".json")
+		req.Header.Set("Referer", fmt.Sprintf("%s://%s/documentation%s", req.URL.Scheme, req.URL.Host, docPath))
+	} else {
+		req.Header.Set("Referer", fmt.Sprintf("%s://%s/", req.URL.Scheme, req.URL.Host))
+	}
+}
+
 // fetchWithCache fetches a URL with caching.
 func fetchWithCache(client *http.Client, u string, app *appledocs) ([]byte, error) {
 	parsed, err := url.Parse(u)
@@ -643,6 +820,7 @@ func fetchWithCache(client *http.Client, u string, app *appledocs) ([]byte, erro
 
 	// Create cache path
 	cachePath := filepath.Join(*cacheDir, parsed.Host, parsed.Path)
+
 	if parsed.RawQuery != "" {
 		cachePath = filepath.Join(cachePath + "." + url.QueryEscape(parsed.RawQuery))
 	}
@@ -684,8 +862,18 @@ func fetchWithCache(client *http.Client, u string, app *appledocs) ([]byte, erro
 		app.incrementCacheMisses()
 	}
 
-	// Fetch URL
-	resp, err := client.Get(u)
+	// Create a new request so we can add headers
+	req, err := http.NewRequest("GET", u, nil)
+	if err != nil {
+		app.incrementErrors()
+		return nil, fmt.Errorf("create request for %q: %v", u, err)
+	}
+
+	// Add browser-like headers
+	addBrowserLikeHeaders(req)
+
+	// Execute the request
+	resp, err := client.Do(req)
 	if err != nil {
 		app.incrementErrors()
 		// Add to bad URLs list if it's a network error
@@ -814,6 +1002,21 @@ func extractJSONURLsFromValue(v interface{}, urls *[]string) {
 					*urls = append(*urls, urlStr)
 				}
 			}
+
+			// Check if this is a path field (used by index files)
+			if k == "path" && v != nil {
+				if pathStr, ok := v.(string); ok {
+					// Only add paths that look like documentation paths
+					if strings.HasPrefix(pathStr, "/documentation/") {
+						// For any documentation path with reasonable depth, add it as-is
+						// We only care about paths deep enough to be meaningful
+						if strings.Count(pathStr, "/") > 2 {
+							*urls = append(*urls, pathStr)
+						}
+					}
+				}
+			}
+
 			extractJSONURLsFromValue(v, urls)
 		}
 	case []interface{}:
@@ -899,26 +1102,27 @@ func createJSONIndexHTML(outputDir string, jsonFiles []JSONFileEntry) error {
 	}
 
 	// Build tree from files
-	root := buildFileTree(jsonFiles)
+	// root := buildFileTree(jsonFiles)
 
-	// Calculate stats
-	dirCount := countDirectories(root)
+	// // Calculate stats
+	// dirCount := countDirectories(root)
 
-	data := struct {
-		Root      *TreeNode
-		FileCount int
-		DirCount  int
-		Timestamp string
-	}{
-		Root:      root,
-		FileCount: len(jsonFiles),
-		DirCount:  dirCount,
-		Timestamp: time.Now().Format(time.RFC1123),
-	}
+	// data := struct {
+	// 	Root      *TreeNode
+	// 	FileCount int
+	// 	DirCount  int
+	// 	Timestamp string
+	// }{
+	// 	Root:      root,
+	// 	FileCount: len(jsonFiles),
+	// 	DirCount:  dirCount,
+	// 	Timestamp: time.Now().Format(time.RFC1123),
+	// }
 
-	// Generate HTML using the function from html.go
-	indexPath := filepath.Join(outputDir, "index.html")
-	return generateHTMLFile(indexPath, data)
+	// // Generate HTML using the function from html.go
+	// indexPath := filepath.Join(outputDir, "index.html")
+	// return generateHTMLFile(indexPath, data)
+	return nil
 }
 
 // scanOutputDirectory walks the output directory and finds all JSON files
@@ -1129,27 +1333,6 @@ func isTechnologyFile(path string) bool {
 	}
 
 	return false
-}
-
-// createIndexURLForTechnology creates an index URL for a given technology path
-func createIndexURLForTechnology(path string) string {
-	// Extract the technology name from the path
-	// Example: /tutorials/data/documentation/EndpointSecurity.json -> EndpointSecurity
-	parts := strings.Split(path, "/")
-	if len(parts) < 5 {
-		return ""
-	}
-
-	technologyFile := parts[4]
-	technologyName := strings.TrimSuffix(technologyFile, ".json")
-
-	// Skip common non-technology files
-	if technologyName == "technologies" {
-		return ""
-	}
-
-	// Create the index URL: /tutorials/data/index/technologyname
-	return "/tutorials/data/index/" + strings.ToLower(technologyName)
 }
 
 // isSymbolURL determines if a URL likely points to individual symbol documentation

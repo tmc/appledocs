@@ -882,7 +882,7 @@ func createFrameworkIndex(outputDir string, jsonFiles []string) error {
 	frameworks := make(map[string]bool)
 	frameworkClasses := make(map[string][]string) // Classes for each framework
 	categories := make(map[string][]string)       // Categories for grouping
-	
+
 	// Known categories to organize frameworks better
 	knownCategories := map[string][]string{
 		"App Frameworks": {
@@ -904,14 +904,14 @@ func createFrameworkIndex(outputDir string, jsonFiles []string) error {
 			"DeveloperToolsSupport", "Testing",
 		},
 		"Extended Reality": {
-			"visionOS", "ARKit", "RealityKit", "Spatial", 
+			"visionOS", "ARKit", "RealityKit", "Spatial",
 		},
 		"Web & Services": {
 			"WebKit", "SafariServices", "CloudKit", "CloudKitJS", "MapKitJS",
 			"AppleMusicAPI", "AppStoreServerAPI", "WeatherKit", "WeatherKitRESTAPI",
 		},
 	}
-	
+
 	// First pass: identify frameworks
 	for _, file := range jsonFiles {
 		// Simple heuristic: look for top-level framework files
@@ -919,10 +919,10 @@ func createFrameworkIndex(outputDir string, jsonFiles []string) error {
 			frameworkName := filepath.Base(file)
 			frameworkName = strings.TrimSuffix(frameworkName, filepath.Ext(frameworkName))
 			frameworks[frameworkName] = true
-			
+
 			// Initialize classes array
 			frameworkClasses[frameworkName] = []string{}
-			
+
 			// Categorize frameworks
 			categorized := false
 			for category, categoryItems := range knownCategories {
@@ -937,14 +937,14 @@ func createFrameworkIndex(outputDir string, jsonFiles []string) error {
 					break
 				}
 			}
-			
+
 			// If not categorized, put in "Other"
 			if !categorized {
 				categories["Other"] = append(categories["Other"], frameworkName)
 			}
 		}
 	}
-	
+
 	// Second pass: identify classes for each framework
 	for _, file := range jsonFiles {
 		// Extract path parts to identify classes within frameworks
@@ -957,7 +957,7 @@ func createFrameworkIndex(outputDir string, jsonFiles []string) error {
 					// Extract class name from file path
 					fileName := filepath.Base(file)
 					className := strings.TrimSuffix(fileName, filepath.Ext(fileName))
-					
+
 					// Check if it's not just the framework file itself
 					if className != framework {
 						// Check if we don't already have this class
@@ -968,7 +968,7 @@ func createFrameworkIndex(outputDir string, jsonFiles []string) error {
 								break
 							}
 						}
-						
+
 						if !hasClass {
 							frameworkClasses[framework] = append(frameworkClasses[framework], className)
 						}
@@ -977,23 +977,23 @@ func createFrameworkIndex(outputDir string, jsonFiles []string) error {
 			}
 		}
 	}
-	
+
 	// Sort classes for each framework
 	for framework := range frameworkClasses {
 		sort.Strings(frameworkClasses[framework])
 	}
-	
+
 	// Sort category names and framework names within each category
 	var categoryList []string
 	for category := range categories {
 		categoryList = append(categoryList, category)
 	}
 	sort.Strings(categoryList)
-	
+
 	for category := range categories {
 		sort.Strings(categories[category])
 	}
-	
+
 	// Create index file
 	indexPath := filepath.Join(outputDir, "index.md")
 	indexFile, err := os.Create(indexPath)
@@ -1001,50 +1001,50 @@ func createFrameworkIndex(outputDir string, jsonFiles []string) error {
 		return fmt.Errorf("create index file: %v", err)
 	}
 	defer indexFile.Close()
-	
+
 	// Write index content
 	fmt.Fprintf(indexFile, "# Apple Documentation\n\n")
 	fmt.Fprintf(indexFile, "This is a mirror of Apple's developer documentation converted to Markdown format.\n\n")
-	
+
 	// Table of contents
 	fmt.Fprintf(indexFile, "## Contents\n\n")
 	for _, category := range categoryList {
 		fmt.Fprintf(indexFile, "- [%s](#%s)\n", category, strings.ToLower(strings.ReplaceAll(strings.ReplaceAll(category, " & ", "-"), " ", "-")))
 	}
 	fmt.Fprintf(indexFile, "\n\n")
-	
+
 	// Write frameworks by category with collapsible sections
 	for _, category := range categoryList {
 		fmt.Fprintf(indexFile, "## %s\n\n", category)
-		
+
 		frameworksInCategory := categories[category]
-		
+
 		// Create a table with 2 columns for better navigation
 		fmt.Fprintf(indexFile, "<table>\n<tr>\n")
-		
+
 		numCols := 2
 		numRows := (len(frameworksInCategory) + numCols - 1) / numCols
-		
+
 		// Create columns
 		for col := 0; col < numCols; col++ {
 			fmt.Fprintf(indexFile, "<td width=\"50%%\">\n\n")
-			
+
 			// Write frameworks for this column with collapsible sections for classes
 			for row := 0; row < numRows; row++ {
 				idx := row + col*numRows
 				if idx < len(frameworksInCategory) {
 					framework := frameworksInCategory[idx]
 					path := "tutorials/data/documentation/" + framework + ".md"
-					
+
 					// Framework name as a link
 					fmt.Fprintf(indexFile, "### [%s](%s)\n\n", framework, path)
-					
+
 					// Add collapsible section with classes if we have any
 					classes := frameworkClasses[framework]
 					if len(classes) > 0 {
 						// GitHub-flavored markdown for collapsible sections
 						fmt.Fprintf(indexFile, "<details>\n<summary>Major Classes</summary>\n\n")
-						
+
 						// Only show up to 15 classes to avoid overwhelming lists
 						classLimit := 15
 						if len(classes) > classLimit {
@@ -1062,31 +1062,31 @@ func createFrameworkIndex(outputDir string, jsonFiles []string) error {
 								fmt.Fprintf(indexFile, "- [%s](%s)\n", className, classPath)
 							}
 						}
-						
+
 						fmt.Fprintf(indexFile, "\n</details>\n\n")
 					}
 				}
 			}
-			
+
 			fmt.Fprintf(indexFile, "\n</td>\n")
 		}
-		
+
 		fmt.Fprintf(indexFile, "</tr>\n</table>\n\n")
 	}
-	
+
 	// Add section specifically for EndpointSecurity if available
 	if frameworks["EndpointSecurity"] {
 		fmt.Fprintf(indexFile, "## EndpointSecurity Framework Detail\n\n")
 		fmt.Fprintf(indexFile, "The EndpointSecurity framework provides system event information to security tools. ")
 		fmt.Fprintf(indexFile, "It enables the development of security products that monitor system events, ")
 		fmt.Fprintf(indexFile, "ensure system integrity, and contain malicious behavior.\n\n")
-		
+
 		// Link to main documentation
 		fmt.Fprintf(indexFile, "**[EndpointSecurity Documentation](tutorials/data/documentation/EndpointSecurity.md)**\n\n")
-		
+
 		// Create collapsible section for classes
 		fmt.Fprintf(indexFile, "<details>\n<summary>EndpointSecurity Classes and Types</summary>\n\n")
-		
+
 		classes := frameworkClasses["EndpointSecurity"]
 		if len(classes) > 0 {
 			for _, className := range classes {
@@ -1096,13 +1096,13 @@ func createFrameworkIndex(outputDir string, jsonFiles []string) error {
 		} else {
 			fmt.Fprintf(indexFile, "- No classes found\n")
 		}
-		
+
 		fmt.Fprintf(indexFile, "\n</details>\n\n")
 	}
-	
+
 	// Add footer with generation timestamp
 	fmt.Fprintf(indexFile, "---\n\n")
 	fmt.Fprintf(indexFile, "*Generated on %s*\n", time.Now().Format("January 2, 2006 at 15:04:05 MST"))
-	
+
 	return nil
 }
