@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Apple Docs API</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 30px;
+            color: #333;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .endpoint {
+            margin-bottom: 40px;
+        }
+        .method {
+            font-weight: bold;
+            color: #008000;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #0366d6;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-right: 10px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #0256b9;
+        }
+        .schema {
+            margin-top: 30px;
+        }
+        .schema-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Apple Docs API</h1>
+    <p>This API provides access to the cached Apple documentation.</p>
+    
+    <div class="links">
+        <a href="/graphql" class="btn">GraphQL Playground</a>
+        <a href="/sandbox" class="btn" style="background-color: #7531f9;">Apollo Sandbox</a>
+        <a href="/schema" class="btn" style="background-color: #2e9c32;">Schema Documentation</a>
+    </div>
+    
+    <h2>REST API Endpoints</h2>
+    
+    <div class="endpoint">
+        <h3><span class="method">GET</span> /api/document</h3>
+        <p>Retrieve a document by its path.</p>
+        <h4>Parameters:</h4>
+        <ul>
+            <li><code>path</code> - The path to the document (required)</li>
+        </ul>
+        <h4>Example:</h4>
+        <pre>GET /api/document?path=tutorials/data/documentation/swiftui</pre>
+    </div>
+    
+    <div class="endpoint">
+        <h3><span class="method">GET</span> /api/search</h3>
+        <p>Search for documents containing a specific query.</p>
+        <h4>Parameters:</h4>
+        <ul>
+            <li><code>q</code> - The search query (required)</li>
+            <li><code>limit</code> - Maximum number of results to return (default: 10)</li>
+        </ul>
+        <h4>Example:</h4>
+        <pre>GET /api/search?q=SwiftUI&limit=5</pre>
+    </div>
+    
+    <div class="endpoint">
+        <h3><span class="method">GET</span> /api/frameworks</h3>
+        <p>Get a list of all available frameworks.</p>
+        <h4>Example:</h4>
+        <pre>GET /api/frameworks</pre>
+    </div>
+    
+    <h2>GraphQL Interface</h2>
+    <p>A GraphQL-like interface is available at <a href="/graphql">/graphql</a></p>
+    
+    <div class="schema">
+        <h3>GraphQL Schema</h3>
+        <p>The API supports a rich GraphQL schema with various data types and queries.</p>
+        <a href="/schema" class="schema-link">View schema documentation</a>
+        <a href="/graphql" class="schema-link" style="margin-left: 10px;">Try in GraphQL Playground</a>
+    </div>
+    
+    <p>Example queries:</p>
+    <pre>
+# Get a document by path
+{
+  document(path: "tutorials/data/documentation/swiftui") {
+    id
+    title
+    abstract
+    type
+    framework
+    platforms {
+      name
+      introducedAt
+    }
+    isDeprecated
+  }
+}
+
+# Search for documents
+{
+  search(query: "SwiftUI", limit: 5) {
+    documents {
+      id
+      title
+      abstract
+    }
+    count
+    query
+  }
+}
+
+# Get all frameworks
+{
+  frameworks {
+    id
+    title
+    abstract
+    platforms {
+      name
+    }
+  }
+}
+
+# Get a specific framework
+{
+  framework(id: "swiftui") {
+    id
+    title
+    abstract
+  }
+}
+
+# Get documents by type
+{
+  documentsByType(type: "class", framework: "swiftui") {
+    id
+    title
+    abstract
+  }
+}
+
+# Get related documents
+{
+  relatedDocuments(path: "tutorials/data/documentation/swiftui", limit: 3) {
+    id
+    title
+    abstract
+  }
+}
+</pre>
+</body>
+</html>

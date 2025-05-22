@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphQL Schema - Apple Docs API</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .topbar {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 16px;
+            margin: -20px -20px 20px -20px;
+            font-size: 14px;
+        }
+        .topbar a {
+            color: #0366d6;
+            text-decoration: none;
+            margin-right: 16px;
+        }
+        .topbar a:hover {
+            text-decoration: underline;
+        }
+        .topbar .title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 24px;
+        }
+        h1 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 30px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 6px;
+        }
+        h3 {
+            margin-top: 20px;
+            color: #0366d6;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+        }
+        .schema-section {
+            margin-bottom: 40px;
+        }
+        .comment {
+            color: #6a737d;
+        }
+        .keyword {
+            color: #d73a49;
+            font-weight: bold;
+        }
+        .type {
+            color: #6f42c1;
+        }
+        .field {
+            color: #24292e;
+        }
+        .description {
+            color: #6a737d;
+            font-style: italic;
+            margin-left: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #0366d6;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #0256b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <span class="title">Apple Docs GraphQL Schema</span>
+        <a href="/">API Home</a>
+        <a href="/graphql">GraphiQL</a>
+        <a href="/sandbox">Apollo Sandbox</a>
+        <a href="/api/frameworks">Frameworks</a>
+    </div>
+    
+    <h1>GraphQL Schema for Apple Documentation</h1>
+    
+    <p>This schema provides a comprehensive model of Apple's documentation structure, designed for querying through the GraphQL API.</p>
+    
+    <div class="schema-section">
+        <h2>Core Types</h2>
+        
+        <h3>Document</h3>
+        <p>Represents an Apple documentation item (framework, class, method, property, or other documentation element).</p>
+        <pre><code><span class="keyword">type</span> <span class="type">Document</span> {
+  <span class="field">id</span>: <span class="type">ID!</span>                        <span class="comment"># Unique identifier for the document</span>
+  <span class="field">path</span>: <span class="type">String!</span>                  <span class="comment"># Path to the document in the documentation hierarchy</span>
+  <span class="field">title</span>: <span class="type">String</span>                  <span class="comment"># Document title</span>
+  <span class="field">abstract</span>: <span class="type">String</span>               <span class="comment"># Brief description of the document</span>
+  <span class="field">framework</span>: <span class="type">String</span>              <span class="comment"># Framework the document belongs to</span>
+  <span class="field">type</span>: <span class="type">String</span>                   <span class="comment"># Document type (class, method, protocol, etc.)</span>
+  <span class="field">kind</span>: <span class="type">String</span>                   <span class="comment"># Document kind (symbol, article, collection, etc.)</span>
+  <span class="field">role</span>: <span class="type">String</span>                   <span class="comment"># Role of the document (collection, symbol, article, etc.)</span>
+  <span class="field">primaryContentSections</span>: [<span class="type">ContentSection</span>]  <span class="comment"># Content sections of the document</span>
+  <span class="field">topicSections</span>: [<span class="type">TopicSection</span>]  <span class="comment"># Topic sections grouping related content</span>
+  <span class="field">platforms</span>: [<span class="type">Platform</span>]          <span class="comment"># Available platforms for this API (iOS, macOS, etc.)</span>
+  <span class="field">isDeprecated</span>: <span class="type">Boolean</span>          <span class="comment"># Whether this API is deprecated</span>
+  <span class="field">modules</span>: [<span class="type">String</span>]              <span class="comment"># Module names associated with this document</span>
+  <span class="field">interfaceLanguages</span>: [<span class="type">String</span>]   <span class="comment"># Language variants available (swift, occ, data)</span>
+  <span class="field">schemaVersion</span>: <span class="type">SchemaVersion</span>   <span class="comment"># Schema version of the document</span>
+  <span class="field">hierarchy</span>: <span class="type">Hierarchy</span>           <span class="comment"># Hierarchy information for navigation</span>
+  <span class="field">metadata</span>: <span class="type">JSON</span>                 <span class="comment"># Document metadata</span>
+  <span class="field">content</span>: <span class="type">JSON</span>                  <span class="comment"># Full document content</span>
+  <span class="field">references</span>: [<span class="type">Reference</span>]        <span class="comment"># Related documents</span>
+  <span class="field">parent</span>: <span class="type">Document</span>               <span class="comment"># Parent document</span>
+  <span class="field">children</span>: [<span class="type">Document</span>]           <span class="comment"># Child documents</span>
+  <span class="field">sections</span>: [<span class="type">Section</span>]            <span class="comment"># Original document sections (for backward compatibility)</span>
+}</code></pre>
+
+        <h3>Platform</h3>
+        <p>Platform availability information for APIs.</p>
+        <pre><code><span class="keyword">type</span> <span class="type">Platform</span> {
+  <span class="field">name</span>: <span class="type">String!</span>            <span class="comment"># Platform name (e.g., iOS, macOS)</span>
+  <span class="field">introducedAt</span>: <span class="type">String</span>     <span class="comment"># Introduction version (e.g., 13.0)</span>
+  <span class="field">deprecatedAt</span>: <span class="type">String</span>     <span class="comment"># Deprecated version (if applicable)</span>
+  <span class="field">beta</span>: <span class="type">Boolean</span>            <span class="comment"># Beta status</span>
+}</code></pre>
+
+        <h3>Technology</h3>
+        <p>Technology/Framework information (from technologies.json).</p>
+        <pre><code><span class="keyword">type</span> <span class="type">Technology</span> {
+  <span class="field">id</span>: <span class="type">ID!</span>                  <span class="comment"># Technology identifier</span>
+  <span class="field">title</span>: <span class="type">String!</span>           <span class="comment"># Technology title</span>
+  <span class="field">path</span>: <span class="type">String!</span>            <span class="comment"># Technology path</span>
+  <span class="field">abstract</span>: <span class="type">String</span>         <span class="comment"># Brief description</span>
+  <span class="field">languages</span>: [<span class="type">String</span>]      <span class="comment"># Supported languages</span>
+  <span class="field">tags</span>: [<span class="type">String</span>]           <span class="comment"># Tags for categorization</span>
+  <span class="field">document</span>: <span class="type">Document</span>       <span class="comment"># The document containing detailed information</span>
+}</code></pre>
+    </div>
+    
+    <div class="schema-section">
+        <h2>Content Structure Types</h2>
+        
+        <h3>ContentSection</h3>
+        <pre><code><span class="keyword">type</span> <span class="type">ContentSection</span> {
+  <span class="field">title</span>: <span class="type">String</span>                <span class="comment"># Section title</span>
+  <span class="field">anchor</span>: <span class="type">String</span>               <span class="comment"># Section anchor for linking</span>
+  <span class="field">kind</span>: <span class="type">String</span>                 <span class="comment"># Section type (declarations, discussion, parameters, etc.)</span>
+  <span class="field">content</span>: [<span class="type">ContentItem</span>]       <span class="comment"># Section content items</span>
+}</code></pre>
+
+        <h3>TopicSection</h3>
+        <pre><code><span class="keyword">type</span> <span class="type">TopicSection</span> {
+  <span class="field">title</span>: <span class="type">String</span>                <span class="comment"># Section title</span>
+  <span class="field">anchor</span>: <span class="type">String</span>               <span class="comment"># Section anchor for linking</span>
+  <span class="field">identifiers</span>: [<span class="type">String</span>]        <span class="comment"># Identifiers of documents in this section</span>
+  <span class="field">topics</span>: [<span class="type">Document</span>]           <span class="comment"># Documents in this section</span>
+}</code></pre>
+
+        <h3>ContentItem</h3>
+        <pre><code><span class="keyword">interface</span> <span class="type">ContentItem</span> {
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Content type (text, code, image, etc.)</span>
+}
+
+<span class="keyword">type</span> <span class="type">TextContent</span> <span class="keyword">implements</span> <span class="type">ContentItem</span> {
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Content type</span>
+  <span class="field">text</span>: <span class="type">String</span>                 <span class="comment"># Text content</span>
+}
+
+<span class="keyword">type</span> <span class="type">CodeContent</span> <span class="keyword">implements</span> <span class="type">ContentItem</span> {
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Content type</span>
+  <span class="field">code</span>: <span class="type">String</span>                 <span class="comment"># Code text</span>
+  <span class="field">language</span>: <span class="type">String</span>             <span class="comment"># Programming language</span>
+}
+
+<span class="keyword">type</span> <span class="type">ReferenceContent</span> <span class="keyword">implements</span> <span class="type">ContentItem</span> {
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Content type</span>
+  <span class="field">identifier</span>: <span class="type">String</span>           <span class="comment"># Reference identifier</span>
+  <span class="field">reference</span>: <span class="type">Reference</span>         <span class="comment"># Referenced document</span>
+}</code></pre>
+
+        <h3>Reference</h3>
+        <pre><code><span class="keyword">type</span> <span class="type">Reference</span> {
+  <span class="field">identifier</span>: <span class="type">String!</span>          <span class="comment"># Reference identifier</span>
+  <span class="field">title</span>: <span class="type">String</span>                <span class="comment"># Reference title</span>
+  <span class="field">role</span>: <span class="type">String</span>                 <span class="comment"># Reference role</span>
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Reference type</span>
+  <span class="field">url</span>: <span class="type">String</span>                  <span class="comment"># Reference URL</span>
+  <span class="field">isActive</span>: <span class="type">Boolean</span>            <span class="comment"># Whether the reference is active</span>
+  <span class="field">abstract</span>: <span class="type">String</span>             <span class="comment"># Brief description</span>
+  <span class="field">document</span>: <span class="type">Document</span>           <span class="comment"># The referenced document</span>
+}</code></pre>
+    </div>
+    
+    <div class="schema-section">
+        <h2>API Index Types</h2>
+        
+        <h3>APIIndex</h3>
+        <pre><code><span class="keyword">type</span> <span class="type">APIIndex</span> {
+  <span class="field">interfaceLanguage</span>: <span class="type">String!</span>   <span class="comment"># Interface language (swift, occ, data)</span>
+  <span class="field">modules</span>: [<span class="type">ModuleIndex</span>]       <span class="comment"># Top-level modules</span>
+}</code></pre>
+
+        <h3>ModuleIndex & Module Children</h3>
+        <pre><code><span class="keyword">type</span> <span class="type">ModuleIndex</span> {
+  <span class="field">path</span>: <span class="type">String!</span>                <span class="comment"># Module path</span>
+  <span class="field">title</span>: <span class="type">String!</span>               <span class="comment"># Module title</span>
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Module type</span>
+  <span class="field">children</span>: [<span class="type">ModuleChild</span>]      <span class="comment"># Child elements of the module</span>
+}
+
+<span class="keyword">interface</span> <span class="type">ModuleChild</span> {
+  <span class="field">path</span>: <span class="type">String</span>                 <span class="comment"># Element path</span>
+  <span class="field">title</span>: <span class="type">String</span>                <span class="comment"># Element title</span>
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Element type</span>
+  <span class="field">deprecated</span>: <span class="type">Boolean</span>          <span class="comment"># Whether the element is deprecated</span>
+}</code></pre>
+
+        <h3>Index Element Types</h3>
+        <pre><code><span class="keyword">type</span> <span class="type">ClassIndex</span> <span class="keyword">implements</span> <span class="type">ModuleChild</span> {
+  <span class="field">path</span>: <span class="type">String</span>                 <span class="comment"># Class path</span>
+  <span class="field">title</span>: <span class="type">String</span>                <span class="comment"># Class title</span>
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Element type (class)</span>
+  <span class="field">deprecated</span>: <span class="type">Boolean</span>          <span class="comment"># Whether the class is deprecated</span>
+  <span class="field">children</span>: [<span class="type">ModuleChild</span>]      <span class="comment"># Child elements of the class</span>
+}
+
+<span class="keyword">type</span> <span class="type">MethodIndex</span> <span class="keyword">implements</span> <span class="type">ModuleChild</span> {
+  <span class="field">path</span>: <span class="type">String</span>                 <span class="comment"># Method path</span>
+  <span class="field">title</span>: <span class="type">String</span>                <span class="comment"># Method signature</span>
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Element type (method)</span>
+  <span class="field">deprecated</span>: <span class="type">Boolean</span>          <span class="comment"># Whether the method is deprecated</span>
+}
+
+<span class="keyword">type</span> <span class="type">PropertyIndex</span> <span class="keyword">implements</span> <span class="type">ModuleChild</span> {
+  <span class="field">path</span>: <span class="type">String</span>                 <span class="comment"># Property path</span>
+  <span class="field">title</span>: <span class="type">String</span>                <span class="comment"># Property name</span>
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Element type (property)</span>
+  <span class="field">deprecated</span>: <span class="type">Boolean</span>          <span class="comment"># Whether the property is deprecated</span>
+}
+
+<span class="keyword">type</span> <span class="type">SectionMarker</span> <span class="keyword">implements</span> <span class="type">ModuleChild</span> {
+  <span class="field">path</span>: <span class="type">String</span>                 <span class="comment"># Path (usually empty)</span>
+  <span class="field">title</span>: <span class="type">String</span>                <span class="comment"># Section title</span>
+  <span class="field">type</span>: <span class="type">String</span>                 <span class="comment"># Element type (groupMarker)</span>
+  <span class="field">deprecated</span>: <span class="type">Boolean</span>          <span class="comment"># Always false for group markers</span>
+}</code></pre>
+    </div>
+    
+    <div class="schema-section">
+        <h2>Queries</h2>
+        
+        <pre><code><span class="keyword">type</span> <span class="type">Query</span> {
+  <span class="field">document</span>(path: <span class="type">String!</span>, language: <span class="type">String</span>): <span class="type">Document</span>
+  <span class="comment"># Get a document by its path</span>
+  
+  <span class="field">search</span>(query: <span class="type">String!</span>, limit: <span class="type">Int</span> = 10, language: <span class="type">String</span>): <span class="type">SearchResult!</span>
+  <span class="comment"># Search for documents matching a query</span>
+  
+  <span class="field">technologies</span>: [<span class="type">TechnologyGroup!</span>]!
+  <span class="comment"># Get the technologies index (top-level frameworks organized by group)</span>
+  
+  <span class="field">frameworks</span>: [<span class="type">Framework!</span>]!
+  <span class="comment"># List all top-level frameworks</span>
+  
+  <span class="field">framework</span>(id: <span class="type">String!</span>, language: <span class="type">String</span>): <span class="type">Framework</span>
+  <span class="comment"># Get a specific framework by its identifier</span>
+  
+  <span class="field">apiIndex</span>(framework: <span class="type">String!</span>, language: <span class="type">String</span> = "swift"): <span class="type">APIIndex</span>
+  <span class="comment"># Get an API index for a specific framework</span>
+  
+  <span class="field">documentsByType</span>(type: <span class="type">String!</span>, framework: <span class="type">String</span>, language: <span class="type">String</span>): [<span class="type">Document!</span>]!
+  <span class="comment"># List documents of a specific type</span>
+  
+  <span class="field">documentsByPlatform</span>(platform: <span class="type">String!</span>, framework: <span class="type">String</span>, language: <span class="type">String</span>): [<span class="type">Document!</span>]!
+  <span class="comment"># List documents available on a specific platform</span>
+  
+  <span class="field">relatedDocuments</span>(path: <span class="type">String!</span>, limit: <span class="type">Int</span> = 5, language: <span class="type">String</span>): [<span class="type">Document!</span>]!
+  <span class="comment"># Get related documents for a specific document</span>
+  
+  <span class="field">platforms</span>: [<span class="type">Platform!</span>]!
+  <span class="comment"># Get platform information</span>
+}</code></pre>
+    </div>
+
+    <a href="/graphql" class="btn">Try in GraphQL Playground</a>
+    <a href="/sandbox" class="btn" style="background-color: #7531f9;">Try in Apollo Sandbox</a>
+</body>
+</html>

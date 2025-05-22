@@ -1,0 +1,193 @@
+"""
+Root document type representing an Apple documentation item
+"""
+type Document {
+  # Unique identifier for the document
+  id: ID!
+  
+  # Path to the document in the documentation hierarchy
+  path: String!
+  
+  # Document title
+  title: String
+  
+  # Brief description of the document
+  abstract: String
+  
+  # Framework the document belongs to
+  framework: String
+  
+  # Document type (class, method, protocol, etc.)
+  type: String
+  
+  # Available platforms for this API (iOS, macOS, etc.)
+  platforms: [Platform]
+  
+  # Whether this API is deprecated
+  isDeprecated: Boolean
+  
+  # Document metadata (JSON format)
+  metadata: JSON
+  
+  # Full document content (JSON format)
+  content: JSON
+  
+  # Related documents
+  related: [Document]
+  
+  # Document sections
+  sections: [Section]
+  
+  # Parent document
+  parent: Document
+  
+  # Child documents
+  children: [Document]
+}
+
+"""
+Platform availability information
+"""
+type Platform {
+  # Platform name (e.g., iOS, macOS)
+  name: String!
+  
+  # Introduction version (e.g., 13.0)
+  introducedAt: String
+  
+  # Deprecated version (if applicable)
+  deprecatedAt: String
+}
+
+"""
+Section of a document
+"""
+type Section {
+  # Section title
+  title: String!
+  
+  # Section kind (declarations, overview, parameters, etc.)
+  kind: String
+  
+  # Section content as HTML
+  content: String
+}
+
+"""
+Framework information
+"""
+type Framework {
+  # Framework identifier
+  id: ID!
+  
+  # Framework path
+  path: String!
+  
+  # Framework title
+  title: String!
+  
+  # Brief description
+  abstract: String
+  
+  # Available platforms
+  platforms: [Platform]
+  
+  # Top-level document categories
+  categories: [Category]
+}
+
+"""
+Document category
+"""
+type Category {
+  # Category title
+  title: String!
+  
+  # Documents in this category
+  documents: [Document]
+}
+
+"""
+Search result information
+"""
+type SearchResult {
+  # List of matching documents
+  documents: [Document!]!
+  
+  # Total number of results
+  count: Int!
+  
+  # Search query executed
+  query: String!
+}
+
+"""
+JSON scalar type for complex nested data
+"""
+scalar JSON
+
+"""
+Root query type
+"""
+type Query {
+  """
+  Get a document by its path
+  """
+  document(
+    # Path to the document (e.g., "tutorials/data/documentation/swiftui")
+    path: String!
+  ): Document
+  
+  """
+  Search for documents matching a query
+  """
+  search(
+    # Search query
+    query: String!,
+    # Maximum number of results to return
+    limit: Int = 10
+  ): SearchResult!
+  
+  """
+  List all top-level frameworks
+  """
+  frameworks: [Framework!]!
+  
+  """
+  Get a specific framework by its identifier
+  """
+  framework(
+    # Framework identifier (e.g., "swiftui")
+    id: String!
+  ): Framework
+  
+  """
+  List documents of a specific type
+  """
+  documentsByType(
+    # Document type (class, method, protocol, etc.)
+    type: String!,
+    # Framework to filter by (optional)
+    framework: String
+  ): [Document!]!
+  
+  """
+  List documents available on a specific platform
+  """
+  documentsByPlatform(
+    # Platform name (e.g., "ios", "macos")
+    platform: String!,
+    # Framework to filter by (optional)
+    framework: String
+  ): [Document!]!
+  
+  """
+  Get related documents for a specific document
+  """
+  relatedDocuments(
+    # Path to the document
+    path: String!,
+    # Maximum number of related documents to return
+    limit: Int = 5
+  ): [Document!]!
+}
