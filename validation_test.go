@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 )
@@ -449,5 +450,219 @@ func TestValidateRealAppleDocStructure(t *testing.T) {
 	// Should have no errors for a well-formed document
 	if len(result.Errors) > 0 {
 		t.Errorf("Expected no errors for valid doc, got: %v", result.Errors)
+	}
+}
+
+func TestChecksumCalculation(t *testing.T) {
+	// Test data
+	testData := []byte("Hello, World!")
+	expectedChecksum := "dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f"
+	
+	actualChecksum := calculateSHA256(testData)
+	if actualChecksum != expectedChecksum {
+		t.Errorf("Expected checksum %s, got %s", expectedChecksum, actualChecksum)
+	}
+}
+
+func TestChecksumManager(t *testing.T) {
+	tempDir := t.TempDir()
+	
+	// Create a test file
+	testFile := filepath.Join(tempDir, "test.json")
+	testData := []byte(`{"test": "data"}`)
+	if err := os.WriteFile(testFile, testData, 0644); err != nil {
+		t.Fatalf("Failed to create test file: %v", err)
+	}
+	
+	cm := NewChecksumManager(tempDir)
+	
+	t.Run("first verification stores checksum", func(t *testing.T) {
+		result := cm.VerifyFileIntegrity(testFile)
+		if !result.Valid {
+			t.Errorf("Expected valid result, got errors: %v", result.Errors)
+		}
+		
+		// Should have warning about new checksum
+		if len(result.Warnings) == 0 {
+			t.Error("Expected warning about new checksum")
+		}
+		
+		found := false
+		for _, warning := range result.Warnings {
+			if warning.Field == "integrity" && strings.Contains(warning.Message, "no previous checksum found") {
+				found = true
+				break
+			}
+		}
+		if !found {
+			t.Error("Expected warning about no previous checksum")
+		}
+	})
+	
+	t.Run("second verification succeeds", func(t *testing.T) {
+		result := cm.VerifyFileIntegrity(testFile)
+		if !result.Valid {
+			t.Errorf("Expected valid result, got errors: %v", result.Errors)
+		}
+		
+		// Should have no errors or warnings for unchanged file
+		if len(result.Errors) > 0 {
+			t.Errorf("Expected no errors, got: %v", result.Errors)
+		}
+	})
+	
+	t.Run("detects file corruption", func(t *testing.T) {
+		// Corrupt the file
+		corruptData := []byte(`{"test": "corrupted"}`)
+		if err := os.WriteFile(testFile, corruptData, 0644); err != nil {
+			t.Fatalf("Failed to corrupt test file: %v", err)
+		}
+		
+		result := cm.VerifyFileIntegrity(testFile)
+		if result.Valid {
+			t.Error("Expected validation to fail for corrupted file")
+		}
+		
+		// Should have integrity error
+		found := false
+		for _, err := range result.Errors {
+			if err.Field == "integrity" && strings.Contains(err.Message, "checksum mismatch") {
+				found = true
+				break
+			}
+		}
+		if !found {
+			t.Error("Expected integrity error for corrupted file")
+		}
+	})
+}
+
+func TestValidateAndUpdateChecksum(t *testing.T) {
+	tempDir := t.TempDir()
+	
+	// Create a test file
+	testFile := filepath.Join(tempDir, "test.json")
+	testData := []byte(`{"test": "data"}`)
+	if err := os.WriteFile(testFile, testData, 0644); err != nil {
+		t.Fatalf("Failed to create test file: %v", err)
+	}
+	
+	cm := NewChecksumManager(tempDir)
+	
+	result := cm.ValidateAndUpdateChecksum(testFile, testData)
+	if !result.Valid {
+		t.Errorf("Expected valid result, got errors: %v", result.Errors)
+	}
+	
+	// Check that checksum was stored
+	relPath, _ := filepath.Rel(filepath.Dir(cm.metadataPath), testFile)
+	if _, exists := cm.metadata.Files[relPath]; !exists {
+		t.Error("Expected checksum to be stored in metadata")
+	}
+}
+
+func TestValidateCacheIntegrityWithChecksums(t *testing.T) {
+	tempDir := t.TempDir()
+	
+	// Create some test files
+	validFile := filepath.Join(tempDir, "valid.json")
+	if err := os.WriteFile(validFile, []byte(`{"valid": "data"}`), 0644); err != nil {
+		t.Fatalf("Failed to create valid file: %v", err)
+	}
+	
+	corruptFile := filepath.Join(tempDir, "corrupt.json")
+	if err := os.WriteFile(corruptFile, []byte(`{"corrupt": "data"}`), 0644); err != nil {
+		t.Fatalf("Failed to create corrupt file: %v", err)
+	}
+	
+	// Run initial validation to establish checksums
+	result1 := ValidateCacheIntegrityWithChecksums(tempDir)
+	if !result1.Valid {
+		t.Errorf("Expected valid result for initial validation, got errors: %v", result1.Errors)
+	}
+	
+	// Corrupt one file
+	if err := os.WriteFile(corruptFile, []byte(`{"corrupted": "different"}`), 0644); err != nil {
+		t.Fatalf("Failed to corrupt file: %v", err)
+	}
+	
+	// Run validation again
+	result2 := ValidateCacheIntegrityWithChecksums(tempDir)
+	if result2.Valid {
+		t.Error("Expected validation to fail after file corruption")
+	}
+	
+	// Should detect corruption
+	found := false
+	for _, err := range result2.Errors {
+		if err.Field == "integrity" && strings.Contains(err.Message, "checksum mismatch") {
+			found = true
+			break
+		}
+	}
+	if !found {
+		t.Error("Expected to detect file corruption")
+	}
+}
+
+func TestChecksumMetadataPersistence(t *testing.T) {
+	tempDir := t.TempDir()
+	
+	// Create a test file
+	testFile := filepath.Join(tempDir, "test.json")
+	testData := []byte(`{"test": "data"}`)
+	if err := os.WriteFile(testFile, testData, 0644); err != nil {
+		t.Fatalf("Failed to create test file: %v", err)
+	}
+	
+	// Create first manager and verify file
+	cm1 := NewChecksumManager(tempDir)
+	result1 := cm1.VerifyFileIntegrity(testFile)
+	if !result1.Valid {
+		t.Errorf("Expected valid result, got errors: %v", result1.Errors)
+	}
+	
+	// Save metadata
+	if err := cm1.saveMetadata(); err != nil {
+		t.Fatalf("Failed to save metadata: %v", err)
+	}
+	
+	// Create second manager (should load existing metadata)
+	cm2 := NewChecksumManager(tempDir)
+	result2 := cm2.VerifyFileIntegrity(testFile)
+	if !result2.Valid {
+		t.Errorf("Expected valid result with loaded metadata, got errors: %v", result2.Errors)
+	}
+	
+	// Should not have "no previous checksum" warning this time
+	for _, warning := range result2.Warnings {
+		if warning.Field == "integrity" && strings.Contains(warning.Message, "no previous checksum found") {
+			t.Error("Should not have 'no previous checksum' warning when metadata is loaded")
+		}
+	}
+}
+
+func TestChecksumManagerFileNotFound(t *testing.T) {
+	tempDir := t.TempDir()
+	cm := NewChecksumManager(tempDir)
+	
+	// Try to verify non-existent file
+	nonExistentFile := filepath.Join(tempDir, "nonexistent.json")
+	result := cm.VerifyFileIntegrity(nonExistentFile)
+	
+	if result.Valid {
+		t.Error("Expected validation to fail for non-existent file")
+	}
+	
+	// Should have file error
+	found := false
+	for _, err := range result.Errors {
+		if err.Field == "file" {
+			found = true
+			break
+		}
+	}
+	if !found {
+		t.Error("Expected file error for non-existent file")
 	}
 }

@@ -60,6 +60,7 @@ var (
 	logLevel      = flag.String("log-level", "info", "log level: debug, info, warn, error")
 	exportMetrics = flag.String("export-metrics", "", "export detailed metrics to JSON file (optional path)")
 	validateCache = flag.Bool("validate-cache", false, "validate cache integrity on startup")
+	checksumValidation = flag.Bool("checksum-validation", false, "enable enhanced checksum-based cache validation")
 
 	// Mode selection
 	mode = flag.String("mode", "crawl", "operation mode: crawl, html, markdown, or all")
@@ -485,7 +486,15 @@ func run(ctx context.Context) error {
 	// Validate cache integrity if requested
 	if *validateCache {
 		log.Printf("Validating cache integrity...")
-		cacheValidation := ValidateCache(*cacheDir)
+		var cacheValidation ValidationResult
+		
+		if *checksumValidation {
+			log.Printf("Using enhanced checksum-based validation...")
+			cacheValidation = ValidateCacheIntegrityWithChecksums(*cacheDir)
+		} else {
+			cacheValidation = ValidateCache(*cacheDir)
+		}
+		
 		if len(cacheValidation.Errors) > 0 {
 			log.Printf("Cache validation errors found:")
 			for _, err := range cacheValidation.Errors {

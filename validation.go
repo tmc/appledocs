@@ -1,6 +1,8 @@
 package main
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"net/url"
@@ -60,6 +62,29 @@ func (vr *ValidationResult) AddWarning(field, message string, value interface{},
 		Message: message,
 		Path:    pathStr,
 	})
+}
+
+// FileChecksum represents checksum information for a file
+type FileChecksum struct {
+	Path     string    `json:"path"`
+	SHA256   string    `json:"sha256"`
+	Size     int64     `json:"size"`
+	ModTime  time.Time `json:"modTime"`
+	Verified time.Time `json:"verified"`
+}
+
+// CacheMetadata manages checksum metadata for cached files
+type CacheMetadata struct {
+	Version   string                  `json:"version"`
+	CreatedAt time.Time               `json:"createdAt"`
+	UpdatedAt time.Time               `json:"updatedAt"`
+	Files     map[string]FileChecksum `json:"files"`
+}
+
+// ChecksumManager manages file checksums and integrity verification
+type ChecksumManager struct {
+	metadataPath string
+	metadata     *CacheMetadata
 }
 
 // ValidateCommandLineFlags validates all command-line flags for correctness
@@ -376,6 +401,241 @@ func ValidateCache(cacheDir string) ValidationResult {
 
 	if err != nil {
 		result.AddError("cache", "failed to walk cache directory", err.Error(), cacheDir)
+	}
+
+	return result
+}
+
+// NewChecksumManager creates a new checksum manager
+func NewChecksumManager(cacheDir string) *ChecksumManager {
+	metadataPath := filepath.Join(cacheDir, ".checksums.json")
+	cm := &ChecksumManager{
+		metadataPath: metadataPath,
+		metadata: &CacheMetadata{
+			Version:   "1.0",
+			CreatedAt: time.Now(),
+			UpdatedAt: time.Now(),
+			Files:     make(map[string]FileChecksum),
+		},
+	}
+	cm.loadMetadata()
+	return cm
+}
+
+// loadMetadata loads checksum metadata from disk
+func (cm *ChecksumManager) loadMetadata() error {
+	if _, err := os.Stat(cm.metadataPath); os.IsNotExist(err) {
+		return nil // No metadata file yet, that's ok
+	}
+
+	data, err := os.ReadFile(cm.metadataPath)
+	if err != nil {
+		return fmt.Errorf("failed to read checksum metadata: %v", err)
+	}
+
+	if err := json.Unmarshal(data, cm.metadata); err != nil {
+		return fmt.Errorf("failed to parse checksum metadata: %v", err)
+	}
+
+	return nil
+}
+
+// saveMetadata saves checksum metadata to disk
+func (cm *ChecksumManager) saveMetadata() error {
+	cm.metadata.UpdatedAt = time.Now()
+	
+	data, err := json.MarshalIndent(cm.metadata, "", "  ")
+	if err != nil {
+		return fmt.Errorf("failed to marshal checksum metadata: %v", err)
+	}
+
+	if err := os.WriteFile(cm.metadataPath, data, 0644); err != nil {
+		return fmt.Errorf("failed to write checksum metadata: %v", err)
+	}
+
+	return nil
+}
+
+// calculateSHA256 calculates SHA-256 checksum for file data
+func calculateSHA256(data []byte) string {
+	hash := sha256.Sum256(data)
+	return hex.EncodeToString(hash[:])
+}
+
+// calculateFileSHA256 calculates SHA-256 checksum for a file
+func calculateFileSHA256(filePath string) (string, error) {
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		return "", fmt.Errorf("failed to read file %s: %v", filePath, err)
+	}
+	return calculateSHA256(data), nil
+}
+
+// VerifyFileIntegrity verifies a file's integrity using checksums
+func (cm *ChecksumManager) VerifyFileIntegrity(filePath string) ValidationResult {
+	result := ValidationResult{Valid: true}
+	
+	// Get file info
+	info, err := os.Stat(filePath)
+	if err != nil {
+		result.AddError("file", "cannot stat file", err.Error(), filePath)
+		return result
+	}
+
+	// Calculate current checksum
+	currentChecksum, err := calculateFileSHA256(filePath)
+	if err != nil {
+		result.AddError("checksum", "failed to calculate checksum", err.Error(), filePath)
+		return result
+	}
+
+	// Get relative path for metadata key
+	relPath, _ := filepath.Rel(filepath.Dir(cm.metadataPath), filePath)
+	
+	// Check if we have stored checksum
+	if storedChecksum, exists := cm.metadata.Files[relPath]; exists {
+		// Verify checksum
+		if storedChecksum.SHA256 != currentChecksum {
+			result.AddError("integrity", "file checksum mismatch - file may be corrupted or tampered", 
+				fmt.Sprintf("expected: %s, got: %s", storedChecksum.SHA256, currentChecksum), filePath)
+			return result
+		}
+
+		// Check if size matches
+		if storedChecksum.Size != info.Size() {
+			result.AddWarning("integrity", "file size changed", 
+				fmt.Sprintf("expected: %d, got: %d", storedChecksum.Size, info.Size()), filePath)
+		}
+
+		// Check if modification time changed
+		if !storedChecksum.ModTime.Equal(info.ModTime()) {
+			result.AddWarning("integrity", "file modification time changed", 
+				fmt.Sprintf("expected: %s, got: %s", storedChecksum.ModTime, info.ModTime()), filePath)
+		}
+
+		// Update verification time
+		storedChecksum.Verified = time.Now()
+		cm.metadata.Files[relPath] = storedChecksum
+	} else {
+		// Store new checksum
+		cm.metadata.Files[relPath] = FileChecksum{
+			Path:     relPath,
+			SHA256:   currentChecksum,
+			Size:     info.Size(),
+			ModTime:  info.ModTime(),
+			Verified: time.Now(),
+		}
+		result.AddWarning("integrity", "no previous checksum found, storing new checksum", currentChecksum, filePath)
+	}
+
+	return result
+}
+
+// ValidateAndUpdateChecksum validates file integrity and updates checksum metadata
+func (cm *ChecksumManager) ValidateAndUpdateChecksum(filePath string, data []byte) ValidationResult {
+	result := ValidationResult{Valid: true}
+	
+	// Calculate checksum from provided data
+	dataChecksum := calculateSHA256(data)
+	
+	// Get file info
+	info, err := os.Stat(filePath)
+	if err != nil {
+		result.AddError("file", "cannot stat file", err.Error(), filePath)
+		return result
+	}
+
+	// Get relative path for metadata key
+	relPath, _ := filepath.Rel(filepath.Dir(cm.metadataPath), filePath)
+	
+	// Store/update checksum
+	cm.metadata.Files[relPath] = FileChecksum{
+		Path:     relPath,
+		SHA256:   dataChecksum,
+		Size:     info.Size(),
+		ModTime:  info.ModTime(),
+		Verified: time.Now(),
+	}
+
+	return result
+}
+
+// ValidateCacheIntegrityWithChecksums validates integrity of all files in cache using checksums
+func ValidateCacheIntegrityWithChecksums(cacheDir string) ValidationResult {
+	result := ValidationResult{Valid: true}
+	
+	cm := NewChecksumManager(cacheDir)
+	
+	// Check if cache directory exists
+	if _, err := os.Stat(cacheDir); os.IsNotExist(err) {
+		result.AddWarning("cache", "cache directory does not exist", cacheDir)
+		return result
+	}
+
+	var filesChecked int
+	var filesCorrupted int
+	var filesNew int
+
+	// Walk cache directory and validate files
+	err := filepath.Walk(cacheDir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			result.AddError("cache", "error accessing cache file", err.Error(), path)
+			return nil // Continue walking
+		}
+
+		// Skip directories and metadata files
+		if info.IsDir() || filepath.Base(path) == ".checksums.json" {
+			return nil
+		}
+
+		// Skip non-JSON files for now
+		if !strings.HasSuffix(path, ".json") {
+			return nil
+		}
+
+		filesChecked++
+		fileResult := cm.VerifyFileIntegrity(path)
+		
+		// Count corruption and new files
+		for _, err := range fileResult.Errors {
+			if err.Field == "integrity" {
+				filesCorrupted++
+			}
+		}
+		
+		for _, warning := range fileResult.Warnings {
+			if warning.Field == "integrity" && strings.Contains(warning.Message, "no previous checksum") {
+				filesNew++
+			}
+		}
+
+		// Merge results
+		result.Errors = append(result.Errors, fileResult.Errors...)
+		result.Warnings = append(result.Warnings, fileResult.Warnings...)
+		if !fileResult.Valid {
+			result.Valid = false
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		result.AddError("cache", "failed to walk cache directory", err.Error(), cacheDir)
+	}
+
+	// Save updated metadata
+	if saveErr := cm.saveMetadata(); saveErr != nil {
+		result.AddWarning("metadata", "failed to save checksum metadata", saveErr.Error(), cm.metadataPath)
+	}
+
+	// Add summary information
+	if filesChecked > 0 {
+		summary := fmt.Sprintf("checked %d files: %d corrupted, %d new", filesChecked, filesCorrupted, filesNew)
+		if filesCorrupted == 0 && filesNew == 0 {
+			result.AddWarning("summary", "cache integrity verification completed successfully", summary, cacheDir)
+		} else {
+			result.AddWarning("summary", "cache integrity verification completed", summary, cacheDir)
+		}
 	}
 
 	return result
