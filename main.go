@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"log/slog"
 	"net/http"
 	"net/url"
 	"os"
@@ -20,7 +21,19 @@ import (
 	"sync"
 	"syscall"
 	"time"
+
+	"golang.org/x/time/rate"
 )
+
+// Pool for reusing slice allocations
+var urlSlicePool = sync.Pool{
+	New: func() interface{} {
+		return make([]string, 0, 100) // Pre-allocate capacity
+	},
+}
+
+// Global structured logger
+var logger *slog.Logger
 
 var (
 	// Directories and URLs
@@ -32,17 +45,20 @@ var (
 	excludePaths = flag.String("exclude-paths", "en-US/docs/Mozilla", "comma-separated list of paths to exclude from crawling")
 
 	// Crawling options
-	concurrency  = flag.Int("concurrency", 1, "number of concurrent downloads")
-	delay        = flag.Duration("delay", 0, "delay between urls")
-	forceRefresh = flag.Bool("force", false, "force refresh all content")
-	timeout      = flag.Duration("timeout", 30*time.Second, "HTTP request timeout")
-	maxTime      = flag.Duration("max-time", time.Hour, "maximum time to run the program")
-	skipSymbols  = flag.Bool("skip-symbols", false, "skip individual symbol level documentation")
-	printURLs    = flag.Bool("print-urls", false, "only print discovered URLs from entry point and exit")
+	concurrency   = flag.Int("concurrency", 1, "number of concurrent downloads")
+	delay         = flag.Duration("delay", 0, "delay between urls")
+	rateLimit     = flag.Float64("rate-limit", 10.0, "requests per second rate limit (0 = no limit)")
+	forceRefresh  = flag.Bool("force", false, "force refresh all content")
+	timeout       = flag.Duration("timeout", 30*time.Second, "HTTP request timeout")
+	maxTime       = flag.Duration("max-time", time.Hour, "maximum time to run the program")
+	skipSymbols   = flag.Bool("skip-symbols", false, "skip individual symbol level documentation")
+	printURLs     = flag.Bool("print-urls", false, "only print discovered URLs from entry point and exit")
 
 	// Output options
-	prettyJSON = flag.Bool("pretty", true, "pretty-print JSON files")
-	verbose    = flag.Bool("verbose", false, "enable verbose logging")
+	prettyJSON    = flag.Bool("pretty", true, "pretty-print JSON files")
+	verbose       = flag.Bool("verbose", false, "enable verbose logging")
+	logLevel      = flag.String("log-level", "info", "log level: debug, info, warn, error")
+	exportMetrics = flag.String("export-metrics", "", "export detailed metrics to JSON file (optional path)")
 
 	// Mode selection
 	mode = flag.String("mode", "crawl", "operation mode: crawl, html, markdown, or all")
@@ -71,6 +87,7 @@ type appledocs struct {
 	badURLs        map[string]bool // URLs known to be 404s or invalid
 	urlDepths      map[string]int  // Track semantic depth of each URL
 	depthMutex     sync.RWMutex    // Mutex for urlDepths
+	rateLimiter    *rate.Limiter   // Rate limiter for HTTP requests
 
 	// Status tracking metrics
 	cacheHits      int
@@ -79,6 +96,19 @@ type appledocs struct {
 	skippedURLs    int
 	skippedSymbols int // Count of URLs skipped because they're symbol-level docs
 	statsMutex     sync.Mutex
+
+	// Enhanced metrics
+	startTime         time.Time
+	totalBytesDownloaded int64
+	totalBytesFromCache  int64
+	avgResponseTime      time.Duration
+	totalResponseTime    time.Duration
+	requestCount         int
+	httpErrors           map[int]int // HTTP status code -> count
+	retryCount           int         // Total number of retries
+	frameworkCount       int         // Number of frameworks processed
+	classCount           int         // Number of classes processed
+	methodCount          int         // Number of methods processed
 }
 
 // buildFrameworkURLs constructs URLs for a specific framework
@@ -101,9 +131,9 @@ func buildFrameworkURLs(frameworkName string) []string {
 }
 
 // fetchAndExtractURLs fetches a URL and extracts URLs from its content
-func fetchAndExtractURLs(client *http.Client, app *appledocs, fetchURL string) ([]string, error) {
+func fetchAndExtractURLs(ctx context.Context, client *http.Client, app *appledocs, fetchURL string) ([]string, error) {
 	log.Printf("Fetching URL: %s", fetchURL)
-	data, err := fetchWithCache(client, fetchURL, app)
+	data, err := fetchWithCache(ctx, client, fetchURL, app)
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch %s: %v", fetchURL, err)
 	}
@@ -123,14 +153,29 @@ func isDataURL(url string) bool {
 }
 
 // printURLsOnly fetches the entry point URL and prints all discovered URLs
-func printURLsOnly() error {
+func printURLsOnly(ctx context.Context) error {
 	client := &http.Client{Timeout: *timeout}
+
+	// Initialize rate limiter
+	var rateLimiter *rate.Limiter
+	if *rateLimit > 0 {
+		rateLimiter = rate.NewLimiter(rate.Limit(*rateLimit), int(*rateLimit))
+		if logger != nil {
+			logger.Info("Rate limiting enabled", "requests_per_second", *rateLimit)
+		}
+	} else {
+		rateLimiter = rate.NewLimiter(rate.Inf, 0) // No limit
+	}
 
 	// Create simple app instance for cache tracking
 	app := &appledocs{
 		client:      client,
 		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
+		urlDepths:   make(map[string]int),
+		rateLimiter: rateLimiter,
+		startTime:   time.Now(),
+		httpErrors:  make(map[int]int),
 	}
 
 	// Ensure we have a cache directory
@@ -182,7 +227,7 @@ func printURLsOnly() error {
 		// Try each URL
 		for _, urlPath := range frameworkURLs {
 			fullURL := resolveURL(*baseURL, urlPath)
-			extractedURLs, err := fetchAndExtractURLs(client, app, fullURL)
+			extractedURLs, err := fetchAndExtractURLs(ctx, client, app, fullURL)
 			if err != nil {
 				// Log but don't fail - some paths might not exist
 				log.Printf("Warning: %v", err)
@@ -211,7 +256,7 @@ func printURLsOnly() error {
 
 		// Fetch the technologies index
 		log.Printf("Fetching technologies index: %s", startURL)
-		extractedURLs, err := fetchAndExtractURLs(client, app, startURL)
+		extractedURLs, err := fetchAndExtractURLs(ctx, client, app, startURL)
 		if err != nil {
 			return fmt.Errorf("failed to fetch technologies index: %v", err)
 		}
@@ -255,8 +300,92 @@ func printURLsOnly() error {
 	return nil
 }
 
+// validateConfig validates the command-line configuration
+func validateConfig() error {
+	// Validate concurrency
+	if *concurrency < 1 {
+		return fmt.Errorf("concurrency must be at least 1, got %d", *concurrency)
+	}
+	if *concurrency > 100 {
+		return fmt.Errorf("concurrency too high (max 100), got %d", *concurrency)
+	}
+
+	// Validate timeout
+	if *timeout < time.Second {
+		return fmt.Errorf("timeout too short (min 1s), got %v", *timeout)
+	}
+	if *timeout > 10*time.Minute {
+		return fmt.Errorf("timeout too long (max 10m), got %v", *timeout)
+	}
+
+	// Validate max time
+	if *maxTime < time.Minute {
+		return fmt.Errorf("max-time too short (min 1m), got %v", *maxTime)
+	}
+
+	// Validate base URL
+	if _, err := url.Parse(*baseURL); err != nil {
+		return fmt.Errorf("invalid base URL %q: %v", *baseURL, err)
+	}
+
+	// Validate directories are not empty
+	if *outputDir == "" {
+		return fmt.Errorf("output directory cannot be empty")
+	}
+	if *cacheDir == "" {
+		return fmt.Errorf("cache directory cannot be empty")
+	}
+	if *mdOutputDir == "" {
+		return fmt.Errorf("markdown output directory cannot be empty")
+	}
+
+	return nil
+}
+
+// initLogger initializes the structured logger
+func initLogger() error {
+	var level slog.Level
+	switch strings.ToLower(*logLevel) {
+	case "debug":
+		level = slog.LevelDebug
+	case "info":
+		level = slog.LevelInfo
+	case "warn", "warning":
+		level = slog.LevelWarn
+	case "error":
+		level = slog.LevelError
+	default:
+		return fmt.Errorf("invalid log level: %s", *logLevel)
+	}
+
+	opts := &slog.HandlerOptions{
+		Level: level,
+		AddSource: level == slog.LevelDebug,
+	}
+
+	// Use text handler for human-readable logs
+	handler := slog.NewTextHandler(os.Stderr, opts)
+	logger = slog.New(handler)
+	
+	// Set as default logger
+	slog.SetDefault(logger)
+	
+	return nil
+}
+
 func main() {
 	flag.Parse()
+
+	// Initialize structured logger
+	if err := initLogger(); err != nil {
+		log.Fatalf("Failed to initialize logger: %v", err)
+	}
+
+	// Validate configuration
+	if err := validateConfig(); err != nil {
+		logger.Error("Configuration error", "error", err)
+		os.Exit(1)
+	}
 
 	// Handle legacy flag conversion for backward compatibility
 	if *generateMD && *mode == "crawl" {
@@ -265,7 +394,8 @@ func main() {
 
 	// Special case for print-urls mode
 	if *printURLs {
-		if err := printURLsOnly(); err != nil {
+		ctx := context.Background()
+		if err := printURLsOnly(ctx); err != nil {
 			log.Fatalf("Error: %v", err)
 		}
 		return
@@ -317,26 +447,29 @@ func main() {
 
 	// HTML mode - generate HTML index
 	if *mode == "html" || *mode == "all" {
-		log.Printf("Generating HTML index...")
+		logger.Info("Starting HTML index generation", "output_dir", *outputDir)
 		jsonFiles, err := scanOutputDirectory(*outputDir)
 		if err != nil {
-			log.Fatalf("Error scanning output directory: %v", err)
+			logger.Error("Failed to scan output directory", "error", err, "dir", *outputDir)
+			os.Exit(1)
 		}
 
 		if err := createJSONIndexHTML(*outputDir, jsonFiles); err != nil {
-			log.Fatalf("Error generating HTML: %v", err)
+			logger.Error("HTML index generation failed", "error", err)
+			os.Exit(1)
 		}
 
-		log.Printf("HTML generation complete. Open %s/index.html to view.", *outputDir)
+		logger.Info("HTML index generation completed", "file", filepath.Join(*outputDir, "index.html"))
 	}
 
 	// Markdown mode - generate Markdown files
 	if *mode == "markdown" || *mode == "all" {
-		log.Printf("Generating Markdown documentation...")
+		logger.Info("Starting Markdown generation", "output_dir", *mdOutputDir)
 		if err := generateMarkdown(*outputDir, *mdOutputDir); err != nil {
-			log.Fatalf("Error generating Markdown: %v", err)
+			logger.Error("Markdown generation failed", "error", err)
+			os.Exit(1)
 		}
-		log.Printf("Markdown generation complete. Output in: %s", *mdOutputDir)
+		logger.Info("Markdown generation completed", "output_dir", *mdOutputDir)
 	}
 }
 
@@ -345,11 +478,25 @@ func run(ctx context.Context) error {
 	client := &http.Client{Timeout: *timeout}
 	startURL := resolveURL(*baseURL, *entryPoint)
 
+	// Initialize rate limiter
+	var rateLimiter *rate.Limiter
+	if *rateLimit > 0 {
+		rateLimiter = rate.NewLimiter(rate.Limit(*rateLimit), int(*rateLimit))
+		if logger != nil {
+			logger.Info("Rate limiting enabled", "requests_per_second", *rateLimit)
+		}
+	} else {
+		rateLimiter = rate.NewLimiter(rate.Inf, 0) // No limit
+	}
+
 	app := &appledocs{
 		client:      client,
 		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
+		rateLimiter: rateLimiter,
+		startTime:   time.Now(),
+		httpErrors:  make(map[int]int),
 	}
 
 	// Create bad URLs directory if it doesn't exist
@@ -380,9 +527,27 @@ func run(ctx context.Context) error {
 			case <-ctx.Done():
 				return
 			case <-ticker.C:
-				processed, cacheHits, cacheMisses, errors, skipped := app.getStats()
-				log.Printf("In progress... Processed: %d files | Cache: %d hits, %d misses | Errors: %d | Skipped: %d",
-					processed, cacheHits, cacheMisses, errors, skipped)
+				metrics := app.getEnhancedMetrics()
+				
+				// Enhanced progress reporting with more detail
+				log.Printf("Progress: %d files processed | Cache: %d hits (%.1f%%), %d misses | %.2f MB/s | Avg: %v/req | Errors: %d | Retries: %d", 
+					metrics.Processed, 
+					metrics.CacheHits, 
+					metrics.CacheHitRate,
+					metrics.CacheMisses,
+					metrics.DownloadRate,
+					metrics.AvgResponseTime,
+					metrics.Errors,
+					metrics.RetryCount)
+				
+				// Additional metrics when verbose
+				if *verbose && metrics.EstimatedTimeRemaining > 0 {
+					log.Printf("Content: %d frameworks, %d classes, %d methods | ETA: %v", 
+						metrics.FrameworkCount, 
+						metrics.ClassCount, 
+						metrics.MethodCount,
+						metrics.EstimatedTimeRemaining.Round(time.Second))
+				}
 			}
 		}
 	}()
@@ -403,6 +568,11 @@ func run(ctx context.Context) error {
 		wg.Add(1)
 		go func(workerID int) {
 			defer wg.Done()
+			defer func() {
+				if r := recover(); r != nil {
+					log.Printf("Worker %d panic recovered: %v", workerID, r)
+				}
+			}()
 			if *verbose {
 				log.Printf("Worker %d starting", workerID)
 			}
@@ -472,15 +642,51 @@ func run(ctx context.Context) error {
 		}
 	}
 
-	// Report final statistics
-	processed, cacheHits, cacheMisses, errors, skipped := app.getStats()
+	// Report enhanced final statistics
+	metrics := app.getEnhancedMetrics()
 	log.Printf("Final statistics:")
-	log.Printf("  - Processed: %d JSON files", processed)
-	log.Printf("  - Cache: %d hits, %d misses", cacheHits, cacheMisses)
-	log.Printf("  - Errors: %d", errors)
-	log.Printf("  - Skipped URLs: %d", skipped)
+	log.Printf("  - Runtime: %v", metrics.RuntimeDuration.Round(time.Second))
+	log.Printf("  - Processed: %d JSON files (%.2f files/sec)", metrics.Processed, metrics.ProcessingRate)
+	log.Printf("  - Cache: %d hits (%.1f%%), %d misses", metrics.CacheHits, metrics.CacheHitRate, metrics.CacheMisses)
+	log.Printf("  - Data: %.2f MB downloaded, %.2f MB from cache (%.2f MB/s)", 
+		float64(metrics.TotalBytesDownloaded)/1024/1024,
+		float64(metrics.TotalBytesFromCache)/1024/1024,
+		metrics.DownloadRate)
+	log.Printf("  - Network: %d requests, avg %v/req, %d retries", 
+		metrics.RequestCount, metrics.AvgResponseTime, metrics.RetryCount)
+	log.Printf("  - Content: %d frameworks, %d classes, %d methods", 
+		metrics.FrameworkCount, metrics.ClassCount, metrics.MethodCount)
+	log.Printf("  - Errors: %d", metrics.Errors)
+	log.Printf("  - Skipped URLs: %d", metrics.SkippedURLs)
 	if *skipSymbols {
-		log.Printf("  - Skipped symbol URLs: %d", app.skippedSymbols)
+		log.Printf("  - Skipped symbol URLs: %d", metrics.SkippedSymbols)
+	}
+	
+	// Report HTTP errors if any
+	if len(metrics.HTTPErrors) > 0 {
+		log.Printf("  - HTTP Errors by status code:")
+		for statusCode, count := range metrics.HTTPErrors {
+			log.Printf("    - %d: %d errors", statusCode, count)
+		}
+	}
+
+	// Export metrics to JSON file if requested
+	if *exportMetrics != "" {
+		metricsPath := *exportMetrics
+		if metricsPath == "true" || metricsPath == "1" {
+			metricsPath = "metrics.json"
+		}
+		
+		metricsJSON, err := json.MarshalIndent(metrics, "", "  ")
+		if err != nil {
+			log.Printf("Warning: Failed to marshal metrics: %v", err)
+		} else {
+			if err := os.WriteFile(metricsPath, metricsJSON, 0644); err != nil {
+				log.Printf("Warning: Failed to write metrics file %s: %v", metricsPath, err)
+			} else {
+				log.Printf("Detailed metrics exported to: %s", metricsPath)
+			}
+		}
 	}
 
 	return nil
@@ -518,7 +724,97 @@ func (app *appledocs) incrementSkippedSymbols() {
 	app.statsMutex.Unlock()
 }
 
-// getStats returns current statistics in a thread-safe way
+// Enhanced metrics methods
+func (app *appledocs) recordResponseTime(duration time.Duration) {
+	app.statsMutex.Lock()
+	app.totalResponseTime += duration
+	app.requestCount++
+	if app.requestCount > 0 {
+		app.avgResponseTime = app.totalResponseTime / time.Duration(app.requestCount)
+	}
+	app.statsMutex.Unlock()
+}
+
+func (app *appledocs) recordBytesDownloaded(bytes int64) {
+	app.statsMutex.Lock()
+	app.totalBytesDownloaded += bytes
+	app.statsMutex.Unlock()
+}
+
+func (app *appledocs) recordBytesFromCache(bytes int64) {
+	app.statsMutex.Lock()
+	app.totalBytesFromCache += bytes
+	app.statsMutex.Unlock()
+}
+
+func (app *appledocs) recordHTTPError(statusCode int) {
+	app.statsMutex.Lock()
+	if app.httpErrors == nil {
+		app.httpErrors = make(map[int]int)
+	}
+	app.httpErrors[statusCode]++
+	app.statsMutex.Unlock()
+}
+
+func (app *appledocs) incrementRetryCount() {
+	app.statsMutex.Lock()
+	app.retryCount++
+	app.statsMutex.Unlock()
+}
+
+func (app *appledocs) recordContentType(path string) {
+	app.statsMutex.Lock()
+	defer app.statsMutex.Unlock()
+	
+	// Classify content based on URL path patterns
+	if strings.Contains(path, "/documentation/") {
+		pathParts := strings.Split(path, "/")
+		// Count frameworks (depth 3: /tutorials/data/documentation/FrameworkName.json)
+		if len(pathParts) >= 4 && strings.HasSuffix(pathParts[3], ".json") && !strings.Contains(pathParts[3], "/") {
+			app.frameworkCount++
+		}
+		// Count classes (depth 4: /tutorials/data/documentation/Framework/Class.json)
+		if len(pathParts) >= 5 && strings.HasSuffix(pathParts[4], ".json") {
+			app.classCount++
+		}
+		// Count methods (depth 5+: deeper nesting indicates symbols/methods)
+		if len(pathParts) >= 6 {
+			app.methodCount++
+		}
+	}
+}
+
+// MetricsSnapshot represents a comprehensive snapshot of all metrics
+type MetricsSnapshot struct {
+	// Basic metrics
+	Processed    int    `json:"processed"`
+	CacheHits    int    `json:"cache_hits"`
+	CacheMisses  int    `json:"cache_misses"`
+	Errors       int    `json:"errors"`
+	SkippedURLs  int    `json:"skipped_urls"`
+	SkippedSymbols int  `json:"skipped_symbols"`
+	
+	// Enhanced metrics
+	StartTime            time.Time         `json:"start_time"`
+	RuntimeDuration      time.Duration     `json:"runtime_duration"`
+	TotalBytesDownloaded int64             `json:"total_bytes_downloaded"`
+	TotalBytesFromCache  int64             `json:"total_bytes_from_cache"`
+	AvgResponseTime      time.Duration     `json:"avg_response_time"`
+	RequestCount         int               `json:"request_count"`
+	HTTPErrors           map[int]int       `json:"http_errors"`
+	RetryCount           int               `json:"retry_count"`
+	FrameworkCount       int               `json:"framework_count"`
+	ClassCount           int               `json:"class_count"`
+	MethodCount          int               `json:"method_count"`
+	
+	// Calculated metrics
+	CacheHitRate         float64           `json:"cache_hit_rate"`
+	DownloadRate         float64           `json:"download_rate_mbps"`
+	ProcessingRate       float64           `json:"processing_rate_per_sec"`
+	EstimatedTimeRemaining time.Duration   `json:"estimated_time_remaining"`
+}
+
+// getStats returns current statistics in a thread-safe way (legacy method)
 func (app *appledocs) getStats() (int, int, int, int, int) {
 	app.statsMutex.Lock()
 	defer app.statsMutex.Unlock()
@@ -529,6 +825,73 @@ func (app *appledocs) getStats() (int, int, int, int, int) {
 	// Note: depthLimits is counted as part of skippedURLs for backward compatibility
 	// with the existing reporting, so we don't need to return it separately
 	return processed, app.cacheHits, app.cacheMisses, app.errors, app.skippedURLs
+}
+
+// getEnhancedMetrics returns comprehensive metrics snapshot
+func (app *appledocs) getEnhancedMetrics() MetricsSnapshot {
+	app.statsMutex.Lock()
+	defer app.statsMutex.Unlock()
+	app.entriesMutex.Lock()
+	processed := len(app.jsonEntries)
+	app.entriesMutex.Unlock()
+	
+	now := time.Now()
+	runtime := now.Sub(app.startTime)
+	
+	// Calculate derived metrics
+	var cacheHitRate float64
+	totalRequests := app.cacheHits + app.cacheMisses
+	if totalRequests > 0 {
+		cacheHitRate = float64(app.cacheHits) / float64(totalRequests) * 100
+	}
+	
+	// Download rate in MB/s
+	var downloadRate float64
+	if runtime.Seconds() > 0 {
+		totalMB := float64(app.totalBytesDownloaded) / 1024 / 1024
+		downloadRate = totalMB / runtime.Seconds()
+	}
+	
+	// Processing rate (files per second)
+	var processingRate float64
+	if runtime.Seconds() > 0 {
+		processingRate = float64(processed) / runtime.Seconds()
+	}
+	
+	// Estimate time remaining (very rough estimate)
+	var estimatedTimeRemaining time.Duration
+	app.visitedMutex.RLock()
+	totalURLs := len(app.visitedURLs)
+	app.visitedMutex.RUnlock()
+	
+	if processed > 0 && totalURLs > processed && processingRate > 0 {
+		remaining := totalURLs - processed
+		estimatedTimeRemaining = time.Duration(float64(remaining)/processingRate) * time.Second
+	}
+	
+	return MetricsSnapshot{
+		Processed:              processed,
+		CacheHits:              app.cacheHits,
+		CacheMisses:            app.cacheMisses,
+		Errors:                 app.errors,
+		SkippedURLs:            app.skippedURLs,
+		SkippedSymbols:         app.skippedSymbols,
+		StartTime:              app.startTime,
+		RuntimeDuration:        runtime,
+		TotalBytesDownloaded:   app.totalBytesDownloaded,
+		TotalBytesFromCache:    app.totalBytesFromCache,
+		AvgResponseTime:        app.avgResponseTime,
+		RequestCount:           app.requestCount,
+		HTTPErrors:             app.httpErrors,
+		RetryCount:             app.retryCount,
+		FrameworkCount:         app.frameworkCount,
+		ClassCount:             app.classCount,
+		MethodCount:            app.methodCount,
+		CacheHitRate:           cacheHitRate,
+		DownloadRate:           downloadRate,
+		ProcessingRate:         processingRate,
+		EstimatedTimeRemaining: estimatedTimeRemaining,
+	}
 }
 
 // shouldExcludePath checks if a URL path should be excluded based on user-defined exclude patterns
@@ -632,7 +995,7 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 	}
 
 	// Get content
-	data, err := fetchWithCache(app.client, u, app)
+	data, err := fetchWithCache(ctx, app.client, u, app)
 	if err != nil {
 		return fmt.Errorf("fetch %q: %v", u, err)
 	}
@@ -650,6 +1013,9 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 	if *verbose {
 		log.Printf("Saved %s", outputPath)
 	}
+
+	// Record content type for metrics
+	app.recordContentType(outputPath)
 
 	// Create entry for the index
 	app.entriesMutex.Lock()
@@ -811,7 +1177,7 @@ func addBrowserLikeHeaders(req *http.Request) {
 }
 
 // fetchWithCache fetches a URL with caching.
-func fetchWithCache(client *http.Client, u string, app *appledocs) ([]byte, error) {
+func fetchWithCache(ctx context.Context, client *http.Client, u string, app *appledocs) ([]byte, error) {
 	parsed, err := url.Parse(u)
 	if err != nil {
 		app.incrementErrors()
@@ -845,6 +1211,7 @@ func fetchWithCache(client *http.Client, u string, app *appledocs) ([]byte, erro
 					app.incrementCacheMisses()
 				} else {
 					app.incrementCacheHits()
+					app.recordBytesFromCache(int64(len(data)))
 					if *verbose {
 						log.Printf("Cache hit for %q", u)
 					}
@@ -863,7 +1230,7 @@ func fetchWithCache(client *http.Client, u string, app *appledocs) ([]byte, erro
 	}
 
 	// Create a new request so we can add headers
-	req, err := http.NewRequest("GET", u, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", u, nil)
 	if err != nil {
 		app.incrementErrors()
 		return nil, fmt.Errorf("create request for %q: %v", u, err)
@@ -872,39 +1239,104 @@ func fetchWithCache(client *http.Client, u string, app *appledocs) ([]byte, erro
 	// Add browser-like headers
 	addBrowserLikeHeaders(req)
 
-	// Execute the request
-	resp, err := client.Do(req)
-	if err != nil {
-		app.incrementErrors()
-		// Add to bad URLs list if it's a network error
-		if strings.Contains(err.Error(), "no such host") ||
-			strings.Contains(err.Error(), "connection refused") ||
-			strings.Contains(err.Error(), "timeout") {
-			app.badURLs[u] = true
-			// Save to known-bad-urls file
-			appendToBadURLsFile(u)
+	// Execute the request with retry logic
+	var resp *http.Response
+	maxRetries := 3
+	for attempt := 0; attempt <= maxRetries; attempt++ {
+		// Apply rate limiting before making request
+		if err := app.rateLimiter.Wait(ctx); err != nil {
+			return nil, fmt.Errorf("rate limit wait failed: %v", err)
 		}
-		return nil, fmt.Errorf("fetch %q: %v", u, err)
-	}
-	defer resp.Body.Close()
 
-	if resp.StatusCode != http.StatusOK {
-		app.incrementErrors()
-		// Add to bad URLs list if it's any client error that won't be resolved by retrying
-		// These include 403 (Forbidden), 404 (Not Found), 405 (Method Not Allowed), 410 (Gone)
-		if resp.StatusCode == http.StatusForbidden ||
-			resp.StatusCode == http.StatusNotFound ||
-			resp.StatusCode == http.StatusMethodNotAllowed ||
-			resp.StatusCode == http.StatusGone {
-			app.badURLs[u] = true
-			// Save to known-bad-urls file
-			appendToBadURLsFile(u)
+		var err error
+		startTime := time.Now()
+		resp, err = client.Do(req)
+		requestDuration := time.Since(startTime)
+		
+		// Record response time for successful requests
+		if err == nil {
+			app.recordResponseTime(requestDuration)
+		}
+		
+		// Check if we should retry this attempt
+		shouldRetry := false
+		var retryReason string
+		
+		if err != nil {
+			// Check if it's a retryable network error
+			isRetryable := strings.Contains(err.Error(), "timeout") ||
+				strings.Contains(err.Error(), "connection reset") ||
+				strings.Contains(err.Error(), "temporary failure")
+			
+			if isRetryable && attempt < maxRetries {
+				shouldRetry = true
+				retryReason = fmt.Sprintf("network error: %v", err)
+				app.incrementRetryCount()
+			} else {
+				app.incrementErrors()
+				// Add to bad URLs list if it's a permanent network error
+				if strings.Contains(err.Error(), "no such host") ||
+					strings.Contains(err.Error(), "connection refused") ||
+					(!isRetryable && strings.Contains(err.Error(), "timeout")) {
+					app.badURLs[u] = true
+					appendToBadURLsFile(u)
+				}
+				return nil, fmt.Errorf("fetch %q (after %d attempts): %v", u, attempt+1, err)
+			}
+		} else if resp.StatusCode != http.StatusOK {
+			// Record HTTP error
+			app.recordHTTPError(resp.StatusCode)
+			
+			// Check if it's a retryable status code
+			isRetryableStatus := resp.StatusCode == http.StatusTooManyRequests ||
+				resp.StatusCode == http.StatusInternalServerError ||
+				resp.StatusCode == http.StatusBadGateway ||
+				resp.StatusCode == http.StatusServiceUnavailable ||
+				resp.StatusCode == http.StatusGatewayTimeout
+			
+			if isRetryableStatus && attempt < maxRetries {
+				shouldRetry = true
+				retryReason = fmt.Sprintf("HTTP %d: %s", resp.StatusCode, resp.Status)
+				app.incrementRetryCount()
+				resp.Body.Close() // Close the response body before retrying
+			} else {
+				// Handle non-retryable status codes or exhausted retries
+				defer resp.Body.Close()
+				app.incrementErrors()
+				
+				// Add to bad URLs list for client errors that won't be resolved by retrying
+				if resp.StatusCode == http.StatusForbidden ||
+					resp.StatusCode == http.StatusNotFound ||
+					resp.StatusCode == http.StatusMethodNotAllowed ||
+					resp.StatusCode == http.StatusGone {
+					app.badURLs[u] = true
+					appendToBadURLsFile(u)
+					if *verbose {
+						log.Printf("Added bad URL due to %d status: %s", resp.StatusCode, u)
+					}
+				}
+				return nil, fmt.Errorf("fetch %q: %s", u, resp.Status)
+			}
+		} else {
+			// Success, break out of retry loop
+			break
+		}
+		
+		// Handle retry backoff
+		if shouldRetry {
+			backoffDuration := time.Duration(1<<uint(attempt)) * time.Second
 			if *verbose {
-				log.Printf("Added bad URL due to %d status: %s", resp.StatusCode, u)
+				log.Printf("Attempt %d failed for %q (%s), retrying in %v", attempt+1, u, retryReason, backoffDuration)
+			}
+			select {
+			case <-ctx.Done():
+				return nil, ctx.Err()
+			case <-time.After(backoffDuration):
+				// Continue to next attempt
 			}
 		}
-		return nil, fmt.Errorf("fetch %q: %s", u, resp.Status)
 	}
+	defer resp.Body.Close()
 
 	// Read response body
 	data, err := io.ReadAll(resp.Body)
@@ -913,8 +1345,11 @@ func fetchWithCache(client *http.Client, u string, app *appledocs) ([]byte, erro
 		return nil, fmt.Errorf("read %q: %v", u, err)
 	}
 
-	// Write to cache
-	if err := os.WriteFile(cachePath, data, 0644); err != nil {
+	// Record bytes downloaded
+	app.recordBytesDownloaded(int64(len(data)))
+
+	// Write to cache with atomic operation
+	if err := writeFileAtomic(cachePath, data); err != nil {
 		app.incrementErrors()
 		return nil, fmt.Errorf("write cache %q: %v", cachePath, err)
 	}
@@ -939,7 +1374,49 @@ func saveToOutputDir(path string, content []byte) error {
 		}
 	}
 
-	return os.WriteFile(outputPath, content, 0644)
+	return writeFileAtomic(outputPath, content)
+}
+
+// writeFileAtomic writes data to a file atomically by writing to a temp file first
+func writeFileAtomic(filename string, data []byte) error {
+	// Create a temporary file in the same directory
+	dir := filepath.Dir(filename)
+	tmpFile, err := os.CreateTemp(dir, ".tmp-appledocs-*")
+	if err != nil {
+		return fmt.Errorf("create temporary file: %v", err)
+	}
+	tmpPath := tmpFile.Name()
+	
+	// Ensure cleanup of temp file on error
+	defer func() {
+		if tmpFile != nil {
+			tmpFile.Close()
+			os.Remove(tmpPath)
+		}
+	}()
+	
+	// Write data to temp file
+	if _, err := tmpFile.Write(data); err != nil {
+		return fmt.Errorf("write to temporary file: %v", err)
+	}
+	
+	// Sync to ensure data is written to disk
+	if err := tmpFile.Sync(); err != nil {
+		return fmt.Errorf("sync temporary file: %v", err)
+	}
+	
+	// Close temp file
+	if err := tmpFile.Close(); err != nil {
+		return fmt.Errorf("close temporary file: %v", err)
+	}
+	tmpFile = nil // Mark as closed to avoid double-close in defer
+	
+	// Atomically move temp file to final location
+	if err := os.Rename(tmpPath, filename); err != nil {
+		return fmt.Errorf("rename temporary file: %v", err)
+	}
+	
+	return nil
 }
 
 // resolveURL resolves a potentially relative URL against the base URL.
@@ -966,9 +1443,18 @@ func extractJSONURLs(data []byte) []string {
 		return nil
 	}
 
-	urls := []string{}
+	// Get a slice from the pool
+	urls := urlSlicePool.Get().([]string)
+	urls = urls[:0] // Reset length but keep capacity
+	
 	extractJSONURLsFromValue(result, &urls)
-	return urls
+	
+	// Create a copy to return and put the slice back in the pool
+	result_urls := make([]string, len(urls))
+	copy(result_urls, urls)
+	urlSlicePool.Put(urls)
+	
+	return result_urls
 }
 
 // extractJSONURLsFromValue recursively extracts all URLs from a JSON value.
@@ -1102,27 +1588,26 @@ func createJSONIndexHTML(outputDir string, jsonFiles []JSONFileEntry) error {
 	}
 
 	// Build tree from files
-	// root := buildFileTree(jsonFiles)
+	root := buildFileTree(jsonFiles)
 
-	// // Calculate stats
-	// dirCount := countDirectories(root)
+	// Calculate stats
+	dirCount := countDirectories(root)
 
-	// data := struct {
-	// 	Root      *TreeNode
-	// 	FileCount int
-	// 	DirCount  int
-	// 	Timestamp string
-	// }{
-	// 	Root:      root,
-	// 	FileCount: len(jsonFiles),
-	// 	DirCount:  dirCount,
-	// 	Timestamp: time.Now().Format(time.RFC1123),
-	// }
+	data := struct {
+		Root      *TreeNode
+		FileCount int
+		DirCount  int
+		Timestamp string
+	}{
+		Root:      root,
+		FileCount: len(jsonFiles),
+		DirCount:  dirCount,
+		Timestamp: time.Now().Format(time.RFC1123),
+	}
 
-	// // Generate HTML using the function from html.go
-	// indexPath := filepath.Join(outputDir, "index.html")
-	// return generateHTMLFile(indexPath, data)
-	return nil
+	// Generate HTML using the function from html.go
+	indexPath := filepath.Join(outputDir, "index.html")
+	return generateHTMLFile(indexPath, data)
 }
 
 // scanOutputDirectory walks the output directory and finds all JSON files

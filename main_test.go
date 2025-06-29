@@ -11,6 +11,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"golang.org/x/time/rate"
 )
 
 func TestResolveURL(t *testing.T) {
@@ -655,6 +657,7 @@ func TestAppledocsStatsMethods(t *testing.T) {
 		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
+		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
 	}
 
 	// Test initial state
@@ -700,6 +703,7 @@ func TestQueueNewURLs(t *testing.T) {
 		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
+		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
 	}
 
 	urlQueue := make(chan string, 10)
@@ -770,13 +774,15 @@ func TestFetchWithCacheIntegration(t *testing.T) {
 		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
+		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
 	}
 
 	client := &http.Client{Timeout: 5 * time.Second}
 
 	// Test successful fetch
 	testURL := server.URL + "/test.json"
-	data, err := fetchWithCache(client, testURL, app)
+	ctx := context.Background()
+	data, err := fetchWithCache(ctx, client, testURL, app)
 	if err != nil {
 		t.Errorf("fetchWithCache() error = %v", err)
 	}
@@ -787,7 +793,7 @@ func TestFetchWithCacheIntegration(t *testing.T) {
 
 	// Verify cache hit on second call
 	app.cacheHits = 0 // Reset counter
-	data2, err := fetchWithCache(client, testURL, app)
+	data2, err := fetchWithCache(ctx, client, testURL, app)
 	if err != nil {
 		t.Errorf("fetchWithCache() second call error = %v", err)
 	}
@@ -802,7 +808,7 @@ func TestFetchWithCacheIntegration(t *testing.T) {
 
 	// Test 404 handling
 	notFoundURL := server.URL + "/nonexistent.json"
-	_, err = fetchWithCache(client, notFoundURL, app)
+	_, err = fetchWithCache(ctx, client, notFoundURL, app)
 	if err == nil {
 		t.Errorf("fetchWithCache() should return error for 404")
 	}
@@ -818,6 +824,7 @@ func TestProcessURLContextCancellation(t *testing.T) {
 		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
+		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
 	}
 
 	// Create a context that's already cancelled
@@ -830,7 +837,7 @@ func TestProcessURLContextCancellation(t *testing.T) {
 	err := app.processURL(ctx, "https://example.com/test.json", urlQueue)
 	
 	// Should handle cancellation gracefully
-	if err != nil && err != context.Canceled && !strings.Contains(err.Error(), "context deadline exceeded") {
+	if err != nil && err != context.Canceled && !strings.Contains(err.Error(), "context deadline exceeded") && !strings.Contains(err.Error(), "context canceled") {
 		t.Errorf("processURL() should handle context cancellation gracefully, got error: %v", err)
 	}
 }

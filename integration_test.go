@@ -372,7 +372,8 @@ func TestPrintURLsOnlyWithMockServer(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			*entryPoint = tt.entryPoint
 
-			err := printURLsOnly()
+			ctx := context.Background()
+			err := printURLsOnly(ctx)
 			if err != nil {
 				t.Errorf("printURLsOnly() error = %v", err)
 			}
