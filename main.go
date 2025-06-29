@@ -59,6 +59,7 @@ var (
 	verbose       = flag.Bool("verbose", false, "enable verbose logging")
 	logLevel      = flag.String("log-level", "info", "log level: debug, info, warn, error")
 	exportMetrics = flag.String("export-metrics", "", "export detailed metrics to JSON file (optional path)")
+	validateCache = flag.Bool("validate-cache", false, "validate cache integrity on startup")
 
 	// Mode selection
 	mode = flag.String("mode", "crawl", "operation mode: crawl, html, markdown, or all")
@@ -300,48 +301,6 @@ func printURLsOnly(ctx context.Context) error {
 	return nil
 }
 
-// validateConfig validates the command-line configuration
-func validateConfig() error {
-	// Validate concurrency
-	if *concurrency < 1 {
-		return fmt.Errorf("concurrency must be at least 1, got %d", *concurrency)
-	}
-	if *concurrency > 100 {
-		return fmt.Errorf("concurrency too high (max 100), got %d", *concurrency)
-	}
-
-	// Validate timeout
-	if *timeout < time.Second {
-		return fmt.Errorf("timeout too short (min 1s), got %v", *timeout)
-	}
-	if *timeout > 10*time.Minute {
-		return fmt.Errorf("timeout too long (max 10m), got %v", *timeout)
-	}
-
-	// Validate max time
-	if *maxTime < time.Minute {
-		return fmt.Errorf("max-time too short (min 1m), got %v", *maxTime)
-	}
-
-	// Validate base URL
-	if _, err := url.Parse(*baseURL); err != nil {
-		return fmt.Errorf("invalid base URL %q: %v", *baseURL, err)
-	}
-
-	// Validate directories are not empty
-	if *outputDir == "" {
-		return fmt.Errorf("output directory cannot be empty")
-	}
-	if *cacheDir == "" {
-		return fmt.Errorf("cache directory cannot be empty")
-	}
-	if *mdOutputDir == "" {
-		return fmt.Errorf("markdown output directory cannot be empty")
-	}
-
-	return nil
-}
-
 // initLogger initializes the structured logger
 func initLogger() error {
 	var level slog.Level
@@ -381,10 +340,22 @@ func main() {
 		log.Fatalf("Failed to initialize logger: %v", err)
 	}
 
-	// Validate configuration
-	if err := validateConfig(); err != nil {
-		logger.Error("Configuration error", "error", err)
+	// Enhanced command-line flag validation
+	flagValidation := ValidateCommandLineFlags()
+	if !flagValidation.Valid {
+		log.Printf("Command-line validation errors:")
+		for _, err := range flagValidation.Errors {
+			log.Printf("  - %s", err.Error())
+		}
 		os.Exit(1)
+	}
+	
+	// Print warnings if any
+	if len(flagValidation.Warnings) > 0 {
+		log.Printf("Command-line validation warnings:")
+		for _, warning := range flagValidation.Warnings {
+			log.Printf("  - %s", warning.Error())
+		}
 	}
 
 	// Handle legacy flag conversion for backward compatibility
@@ -509,6 +480,27 @@ func run(ctx context.Context) error {
 		log.Printf("Warning: failed to load bad URLs file: %v", err)
 	} else if *verbose {
 		log.Printf("Loaded %d known bad URLs", len(app.badURLs))
+	}
+
+	// Validate cache integrity if requested
+	if *validateCache {
+		log.Printf("Validating cache integrity...")
+		cacheValidation := ValidateCache(*cacheDir)
+		if len(cacheValidation.Errors) > 0 {
+			log.Printf("Cache validation errors found:")
+			for _, err := range cacheValidation.Errors {
+				log.Printf("  - %s", err.Error())
+			}
+		}
+		if len(cacheValidation.Warnings) > 0 {
+			log.Printf("Cache validation warnings:")
+			for _, warning := range cacheValidation.Warnings {
+				log.Printf("  - %s", warning.Error())
+			}
+		}
+		if len(cacheValidation.Errors) == 0 && len(cacheValidation.Warnings) == 0 {
+			log.Printf("Cache validation completed successfully")
+		}
 	}
 
 	// Mark the start URL as visited and set its depth to 0
@@ -1347,6 +1339,23 @@ func fetchWithCache(ctx context.Context, client *http.Client, u string, app *app
 
 	// Record bytes downloaded
 	app.recordBytesDownloaded(int64(len(data)))
+
+	// Validate data integrity
+	if validation := ValidateDataIntegrity(u, data); !validation.Valid {
+		app.incrementErrors()
+		if *verbose {
+			log.Printf("Data validation failed for %q:", u)
+			for _, err := range validation.Errors {
+				log.Printf("  - %s", err.Error())
+			}
+		}
+		// Still cache the data but warn about issues
+		for _, warning := range validation.Warnings {
+			if *verbose {
+				log.Printf("  Warning: %s", warning.Error())
+			}
+		}
+	}
 
 	// Write to cache with atomic operation
 	if err := writeFileAtomic(cachePath, data); err != nil {
