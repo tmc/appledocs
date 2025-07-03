@@ -1,0 +1,58 @@
+# Alpine-based Dockerfile for appledocs
+# Balanced approach: small size with shell access for debugging
+
+# Build stage
+FROM golang:1.24-alpine AS builder
+
+# Install build dependencies
+RUN apk add --no-cache git
+
+WORKDIR /build
+
+# Copy and download dependencies
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
+
+# Copy source and build
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
+    -ldflags='-w -s' \
+    -trimpath \
+    -o appledocs .
+
+# Final stage - Alpine Linux
+FROM alpine:3.20
+
+# Install security updates and create non-root user
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache ca-certificates tzdata && \
+    rm -rf /var/cache/apk/* && \
+    addgroup -g 1001 -S appgroup && \
+    adduser -u 1001 -S appuser -G appgroup -h /app -s /sbin/nologin
+
+# Copy binary
+COPY --from=builder /build/appledocs /usr/local/bin/appledocs
+
+# Create app directories
+RUN mkdir -p /app/cache /app/output && \
+    chown -R appuser:appgroup /app
+
+# Switch to non-root user
+USER appuser
+WORKDIR /app
+
+# Volumes for persistent data
+VOLUME ["/app/cache", "/app/output"]
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD ["/usr/local/bin/appledocs", "-version"] || exit 1
+
+# Metadata
+LABEL security.scan="true" \
+      security.base="alpine" \
+      security.nonroot="true"
+
+ENTRYPOINT ["appledocs"]
+CMD ["-cache", "/app/cache", "-output", "/app/output"]
