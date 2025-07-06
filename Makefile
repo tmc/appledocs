@@ -107,3 +107,40 @@ yaml-security:
 		yq -P "$$file" > "yaml-output/$$dir/$$filename.yaml"; \
 	done
 	@echo "YAML conversion complete. Security-related files are in yaml-output directory with original structure preserved."
+
+# Security-related targets
+.PHONY: docker-secure docker-distroless docker-alpine security-scan security-check security-all
+
+# Build secure Docker images
+docker-secure: build
+	docker build -f Dockerfile.secure -t appledocs:secure .
+
+docker-distroless: build
+	docker build -f Dockerfile.distroless -t appledocs:distroless .
+
+docker-alpine: build
+	docker build -f Dockerfile.alpine -t appledocs:alpine .
+
+# Run security scans
+security-scan: docker-secure
+	./security/security-scan.sh appledocs:secure
+
+# Quick security check
+security-check:
+	@echo "Running quick security checks..."
+	@go mod verify
+	@go vet ./...
+	@if command -v gosec >/dev/null 2>&1; then \
+		gosec -quiet -fmt text ./...; \
+	else \
+		echo "gosec not found. Install with: go install github.com/securego/gosec/v2/cmd/gosec@latest"; \
+	fi
+	@if command -v govulncheck >/dev/null 2>&1; then \
+		govulncheck ./...; \
+	else \
+		echo "govulncheck not found. Install with: go install golang.org/x/vuln/cmd/govulncheck@latest"; \
+	fi
+
+# Run all security operations
+security-all: docker-secure docker-distroless docker-alpine security-scan security-check
+	@echo "All security checks completed. Check security-reports/ for detailed results."

@@ -1,0 +1,394 @@
+// dashboard_prototype.go - Terminal dashboard prototype for appledocs
+// This file provides a working terminal dashboard that can be integrated
+// into the main appledocs application with minimal changes.
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"sort"
+	"strings"
+	"sync"
+	"time"
+
+	ui "github.com/gizak/termui/v3"
+	"github.com/gizak/termui/v3/widgets"
+)
+
+// DashboardConfig holds dashboard configuration
+type DashboardConfig struct {
+	RefreshInterval time.Duration
+	ShowErrors      bool
+	ShowDownloads   bool
+	CompactMode     bool
+}
+
+// TerminalDashboard provides a terminal-based monitoring interface
+type TerminalDashboard struct {
+	app    *appledocs
+	config DashboardConfig
+	
+	// UI widgets
+	grid           *ui.Grid
+	titlePar       *widgets.Paragraph
+	processedGauge *widgets.Gauge
+	cacheHitGauge  *widgets.Gauge
+	errorGauge     *widgets.Gauge
+	speedGauge     *widgets.Gauge
+	processPlot    *widgets.Plot
+	errorList      *widgets.List
+	downloadTable  *widgets.Table
+	statsTable     *widgets.Table
+	
+	// Data tracking
+	processHistory []float64
+	maxHistory     int
+	lastUpdate     time.Time
+	mu             sync.RWMutex
+}
+
+// NewTerminalDashboard creates a new terminal dashboard
+func NewTerminalDashboard(app *appledocs, config DashboardConfig) *TerminalDashboard {
+	if config.RefreshInterval == 0 {
+		config.RefreshInterval = time.Second
+	}
+	
+	return &TerminalDashboard{
+		app:            app,
+		config:         config,
+		processHistory: make([]float64, 0, 60),
+		maxHistory:     60,
+		
+		// Initialize widgets
+		titlePar:       widgets.NewParagraph(),
+		processedGauge: widgets.NewGauge(),
+		cacheHitGauge:  widgets.NewGauge(),
+		errorGauge:     widgets.NewGauge(),
+		speedGauge:     widgets.NewGauge(),
+		processPlot:    widgets.NewPlot(),
+		errorList:      widgets.NewList(),
+		downloadTable:  widgets.NewTable(),
+		statsTable:     widgets.NewTable(),
+	}
+}
+
+// Run starts the dashboard
+func (d *TerminalDashboard) Run(ctx context.Context) error {
+	if err := ui.Init(); err != nil {
+		return fmt.Errorf("failed to initialize termui: %v", err)
+	}
+	defer ui.Close()
+	
+	d.setupWidgets()
+	d.setupLayout()
+	d.render()
+	
+	// Create update ticker
+	ticker := time.NewTicker(d.config.RefreshInterval)
+	defer ticker.Stop()
+	
+	// Event loop
+	uiEvents := ui.PollEvents()
+	for {
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+			
+		case <-ticker.C:
+			d.update()
+			d.render()
+			
+		case e := <-uiEvents:
+			switch e.ID {
+			case "q", "<C-c>":
+				return nil
+			case "r":
+				d.update()
+				d.render()
+			case "c":
+				d.config.CompactMode = !d.config.CompactMode
+				d.setupLayout()
+				d.render()
+			case "e":
+				d.config.ShowErrors = !d.config.ShowErrors
+				d.setupLayout()
+				d.render()
+			case "d":
+				d.config.ShowDownloads = !d.config.ShowDownloads
+				d.setupLayout()
+				d.render()
+			case "<Resize>":
+				payload := e.Payload.(ui.Resize)
+				d.grid.SetRect(0, 0, payload.Width, payload.Height)
+				ui.Clear()
+				d.render()
+			}
+		}
+	}
+}
+
+// setupWidgets configures widget properties
+func (d *TerminalDashboard) setupWidgets() {
+	// Title
+	d.titlePar.Title = "Apple Docs Crawler Monitor"
+	d.titlePar.Text = "Press 'q' to quit, 'r' to refresh, 'c' for compact mode, 'e' toggle errors, 'd' toggle downloads"
+	d.titlePar.BorderStyle.Fg = ui.ColorCyan
+	
+	// Gauges
+	d.processedGauge.Title = "Documents Processed"
+	d.processedGauge.BarColor = ui.ColorGreen
+	d.processedGauge.BorderStyle.Fg = ui.ColorWhite
+	
+	d.cacheHitGauge.Title = "Cache Hit Rate"
+	d.cacheHitGauge.BarColor = ui.ColorBlue
+	d.cacheHitGauge.BorderStyle.Fg = ui.ColorWhite
+	
+	d.errorGauge.Title = "Error Rate"
+	d.errorGauge.BarColor = ui.ColorRed
+	d.errorGauge.BorderStyle.Fg = ui.ColorWhite
+	
+	d.speedGauge.Title = "Processing Speed"
+	d.speedGauge.BarColor = ui.ColorYellow
+	d.speedGauge.BorderStyle.Fg = ui.ColorWhite
+	
+	// Plot
+	d.processPlot.Title = "Processing Rate (docs/min)"
+	d.processPlot.Data = [][]float64{d.processHistory}
+	d.processPlot.AxesColor = ui.ColorWhite
+	d.processPlot.LineColors[0] = ui.ColorGreen
+	
+	// Lists and tables
+	d.errorList.Title = "Recent Errors"
+	d.errorList.TextStyle = ui.NewStyle(ui.ColorRed)
+	d.errorList.BorderStyle.Fg = ui.ColorRed
+	
+	d.downloadTable.Title = "Active Downloads"
+	d.downloadTable.TextStyle = ui.NewStyle(ui.ColorWhite)
+	d.downloadTable.BorderStyle.Fg = ui.ColorGreen
+	
+	d.statsTable.Title = "Statistics"
+	d.statsTable.TextStyle = ui.NewStyle(ui.ColorWhite)
+	d.statsTable.BorderStyle.Fg = ui.ColorCyan
+}
+
+// setupLayout arranges widgets in grid
+func (d *TerminalDashboard) setupLayout() {
+	d.grid = ui.NewGrid()
+	termWidth, termHeight := ui.TerminalDimensions()
+	d.grid.SetRect(0, 0, termWidth, termHeight)
+	
+	if d.config.CompactMode {
+		// Compact layout
+		d.grid.Set(
+			ui.NewRow(1.0/10, d.titlePar),
+			ui.NewRow(2.0/10,
+				ui.NewCol(1.0/4, d.processedGauge),
+				ui.NewCol(1.0/4, d.cacheHitGauge),
+				ui.NewCol(1.0/4, d.errorGauge),
+				ui.NewCol(1.0/4, d.speedGauge),
+			),
+			ui.NewRow(4.0/10, d.processPlot),
+			ui.NewRow(3.0/10, d.statsTable),
+		)
+	} else {
+		// Full layout
+		rows := []interface{}{
+			ui.NewRow(1.0/12, d.titlePar),
+			ui.NewRow(2.0/12,
+				ui.NewCol(1.0/4, d.processedGauge),
+				ui.NewCol(1.0/4, d.cacheHitGauge),
+				ui.NewCol(1.0/4, d.errorGauge),
+				ui.NewCol(1.0/4, d.speedGauge),
+			),
+			ui.NewRow(3.0/12, d.processPlot),
+		}
+		
+		remainingHeight := 6.0 / 12
+		activeWidgets := 1 // stats table is always shown
+		
+		if d.config.ShowErrors {
+			activeWidgets++
+		}
+		if d.config.ShowDownloads {
+			activeWidgets++
+		}
+		
+		widgetHeight := remainingHeight / float64(activeWidgets)
+		
+		if d.config.ShowDownloads {
+			rows = append(rows, ui.NewRow(widgetHeight, d.downloadTable))
+		}
+		if d.config.ShowErrors {
+			rows = append(rows, ui.NewRow(widgetHeight, d.errorList))
+		}
+		rows = append(rows, ui.NewRow(widgetHeight, d.statsTable))
+		
+		d.grid.Set(rows...)
+	}
+}
+
+// update refreshes dashboard data
+func (d *TerminalDashboard) update() {
+	d.mu.Lock()
+	defer d.mu.Unlock()
+	
+	metrics := d.app.getEnhancedMetrics()
+	d.lastUpdate = time.Now()
+	
+	// Update gauges
+	total := float64(metrics.Processed + 10000) // Assume 10k total for demo
+	d.processedGauge.Percent = int(float64(metrics.Processed) / total * 100)
+	d.processedGauge.Label = fmt.Sprintf("%d / %.0f (%.1f%%)", 
+		metrics.Processed, total, float64(metrics.Processed)/total*100)
+	
+	d.cacheHitGauge.Percent = int(metrics.CacheHitRate)
+	d.cacheHitGauge.Label = fmt.Sprintf("%.1f%%", metrics.CacheHitRate)
+	
+	errorRate := 0.0
+	if metrics.Processed > 0 {
+		errorRate = float64(metrics.Errors) / float64(metrics.Processed) * 100
+	}
+	d.errorGauge.Percent = int(errorRate * 10) // Scale up for visibility
+	d.errorGauge.Label = fmt.Sprintf("%.2f%% (%d errors)", errorRate, metrics.Errors)
+	
+	d.speedGauge.Percent = int(metrics.ProcessingRate)
+	d.speedGauge.Label = fmt.Sprintf("%.1f docs/sec", metrics.ProcessingRate)
+	
+	// Update process history
+	d.processHistory = append(d.processHistory, metrics.ProcessingRate*60) // Convert to per minute
+	if len(d.processHistory) > d.maxHistory {
+		d.processHistory = d.processHistory[len(d.processHistory)-d.maxHistory:]
+	}
+	d.processPlot.Data[0] = d.processHistory
+	
+	// Update error list
+	if d.config.ShowErrors {
+		d.updateErrorList(metrics)
+	}
+	
+	// Update downloads table
+	if d.config.ShowDownloads {
+		d.updateDownloadsTable()
+	}
+	
+	// Update stats table
+	d.updateStatsTable(metrics)
+}
+
+// updateErrorList updates the error list widget
+func (d *TerminalDashboard) updateErrorList(metrics MetricsSnapshot) {
+	errors := []string{}
+	
+	// Add HTTP errors
+	for status, count := range metrics.HTTPErrors {
+		errors = append(errors, fmt.Sprintf("HTTP %d: %d occurrences", status, count))
+	}
+	
+	// Sort by status code
+	sort.Strings(errors)
+	
+	// Add summary
+	if len(errors) == 0 {
+		errors = []string{"No errors reported"}
+	} else {
+		errors = append([]string{
+			fmt.Sprintf("Total Errors: %d", metrics.Errors),
+			"---",
+		}, errors...)
+	}
+	
+	d.errorList.Rows = errors
+}
+
+// updateDownloadsTable updates the downloads table widget
+func (d *TerminalDashboard) updateDownloadsTable() {
+	// Mock data for demonstration - in real implementation, track actual downloads
+	d.downloadTable.Rows = [][]string{
+		{"File", "Progress", "Speed", "ETA"},
+		{"SwiftUI/View.json", "67%", "245 KB/s", "23s"},
+		{"UIKit/UIView.json", "41%", "189 KB/s", "45s"},
+		{"Foundation/NSString.json", "89%", "312 KB/s", "8s"},
+	}
+}
+
+// updateStatsTable updates the statistics table
+func (d *TerminalDashboard) updateStatsTable(metrics MetricsSnapshot) {
+	runtime := time.Since(metrics.StartTime)
+	
+	d.statsTable.Rows = [][]string{
+		{"Metric", "Value"},
+		{"Runtime", formatDuration(runtime)},
+		{"Total Downloaded", formatBytes(metrics.TotalBytesDownloaded)},
+		{"From Cache", formatBytes(metrics.TotalBytesFromCache)},
+		{"Avg Response Time", metrics.AvgResponseTime.String()},
+		{"Frameworks", fmt.Sprintf("%d", metrics.FrameworkCount)},
+		{"Classes", fmt.Sprintf("%d", metrics.ClassCount)},
+		{"Methods", fmt.Sprintf("%d", metrics.MethodCount)},
+		{"Retry Count", fmt.Sprintf("%d", metrics.RetryCount)},
+		{"Skipped URLs", fmt.Sprintf("%d", metrics.SkippedURLs)},
+	}
+}
+
+// render draws the dashboard
+func (d *TerminalDashboard) render() {
+	ui.Render(d.grid)
+}
+
+// Helper functions
+
+func formatDuration(d time.Duration) string {
+	hours := int(d.Hours())
+	minutes := int(d.Minutes()) % 60
+	seconds := int(d.Seconds()) % 60
+	return fmt.Sprintf("%02d:%02d:%02d", hours, minutes, seconds)
+}
+
+func formatBytes(bytes int64) string {
+	const unit = 1024
+	if bytes < unit {
+		return fmt.Sprintf("%d B", bytes)
+	}
+	div, exp := int64(unit), 0
+	for n := bytes / unit; n >= unit; n /= unit {
+		div *= unit
+		exp++
+	}
+	return fmt.Sprintf("%.1f %cB", float64(bytes)/float64(div), "KMGTPE"[exp])
+}
+
+// Integration helper to add dashboard to main appledocs
+
+func integrateTerminalDashboard(app *appledocs) {
+	if *terminalUI {
+		config := DashboardConfig{
+			RefreshInterval: time.Second,
+			ShowErrors:      true,
+			ShowDownloads:   true,
+			CompactMode:     false,
+		}
+		
+		dashboard := NewTerminalDashboard(app, config)
+		go func() {
+			if err := dashboard.Run(context.Background()); err != nil {
+				log.Printf("Dashboard error: %v", err)
+			}
+		}()
+	}
+}
+
+// Example integration code for main.go:
+//
+// Add to imports:
+//   ui "github.com/gizak/termui/v3"
+//   "github.com/gizak/termui/v3/widgets"
+//
+// Add to flags:
+//   terminalUI = flag.Bool("terminal-ui", false, "show terminal dashboard")
+//
+// Add to main() after app initialization:
+//   if *terminalUI {
+//       integrateTerminalDashboard(app)
+//   }
+//
+// Run with: ./appledocs -terminal-ui -mode crawl
