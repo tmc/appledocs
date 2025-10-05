@@ -1,3 +1,5 @@
+//go:build ignore
+
 // Package main provides enhanced benchmarking for JSON parsing libraries
 // with comprehensive analysis for Apple documentation processing
 package main

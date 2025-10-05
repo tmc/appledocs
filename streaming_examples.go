@@ -1,3 +1,5 @@
+//go:build ignore
+
 // Package main provides streaming JSON parsing implementations
 // optimized for large Apple documentation files
 package main

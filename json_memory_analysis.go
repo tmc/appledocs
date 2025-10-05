@@ -1,3 +1,5 @@
+//go:build ignore
+
 // Package main provides comprehensive memory analysis for JSON parsing
 // in the appledocs project
 package main

@@ -1,3 +1,5 @@
+//go:build ignore
+
 // Package main provides a comprehensive benchmark runner for JSON parsing analysis
 package main
 

@@ -1,3 +1,5 @@
+//go:build ignore
+
 // Package main provides migration strategies and implementation guides
 // for transitioning to optimized JSON parsing in appledocs
 package main
