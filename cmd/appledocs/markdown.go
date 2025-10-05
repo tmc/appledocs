@@ -554,8 +554,8 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 
 			for _, id := range section.Identifiers {
 				if ref, ok := doc.References[id]; ok {
-					// Format URL for markdown compatibility
-					url := formatURL(ref.URL)
+					// Use the reference ID (which has proper casing) instead of ref.URL (which is lowercase)
+					url := formatURL(id)
 					fmt.Fprintf(w, "- [%s](%s)\n", ref.Title, url)
 				}
 			}
@@ -584,8 +584,8 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 						}
 					}
 
-					// Format URL for markdown compatibility
-					url := formatURL(ref.URL)
+					// Use the reference ID (which has proper casing) instead of ref.URL
+					url := formatURL(id)
 
 					if abstract != "" {
 						fmt.Fprintf(w, "- [%s](%s)  \n  %s\n", ref.Title, url, abstract)
@@ -615,8 +615,8 @@ func writeTopicReference(w io.Writer, ref Reference) {
 		}
 	}
 
-	// Format URL for markdown compatibility
-	url := formatURL(ref.URL)
+	// Use the reference Identifier (which has proper casing) instead of ref.URL
+	url := formatURL(ref.Identifier)
 
 	if abstract != "" {
 		fmt.Fprintf(w, "- [%s](%s)  \n  %s\n", ref.Title, url, abstract)
@@ -779,10 +779,13 @@ func formatURL(urlStr string) string {
 	// Handle doc:// scheme URLs
 	if strings.HasPrefix(urlStr, "doc://") {
 		// Convert doc:// URLs to relative markdown links
+		// Keep the original path structure with proper casing
 		docPath := strings.TrimPrefix(urlStr, "doc://")
 		parts := strings.SplitN(docPath, "/", 2)
 		if len(parts) > 1 {
-			return "/documentation/" + parts[1] + ".md"
+			// Use relative path that preserves casing from the URL
+			// The URL structure matches our file structure from the crawl
+			return "/" + parts[1] + ".md"
 		}
 		return "#"
 	}
@@ -792,7 +795,7 @@ func formatURL(urlStr string) string {
 		return urlStr
 	}
 
-	// Handle relative URLs
+	// Handle relative URLs - these come from Apple's API and preserve casing
 	if !strings.HasSuffix(urlStr, ".md") && !strings.HasSuffix(urlStr, ".html") {
 		// Add .md extension for markdown files
 		if strings.HasSuffix(urlStr, ".json") {
@@ -909,7 +912,8 @@ func writeContentBlock(w io.Writer, block ContentBlock, refs map[string]Referenc
 			for _, linkID := range block.Items.Strings {
 				if ref, ok := refs[linkID]; ok {
 					// Write as a list item with link
-					url := formatURL(ref.URL)
+					// Use the linkID (which has proper casing) instead of ref.URL
+					url := formatURL(linkID)
 					fmt.Fprintf(w, "%s- [%s](%s)\n", strings.Repeat("  ", level), ref.Title, url)
 				} else {
 					// Reference not found, write the ID
@@ -1072,7 +1076,8 @@ func writeInlineContent(w io.Writer, inline InlineContent, refs map[string]Refer
 	case "reference":
 		if ref, ok := refs[inline.Identifier]; ok {
 			// Format URL for markdown compatibility
-			url := formatURL(ref.URL)
+			// Use inline.Identifier (which has proper casing) instead of ref.URL
+			url := formatURL(inline.Identifier)
 
 			// Determine if the reference is active
 			title := ref.Title
