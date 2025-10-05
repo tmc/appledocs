@@ -1827,25 +1827,6 @@ func countDirectories(node *TreeNode) int {
 	return count
 }
 
-// isTechnologyFile checks if the given path represents a technology file
-func isTechnologyFile(path string) bool {
-	// Check if the file is in the documentation directory and not in a subdirectory
-	// For example: /tutorials/data/documentation/EndpointSecurity.json
-	parts := strings.Split(path, "/")
-	if len(parts) < 4 {
-		return false
-	}
-
-	// Check if this is a top-level technology file
-	// The pattern should be /tutorials/data/documentation/TechnologyName.json
-	if parts[1] == "tutorials" && parts[2] == "data" && parts[3] == "documentation" {
-		// If there are no further subdirectories and it ends with .json
-		return len(parts) == 5 && strings.HasSuffix(parts[4], ".json")
-	}
-
-	return false
-}
-
 // isSymbolURL determines if a URL likely points to individual symbol documentation
 // This helps filter out the deepest level API documentation when using -skip-symbols
 func isSymbolURL(urlPath string) bool {
