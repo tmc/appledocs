@@ -54,11 +54,32 @@ func NewDocumentService(cacheDir string) *DocumentService {
 
 // GetDocumentByPath retrieves a document by its path
 func (s *DocumentService) GetDocumentByPath(path string) (*Document, error) {
-	fullPath := filepath.Join(s.cacheDir, path)
+	// Clean and validate the path to prevent directory traversal
+	cleanPath := filepath.Clean(path)
+
+	// Prevent absolute paths and path traversal attempts
+	if filepath.IsAbs(cleanPath) || strings.HasPrefix(cleanPath, "..") || strings.Contains(cleanPath, ".."+string(filepath.Separator)) {
+		return nil, fmt.Errorf("invalid path: path traversal detected")
+	}
+
+	fullPath := filepath.Join(s.cacheDir, cleanPath)
 
 	// If the path doesn't end with .json, append it
 	if !strings.HasSuffix(fullPath, ".json") {
 		fullPath += ".json"
+	}
+
+	// Verify the resolved path is still within the cache directory
+	absFullPath, err := filepath.Abs(fullPath)
+	if err != nil {
+		return nil, fmt.Errorf("invalid path: %w", err)
+	}
+	absCacheDir, err := filepath.Abs(s.cacheDir)
+	if err != nil {
+		return nil, fmt.Errorf("invalid cache directory: %w", err)
+	}
+	if !strings.HasPrefix(absFullPath, absCacheDir+string(filepath.Separator)) && absFullPath != absCacheDir {
+		return nil, fmt.Errorf("invalid path: access denied")
 	}
 
 	data, err := os.ReadFile(fullPath)
