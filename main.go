@@ -35,7 +35,17 @@ var urlSlicePool = sync.Pool{
 // Global structured logger
 var logger *slog.Logger
 
+// Build-time variables (set via -ldflags)
 var (
+	version   = "dev"
+	commit    = "none"
+	buildTime = "unknown"
+)
+
+var (
+	// Version flag
+	showVersion = flag.Bool("version", false, "show version information and exit")
+
 	// Directories and URLs
 	outputDir    = flag.String("output", "output", "directory to store mirrored content")
 	cacheDir     = flag.String("cache", ".cache", "directory to store HTTP cache")
@@ -334,6 +344,14 @@ func initLogger() error {
 
 func main() {
 	flag.Parse()
+
+	// Handle version flag
+	if *showVersion {
+		fmt.Printf("appledocs version %s\n", version)
+		fmt.Printf("  commit: %s\n", commit)
+		fmt.Printf("  built:  %s\n", buildTime)
+		os.Exit(0)
+	}
 
 	// Initialize structured logger
 	if err := initLogger(); err != nil {
