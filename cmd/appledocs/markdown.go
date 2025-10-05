@@ -351,6 +351,25 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 		}
 	}
 
+	// Breadcrumb navigation
+	if len(doc.Hierarchy.Paths) > 0 && len(doc.Hierarchy.Paths[0]) > 0 {
+		breadcrumbs := make([]string, 0)
+		for _, pathItem := range doc.Hierarchy.Paths[0] {
+			if ref, ok := doc.References[pathItem]; ok {
+				// Use the reference identifier for proper casing and path
+				url := formatURL(pathItem)
+				breadcrumbs = append(breadcrumbs, fmt.Sprintf("[%s](%s)", ref.Title, url))
+			}
+		}
+		// Add current page as last breadcrumb (not linked)
+		if doc.Metadata.Title != "" {
+			breadcrumbs = append(breadcrumbs, doc.Metadata.Title)
+		}
+		if len(breadcrumbs) > 0 {
+			fmt.Fprintf(w, "%s\n\n", strings.Join(breadcrumbs, " > "))
+		}
+	}
+
 	// Simple type display (like Apple's format: "Framework")
 	if doc.Metadata.RoleHeading != "" {
 		fmt.Fprintf(w, "%s\n\n", doc.Metadata.RoleHeading)
