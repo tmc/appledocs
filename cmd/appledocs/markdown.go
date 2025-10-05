@@ -277,6 +277,11 @@ func generateMarkdown(inputDir, outputDir string) error {
 	// Create index file with links to all frameworks
 	createFrameworkIndex(outputDir, jsonFiles)
 
+	// Generate navigation JSON from the source JSON files
+	if err := generateNavigation(inputDir, outputDir); err != nil {
+		fmt.Printf("Warning: failed to generate navigation: %v\n", err)
+	}
+
 	return nil
 }
 
