@@ -1,0 +1,425 @@
+name: Performance Regression Testing
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      baseline_ref:
+        description: 'Baseline git ref for comparison'
+        required: false
+        default: 'main'
+
+env:
+  GO_VERSION: '1.24'
+  BENCHMARK_TIMEOUT: 30m
+  PERFORMANCE_THRESHOLD: 10  # Maximum allowed performance regression in percentage
+
+jobs:
+  # Micro-benchmarks
+  micro-benchmarks:
+    name: Micro Benchmarks
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout PR code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Install benchmark tools
+      run: |
+        go install golang.org/x/perf/cmd/benchstat@latest
+        go install github.com/cespare/prettybench@latest
+
+    - name: Run benchmarks on current branch
+      run: |
+        # Run benchmarks multiple times for statistical significance
+        go test -bench=. -benchmem -benchtime=10s -count=10 -timeout=${{ env.BENCHMARK_TIMEOUT }} \
+          -cpu=1,2,4 ./... | tee current-benchmarks.txt
+
+    - name: Checkout baseline
+      run: |
+        if [ "${{ github.event_name }}" == "pull_request" ]; then
+          git checkout ${{ github.base_ref }}
+        else
+          git checkout ${{ github.event.inputs.baseline_ref || 'HEAD~1' }}
+        fi
+
+    - name: Run baseline benchmarks
+      run: |
+        go test -bench=. -benchmem -benchtime=10s -count=10 -timeout=${{ env.BENCHMARK_TIMEOUT }} \
+          -cpu=1,2,4 ./... | tee baseline-benchmarks.txt
+
+    - name: Compare benchmarks
+      run: |
+        benchstat baseline-benchmarks.txt current-benchmarks.txt | tee benchstat-results.txt
+        
+        # Parse results and check for regressions
+        python3 << 'EOF'
+        import re
+        import sys
+        
+        with open('benchstat-results.txt', 'r') as f:
+            content = f.read()
+        
+        # Find all percentage changes
+        pattern = r'([+-]\d+\.\d+)%'
+        matches = re.findall(pattern, content)
+        
+        regression_found = False
+        for match in matches:
+            change = float(match)
+            if change > ${{ env.PERFORMANCE_THRESHOLD }}:
+                print(f"::error::Performance regression detected: {change}% slowdown")
+                regression_found = True
+        
+        if regression_found:
+            sys.exit(1)
+        EOF
+
+    - name: Upload benchmark results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: micro-benchmark-results
+        path: |
+          *-benchmarks.txt
+          benchstat-results.txt
+
+  # JSON Parsing Performance
+  json-performance:
+    name: JSON Parsing Performance
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Create test data
+      run: |
+        # Create various sizes of JSON test files
+        python3 << 'EOF'
+        import json
+        import random
+        
+        # Small file (1MB)
+        small_data = {"items": [{"id": i, "data": "x" * 100} for i in range(1000)]}
+        with open('test-small.json', 'w') as f:
+            json.dump(small_data, f)
+        
+        # Medium file (10MB)
+        medium_data = {"items": [{"id": i, "data": "x" * 1000} for i in range(10000)]}
+        with open('test-medium.json', 'w') as f:
+            json.dump(medium_data, f)
+        
+        # Large file (50MB)
+        large_data = {"items": [{"id": i, "data": "x" * 5000} for i in range(10000)]}
+        with open('test-large.json', 'w') as f:
+            json.dump(large_data, f)
+        EOF
+
+    - name: Run JSON benchmarks
+      run: |
+        go test -bench=BenchmarkJSON -benchmem -benchtime=30s -timeout=${{ env.BENCHMARK_TIMEOUT }} \
+          -run=^$ ./... | tee json-benchmarks.txt
+
+    - name: Profile JSON parsing
+      run: |
+        go test -bench=BenchmarkJSON -benchmem -benchtime=10s \
+          -cpuprofile=cpu.prof -memprofile=mem.prof \
+          -run=^$ ./...
+        
+        # Generate flame graphs
+        go tool pprof -http=:8080 cpu.prof &
+        sleep 5
+        curl -s http://localhost:8080/ui/flamegraph > cpu-flamegraph.svg
+        
+        go tool pprof -http=:8081 mem.prof &
+        sleep 5
+        curl -s http://localhost:8081/ui/flamegraph > mem-flamegraph.svg
+
+    - name: Upload profiling results
+      uses: actions/upload-artifact@v4
+      with:
+        name: json-performance-profiles
+        path: |
+          json-benchmarks.txt
+          *.prof
+          *.svg
+
+  # Memory Leak Detection
+  memory-analysis:
+    name: Memory Leak Detection
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Run memory leak tests
+      run: |
+        # Run tests with memory profiling
+        go test -run=TestMemoryLeak -memprofile=mem-leak.prof -timeout=${{ env.BENCHMARK_TIMEOUT }} ./...
+        
+        # Analyze memory profile
+        go tool pprof -text mem-leak.prof > mem-analysis.txt
+        
+        # Check for goroutine leaks
+        go test -run=TestGoroutineLeak -timeout=${{ env.BENCHMARK_TIMEOUT }} ./...
+
+    - name: Run long-running memory test
+      run: |
+        # Create a test that runs the application under load
+        cat > memory_stress_test.go << 'EOF'
+        package main
+        
+        import (
+            "runtime"
+            "testing"
+            "time"
+        )
+        
+        func TestMemoryStress(t *testing.T) {
+            var m runtime.MemStats
+            runtime.ReadMemStats(&m)
+            initialAlloc := m.Alloc
+            
+            // Run your application logic here
+            // Simulate processing many files
+            
+            time.Sleep(5 * time.Second)
+            runtime.GC()
+            runtime.ReadMemStats(&m)
+            
+            finalAlloc := m.Alloc
+            if finalAlloc > initialAlloc*2 {
+                t.Errorf("Potential memory leak: initial=%d, final=%d", initialAlloc, finalAlloc)
+            }
+        }
+        EOF
+        
+        go test -v memory_stress_test.go
+
+    - name: Upload memory analysis
+      uses: actions/upload-artifact@v4
+      with:
+        name: memory-analysis-results
+        path: |
+          mem-*.prof
+          mem-analysis.txt
+
+  # Load Testing
+  load-testing:
+    name: Load Testing
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Build application
+      run: go build -o appledocs .
+
+    - name: Install load testing tools
+      run: |
+        # Install k6
+        sudo gpg -k
+        sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+        echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+        sudo apt-get update
+        sudo apt-get install k6
+        
+        # Install vegeta
+        go install github.com/tsenart/vegeta@latest
+
+    - name: Create load test script
+      run: |
+        cat > load-test.js << 'EOF'
+        import http from 'k6/http';
+        import { check, sleep } from 'k6';
+        
+        export let options = {
+          stages: [
+            { duration: '2m', target: 100 },  // Ramp up
+            { duration: '5m', target: 100 },  // Stay at 100 users
+            { duration: '2m', target: 200 },  // Ramp up more
+            { duration: '5m', target: 200 },  // Stay at 200 users
+            { duration: '2m', target: 0 },    // Ramp down
+          ],
+          thresholds: {
+            http_req_duration: ['p(95)<500', 'p(99)<1000'],
+            http_req_failed: ['rate<0.1'],
+          },
+        };
+        
+        export default function() {
+          let response = http.get('http://localhost:8080/api/frameworks');
+          check(response, {
+            'status is 200': (r) => r.status === 200,
+            'response time < 500ms': (r) => r.timings.duration < 500,
+          });
+          sleep(1);
+        }
+        EOF
+
+    - name: Run load test
+      run: |
+        # Start the application
+        ./appledocs -mode server &
+        APP_PID=$!
+        sleep 5
+        
+        # Run k6 load test
+        k6 run --out json=k6-results.json load-test.js || true
+        
+        # Run vegeta attack
+        echo "GET http://localhost:8080/api/frameworks" | \
+          vegeta attack -duration=30s -rate=100/s | \
+          vegeta report -type=json > vegeta-results.json
+        
+        # Stop the application
+        kill $APP_PID
+
+    - name: Analyze load test results
+      run: |
+        # Parse k6 results
+        python3 << 'EOF'
+        import json
+        
+        with open('k6-results.json', 'r') as f:
+            for line in f:
+                data = json.loads(line)
+                if data['type'] == 'Point' and data['metric'] == 'http_req_duration':
+                    if data['data']['value'] > 1000:
+                        print(f"::warning::High response time detected: {data['data']['value']}ms")
+        EOF
+
+    - name: Upload load test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: load-test-results
+        path: |
+          k6-results.json
+          vegeta-results.json
+
+  # Performance Report
+  performance-report:
+    name: Performance Report
+    runs-on: ubuntu-latest
+    needs: [micro-benchmarks, json-performance, memory-analysis, load-testing]
+    if: always()
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: performance-artifacts/
+
+    - name: Generate performance report
+      run: |
+        mkdir -p performance-reports
+        
+        cat > performance-reports/performance-summary.md << 'EOF'
+        # Performance Test Report
+        
+        **Date**: $(date -u)
+        **Commit**: ${{ github.sha }}
+        
+        ## Test Summary
+        
+        | Test Suite | Status | Key Metrics |
+        |------------|--------|-------------|
+        | Micro Benchmarks | ${{ needs.micro-benchmarks.result }} | See benchstat results |
+        | JSON Performance | ${{ needs.json-performance.result }} | Parsing speed analysis |
+        | Memory Analysis | ${{ needs.memory-analysis.result }} | Leak detection results |
+        | Load Testing | ${{ needs.load-testing.result }} | Throughput & latency |
+        
+        ## Performance Highlights
+        
+        ### Benchmark Comparison
+        $(cat performance-artifacts/micro-benchmark-results/benchstat-results.txt 2>/dev/null | head -20 || echo "No benchmark data available")
+        
+        ### Memory Usage
+        $(cat performance-artifacts/memory-analysis-results/mem-analysis.txt 2>/dev/null | grep "Total" || echo "No memory data available")
+        
+        ### Load Test Summary
+        - Target Load: 200 concurrent users
+        - Duration: 16 minutes
+        - Success Rate: Check k6-results.json
+        
+        ## Recommendations
+        
+        Based on the performance tests:
+        1. Monitor any functions showing >5% regression
+        2. Review memory allocations in hot paths
+        3. Consider optimizing JSON parsing for large files
+        
+        EOF
+
+    - name: Comment PR with performance summary
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const report = fs.readFileSync('performance-reports/performance-summary.md', 'utf8');
+          
+          const { data: comments } = await github.rest.issues.listComments({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+          });
+          
+          const perfComment = comments.find(comment => 
+            comment.user.type === 'Bot' && 
+            comment.body.includes('Performance Test Report')
+          );
+          
+          const commentBody = `${report}\n\n<details><summary>View detailed results</summary>\n\nSee workflow artifacts for complete benchmark data, profiling results, and load test reports.\n\n</details>`;
+          
+          if (perfComment) {
+            await github.rest.issues.updateComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: perfComment.id,
+              body: commentBody
+            });
+          } else {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: commentBody
+            });
+          }
+
+    - name: Upload performance report
+      uses: actions/upload-artifact@v4
+      with:
+        name: performance-report-${{ github.sha }}
+        path: performance-reports/

@@ -1,0 +1,398 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      rollback:
+        description: 'Rollback to previous version'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  DOCKER_REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  DEPLOY_TIMEOUT: 600
+
+jobs:
+  # Build and Push Docker Images
+  build-images:
+    name: Build Docker Images
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image-tag: ${{ steps.meta.outputs.tags }}
+      image-digest: ${{ steps.build.outputs.digest }}
+    strategy:
+      matrix:
+        variant: [secure, distroless, alpine]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.DOCKER_REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}
+        flavor: |
+          latest=auto
+          prefix=
+          suffix=-${{ matrix.variant }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=sha,prefix={{branch}}-
+
+    - name: Build and push Docker image
+      id: build
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: Dockerfile.${{ matrix.variant }}
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        build-args: |
+          VERSION=${{ github.sha }}
+          BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+
+    - name: Generate SBOM
+      uses: anchore/sbom-action@v0
+      with:
+        image: ${{ steps.meta.outputs.tags }}
+        format: spdx-json
+        output-file: sbom-${{ matrix.variant }}.spdx.json
+
+    - name: Sign container image
+      env:
+        COSIGN_EXPERIMENTAL: "true"
+      run: |
+        cosign sign --yes ${{ steps.meta.outputs.tags }}
+
+  # Deploy to Staging
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: build-images
+    if: github.ref == 'refs/heads/main' || github.event.inputs.environment == 'staging'
+    environment:
+      name: staging
+      url: https://staging.appledocs.example.com
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    - name: Configure kubectl
+      run: |
+        echo "${{ secrets.STAGING_KUBECONFIG }}" | base64 -d > kubeconfig
+        export KUBECONFIG=kubeconfig
+
+    - name: Deploy to Kubernetes
+      run: |
+        # Update image in deployment
+        kubectl set image deployment/appledocs \
+          appledocs=${{ needs.build-images.outputs.image-tag }} \
+          -n appledocs-staging
+        
+        # Wait for rollout
+        kubectl rollout status deployment/appledocs \
+          -n appledocs-staging \
+          --timeout=${{ env.DEPLOY_TIMEOUT }}s
+
+    - name: Run smoke tests
+      run: |
+        # Wait for service to be ready
+        sleep 30
+        
+        # Run basic health checks
+        curl -f https://staging.appledocs.example.com/health || exit 1
+        curl -f https://staging.appledocs.example.com/api/frameworks || exit 1
+
+    - name: Run integration tests
+      run: |
+        # Run staging integration tests
+        go test -tags=integration,staging -v ./tests/integration/...
+
+  # Performance Testing in Staging
+  staging-performance:
+    name: Staging Performance Tests
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run performance tests
+      run: |
+        # Install k6
+        sudo gpg -k
+        sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+        echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+        sudo apt-get update
+        sudo apt-get install k6
+        
+        # Run performance test against staging
+        k6 run \
+          --out cloud \
+          --out json=staging-perf-results.json \
+          tests/performance/staging-load-test.js
+
+    - name: Validate performance metrics
+      run: |
+        # Check if performance meets SLA
+        python3 << 'EOF'
+        import json
+        
+        thresholds = {
+            'http_req_duration': {'p95': 500, 'p99': 1000},
+            'http_req_failed': {'rate': 0.01}
+        }
+        
+        # Parse results and validate
+        # Exit with error if thresholds are exceeded
+        EOF
+
+  # Deploy to Production
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build-images, staging-performance]
+    if: startsWith(github.ref, 'refs/tags/v') || github.event.inputs.environment == 'production'
+    environment:
+      name: production
+      url: https://appledocs.example.com
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+
+    - name: Configure kubectl
+      run: |
+        echo "${{ secrets.PROD_KUBECONFIG }}" | base64 -d > kubeconfig
+        export KUBECONFIG=kubeconfig
+
+    - name: Create backup
+      run: |
+        # Backup current deployment
+        kubectl get deployment appledocs -n appledocs-prod -o yaml > backup-deployment.yaml
+        
+        # Store backup
+        aws s3 cp backup-deployment.yaml \
+          s3://appledocs-backups/deployments/$(date +%Y%m%d-%H%M%S)-deployment.yaml
+
+    - name: Blue-Green Deployment
+      run: |
+        # Deploy to green environment
+        kubectl apply -f - <<EOF
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: appledocs-green
+          namespace: appledocs-prod
+        spec:
+          replicas: 3
+          selector:
+            matchLabels:
+              app: appledocs
+              version: green
+          template:
+            metadata:
+              labels:
+                app: appledocs
+                version: green
+            spec:
+              containers:
+              - name: appledocs
+                image: ${{ needs.build-images.outputs.image-tag }}
+                ports:
+                - containerPort: 8080
+                livenessProbe:
+                  httpGet:
+                    path: /health
+                    port: 8080
+                  initialDelaySeconds: 30
+                  periodSeconds: 10
+                readinessProbe:
+                  httpGet:
+                    path: /ready
+                    port: 8080
+                  initialDelaySeconds: 5
+                  periodSeconds: 5
+        EOF
+        
+        # Wait for green deployment
+        kubectl rollout status deployment/appledocs-green -n appledocs-prod
+
+    - name: Run production tests
+      run: |
+        # Test green deployment
+        GREEN_IP=$(kubectl get svc appledocs-green -n appledocs-prod -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+        
+        curl -f http://${GREEN_IP}/health || exit 1
+        curl -f http://${GREEN_IP}/api/frameworks || exit 1
+
+    - name: Switch traffic to green
+      run: |
+        # Update service selector to point to green
+        kubectl patch service appledocs -n appledocs-prod -p '{"spec":{"selector":{"version":"green"}}}'
+        
+        # Wait for traffic switch
+        sleep 30
+
+    - name: Verify deployment
+      run: |
+        # Run comprehensive health checks
+        ./scripts/production-health-check.sh
+
+    - name: Cleanup old deployment
+      run: |
+        # Keep blue deployment for 30 minutes for rollback
+        sleep 1800
+        
+        # Remove blue deployment
+        kubectl delete deployment appledocs-blue -n appledocs-prod || true
+        
+        # Rename green to blue for next deployment
+        kubectl patch deployment appledocs-green -n appledocs-prod --type='json' \
+          -p='[{"op": "replace", "path": "/metadata/name", "value": "appledocs-blue"}]'
+
+  # Rollback Mechanism
+  rollback:
+    name: Rollback Deployment
+    runs-on: ubuntu-latest
+    if: github.event.inputs.rollback == 'true'
+    environment:
+      name: ${{ github.event.inputs.environment }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+
+    - name: Configure kubectl
+      run: |
+        if [ "${{ github.event.inputs.environment }}" == "production" ]; then
+          echo "${{ secrets.PROD_KUBECONFIG }}" | base64 -d > kubeconfig
+          NAMESPACE="appledocs-prod"
+        else
+          echo "${{ secrets.STAGING_KUBECONFIG }}" | base64 -d > kubeconfig
+          NAMESPACE="appledocs-staging"
+        fi
+        export KUBECONFIG=kubeconfig
+
+    - name: Perform rollback
+      run: |
+        # Rollback to previous revision
+        kubectl rollout undo deployment/appledocs -n ${NAMESPACE}
+        
+        # Wait for rollback to complete
+        kubectl rollout status deployment/appledocs -n ${NAMESPACE}
+
+    - name: Verify rollback
+      run: |
+        # Check deployment status
+        kubectl get deployment appledocs -n ${NAMESPACE}
+        kubectl get pods -n ${NAMESPACE} -l app=appledocs
+
+  # Post-Deployment Monitoring
+  post-deployment:
+    name: Post-Deployment Monitoring
+    runs-on: ubuntu-latest
+    needs: [deploy-staging, deploy-production]
+    if: always()
+    steps:
+    - name: Setup monitoring alerts
+      run: |
+        # Configure alerts for new deployment
+        curl -X POST https://monitoring.example.com/api/alerts \
+          -H "Authorization: Bearer ${{ secrets.MONITORING_TOKEN }}" \
+          -d '{
+            "name": "appledocs-deployment-${{ github.sha }}",
+            "conditions": [
+              {"metric": "error_rate", "threshold": 0.05},
+              {"metric": "response_time_p99", "threshold": 1000},
+              {"metric": "cpu_usage", "threshold": 0.8},
+              {"metric": "memory_usage", "threshold": 0.9}
+            ],
+            "duration": "5m",
+            "severity": "critical"
+          }'
+
+    - name: Create deployment record
+      run: |
+        # Record deployment for tracking
+        cat > deployment-record.json << EOF
+        {
+          "version": "${{ github.sha }}",
+          "environment": "${{ github.event.inputs.environment || 'staging' }}",
+          "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')",
+          "deployer": "${{ github.actor }}",
+          "image_digest": "${{ needs.build-images.outputs.image-digest }}",
+          "status": "success"
+        }
+        EOF
+        
+        # Store in deployment history
+        aws s3 cp deployment-record.json \
+          s3://appledocs-deployments/history/$(date +%Y%m%d-%H%M%S).json
+
+    - name: Send deployment notification
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: |
+          Deployment Complete!
+          Environment: ${{ github.event.inputs.environment || 'staging' }}
+          Version: ${{ github.sha }}
+          Deployed by: ${{ github.actor }}
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+    - name: Update deployment dashboard
+      run: |
+        # Update internal dashboard with deployment status
+        curl -X POST https://dashboard.example.com/api/deployments \
+          -H "Authorization: Bearer ${{ secrets.DASHBOARD_TOKEN }}" \
+          -d '{
+            "service": "appledocs",
+            "version": "${{ github.sha }}",
+            "environment": "${{ github.event.inputs.environment || 'staging' }}",
+            "status": "deployed",
+            "metrics_url": "https://metrics.example.com/d/appledocs"
+          }'

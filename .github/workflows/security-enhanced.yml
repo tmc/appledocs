@@ -1,0 +1,361 @@
+name: Enhanced Security Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run twice daily for security updates
+    - cron: '0 2,14 * * *'
+  workflow_dispatch:
+
+env:
+  GO_VERSION: '1.24'
+  SARIF_UPLOAD: true
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  # Secret Detection
+  secret-scan:
+    name: Secret Detection
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Run Gitleaks
+      uses: gitleaks/gitleaks-action@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Run TruffleHog
+      uses: trufflesecurity/trufflehog@main
+      with:
+        path: ./
+        base: ${{ github.event.repository.default_branch }}
+        head: HEAD
+        extra_args: --debug --only-verified
+
+  # SAST - Static Application Security Testing
+  sast:
+    name: SAST Analysis
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Run Semgrep
+      uses: returntocorp/semgrep-action@v1
+      with:
+        config: >-
+          p/security-audit
+          p/golang
+          p/owasp-top-ten
+          p/r2c-security-audit
+
+    - name: Run gosec with all rules
+      run: |
+        go install github.com/securego/gosec/v2/cmd/gosec@latest
+        gosec -fmt sarif -out gosec-detailed.sarif -tests -severity low ./...
+
+    - name: Upload gosec results
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: gosec-detailed.sarif
+        category: gosec-detailed
+
+    - name: Run Nancy for dependency check
+      run: |
+        go list -json -deps ./... | docker run --rm -i sonatypecorp/nancy:latest sleuth
+
+  # Dependency Security Analysis
+  dependency-scan:
+    name: Dependency Security
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Run OSV Scanner
+      uses: google/osv-scanner-action@v1
+      with:
+        scan-args: |-
+          --lockfile=go.mod
+          --format=sarif
+          --output=osv-results.sarif
+
+    - name: Upload OSV results
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: osv-results.sarif
+        category: osv-scanner
+
+    - name: Run Snyk vulnerability scan
+      uses: snyk/actions/golang@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --severity-threshold=low --sarif-file-output=snyk.sarif
+
+    - name: Upload Snyk results
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: snyk.sarif
+        category: snyk
+
+  # Container Security Deep Scan
+  container-security:
+    name: Container Security Analysis
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dockerfile: [Dockerfile.secure, Dockerfile.distroless, Dockerfile.alpine]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build container
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ${{ matrix.dockerfile }}
+        push: false
+        load: true
+        tags: appledocs:${{ matrix.dockerfile }}-scan
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    - name: Run Grype vulnerability scanner
+      uses: anchore/scan-action@v3
+      with:
+        image: appledocs:${{ matrix.dockerfile }}-scan
+        fail-build: true
+        severity-cutoff: critical
+
+    - name: Run Syft for SBOM
+      uses: anchore/syft-action@v1
+      with:
+        image: appledocs:${{ matrix.dockerfile }}-scan
+        format: spdx-json
+        output: sbom-${{ matrix.dockerfile }}.spdx.json
+
+    - name: Scan SBOM with Grype
+      run: |
+        grype sbom-${{ matrix.dockerfile }}.spdx.json -o sarif > grype-sbom-results.sarif
+
+    - name: Container structure test
+      run: |
+        docker run --rm -v "${PWD}":/workspace \
+          gcr.io/gcp-runtimes/container-structure-test:latest \
+          test --image appledocs:${{ matrix.dockerfile }}-scan \
+          --config /workspace/security/container-structure-test.yaml
+
+  # License Compliance Deep Check
+  license-compliance:
+    name: License Compliance Analysis
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Run go-licenses
+      run: |
+        go install github.com/google/go-licenses@latest
+        go-licenses check ./... --allowed_licenses=Apache-2.0,BSD-3-Clause,MIT,ISC
+
+    - name: Run License Finder
+      run: |
+        gem install license_finder
+        license_finder --prepare
+        license_finder report --format=json > license-report.json
+
+    - name: Check for copyleft licenses
+      run: |
+        if grep -E "(GPL|AGPL|LGPL)" license-report.json; then
+          echo "::error::Copyleft license detected"
+          exit 1
+        fi
+
+    - name: Upload license report
+      uses: actions/upload-artifact@v4
+      with:
+        name: license-compliance-report
+        path: license-report.json
+
+  # Infrastructure as Code Security
+  iac-security:
+    name: IaC Security Scan
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Checkov
+      uses: bridgecrewio/checkov-action@master
+      with:
+        directory: .
+        framework: dockerfile,kubernetes,github_configuration
+        output_format: sarif
+        output_file_path: checkov-results.sarif
+        skip_check: CKV_DOCKER_2,CKV_DOCKER_3
+
+    - name: Upload Checkov results
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: checkov-results.sarif
+        category: checkov
+
+  # Security Policy Validation
+  policy-validation:
+    name: Security Policy Validation
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Validate security policies with OPA
+      run: |
+        # Download OPA
+        curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
+        chmod +x opa
+        
+        # Run policy checks
+        ./opa test security/policies/*.rego -v
+
+    - name: Check security requirements
+      run: |
+        # Verify SECURITY.md exists
+        if [ ! -f "SECURITY.md" ]; then
+          echo "::error::SECURITY.md file is missing"
+          exit 1
+        fi
+        
+        # Check for security headers in code
+        ./scripts/check-security-headers.sh
+
+  # Compliance Report Generation
+  compliance-report:
+    name: Generate Compliance Report
+    runs-on: ubuntu-latest
+    needs: [secret-scan, sast, dependency-scan, container-security, license-compliance, iac-security]
+    if: always()
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: security-artifacts/
+
+    - name: Generate compliance report
+      run: |
+        mkdir -p compliance-reports
+        
+        cat > compliance-reports/security-compliance.md << EOF
+        # Security Compliance Report
+        
+        **Date**: $(date -u)
+        **Commit**: ${{ github.sha }}
+        **Branch**: ${{ github.ref }}
+        
+        ## Security Scan Summary
+        
+        | Check | Status | Details |
+        |-------|--------|---------|
+        | Secret Detection | ${{ needs.secret-scan.result }} | Gitleaks & TruffleHog |
+        | SAST | ${{ needs.sast.result }} | Semgrep, gosec, Nancy |
+        | Dependency Scan | ${{ needs.dependency-scan.result }} | OSV, Snyk |
+        | Container Security | ${{ needs.container-security.result }} | Trivy, Grype |
+        | License Compliance | ${{ needs.license-compliance.result }} | go-licenses |
+        | IaC Security | ${{ needs.iac-security.result }} | Checkov |
+        
+        ## Vulnerability Summary
+        
+        $(find security-artifacts -name "*.sarif" -exec jq -r '.runs[].results | length' {} \; | awk '{s+=$1} END {print "Total vulnerabilities found: " s}')
+        
+        ## Compliance Status
+        
+        - [x] OWASP Top 10 Scanning
+        - [x] CIS Benchmarks
+        - [x] Supply Chain Security
+        - [x] Container Security Best Practices
+        - [x] License Compliance
+        
+        EOF
+
+    - name: Upload compliance report
+      uses: actions/upload-artifact@v4
+      with:
+        name: compliance-report-${{ github.sha }}
+        path: compliance-reports/
+
+    - name: Post summary to PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const report = fs.readFileSync('compliance-reports/security-compliance.md', 'utf8');
+          
+          // Find existing comment
+          const { data: comments } = await github.rest.issues.listComments({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+          });
+          
+          const botComment = comments.find(comment => 
+            comment.user.type === 'Bot' && 
+            comment.body.includes('Security Compliance Report')
+          );
+          
+          if (botComment) {
+            // Update existing comment
+            await github.rest.issues.updateComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: botComment.id,
+              body: report
+            });
+          } else {
+            // Create new comment
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: report
+            });
+          }

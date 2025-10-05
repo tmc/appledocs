@@ -1,0 +1,484 @@
+# GitLab CI/CD Pipeline for appledocs
+# This provides equivalent functionality to the GitHub Actions workflows
+
+variables:
+  GO_VERSION: "1.24"
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+  SECURE_LOG_LEVEL: "info"
+  CONTAINER_REGISTRY: "$CI_REGISTRY"
+  CONTAINER_IMAGE: "$CI_REGISTRY_IMAGE"
+  PERFORMANCE_THRESHOLD: "10"
+  BENCHMARK_TIMEOUT: "30m"
+
+stages:
+  - validate
+  - test
+  - security
+  - build
+  - performance
+  - deploy
+  - monitor
+
+# Cache configuration
+.go-cache:
+  cache:
+    key: "$CI_COMMIT_REF_SLUG-go"
+    paths:
+      - .go/pkg/mod/
+      - .go/build-cache/
+  before_script:
+    - mkdir -p .go
+    - export GOPATH=$CI_PROJECT_DIR/.go
+    - export GOCACHE=$CI_PROJECT_DIR/.go/build-cache
+    - export PATH=$PATH:$GOPATH/bin
+
+# Templates
+.docker-build:
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+###############################
+# Validation Stage
+###############################
+
+validate:format:
+  stage: validate
+  extends: .go-cache
+  image: golang:${GO_VERSION}
+  script:
+    - go install mvdan.cc/gofumpt@latest
+    - go install golang.org/x/tools/cmd/goimports@latest
+    - gofumpt -l -d .
+    - test -z "$(gofumpt -l .)"
+    - goimports -l -d .
+    - test -z "$(goimports -l .)"
+  only:
+    - merge_requests
+    - main
+    - develop
+
+validate:lint:
+  stage: validate
+  extends: .go-cache
+  image: golangci/golangci-lint:latest
+  script:
+    - golangci-lint run --timeout=10m --config=.golangci.yml
+  only:
+    - merge_requests
+    - main
+    - develop
+
+validate:mod:
+  stage: validate
+  extends: .go-cache
+  image: golang:${GO_VERSION}
+  script:
+    - go mod verify
+    - go mod tidy
+    - git diff --exit-code go.mod go.sum
+  only:
+    - merge_requests
+    - main
+
+###############################
+# Test Stage
+###############################
+
+test:unit:
+  stage: test
+  extends: .go-cache
+  image: golang:${GO_VERSION}
+  parallel:
+    matrix:
+      - GO_VERSION: ["1.23", "1.24"]
+        OS: ["linux"]
+  script:
+    - go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
+    - go tool cover -html=coverage.out -o coverage.html
+    - go tool cover -func=coverage.out
+  coverage: '/total:\s+\(statements\)\s+(\d+\.\d+)%/'
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    paths:
+      - coverage.out
+      - coverage.html
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+    - develop
+
+test:integration:
+  stage: test
+  extends: .go-cache
+  image: golang:${GO_VERSION}
+  services:
+    - redis:7-alpine
+  variables:
+    INTEGRATION_TEST: "true"
+    REDIS_URL: "redis:6379"
+  script:
+    - go test -v -tags=integration -timeout=30m ./...
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    paths:
+      - test-results/
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+
+###############################
+# Security Stage
+###############################
+
+security:secret-scan:
+  stage: security
+  image: zricethezav/gitleaks:latest
+  script:
+    - gitleaks detect --source . --verbose --report-format sarif --report-path gitleaks-report.sarif
+  artifacts:
+    reports:
+      sast: gitleaks-report.sarif
+  allow_failure: false
+  only:
+    - merge_requests
+    - main
+    - develop
+
+security:sast:
+  stage: security
+  image: securego/gosec:latest
+  script:
+    - gosec -fmt sarif -out gosec-report.sarif -tests -severity low ./...
+  artifacts:
+    reports:
+      sast: gosec-report.sarif
+  only:
+    - merge_requests
+    - main
+
+security:dependency-scan:
+  stage: security
+  extends: .go-cache
+  image: golang:${GO_VERSION}
+  script:
+    - go install golang.org/x/vuln/cmd/govulncheck@latest
+    - govulncheck ./... | tee dependency-scan.txt
+    - |
+      if grep -q "vulnerability" dependency-scan.txt; then
+        echo "Vulnerabilities found!"
+        exit 1
+      fi
+  artifacts:
+    paths:
+      - dependency-scan.txt
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+    - develop
+
+security:container-scan:
+  stage: security
+  extends: .docker-build
+  parallel:
+    matrix:
+      - DOCKERFILE: ["Dockerfile.secure", "Dockerfile.distroless", "Dockerfile.alpine"]
+  script:
+    - docker build -f $DOCKERFILE -t $CONTAINER_IMAGE:$DOCKERFILE-$CI_COMMIT_SHA .
+    - |
+      docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+        aquasec/trivy:latest image --exit-code 1 --severity HIGH,CRITICAL \
+        --format sarif --output trivy-$DOCKERFILE.sarif \
+        $CONTAINER_IMAGE:$DOCKERFILE-$CI_COMMIT_SHA
+  artifacts:
+    reports:
+      container_scanning: trivy-$DOCKERFILE.sarif
+  only:
+    - merge_requests
+    - main
+
+security:license-scan:
+  stage: security
+  extends: .go-cache
+  image: golang:${GO_VERSION}
+  script:
+    - go install github.com/google/go-licenses@latest
+    - go-licenses check ./... --allowed_licenses=Apache-2.0,BSD-3-Clause,MIT,ISC
+  only:
+    - merge_requests
+    - main
+
+###############################
+# Build Stage
+###############################
+
+build:binaries:
+  stage: build
+  extends: .go-cache
+  image: golang:${GO_VERSION}
+  script:
+    - |
+      for os in linux darwin windows; do
+        for arch in amd64 arm64; do
+          if [[ "$os" == "windows" && "$arch" == "arm64" ]]; then
+            continue
+          fi
+          ext=""
+          if [[ "$os" == "windows" ]]; then
+            ext=".exe"
+          fi
+          GOOS=$os GOARCH=$arch go build \
+            -ldflags="-s -w -X main.version=$CI_COMMIT_SHA" \
+            -o dist/appledocs-$os-$arch$ext .
+        done
+      done
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    paths:
+      - dist/
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+    - tags
+
+build:docker:
+  stage: build
+  extends: .docker-build
+  parallel:
+    matrix:
+      - VARIANT: ["secure", "distroless", "alpine"]
+  script:
+    - |
+      docker build -f Dockerfile.$VARIANT \
+        --build-arg VERSION=$CI_COMMIT_SHA \
+        --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+        -t $CONTAINER_IMAGE:$VARIANT-$CI_COMMIT_SHA \
+        -t $CONTAINER_IMAGE:$VARIANT-latest .
+    - docker push $CONTAINER_IMAGE:$VARIANT-$CI_COMMIT_SHA
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
+        docker push $CONTAINER_IMAGE:$VARIANT-latest
+      fi
+  only:
+    - main
+    - tags
+
+###############################
+# Performance Stage
+###############################
+
+performance:benchmarks:
+  stage: performance
+  extends: .go-cache
+  image: golang:${GO_VERSION}
+  script:
+    - go install golang.org/x/perf/cmd/benchstat@latest
+    
+    # Run benchmarks on current branch
+    - go test -bench=. -benchmem -benchtime=10s -count=10 -timeout=$BENCHMARK_TIMEOUT -cpu=1,2,4 ./... | tee current-benchmarks.txt
+    
+    # Compare with main branch if this is a merge request
+    - |
+      if [[ -n "$CI_MERGE_REQUEST_ID" ]]; then
+        git fetch origin main
+        git checkout origin/main
+        go test -bench=. -benchmem -benchtime=10s -count=10 -timeout=$BENCHMARK_TIMEOUT -cpu=1,2,4 ./... | tee baseline-benchmarks.txt
+        git checkout -
+        
+        benchstat baseline-benchmarks.txt current-benchmarks.txt | tee benchstat-results.txt
+        
+        # Check for performance regressions
+        if grep -q "+[0-9]\+\.[0-9]\+%" benchstat-results.txt; then
+          SLOWDOWN=$(grep -oP '\+\K[0-9]+(?=\.\d+%)' benchstat-results.txt | head -1)
+          if [[ "$SLOWDOWN" -gt "$PERFORMANCE_THRESHOLD" ]]; then
+            echo "Performance regression detected: >${PERFORMANCE_THRESHOLD}% slowdown"
+            exit 1
+          fi
+        fi
+      fi
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    paths:
+      - "*-benchmarks.txt"
+      - "benchstat-results.txt"
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+
+performance:memory:
+  stage: performance
+  extends: .go-cache
+  image: golang:${GO_VERSION}
+  script:
+    # Run memory profiling
+    - go test -run=TestMemory -memprofile=mem.prof -timeout=$BENCHMARK_TIMEOUT ./...
+    - go tool pprof -text mem.prof > mem-analysis.txt
+    
+    # Check for memory leaks
+    - go test -run=TestGoroutineLeak -timeout=$BENCHMARK_TIMEOUT ./...
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    paths:
+      - "*.prof"
+      - "mem-analysis.txt"
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+
+performance:load-test:
+  stage: performance
+  image: loadimpact/k6:latest
+  script:
+    - |
+      cat > load-test.js << 'EOF'
+      import http from 'k6/http';
+      import { check, sleep } from 'k6';
+      
+      export let options = {
+        stages: [
+          { duration: '2m', target: 100 },
+          { duration: '5m', target: 100 },
+          { duration: '2m', target: 0 },
+        ],
+        thresholds: {
+          http_req_duration: ['p(95)<500', 'p(99)<1000'],
+          http_req_failed: ['rate<0.1'],
+        },
+      };
+      
+      export default function() {
+        let response = http.get('http://localhost:8080/api/frameworks');
+        check(response, {
+          'status is 200': (r) => r.status === 200,
+        });
+        sleep(1);
+      }
+      EOF
+    - k6 run --out json=k6-results.json load-test.js || true
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    paths:
+      - k6-results.json
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+
+###############################
+# Deploy Stage
+###############################
+
+deploy:staging:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  environment:
+    name: staging
+    url: https://staging.appledocs.example.com
+  script:
+    - echo "$STAGING_KUBECONFIG" | base64 -d > kubeconfig
+    - export KUBECONFIG=kubeconfig
+    
+    # Deploy to staging
+    - |
+      kubectl set image deployment/appledocs \
+        appledocs=$CONTAINER_IMAGE:secure-$CI_COMMIT_SHA \
+        -n appledocs-staging
+    
+    # Wait for rollout
+    - kubectl rollout status deployment/appledocs -n appledocs-staging --timeout=600s
+    
+    # Run smoke tests
+    - sleep 30
+    - curl -f https://staging.appledocs.example.com/health || exit 1
+  only:
+    - main
+
+deploy:production:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  environment:
+    name: production
+    url: https://appledocs.example.com
+  when: manual
+  script:
+    - echo "$PROD_KUBECONFIG" | base64 -d > kubeconfig
+    - export KUBECONFIG=kubeconfig
+    
+    # Create backup
+    - kubectl get deployment appledocs -n appledocs-prod -o yaml > backup-deployment.yaml
+    
+    # Blue-Green deployment
+    - |
+      cat <<EOF | kubectl apply -f -
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: appledocs-green
+        namespace: appledocs-prod
+      spec:
+        replicas: 3
+        selector:
+          matchLabels:
+            app: appledocs
+            version: green
+        template:
+          metadata:
+            labels:
+              app: appledocs
+              version: green
+          spec:
+            containers:
+            - name: appledocs
+              image: $CONTAINER_IMAGE:secure-$CI_COMMIT_SHA
+              ports:
+              - containerPort: 8080
+      EOF
+    
+    # Wait for green deployment
+    - kubectl rollout status deployment/appledocs-green -n appledocs-prod
+    
+    # Switch traffic
+    - kubectl patch service appledocs -n appledocs-prod -p '{"spec":{"selector":{"version":"green"}}}'
+  only:
+    - tags
+
+###############################
+# Monitor Stage
+###############################
+
+monitor:deployment:
+  stage: monitor
+  image: curlimages/curl:latest
+  script:
+    # Send deployment notification
+    - |
+      curl -X POST $SLACK_WEBHOOK_URL \
+        -H 'Content-Type: application/json' \
+        -d '{
+          "text": "Deployment Complete!",
+          "attachments": [{
+            "color": "good",
+            "fields": [
+              {"title": "Environment", "value": "'$CI_ENVIRONMENT_NAME'", "short": true},
+              {"title": "Version", "value": "'$CI_COMMIT_SHA'", "short": true},
+              {"title": "Branch", "value": "'$CI_COMMIT_BRANCH'", "short": true},
+              {"title": "Deployed by", "value": "'$GITLAB_USER_LOGIN'", "short": true}
+            ]
+          }]
+        }'
+  only:
+    - main
+    - tags

@@ -1,0 +1,328 @@
+name: Main CI Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  GO_VERSION: '1.24'
+  DOCKER_REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  CACHE_VERSION: v1
+
+jobs:
+  # Code Quality and Linting
+  quality-checks:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Install quality tools
+      run: |
+        go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+        go install golang.org/x/tools/cmd/goimports@latest
+        go install mvdan.cc/gofumpt@latest
+        go install github.com/segmentio/golines@latest
+
+    - name: Run golangci-lint
+      run: golangci-lint run --timeout=10m --config=.golangci.yml
+
+    - name: Check formatting
+      run: |
+        gofumpt -l -d .
+        test -z "$(gofumpt -l .)"
+
+    - name: Check imports
+      run: |
+        goimports -l -d .
+        test -z "$(goimports -l .)"
+
+    - name: Run go mod tidy check
+      run: |
+        go mod tidy
+        git diff --exit-code go.mod go.sum
+
+  # Unit Testing with Coverage
+  unit-tests:
+    name: Unit Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        go: ['1.23', '1.24']
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ matrix.go }}
+        cache: true
+
+    - name: Run unit tests with coverage
+      run: |
+        go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
+        go tool cover -html=coverage.out -o coverage.html
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.out
+        flags: unittests
+        name: codecov-${{ matrix.os }}-${{ matrix.go }}
+
+    - name: Upload coverage artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-${{ matrix.os }}-${{ matrix.go }}
+        path: |
+          coverage.out
+          coverage.html
+
+  # Performance Testing
+  performance-tests:
+    name: Performance Tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Run benchmarks
+      run: |
+        # Run benchmarks and save results
+        go test -bench=. -benchmem -benchtime=10s -count=5 -run=^$ ./... | tee benchmark-new.txt
+        
+        # Get baseline benchmarks from main branch
+        if [ "${{ github.event_name }}" == "pull_request" ]; then
+          git checkout origin/main
+          go test -bench=. -benchmem -benchtime=10s -count=5 -run=^$ ./... | tee benchmark-base.txt
+          git checkout -
+        fi
+
+    - name: Compare benchmarks
+      if: github.event_name == 'pull_request'
+      run: |
+        go install golang.org/x/perf/cmd/benchstat@latest
+        benchstat benchmark-base.txt benchmark-new.txt | tee benchstat.txt
+        
+        # Check for performance regressions
+        if grep -q "slower" benchstat.txt; then
+          SLOWDOWN=$(grep -oP '\+\K[0-9]+(?=\.\d+% ±)' benchstat.txt | head -1)
+          if [ "$SLOWDOWN" -gt "10" ]; then
+            echo "::error::Performance regression detected: >10% slowdown"
+            exit 1
+          fi
+        fi
+
+    - name: Upload benchmark results
+      uses: actions/upload-artifact@v4
+      with:
+        name: benchmark-results
+        path: |
+          benchmark-*.txt
+          benchstat.txt
+
+    - name: Comment PR with benchmark results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const benchstat = fs.readFileSync('benchstat.txt', 'utf8');
+          const comment = `## Benchmark Results\n\`\`\`\n${benchstat}\n\`\`\``;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+
+  # Integration Testing
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Run integration tests
+      env:
+        INTEGRATION_TEST: "true"
+        REDIS_URL: localhost:6379
+      run: |
+        go test -v -tags=integration -timeout=30m ./...
+
+    - name: Run load tests
+      run: |
+        # Install k6 for load testing
+        sudo snap install k6
+        
+        # Run load tests
+        k6 run --out json=load-test-results.json tests/load/basic-load-test.js || true
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: integration-test-results
+        path: |
+          load-test-results.json
+          test-results/
+
+  # Build Artifacts
+  build:
+    name: Build Artifacts
+    runs-on: ubuntu-latest
+    needs: [quality-checks, unit-tests]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Build binaries
+      run: |
+        # Build for multiple platforms
+        GOOS=linux GOARCH=amd64 go build -ldflags="-s -w -X main.version=${{ github.sha }}" -o dist/appledocs-linux-amd64 .
+        GOOS=linux GOARCH=arm64 go build -ldflags="-s -w -X main.version=${{ github.sha }}" -o dist/appledocs-linux-arm64 .
+        GOOS=darwin GOARCH=amd64 go build -ldflags="-s -w -X main.version=${{ github.sha }}" -o dist/appledocs-darwin-amd64 .
+        GOOS=darwin GOARCH=arm64 go build -ldflags="-s -w -X main.version=${{ github.sha }}" -o dist/appledocs-darwin-arm64 .
+        GOOS=windows GOARCH=amd64 go build -ldflags="-s -w -X main.version=${{ github.sha }}" -o dist/appledocs-windows-amd64.exe .
+
+    - name: Upload binaries
+      uses: actions/upload-artifact@v4
+      with:
+        name: binaries
+        path: dist/
+
+  # Documentation Check
+  documentation:
+    name: Documentation Check
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+
+    - name: Check Go documentation
+      run: |
+        # Install godoc
+        go install golang.org/x/tools/cmd/godoc@latest
+        
+        # Check for missing documentation
+        output=$(go doc -all . 2>&1)
+        if echo "$output" | grep -q "no documentation"; then
+          echo "::warning::Missing documentation found"
+        fi
+
+    - name: Generate documentation
+      run: |
+        # Generate API documentation
+        go doc -all . > API_DOCUMENTATION.txt
+        
+        # Check if all exported functions have documentation
+        ./scripts/check-documentation.sh
+
+    - name: Validate Markdown files
+      run: |
+        npm install -g markdownlint-cli
+        markdownlint '**/*.md' --config .markdownlint.json
+
+  # Quality Gate Check
+  quality-gate:
+    name: Quality Gate
+    runs-on: ubuntu-latest
+    needs: [quality-checks, unit-tests, performance-tests, integration-tests, documentation]
+    if: always()
+    steps:
+    - name: Check quality gate status
+      run: |
+        # Check if all required jobs passed
+        if [ "${{ needs.quality-checks.result }}" != "success" ] || \
+           [ "${{ needs.unit-tests.result }}" != "success" ] || \
+           [ "${{ needs.integration-tests.result }}" != "success" ]; then
+          echo "::error::Quality gate failed - Required checks did not pass"
+          exit 1
+        fi
+        
+        echo "✅ Quality gate passed!"
+
+  # Create Release
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: [quality-gate, build]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: binaries
+        path: dist/
+
+    - name: Create changelog
+      run: |
+        # Generate changelog from commits
+        git log --pretty=format:"- %s (%h)" $(git describe --tags --abbrev=0)..HEAD > CHANGELOG.md
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: dist/*
+        body_path: CHANGELOG.md
+        draft: false
+        prerelease: false

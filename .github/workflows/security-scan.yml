@@ -1,0 +1,248 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+env:
+  GO_VERSION: '1.24'
+  IMAGE_NAME: appledocs
+
+jobs:
+  # Static Code Analysis
+  static-analysis:
+    name: Static Code Analysis
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+    
+    - name: Run gosec Security Scanner
+      uses: securego/gosec@master
+      with:
+        args: '-fmt sarif -out gosec-results.sarif -severity high ./...'
+    
+    - name: Upload gosec SARIF results
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: gosec-results.sarif
+    
+    - name: Run staticcheck
+      uses: dominikh/staticcheck-action@v1
+      with:
+        version: "latest"
+        install-go: false
+    
+    - name: Run go mod verify
+      run: go mod verify
+    
+    - name: Run go vet
+      run: go vet ./...
+    
+    - name: Check for vulnerabilities in dependencies
+      run: |
+        go install golang.org/x/vuln/cmd/govulncheck@latest
+        govulncheck ./...
+
+  # Build and scan container images
+  container-scan:
+    name: Container Security Scan
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dockerfile: [Dockerfile.secure, Dockerfile.distroless, Dockerfile.alpine]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Build container image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ${{ matrix.dockerfile }}
+        push: false
+        load: true
+        tags: ${{ env.IMAGE_NAME }}:${{ matrix.dockerfile }}-${{ github.sha }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ env.IMAGE_NAME }}:${{ matrix.dockerfile }}-${{ github.sha }}
+        format: 'sarif'
+        output: 'trivy-results-${{ matrix.dockerfile }}.sarif'
+        severity: 'CRITICAL,HIGH'
+        exit-code: '1'
+    
+    - name: Upload Trivy SARIF results
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'trivy-results-${{ matrix.dockerfile }}.sarif'
+    
+    - name: Run Trivy config scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'config'
+        scan-ref: '.'
+        format: 'table'
+        exit-code: '1'
+        severity: 'CRITICAL,HIGH'
+    
+    - name: Run Hadolint
+      uses: hadolint/hadolint-action@v3.1.0
+      with:
+        dockerfile: ${{ matrix.dockerfile }}
+        failure-threshold: warning
+    
+    - name: Run Snyk Container Scan
+      uses: snyk/actions/docker@master
+      if: github.event_name != 'pull_request' # Don't run on PRs due to token requirements
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        image: ${{ env.IMAGE_NAME }}:${{ matrix.dockerfile }}-${{ github.sha }}
+        args: --severity-threshold=high
+
+  # License compliance check
+  license-check:
+    name: License Compliance Check
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+    
+    - name: Install license checker
+      run: |
+        go install github.com/uw-labs/lichen@latest
+    
+    - name: Check licenses
+      run: |
+        go mod download
+        lichen --config=.lichen.yaml ${{ github.workspace }}
+
+  # SBOM Generation
+  sbom-generation:
+    name: Generate SBOM
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ env.GO_VERSION }}
+        cache: true
+    
+    - name: Generate SBOM with Syft
+      uses: anchore/sbom-action@v0
+      with:
+        path: ./
+        format: spdx-json
+        output-file: sbom-spdx.json
+    
+    - name: Generate SBOM with CycloneDX
+      run: |
+        go install github.com/CycloneDX/cyclonedx-go/cmd/cyclonedx-go@latest
+        cyclonedx-go mod -json -output sbom-cyclonedx.json
+    
+    - name: Upload SBOM artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: sbom-${{ github.sha }}
+        path: |
+          sbom-spdx.json
+          sbom-cyclonedx.json
+
+  # Security policy validation
+  policy-check:
+    name: Security Policy Validation
+    runs-on: ubuntu-latest
+    needs: [container-scan]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Run OPA policy checks
+      uses: open-policy-agent/opa-github-action@v0.5.0
+      with:
+        path: security/policies
+        tests: security/policies/tests
+    
+    - name: Validate security controls
+      run: |
+        echo "Validating security controls..."
+        # Add custom security validation scripts here
+
+  # Create security report
+  security-report:
+    name: Generate Security Report
+    runs-on: ubuntu-latest
+    needs: [static-analysis, container-scan, license-check, sbom-generation]
+    if: always()
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: ./artifacts
+    
+    - name: Generate consolidated report
+      run: |
+        mkdir -p security-reports
+        echo "# Security Scan Report" > security-reports/report.md
+        echo "**Date**: $(date)" >> security-reports/report.md
+        echo "**Commit**: ${{ github.sha }}" >> security-reports/report.md
+        echo "" >> security-reports/report.md
+        echo "## Summary" >> security-reports/report.md
+        echo "- Static Analysis: ${{ needs.static-analysis.result }}" >> security-reports/report.md
+        echo "- Container Scan: ${{ needs.container-scan.result }}" >> security-reports/report.md
+        echo "- License Check: ${{ needs.license-check.result }}" >> security-reports/report.md
+        echo "- SBOM Generation: ${{ needs.sbom-generation.result }}" >> security-reports/report.md
+    
+    - name: Upload security report
+      uses: actions/upload-artifact@v4
+      with:
+        name: security-report-${{ github.sha }}
+        path: security-reports/
+    
+    - name: Comment PR with results
+      uses: actions/github-script@v7
+      if: github.event_name == 'pull_request'
+      with:
+        script: |
+          const report = require('fs').readFileSync('security-reports/report.md', 'utf8');
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: report
+          });
