@@ -112,7 +112,14 @@ type ContentSection struct {
 	Kind         string         `json:"kind,omitempty"`
 	Content      []ContentBlock `json:"content,omitempty"`
 	Declarations []Declaration  `json:"declarations,omitempty"`
+	Parameters   []Parameter    `json:"parameters,omitempty"`
 	Mentions     []string       `json:"mentions,omitempty"`
+}
+
+// Parameter represents a function/method parameter
+type Parameter struct {
+	Name    string         `json:"name,omitempty"`
+	Content []ContentBlock `json:"content,omitempty"`
 }
 
 // Declaration represents a code declaration
@@ -511,6 +518,22 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 				if len(languages) > 1 {
 					fmt.Fprintf(w, "*Also available in:* %s\n\n", strings.Join(languages, ", "))
 				}
+			}
+		}
+	}
+
+	// Write parameters section
+	for _, section := range doc.PrimaryContentSections {
+		if section.Kind == "parameters" && len(section.Parameters) > 0 {
+			fmt.Fprintf(w, "## Parameters\n\n")
+			for _, param := range section.Parameters {
+				// Parameter name as a heading
+				fmt.Fprintf(w, "### `%s`\n\n", param.Name)
+				// Parameter description
+				for _, block := range param.Content {
+					writeContentBlock(w, block, doc.References, 0)
+				}
+				fmt.Fprintf(w, "\n")
 			}
 		}
 	}
