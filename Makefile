@@ -2,21 +2,20 @@ VERSION := $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev
 GOFLAGS := -ldflags="-s -w -X main.version=$(VERSION)"
 GO ?= go
 
-.PHONY: build run clean test json fast force verbose all markdown html docs endpointsecurity compact accessibility graphql yaml yaml-all yaml-security
+.PHONY: build run clean test json fast force verbose all markdown html docs endpointsecurity compact accessibility graphql yaml yaml-all yaml-security appledocs appledocs-gql
 
-build: appledocs appledocs-gql
+build: appledocs
 
 appledocs:
-	$(GO) build $(GOFLAGS) -o appledocs .
+	$(GO) install $(GOFLAGS) ./cmd/appledocs
 
 appledocs-gql:
-	$(GO) build $(GOFLAGS) -o appledocs-gql ./cmd/appledocs-gql
+	cd cmd/appledocs-gql && $(GO) install $(GOFLAGS) .
 
 run: build
-	./appledocs -mode crawl
+	appledocs -mode crawl
 
 clean:
-	rm -f appledocs appledocs-gql
 	rm -rf output .cache markdown yaml-output
 
 test:
@@ -27,32 +26,32 @@ fmt:
 
 # Force refresh all content when mirroring
 force: build
-	./appledocs -mode crawl -force
+	appledocs -mode crawl -force
 
 # Mirror with higher concurrency
 fast: build
-	./appledocs -mode crawl -concurrency 20
+	appledocs -mode crawl -concurrency 20
 
 # Just mirror the json files (default behavior)
 json: build
-	./appledocs -mode crawl
+	appledocs -mode crawl
 
 # Mirror with verbose output
 verbose: build
-	./appledocs -mode crawl -concurrency 10 -verbose
+	appledocs -mode crawl -concurrency 10 -verbose
 
 # Generate HTML index only (requires existing JSON files)
 html: build
-	./appledocs -mode html
+	appledocs -mode html
 
 # Generate Markdown documentation only (requires existing JSON files)
 markdown: build
-	./appledocs -mode markdown
+	appledocs -mode markdown
 
 # Generate both HTML and Markdown (requires existing JSON files)
 docs: build
-	./appledocs -mode html
-	./appledocs -mode markdown
+	appledocs -mode html
+	appledocs -mode markdown
 
 # Generate specialized EndpointSecurity reference
 endpointsecurity:
@@ -60,20 +59,19 @@ endpointsecurity:
 
 # Skip symbol-level documentation (methods, properties) for smaller output
 compact: build
-	./appledocs -mode crawl -skip-symbols
+	appledocs -mode crawl -skip-symbols
 
 # Crawl only accessibility documentation
 accessibility: build
-	./appledocs -mode crawl -entry-point "/tutorials/data/index/accessibility"
+	appledocs -mode crawl -entry-point "/tutorials/data/index/accessibility"
 
 # Build and run the GraphQL server
-graphql:
-	cd cmd/appledocs-gql && go build -o appledocs-gql
-	cd cmd/appledocs-gql && ./appledocs-gql
+graphql: appledocs-gql
+	appledocs-gql
 
 # Run the most comprehensive mirror
 all: clean build
-	./appledocs -mode all -concurrency 20 -force
+	appledocs -mode all -concurrency 20 -force
 	go run es-md-test.go
 
 # Convert specific JSON files from cache to YAML
