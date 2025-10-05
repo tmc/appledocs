@@ -16,7 +16,7 @@ This roadmap addresses critical issues identified through comprehensive codebase
 - **Build Status:** ✅ Clean (11MB binary, all modes functional)
 - **Target v1.0 Grade:** A (90+/100)
 
-### Recent Progress (Oct 4, 2025)
+### Recent Progress (Oct 4-5, 2025)
 - ✅ Fixed path traversal vulnerability in GraphQL server
 - ✅ Fixed double-check locking race condition (replaced with sync.Map)
 - ✅ Added build tags to exclude utility files from main build
@@ -24,13 +24,14 @@ This roadmap addresses critical issues identified through comprehensive codebase
 - ✅ Established comprehensive benchmarking framework
 - ✅ Added CI/CD infrastructure (GitHub Actions, GitLab CI)
 - ✅ Added security tooling (.golangci.yml, .trivy.yaml)
+- ✅ Replaced deprecated strings.Title with cases.Title (Oct 5)
 
 ---
 
 ## Phase 1: Critical Fixes & Cleanup ⚡ IN PROGRESS
 
 **Timeline:** Weeks 1-2
-**Status:** 50% Complete (2/4 major items done)
+**Status:** 60% Complete (3/5 major items done)
 **Goal:** Address security vulnerabilities, critical bugs, and code quality issues
 
 ### Completed ✅
@@ -55,13 +56,12 @@ This roadmap addresses critical issues identified through comprehensive codebase
 
 ### In Progress 🔄
 
-- [ ] **Replace deprecated `strings.Title`** calls
-  - Locations: `markdown.go:334, 484, 1287` + benchmark files
-  - Impact: Future compatibility (deprecated since Go 1.18)
-  - Effort: 1-2 hours
-  - Fix: Replace with `cases.Title(language.English).String()`
-  - Dependency: `golang.org/x/text/cases`
-  - **Priority: MEDIUM** (currently in build-ignored files only for main binary)
+- ✅ **Replace deprecated `strings.Title`** calls (Oct 5)
+  - Locations: `markdown.go:334, 484, 556, 586` (4 instances replaced)
+  - Commit: `af7b8504ae`
+  - Implementation: Replaced with `cases.Title(lang.English).String()`
+  - Added dependency: `golang.org/x/text v0.29.0`
+  - Impact: Future compatibility maintained
 
 ### Remaining 📋
 
@@ -990,7 +990,7 @@ This roadmap addresses critical issues identified through comprehensive codebase
 
 **Security:**
 - Known vulnerabilities: 0 MEDIUM+
-- Deprecated functions: 1 (strings.Title in markdown.go)
+- Deprecated functions: 0 (strings.Title replaced Oct 5)
 
 ### Target Metrics (v1.0)
 
