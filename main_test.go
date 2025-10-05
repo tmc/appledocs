@@ -654,11 +654,11 @@ func TestBuildFrameworkURLs(t *testing.T) {
 
 func TestAppledocsStatsMethods(t *testing.T) {
 	app := &appledocs{
-		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
 	}
+	// visitedURLs is a sync.Map, no initialization needed
 
 	// Test initial state
 	processed, cacheHits, cacheMisses, errors, skipped := app.getStats()
@@ -700,11 +700,11 @@ func TestQueueNewURLs(t *testing.T) {
 	*baseURL = "https://example.com"
 
 	app := &appledocs{
-		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
 	}
+	// visitedURLs is a sync.Map, no initialization needed
 
 	urlQueue := make(chan string, 10)
 	defer close(urlQueue)
@@ -771,11 +771,11 @@ func TestFetchWithCacheIntegration(t *testing.T) {
 	defer server.Close()
 
 	app := &appledocs{
-		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
 	}
+	// visitedURLs is a sync.Map, no initialization needed
 
 	client := &http.Client{Timeout: 5 * time.Second}
 
@@ -821,11 +821,11 @@ func TestFetchWithCacheIntegration(t *testing.T) {
 func TestProcessURLContextCancellation(t *testing.T) {
 	app := &appledocs{
 		client:      &http.Client{Timeout: 1 * time.Second},
-		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
 	}
+	// visitedURLs is a sync.Map, no initialization needed
 
 	// Create a context that's already cancelled
 	ctx, cancel := context.WithCancel(context.Background())

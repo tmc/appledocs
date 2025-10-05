@@ -80,11 +80,10 @@ type JSONFileEntry struct {
 
 // appledocs holds all the application settings
 type appledocs struct {
-	client         *http.Client
-	visitedURLs    map[string]bool
-	visitedMutex   sync.RWMutex
-	jsonEntries    []JSONFileEntry
-	entriesMutex   sync.Mutex
+	client       *http.Client
+	visitedURLs  sync.Map // map[string]bool - tracks visited URLs, safe for concurrent access
+	jsonEntries  []JSONFileEntry
+	entriesMutex sync.Mutex
 	processedCount int
 	badURLs        map[string]bool // URLs known to be 404s or invalid
 	urlDepths      map[string]int  // Track semantic depth of each URL
@@ -172,13 +171,13 @@ func printURLsOnly(ctx context.Context) error {
 	// Create simple app instance for cache tracking
 	app := &appledocs{
 		client:      client,
-		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
 		rateLimiter: rateLimiter,
 		startTime:   time.Now(),
 		httpErrors:  make(map[int]int),
 	}
+	// visitedURLs is a sync.Map, no initialization needed
 
 	// Ensure we have a cache directory
 	if err := os.MkdirAll(*cacheDir, 0755); err != nil {
@@ -463,13 +462,13 @@ func run(ctx context.Context) error {
 
 	app := &appledocs{
 		client:      client,
-		visitedURLs: make(map[string]bool),
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
 		rateLimiter: rateLimiter,
 		startTime:   time.Now(),
 		httpErrors:  make(map[int]int),
 	}
+	// visitedURLs is a sync.Map, no initialization needed
 
 	// Create bad URLs directory if it doesn't exist
 	if err := os.MkdirAll(filepath.Dir(*badURLsFile), 0755); err != nil {
@@ -513,7 +512,7 @@ func run(ctx context.Context) error {
 	}
 
 	// Mark the start URL as visited and set its depth to 0
-	app.visitedURLs[startURL] = true
+	app.visitedURLs.Store(startURL, true)
 	app.depthMutex.Lock()
 	app.urlDepths[startURL] = 0
 	app.depthMutex.Unlock()
@@ -861,10 +860,13 @@ func (app *appledocs) getEnhancedMetrics() MetricsSnapshot {
 	
 	// Estimate time remaining (very rough estimate)
 	var estimatedTimeRemaining time.Duration
-	app.visitedMutex.RLock()
-	totalURLs := len(app.visitedURLs)
-	app.visitedMutex.RUnlock()
-	
+	// Count visited URLs (sync.Map doesn't have a Len method)
+	totalURLs := 0
+	app.visitedURLs.Range(func(_, _ interface{}) bool {
+		totalURLs++
+		return true
+	})
+
 	if processed > 0 && totalURLs > processed && processingRate > 0 {
 		remaining := totalURLs - processed
 		estimatedTimeRemaining = time.Duration(float64(remaining)/processingRate) * time.Second
@@ -1089,24 +1091,12 @@ func (app *appledocs) queueNewURLs(newURLs []string, urlQueue chan<- string) int
 			continue
 		}
 
-		// Check if URL has been visited (using read lock)
-		app.visitedMutex.RLock()
-		visited := app.visitedURLs[resolvedURL]
-		app.visitedMutex.RUnlock()
-
-		if visited {
+		// Check if URL has been visited using atomic LoadOrStore
+		// This eliminates the race condition that existed with double-check locking
+		_, alreadyVisited := app.visitedURLs.LoadOrStore(resolvedURL, true)
+		if alreadyVisited {
 			continue
 		}
-
-		// Mark as visited (using write lock)
-		app.visitedMutex.Lock()
-		// Double-check after acquiring write lock
-		if app.visitedURLs[resolvedURL] {
-			app.visitedMutex.Unlock()
-			continue
-		}
-		app.visitedURLs[resolvedURL] = true
-		app.visitedMutex.Unlock()
 
 		// Try to send to channel, but don't block or panic if it's closed
 		select {
