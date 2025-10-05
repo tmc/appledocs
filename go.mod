@@ -10,6 +10,8 @@ require (
 	github.com/valyala/fastjson v1.6.4
 )
 
+require golang.org/x/text v0.29.0 // indirect
+
 require (
 	github.com/mattn/go-runewidth v0.0.2 // indirect
 	github.com/mitchellh/go-wordwrap v0.0.0-20150314170334-ad45545899c7 // indirect

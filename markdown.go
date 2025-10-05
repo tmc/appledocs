@@ -12,6 +12,9 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"golang.org/x/text/cases"
+	lang "golang.org/x/text/language"
 )
 
 // DocJSONData represents the structure of the Apple documentation JSON
@@ -331,7 +334,7 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 			}
 			// Convert component to a more readable format
 			readable := strings.ReplaceAll(component, "_", " ")
-			readable = strings.Title(readable)
+			readable = cases.Title(lang.English).String(readable)
 			fmt.Fprintf(w, "%s", readable)
 		}
 		fmt.Fprintf(w, "\n\n")
@@ -481,7 +484,7 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 					default:
 						// Capitalize first letter for display
 						if len(originalLang) > 0 {
-							languageDisplay = strings.Title(strings.ToLower(originalLang))
+							languageDisplay = cases.Title(lang.English).String(strings.ToLower(originalLang))
 						}
 					}
 				}
@@ -553,7 +556,7 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 				if items, exists := itemsByType[itemType]; exists {
 					if hasMultipleTypes {
 						typeIcon := getTypeIcon(itemType)
-						fmt.Fprintf(w, "#### %s %ss\n\n", typeIcon, strings.Title(itemType))
+						fmt.Fprintf(w, "#### %s %ss\n\n", typeIcon, cases.Title(lang.English).String(itemType))
 					}
 					
 					// Sort items alphabetically for better navigation
@@ -580,7 +583,7 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 				if !found && len(items) > 0 {
 					if hasMultipleTypes {
 						typeIcon := getTypeIcon(itemType)
-						fmt.Fprintf(w, "#### %s %ss\n\n", typeIcon, strings.Title(itemType))
+						fmt.Fprintf(w, "#### %s %ss\n\n", typeIcon, cases.Title(lang.English).String(itemType))
 					}
 					
 					// Sort items alphabetically
