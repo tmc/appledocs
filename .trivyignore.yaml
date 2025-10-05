@@ -1,0 +1,41 @@
+# Trivy ignore file for known false positives and accepted risks
+
+# Format: 
+# - id: CVE-2021-12345
+#   paths:
+#     - "path/to/file"
+#   reason: "Explanation of why this is ignored"
+#   expires_at: 2024-12-31
+
+vulnerabilities:
+  # Example: Ignore a specific CVE in a test file
+  # - id: CVE-2021-12345
+  #   paths:
+  #     - "*_test.go"
+  #   reason: "Only affects test code, not production"
+  #   expires_at: 2024-12-31
+
+secrets:
+  # Ignore certain patterns that look like secrets but aren't
+  paths:
+    - "testdata/**"
+    - "**/*_test.go"
+    - "docs/**"
+  
+  # Specific secret patterns to ignore
+  # patterns:
+  #   - "example-api-key-[0-9]+"
+
+misconfigurations:
+  # Skip certain policy checks
+  # policies:
+  #   - id: DS001
+  #     reason: "Using Alpine for debugging capabilities"
+  #   - id: DS002
+  #     reason: "Health check endpoint doesn't expose sensitive data"
+
+licenses:
+  # Accept certain licenses for specific packages
+  # - license: MIT
+  #   packages:
+  #     - "github.com/some/package"

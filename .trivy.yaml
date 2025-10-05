@@ -1,0 +1,139 @@
+# Trivy configuration for appledocs security scanning
+
+# Scan configuration
+scan:
+  # Security check types
+  security-checks:
+    - vuln        # Vulnerability scanning
+    - config      # Misconfiguration scanning
+    - secret      # Secret scanning
+    - license     # License compliance
+
+# Vulnerability database
+db:
+  # Auto-download the vulnerability database
+  download-db-only: false
+  skip-update: false
+  
+  # Use light DB for faster scanning in CI
+  light: false
+  
+  # Database cache directory
+  cache-dir: /tmp/trivy-cache
+
+# Vulnerability filtering
+vulnerability:
+  # Severity levels to detect
+  severity:
+    - CRITICAL
+    - HIGH
+    - MEDIUM
+  
+  # Ignore unfixed vulnerabilities
+  ignore-unfixed: false
+  
+  # Exit code when vulnerabilities are found
+  exit-code: 1
+
+# Secret scanning configuration
+secret:
+  # Enable secret scanning
+  enabled: true
+  
+  # Secret scanning rules
+  config: .trivyignore.yaml
+
+# Misconfiguration scanning
+misconfiguration:
+  # Include Dockerfile checks
+  include:
+    - Dockerfile*
+    - docker-compose*.yml
+    - kubernetes/*.yaml
+  
+  # Policy bundle
+  policy-bundle-repository: ghcr.io/aquasecurity/appshield:latest
+
+# License scanning
+license:
+  # Check for license compliance
+  full: true
+  
+  # Forbidden licenses
+  forbidden:
+    - AGPL-1.0
+    - AGPL-3.0
+    - CC-BY-NC-1.0
+    - CC-BY-NC-2.0
+    - CC-BY-NC-2.5
+    - CC-BY-NC-3.0
+    - CC-BY-NC-4.0
+    - CC-BY-NC-ND-1.0
+    - CC-BY-NC-ND-2.0
+    - CC-BY-NC-ND-2.5
+    - CC-BY-NC-ND-3.0
+    - CC-BY-NC-ND-4.0
+    - CC-BY-NC-SA-1.0
+    - CC-BY-NC-SA-2.0
+    - CC-BY-NC-SA-2.5
+    - CC-BY-NC-SA-3.0
+    - CC-BY-NC-SA-4.0
+    - GPL-1.0
+    - GPL-2.0
+    - GPL-3.0
+    - LGPL-2.0
+    - LGPL-2.1
+    - LGPL-3.0
+
+# Report configuration
+report:
+  # Output format
+  format: table
+  
+  # Dependency tree
+  dependency-tree: true
+  
+  # List all packages
+  list-all-pkgs: false
+  
+  # Exit on EOL OS
+  exit-on-eol: true
+
+# Cache configuration
+cache:
+  # Cache backend
+  backend: fs
+  
+  # Cache directory
+  cache-dir: /tmp/trivy-cache
+  
+  # Cache TTL
+  cache-ttl: 168h  # 1 week
+
+# Registry configuration
+registry:
+  # Insecure registries (not recommended for production)
+  insecure: false
+  
+  # Registry credentials (use environment variables in production)
+  # username: ""
+  # password: ""
+
+# Timeout settings
+timeout: 10m
+
+# Parallel scanning
+parallel: 5
+
+# Skip files
+skip-files:
+  - "*.test"
+  - "*_test.go"
+  - "testdata/*"
+
+# Skip directories
+skip-dirs:
+  - .git
+  - .github
+  - vendor
+  - node_modules
