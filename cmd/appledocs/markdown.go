@@ -103,10 +103,34 @@ type ContentBlock struct {
 	Level         int             `json:"level,omitempty"`
 	Text          string          `json:"text,omitempty"`
 	InlineContent []InlineContent `json:"inlineContent,omitempty"`
-	Items         []Item          `json:"items,omitempty"`
+	Items         FlexibleItems   `json:"items,omitempty"`
 	Content       []ContentBlock  `json:"content,omitempty"`
 	Name          string          `json:"name,omitempty"`
 	Style         string          `json:"style,omitempty"`
+}
+
+// FlexibleItems handles both string arrays (for links) and Item arrays (for lists)
+type FlexibleItems struct {
+	Strings []string
+	Items   []Item
+}
+
+// UnmarshalJSON custom unmarshaler for FlexibleItems
+func (fi *FlexibleItems) UnmarshalJSON(data []byte) error {
+	// Try to unmarshal as string array first (for type="links")
+	var strings []string
+	if err := json.Unmarshal(data, &strings); err == nil {
+		fi.Strings = strings
+		return nil
+	}
+
+	// Otherwise try as Item array (for type="unorderedList", etc.)
+	var items []Item
+	if err := json.Unmarshal(data, &items); err != nil {
+		return err
+	}
+	fi.Items = items
+	return nil
 }
 
 // InlineContent represents inline content elements
@@ -301,126 +325,34 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 		}
 	}
 
-	// Add role indicator to title for enhanced clarity
-	roleIndicator := ""
-	switch doc.Metadata.Role {
-	case "framework":
-		roleIndicator = " Framework"
-	case "class":
-		roleIndicator = " Class"
-	case "protocol":
-		roleIndicator = " Protocol"
-	case "struct":
-		roleIndicator = " Structure"
-	case "enum":
-		roleIndicator = " Enumeration"
-	case "function":
-		roleIndicator = " Function"
-	case "method":
-		roleIndicator = " Method"
-	case "property":
-		roleIndicator = " Property"
+	// Simple type display (like Apple's format: "Framework")
+	if doc.Metadata.RoleHeading != "" {
+		fmt.Fprintf(w, "%s\n\n", doc.Metadata.RoleHeading)
 	}
 
-	fmt.Fprintf(w, "# %s%s\n\n", title, roleIndicator)
-
-	// Write breadcrumb navigation if hierarchy exists
-	if len(doc.Hierarchy.Paths) > 0 && len(doc.Hierarchy.Paths[0]) > 1 {
-		fmt.Fprintf(w, "**Navigation:** ")
-		path := doc.Hierarchy.Paths[0]
-		for i, component := range path {
-			if i > 0 {
-				fmt.Fprintf(w, " › ")
-			}
-			// Convert component to a more readable format
-			readable := strings.ReplaceAll(component, "_", " ")
-			readable = cases.Title(lang.English).String(readable)
-			fmt.Fprintf(w, "%s", readable)
-		}
-		fmt.Fprintf(w, "\n\n")
+	// Title
+	if doc.Metadata.Title != "" {
+		fmt.Fprintf(w, "# %s\n\n", doc.Metadata.Title)
 	}
 
-	// Write metadata with enhanced styling that matches Apple's documentation
-	// Only include metadata section if we have actual metadata to show
-	hasMetadata := doc.Metadata.RoleHeading != "" || len(doc.Metadata.Modules) > 0 || len(doc.Metadata.Platforms) > 0
-
-	if hasMetadata {
-		fmt.Fprintf(w, "---\n\n")
-
-		// Enhanced type display with icon
-		if doc.Metadata.RoleHeading != "" {
-			typeIcon := getTypeIcon(doc.Metadata.Role)
-			fmt.Fprintf(w, "**%s Type:** `%s`\n\n", typeIcon, doc.Metadata.RoleHeading)
-		}
-
-		// Framework display with enhanced formatting
-		if len(doc.Metadata.Modules) > 0 {
-			modules := make([]string, 0, len(doc.Metadata.Modules))
-			for _, module := range doc.Metadata.Modules {
-				modules = append(modules, fmt.Sprintf("`%s`", module.Name))
-			}
-			fmt.Fprintf(w, "**📦 Framework:** %s\n\n", strings.Join(modules, ", "))
-		}
-
-		// Enhanced platform availability with better visual hierarchy
-		if len(doc.Metadata.Platforms) > 0 {
-			fmt.Fprintf(w, "**🎯 Platform Availability**\n\n")
-			
-			// Group platforms by status for better presentation
-			available := []Platform{}
-			beta := []Platform{}
-			deprecated := []Platform{}
-			
-			for _, platform := range doc.Metadata.Platforms {
-				if platform.Deprecated {
-					deprecated = append(deprecated, platform)
-				} else if platform.Beta {
-					beta = append(beta, platform)
-				} else {
-					available = append(available, platform)
-				}
-			}
-			
-			// Display available platforms first
-			if len(available) > 0 {
-				fmt.Fprintf(w, "**Available:**\n")
-				for _, platform := range available {
-					fmt.Fprintf(w, "- ✅ **%s** %s\n", platform.Name, platform.IntroducedAt)
-				}
-				fmt.Fprintf(w, "\n")
-			}
-			
-			// Display beta platforms
-			if len(beta) > 0 {
-				fmt.Fprintf(w, "**Beta:**\n")
-				for _, platform := range beta {
-					fmt.Fprintf(w, "- 🧪 **%s** %s\n", platform.Name, platform.IntroducedAt)
-				}
-				fmt.Fprintf(w, "\n")
-			}
-			
-			// Display deprecated platforms
-			if len(deprecated) > 0 {
-				fmt.Fprintf(w, "**Deprecated:**\n")
-				for _, platform := range deprecated {
-					fmt.Fprintf(w, "- ⚠️ **%s** %s\n", platform.Name, platform.IntroducedAt)
-				}
-				fmt.Fprintf(w, "\n")
-			}
-		}
-
-		fmt.Fprintf(w, "---\n\n")
-	}
-
-	// Write abstract
+	// Abstract (main description)
 	if len(doc.Abstract) > 0 {
-		fmt.Fprintf(w, "## Overview\n\n")
 		for _, abstract := range doc.Abstract {
 			if abstract.Text != "" {
 				fmt.Fprintf(w, "%s\n\n", abstract.Text)
 			}
 		}
 	}
+
+	// Platform availability (inline format like Apple: "Mac Catalyst 13.0+macOS 10.3+")
+	if len(doc.Metadata.Platforms) > 0 {
+		platformStrs := make([]string, 0, len(doc.Metadata.Platforms))
+		for _, platform := range doc.Metadata.Platforms {
+			platformStrs = append(platformStrs, fmt.Sprintf("%s %s+", platform.Name, platform.IntroducedAt))
+		}
+		fmt.Fprintf(w, "%s\n\n", strings.Join(platformStrs, ""))
+	}
+
 
 	// Write declarations if present
 	for _, section := range doc.PrimaryContentSections {
@@ -527,12 +459,10 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 
 	// Write topic sections with enhanced formatting
 	if len(doc.TopicSections) > 0 {
-		fmt.Fprintf(w, "## 📚 Topics\n\n")
+		fmt.Fprintf(w, "## Topics\n\n")
 
 		for _, section := range doc.TopicSections {
-			// Add section icon based on content type
-			sectionIcon := getSectionIcon(section.Title)
-			fmt.Fprintf(w, "### %s %s\n\n", sectionIcon, section.Title)
+			fmt.Fprintf(w, "### %s\n\n", section.Title)
 
 			// Group items by type for better organization
 			itemsByType := make(map[string][]Reference)
@@ -555,8 +485,7 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 			for _, itemType := range typeOrder {
 				if items, exists := itemsByType[itemType]; exists {
 					if hasMultipleTypes {
-						typeIcon := getTypeIcon(itemType)
-						fmt.Fprintf(w, "#### %s %ss\n\n", typeIcon, cases.Title(lang.English).String(itemType))
+						fmt.Fprintf(w, "#### %ss\n\n", cases.Title(lang.English).String(itemType))
 					}
 					
 					// Sort items alphabetically for better navigation
@@ -582,8 +511,7 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 				}
 				if !found && len(items) > 0 {
 					if hasMultipleTypes {
-						typeIcon := getTypeIcon(itemType)
-						fmt.Fprintf(w, "#### %s %ss\n\n", typeIcon, cases.Title(lang.English).String(itemType))
+						fmt.Fprintf(w, "#### %ss\n\n", cases.Title(lang.English).String(itemType))
 					}
 					
 					// Sort items alphabetically
@@ -619,19 +547,16 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 
 	// Write relationship sections with enhanced formatting
 	if len(doc.RelationshipsSections) > 0 {
-		fmt.Fprintf(w, "## 🔗 Relationships\n\n")
+		fmt.Fprintf(w, "## Relationships\n\n")
 
 		for _, section := range doc.RelationshipsSections {
-			// Add appropriate icon for relationship type
-			relationIcon := getRelationshipIcon(section.Type)
-			fmt.Fprintf(w, "### %s %s\n\n", relationIcon, section.Title)
+			fmt.Fprintf(w, "### %s\n\n", section.Title)
 
 			for _, id := range section.Identifiers {
 				if ref, ok := doc.References[id]; ok {
 					// Format URL for markdown compatibility
 					url := formatURL(ref.URL)
-					typeIcon := getTypeIcon(ref.Role)
-					fmt.Fprintf(w, "- %s **[%s](%s)**\n", typeIcon, ref.Title, url)
+					fmt.Fprintf(w, "- [%s](%s)\n", ref.Title, url)
 				}
 			}
 
@@ -641,11 +566,10 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 
 	// Write see also sections with enhanced formatting
 	if len(doc.SeeAlsoSections) > 0 {
-		fmt.Fprintf(w, "## 👀 See Also\n\n")
+		fmt.Fprintf(w, "## See Also\n\n")
 
 		for _, section := range doc.SeeAlsoSections {
-			sectionIcon := getSectionIcon(section.Title)
-			fmt.Fprintf(w, "### %s %s\n\n", sectionIcon, section.Title)
+			fmt.Fprintf(w, "### %s\n\n", section.Title)
 
 			for _, id := range section.Identifiers {
 				if ref, ok := doc.References[id]; ok {
@@ -662,12 +586,11 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 
 					// Format URL for markdown compatibility
 					url := formatURL(ref.URL)
-					typeIcon := getTypeIcon(ref.Role)
 
 					if abstract != "" {
-						fmt.Fprintf(w, "- %s **[%s](%s)**  \n  %s\n", typeIcon, ref.Title, url, abstract)
+						fmt.Fprintf(w, "- [%s](%s)  \n  %s\n", ref.Title, url, abstract)
 					} else {
-						fmt.Fprintf(w, "- %s **[%s](%s)**\n", typeIcon, ref.Title, url)
+						fmt.Fprintf(w, "- [%s](%s)\n", ref.Title, url)
 					}
 				}
 			}
@@ -695,41 +618,10 @@ func writeTopicReference(w io.Writer, ref Reference) {
 	// Format URL for markdown compatibility
 	url := formatURL(ref.URL)
 
-	// Add type indicator
-	typeIndicator := ""
-	if ref.Role != "" {
-		switch ref.Role {
-		case "class":
-			typeIndicator = " 🏛️"
-		case "protocol":
-			typeIndicator = " 📋"
-		case "struct":
-			typeIndicator = " 🧱"
-		case "enum":
-			typeIndicator = " 📝"
-		case "function":
-			typeIndicator = " ⚡"
-		case "method":
-			typeIndicator = " 🔧"
-		case "property":
-			typeIndicator = " 📊"
-		case "type":
-			typeIndicator = " 🏷️"
-		default:
-			typeIndicator = " 🔗"
-		}
-	}
-
-	// Add beta indicator
-	betaIndicator := ""
-	if ref.Beta {
-		betaIndicator = " 🧪"
-	}
-
 	if abstract != "" {
-		fmt.Fprintf(w, "- **[%s](%s)**%s%s  \n  %s\n", ref.Title, url, typeIndicator, betaIndicator, abstract)
+		fmt.Fprintf(w, "- [%s](%s)  \n  %s\n", ref.Title, url, abstract)
 	} else {
-		fmt.Fprintf(w, "- **[%s](%s)**%s%s\n", ref.Title, url, typeIndicator, betaIndicator)
+		fmt.Fprintf(w, "- [%s](%s)\n", ref.Title, url)
 	}
 }
 
@@ -935,13 +827,13 @@ func writeContentBlock(w io.Writer, block ContentBlock, refs map[string]Referenc
 		}
 
 	case "unorderedList":
-		if len(block.Items) > 0 {
+		if len(block.Items.Items) > 0 {
 			// Add a newline before the list for proper markdown rendering
 			if level == 0 {
 				fmt.Fprintf(w, "\n")
 			}
 
-			for _, item := range block.Items {
+			for _, item := range block.Items.Items {
 				// Indentation for nested lists
 				fmt.Fprintf(w, "%s- ", strings.Repeat("  ", level))
 
@@ -971,13 +863,13 @@ func writeContentBlock(w io.Writer, block ContentBlock, refs map[string]Referenc
 		}
 
 	case "orderedList":
-		if len(block.Items) > 0 {
+		if len(block.Items.Items) > 0 {
 			// Add a newline before the list for proper markdown rendering
 			if level == 0 {
 				fmt.Fprintf(w, "\n")
 			}
 
-			for i, item := range block.Items {
+			for i, item := range block.Items.Items {
 				// Indentation for nested lists
 				fmt.Fprintf(w, "%s%d. ", strings.Repeat("  ", level), i+1)
 
@@ -1001,6 +893,31 @@ func writeContentBlock(w io.Writer, block ContentBlock, refs map[string]Referenc
 			}
 
 			// Add an extra newline after the list
+			if level == 0 {
+				fmt.Fprintf(w, "\n")
+			}
+		}
+
+	case "links":
+		// Handle link blocks (e.g., compactGrid, detailedGrid styles)
+		if len(block.Items.Strings) > 0 {
+			// Add a newline before the links
+			if level == 0 {
+				fmt.Fprintf(w, "\n")
+			}
+
+			for _, linkID := range block.Items.Strings {
+				if ref, ok := refs[linkID]; ok {
+					// Write as a list item with link
+					url := formatURL(ref.URL)
+					fmt.Fprintf(w, "%s- [%s](%s)\n", strings.Repeat("  ", level), ref.Title, url)
+				} else {
+					// Reference not found, write the ID
+					fmt.Fprintf(w, "%s- %s\n", strings.Repeat("  ", level), linkID)
+				}
+			}
+
+			// Add an extra newline after the links
 			if level == 0 {
 				fmt.Fprintf(w, "\n")
 			}
