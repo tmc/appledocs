@@ -1,3 +1,5 @@
+//go:build ignore
+
 // Package main provides integration tests for the benchmarking framework
 package main
 

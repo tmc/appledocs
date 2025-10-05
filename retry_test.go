@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"sync"
 	"testing"
 	"time"
 
@@ -30,7 +31,7 @@ func TestFetchWithCacheRetry(t *testing.T) {
 	client := &http.Client{Timeout: 5 * time.Second}
 	app := &appledocs{
 		client:      client,
-		visitedURLs: make(map[string]bool),
+		visitedURLs: sync.Map{},
 		badURLs:     make(map[string]bool),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
 	}
@@ -61,7 +62,7 @@ func TestFetchWithCacheRetryTimeout(t *testing.T) {
 	client := &http.Client{Timeout: 5 * time.Second}
 	app := &appledocs{
 		client:      client,
-		visitedURLs: make(map[string]bool),
+		visitedURLs: sync.Map{},
 		badURLs:     make(map[string]bool),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
 	}
