@@ -678,10 +678,20 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 					// Use the reference ID (which has proper casing) instead of ref.URL
 					url := formatURL(id)
 
+					// Format signature from fragments if available, otherwise use title
+					signature := ref.Title
+					if len(ref.Fragments) > 0 {
+						var sigParts []string
+						for _, frag := range ref.Fragments {
+							sigParts = append(sigParts, frag.Text)
+						}
+						signature = strings.Join(sigParts, "")
+					}
+
 					if abstract != "" {
-						fmt.Fprintf(w, "- [%s](%s)  \n  %s\n", ref.Title, url, abstract)
+						fmt.Fprintf(w, "- [`%s`](%s)  \n  %s\n", signature, url, abstract)
 					} else {
-						fmt.Fprintf(w, "- [%s](%s)\n", ref.Title, url)
+						fmt.Fprintf(w, "- [`%s`](%s)\n", signature, url)
 					}
 				}
 			}
