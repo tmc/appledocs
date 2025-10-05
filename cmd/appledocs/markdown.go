@@ -29,6 +29,32 @@ type DocJSONData struct {
 	TopicSections          []TopicSection        `json:"topicSections,omitempty"`
 	RelationshipsSections  []RelationshipSection `json:"relationshipsSections,omitempty"`
 	SeeAlsoSections        []SeeAlsoSection      `json:"seeAlsoSections,omitempty"`
+	Variants               []Variant             `json:"variants,omitempty"`
+	VariantOverrides       []VariantOverride     `json:"variantOverrides,omitempty"`
+}
+
+// Variant represents a language/platform variant
+type Variant struct {
+	Traits []VariantTrait `json:"traits,omitempty"`
+	Paths  []string       `json:"paths,omitempty"`
+}
+
+// VariantTrait represents traits for a variant (e.g., language)
+type VariantTrait struct {
+	InterfaceLanguage string `json:"interfaceLanguage,omitempty"`
+}
+
+// VariantOverride represents patches to apply for a variant
+type VariantOverride struct {
+	Traits []VariantTrait `json:"traits,omitempty"`
+	Patch  []JSONPatch    `json:"patch,omitempty"`
+}
+
+// JSONPatch represents a JSON Patch operation
+type JSONPatch struct {
+	Op    string      `json:"op,omitempty"`
+	Path  string      `json:"path,omitempty"`
+	Value interface{} `json:"value,omitempty"`
 }
 
 // Hierarchy represents the document hierarchy
@@ -442,6 +468,29 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 				// Add separator between declarations if there are multiple
 				if i < len(section.Declarations)-1 {
 					fmt.Fprintf(w, "---\n\n")
+				}
+			}
+
+			// Add note about available language variants
+			if len(doc.Variants) > 1 {
+				languages := make([]string, 0, len(doc.Variants))
+				for _, variant := range doc.Variants {
+					for _, trait := range variant.Traits {
+						if trait.InterfaceLanguage != "" {
+							lang := trait.InterfaceLanguage
+							switch lang {
+							case "swift":
+								languages = append(languages, "Swift")
+							case "occ":
+								languages = append(languages, "Objective-C")
+							default:
+								languages = append(languages, lang)
+							}
+						}
+					}
+				}
+				if len(languages) > 1 {
+					fmt.Fprintf(w, "*Also available in:* %s\n\n", strings.Join(languages, ", "))
 				}
 			}
 		}
