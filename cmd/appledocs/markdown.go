@@ -783,9 +783,9 @@ func formatURL(urlStr string) string {
 		docPath := strings.TrimPrefix(urlStr, "doc://")
 		parts := strings.SplitN(docPath, "/", 2)
 		if len(parts) > 1 {
-			// Use relative path that preserves casing from the URL
-			// The URL structure matches our file structure from the crawl
-			return "/" + parts[1] + ".md"
+			// The doc:// URLs start with /documentation/... but our files are at /tutorials/data/documentation/...
+			// Add the /tutorials/data prefix to match our file structure
+			return "/tutorials/data/" + parts[1] + ".md"
 		}
 		return "#"
 	}
