@@ -166,7 +166,7 @@
         <nav class="sidebar">
             <div class="sidebar-nav">
                 {{range $navigation.sections}}
-                <div class="nav-section">
+                <div class="nav-section" data-framework="{{.title}}">
                     <div class="nav-section-title">{{.title}}</div>
                     {{range .items}}
                     <div class="nav-item">
@@ -186,6 +186,41 @@
                 {{end}}
             </div>
         </nav>
+        <script>
+            // Show only Overview and the current framework's section
+            document.addEventListener('DOMContentLoaded', function() {
+                const currentPath = window.location.pathname;
+                const frameworkSections = document.querySelectorAll('[data-framework]');
+
+                // Extract framework name from path (e.g., /tutorials/data/documentation/SecurityFoundation/...)
+                const pathParts = currentPath.split('/');
+                const pathFramework = pathParts[4]; // pathParts: ['', 'tutorials', 'data', 'documentation', 'FrameworkName', ...]
+
+                // Map framework names (some have spaces in navigation but not in paths)
+                const frameworkMap = {
+                    'Security Foundation': 'SecurityFoundation',
+                    'Security Interface': 'SecurityInterface'
+                };
+
+                // Always show Overview, hide all other framework sections except the current one
+                frameworkSections.forEach(section => {
+                    const framework = section.getAttribute('data-framework');
+
+                    if (framework === 'Overview') {
+                        // Always show Overview
+                        section.style.display = 'block';
+                    } else {
+                        const mappedFramework = frameworkMap[framework] || framework.replace(/\s+/g, '');
+
+                        if (mappedFramework === pathFramework || framework === pathFramework) {
+                            section.style.display = 'block';
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        </script>
         <main class="main-content">
             <div class="article-content">
                 {{.Content}}
