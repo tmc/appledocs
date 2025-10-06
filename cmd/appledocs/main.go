@@ -73,10 +73,14 @@ var (
 	checksumValidation = flag.Bool("checksum-validation", false, "enable enhanced checksum-based cache validation")
 
 	// Mode selection
-	mode = flag.String("mode", "crawl", "operation mode: crawl, html, markdown, or all")
+	mode = flag.String("mode", "crawl", "operation mode: crawl, html, markdown, gentypes, analyze, or all")
 
 	// Markdown-specific options
 	mdOutputDir = flag.String("md-output", "markdown", "directory to store Markdown documentation")
+
+	// Type generation options
+	genTypesOutput = flag.String("gentypes-output", "types/types_generated.go", "output file for generated types")
+	genTypesMaxFiles = flag.Int("gentypes-max-files", 1000, "maximum number of files to scan for type generation")
 
 	// Legacy flags for backward compatibility
 	generateMD = flag.Bool("markdown", false, "generate Markdown documentation from the JSON files")
@@ -391,9 +395,9 @@ func main() {
 	}
 
 	// Validate mode
-	validModes := map[string]bool{"crawl": true, "html": true, "markdown": true, "all": true}
+	validModes := map[string]bool{"crawl": true, "html": true, "markdown": true, "gentypes": true, "analyze": true, "all": true}
 	if !validModes[*mode] {
-		log.Fatalf("Invalid mode: %s. Must be one of: crawl, html, markdown, or all", *mode)
+		log.Fatalf("Invalid mode: %s. Must be one of: crawl, html, markdown, gentypes, analyze, or all", *mode)
 	}
 
 	// Create necessary directories
@@ -459,6 +463,27 @@ func main() {
 			os.Exit(1)
 		}
 		logger.Info("Markdown generation completed", "output_dir", *mdOutputDir)
+	}
+
+	// Type generation mode - generate Go types from JSON schema
+	if *mode == "gentypes" || *mode == "all" {
+		logger.Info("Starting type generation", "output", *genTypesOutput, "max_files", *genTypesMaxFiles)
+		docsPath := filepath.Join(*outputDir, "tutorials", "data", "documentation")
+		if err := generateTypes(docsPath, *genTypesOutput, *genTypesMaxFiles); err != nil {
+			logger.Error("Type generation failed", "error", err)
+			os.Exit(1)
+		}
+		logger.Info("Type generation completed", "output", *genTypesOutput)
+	}
+
+	// Schema analysis mode - analyze JSON schema patterns
+	if *mode == "analyze" {
+		logger.Info("Starting schema analysis", "max_files", *genTypesMaxFiles)
+		docsPath := filepath.Join(*outputDir, "tutorials", "data", "documentation")
+		if err := analyzeSchema(docsPath, *genTypesMaxFiles); err != nil {
+			logger.Error("Schema analysis failed", "error", err)
+			os.Exit(1)
+		}
 	}
 }
 

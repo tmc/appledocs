@@ -237,18 +237,26 @@ type Destination struct {
 	IsActive   bool   `json:"isActive,omitempty"`
 }
 
+// ImageVariant represents a variant of an image (light/dark, 1x/2x, etc.)
+type ImageVariant struct {
+	Traits []string `json:"traits,omitempty"`
+	URL    string   `json:"url,omitempty"`
+}
+
 // Reference represents a document reference
 type Reference struct {
-	Abstract       []TextContent `json:"abstract,omitempty"`
-	Identifier     string        `json:"identifier,omitempty"`
-	Kind           string        `json:"kind,omitempty"`
-	Role           string        `json:"role,omitempty"`
-	Title          string        `json:"title,omitempty"`
-	Type           string        `json:"type,omitempty"`
-	URL            string        `json:"url,omitempty"`
-	Fragments      []Fragment    `json:"fragments,omitempty"`
-	NavigatorTitle []Fragment    `json:"navigatorTitle,omitempty"`
-	Beta           bool          `json:"beta,omitempty"`
+	Abstract       []TextContent  `json:"abstract,omitempty"`
+	Identifier     string         `json:"identifier,omitempty"`
+	Kind           string         `json:"kind,omitempty"`
+	Role           string         `json:"role,omitempty"`
+	Title          string         `json:"title,omitempty"`
+	Type           string         `json:"type,omitempty"`
+	URL            string         `json:"url,omitempty"`
+	Alt            string         `json:"alt,omitempty"`
+	Variants       []ImageVariant `json:"variants,omitempty"`
+	Fragments      []Fragment     `json:"fragments,omitempty"`
+	NavigatorTitle []Fragment     `json:"navigatorTitle,omitempty"`
+	Beta           bool           `json:"beta,omitempty"`
 }
 
 // generateMarkdown generates Markdown documentation from the JSON documentation
@@ -1343,14 +1351,57 @@ func writeInlineContent(w io.Writer, inline InlineContent, refs map[string]Refer
 		if ref, ok := refs[inline.Identifier]; ok {
 			// Format image URL to ensure it works in markdown
 			imageURL := ref.URL
+
+			// If no URL but variants exist, use the first light variant (prefer 2x)
+			if imageURL == "" && len(ref.Variants) > 0 {
+				// Look for 2x light variant first
+				for _, variant := range ref.Variants {
+					hasLight := false
+					has2x := false
+					for _, trait := range variant.Traits {
+						if trait == "light" {
+							hasLight = true
+						}
+						if trait == "2x" {
+							has2x = true
+						}
+					}
+					if hasLight && has2x {
+						imageURL = variant.URL
+						break
+					}
+				}
+				// If no 2x light found, use first light variant
+				if imageURL == "" {
+					for _, variant := range ref.Variants {
+						for _, trait := range variant.Traits {
+							if trait == "light" {
+								imageURL = variant.URL
+								break
+							}
+						}
+						if imageURL != "" {
+							break
+						}
+					}
+				}
+				// If still no URL, use first variant
+				if imageURL == "" && len(ref.Variants) > 0 {
+					imageURL = ref.Variants[0].URL
+				}
+			}
+
 			if strings.HasPrefix(imageURL, "/") {
 				// For local images, use a relative path or an absolute URL
 				// Adjust this based on where the actual images will be hosted
 				imageURL = "https://developer.apple.com" + imageURL
 			}
 
-			// Add alt text
-			altText := ref.Title
+			// Add alt text - prefer Alt field, then Title
+			altText := ref.Alt
+			if altText == "" {
+				altText = ref.Title
+			}
 			if altText == "" {
 				altText = "Image"
 				// Try to find a more descriptive alt text

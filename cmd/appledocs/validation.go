@@ -148,9 +148,9 @@ func ValidateCommandLineFlags() ValidationResult {
 	}
 
 	// Validate mode
-	validModes := map[string]bool{"crawl": true, "html": true, "markdown": true, "all": true}
+	validModes := map[string]bool{"crawl": true, "html": true, "markdown": true, "gentypes": true, "analyze": true, "all": true}
 	if !validModes[*mode] {
-		result.AddError("mode", "invalid mode, must be one of: crawl, html, markdown, all", *mode)
+		result.AddError("mode", "invalid mode, must be one of: crawl, html, markdown, gentypes, analyze, all", *mode)
 	}
 
 	// Validate log level
