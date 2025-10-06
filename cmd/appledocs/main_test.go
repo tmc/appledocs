@@ -653,7 +653,7 @@ func TestBuildFrameworkURLs(t *testing.T) {
 }
 
 func TestAppledocsStatsMethods(t *testing.T) {
-	app := &appledocs{
+	app := &crawler{
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
@@ -699,7 +699,7 @@ func TestQueueNewURLs(t *testing.T) {
 
 	*baseURL = "https://example.com"
 
-	app := &appledocs{
+	app := &crawler{
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
@@ -770,7 +770,7 @@ func TestFetchWithCacheIntegration(t *testing.T) {
 	}))
 	defer server.Close()
 
-	app := &appledocs{
+	app := &crawler{
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0), // No limit for tests
@@ -819,7 +819,7 @@ func TestFetchWithCacheIntegration(t *testing.T) {
 }
 
 func TestProcessURLContextCancellation(t *testing.T) {
-	app := &appledocs{
+	app := &crawler{
 		client:      &http.Client{Timeout: 1 * time.Second},
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),

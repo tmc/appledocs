@@ -1,12 +1,93 @@
-package reader
+package appledocs
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/fs"
+	"os"
 	"path/filepath"
 	"sort"
 	"strings"
 )
+
+// FS provides filesystem access to Apple documentation.
+type FS struct {
+	root string
+	fsys fs.FS
+}
+
+// Open creates a new FS rooted at the given directory.
+// The directory should contain Apple documentation JSON files.
+func Open(root string) (*FS, error) {
+	info, err := os.Stat(root)
+	if err != nil {
+		return nil, fmt.Errorf("open documentation: %w", err)
+	}
+	if !info.IsDir() {
+		return nil, fmt.Errorf("open documentation: %s is not a directory", root)
+	}
+
+	return &FS{
+		root: root,
+		fsys: os.DirFS(root),
+	}, nil
+}
+
+// Open implements fs.FS.
+func (f *FS) Open(name string) (fs.File, error) {
+	return f.fsys.Open(name)
+}
+
+// ReadFile reads the named file from the documentation filesystem.
+func (f *FS) ReadFile(name string) ([]byte, error) {
+	file, err := f.fsys.Open(name)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+	return io.ReadAll(file)
+}
+
+// Stat returns file info for the named file.
+func (f *FS) Stat(name string) (fs.FileInfo, error) {
+	return fs.Stat(f.fsys, name)
+}
+
+// ReadDocument reads and parses a documentation JSON file.
+func (f *FS) ReadDocument(path string) (*Document, error) {
+	data, err := f.ReadFile(path)
+	if err != nil {
+		return nil, fmt.Errorf("read document %s: %w", path, err)
+	}
+
+	var doc Document
+	if err := json.Unmarshal(data, &doc); err != nil {
+		return nil, fmt.Errorf("parse document %s: %w", path, err)
+	}
+
+	return &doc, nil
+}
+
+// IsFramework returns true if the given name appears to be a framework.
+// Framework files are JSON files at the root level.
+func IsFramework(name string) bool {
+	// Frameworks are .json files at the root (no directory separator)
+	return strings.HasSuffix(name, ".json") && !strings.Contains(name, string(filepath.Separator))
+}
+
+// FrameworkName extracts the framework name from a path.
+// For "Foundation.json" returns "Foundation".
+// For "Foundation/NSString.json" returns "Foundation".
+func FrameworkName(path string) string {
+	// Remove .json suffix
+	name := strings.TrimSuffix(path, ".json")
+	// Take first path component
+	if idx := strings.Index(name, string(filepath.Separator)); idx != -1 {
+		return name[:idx]
+	}
+	return name
+}
 
 // GetFramework reads a framework's root documentation.
 func GetFramework(fsys *FS, name string) (*Document, error) {

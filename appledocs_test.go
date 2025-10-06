@@ -131,9 +131,9 @@ func TestHelpers(t *testing.T) {
 		t.Error("References() returned nil")
 	}
 
-	meta := Metadata(doc)
+	meta := MetadataMap(doc)
 	if meta == nil {
-		t.Error("Metadata() returned nil")
+		t.Error("MetadataMap() returned nil")
 	}
 }
 

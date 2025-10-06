@@ -10,7 +10,7 @@ import (
 )
 
 func TestMetricsSnapshot(t *testing.T) {
-	app := &appledocs{
+	app := &crawler{
 		startTime:   time.Now().Add(-5 * time.Second), // Started 5 seconds ago
 		httpErrors:  make(map[int]int),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0),
@@ -91,7 +91,7 @@ func TestMetricsSnapshot(t *testing.T) {
 }
 
 func TestMetricsJSONSerialization(t *testing.T) {
-	app := &appledocs{
+	app := &crawler{
 		startTime:   time.Now(),
 		httpErrors:  make(map[int]int),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0),
@@ -130,7 +130,7 @@ func TestMetricsJSONSerialization(t *testing.T) {
 }
 
 func TestMetricsExport(t *testing.T) {
-	app := &appledocs{
+	app := &crawler{
 		startTime:   time.Now(),
 		httpErrors:  make(map[int]int),
 		rateLimiter: rate.NewLimiter(rate.Inf, 0),

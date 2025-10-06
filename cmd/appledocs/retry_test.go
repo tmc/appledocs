@@ -29,7 +29,7 @@ func TestFetchWithCacheRetry(t *testing.T) {
 	defer server.Close()
 
 	client := &http.Client{Timeout: 5 * time.Second}
-	app := &appledocs{
+	app := &crawler{
 		client:      client,
 		visitedURLs: sync.Map{},
 		badURLs:     make(map[string]bool),
@@ -60,7 +60,7 @@ func TestFetchWithCacheRetryTimeout(t *testing.T) {
 	defer server.Close()
 
 	client := &http.Client{Timeout: 5 * time.Second}
-	app := &appledocs{
+	app := &crawler{
 		client:      client,
 		visitedURLs: sync.Map{},
 		badURLs:     make(map[string]bool),

@@ -92,8 +92,8 @@ type JSONFileEntry struct {
 	URL  string
 }
 
-// appledocs holds all the application settings
-type appledocs struct {
+// crawler holds all the application settings
+type crawler struct {
 	client       *http.Client
 	visitedURLs  sync.Map // map[string]bool - tracks visited URLs, safe for concurrent access
 	jsonEntries  []JSONFileEntry
@@ -146,7 +146,7 @@ func buildFrameworkURLs(frameworkName string) []string {
 }
 
 // fetchAndExtractURLs fetches a URL and extracts URLs from its content
-func fetchAndExtractURLs(ctx context.Context, client *http.Client, app *appledocs, fetchURL string) ([]string, error) {
+func fetchAndExtractURLs(ctx context.Context, client *http.Client, app *crawler, fetchURL string) ([]string, error) {
 	log.Printf("Fetching URL: %s", fetchURL)
 	data, err := fetchWithCache(ctx, client, fetchURL, app)
 	if err != nil {
@@ -183,7 +183,7 @@ func printURLsOnly(ctx context.Context) error {
 	}
 
 	// Create simple app instance for cache tracking
-	app := &appledocs{
+	app := &crawler{
 		client:      client,
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
@@ -503,7 +503,7 @@ func run(ctx context.Context) error {
 		rateLimiter = rate.NewLimiter(rate.Inf, 0) // No limit
 	}
 
-	app := &appledocs{
+	app := &crawler{
 		client:      client,
 		badURLs:     make(map[string]bool),
 		urlDepths:   make(map[string]int),
@@ -736,31 +736,31 @@ func run(ctx context.Context) error {
 }
 
 // Helper methods for incrementing metrics
-func (app *appledocs) incrementCacheHits() {
+func (app *crawler) incrementCacheHits() {
 	app.statsMutex.Lock()
 	app.cacheHits++
 	app.statsMutex.Unlock()
 }
 
-func (app *appledocs) incrementCacheMisses() {
+func (app *crawler) incrementCacheMisses() {
 	app.statsMutex.Lock()
 	app.cacheMisses++
 	app.statsMutex.Unlock()
 }
 
-func (app *appledocs) incrementErrors() {
+func (app *crawler) incrementErrors() {
 	app.statsMutex.Lock()
 	app.errors++
 	app.statsMutex.Unlock()
 }
 
-func (app *appledocs) incrementSkippedURLs() {
+func (app *crawler) incrementSkippedURLs() {
 	app.statsMutex.Lock()
 	app.skippedURLs++
 	app.statsMutex.Unlock()
 }
 
-func (app *appledocs) incrementSkippedSymbols() {
+func (app *crawler) incrementSkippedSymbols() {
 	app.statsMutex.Lock()
 	app.skippedSymbols++
 	app.skippedURLs++ // Also count in the general skipped URLs
@@ -768,7 +768,7 @@ func (app *appledocs) incrementSkippedSymbols() {
 }
 
 // Enhanced metrics methods
-func (app *appledocs) recordResponseTime(duration time.Duration) {
+func (app *crawler) recordResponseTime(duration time.Duration) {
 	app.statsMutex.Lock()
 	app.totalResponseTime += duration
 	app.requestCount++
@@ -778,19 +778,19 @@ func (app *appledocs) recordResponseTime(duration time.Duration) {
 	app.statsMutex.Unlock()
 }
 
-func (app *appledocs) recordBytesDownloaded(bytes int64) {
+func (app *crawler) recordBytesDownloaded(bytes int64) {
 	app.statsMutex.Lock()
 	app.totalBytesDownloaded += bytes
 	app.statsMutex.Unlock()
 }
 
-func (app *appledocs) recordBytesFromCache(bytes int64) {
+func (app *crawler) recordBytesFromCache(bytes int64) {
 	app.statsMutex.Lock()
 	app.totalBytesFromCache += bytes
 	app.statsMutex.Unlock()
 }
 
-func (app *appledocs) recordHTTPError(statusCode int) {
+func (app *crawler) recordHTTPError(statusCode int) {
 	app.statsMutex.Lock()
 	if app.httpErrors == nil {
 		app.httpErrors = make(map[int]int)
@@ -799,13 +799,13 @@ func (app *appledocs) recordHTTPError(statusCode int) {
 	app.statsMutex.Unlock()
 }
 
-func (app *appledocs) incrementRetryCount() {
+func (app *crawler) incrementRetryCount() {
 	app.statsMutex.Lock()
 	app.retryCount++
 	app.statsMutex.Unlock()
 }
 
-func (app *appledocs) recordContentType(path string) {
+func (app *crawler) recordContentType(path string) {
 	app.statsMutex.Lock()
 	defer app.statsMutex.Unlock()
 	
@@ -858,7 +858,7 @@ type MetricsSnapshot struct {
 }
 
 // getStats returns current statistics in a thread-safe way (legacy method)
-func (app *appledocs) getStats() (int, int, int, int, int) {
+func (app *crawler) getStats() (int, int, int, int, int) {
 	app.statsMutex.Lock()
 	defer app.statsMutex.Unlock()
 	app.entriesMutex.Lock()
@@ -871,7 +871,7 @@ func (app *appledocs) getStats() (int, int, int, int, int) {
 }
 
 // getEnhancedMetrics returns comprehensive metrics snapshot
-func (app *appledocs) getEnhancedMetrics() MetricsSnapshot {
+func (app *crawler) getEnhancedMetrics() MetricsSnapshot {
 	app.statsMutex.Lock()
 	defer app.statsMutex.Unlock()
 	app.entriesMutex.Lock()
@@ -966,7 +966,7 @@ func shouldExcludePath(pathToCheck string) bool {
 }
 
 // processURL handles a single URL, fetching and processing it
-func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- string) error {
+func (app *crawler) processURL(ctx context.Context, u string, urlQueue chan<- string) error {
 	if *verbose {
 		log.Printf("Processing %s", u)
 		if *delay > time.Duration(0) {
@@ -1108,7 +1108,7 @@ func (app *appledocs) processURL(ctx context.Context, u string, urlQueue chan<- 
 }
 
 // queueNewURLs adds new URLs to the processing queue if they haven't been visited
-func (app *appledocs) queueNewURLs(newURLs []string, urlQueue chan<- string) int {
+func (app *crawler) queueNewURLs(newURLs []string, urlQueue chan<- string) int {
 	var added int
 
 	for _, newURL := range newURLs {
@@ -1211,7 +1211,7 @@ func addBrowserLikeHeaders(req *http.Request) {
 }
 
 // fetchWithCache fetches a URL with caching.
-func fetchWithCache(ctx context.Context, client *http.Client, u string, app *appledocs) ([]byte, error) {
+func fetchWithCache(ctx context.Context, client *http.Client, u string, app *crawler) ([]byte, error) {
 	parsed, err := url.Parse(u)
 	if err != nil {
 		app.incrementErrors()
@@ -1876,7 +1876,7 @@ func isSymbolURL(urlPath string) bool {
 }
 
 // loadBadURLs loads the list of known bad URLs from a file
-func loadBadURLs(app *appledocs) error {
+func loadBadURLs(app *crawler) error {
 	// Check if the file exists
 	if _, err := os.Stat(*badURLsFile); os.IsNotExist(err) {
 		// File doesn't exist, which is fine
@@ -1934,7 +1934,7 @@ func appendToBadURLsFile(url string) {
 }
 
 // writeBadURLsFile writes all bad URLs to the bad URLs file
-func writeBadURLsFile(app *appledocs) error {
+func writeBadURLsFile(app *crawler) error {
 	// Ensure directory exists
 	if err := os.MkdirAll(filepath.Dir(*badURLsFile), 0755); err != nil {
 		return err

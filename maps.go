@@ -17,22 +17,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/fs"
-	"os"
 	"path/filepath"
-	"strings"
 )
-
-// Open returns an fs.FS for the docs directory.
-func Open(path string) (fs.FS, error) {
-	info, err := os.Stat(path)
-	if err != nil {
-		return nil, fmt.Errorf("open docs: %w", err)
-	}
-	if !info.IsDir() {
-		return nil, fmt.Errorf("open docs: %s is not a directory", path)
-	}
-	return os.DirFS(path), nil
-}
 
 // Load unmarshals a JSON file into v.
 func Load(fsys fs.FS, path string, v interface{}) error {
@@ -196,8 +182,8 @@ func References(m map[string]interface{}) map[string]interface{} {
 	return GetMap(m, "references")
 }
 
-// Metadata returns the metadata map.
-func Metadata(m map[string]interface{}) map[string]interface{} {
+// MetadataMap returns the metadata map.
+func MetadataMap(m map[string]interface{}) map[string]interface{} {
 	return GetMap(m, "metadata")
 }
 
@@ -209,20 +195,6 @@ func Platforms(m map[string]interface{}) []interface{} {
 // Modules returns module information.
 func Modules(m map[string]interface{}) []interface{} {
 	return GetArray(m, "metadata", "modules")
-}
-
-// IsFramework returns true if the path looks like a framework file.
-func IsFramework(path string) bool {
-	return strings.HasSuffix(path, ".json") && !strings.Contains(path, string(filepath.Separator))
-}
-
-// FrameworkName extracts the framework name from a path.
-func FrameworkName(path string) string {
-	name := strings.TrimSuffix(path, ".json")
-	if idx := strings.Index(name, string(filepath.Separator)); idx != -1 {
-		return name[:idx]
-	}
-	return name
 }
 
 // SymbolPath constructs the path to a symbol's JSON file.

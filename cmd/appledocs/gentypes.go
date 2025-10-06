@@ -11,7 +11,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/tmc/appledocs/reader"
+	"github.com/tmc/appledocs"
 )
 
 // TypeGenerator generates Go types from Apple documentation JSON files
@@ -48,7 +48,7 @@ func NewTypeGenerator(packageName, outputPath string) *TypeGenerator {
 
 // ScanDirectory scans JSON files to discover schemas
 func (g *TypeGenerator) ScanDirectory(docsPath string, maxFiles int) error {
-	fsys, err := reader.Open(docsPath)
+	fsys, err := appledocs.Open(docsPath)
 	if err != nil {
 		return fmt.Errorf("open docs: %w", err)
 	}
@@ -93,7 +93,7 @@ func (g *TypeGenerator) ScanDirectory(docsPath string, maxFiles int) error {
 }
 
 // analyzeJSONFile analyzes a single JSON file and updates schemas
-func (g *TypeGenerator) analyzeJSONFile(fsys *reader.FS, path string) error {
+func (g *TypeGenerator) analyzeJSONFile(fsys *appledocs.FS, path string) error {
 	data, err := fsys.ReadFile(path)
 	if err != nil {
 		return err
