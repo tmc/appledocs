@@ -72,13 +72,13 @@ func generateNavigation(inputDir, outputDir string) error {
 		// Parse the hierarchy to understand the structure
 		hierarchy := doc.Hierarchy.Paths[0]
 
-		// The first item in hierarchy is typically the technology/framework
-		if len(hierarchy) == 0 {
+		// Need at least 2 levels (technologies > framework) to be useful
+		if len(hierarchy) < 2 {
 			continue
 		}
 
-		// Get framework name from the first hierarchy element
-		frameworkID := hierarchy[0]
+		// hierarchy[1] is the actual framework ID
+		frameworkID := hierarchy[1]
 		frameworkTitle := doc.Metadata.Title
 		if ref, ok := doc.References[frameworkID]; ok {
 			frameworkTitle = ref.Title
@@ -95,43 +95,60 @@ func generateNavigation(inputDir, outputDir string) error {
 
 		fw := frameworks[frameworkID]
 
-		// Determine what type of document this is
+		// Determine what type of document this is based on hierarchy
+		// The hierarchy lists the PARENT path, not including the current document
+		// hierarchy[0] = technologies
+		// hierarchy[1] = framework
+		// hierarchy[2] = class (if present)
 		switch len(hierarchy) {
-		case 1:
-			// This is a framework-level document
-			fw.Path = urlPath
-
 		case 2:
-			// This is a class/type-level document
-			classID := hierarchy[1]
-			className := doc.Metadata.Title
-			if ref, ok := doc.References[classID]; ok {
-				className = ref.Title
-			}
-
-			if _, exists := fw.Classes[classID]; !exists {
-				fw.Classes[classID] = &classInfo{
-					ID:      classID,
-					Title:   className,
-					Path:    urlPath,
-					Methods: []methodInfo{},
+			// Hierarchy: [technologies, framework]
+			// Could be either framework-level doc OR a class doc
+			// Check if the path suggests it's a class
+			pathParts := strings.Split(urlPath, "/")
+			if len(pathParts) > 4 {
+				// This is likely a class document
+				// e.g., /tutorials/data/documentation/SecurityFoundation/SFAuthorization
+				// Use the document's own identifier as classID if available
+				classID := frameworkID + "/" + doc.Metadata.Title
+				// Check if there's a self-reference
+				for ref := range doc.References {
+					if strings.Contains(ref, doc.Metadata.Title) {
+						classID = ref
+						break
+					}
 				}
+
+				className := doc.Metadata.Title
+
+				if _, exists := fw.Classes[classID]; !exists {
+					fw.Classes[classID] = &classInfo{
+						ID:      classID,
+						Title:   className,
+						Path:    urlPath,
+						Methods: []methodInfo{},
+					}
+				} else {
+					// Update the path if it was created earlier without a path
+					fw.Classes[classID].Path = urlPath
+				}
+			} else {
+				// This is a framework-level document
+				fw.Path = urlPath
 			}
 
 		case 3:
-			// This is a method/property-level document
-			classID := hierarchy[1]
-			methodID := hierarchy[2]
-
+			// Hierarchy: [technologies, framework, class]
+			// hierarchy[2] is the parent class, this document is a method/property
+			classID := hierarchy[2]
 			className := ""
 			if ref, ok := doc.References[classID]; ok {
 				className = ref.Title
 			}
 
+			// The current document's title is the method name
+			methodID := classID + "/" + doc.Metadata.Title
 			methodName := doc.Metadata.Title
-			if ref, ok := doc.References[methodID]; ok {
-				methodName = ref.Title
-			}
 
 			// Ensure class exists
 			if _, exists := fw.Classes[classID]; !exists {
