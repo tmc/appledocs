@@ -32,6 +32,7 @@ type DocJSONData struct {
 	Variants               []Variant             `json:"variants,omitempty"`
 	VariantOverrides       []VariantOverride     `json:"variantOverrides,omitempty"`
 	Sections               []TechnologySection   `json:"sections,omitempty"` // For technologies kind
+	DeprecationSummary     []TextContent         `json:"deprecationSummary,omitempty"`
 }
 
 // Variant represents a language/platform variant
@@ -80,6 +81,8 @@ type Metadata struct {
 	Title          string     `json:"title,omitempty"`
 	Platforms      []Platform `json:"platforms,omitempty"`
 	NavigatorTitle []Fragment `json:"navigatorTitle,omitempty"`
+	Required       bool       `json:"required,omitempty"`
+	Beta           bool       `json:"beta,omitempty"`
 }
 
 // Platform represents a platform compatibility information
@@ -413,7 +416,12 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 
 	// Simple type display (like Apple's format: "Framework")
 	if doc.Metadata.RoleHeading != "" {
-		fmt.Fprintf(w, "%s\n\n", doc.Metadata.RoleHeading)
+		fmt.Fprintf(w, "%s", doc.Metadata.RoleHeading)
+		// Add Required indicator for protocol requirements
+		if doc.Metadata.Required {
+			fmt.Fprintf(w, " • Required")
+		}
+		fmt.Fprintf(w, "\n\n")
 	}
 
 	// Title
@@ -437,6 +445,23 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 			platformStrs = append(platformStrs, fmt.Sprintf("%s %s+", platform.Name, platform.IntroducedAt))
 		}
 		fmt.Fprintf(w, "%s\n\n", strings.Join(platformStrs, " "))
+	}
+
+	// Beta indicator
+	if doc.Metadata.Beta {
+		fmt.Fprintf(w, "> **Beta**\n>\n> This API is in beta and subject to change.\n\n")
+	}
+
+	// Deprecation warning
+	if len(doc.DeprecationSummary) > 0 {
+		fmt.Fprintf(w, "> **Deprecated**\n>\n> ")
+		for i, item := range doc.DeprecationSummary {
+			if i > 0 {
+				fmt.Fprintf(w, " ")
+			}
+			fmt.Fprintf(w, "%s", item.Text)
+		}
+		fmt.Fprintf(w, "\n\n")
 	}
 
 	// Handle technologies document specially
