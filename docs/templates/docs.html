@@ -236,7 +236,11 @@
 
                 // Extract framework name from path (e.g., /tutorials/data/documentation/SecurityFoundation/...)
                 const pathParts = currentPath.split('/');
-                const pathFramework = pathParts[4]; // pathParts: ['', 'tutorials', 'data', 'documentation', 'FrameworkName', ...]
+                let pathFramework = pathParts[4]; // pathParts: ['', 'tutorials', 'data', 'documentation', 'FrameworkName', ...]
+                // Strip .md extension if present
+                if (pathFramework && pathFramework.endsWith('.md')) {
+                    pathFramework = pathFramework.replace(/\.md$/, '');
+                }
 
                 // Map framework names (some have spaces in navigation but not in paths)
                 const frameworkMap = {
@@ -278,12 +282,15 @@
 
                 // Make sidebar contextual to current class
                 // If we're viewing a method (pathParts.length > 5), only show that class
+                // But first check if this is actually a class page (has topics/children in nav)
                 if (pathParts.length > 5) {
-                    // Extract class name from path
+                    // Extract potential class name from path
                     // e.g., /tutorials/data/documentation/SecurityFoundation/SFAuthorization/method
                     const currentClass = pathParts[5];
 
-                    // Hide all class nav items except the current one
+                    // Check if there's actually a nav item with topics/children for this class
+                    // If not, it's probably an article/guide page, not a class method page
+                    let isClassPage = false;
                     frameworkSections.forEach(section => {
                         if (section.style.display !== 'none') {
                             const classNavItems = section.querySelectorAll('.nav-item');
@@ -292,14 +299,37 @@
                                 if (navLink) {
                                     const navPath = navLink.getAttribute('href');
                                     const navPathParts = navPath.split('/');
-                                    // Check if this nav item is for a different class
-                                    if (navPathParts.length > 5 && navPathParts[5] !== currentClass && navPathParts[5] !== '') {
-                                        navItem.style.display = 'none';
+                                    // Check if this nav item matches the current class and has topics/children
+                                    if (navPathParts.length > 4 && navPathParts[5] === currentClass) {
+                                        if (navItem.querySelector('.nav-topic, .nav-children')) {
+                                            isClassPage = true;
+                                        }
                                     }
                                 }
                             });
                         }
                     });
+
+                    // Only filter if this is actually a class page
+                    if (isClassPage) {
+                        // Hide all class nav items except the current one
+                        frameworkSections.forEach(section => {
+                            if (section.style.display !== 'none') {
+                                const classNavItems = section.querySelectorAll('.nav-item');
+                                classNavItems.forEach(navItem => {
+                                    const navLink = navItem.querySelector('a');
+                                    if (navLink) {
+                                        const navPath = navLink.getAttribute('href');
+                                        const navPathParts = navPath.split('/');
+                                        // Check if this nav item is for a different class
+                                        if (navPathParts.length > 5 && navPathParts[5] !== currentClass && navPathParts[5] !== '') {
+                                            navItem.style.display = 'none';
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
                 }
             });
         </script>
