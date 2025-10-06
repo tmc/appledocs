@@ -87,6 +87,35 @@
             color: #1d1d1f;
         }
 
+        .nav-topic {
+            margin-left: 16px;
+            margin-top: 8px;
+        }
+
+        .nav-topic-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #86868b;
+            margin-bottom: 4px;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-topic-items {
+            margin-bottom: 8px;
+        }
+
+        .nav-topic-items .nav-item a {
+            font-size: 13px;
+            color: #6e6e73;
+            font-family: 'SF Mono', Monaco, Menlo, monospace;
+        }
+
+        .nav-topic-items .nav-item a:hover {
+            color: #1d1d1f;
+        }
+
         .main-content {
             margin-left: 260px;
             flex: 1;
@@ -171,7 +200,20 @@
                     {{range .items}}
                     <div class="nav-item">
                         <a href="{{.path}}">{{.title}}</a>
-                        {{if .children}}
+                        {{if .topics}}
+                        {{range .topics}}
+                        <div class="nav-topic">
+                            <div class="nav-topic-title">{{.title}}</div>
+                            <div class="nav-topic-items">
+                                {{range .items}}
+                                <div class="nav-item">
+                                    <a href="{{.path}}">{{.title}}</a>
+                                </div>
+                                {{end}}
+                            </div>
+                        </div>
+                        {{end}}
+                        {{else if .children}}
                         <div class="nav-children">
                             {{range .children}}
                             <div class="nav-item">
@@ -219,6 +261,46 @@
                         }
                     }
                 });
+
+                // Highlight current page in navigation
+                // Strip .md extension from current path and decode URL encoding
+                const normalizedCurrentPath = decodeURIComponent(currentPath.replace(/\.md$/, ''));
+
+                const allNavLinks = document.querySelectorAll('.nav-item a');
+                allNavLinks.forEach(link => {
+                    const linkPath = link.getAttribute('href');
+                    const normalizedLinkPath = decodeURIComponent(linkPath);
+
+                    if (normalizedLinkPath === normalizedCurrentPath) {
+                        link.parentElement.classList.add('active');
+                    }
+                });
+
+                // Make sidebar contextual to current class
+                // If we're viewing a method (pathParts.length > 5), only show that class
+                if (pathParts.length > 5) {
+                    // Extract class name from path
+                    // e.g., /tutorials/data/documentation/SecurityFoundation/SFAuthorization/method
+                    const currentClass = pathParts[5];
+
+                    // Hide all class nav items except the current one
+                    frameworkSections.forEach(section => {
+                        if (section.style.display !== 'none') {
+                            const classNavItems = section.querySelectorAll('.nav-item');
+                            classNavItems.forEach(navItem => {
+                                const navLink = navItem.querySelector('a');
+                                if (navLink) {
+                                    const navPath = navLink.getAttribute('href');
+                                    const navPathParts = navPath.split('/');
+                                    // Check if this nav item is for a different class
+                                    if (navPathParts.length > 5 && navPathParts[5] !== currentClass && navPathParts[5] !== '') {
+                                        navItem.style.display = 'none';
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
             });
         </script>
         <main class="main-content">

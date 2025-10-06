@@ -11,9 +11,16 @@ import (
 
 // NavItem represents a navigation item with optional children
 type NavItem struct {
-	Title    string    `json:"title"`
-	Path     string    `json:"path"`
-	Children []NavItem `json:"children,omitempty"`
+	Title    string      `json:"title"`
+	Path     string      `json:"path"`
+	Children []NavItem   `json:"children,omitempty"`
+	Topics   []NavTopic  `json:"topics,omitempty"`  // Topic groupings for class navigation
+}
+
+// NavTopic represents a topic group within a class
+type NavTopic struct {
+	Title string    `json:"title"`
+	Items []NavItem `json:"items"`
 }
 
 // NavSection represents a section in the navigation
@@ -52,6 +59,12 @@ func generateNavigation(inputDir, outputDir string) error {
 
 		var doc DocJSONData
 		if err := json.Unmarshal(data, &doc); err != nil {
+			continue
+		}
+
+		// Skip non-API documentation (articles, guides, sample code)
+		// Only include symbols (classes, structs, protocols, etc.)
+		if doc.Kind != "symbol" && doc.Kind != "technologies" {
 			continue
 		}
 
@@ -127,11 +140,25 @@ func generateNavigation(inputDir, outputDir string) error {
 						Title:   className,
 						Path:    urlPath,
 						Methods: []methodInfo{},
+						Topics:  []topicInfo{},
 					}
 				} else {
 					// Update the path if it was created earlier without a path
 					fw.Classes[classID].Path = urlPath
 				}
+
+				// Extract topic sections from the class document
+				classInfo := fw.Classes[classID]
+				for _, topicSection := range doc.TopicSections {
+					if len(topicSection.Identifiers) > 0 {
+						classInfo.Topics = append(classInfo.Topics, topicInfo{
+							Title:       topicSection.Title,
+							Identifiers: topicSection.Identifiers,
+						})
+					}
+				}
+				// Write back the modified classInfo to the map
+				fw.Classes[classID] = classInfo
 			} else {
 				// This is a framework-level document
 				fw.Path = urlPath
@@ -150,20 +177,28 @@ func generateNavigation(inputDir, outputDir string) error {
 			methodID := classID + "/" + doc.Metadata.Title
 			methodName := doc.Metadata.Title
 
+			// Build full signature from fragments
+			signature := buildSignature(doc.Metadata.Fragments)
+			if signature == "" {
+				signature = methodName
+			}
+
 			// Ensure class exists
 			if _, exists := fw.Classes[classID]; !exists {
 				fw.Classes[classID] = &classInfo{
 					ID:      classID,
 					Title:   className,
 					Methods: []methodInfo{},
+					Topics:  []topicInfo{},
 				}
 			}
 
-			// Add method
+			// Add method with full signature
 			fw.Classes[classID].Methods = append(fw.Classes[classID].Methods, methodInfo{
-				ID:    methodID,
-				Title: methodName,
-				Path:  urlPath,
+				ID:        methodID,
+				Title:     methodName,
+				Path:      urlPath,
+				Signature: signature,
 			})
 		}
 	}
@@ -228,19 +263,61 @@ func generateNavigation(inputDir, outputDir string) error {
 				Path:  cls.Path,
 			}
 
-			// Sort methods
-			sort.Slice(cls.Methods, func(i, j int) bool {
-				return cls.Methods[i].Title < cls.Methods[j].Title
-			})
+			// Build topic-grouped navigation if topics are available
+			if len(cls.Topics) > 0 {
+				// Create a map of method ID to methodInfo for quick lookup
+				methodMap := make(map[string]*methodInfo)
+				for i := range cls.Methods {
+					methodMap[cls.Methods[i].ID] = &cls.Methods[i]
+				}
 
-			// Add children (methods)
-			if len(cls.Methods) > 0 {
-				item.Children = make([]NavItem, 0, len(cls.Methods))
-				for _, method := range cls.Methods {
-					item.Children = append(item.Children, NavItem{
-						Title: method.Title,
-						Path:  method.Path,
-					})
+				// Build topics with methods
+				item.Topics = make([]NavTopic, 0, len(cls.Topics))
+				for _, topic := range cls.Topics {
+					topicItems := make([]NavItem, 0)
+					for _, methodID := range topic.Identifiers {
+						// Find the method by ID
+						for _, method := range cls.Methods {
+							if strings.HasSuffix(methodID, method.Title) {
+								displayTitle := method.Signature
+								if displayTitle == "" {
+									displayTitle = method.Title
+								}
+								topicItems = append(topicItems, NavItem{
+									Title: displayTitle,
+									Path:  method.Path,
+								})
+								break
+							}
+						}
+					}
+					if len(topicItems) > 0 {
+						item.Topics = append(item.Topics, NavTopic{
+							Title: topic.Title,
+							Items: topicItems,
+						})
+					}
+				}
+			} else {
+				// Fallback to flat children list if no topics
+				// Sort methods
+				sort.Slice(cls.Methods, func(i, j int) bool {
+					return cls.Methods[i].Title < cls.Methods[j].Title
+				})
+
+				// Add children (methods)
+				if len(cls.Methods) > 0 {
+					item.Children = make([]NavItem, 0, len(cls.Methods))
+					for _, method := range cls.Methods {
+						displayTitle := method.Signature
+						if displayTitle == "" {
+							displayTitle = method.Title
+						}
+						item.Children = append(item.Children, NavItem{
+							Title: displayTitle,
+							Path:  method.Path,
+						})
+					}
 				}
 			}
 
@@ -284,11 +361,29 @@ type classInfo struct {
 	Title   string
 	Path    string
 	Methods []methodInfo
+	Topics  []topicInfo  // Topic sections with grouped methods
+}
+
+// topicInfo holds information about a topic section
+type topicInfo struct {
+	Title      string
+	Identifiers []string  // Method identifiers in this topic
 }
 
 // methodInfo holds information about a method
 type methodInfo struct {
-	ID    string
-	Title string
-	Path  string
+	ID        string
+	Title     string
+	Path      string
+	Signature string  // Full method signature for display
+	Topic     string  // Topic this method belongs to
+}
+
+// buildSignature constructs a full method signature from fragments
+func buildSignature(fragments []Fragment) string {
+	var sig strings.Builder
+	for _, frag := range fragments {
+		sig.WriteString(frag.Text)
+	}
+	return sig.String()
 }

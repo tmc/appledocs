@@ -31,6 +31,7 @@ type DocJSONData struct {
 	SeeAlsoSections        []SeeAlsoSection      `json:"seeAlsoSections,omitempty"`
 	Variants               []Variant             `json:"variants,omitempty"`
 	VariantOverrides       []VariantOverride     `json:"variantOverrides,omitempty"`
+	Sections               []TechnologySection   `json:"sections,omitempty"` // For technologies kind
 }
 
 // Variant represents a language/platform variant
@@ -203,6 +204,34 @@ type SeeAlsoSection struct {
 	Title       string   `json:"title,omitempty"`
 	Generated   bool     `json:"generated,omitempty"`
 	Identifiers []string `json:"identifiers,omitempty"`
+}
+
+// TechnologySection represents a section in the technologies document
+type TechnologySection struct {
+	Kind   string            `json:"kind,omitempty"`
+	Groups []TechnologyGroup `json:"groups,omitempty"`
+}
+
+// TechnologyGroup represents a group of technologies (e.g., "App Frameworks")
+type TechnologyGroup struct {
+	Name         string       `json:"name,omitempty"`
+	Technologies []Technology `json:"technologies,omitempty"`
+}
+
+// Technology represents a technology entry
+type Technology struct {
+	Title       string      `json:"title,omitempty"`
+	Destination Destination `json:"destination,omitempty"`
+	Content     []TextContent `json:"content,omitempty"`
+	Tags        []string    `json:"tags,omitempty"`
+	Languages   []string    `json:"languages,omitempty"`
+}
+
+// Destination represents a reference destination
+type Destination struct {
+	Identifier string `json:"identifier,omitempty"`
+	Type       string `json:"type,omitempty"`
+	IsActive   bool   `json:"isActive,omitempty"`
 }
 
 // Reference represents a document reference
@@ -401,15 +430,47 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 		}
 	}
 
-	// Platform availability (inline format like Apple: "Mac Catalyst 13.0+macOS 10.3+")
+	// Platform availability (inline format with spaces for readability)
 	if len(doc.Metadata.Platforms) > 0 {
 		platformStrs := make([]string, 0, len(doc.Metadata.Platforms))
 		for _, platform := range doc.Metadata.Platforms {
 			platformStrs = append(platformStrs, fmt.Sprintf("%s %s+", platform.Name, platform.IntroducedAt))
 		}
-		fmt.Fprintf(w, "%s\n\n", strings.Join(platformStrs, ""))
+		fmt.Fprintf(w, "%s\n\n", strings.Join(platformStrs, " "))
 	}
 
+	// Handle technologies document specially
+	if doc.Kind == "technologies" && len(doc.Sections) > 0 {
+		for _, section := range doc.Sections {
+			for _, group := range section.Groups {
+				if group.Name != "" {
+					fmt.Fprintf(w, "## %s\n\n", group.Name)
+				}
+
+				for _, tech := range group.Technologies {
+					// Convert destination identifier to our URL format
+					url := formatURL(tech.Destination.Identifier)
+					fmt.Fprintf(w, "- [%s](%s)", tech.Title, url)
+
+					// Add description if content is available
+					if len(tech.Content) > 0 {
+						var description strings.Builder
+						for _, content := range tech.Content {
+							if content.Text != "" {
+								description.WriteString(content.Text)
+							}
+						}
+						if description.Len() > 0 {
+							fmt.Fprintf(w, "  \n  %s", description.String())
+						}
+					}
+					fmt.Fprintf(w, "\n")
+				}
+				fmt.Fprintf(w, "\n")
+			}
+		}
+		return nil
+	}
 
 	// Write declarations if present
 	for _, section := range doc.PrimaryContentSections {
