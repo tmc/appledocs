@@ -149,9 +149,61 @@ appledocs crawl --frameworks Foundation,UIKit --format json
 
 ## Implementation Plan
 
-### Phase 1: CLI Polish (Week 1)
+### Phase 1: Metadata Encoding & CLI Polish (Week 1)
 
-**Goal:** Make crawler production-ready
+**Goal:** Encode crawled docs into Go API for efficient metadata access, then polish crawler
+
+**Part A: Metadata Encoding (Days 1-3)**
+
+After crawling, we must encode the documentation metadata into an efficient Go API structure. This allows fast queries without parsing 63,449 JSON files.
+
+**Tasks:**
+- [ ] Design metadata index structure
+  - Framework → Classes/Protocols mapping
+  - Symbol name → File path lookup
+  - Platform availability index
+  - Symbol kind categorization
+- [ ] Generate index from crawled data
+  - Parse all JSON files once
+  - Extract metadata (title, kind, externalID, platforms)
+  - Build in-memory structures
+- [ ] Encode index into Go
+  - Generate `index.go` with constants/maps
+  - Or: Generate SQLite database for queries
+  - Or: Generate protobuf/msgpack for fast loading
+- [ ] Add query functions to API
+  - `ListFrameworks()` - Fast framework enumeration
+  - `ListSymbols(framework)` - Symbol listing without file I/O
+  - `SearchSymbols(pattern)` - Search by name
+  - `GetSymbolPath(framework, symbol)` - Resolve to file path
+
+**Rationale:**
+- **Problem:** Opening 63,449 files to list frameworks is slow
+- **Solution:** Pre-index metadata during crawl, encode into efficient structure
+- **Benefit:** Sub-millisecond queries for common operations
+
+**Example Generated Code:**
+```go
+// index.go - Generated during crawl
+package appledocs
+
+var Frameworks = []string{
+    "ARKit", "AVFAudio", "AVFoundation", // ... 376 total
+}
+
+var SymbolIndex = map[string]string{
+    "Foundation/NSString": "Foundation/NSString.json",
+    "Foundation/NSArray": "Foundation/NSArray.json",
+    // ... 1000s of symbols
+}
+
+var FrameworkSymbols = map[string][]string{
+    "Foundation": {"NSString", "NSArray", "NSData", /* ... */},
+    "UIKit": {"UIView", "UIViewController", /* ... */},
+}
+```
+
+**Part B: CLI Polish (Days 4-5)**
 
 **Tasks:**
 - [ ] Improve CLI flags (use cobra or better flag handling)
@@ -159,16 +211,19 @@ appledocs crawl --frameworks Foundation,UIKit --format json
 - [ ] Framework filtering (`--frameworks Foundation,UIKit`)
 - [ ] Format selection (`--format json|markdown`)
 - [ ] Output validation (verify structure)
+- [ ] Generate metadata index (invoke indexing code)
 - [ ] Error handling improvements
 - [ ] Add `--update` flag (re-crawl existing)
 
 **Success Criteria:**
+- Metadata index generated alongside crawled data
+- Fast queries without parsing all files
 - Clear, intuitive CLI
 - Shows progress during long operations
 - Helpful error messages
 - Works reliably on macOS/Linux/Windows
 
-**Effort:** 3-5 days
+**Effort:** 5 days (3 for indexing, 2 for CLI polish)
 
 ### Phase 2: Documentation (Week 2)
 
@@ -219,6 +274,8 @@ appledocs crawl --frameworks Foundation,UIKit --format json
 
 **Total Timeline:** 3 weeks to v1.0.0
 
+**Note on Metadata Encoding:** The index generation is critical for performance. Without it, every query would require scanning thousands of JSON files. The index acts as a fast lookup layer, making operations like `ListFrameworks()` and `SearchSymbols()` instant.
+
 ## Distribution Strategy
 
 ### Usage Patterns
@@ -229,8 +286,17 @@ appledocs crawl --frameworks Foundation,UIKit --format json
 go install github.com/tmc/appledocs/cmd/appledocs@latest
 appledocs crawl --output ~/.appledocs/v17
 
+# Crawler generates:
+# - JSON documentation files (63,449 files)
+# - Metadata index (index.go or index.db)
+
 # Use in code
 fsys, _ := appledocs.Open(os.ExpandEnv("$HOME/.appledocs/v17"))
+
+// Fast queries via metadata index
+frameworks, _ := appledocs.ListFrameworks(fsys)           // Instant
+symbols, _ := appledocs.ListSymbols(fsys, "Foundation")  // Instant
+doc, _ := appledocs.GetSymbol(fsys, "Foundation/NSString")  // One file read
 ```
 
 #### For Code Generators (DarwinKit)
@@ -365,10 +431,11 @@ for id, ref := range refs {
 - Filter by API level
 - Exclude deprecated APIs
 
-### v1.3 - Output Formats
-- SQLite database output
-- JSON streaming
-- Custom templates
+### v1.3 - Advanced Indexing
+- Full-text search index
+- Cross-reference index (find all usages)
+- Inheritance hierarchy index
+- Protocol conformance index
 
 ### v2.0 - CDN/Proxy (If Needed)
 - Optional hosted service for pre-crawled data
@@ -524,10 +591,14 @@ for _, symbol := range symbols {
 ## Timeline
 
 ```
-Week 1: CLI Polish
-├── Day 1-2: Flag improvements, progress bars
-├── Day 3-4: Framework filtering, format selection
-└── Day 5: Testing, validation
+Week 1: Metadata Encoding & CLI Polish
+├── Day 1-3: Design and implement metadata indexing
+│   ├── Design index schema
+│   ├── Build indexer (parse all JSON once)
+│   └── Generate index.go or index.db
+├── Day 4-5: CLI improvements
+│   ├── Flag handling, progress bars
+│   └── Framework filtering, format selection
 
 Week 2: Documentation
 ├── Day 1-2: README, quick start
