@@ -276,81 +276,185 @@ var FrameworkSymbols = map[string][]string{
 
 **Note on Metadata Encoding:** The index generation is critical for performance. Without it, every query would require scanning thousands of JSON files. The index acts as a fast lookup layer, making operations like `ListFrameworks()` and `SearchSymbols()` instant.
 
-## Distribution Strategy
+## Distribution Strategy: Clean Consumption
 
-### Usage Patterns
+The goal is **dead-simple consumption** of Apple documentation data.
 
-#### For End Users
+### Three Consumption Patterns
+
+#### Pattern 1: Zero-Setup with Pre-Built Index (Recommended)
+
+Download pre-crawled data with metadata index already built:
+
 ```bash
-# One-time setup
-go install github.com/tmc/appledocs/cmd/appledocs@latest
-appledocs crawl --output ~/.appledocs/v17
-
-# Crawler generates:
-# - JSON documentation files (63,449 files)
-# - Metadata index (index.go or index.db)
-
-# Use in code
-fsys, _ := appledocs.Open(os.ExpandEnv("$HOME/.appledocs/v17"))
-
-// Fast queries via metadata index
-frameworks, _ := appledocs.ListFrameworks(fsys)           // Instant
-symbols, _ := appledocs.ListSymbols(fsys, "Foundation")  // Instant
-doc, _ := appledocs.GetSymbol(fsys, "Foundation/NSString")  // One file read
-```
-
-#### For Code Generators (DarwinKit)
-```bash
-# In CI/build pipeline
-appledocs crawl --frameworks Foundation,UIKit,AppKit --format json
-# Generates only needed frameworks as JSON
-
-# Use for code generation
-// Read JSON, generate Go bindings
-```
-
-#### For Convenience (Optional)
-```bash
-# Pre-crawled tarball available
+# One command to get started
 curl -L https://github.com/tmc/appledocs/releases/v17.0.0.tar.zst | \
   tar -I zstd -x -C ~/.appledocs/v17
+
+# Includes:
+# - All 376 frameworks (63,449 JSON files)
+# - Pre-built metadata index
+# - Ready to query instantly
 ```
 
-### API Design
-
-The package provides two complementary APIs:
-
-#### 1. Typed API (Recommended - 95% of use cases)
+**Go usage:**
 ```go
-fsys, _ := appledocs.Open("docs/")
-doc, _ := appledocs.GetSymbol(fsys, "Foundation/NSString")
-title := doc.Metadata.Title        // Clean, no casts!
-kind := doc.Metadata.SymbolKind    // Compile-time safe
+import "github.com/tmc/appledocs"
+
+func main() {
+    // One line to open
+    docs := appledocs.MustOpen("~/.appledocs/v17")
+
+    // Instant queries (no file scanning)
+    frameworks := docs.ListFrameworks()              // []string
+    classes := docs.ListClasses("Foundation")         // []string
+    doc := docs.GetSymbol("Foundation/NSString")      // *Document
+
+    fmt.Println(doc.Title, doc.Abstract)
+}
 ```
 
-**Pros:**
-- Compile-time type safety
-- IDE autocomplete
-- Structured types
+**Why this is clean:**
+- ✅ Single curl command to get data
+- ✅ No crawling required
+- ✅ Metadata index pre-built
+- ✅ Works immediately
 
-**Cons:**
-- More code (~1000 lines)
-- Less flexible for edge cases
+#### Pattern 2: Fresh Crawl (Always Current)
 
-#### 2. Map API (For flexibility)
+For users who want latest data from Apple:
+
+```bash
+# Install crawler
+go install github.com/tmc/appledocs/cmd/appledocs@latest
+
+# Crawl (builds metadata index automatically)
+appledocs crawl --output ~/.appledocs/v17
+
+# Done - same API as Pattern 1
+```
+
+**Go usage:** Same as Pattern 1 - the API doesn't care if data came from tarball or crawl.
+
+**Why this is clean:**
+- ✅ One command to install
+- ✅ One command to crawl
+- ✅ Metadata index auto-generated
+- ✅ Same consumption API
+
+#### Pattern 3: Selective Frameworks (CI/CD)
+
+For code generators that only need specific frameworks:
+
+```bash
+# In Makefile or CI config
+appledocs crawl \
+  --frameworks Foundation,UIKit,AppKit \
+  --output ./docs \
+  --format json
+```
+
+**Go usage:**
 ```go
-raw, _ := appledocs.LoadMap(fsys, "Foundation/NSString.json")
-custom := appledocs.GetString(raw, "custom", "field")
+docs := appledocs.MustOpen("./docs")
+
+// Query works even with subset of frameworks
+for _, class := range docs.ListClasses("Foundation") {
+    doc := docs.GetSymbol("Foundation/" + class)
+    generateBinding(doc)
+}
 ```
 
-**Pros:**
-- Maximum flexibility
-- Handles any JSON structure
-- Simple implementation (240 lines)
+**Why this is clean:**
+- ✅ Selective download (smaller, faster)
+- ✅ Same API works with partial data
+- ✅ Perfect for CI pipelines
 
-**Cons:**
-- Runtime type assertions
-- No compile-time field checking
+### Key Design Principle: Uniform API
+
+**No matter how you get the data, the consumption API is identical:**
+
+```go
+// Pattern 1: Pre-built tarball
+docs := appledocs.MustOpen("~/.appledocs/v17")
+
+// Pattern 2: Fresh crawl
+docs := appledocs.MustOpen("~/.appledocs/v17")
+
+// Pattern 3: Selective frameworks
+docs := appledocs.MustOpen("./docs")
+
+// All three work identically:
+frameworks := docs.ListFrameworks()
+classes := docs.ListClasses("Foundation")
+doc := docs.GetSymbol("Foundation/NSString")
+```
+
+### What Makes This Clean
+
+1. **Zero configuration** - No environment variables, no config files
+2. **One-line setup** - Single curl or appledocs command
+3. **Instant queries** - Metadata index pre-built or auto-generated
+4. **Uniform API** - Same code works regardless of data source
+5. **No network calls** - Everything local after initial setup
+6. **No hidden magic** - Clear what's happening at each step
+
+### Clean API Design
+
+**Single entry point, intuitive methods:**
+
+```go
+// One function to rule them all
+docs := appledocs.MustOpen(path)
+
+// Discovery APIs (instant via metadata index)
+frameworks := docs.ListFrameworks()           // []string
+classes := docs.ListClasses(framework)        // []string
+protocols := docs.ListProtocols(framework)    // []string
+methods := docs.ListMethods(class)            // []string
+
+// Lookup APIs (one file read per call)
+doc := docs.GetSymbol(path)                   // *Document
+info := docs.GetSymbolInfo(path)              // *SymbolInfo
+
+// Search APIs (using index)
+results := docs.Search(pattern)               // []SearchResult
+filtered := docs.Filter(criteria)             // []string
+```
+
+**Example: Complete workflow**
+```go
+import "github.com/tmc/appledocs"
+
+func main() {
+    // Open data (from any source)
+    docs := appledocs.MustOpen("~/.appledocs/v17")
+
+    // Discover what exists
+    for _, fw := range docs.ListFrameworks() {
+        fmt.Println("Framework:", fw)
+
+        // List all classes in framework
+        for _, class := range docs.ListClasses(fw) {
+            // Get full documentation
+            doc := docs.GetSymbol(fw + "/" + class)
+
+            fmt.Printf("  %s: %s\n", doc.Title, doc.Abstract)
+
+            // Process as needed
+            generateCode(doc)
+        }
+    }
+}
+```
+
+**Why this API is clean:**
+- ✅ One type to import: `appledocs.Docs`
+- ✅ Predictable method names: `List*`, `Get*`, `Search*`
+- ✅ No fs.FS exposure (internal detail)
+- ✅ No manual JSON parsing
+- ✅ Obvious what each method does
+- ✅ Works identically regardless of data source
 
 ## Design Philosophy
 
@@ -390,34 +494,41 @@ Every document has exactly these fields:
 - protocol (4)
 - module (4)
 
-### Programmatic Access
+### Programmatic Access Example
+
+**The clean way to access Apple documentation data:**
 
 ```go
 import "github.com/tmc/appledocs"
 
-// Open docs
-fsys, _ := appledocs.Open("docs/")
+func main() {
+    // Open (works with any source: tarball, crawl, selective)
+    docs := appledocs.MustOpen("~/.appledocs/v17")
 
-// Load NSString class
-doc, _ := appledocs.LoadMap(fsys, "Foundation/NSString.json")
+    // Get a specific symbol
+    doc := docs.GetSymbol("Foundation/NSString")
 
-// Extract data programmatically
-title := appledocs.Title(doc)          // "NSString"
-kind := appledocs.SymbolKind(doc)      // "class"
-extID := appledocs.ExternalID(doc)     // "c:objc(cs)NSString"
-platforms := appledocs.Platforms(doc)  // Array of platform info
+    // Access structured data (type-safe)
+    fmt.Println("Title:", doc.Title)
+    fmt.Println("Kind:", doc.Kind)            // "class"
+    fmt.Println("ExternalID:", doc.ExternalID)  // "c:objc(cs)NSString"
+    fmt.Println("Abstract:", doc.Abstract)
 
-// Process references
-refs := appledocs.References(doc)
-for id, ref := range refs {
-    refMap := ref.(map[string]interface{})
-    if refMap["role"] == "symbol" {
-        // This is a method/property - process it
-        title := refMap["title"].(string)
-        // Generate bindings...
+    // Platform availability
+    for _, platform := range doc.Platforms {
+        fmt.Printf("- %s (since %s)\n", platform.Name, platform.IntroducedAt)
+    }
+
+    // Process methods
+    for _, method := range docs.ListMethods("Foundation/NSString") {
+        methodDoc := docs.GetSymbol(method)
+        fmt.Printf("Method: %s\n", methodDoc.Title)
+        generateBinding(methodDoc)
     }
 }
 ```
+
+**Key point:** No manual JSON parsing, no type assertions, no fs.FS juggling. Just clean, obvious method calls.
 
 ## Future Enhancements
 
