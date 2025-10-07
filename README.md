@@ -294,6 +294,52 @@ See [RADICAL_SIMPLICITY.md](RADICAL_SIMPLICITY.md) for design rationale.
 - **Memory efficient**: Don't load entire corpus
 - **Fast queries**: Direct map/struct access
 
+## Distribution
+
+The Apple documentation is ~2GB of JSON. We provide multiple distribution options:
+
+### Option 1: Local Documentation (Recommended for Development)
+
+Download docs manually:
+
+```bash
+make download  # Downloads to output/tutorials/data/documentation
+```
+
+Use in your code:
+
+```go
+fsys, _ := appledocs.Open("output/tutorials/data/documentation")
+```
+
+### Option 2: Embedded Data Module (Coming Soon)
+
+Import versioned documentation as a Go module:
+
+```bash
+go get github.com/tmc/appledocs-data/v17@latest
+```
+
+```go
+import data "github.com/tmc/appledocs-data/v17"
+
+fsys := data.FS()  // iOS 17 / macOS 14 docs
+```
+
+**Note**: Binary size increases by 200-400MB
+
+### Option 3: On-Demand Fetching (Planned)
+
+Download specific frameworks as needed:
+
+```go
+import "github.com/tmc/appledocs-fetch"
+
+fsys, _ := fetch.Framework("Foundation", "17.0")  // Caches locally
+```
+
+See [DISTRIBUTION.md](DISTRIBUTION.md) for details on module structure and versioning strategy.
+
 ## Related Projects
 
 - [DarwinKit](https://github.com/progrium/darwinkit) - Go bindings for macOS frameworks (uses this package)
