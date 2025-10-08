@@ -13,8 +13,19 @@ import (
 	"fmt"
 	"runtime"
 
+	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
 )
+
+func init() {
+	runtime.LockOSThread()
+
+	// Load AppKit framework to access NSApplication, NSWindow, etc.
+	_, err := purego.Dlopen("/System/Library/Frameworks/AppKit.framework/AppKit", purego.RTLD_LAZY|purego.RTLD_GLOBAL)
+	if err != nil {
+		panic(err)
+	}
+}
 
 // Foundation/AppKit types
 type NSPoint struct {
@@ -31,8 +42,6 @@ type NSRect struct {
 }
 
 func main() {
-	runtime.LockOSThread()
-
 	fmt.Println("=== Hello World (Generated Bindings Only) ===\n")
 
 	// Get NSApplication shared instance
