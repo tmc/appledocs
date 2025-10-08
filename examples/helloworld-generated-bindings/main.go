@@ -41,6 +41,45 @@ type NSRect struct {
 	Size   NSSize
 }
 
+func createAppDelegate() objc.ID {
+	// Create a delegate class that handles window close events
+	className := "AppDelegate"
+
+	// Check if class already exists
+	class := objc.GetClass(className)
+	if class == 0 {
+		// Register new class inheriting from NSObject
+		superClass := objc.GetClass("NSObject")
+
+		// Define the windowShouldClose: method that terminates the app
+		windowShouldClose := func(self objc.ID, _cmd objc.SEL, sender objc.ID) bool {
+			// Terminate the application when window closes
+			appClass := objc.GetClass("NSApplication")
+			app := objc.ID(appClass).Send(objc.RegisterName("sharedApplication"))
+			app.Send(objc.RegisterName("terminate:"), 0)
+			return true
+		}
+
+		class, _ = objc.RegisterClass(
+			className,
+			superClass,
+			[]*objc.Protocol{},
+			[]objc.FieldDef{},
+			[]objc.MethodDef{
+				{
+					Cmd: objc.RegisterName("windowShouldClose:"),
+					Fn:  windowShouldClose,
+				},
+			},
+		)
+	}
+
+	// Create instance of delegate
+	delegate := objc.ID(class).Send(objc.RegisterName("alloc"))
+	delegate = delegate.Send(objc.RegisterName("init"))
+	return delegate
+}
+
 func main() {
 	fmt.Println("=== Hello World (Generated Bindings Only) ===\n")
 
@@ -76,6 +115,10 @@ func main() {
 		"Hello from Generated Bindings!",
 	)
 	window.Send(objc.RegisterName("setTitle:"), titleStr)
+
+	// Create and set delegate to handle window close
+	delegate := createAppDelegate()
+	window.Send(objc.RegisterName("setDelegate:"), delegate)
 
 	// Create button
 	buttonClass := objc.GetClass("NSButton")
