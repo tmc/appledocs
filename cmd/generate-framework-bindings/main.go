@@ -258,44 +258,123 @@ func parseDeclaration(tokens []Token) (*ParsedFunction, error) {
 }
 
 func generatePuregoBindings(functions []*ParsedFunction, outputDir, framework string) {
-	// Generate a simple file with function declarations
-	filename := filepath.Join(outputDir, "bindings.go")
+	pkgName := strings.ToLower(framework)
+
+	// Generate types.gen.go
+	generateTypesFile(outputDir, pkgName, framework)
+
+	// Generate loader.gen.go
+	generateLoaderFile(outputDir, pkgName, framework)
+
+	// Generate functions.gen.go
+	generateFunctionsFile(outputDir, pkgName, framework, functions)
+
+	log.Printf("Generated 3 .gen.go files in %s", outputDir)
+}
+
+func generateTypesFile(outputDir, pkgName, framework string) {
+	filename := filepath.Join(outputDir, "types.gen.go")
 	f, err := os.Create(filename)
 	if err != nil {
-		log.Fatalf("Failed to create output file: %v", err)
+		log.Fatalf("Failed to create types file: %v", err)
 	}
 	defer f.Close()
 
 	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
-	fmt.Fprintf(f, "package %s\n\n", strings.ToLower(framework))
-	fmt.Fprintf(f, "import (\n")
-	fmt.Fprintf(f, "\t\"unsafe\"\n")
-	fmt.Fprintf(f, "\t\"github.com/ebitengine/purego\"\n")
-	fmt.Fprintf(f, ")\n\n")
+	fmt.Fprintf(f, "package %s\n\n", pkgName)
+	fmt.Fprintf(f, "import \"unsafe\"\n\n")
 
-	// Generate type definitions for common CG types
-	fmt.Fprintf(f, "// Common types\n")
-	fmt.Fprintf(f, "type CGFloat float64\n")
-	fmt.Fprintf(f, "type CGContextRef unsafe.Pointer\n")
-	fmt.Fprintf(f, "type CGColorRef unsafe.Pointer\n")
-	fmt.Fprintf(f, "type CGColorSpaceRef unsafe.Pointer\n")
-	fmt.Fprintf(f, "type CGPathRef unsafe.Pointer\n")
-	fmt.Fprintf(f, "type CGImageRef unsafe.Pointer\n\n")
+	fmt.Fprintf(f, "// %s Types\n\n", framework)
 
+	// Common CoreGraphics types
+	if framework == "CoreGraphics" {
+		fmt.Fprintf(f, "// Fundamental types\n")
+		fmt.Fprintf(f, "type CGFloat float64\n\n")
+
+		fmt.Fprintf(f, "// Opaque reference types\n")
+		fmt.Fprintf(f, "type CGContextRef unsafe.Pointer\n")
+		fmt.Fprintf(f, "type CGColorRef unsafe.Pointer\n")
+		fmt.Fprintf(f, "type CGColorSpaceRef unsafe.Pointer\n")
+		fmt.Fprintf(f, "type CGPathRef unsafe.Pointer\n")
+		fmt.Fprintf(f, "type CGImageRef unsafe.Pointer\n")
+		fmt.Fprintf(f, "type CGDataProviderRef unsafe.Pointer\n")
+		fmt.Fprintf(f, "type CGFontRef unsafe.Pointer\n")
+		fmt.Fprintf(f, "type CGGradientRef unsafe.Pointer\n")
+		fmt.Fprintf(f, "type CGLayerRef unsafe.Pointer\n")
+		fmt.Fprintf(f, "type CGPDFDocumentRef unsafe.Pointer\n")
+		fmt.Fprintf(f, "type CGPDFPageRef unsafe.Pointer\n\n")
+
+		fmt.Fprintf(f, "// Geometric types\n")
+		fmt.Fprintf(f, "type CGPoint struct {\n")
+		fmt.Fprintf(f, "\tX, Y CGFloat\n")
+		fmt.Fprintf(f, "}\n\n")
+
+		fmt.Fprintf(f, "type CGSize struct {\n")
+		fmt.Fprintf(f, "\tWidth, Height CGFloat\n")
+		fmt.Fprintf(f, "}\n\n")
+
+		fmt.Fprintf(f, "type CGRect struct {\n")
+		fmt.Fprintf(f, "\tOrigin CGPoint\n")
+		fmt.Fprintf(f, "\tSize   CGSize\n")
+		fmt.Fprintf(f, "}\n\n")
+
+		fmt.Fprintf(f, "type CGAffineTransform struct {\n")
+		fmt.Fprintf(f, "\tA, B, C, D, Tx, Ty CGFloat\n")
+		fmt.Fprintf(f, "}\n\n")
+	}
+}
+
+func generateLoaderFile(outputDir, pkgName, framework string) {
+	filename := filepath.Join(outputDir, "loader.gen.go")
+	f, err := os.Create(filename)
+	if err != nil {
+		log.Fatalf("Failed to create loader file: %v", err)
+	}
+	defer f.Close()
+
+	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
+	fmt.Fprintf(f, "package %s\n\n", pkgName)
+	fmt.Fprintf(f, "import \"github.com/ebitengine/purego\"\n\n")
+
+	fmt.Fprintf(f, "// lib holds the framework library handle\n")
 	fmt.Fprintf(f, "var lib uintptr\n\n")
+
 	fmt.Fprintf(f, "func init() {\n")
 	fmt.Fprintf(f, "\tvar err error\n")
 	fmt.Fprintf(f, "\tlib, err = purego.Dlopen(\"/System/Library/Frameworks/%s.framework/%s\", purego.RTLD_LAZY|purego.RTLD_GLOBAL)\n", framework, framework)
-	fmt.Fprintf(f, "\tif err != nil {\n\t\tpanic(err)\n\t}\n")
-	fmt.Fprintf(f, "}\n\n")
+	fmt.Fprintf(f, "\tif err != nil {\n")
+	fmt.Fprintf(f, "\t\tpanic(err)\n")
+	fmt.Fprintf(f, "\t}\n")
+	fmt.Fprintf(f, "}\n")
+}
 
-	fmt.Fprintf(f, "// %s Functions\n\n", framework)
+func generateFunctionsFile(outputDir, pkgName, framework string, functions []*ParsedFunction) {
+	filename := filepath.Join(outputDir, "functions.gen.go")
+	f, err := os.Create(filename)
+	if err != nil {
+		log.Fatalf("Failed to create functions file: %v", err)
+	}
+	defer f.Close()
 
-	// Generate function list as comments
+	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
+	fmt.Fprintf(f, "package %s\n\n", pkgName)
+
+	fmt.Fprintf(f, "// %s Functions\n", framework)
+	fmt.Fprintf(f, "//\n")
+	fmt.Fprintf(f, "// This file contains function declarations discovered from Apple's documentation.\n")
+	fmt.Fprintf(f, "// To use these functions, you need to:\n")
+	fmt.Fprintf(f, "//   1. Map C types to Go types\n")
+	fmt.Fprintf(f, "//   2. Create function variables\n")
+	fmt.Fprintf(f, "//   3. Register them with purego.RegisterLibFunc\n")
+	fmt.Fprintf(f, "//\n")
+	fmt.Fprintf(f, "// Example:\n")
+	fmt.Fprintf(f, "//   var CGContextSetRGBFillColor func(c CGContextRef, red, green, blue, alpha CGFloat)\n")
+	fmt.Fprintf(f, "//   purego.RegisterLibFunc(&CGContextSetRGBFillColor, lib, \"CGContextSetRGBFillColor\")\n")
+	fmt.Fprintf(f, "\n")
+
+	fmt.Fprintf(f, "// Discovered functions (%d total):\n\n", len(functions))
+
 	for i, fn := range functions {
-		if i >= 20 { // Limit output for now
-			break
-		}
 		if fn.Name == "" {
 			continue
 		}
@@ -307,17 +386,25 @@ func generatePuregoBindings(functions []*ParsedFunction, outputDir, framework st
 				if j > 0 {
 					fmt.Fprintf(f, ", ")
 				}
-				fmt.Fprintf(f, "%s %s", p.Name, p.Type)
+				if p.Name != "" {
+					fmt.Fprintf(f, "%s ", p.Name)
+				}
+				fmt.Fprintf(f, "%s", p.Type)
 			}
 			fmt.Fprintf(f, ")")
+		} else {
+			fmt.Fprintf(f, "()")
 		}
-		if fn.ReturnType != "" {
-			fmt.Fprintf(f, " -> %s", fn.ReturnType)
+		if fn.ReturnType != "" && fn.ReturnType != "void" {
+			fmt.Fprintf(f, " %s", fn.ReturnType)
 		}
 		fmt.Fprintf(f, "\n")
-	}
 
-	fmt.Fprintf(f, "\n// Add bindings here using purego.RegisterLibFunc\n")
+		// Add a blank line every 5 functions for readability
+		if (i+1)%5 == 0 {
+			fmt.Fprintf(f, "\n")
+		}
+	}
 }
 
 func generateDarkwinKitBindings(functions []*ParsedFunction, outputDir, framework string) {
