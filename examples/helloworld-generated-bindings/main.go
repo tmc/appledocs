@@ -11,6 +11,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"runtime"
 
 	"github.com/ebitengine/purego"

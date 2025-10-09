@@ -77,7 +77,8 @@ for framework in "${PRIORITY_FRAMEWORKS[@]}"; do
     fi
 
     # Try to generate bindings with timeout
-    if timeout 300 ./appledocs generate-framework "$framework" 2>&1 | tee "/tmp/generate-$framework.log"; then
+    # Use generate-framework-bindings directly to skip re-mirroring
+    if timeout 300 generate-framework-bindings -framework "$framework" -output "generated/frameworks" 2>&1 | tee "/tmp/generate-$framework.log"; then
         echo "✓ Successfully generated $framework"
         ((SUCCESS++))
     else

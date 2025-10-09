@@ -4,8 +4,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"strings"
 	"log"
-	"os"
 
 	"github.com/tmc/appledocs"
 )

@@ -24,8 +24,9 @@ func main() {
 		}
 	}
 
-	// Re-generate bindings using the appledocs command from PATH
-	cmd := exec.Command("appledocs", "generate-framework", "Foundation")
+	// Re-generate bindings using generate-framework-bindings directly
+	// This skips the mirroring step and uses cached JSON files
+	cmd := exec.Command("generate-framework-bindings", "-framework", "Foundation", "-output", "generated/frameworks")
 
 	// Set working directory to project root
 	// We're in generated/frameworks/foundation, so go up 3 levels

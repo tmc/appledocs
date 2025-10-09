@@ -24,8 +24,9 @@ func main() {
 		}
 	}
 
-	// Re-generate bindings using the appledocs command from PATH
-	cmd := exec.Command("appledocs", "generate-framework", "FSKit")
+	// Re-generate bindings using generate-framework-bindings directly
+	// This skips the mirroring step and uses cached JSON files
+	cmd := exec.Command("generate-framework-bindings", "-framework", "FSKit", "-output", "generated/frameworks")
 
 	// Set working directory to project root
 	// We're in generated/frameworks/fskit, so go up 3 levels

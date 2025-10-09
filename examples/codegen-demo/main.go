@@ -5,8 +5,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"strings"
 	"log"
-	"os"
 	"strings"
 	"text/template"
 
