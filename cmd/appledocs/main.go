@@ -48,10 +48,10 @@ var (
 
 	// Directories and URLs
 	outputDir    = flag.String("output", "output", "directory to store mirrored content")
-	cacheDir     = flag.String("cache", ".cache", "directory to store HTTP cache")
+	cacheDir     = flag.String("cache", filepath.Join(os.Getenv("HOME"), ".appledocs", "cache"), "directory to store HTTP cache")
 	baseURL      = flag.String("base", "https://developer.apple.com", "base URL for Apple docs")
 	entryPoint   = flag.String("entry-point", "/tutorials/data/documentation/technologies.json", "path to start crawling from")
-	badURLsFile  = flag.String("bad-urls-file", ".cache/known-bad-urls.txt", "file containing URLs to skip")
+	badURLsFile  = flag.String("bad-urls-file", filepath.Join(os.Getenv("HOME"), ".appledocs", "cache", "known-bad-urls.txt"), "file containing URLs to skip")
 	excludePaths = flag.String("exclude-paths", "en-US/docs/Mozilla", "comma-separated list of paths to exclude from crawling")
 
 	// Crawling options
