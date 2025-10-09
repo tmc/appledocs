@@ -30,6 +30,7 @@ These are **not ready-to-use** - they serve as documentation and require manual 
 ### Working Examples (in `examples/`)
 
 For actual working code, see these examples:
+- `examples/foundation-working/` - **Complete working Foundation example with E2E tests** (recommended starting point)
 - `examples/drawing-generated-bindings/` - Complex CoreGraphics drawing example
 - `examples/helloworld-purego/` - Basic purego example
 - `examples/security-keychain/` - Security framework example
