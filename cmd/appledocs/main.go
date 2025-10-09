@@ -71,6 +71,7 @@ var (
 	exportMetrics = flag.String("export-metrics", "", "export detailed metrics to JSON file (optional path)")
 	validateCache = flag.Bool("validate-cache", false, "validate cache integrity on startup")
 	checksumValidation = flag.Bool("checksum-validation", false, "enable enhanced checksum-based cache validation")
+	fetchBothLanguages = flag.Bool("fetch-both-languages", true, "fetch both Swift and Objective-C variants")
 
 	// Mode selection
 	mode = flag.String("mode", "crawl", "operation mode: crawl, html, markdown, gentypes, analyze, or all")
@@ -1112,43 +1113,46 @@ func (app *crawler) queueNewURLs(newURLs []string, urlQueue chan<- string) int {
 	var added int
 
 	for _, newURL := range newURLs {
-		resolvedURL := resolveURL(*baseURL, newURL)
+		// Get all language variants for this URL
+		resolvedURLs := resolveURLsWithLanguageVariants(*baseURL, newURL)
 
-		// Check if URL is known to be bad
-		if app.badURLs[resolvedURL] {
-			if *verbose {
-				log.Printf("Skipping known bad URL: %s", resolvedURL)
+		for _, resolvedURL := range resolvedURLs {
+			// Check if URL is known to be bad
+			if app.badURLs[resolvedURL] {
+				if *verbose {
+					log.Printf("Skipping known bad URL: %s", resolvedURL)
+				}
+				continue
 			}
-			continue
-		}
 
-		// Parse URL to check if it should be excluded
-		parsedURL, err := url.Parse(resolvedURL)
-		if err == nil && shouldExcludePath(parsedURL.Path) {
-			// Add to bad URLs so we don't attempt it again
-			app.badURLs[resolvedURL] = true
-			appendToBadURLsFile(resolvedURL)
-			if *verbose {
-				log.Printf("Skipping excluded path when queueing: %s", parsedURL.Path)
+			// Parse URL to check if it should be excluded
+			parsedURL, err := url.Parse(resolvedURL)
+			if err == nil && shouldExcludePath(parsedURL.Path) {
+				// Add to bad URLs so we don't attempt it again
+				app.badURLs[resolvedURL] = true
+				appendToBadURLsFile(resolvedURL)
+				if *verbose {
+					log.Printf("Skipping excluded path when queueing: %s", parsedURL.Path)
+				}
+				continue
 			}
-			continue
-		}
 
-		// Check if URL has been visited using atomic LoadOrStore
-		// This eliminates the race condition that existed with double-check locking
-		_, alreadyVisited := app.visitedURLs.LoadOrStore(resolvedURL, true)
-		if alreadyVisited {
-			continue
-		}
+			// Check if URL has been visited using atomic LoadOrStore
+			// This eliminates the race condition that existed with double-check locking
+			_, alreadyVisited := app.visitedURLs.LoadOrStore(resolvedURL, true)
+			if alreadyVisited {
+				continue
+			}
 
-		// Try to send to channel, but don't block or panic if it's closed
-		select {
-		case urlQueue <- resolvedURL:
-			added++
-		default:
-			// Channel might be full or closed, skip this URL
-			if *verbose {
-				log.Printf("Skipping URL %s (channel full or closed)", resolvedURL)
+			// Try to send to channel, but don't block or panic if it's closed
+			select {
+			case urlQueue <- resolvedURL:
+				added++
+			default:
+				// Channel might be full or closed, skip this URL
+				if *verbose {
+					log.Printf("Skipping URL %s (channel full or closed)", resolvedURL)
+				}
 			}
 		}
 	}
@@ -1231,6 +1235,9 @@ func fetchWithCache(ctx context.Context, client *http.Client, u string, app *cra
 		return nil, fmt.Errorf("create cache directory: %v", err)
 	}
 
+	// ETag cache path
+	etagPath := cachePath + ".etag"
+
 	// Check cache
 	if !*forceRefresh {
 		// check exists, and is not empty:
@@ -1244,12 +1251,23 @@ func fetchWithCache(ctx context.Context, client *http.Client, u string, app *cra
 					log.Printf("Cache contains invalid JSON for %q, refetching", u)
 					app.incrementCacheMisses()
 				} else {
-					app.incrementCacheHits()
-					app.recordBytesFromCache(int64(len(data)))
-					if *verbose {
-						log.Printf("Cache hit for %q", u)
+					// Check if we have an ETag to validate freshness
+					if etagData, err := os.ReadFile(etagPath); err == nil && len(etagData) > 0 {
+						etag := strings.TrimSpace(string(etagData))
+						if *verbose {
+							log.Printf("Validating cache for %q with ETag: %s", u, etag)
+						}
+						// We'll validate with If-None-Match below
+						// For now, fall through to make the request
+					} else {
+						// No ETag, use cache as-is (legacy behavior)
+						app.incrementCacheHits()
+						app.recordBytesFromCache(int64(len(data)))
+						if *verbose {
+							log.Printf("Cache hit for %q (no ETag)", u)
+						}
+						return data, nil
 					}
-					return data, nil
 				}
 			} else {
 				log.Printf("Cache read error for %q: %v", u, err)
@@ -1272,6 +1290,15 @@ func fetchWithCache(ctx context.Context, client *http.Client, u string, app *cra
 
 	// Add browser-like headers
 	addBrowserLikeHeaders(req)
+
+	// Add If-None-Match header if we have an ETag
+	if etagData, err := os.ReadFile(etagPath); err == nil && len(etagData) > 0 {
+		etag := strings.TrimSpace(string(etagData))
+		req.Header.Set("If-None-Match", etag)
+		if *verbose {
+			log.Printf("Sending If-None-Match: %s for %q", etag, u)
+		}
+	}
 
 	// Execute the request with retry logic
 	var resp *http.Response
@@ -1317,17 +1344,34 @@ func fetchWithCache(ctx context.Context, client *http.Client, u string, app *cra
 				}
 				return nil, fmt.Errorf("fetch %q (after %d attempts): %v", u, attempt+1, err)
 			}
+		} else if resp.StatusCode == http.StatusNotModified {
+			// 304 Not Modified - content hasn't changed, use cached version
+			resp.Body.Close()
+			if *verbose {
+				log.Printf("304 Not Modified for %q, using cached content", u)
+			}
+
+			// Read cached content
+			cachedData, err := os.ReadFile(cachePath)
+			if err != nil {
+				app.incrementErrors()
+				return nil, fmt.Errorf("read cached content after 304 for %q: %v", u, err)
+			}
+
+			app.incrementCacheHits()
+			app.recordBytesFromCache(int64(len(cachedData)))
+			return cachedData, nil
 		} else if resp.StatusCode != http.StatusOK {
 			// Record HTTP error
 			app.recordHTTPError(resp.StatusCode)
-			
+
 			// Check if it's a retryable status code
 			isRetryableStatus := resp.StatusCode == http.StatusTooManyRequests ||
 				resp.StatusCode == http.StatusInternalServerError ||
 				resp.StatusCode == http.StatusBadGateway ||
 				resp.StatusCode == http.StatusServiceUnavailable ||
 				resp.StatusCode == http.StatusGatewayTimeout
-			
+
 			if isRetryableStatus && attempt < maxRetries {
 				shouldRetry = true
 				retryReason = fmt.Sprintf("HTTP %d: %s", resp.StatusCode, resp.Status)
@@ -1337,7 +1381,7 @@ func fetchWithCache(ctx context.Context, client *http.Client, u string, app *cra
 				// Handle non-retryable status codes or exhausted retries
 				defer resp.Body.Close()
 				app.incrementErrors()
-				
+
 				// Add to bad URLs list for client errors that won't be resolved by retrying
 				if resp.StatusCode == http.StatusForbidden ||
 					resp.StatusCode == http.StatusNotFound ||
@@ -1403,6 +1447,18 @@ func fetchWithCache(ctx context.Context, client *http.Client, u string, app *cra
 	if err := writeFileAtomic(cachePath, data); err != nil {
 		app.incrementErrors()
 		return nil, fmt.Errorf("write cache %q: %v", cachePath, err)
+	}
+
+	// Store ETag if present in response headers
+	if etag := resp.Header.Get("Etag"); etag != "" {
+		if err := os.WriteFile(etagPath, []byte(etag), 0644); err != nil {
+			// Log but don't fail - ETag storage is optional
+			if *verbose {
+				log.Printf("Warning: Failed to write ETag for %q: %v", u, err)
+			}
+		} else if *verbose {
+			log.Printf("Stored ETag %s for %q", etag, u)
+		}
 	}
 
 	return data, nil
@@ -1485,6 +1541,35 @@ func resolveURL(base, relative string) string {
 		return *baseURL + relative
 	}
 	return *baseURL + "/" + relative
+}
+
+// resolveURLsWithLanguageVariants returns URLs for both language variants if enabled
+func resolveURLsWithLanguageVariants(base, relative string) []string {
+	baseURL := resolveURL(base, relative)
+
+	// Only add language variants for .json documentation URLs
+	if !*fetchBothLanguages || !strings.HasSuffix(baseURL, ".json") || !strings.Contains(baseURL, "/tutorials/data/documentation/") {
+		return []string{baseURL}
+	}
+
+	// Check if URL already has a language parameter
+	if strings.Contains(baseURL, "?language=") || strings.Contains(baseURL, "&language=") {
+		return []string{baseURL}
+	}
+
+	// Generate both Swift and Objective-C variants
+	urls := make([]string, 0, 2)
+
+	// Check if URL already has query parameters
+	if strings.Contains(baseURL, "?") {
+		urls = append(urls, baseURL+"&language=swift")
+		urls = append(urls, baseURL+"&language=objc")
+	} else {
+		urls = append(urls, baseURL+"?language=swift")
+		urls = append(urls, baseURL+"?language=objc")
+	}
+
+	return urls
 }
 
 // extractJSONURLs extracts URLs to other JSON files from a JSON response.
