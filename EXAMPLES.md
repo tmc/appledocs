@@ -30,9 +30,14 @@ These are **not ready-to-use** - they serve as documentation and require manual 
 ### Working Examples (in `examples/`)
 
 For actual working code, see these examples:
-- `examples/foundation-working/` - **Complete working Foundation example with E2E tests** (recommended starting point)
+
+**Pure Purego Examples** (ports from darwinkit):
+- `examples/clickme-purego/` - **Simple button example** (recommended starting point for UI)
+- `examples/helloworld-purego/` - WebView example with custom delegate
+- `examples/foundation-working/` - **Complete working Foundation example with E2E tests** (recommended starting point for Foundation)
+
+**Other Examples**:
 - `examples/drawing-generated-bindings/` - Complex CoreGraphics drawing example
-- `examples/helloworld-purego/` - Basic purego example
 - `examples/security-keychain/` - Security framework example
 
 ## Creating New Examples
