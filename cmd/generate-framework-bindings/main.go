@@ -17,6 +17,8 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
+	"strconv"
 	"strings"
 )
 
@@ -81,7 +83,7 @@ type ParsedFunction struct {
 	ReturnType   string
 	Parameters   []Parameter
 	Comment      string
-	Availability PlatformAvailability
+	Availability Availability
 }
 
 type Parameter struct {
@@ -89,26 +91,31 @@ type Parameter struct {
 	Type string
 }
 
-// PlatformAvailability contains version information for different platforms
-type PlatformAvailability struct {
-	MacOS      VersionInfo
-	IOS        VersionInfo
-	WatchOS    VersionInfo
-	TVOS       VersionInfo
-	Deprecated bool
-	Beta       bool
-}
+// Availability contains version information for API availability across platforms.
+// Uses maps for flexibility - handles new platforms without code changes.
+type Availability struct {
+	// IntroducedAt maps platform name to version string (e.g., "macOS" -> "10.14")
+	IntroducedAt map[string]string
 
-// VersionInfo contains version details for a specific platform
-type VersionInfo struct {
-	IntroducedAt string
-	DeprecatedAt string
-	Available    bool
+	// DeprecatedAt maps platform name to deprecation version
+	DeprecatedAt map[string]string
+
+	Beta bool
 }
 
 // IsEmpty returns true if no version information is available
-func (a *PlatformAvailability) IsEmpty() bool {
-	return !a.MacOS.Available && !a.IOS.Available && !a.WatchOS.Available && !a.TVOS.Available
+func (a *Availability) IsEmpty() bool {
+	return len(a.IntroducedAt) == 0 && len(a.DeprecatedAt) == 0
+}
+
+// Platforms returns a sorted list of platforms with availability info
+func (a *Availability) Platforms() []string {
+	platforms := make([]string, 0, len(a.IntroducedAt))
+	for p := range a.IntroducedAt {
+		platforms = append(platforms, p)
+	}
+	sort.Strings(platforms)
+	return platforms
 }
 
 type AppleDoc struct {
@@ -190,32 +197,29 @@ func processJSONFile(path string) (*ParsedFunction, error) {
 	return fn, nil
 }
 
-// extractAvailability converts Platform metadata to PlatformAvailability
-func extractAvailability(platforms []Platform) PlatformAvailability {
-	var avail PlatformAvailability
+// extractAvailability converts Platform metadata to Availability.
+// Returns availability information for all platforms found in the metadata.
+func extractAvailability(platforms []Platform) Availability {
+	avail := Availability{
+		IntroducedAt: make(map[string]string),
+		DeprecatedAt: make(map[string]string),
+	}
 
 	for _, p := range platforms {
-		var info VersionInfo
-		info.IntroducedAt = p.IntroducedAt
-		info.DeprecatedAt = p.DeprecatedAt
-		info.Available = !p.Unavailable
+		if p.Unavailable {
+			continue
+		}
 
-		switch p.Name {
-		case "macOS":
-			avail.MacOS = info
-		case "iOS":
-			avail.IOS = info
-		case "watchOS":
-			avail.WatchOS = info
-		case "tvOS":
-			avail.TVOS = info
+		if p.IntroducedAt != "" {
+			avail.IntroducedAt[p.Name] = p.IntroducedAt
+		}
+
+		if p.DeprecatedAt != "" {
+			avail.DeprecatedAt[p.Name] = p.DeprecatedAt
 		}
 
 		if p.Beta {
 			avail.Beta = true
-		}
-		if p.Deprecated {
-			avail.Deprecated = true
 		}
 	}
 
@@ -380,13 +384,13 @@ func generateDocFile(outputDir, pkgName, framework string, functions []*ParsedFu
 	fmt.Fprintf(f, "const FrameworkPath = \"/System/Library/Frameworks/%s.framework/%s\"\n", framework, framework)
 }
 
-// findMinimumMacOSVersion finds the minimum macOS version across all functions
+// findMinimumMacOSVersion finds the minimum macOS version across all functions.
+// Returns empty string if no macOS versions are found.
 func findMinimumMacOSVersion(functions []*ParsedFunction) string {
 	var minVersion string
 
 	for _, fn := range functions {
-		if fn.Availability.MacOS.Available && fn.Availability.MacOS.IntroducedAt != "" {
-			ver := fn.Availability.MacOS.IntroducedAt
+		if ver, ok := fn.Availability.IntroducedAt["macOS"]; ok && ver != "" {
 			if minVersion == "" || compareVersionStrings(ver, minVersion) < 0 {
 				minVersion = ver
 			}
@@ -396,19 +400,62 @@ func findMinimumMacOSVersion(functions []*ParsedFunction) string {
 	return minVersion
 }
 
-// compareVersionStrings compares two version strings (e.g., "15.4" vs "15.0")
+// parseVersion parses a version string like "10.14" into major and minor components.
+// Returns major, minor, and ok=true if parsing succeeded.
+func parseVersion(s string) (major, minor int, ok bool) {
+	parts := strings.SplitN(s, ".", 2)
+	if len(parts) == 0 {
+		return 0, 0, false
+	}
+
+	major, err := strconv.Atoi(parts[0])
+	if err != nil {
+		return 0, 0, false
+	}
+
+	minor = 0
+	if len(parts) > 1 {
+		minor, err = strconv.Atoi(parts[1])
+		if err != nil {
+			return 0, 0, false
+		}
+	}
+
+	return major, minor, true
+}
+
+// compareVersionStrings compares two version strings semantically (e.g., "10.14" vs "10.9").
 // Returns: -1 if a < b, 0 if a == b, 1 if a > b
 func compareVersionStrings(a, b string) int {
 	if a == b {
 		return 0
 	}
 
-	// Simple string comparison works for most version strings
-	// For more sophisticated comparison, could parse into numbers
-	if a < b {
+	maj1, min1, ok1 := parseVersion(a)
+	maj2, min2, ok2 := parseVersion(b)
+
+	// Fallback to lexicographic comparison if parsing fails
+	if !ok1 || !ok2 {
+		return strings.Compare(a, b)
+	}
+
+	// Compare major versions first
+	if maj1 < maj2 {
 		return -1
 	}
-	return 1
+	if maj1 > maj2 {
+		return 1
+	}
+
+	// Major versions equal, compare minor versions
+	if min1 < min2 {
+		return -1
+	}
+	if min1 > min2 {
+		return 1
+	}
+
+	return 0
 }
 
 func generateTypesFile(outputDir, pkgName, framework string) {
@@ -557,37 +604,23 @@ func generateFunctionComment(f *os.File, fn *ParsedFunction) {
 		fmt.Fprintf(f, "//\n")
 		fmt.Fprintf(f, "// Availability:\n")
 
-		if fn.Availability.MacOS.Available && fn.Availability.MacOS.IntroducedAt != "" {
+		// Iterate over platforms in sorted order for consistent output
+		for _, platform := range fn.Availability.Platforms() {
+			version := fn.Availability.IntroducedAt[platform]
 			status := ""
+
 			if fn.Availability.Beta {
 				status = " (Beta)"
-			} else if fn.Availability.MacOS.DeprecatedAt != "" {
-				status = fmt.Sprintf(" (Deprecated in %s)", fn.Availability.MacOS.DeprecatedAt)
+			} else if deprecatedAt, ok := fn.Availability.DeprecatedAt[platform]; ok {
+				status = fmt.Sprintf(" (Deprecated in %s)", deprecatedAt)
 			}
-			fmt.Fprintf(f, "//   - macOS %s+%s\n", fn.Availability.MacOS.IntroducedAt, status)
-		}
 
-		if fn.Availability.IOS.Available && fn.Availability.IOS.IntroducedAt != "" {
-			status := ""
-			if fn.Availability.Beta {
-				status = " (Beta)"
-			} else if fn.Availability.IOS.DeprecatedAt != "" {
-				status = fmt.Sprintf(" (Deprecated in %s)", fn.Availability.IOS.DeprecatedAt)
-			}
-			fmt.Fprintf(f, "//   - iOS %s+%s\n", fn.Availability.IOS.IntroducedAt, status)
-		}
-
-		if fn.Availability.WatchOS.Available && fn.Availability.WatchOS.IntroducedAt != "" {
-			fmt.Fprintf(f, "//   - watchOS %s+\n", fn.Availability.WatchOS.IntroducedAt)
-		}
-
-		if fn.Availability.TVOS.Available && fn.Availability.TVOS.IntroducedAt != "" {
-			fmt.Fprintf(f, "//   - tvOS %s+\n", fn.Availability.TVOS.IntroducedAt)
+			fmt.Fprintf(f, "//   - %s %s+%s\n", platform, version, status)
 		}
 	}
 
-	// Add deprecation warning if deprecated
-	if fn.Availability.Deprecated {
+	// Add deprecation warning if any platform is deprecated
+	if len(fn.Availability.DeprecatedAt) > 0 {
 		fmt.Fprintf(f, "//\n")
 		fmt.Fprintf(f, "// Deprecated: This function is deprecated.\n")
 	}
