@@ -77,10 +77,11 @@ func main() {
 }
 
 type ParsedFunction struct {
-	Name       string
-	ReturnType string
-	Parameters []Parameter
-	Comment    string
+	Name         string
+	ReturnType   string
+	Parameters   []Parameter
+	Comment      string
+	Availability PlatformAvailability
 }
 
 type Parameter struct {
@@ -88,10 +89,33 @@ type Parameter struct {
 	Type string
 }
 
+// PlatformAvailability contains version information for different platforms
+type PlatformAvailability struct {
+	MacOS      VersionInfo
+	IOS        VersionInfo
+	WatchOS    VersionInfo
+	TVOS       VersionInfo
+	Deprecated bool
+	Beta       bool
+}
+
+// VersionInfo contains version details for a specific platform
+type VersionInfo struct {
+	IntroducedAt string
+	DeprecatedAt string
+	Available    bool
+}
+
+// IsEmpty returns true if no version information is available
+func (a *PlatformAvailability) IsEmpty() bool {
+	return !a.MacOS.Available && !a.IOS.Available && !a.WatchOS.Available && !a.TVOS.Available
+}
+
 type AppleDoc struct {
 	Metadata struct {
-		ExternalID string `json:"externalID"`
-		Title      string `json:"title"`
+		ExternalID string     `json:"externalID"`
+		Title      string     `json:"title"`
+		Platforms  []Platform `json:"platforms,omitempty"`
 	} `json:"metadata"`
 	PrimaryContentSections []struct {
 		Kind         string `json:"kind"`
@@ -109,6 +133,16 @@ type AppleDoc struct {
 			Value json.RawMessage `json:"value"`
 		} `json:"patch"`
 	} `json:"variantOverrides"`
+}
+
+// Platform describes platform availability
+type Platform struct {
+	Name         string `json:"name"`
+	IntroducedAt string `json:"introducedAt,omitempty"`
+	DeprecatedAt string `json:"deprecatedAt,omitempty"`
+	Beta         bool   `json:"beta"`
+	Deprecated   bool   `json:"deprecated,omitempty"`
+	Unavailable  bool   `json:"unavailable,omitempty"`
 }
 
 type Token struct {
@@ -150,7 +184,42 @@ func processJSONFile(path string) (*ParsedFunction, error) {
 		return nil, err
 	}
 
+	// Extract platform availability information
+	fn.Availability = extractAvailability(doc.Metadata.Platforms)
+
 	return fn, nil
+}
+
+// extractAvailability converts Platform metadata to PlatformAvailability
+func extractAvailability(platforms []Platform) PlatformAvailability {
+	var avail PlatformAvailability
+
+	for _, p := range platforms {
+		var info VersionInfo
+		info.IntroducedAt = p.IntroducedAt
+		info.DeprecatedAt = p.DeprecatedAt
+		info.Available = !p.Unavailable
+
+		switch p.Name {
+		case "macOS":
+			avail.MacOS = info
+		case "iOS":
+			avail.IOS = info
+		case "watchOS":
+			avail.WatchOS = info
+		case "tvOS":
+			avail.TVOS = info
+		}
+
+		if p.Beta {
+			avail.Beta = true
+		}
+		if p.Deprecated {
+			avail.Deprecated = true
+		}
+	}
+
+	return avail
 }
 
 func getObjectiveCVariant(doc *AppleDoc) []Token {
@@ -260,6 +329,9 @@ func parseDeclaration(tokens []Token) (*ParsedFunction, error) {
 func generatePuregoBindings(functions []*ParsedFunction, outputDir, framework string) {
 	pkgName := strings.ToLower(framework)
 
+	// Generate doc.go with package documentation
+	generateDocFile(outputDir, pkgName, framework, functions)
+
 	// Generate types.gen.go
 	generateTypesFile(outputDir, pkgName, framework)
 
@@ -269,7 +341,74 @@ func generatePuregoBindings(functions []*ParsedFunction, outputDir, framework st
 	// Generate functions.gen.go
 	generateFunctionsFile(outputDir, pkgName, framework, functions)
 
-	log.Printf("Generated 3 .gen.go files in %s", outputDir)
+	log.Printf("Generated 4 .gen.go files in %s", outputDir)
+}
+
+// generateDocFile generates package documentation with version information
+func generateDocFile(outputDir, pkgName, framework string, functions []*ParsedFunction) {
+	filename := filepath.Join(outputDir, "doc.go")
+	f, err := os.Create(filename)
+	if err != nil {
+		log.Fatalf("Failed to create doc file: %v", err)
+	}
+	defer f.Close()
+
+	// Find minimum version across all functions
+	minVersion := findMinimumMacOSVersion(functions)
+
+	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
+	fmt.Fprintf(f, "// Package %s provides Go bindings for the %s framework.\n", pkgName, framework)
+	fmt.Fprintf(f, "//\n")
+
+	if minVersion != "" {
+		fmt.Fprintf(f, "// Minimum macOS version: %s\n", minVersion)
+	}
+
+	fmt.Fprintf(f, "// Framework path: /System/Library/Frameworks/%s.framework/%s\n", framework, framework)
+	fmt.Fprintf(f, "//\n")
+	fmt.Fprintf(f, "// These bindings are generated from Apple's official documentation and\n")
+	fmt.Fprintf(f, "// provide purego-based access to %s without requiring cgo.\n", framework)
+	fmt.Fprintf(f, "package %s\n\n", pkgName)
+
+	// Add package-level constants
+	if minVersion != "" {
+		fmt.Fprintf(f, "// MinMacOSVersion is the minimum macOS version required for this framework.\n")
+		fmt.Fprintf(f, "const MinMacOSVersion = \"%s\"\n\n", minVersion)
+	}
+
+	fmt.Fprintf(f, "// FrameworkPath is the system path to the framework binary.\n")
+	fmt.Fprintf(f, "const FrameworkPath = \"/System/Library/Frameworks/%s.framework/%s\"\n", framework, framework)
+}
+
+// findMinimumMacOSVersion finds the minimum macOS version across all functions
+func findMinimumMacOSVersion(functions []*ParsedFunction) string {
+	var minVersion string
+
+	for _, fn := range functions {
+		if fn.Availability.MacOS.Available && fn.Availability.MacOS.IntroducedAt != "" {
+			ver := fn.Availability.MacOS.IntroducedAt
+			if minVersion == "" || compareVersionStrings(ver, minVersion) < 0 {
+				minVersion = ver
+			}
+		}
+	}
+
+	return minVersion
+}
+
+// compareVersionStrings compares two version strings (e.g., "15.4" vs "15.0")
+// Returns: -1 if a < b, 0 if a == b, 1 if a > b
+func compareVersionStrings(a, b string) int {
+	if a == b {
+		return 0
+	}
+
+	// Simple string comparison works for most version strings
+	// For more sophisticated comparison, could parse into numbers
+	if a < b {
+		return -1
+	}
+	return 1
 }
 
 func generateTypesFile(outputDir, pkgName, framework string) {
@@ -379,32 +518,81 @@ func generateFunctionsFile(outputDir, pkgName, framework string, functions []*Pa
 			continue
 		}
 
-		fmt.Fprintf(f, "// %s", fn.Name)
-		if len(fn.Parameters) > 0 {
-			fmt.Fprintf(f, "(")
-			for j, p := range fn.Parameters {
-				if j > 0 {
-					fmt.Fprintf(f, ", ")
-				}
-				if p.Name != "" {
-					fmt.Fprintf(f, "%s ", p.Name)
-				}
-				fmt.Fprintf(f, "%s", p.Type)
-			}
-			fmt.Fprintf(f, ")")
-		} else {
-			fmt.Fprintf(f, "()")
-		}
-		if fn.ReturnType != "" && fn.ReturnType != "void" {
-			fmt.Fprintf(f, " %s", fn.ReturnType)
-		}
-		fmt.Fprintf(f, "\n")
+		// Generate function comment with version information
+		generateFunctionComment(f, fn)
 
-		// Add a blank line every 5 functions for readability
-		if (i+1)%5 == 0 {
+		// Add a blank line between functions
+		if (i+1)%3 == 0 {
 			fmt.Fprintf(f, "\n")
 		}
 	}
+}
+
+// generateFunctionComment generates a comment block for a function including version info
+func generateFunctionComment(f *os.File, fn *ParsedFunction) {
+	// Function signature
+	fmt.Fprintf(f, "// %s", fn.Name)
+	if len(fn.Parameters) > 0 {
+		fmt.Fprintf(f, "(")
+		for j, p := range fn.Parameters {
+			if j > 0 {
+				fmt.Fprintf(f, ", ")
+			}
+			if p.Name != "" {
+				fmt.Fprintf(f, "%s ", p.Name)
+			}
+			fmt.Fprintf(f, "%s", p.Type)
+		}
+		fmt.Fprintf(f, ")")
+	} else {
+		fmt.Fprintf(f, "()")
+	}
+	if fn.ReturnType != "" && fn.ReturnType != "void" {
+		fmt.Fprintf(f, " %s", fn.ReturnType)
+	}
+	fmt.Fprintf(f, "\n")
+
+	// Add availability information if present
+	if !fn.Availability.IsEmpty() {
+		fmt.Fprintf(f, "//\n")
+		fmt.Fprintf(f, "// Availability:\n")
+
+		if fn.Availability.MacOS.Available && fn.Availability.MacOS.IntroducedAt != "" {
+			status := ""
+			if fn.Availability.Beta {
+				status = " (Beta)"
+			} else if fn.Availability.MacOS.DeprecatedAt != "" {
+				status = fmt.Sprintf(" (Deprecated in %s)", fn.Availability.MacOS.DeprecatedAt)
+			}
+			fmt.Fprintf(f, "//   - macOS %s+%s\n", fn.Availability.MacOS.IntroducedAt, status)
+		}
+
+		if fn.Availability.IOS.Available && fn.Availability.IOS.IntroducedAt != "" {
+			status := ""
+			if fn.Availability.Beta {
+				status = " (Beta)"
+			} else if fn.Availability.IOS.DeprecatedAt != "" {
+				status = fmt.Sprintf(" (Deprecated in %s)", fn.Availability.IOS.DeprecatedAt)
+			}
+			fmt.Fprintf(f, "//   - iOS %s+%s\n", fn.Availability.IOS.IntroducedAt, status)
+		}
+
+		if fn.Availability.WatchOS.Available && fn.Availability.WatchOS.IntroducedAt != "" {
+			fmt.Fprintf(f, "//   - watchOS %s+\n", fn.Availability.WatchOS.IntroducedAt)
+		}
+
+		if fn.Availability.TVOS.Available && fn.Availability.TVOS.IntroducedAt != "" {
+			fmt.Fprintf(f, "//   - tvOS %s+\n", fn.Availability.TVOS.IntroducedAt)
+		}
+	}
+
+	// Add deprecation warning if deprecated
+	if fn.Availability.Deprecated {
+		fmt.Fprintf(f, "//\n")
+		fmt.Fprintf(f, "// Deprecated: This function is deprecated.\n")
+	}
+
+	fmt.Fprintf(f, "\n")
 }
 
 func generateDarkwinKitBindings(functions []*ParsedFunction, outputDir, framework string) {
