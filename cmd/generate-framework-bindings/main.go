@@ -39,14 +39,29 @@ func main() {
 
 	// Parse all JSON files in the framework directory
 	var functions []*ParsedFunction
+	var classes []*ParsedClass
+	var protocols []*ParsedProtocol
+
+	totalFiles := 0
+	processedFiles := 0
 	err := filepath.Walk(frameworkDir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 		if !info.IsDir() && strings.HasSuffix(path, ".json") {
-			fn, err := processJSONFile(path)
-			if err == nil && fn != nil {
-				functions = append(functions, fn)
+			totalFiles++
+			fn, cls, proto, err := processJSONFile(path)
+			if err == nil {
+				processedFiles++
+				if fn != nil {
+					functions = append(functions, fn)
+				}
+				if cls != nil {
+					classes = append(classes, cls)
+				}
+				if proto != nil {
+					protocols = append(protocols, proto)
+				}
 			}
 		}
 		return nil
@@ -55,7 +70,8 @@ func main() {
 		log.Fatalf("Error walking framework directory: %v", err)
 	}
 
-	log.Printf("Found %d functions in %s", len(functions), *framework)
+	log.Printf("Processed %d/%d JSON files in %s", processedFiles, totalFiles, *framework)
+	log.Printf("Found %d functions, %d classes, %d protocols", len(functions), len(classes), len(protocols))
 
 	// Create output directory
 	outDir := filepath.Join(*outputDir, strings.ToLower(*framework))
@@ -66,11 +82,11 @@ func main() {
 	// Generate bindings based on style
 	switch *style {
 	case "purego":
-		generatePuregoBindings(functions, outDir, *framework)
+		generatePuregoBindings(functions, classes, protocols, outDir, *framework)
 	case "darwinkit":
-		generateDarkwinKitBindings(functions, outDir, *framework)
+		generateDarkwinKitBindings(functions, classes, protocols, outDir, *framework)
 	case "simple":
-		generateSimpleBindings(functions, outDir, *framework)
+		generateSimpleBindings(functions, classes, protocols, outDir, *framework)
 	default:
 		log.Fatalf("Unknown style: %s", *style)
 	}
@@ -82,6 +98,19 @@ type ParsedFunction struct {
 	Name         string
 	ReturnType   string
 	Parameters   []Parameter
+	Comment      string
+	Availability Availability
+}
+
+type ParsedClass struct {
+	Name         string
+	SuperClass   string
+	Comment      string
+	Availability Availability
+}
+
+type ParsedProtocol struct {
+	Name         string
 	Comment      string
 	Availability Availability
 }
@@ -157,44 +186,71 @@ type Token struct {
 	Text string `json:"text"`
 }
 
-func processJSONFile(path string) (*ParsedFunction, error) {
+func processJSONFile(path string) (*ParsedFunction, *ParsedClass, *ParsedProtocol, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
 
 	var doc AppleDoc
 	if err := json.Unmarshal(data, &doc); err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
 
-	// Skip if not a C function (has external ID starting with c:@F@)
-	if !strings.HasPrefix(doc.Metadata.ExternalID, "c:@F@") {
-		return nil, fmt.Errorf("not a C function")
-	}
+	externalID := doc.Metadata.ExternalID
+	availability := extractAvailability(doc.Metadata.Platforms)
 
 	// Try to get ObjectiveC variant first
 	tokens := getObjectiveCVariant(&doc)
 	if tokens == nil {
 		// Fall back to primary declarations
-		if len(doc.PrimaryContentSections) > 0 && len(doc.PrimaryContentSections[0].Declarations) > 0 {
-			tokens = doc.PrimaryContentSections[0].Declarations[0].Tokens
+		if len(doc.PrimaryContentSections) > 0 {
+			// Find a section with declarations
+			for _, section := range doc.PrimaryContentSections {
+				if len(section.Declarations) > 0 && len(section.Declarations[0].Tokens) > 0 {
+					tokens = section.Declarations[0].Tokens
+					break
+				}
+			}
 		}
 	}
 
 	if tokens == nil || len(tokens) == 0 {
-		return nil, fmt.Errorf("no declaration found")
+		return nil, nil, nil, fmt.Errorf("no declaration found for %s", externalID)
 	}
 
-	fn, err := parseDeclaration(tokens)
-	if err != nil {
-		return nil, err
+	// Determine symbol type by external ID prefix
+	switch {
+	case strings.HasPrefix(externalID, "c:@F@"):
+		// C function
+		fn, err := parseDeclaration(tokens)
+		if err != nil {
+			return nil, nil, nil, err
+		}
+		fn.Availability = availability
+		return fn, nil, nil, nil
+
+	case strings.HasPrefix(externalID, "c:objc(cs)"):
+		// Objective-C class
+		cls := parseClassDeclaration(tokens)
+		if cls == nil {
+			return nil, nil, nil, fmt.Errorf("failed to parse class declaration")
+		}
+		cls.Availability = availability
+		return nil, cls, nil, nil
+
+	case strings.HasPrefix(externalID, "c:objc(pl)"):
+		// Objective-C protocol
+		proto := parseProtocolDeclaration(tokens)
+		if proto == nil {
+			return nil, nil, nil, fmt.Errorf("failed to parse protocol declaration")
+		}
+		proto.Availability = availability
+		return nil, nil, proto, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("unsupported symbol type: %s", externalID)
 	}
-
-	// Extract platform availability information
-	fn.Availability = extractAvailability(doc.Metadata.Platforms)
-
-	return fn, nil
 }
 
 // extractAvailability converts Platform metadata to Availability.
@@ -231,10 +287,29 @@ func getObjectiveCVariant(doc *AppleDoc) []Token {
 		for _, trait := range variant.Traits {
 			if trait.InterfaceLanguage == "occ" {
 				for _, patch := range variant.Patch {
-					if patch.Op == "replace" && strings.Contains(patch.Path, "declarations/0/tokens") {
+					if patch.Op != "replace" {
+						continue
+					}
+
+					// Check for direct tokens replacement
+					if strings.Contains(patch.Path, "declarations/0/tokens") {
 						var tokens []Token
 						if err := json.Unmarshal(patch.Value, &tokens); err == nil {
 							return tokens
+						}
+					}
+
+					// Check for primaryContentSections replacement (common for classes)
+					if patch.Path == "/primaryContentSections/0" {
+						var section struct {
+							Declarations []struct {
+								Tokens []Token `json:"tokens"`
+							} `json:"declarations"`
+						}
+						if err := json.Unmarshal(patch.Value, &section); err == nil {
+							if len(section.Declarations) > 0 {
+								return section.Declarations[0].Tokens
+							}
 						}
 					}
 				}
@@ -330,7 +405,88 @@ func parseDeclaration(tokens []Token) (*ParsedFunction, error) {
 	return fn, nil
 }
 
-func generatePuregoBindings(functions []*ParsedFunction, outputDir, framework string) {
+// parseClassDeclaration parses an Objective-C class declaration from tokens.
+// Example: @interface FSUnaryFileSystem : NSObject
+func parseClassDeclaration(tokens []Token) *ParsedClass {
+	cls := &ParsedClass{}
+
+	// Look for @interface followed by class name and optional superclass
+	for i := 0; i < len(tokens); i++ {
+		tok := tokens[i]
+
+		// Found @interface keyword
+		if tok.Kind == "keyword" && tok.Text == "@interface" {
+			// Next non-whitespace token should be the class name
+			i++
+			for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+				i++
+			}
+
+			if i < len(tokens) && tokens[i].Kind == "identifier" {
+				cls.Name = tokens[i].Text
+				i++
+
+				// Look for superclass - skip whitespace and check for ":"
+				for i < len(tokens) {
+					if tokens[i].Kind == "text" {
+						if strings.Contains(tokens[i].Text, ":") {
+							i++
+							break
+						}
+					}
+					i++
+				}
+
+				// Find the superclass name (next identifier or typeIdentifier)
+				for i < len(tokens) {
+					if tokens[i].Kind == "identifier" || tokens[i].Kind == "typeIdentifier" {
+						cls.SuperClass = tokens[i].Text
+						break
+					}
+					if tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) != "" {
+						break
+					}
+					i++
+				}
+				break
+			}
+		}
+	}
+
+	if cls.Name == "" {
+		return nil
+	}
+
+	return cls
+}
+
+// parseProtocolDeclaration parses an Objective-C protocol declaration from tokens.
+// Example: @protocol FSModuleExtension
+func parseProtocolDeclaration(tokens []Token) *ParsedProtocol {
+	proto := &ParsedProtocol{}
+
+	// Look for @protocol followed by protocol name
+	for i := 0; i < len(tokens); i++ {
+		tok := tokens[i]
+
+		// Found @protocol keyword
+		if tok.Kind == "keyword" && tok.Text == "@protocol" {
+			// Next token should be the protocol name
+			if i+1 < len(tokens) && tokens[i+1].Kind == "identifier" {
+				proto.Name = tokens[i+1].Text
+				break
+			}
+		}
+	}
+
+	if proto.Name == "" {
+		return nil
+	}
+
+	return proto
+}
+
+func generatePuregoBindings(functions []*ParsedFunction, classes []*ParsedClass, protocols []*ParsedProtocol, outputDir, framework string) {
 	pkgName := strings.ToLower(framework)
 
 	// Generate doc.go with package documentation
@@ -345,7 +501,25 @@ func generatePuregoBindings(functions []*ParsedFunction, outputDir, framework st
 	// Generate functions.gen.go
 	generateFunctionsFile(outputDir, pkgName, framework, functions)
 
-	log.Printf("Generated 4 .gen.go files in %s", outputDir)
+	// Generate classes.gen.go if there are classes
+	if len(classes) > 0 {
+		generateClassesFile(outputDir, pkgName, framework, classes)
+	}
+
+	// Generate protocols.gen.go if there are protocols
+	if len(protocols) > 0 {
+		generateProtocolsFile(outputDir, pkgName, framework, protocols)
+	}
+
+	fileCount := 4
+	if len(classes) > 0 {
+		fileCount++
+	}
+	if len(protocols) > 0 {
+		fileCount++
+	}
+
+	log.Printf("Generated %d .gen.go files in %s", fileCount, outputDir)
 }
 
 // generateDocFile generates package documentation with version information
@@ -628,14 +802,120 @@ func generateFunctionComment(f *os.File, fn *ParsedFunction) {
 	fmt.Fprintf(f, "\n")
 }
 
-func generateDarkwinKitBindings(functions []*ParsedFunction, outputDir, framework string) {
-	log.Printf("Darwinkit style not fully implemented yet for %s", framework)
-	generatePuregoBindings(functions, outputDir, framework)
+// generateClassesFile generates a file with Objective-C class declarations
+func generateClassesFile(outputDir, pkgName, framework string, classes []*ParsedClass) {
+	filename := filepath.Join(outputDir, "classes.gen.go")
+	f, err := os.Create(filename)
+	if err != nil {
+		log.Fatalf("Failed to create classes file: %v", err)
+	}
+	defer f.Close()
+
+	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
+	fmt.Fprintf(f, "package %s\n\n", pkgName)
+
+	fmt.Fprintf(f, "// %s Classes\n", framework)
+	fmt.Fprintf(f, "//\n")
+	fmt.Fprintf(f, "// This file contains class declarations discovered from Apple's documentation.\n")
+	fmt.Fprintf(f, "// These represent Objective-C classes that can be used with objc runtime bindings.\n")
+	fmt.Fprintf(f, "\n")
+
+	fmt.Fprintf(f, "// Discovered classes (%d total):\n\n", len(classes))
+
+	for _, cls := range classes {
+		if cls.Name == "" {
+			continue
+		}
+
+		// Generate class comment
+		fmt.Fprintf(f, "// %s", cls.Name)
+		if cls.SuperClass != "" {
+			fmt.Fprintf(f, " : %s", cls.SuperClass)
+		}
+		fmt.Fprintf(f, "\n")
+
+		// Add availability information if present
+		if !cls.Availability.IsEmpty() {
+			fmt.Fprintf(f, "//\n")
+			fmt.Fprintf(f, "// Availability:\n")
+
+			for _, platform := range cls.Availability.Platforms() {
+				version := cls.Availability.IntroducedAt[platform]
+				status := ""
+
+				if cls.Availability.Beta {
+					status = " (Beta)"
+				} else if deprecatedAt, ok := cls.Availability.DeprecatedAt[platform]; ok {
+					status = fmt.Sprintf(" (Deprecated in %s)", deprecatedAt)
+				}
+
+				fmt.Fprintf(f, "//   - %s %s+%s\n", platform, version, status)
+			}
+		}
+
+		fmt.Fprintf(f, "\n")
+	}
 }
 
-func generateSimpleBindings(functions []*ParsedFunction, outputDir, framework string) {
+// generateProtocolsFile generates a file with Objective-C protocol declarations
+func generateProtocolsFile(outputDir, pkgName, framework string, protocols []*ParsedProtocol) {
+	filename := filepath.Join(outputDir, "protocols.gen.go")
+	f, err := os.Create(filename)
+	if err != nil {
+		log.Fatalf("Failed to create protocols file: %v", err)
+	}
+	defer f.Close()
+
+	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
+	fmt.Fprintf(f, "package %s\n\n", pkgName)
+
+	fmt.Fprintf(f, "// %s Protocols\n", framework)
+	fmt.Fprintf(f, "//\n")
+	fmt.Fprintf(f, "// This file contains protocol declarations discovered from Apple's documentation.\n")
+	fmt.Fprintf(f, "// These represent Objective-C protocols that can be used with objc runtime bindings.\n")
+	fmt.Fprintf(f, "\n")
+
+	fmt.Fprintf(f, "// Discovered protocols (%d total):\n\n", len(protocols))
+
+	for _, proto := range protocols {
+		if proto.Name == "" {
+			continue
+		}
+
+		// Generate protocol comment
+		fmt.Fprintf(f, "// @protocol %s\n", proto.Name)
+
+		// Add availability information if present
+		if !proto.Availability.IsEmpty() {
+			fmt.Fprintf(f, "//\n")
+			fmt.Fprintf(f, "// Availability:\n")
+
+			for _, platform := range proto.Availability.Platforms() {
+				version := proto.Availability.IntroducedAt[platform]
+				status := ""
+
+				if proto.Availability.Beta {
+					status = " (Beta)"
+				} else if deprecatedAt, ok := proto.Availability.DeprecatedAt[platform]; ok {
+					status = fmt.Sprintf(" (Deprecated in %s)", deprecatedAt)
+				}
+
+				fmt.Fprintf(f, "//   - %s %s+%s\n", platform, version, status)
+			}
+		}
+
+		fmt.Fprintf(f, "\n")
+	}
+}
+
+func generateDarkwinKitBindings(functions []*ParsedFunction, classes []*ParsedClass, protocols []*ParsedProtocol, outputDir, framework string) {
+	log.Printf("Darwinkit style not fully implemented yet for %s", framework)
+	generatePuregoBindings(functions, classes, protocols, outputDir, framework)
+}
+
+func generateSimpleBindings(functions []*ParsedFunction, classes []*ParsedClass, protocols []*ParsedProtocol, outputDir, framework string) {
 	log.Printf("Simple style not fully implemented yet for %s", framework)
-	generatePuregoBindings(functions, outputDir, framework)
+	generatePuregoBindings(functions, classes, protocols, outputDir, framework)
 }
 
 func min(a, b int) int {

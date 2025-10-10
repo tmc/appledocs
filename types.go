@@ -25,6 +25,39 @@ type Document struct {
 
 	// PrimaryContentSections contains the main documentation content
 	PrimaryContentSections []ContentSection `json:"primaryContentSections,omitempty"`
+
+	// VariantOverrides contains JSON Patch operations for language-specific variants
+	VariantOverrides []VariantOverride `json:"variantOverrides,omitempty"`
+
+	// Variants lists available language/platform combinations
+	Variants []Variant `json:"variants,omitempty"`
+}
+
+// VariantOverride contains JSON Patch operations for a specific language variant.
+type VariantOverride struct {
+	// Traits identifies the variant (e.g., interfaceLanguage: "occ")
+	Traits []Trait `json:"traits"`
+
+	// Patch contains RFC 6902 JSON Patch operations
+	Patch []PatchOperation `json:"patch"`
+}
+
+// Trait identifies a variant characteristic.
+type Trait struct {
+	InterfaceLanguage string `json:"interfaceLanguage,omitempty"`
+}
+
+// Variant describes an available language/platform combination.
+type Variant struct {
+	Paths  []string `json:"paths"`
+	Traits []Trait  `json:"traits"`
+}
+
+// PatchOperation represents a JSON Patch operation.
+type PatchOperation struct {
+	Op    string      `json:"op"`    // "replace", "add", "remove", etc.
+	Path  string      `json:"path"`  // JSON Pointer (e.g., "/primaryContentSections/0")
+	Value interface{} `json:"value"` // Replacement value
 }
 
 // Identifier uniquely identifies a documentation node.
@@ -118,6 +151,21 @@ type TopicSection struct {
 
 // ContentSection contains documentation content.
 type ContentSection struct {
-	Kind    string        `json:"kind"`
-	Content []interface{} `json:"content,omitempty"`
+	Kind         string        `json:"kind"`
+	Content      []interface{} `json:"content,omitempty"`
+	Declarations []Declaration `json:"declarations,omitempty"`
+}
+
+// Declaration represents a code declaration.
+type Declaration struct {
+	Languages []string `json:"languages,omitempty"`
+	Platforms []string `json:"platforms,omitempty"`
+	Tokens    []Token  `json:"tokens"`
+}
+
+// Token represents a syntax token in a declaration.
+type Token struct {
+	Kind       string `json:"kind"`
+	Text       string `json:"text"`
+	Identifier string `json:"identifier,omitempty"`
 }
