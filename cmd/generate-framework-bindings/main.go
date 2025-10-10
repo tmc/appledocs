@@ -11,605 +11,442 @@
 package main
 
 import (
+	"bytes"
+	_ "embed"
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
-	"strconv"
 	"strings"
+	"text/template"
+
+	"github.com/tmc/appledocs"
+	"github.com/tmc/appledocs/occ2go"
+	"golang.org/x/tools/txtar"
 )
+
+//go:embed funcs.go
+var _ string // Force funcs.go to be included in binary for template compilation
+
+//go:embed templates.txtar
+var templatesData []byte
+
+var (
+	docTemplate               *template.Template
+	coreGraphicsTypesTemplate *template.Template
+	classesTemplate           *template.Template
+	protocolsTemplate         *template.Template
+	functionsGenTemplate      *template.Template
+)
+
+func init() {
+	// Parse txtar archive
+	archive := txtar.Parse(templatesData)
+	templates := make(map[string]string)
+	for _, file := range archive.Files {
+		templates[file.Name] = string(file.Data)
+	}
+
+	var err error
+	docTemplate, err = template.New("doc.gen.go").Funcs(templateFuncs).Parse(templates["doc.gen.go"])
+	if err != nil {
+		panic(fmt.Errorf("failed to parse doc.gen.go: %w", err))
+	}
+
+	coreGraphicsTypesTemplate, err = template.New("types.gen.go").Funcs(templateFuncs).Parse(templates["types.gen.go"])
+	if err != nil {
+		panic(fmt.Errorf("failed to parse types.gen.go: %w", err))
+	}
+
+	classesTemplate, err = template.New("classes.gen.go").Funcs(templateFuncs).Parse(templates["classes.gen.go"])
+	if err != nil {
+		panic(fmt.Errorf("failed to parse classes.gen.go: %w", err))
+	}
+
+	protocolsTemplate, err = template.New("protocols.gen.go").Funcs(templateFuncs).Parse(templates["protocols.gen.go"])
+	if err != nil {
+		panic(fmt.Errorf("failed to parse protocols.gen.go: %w", err))
+	}
+
+	functionsGenTemplate, err = template.New("functions.gen.go").Funcs(templateFuncs).Parse(templates["functions.gen.go"])
+	if err != nil {
+		panic(fmt.Errorf("failed to parse functions.gen.go: %w", err))
+	}
+}
 
 func main() {
 	framework := flag.String("framework", "CoreGraphics", "Framework to generate bindings for")
-	inputDir := flag.String("input", "output/tutorials/data/documentation", "Input directory with JSON files")
+	inputDir := flag.String("input", "", "Input directory with JSON files (defaults to ~/.appledocs/cache/developer.apple.com/tutorials/data/documentation)")
 	outputDir := flag.String("output", "generated", "Output directory for generated bindings")
 	style := flag.String("style", "purego", "Binding style: purego, darwinkit, or simple")
+	filterRegexp := flag.String("filter", "", "Only generate symbols matching this regexp (e.g., '^CGRect' or '^NS(Window|View)')")
+	txtarOutput := flag.Bool("txtar", false, "Output as txtar format to stdout instead of files")
 	flag.Parse()
 
-	log.Printf("Generating %s bindings for %s framework", *style, *framework)
-
-	// Find framework directory
-	frameworkDir := filepath.Join(*inputDir, *framework)
-	if _, err := os.Stat(frameworkDir); os.IsNotExist(err) {
-		log.Fatalf("Framework directory not found: %s", frameworkDir)
+	// Default to cache directory if not specified
+	if *inputDir == "" {
+		homeDir, err := os.UserHomeDir()
+		if err != nil {
+			log.Fatalf("Failed to get home directory: %v", err)
+		}
+		*inputDir = filepath.Join(homeDir, ".appledocs/cache/developer.apple.com/tutorials/data/documentation")
 	}
 
-	// Parse all JSON files in the framework directory
-	var functions []*ParsedFunction
-	var classes []*ParsedClass
-	var protocols []*ParsedProtocol
+	log.Printf("Generating %s bindings for %s framework", *style, *framework)
+	log.Printf("Input directory: %s", *inputDir)
+	log.Printf("Output directory: %s", *outputDir)
 
-	totalFiles := 0
+	// Open the appledocs filesystem
+	fsys, err := appledocs.Open(*inputDir)
+	if err != nil {
+		log.Fatalf("Failed to open appledocs filesystem: %v", err)
+	}
+
+	// Parse all symbols in the framework using the appledocs iterator
+	var functions []*occ2go.ParsedFunction
+	var classes []*occ2go.ParsedClass
+	var protocols []*occ2go.ParsedProtocol
+
 	processedFiles := 0
-	err := filepath.Walk(frameworkDir, func(path string, info os.FileInfo, err error) error {
+	for path, doc := range appledocs.Symbols(fsys, *framework) {
+		processedFiles++
+		fn, cls, proto, err := occ2go.ParseDocument(doc)
+		if err == nil {
+			if fn != nil {
+				functions = append(functions, fn)
+			}
+			if cls != nil {
+				classes = append(classes, cls)
+			}
+			if proto != nil {
+				protocols = append(protocols, proto)
+			}
+		} else {
+			log.Printf("Warning: failed to parse %s: %v", path, err)
+		}
+	}
+
+	log.Printf("Processed %d symbols in %s", processedFiles, *framework)
+	log.Printf("Found %d functions, %d classes, %d protocols", len(functions), len(classes), len(protocols))
+
+	// Deduplicate functions by name (keep first occurrence)
+	seenFunctions := make(map[string]bool)
+	uniqueFunctions := make([]*occ2go.ParsedFunction, 0, len(functions))
+	for _, fn := range functions {
+		if !seenFunctions[fn.Name] {
+			seenFunctions[fn.Name] = true
+			uniqueFunctions = append(uniqueFunctions, fn)
+		}
+	}
+	if len(uniqueFunctions) < len(functions) {
+		log.Printf("Deduplicated %d functions down to %d unique functions", len(functions), len(uniqueFunctions))
+		functions = uniqueFunctions
+	}
+
+	// Apply regexp filter if specified
+	if *filterRegexp != "" {
+		re, err := regexp.Compile(*filterRegexp)
+		if err != nil {
+			log.Fatalf("Invalid filter regexp: %v", err)
+		}
+
+		filteredFunctions := make([]*occ2go.ParsedFunction, 0)
+		for _, fn := range functions {
+			if re.MatchString(fn.Name) {
+				filteredFunctions = append(filteredFunctions, fn)
+			}
+		}
+
+		filteredClasses := make([]*occ2go.ParsedClass, 0)
+		for _, cls := range classes {
+			if re.MatchString(cls.Name) {
+				filteredClasses = append(filteredClasses, cls)
+			}
+		}
+
+		filteredProtocols := make([]*occ2go.ParsedProtocol, 0)
+		for _, proto := range protocols {
+			if re.MatchString(proto.Name) {
+				filteredProtocols = append(filteredProtocols, proto)
+			}
+		}
+
+		log.Printf("Filter '%s' matched %d/%d functions, %d/%d classes, %d/%d protocols",
+			*filterRegexp,
+			len(filteredFunctions), len(functions),
+			len(filteredClasses), len(classes),
+			len(filteredProtocols), len(protocols))
+
+		functions = filteredFunctions
+		classes = filteredClasses
+		protocols = filteredProtocols
+	}
+
+	// Create output directory
+	packageName := strings.ToLower(*framework)
+	outDir := filepath.Join(*outputDir, packageName)
+	if !*txtarOutput {
+		if err := os.MkdirAll(outDir, 0755); err != nil {
+			log.Fatalf("Failed to create output directory: %v", err)
+		}
+	}
+
+	// Generate bindings
+	if *txtarOutput {
+		if err := generateTxtar(os.Stdout, *framework, packageName, *inputDir, functions, classes, protocols); err != nil {
+			log.Fatalf("Failed to generate bindings: %v", err)
+		}
+	} else {
+		if err := generateFiles(outDir, *framework, packageName, *inputDir, functions, classes, protocols); err != nil {
+			log.Fatalf("Failed to generate bindings: %v", err)
+		}
+		log.Printf("Generated bindings in %s", outDir)
+	}
+}
+
+// generateFiles generates all files to disk
+func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol) error {
+	generators := []struct {
+		filename string
+		generate func(io.Writer) error
+	}{
+		{"doc.gen.go", func(w io.Writer) error { return generateDoc(w, framework, packageName, inputDir, functions) }},
+		{"types.gen.go", func(w io.Writer) error { return generateTypes(w, framework, packageName, functions) }},
+		{"functions.gen.go", func(w io.Writer) error { return generateFunctions(w, framework, packageName, functions) }},
+	}
+
+	if len(classes) > 0 {
+		generators = append(generators, struct {
+			filename string
+			generate func(io.Writer) error
+		}{"classes.gen.go", func(w io.Writer) error { return generateClasses(w, framework, packageName, classes) }})
+	}
+
+	if len(protocols) > 0 {
+		generators = append(generators, struct {
+			filename string
+			generate func(io.Writer) error
+		}{"protocols.gen.go", func(w io.Writer) error { return generateProtocols(w, framework, packageName, protocols) }})
+	}
+
+	for _, gen := range generators {
+		f, err := os.Create(filepath.Join(outDir, gen.filename))
 		if err != nil {
 			return err
 		}
-		if !info.IsDir() && strings.HasSuffix(path, ".json") {
-			totalFiles++
-			fn, cls, proto, err := processJSONFile(path)
-			if err == nil {
-				processedFiles++
-				if fn != nil {
-					functions = append(functions, fn)
-				}
-				if cls != nil {
-					classes = append(classes, cls)
-				}
-				if proto != nil {
-					protocols = append(protocols, proto)
-				}
-			}
-		}
-		return nil
-	})
-	if err != nil {
-		log.Fatalf("Error walking framework directory: %v", err)
-	}
-
-	log.Printf("Processed %d/%d JSON files in %s", processedFiles, totalFiles, *framework)
-	log.Printf("Found %d functions, %d classes, %d protocols", len(functions), len(classes), len(protocols))
-
-	// Create output directory
-	outDir := filepath.Join(*outputDir, strings.ToLower(*framework))
-	if err := os.MkdirAll(outDir, 0755); err != nil {
-		log.Fatalf("Failed to create output directory: %v", err)
-	}
-
-	// Generate bindings based on style
-	switch *style {
-	case "purego":
-		generatePuregoBindings(functions, classes, protocols, outDir, *framework)
-	case "darwinkit":
-		generateDarkwinKitBindings(functions, classes, protocols, outDir, *framework)
-	case "simple":
-		generateSimpleBindings(functions, classes, protocols, outDir, *framework)
-	default:
-		log.Fatalf("Unknown style: %s", *style)
-	}
-
-	log.Printf("Generated bindings in %s", outDir)
-}
-
-type ParsedFunction struct {
-	Name         string
-	ReturnType   string
-	Parameters   []Parameter
-	Comment      string
-	Availability Availability
-}
-
-type ParsedClass struct {
-	Name         string
-	SuperClass   string
-	Comment      string
-	Availability Availability
-}
-
-type ParsedProtocol struct {
-	Name         string
-	Comment      string
-	Availability Availability
-}
-
-type Parameter struct {
-	Name string
-	Type string
-}
-
-// Availability contains version information for API availability across platforms.
-// Uses maps for flexibility - handles new platforms without code changes.
-type Availability struct {
-	// IntroducedAt maps platform name to version string (e.g., "macOS" -> "10.14")
-	IntroducedAt map[string]string
-
-	// DeprecatedAt maps platform name to deprecation version
-	DeprecatedAt map[string]string
-
-	Beta bool
-}
-
-// IsEmpty returns true if no version information is available
-func (a *Availability) IsEmpty() bool {
-	return len(a.IntroducedAt) == 0 && len(a.DeprecatedAt) == 0
-}
-
-// Platforms returns a sorted list of platforms with availability info
-func (a *Availability) Platforms() []string {
-	platforms := make([]string, 0, len(a.IntroducedAt))
-	for p := range a.IntroducedAt {
-		platforms = append(platforms, p)
-	}
-	sort.Strings(platforms)
-	return platforms
-}
-
-type AppleDoc struct {
-	Metadata struct {
-		ExternalID string     `json:"externalID"`
-		Title      string     `json:"title"`
-		Platforms  []Platform `json:"platforms,omitempty"`
-	} `json:"metadata"`
-	PrimaryContentSections []struct {
-		Kind         string `json:"kind"`
-		Declarations []struct {
-			Tokens []Token `json:"tokens"`
-		} `json:"declarations"`
-	} `json:"primaryContentSections"`
-	VariantOverrides []struct {
-		Traits []struct {
-			InterfaceLanguage string `json:"interfaceLanguage"`
-		} `json:"traits"`
-		Patch []struct {
-			Op    string          `json:"op"`
-			Path  string          `json:"path"`
-			Value json.RawMessage `json:"value"`
-		} `json:"patch"`
-	} `json:"variantOverrides"`
-}
-
-// Platform describes platform availability
-type Platform struct {
-	Name         string `json:"name"`
-	IntroducedAt string `json:"introducedAt,omitempty"`
-	DeprecatedAt string `json:"deprecatedAt,omitempty"`
-	Beta         bool   `json:"beta"`
-	Deprecated   bool   `json:"deprecated,omitempty"`
-	Unavailable  bool   `json:"unavailable,omitempty"`
-}
-
-type Token struct {
-	Kind string `json:"kind"`
-	Text string `json:"text"`
-}
-
-func processJSONFile(path string) (*ParsedFunction, *ParsedClass, *ParsedProtocol, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, nil, nil, err
-	}
-
-	var doc AppleDoc
-	if err := json.Unmarshal(data, &doc); err != nil {
-		return nil, nil, nil, err
-	}
-
-	externalID := doc.Metadata.ExternalID
-	availability := extractAvailability(doc.Metadata.Platforms)
-
-	// Try to get ObjectiveC variant first
-	tokens := getObjectiveCVariant(&doc)
-	if tokens == nil {
-		// Fall back to primary declarations
-		if len(doc.PrimaryContentSections) > 0 {
-			// Find a section with declarations
-			for _, section := range doc.PrimaryContentSections {
-				if len(section.Declarations) > 0 && len(section.Declarations[0].Tokens) > 0 {
-					tokens = section.Declarations[0].Tokens
-					break
-				}
-			}
-		}
-	}
-
-	if tokens == nil || len(tokens) == 0 {
-		return nil, nil, nil, fmt.Errorf("no declaration found for %s", externalID)
-	}
-
-	// Determine symbol type by external ID prefix
-	switch {
-	case strings.HasPrefix(externalID, "c:@F@"):
-		// C function
-		fn, err := parseDeclaration(tokens)
+		err = gen.generate(f)
+		f.Close()
 		if err != nil {
-			return nil, nil, nil, err
-		}
-		fn.Availability = availability
-		return fn, nil, nil, nil
-
-	case strings.HasPrefix(externalID, "c:objc(cs)"):
-		// Objective-C class
-		cls := parseClassDeclaration(tokens)
-		if cls == nil {
-			return nil, nil, nil, fmt.Errorf("failed to parse class declaration")
-		}
-		cls.Availability = availability
-		return nil, cls, nil, nil
-
-	case strings.HasPrefix(externalID, "c:objc(pl)"):
-		// Objective-C protocol
-		proto := parseProtocolDeclaration(tokens)
-		if proto == nil {
-			return nil, nil, nil, fmt.Errorf("failed to parse protocol declaration")
-		}
-		proto.Availability = availability
-		return nil, nil, proto, nil
-
-	default:
-		return nil, nil, nil, fmt.Errorf("unsupported symbol type: %s", externalID)
-	}
-}
-
-// extractAvailability converts Platform metadata to Availability.
-// Returns availability information for all platforms found in the metadata.
-func extractAvailability(platforms []Platform) Availability {
-	avail := Availability{
-		IntroducedAt: make(map[string]string),
-		DeprecatedAt: make(map[string]string),
-	}
-
-	for _, p := range platforms {
-		if p.Unavailable {
-			continue
-		}
-
-		if p.IntroducedAt != "" {
-			avail.IntroducedAt[p.Name] = p.IntroducedAt
-		}
-
-		if p.DeprecatedAt != "" {
-			avail.DeprecatedAt[p.Name] = p.DeprecatedAt
-		}
-
-		if p.Beta {
-			avail.Beta = true
+			return err
 		}
 	}
 
-	return avail
-}
-
-func getObjectiveCVariant(doc *AppleDoc) []Token {
-	for _, variant := range doc.VariantOverrides {
-		for _, trait := range variant.Traits {
-			if trait.InterfaceLanguage == "occ" {
-				for _, patch := range variant.Patch {
-					if patch.Op != "replace" {
-						continue
-					}
-
-					// Check for direct tokens replacement
-					if strings.Contains(patch.Path, "declarations/0/tokens") {
-						var tokens []Token
-						if err := json.Unmarshal(patch.Value, &tokens); err == nil {
-							return tokens
-						}
-					}
-
-					// Check for primaryContentSections replacement (common for functions)
-					if patch.Path == "/primaryContentSections/0" {
-						var section struct {
-							Declarations []struct {
-								Languages []string `json:"languages"`
-								Platforms []string `json:"platforms"`
-								Tokens    []Token  `json:"tokens"`
-							} `json:"declarations"`
-						}
-						if err := json.Unmarshal(patch.Value, &section); err == nil {
-							if len(section.Declarations) > 0 && len(section.Declarations[0].Tokens) > 0 {
-								return section.Declarations[0].Tokens
-							}
-						}
-					}
-				}
-			}
-		}
-	}
 	return nil
 }
 
-func parseDeclaration(tokens []Token) (*ParsedFunction, error) {
-	fn := &ParsedFunction{
-		Parameters: []Parameter{},
+// generateTxtar generates all files as txtar format
+func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol) error {
+	files := make(map[string][]byte)
+
+	genFile := func(filename string, generator func(io.Writer) error) error {
+		var buf bytes.Buffer
+		if err := generator(&buf); err != nil {
+			return err
+		}
+		files[filename] = buf.Bytes()
+		return nil
 	}
 
-	// Filter out Swift-only declarations
-	// Look for Swift-specific keywords: class func, static func, var, ->
-	for _, tok := range tokens {
-		if tok.Kind == "keyword" && (tok.Text == "class" || tok.Text == "static" || tok.Text == "var") {
-			return nil, fmt.Errorf("skipping Swift declaration with keyword: %s", tok.Text)
+	if err := genFile("doc.gen.go", func(w io.Writer) error { return generateDoc(w, framework, packageName, inputDir, functions) }); err != nil {
+		return err
+	}
+	if err := genFile("types.gen.go", func(w io.Writer) error { return generateTypes(w, framework, packageName, functions) }); err != nil {
+		return err
+	}
+	if err := genFile("functions.gen.go", func(w io.Writer) error { return generateFunctions(w, framework, packageName, functions) }); err != nil {
+		return err
+	}
+	if len(classes) > 0 {
+		if err := genFile("classes.gen.go", func(w io.Writer) error { return generateClasses(w, framework, packageName, classes) }); err != nil {
+			return err
 		}
-		if tok.Text == "->" {
-			return nil, fmt.Errorf("skipping Swift declaration with -> syntax")
+	}
+	if len(protocols) > 0 {
+		if err := genFile("protocols.gen.go", func(w io.Writer) error { return generateProtocols(w, framework, packageName, protocols) }); err != nil {
+			return err
 		}
 	}
 
-	// C function format: [extern] <returnType> <functionName>(<params>);
-	// Parse: skip "extern" if present, collect return type, get function name, parse parameters
+	// Write txtar format
+	fmt.Fprintf(w, "# Generated bindings for %s framework\n", framework)
+	fmt.Fprintf(w, "# Package: %s\n#\n", packageName)
+	fmt.Fprintf(w, "# Functions: %d\n", len(functions))
+	fmt.Fprintf(w, "# Classes: %d\n", len(classes))
+	fmt.Fprintf(w, "# Protocols: %d\n\n", len(protocols))
 
-	i := 0
-	// Skip "extern" keyword
-	if i < len(tokens) && tokens[i].Kind == "keyword" && tokens[i].Text == "extern" {
-		i++
-		// Skip whitespace after extern
-		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
-			i++
+	fileNames := make([]string, 0, len(files))
+	for name := range files {
+		fileNames = append(fileNames, name)
+	}
+	sort.Strings(fileNames)
+
+	for _, name := range fileNames {
+		content := files[name]
+		fmt.Fprintf(w, "-- %s --\n", name)
+		w.Write(content)
+		if len(content) > 0 && content[len(content)-1] != '\n' {
+			fmt.Fprintf(w, "\n")
 		}
 	}
 
-	// Collect return type (everything before function name/opening paren)
-	// Return type ends when we hit an identifier followed by "("
-	returnTypeParts := []string{}
-	for i < len(tokens) {
-		// Look ahead to see if next non-whitespace token is "("
-		if tokens[i].Kind == "identifier" || tokens[i].Kind == "typeIdentifier" {
-			// Check if this might be the function name
-			j := i + 1
-			for j < len(tokens) && tokens[j].Kind == "text" && strings.TrimSpace(tokens[j].Text) == "" {
-				j++
+	return nil
+}
+
+// generateDoc generates package documentation
+func generateDoc(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction) error {
+	frameworkAbstract, frameworkURL := loadFrameworkMetadata(inputDir, framework)
+
+	data := struct {
+		Framework   string
+		PackageName string
+		MinVersion  string
+		Abstract    string
+		DocURL      string
+	}{
+		Framework:   framework,
+		PackageName: packageName,
+		MinVersion:  findMinimumMacOSVersion(functions),
+		Abstract:    frameworkAbstract,
+		DocURL:      frameworkURL,
+	}
+
+	return docTemplate.Execute(w, data)
+}
+
+// generateTypes generates framework-specific type definitions
+func generateTypes(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction) error {
+	if framework == "CoreGraphics" {
+		refTypes := extractRefTypes(functions, "CG")
+		data := struct {
+			Framework   string
+			PackageName string
+			RefTypes    []string
+		}{framework, packageName, refTypes}
+		return coreGraphicsTypesTemplate.Execute(w, data)
+	}
+
+	// Empty types file for other frameworks
+	fmt.Fprintf(w, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
+	fmt.Fprintf(w, "package %s\n", packageName)
+	return nil
+}
+
+// generateFunctions generates function bindings
+func generateFunctions(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction) error {
+	data := struct {
+		Framework   string
+		PackageName string
+		Count       int
+		Functions   []*occ2go.ParsedFunction
+	}{framework, packageName, len(functions), functions}
+
+	return functionsGenTemplate.Execute(w, data)
+}
+
+// generateClasses generates class declarations
+func generateClasses(w io.Writer, framework, packageName string, classes []*occ2go.ParsedClass) error {
+	data := struct {
+		Framework   string
+		PackageName string
+		Count       int
+		Classes     []*occ2go.ParsedClass
+	}{framework, packageName, len(classes), classes}
+
+	return classesTemplate.Execute(w, data)
+}
+
+// generateProtocols generates protocol declarations
+func generateProtocols(w io.Writer, framework, packageName string, protocols []*occ2go.ParsedProtocol) error {
+	data := struct {
+		Framework   string
+		PackageName string
+		Count       int
+		Protocols   []*occ2go.ParsedProtocol
+	}{framework, packageName, len(protocols), protocols}
+
+	return protocolsTemplate.Execute(w, data)
+}
+
+// extractRefTypes extracts all Ref types from function signatures
+func extractRefTypes(functions []*occ2go.ParsedFunction, prefix string) []string {
+	refTypesMap := make(map[string]bool)
+
+	for _, fn := range functions {
+		if strings.HasPrefix(fn.ReturnType, prefix) && strings.HasSuffix(fn.ReturnType, "Ref") {
+			refTypesMap[fn.ReturnType] = true
+		}
+		for _, param := range fn.Parameters {
+			typ := strings.TrimSpace(param.Type)
+			if strings.HasPrefix(typ, prefix) && strings.HasSuffix(typ, "Ref") {
+				refTypesMap[typ] = true
 			}
-			if j < len(tokens) && tokens[j].Text == "(" {
-				// This identifier is the function name
-				fn.Name = tokens[i].Text
-				i = j + 1 // Move past "("
-				break
-			}
 		}
-
-		// Part of return type - collect non-whitespace tokens
-		if tokens[i].Text != "" && strings.TrimSpace(tokens[i].Text) != "" {
-			returnTypeParts = append(returnTypeParts, tokens[i].Text)
-		}
-		i++
 	}
 
-	fn.ReturnType = strings.Join(returnTypeParts, " ")
+	refTypes := make([]string, 0, len(refTypesMap))
+	for typ := range refTypesMap {
+		refTypes = append(refTypes, typ)
+	}
+	sort.Strings(refTypes)
+	return refTypes
+}
 
-	// Parse parameters
-	for i < len(tokens) {
-		// Skip whitespace
-		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
-			i++
+// loadFrameworkMetadata loads the framework-level JSON to extract abstract and URL
+func loadFrameworkMetadata(inputDir, framework string) (abstract string, docURL string) {
+	frameworkPath := filepath.Join(inputDir, framework+".json")
+	data, err := os.ReadFile(frameworkPath)
+	if err != nil {
+		// Try lowercase
+		frameworkPath = filepath.Join(inputDir, strings.ToLower(framework)+".json")
+		data, err = os.ReadFile(frameworkPath)
+		if err != nil {
+			return "", ""
 		}
+	}
 
-		if i >= len(tokens) || tokens[i].Text == ")" || tokens[i].Text == ";" {
+	var doc struct {
+		Abstract []struct {
+			Text string `json:"text"`
+			Type string `json:"type"`
+		} `json:"abstract"`
+		Identifier struct {
+			URL string `json:"url"`
+		} `json:"identifier"`
+	}
+
+	if err := json.Unmarshal(data, &doc); err != nil {
+		return "", ""
+	}
+
+	// Extract abstract text
+	for _, item := range doc.Abstract {
+		if item.Type == "text" && item.Text != "" {
+			abstract = item.Text
 			break
 		}
-
-		param := Parameter{}
-		paramTypeParts := []string{}
-
-		// Collect parameter type (everything up to parameter name or comma/paren)
-		for i < len(tokens) {
-			if tokens[i].Text == ")" || tokens[i].Text == "," || tokens[i].Text == ";" {
-				break
-			}
-
-			// Parameter name is typically an internalParam or last identifier
-			if tokens[i].Kind == "internalParam" {
-				param.Name = tokens[i].Text
-				i++
-				break
-			}
-
-			// Check if this is parameter name (identifier at end of type)
-			if tokens[i].Kind == "identifier" {
-				// Look ahead - if next is comma or paren, this is the parameter name
-				j := i + 1
-				for j < len(tokens) && tokens[j].Kind == "text" && strings.TrimSpace(tokens[j].Text) == "" {
-					j++
-				}
-				if j < len(tokens) && (tokens[j].Text == "," || tokens[j].Text == ")" || tokens[j].Text == ";") {
-					param.Name = tokens[i].Text
-					i = j
-					break
-				}
-			}
-
-			// Part of type - exclude punctuation marks
-			text := tokens[i].Text
-			if text != "" && strings.TrimSpace(text) != "" && text != ";" && text != ")" && text != "(" {
-				paramTypeParts = append(paramTypeParts, text)
-			}
-			i++
-		}
-
-		param.Type = strings.Join(paramTypeParts, " ")
-		if param.Type != "" {
-			fn.Parameters = append(fn.Parameters, param)
-		}
-
-		// Skip comma
-		if i < len(tokens) && tokens[i].Text == "," {
-			i++
-		}
 	}
 
-	// Skip functions with colons (ObjC selectors)
-	if strings.Contains(fn.Name, ":") {
-		return nil, fmt.Errorf("skipping ObjC selector: %s", fn.Name)
-	}
-
-	if fn.Name == "" {
-		return nil, fmt.Errorf("failed to parse function name")
-	}
-
-	// Clean up return type - remove trailing semicolons and parentheses
-	fn.ReturnType = strings.TrimRight(fn.ReturnType, ";)")
-	fn.ReturnType = strings.TrimSpace(fn.ReturnType)
-
-	return fn, nil
+	docURL = occ2go.ConvertDocURLToWeb(doc.Identifier.URL)
+	return abstract, docURL
 }
 
-// parseClassDeclaration parses an Objective-C class declaration from tokens.
-// Example: @interface FSUnaryFileSystem : NSObject
-func parseClassDeclaration(tokens []Token) *ParsedClass {
-	cls := &ParsedClass{}
-
-	// Look for @interface followed by class name and optional superclass
-	for i := 0; i < len(tokens); i++ {
-		tok := tokens[i]
-
-		// Found @interface keyword
-		if tok.Kind == "keyword" && tok.Text == "@interface" {
-			// Next non-whitespace token should be the class name
-			i++
-			for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
-				i++
-			}
-
-			if i < len(tokens) && tokens[i].Kind == "identifier" {
-				cls.Name = tokens[i].Text
-				i++
-
-				// Look for superclass - skip whitespace and check for ":"
-				for i < len(tokens) {
-					if tokens[i].Kind == "text" {
-						if strings.Contains(tokens[i].Text, ":") {
-							i++
-							break
-						}
-					}
-					i++
-				}
-
-				// Find the superclass name (next identifier or typeIdentifier)
-				for i < len(tokens) {
-					if tokens[i].Kind == "identifier" || tokens[i].Kind == "typeIdentifier" {
-						cls.SuperClass = tokens[i].Text
-						break
-					}
-					if tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) != "" {
-						break
-					}
-					i++
-				}
-				break
-			}
-		}
-	}
-
-	if cls.Name == "" {
-		return nil
-	}
-
-	return cls
-}
-
-// parseProtocolDeclaration parses an Objective-C protocol declaration from tokens.
-// Example: @protocol FSModuleExtension
-func parseProtocolDeclaration(tokens []Token) *ParsedProtocol {
-	proto := &ParsedProtocol{}
-
-	// Look for @protocol followed by protocol name
-	for i := 0; i < len(tokens); i++ {
-		tok := tokens[i]
-
-		// Found @protocol keyword
-		if tok.Kind == "keyword" && tok.Text == "@protocol" {
-			// Next token should be the protocol name
-			if i+1 < len(tokens) && tokens[i+1].Kind == "identifier" {
-				proto.Name = tokens[i+1].Text
-				break
-			}
-		}
-	}
-
-	if proto.Name == "" {
-		return nil
-	}
-
-	return proto
-}
-
-func generatePuregoBindings(functions []*ParsedFunction, classes []*ParsedClass, protocols []*ParsedProtocol, outputDir, framework string) {
-	pkgName := strings.ToLower(framework)
-
-	// Generate doc.go with package documentation
-	generateDocFile(outputDir, pkgName, framework, functions)
-
-	// Generate types.gen.go
-	generateTypesFile(outputDir, pkgName, framework)
-
-	// Generate loader.gen.go
-	generateLoaderFile(outputDir, pkgName, framework)
-
-	// Generate functions.gen.go
-	generateFunctionsFile(outputDir, pkgName, framework, functions)
-
-	// Generate classes.gen.go if there are classes
-	if len(classes) > 0 {
-		generateClassesFile(outputDir, pkgName, framework, classes)
-	}
-
-	// Generate protocols.gen.go if there are protocols
-	if len(protocols) > 0 {
-		generateProtocolsFile(outputDir, pkgName, framework, protocols)
-	}
-
-	fileCount := 4
-	if len(classes) > 0 {
-		fileCount++
-	}
-	if len(protocols) > 0 {
-		fileCount++
-	}
-
-	log.Printf("Generated %d .gen.go files in %s", fileCount, outputDir)
-}
-
-// generateDocFile generates package documentation with version information
-func generateDocFile(outputDir, pkgName, framework string, functions []*ParsedFunction) {
-	filename := filepath.Join(outputDir, "doc.go")
-	f, err := os.Create(filename)
-	if err != nil {
-		log.Fatalf("Failed to create doc file: %v", err)
-	}
-	defer f.Close()
-
-	// Find minimum version across all functions
-	minVersion := findMinimumMacOSVersion(functions)
-
-	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
-	fmt.Fprintf(f, "// Package %s provides Go bindings for the %s framework.\n", pkgName, framework)
-	fmt.Fprintf(f, "//\n")
-
-	if minVersion != "" {
-		fmt.Fprintf(f, "// Minimum macOS version: %s\n", minVersion)
-	}
-
-	fmt.Fprintf(f, "// Framework path: /System/Library/Frameworks/%s.framework/%s\n", framework, framework)
-	fmt.Fprintf(f, "//\n")
-	fmt.Fprintf(f, "// These bindings are generated from Apple's official documentation and\n")
-	fmt.Fprintf(f, "// provide purego-based access to %s without requiring cgo.\n", framework)
-	fmt.Fprintf(f, "package %s\n\n", pkgName)
-
-	// Add package-level constants
-	if minVersion != "" {
-		fmt.Fprintf(f, "// MinMacOSVersion is the minimum macOS version required for this framework.\n")
-		fmt.Fprintf(f, "const MinMacOSVersion = \"%s\"\n\n", minVersion)
-	}
-
-	fmt.Fprintf(f, "// FrameworkPath is the system path to the framework binary.\n")
-	fmt.Fprintf(f, "const FrameworkPath = \"/System/Library/Frameworks/%s.framework/%s\"\n", framework, framework)
-}
-
-// findMinimumMacOSVersion finds the minimum macOS version across all functions.
-// Returns empty string if no macOS versions are found.
-func findMinimumMacOSVersion(functions []*ParsedFunction) string {
+// findMinimumMacOSVersion finds the minimum macOS version across all functions
+func findMinimumMacOSVersion(functions []*occ2go.ParsedFunction) string {
 	var minVersion string
 
 	for _, fn := range functions {
@@ -623,32 +460,7 @@ func findMinimumMacOSVersion(functions []*ParsedFunction) string {
 	return minVersion
 }
 
-// parseVersion parses a version string like "10.14" into major and minor components.
-// Returns major, minor, and ok=true if parsing succeeded.
-func parseVersion(s string) (major, minor int, ok bool) {
-	parts := strings.SplitN(s, ".", 2)
-	if len(parts) == 0 {
-		return 0, 0, false
-	}
-
-	major, err := strconv.Atoi(parts[0])
-	if err != nil {
-		return 0, 0, false
-	}
-
-	minor = 0
-	if len(parts) > 1 {
-		minor, err = strconv.Atoi(parts[1])
-		if err != nil {
-			return 0, 0, false
-		}
-	}
-
-	return major, minor, true
-}
-
-// compareVersionStrings compares two version strings semantically (e.g., "10.14" vs "10.9").
-// Returns: -1 if a < b, 0 if a == b, 1 if a > b
+// compareVersionStrings compares two version strings semantically
 func compareVersionStrings(a, b string) int {
 	if a == b {
 		return 0
@@ -657,12 +469,10 @@ func compareVersionStrings(a, b string) int {
 	maj1, min1, ok1 := parseVersion(a)
 	maj2, min2, ok2 := parseVersion(b)
 
-	// Fallback to lexicographic comparison if parsing fails
 	if !ok1 || !ok2 {
 		return strings.Compare(a, b)
 	}
 
-	// Compare major versions first
 	if maj1 < maj2 {
 		return -1
 	}
@@ -670,7 +480,6 @@ func compareVersionStrings(a, b string) int {
 		return 1
 	}
 
-	// Major versions equal, compare minor versions
 	if min1 < min2 {
 		return -1
 	}
@@ -681,395 +490,21 @@ func compareVersionStrings(a, b string) int {
 	return 0
 }
 
-func generateTypesFile(outputDir, pkgName, framework string) {
-	filename := filepath.Join(outputDir, "types.gen.go")
-	f, err := os.Create(filename)
-	if err != nil {
-		log.Fatalf("Failed to create types file: %v", err)
-	}
-	defer f.Close()
-
-	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
-	fmt.Fprintf(f, "package %s\n\n", pkgName)
-	fmt.Fprintf(f, "import \"unsafe\"\n\n")
-
-	fmt.Fprintf(f, "// %s Types\n\n", framework)
-
-	// Common CoreGraphics types
-	if framework == "CoreGraphics" {
-		fmt.Fprintf(f, "// Fundamental types\n")
-		fmt.Fprintf(f, "type CGFloat float64\n\n")
-
-		fmt.Fprintf(f, "// Opaque reference types\n")
-		fmt.Fprintf(f, "type CGContextRef unsafe.Pointer\n")
-		fmt.Fprintf(f, "type CGColorRef unsafe.Pointer\n")
-		fmt.Fprintf(f, "type CGColorSpaceRef unsafe.Pointer\n")
-		fmt.Fprintf(f, "type CGPathRef unsafe.Pointer\n")
-		fmt.Fprintf(f, "type CGImageRef unsafe.Pointer\n")
-		fmt.Fprintf(f, "type CGDataProviderRef unsafe.Pointer\n")
-		fmt.Fprintf(f, "type CGFontRef unsafe.Pointer\n")
-		fmt.Fprintf(f, "type CGGradientRef unsafe.Pointer\n")
-		fmt.Fprintf(f, "type CGLayerRef unsafe.Pointer\n")
-		fmt.Fprintf(f, "type CGPDFDocumentRef unsafe.Pointer\n")
-		fmt.Fprintf(f, "type CGPDFPageRef unsafe.Pointer\n\n")
-
-		fmt.Fprintf(f, "// Geometric types\n")
-		fmt.Fprintf(f, "type CGPoint struct {\n")
-		fmt.Fprintf(f, "\tX, Y CGFloat\n")
-		fmt.Fprintf(f, "}\n\n")
-
-		fmt.Fprintf(f, "type CGSize struct {\n")
-		fmt.Fprintf(f, "\tWidth, Height CGFloat\n")
-		fmt.Fprintf(f, "}\n\n")
-
-		fmt.Fprintf(f, "type CGRect struct {\n")
-		fmt.Fprintf(f, "\tOrigin CGPoint\n")
-		fmt.Fprintf(f, "\tSize   CGSize\n")
-		fmt.Fprintf(f, "}\n\n")
-
-		fmt.Fprintf(f, "type CGAffineTransform struct {\n")
-		fmt.Fprintf(f, "\tA, B, C, D, Tx, Ty CGFloat\n")
-		fmt.Fprintf(f, "}\n\n")
-	}
-}
-
-func generateLoaderFile(outputDir, pkgName, framework string) {
-	filename := filepath.Join(outputDir, "loader.gen.go")
-	f, err := os.Create(filename)
-	if err != nil {
-		log.Fatalf("Failed to create loader file: %v", err)
-	}
-	defer f.Close()
-
-	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
-	fmt.Fprintf(f, "package %s\n\n", pkgName)
-	fmt.Fprintf(f, "import \"github.com/ebitengine/purego\"\n\n")
-
-	fmt.Fprintf(f, "// lib holds the framework library handle.\n")
-	fmt.Fprintf(f, "// Functions are automatically registered in init().\n")
-	fmt.Fprintf(f, "var lib uintptr\n\n")
-
-	fmt.Fprintf(f, "func init() {\n")
-	fmt.Fprintf(f, "\tvar err error\n")
-	fmt.Fprintf(f, "\tlib, err = purego.Dlopen(FrameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)\n")
-	fmt.Fprintf(f, "\tif err != nil {\n")
-	fmt.Fprintf(f, "\t\tpanic(err)\n")
-	fmt.Fprintf(f, "\t}\n")
-	fmt.Fprintf(f, "\tregisterFunctions()\n")
-	fmt.Fprintf(f, "}\n")
-}
-
-func generateFunctionsFile(outputDir, pkgName, framework string, functions []*ParsedFunction) {
-	filename := filepath.Join(outputDir, "functions.gen.go")
-	f, err := os.Create(filename)
-	if err != nil {
-		log.Fatalf("Failed to create functions file: %v", err)
-	}
-	defer f.Close()
-
-	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
-	fmt.Fprintf(f, "package %s\n\n", pkgName)
-	fmt.Fprintf(f, "import \"github.com/ebitengine/purego\"\n\n")
-
-	fmt.Fprintf(f, "// %s Functions (%d total)\n", framework, len(functions))
-	fmt.Fprintf(f, "//\n")
-	fmt.Fprintf(f, "// This file contains executable function bindings automatically registered via purego.\n")
-	fmt.Fprintf(f, "// All functions are ready to use after package initialization.\n\n")
-
-	// Generate function variables
-	for _, fn := range functions {
-		if fn.Name == "" {
-			continue
-		}
-		generateExecutableFunctionDeclaration(f, fn, framework)
+// parseVersion parses a version string like "10.14" into major and minor components
+func parseVersion(s string) (major, minor int, ok bool) {
+	parts := strings.SplitN(s, ".", 2)
+	if len(parts) == 0 {
+		return 0, 0, false
 	}
 
-	// Generate registerFunctions
-	fmt.Fprintf(f, "\n// registerFunctions registers all framework functions with purego\n")
-	fmt.Fprintf(f, "func registerFunctions() {\n")
-	for _, fn := range functions {
-		if fn.Name == "" {
-			continue
-		}
-		fmt.Fprintf(f, "\tpurego.RegisterLibFunc(&%s, lib, \"%s\")\n", fn.Name, fn.Name)
-	}
-	fmt.Fprintf(f, "}\n")
-}
-
-// generateExecutableFunctionDeclaration generates an executable function variable declaration
-func generateExecutableFunctionDeclaration(f *os.File, fn *ParsedFunction, framework string) {
-	// Write documentation comment
-	if !fn.Availability.IsEmpty() {
-		for _, platform := range fn.Availability.Platforms() {
-			version := fn.Availability.IntroducedAt[platform]
-			status := ""
-			if fn.Availability.Beta {
-				status = " (Beta)"
-			} else if deprecatedAt, ok := fn.Availability.DeprecatedAt[platform]; ok {
-				status = fmt.Sprintf(" (Deprecated in %s)", deprecatedAt)
-			}
-			if platform == "macOS" { // Only show macOS for now
-				fmt.Fprintf(f, "// %s is available on %s %s+%s\n", fn.Name, platform, version, status)
-				break
-			}
-		}
+	if _, err := fmt.Sscanf(parts[0], "%d", &major); err != nil {
+		return 0, 0, false
 	}
 
-	// Write function variable declaration
-	fmt.Fprintf(f, "var %s func(", fn.Name)
-
-	// Write parameters
-	for i, p := range fn.Parameters {
-		if i > 0 {
-			fmt.Fprintf(f, ", ")
-		}
-		// Clean parameter type
-		paramType := strings.TrimRight(p.Type, ",;)")
-		paramType = strings.TrimSpace(paramType)
-		paramType = mapCTypeToGo(paramType, framework)
-
-		if p.Name != "" {
-			fmt.Fprintf(f, "%s %s", p.Name, paramType)
-		} else {
-			fmt.Fprintf(f, "%s", paramType)
-		}
+	minor = 0
+	if len(parts) > 1 {
+		fmt.Sscanf(parts[1], "%d", &minor)
 	}
 
-	fmt.Fprintf(f, ")")
-
-	// Write return type
-	if fn.ReturnType != "" && fn.ReturnType != "void" {
-		returnType := mapCTypeToGo(fn.ReturnType, framework)
-		fmt.Fprintf(f, " %s", returnType)
-	}
-
-	fmt.Fprintf(f, "\n\n")
-}
-
-// mapCTypeToGo maps C types to Go types for a given framework
-func mapCTypeToGo(cType, framework string) string {
-	cType = strings.TrimSpace(cType)
-
-	// Framework-specific types
-	if framework == "CoreGraphics" {
-		switch {
-		case strings.HasPrefix(cType, "CG") && strings.HasSuffix(cType, "Ref"):
-			return cType // Already a Go type
-		case cType == "CGFloat":
-			return "CGFloat"
-		case cType == "CGPoint":
-			return "CGPoint"
-		case cType == "CGSize":
-			return "CGSize"
-		case cType == "CGRect":
-			return "CGRect"
-		case cType == "CGAffineTransform":
-			return "CGAffineTransform"
-		}
-	}
-
-	// Common C types
-	switch {
-	case cType == "void":
-		return ""
-	case cType == "int":
-		return "int"
-	case cType == "size_t":
-		return "uintptr"
-	case cType == "uint32_t":
-		return "uint32"
-	case cType == "uint64_t":
-		return "uint64"
-	case cType == "float":
-		return "float32"
-	case cType == "double":
-		return "float64"
-	case cType == "bool", cType == "BOOL":
-		return "bool"
-	case strings.Contains(cType, "*"):
-		return "unsafe.Pointer"
-	default:
-		// Default to unsafe.Pointer for unknown types
-		return "unsafe.Pointer"
-	}
-}
-
-// generateFunctionComment generates a comment block for a function including version info
-func generateFunctionComment(f *os.File, fn *ParsedFunction) {
-	// Function signature
-	fmt.Fprintf(f, "// %s", fn.Name)
-	if len(fn.Parameters) > 0 {
-		fmt.Fprintf(f, "(")
-		for j, p := range fn.Parameters {
-			if j > 0 {
-				fmt.Fprintf(f, ", ")
-			}
-			// Clean parameter type - remove trailing punctuation
-			paramType := strings.TrimRight(p.Type, ",;)")
-			paramType = strings.TrimSpace(paramType)
-
-			if p.Name != "" {
-				fmt.Fprintf(f, "%s ", p.Name)
-			}
-			fmt.Fprintf(f, "%s", paramType)
-		}
-		fmt.Fprintf(f, ")")
-	} else {
-		fmt.Fprintf(f, "()")
-	}
-	if fn.ReturnType != "" && fn.ReturnType != "void" {
-		fmt.Fprintf(f, " %s", fn.ReturnType)
-	}
-	fmt.Fprintf(f, "\n")
-
-	// Add availability information if present
-	if !fn.Availability.IsEmpty() {
-		fmt.Fprintf(f, "//\n")
-		fmt.Fprintf(f, "// Availability:\n")
-
-		// Iterate over platforms in sorted order for consistent output
-		for _, platform := range fn.Availability.Platforms() {
-			version := fn.Availability.IntroducedAt[platform]
-			status := ""
-
-			if fn.Availability.Beta {
-				status = " (Beta)"
-			} else if deprecatedAt, ok := fn.Availability.DeprecatedAt[platform]; ok {
-				status = fmt.Sprintf(" (Deprecated in %s)", deprecatedAt)
-			}
-
-			fmt.Fprintf(f, "//   - %s %s+%s\n", platform, version, status)
-		}
-	}
-
-	// Add deprecation warning if any platform is deprecated
-	if len(fn.Availability.DeprecatedAt) > 0 {
-		fmt.Fprintf(f, "//\n")
-		fmt.Fprintf(f, "// Deprecated: This function is deprecated.\n")
-	}
-
-	fmt.Fprintf(f, "\n")
-}
-
-// generateClassesFile generates a file with Objective-C class declarations
-func generateClassesFile(outputDir, pkgName, framework string, classes []*ParsedClass) {
-	filename := filepath.Join(outputDir, "classes.gen.go")
-	f, err := os.Create(filename)
-	if err != nil {
-		log.Fatalf("Failed to create classes file: %v", err)
-	}
-	defer f.Close()
-
-	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
-	fmt.Fprintf(f, "package %s\n\n", pkgName)
-
-	fmt.Fprintf(f, "// %s Classes\n", framework)
-	fmt.Fprintf(f, "//\n")
-	fmt.Fprintf(f, "// This file contains class declarations discovered from Apple's documentation.\n")
-	fmt.Fprintf(f, "// These represent Objective-C classes that can be used with objc runtime bindings.\n")
-	fmt.Fprintf(f, "\n")
-
-	fmt.Fprintf(f, "// Discovered classes (%d total):\n\n", len(classes))
-
-	for _, cls := range classes {
-		if cls.Name == "" {
-			continue
-		}
-
-		// Generate class comment
-		fmt.Fprintf(f, "// %s", cls.Name)
-		if cls.SuperClass != "" {
-			fmt.Fprintf(f, " : %s", cls.SuperClass)
-		}
-		fmt.Fprintf(f, "\n")
-
-		// Add availability information if present
-		if !cls.Availability.IsEmpty() {
-			fmt.Fprintf(f, "//\n")
-			fmt.Fprintf(f, "// Availability:\n")
-
-			for _, platform := range cls.Availability.Platforms() {
-				version := cls.Availability.IntroducedAt[platform]
-				status := ""
-
-				if cls.Availability.Beta {
-					status = " (Beta)"
-				} else if deprecatedAt, ok := cls.Availability.DeprecatedAt[platform]; ok {
-					status = fmt.Sprintf(" (Deprecated in %s)", deprecatedAt)
-				}
-
-				fmt.Fprintf(f, "//   - %s %s+%s\n", platform, version, status)
-			}
-		}
-
-		fmt.Fprintf(f, "\n")
-	}
-}
-
-// generateProtocolsFile generates a file with Objective-C protocol declarations
-func generateProtocolsFile(outputDir, pkgName, framework string, protocols []*ParsedProtocol) {
-	filename := filepath.Join(outputDir, "protocols.gen.go")
-	f, err := os.Create(filename)
-	if err != nil {
-		log.Fatalf("Failed to create protocols file: %v", err)
-	}
-	defer f.Close()
-
-	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
-	fmt.Fprintf(f, "package %s\n\n", pkgName)
-
-	fmt.Fprintf(f, "// %s Protocols\n", framework)
-	fmt.Fprintf(f, "//\n")
-	fmt.Fprintf(f, "// This file contains protocol declarations discovered from Apple's documentation.\n")
-	fmt.Fprintf(f, "// These represent Objective-C protocols that can be used with objc runtime bindings.\n")
-	fmt.Fprintf(f, "\n")
-
-	fmt.Fprintf(f, "// Discovered protocols (%d total):\n\n", len(protocols))
-
-	for _, proto := range protocols {
-		if proto.Name == "" {
-			continue
-		}
-
-		// Generate protocol comment
-		fmt.Fprintf(f, "// @protocol %s\n", proto.Name)
-
-		// Add availability information if present
-		if !proto.Availability.IsEmpty() {
-			fmt.Fprintf(f, "//\n")
-			fmt.Fprintf(f, "// Availability:\n")
-
-			for _, platform := range proto.Availability.Platforms() {
-				version := proto.Availability.IntroducedAt[platform]
-				status := ""
-
-				if proto.Availability.Beta {
-					status = " (Beta)"
-				} else if deprecatedAt, ok := proto.Availability.DeprecatedAt[platform]; ok {
-					status = fmt.Sprintf(" (Deprecated in %s)", deprecatedAt)
-				}
-
-				fmt.Fprintf(f, "//   - %s %s+%s\n", platform, version, status)
-			}
-		}
-
-		fmt.Fprintf(f, "\n")
-	}
-}
-
-func generateDarkwinKitBindings(functions []*ParsedFunction, classes []*ParsedClass, protocols []*ParsedProtocol, outputDir, framework string) {
-	log.Printf("Darwinkit style not fully implemented yet for %s", framework)
-	generatePuregoBindings(functions, classes, protocols, outputDir, framework)
-}
-
-func generateSimpleBindings(functions []*ParsedFunction, classes []*ParsedClass, protocols []*ParsedProtocol, outputDir, framework string) {
-	log.Printf("Simple style not fully implemented yet for %s", framework)
-	generatePuregoBindings(functions, classes, protocols, outputDir, framework)
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
+	return major, minor, true
 }

@@ -1,0 +1,154 @@
+# Code generation templates for Apple framework bindings
+# These templates use occ2go helpers via FuncMap for type mapping and parameter processing
+
+-- doc.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+{{if .Abstract -}}
+// Package {{.PackageName}} provides Go bindings for the {{.Framework}} framework.
+//
+// {{.Abstract}} [Full Topic]
+{{else -}}
+// Package {{.PackageName}} provides Go bindings for the {{.Framework}} framework.
+{{end -}}
+//
+// These bindings are generated from Apple's official documentation and
+// provide purego-based access to {{.Framework}} without requiring cgo.
+{{if .DocURL -}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+package {{.PackageName}}
+
+// frameworkPath is the system path to the framework binary.
+const frameworkPath = "/System/Library/Frameworks/{{.Framework}}.framework/{{.Framework}}"
+
+-- types.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+import "unsafe"
+
+{{range .RefTypes -}}
+// {{.}} is a CoreGraphics opaque type.
+type {{.}} unsafe.Pointer
+
+{{end}}
+
+-- functions.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+import (
+	"unsafe"
+
+	"github.com/ebitengine/purego"
+)
+
+// {{.Framework}} Functions ({{.Count}} total)
+//
+// Type-safe package-level functions with graceful error handling.
+// Missing symbols are silently ignored during init; functions will panic when called if unavailable.
+
+var (
+{{- range .Functions}}
+{{- $params := prepareParams .Parameters $.Framework}}
+{{- $returnType := mapCTypeToGo .ReturnType $.Framework}}
+	_{{.Name}} func({{range $i, $p := $params}}{{if $i}}, {{end}}{{$p.Type}}{{end}}){{if $returnType}} {{$returnType}}{{end}}
+{{- end}}
+)
+
+func init() {
+	lib, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
+	if err != nil {
+		panic(err)
+	}
+
+{{- range .Functions}}
+	tryRegister(&_{{.Name}}, lib, "{{.Name}}")
+{{- end}}
+}
+
+// tryRegister attempts to register a function, silently ignoring failures.
+// This allows the library to load even if some symbols are missing.
+func tryRegister(fn interface{}, lib uintptr, name string) {
+	defer func() {
+		if r := recover(); r != nil {
+			// Symbol not found - function will remain nil and panic when called
+			// This is expected for inline functions, macros, or version-specific APIs
+		}
+	}()
+	purego.RegisterLibFunc(fn, lib, name)
+}
+
+{{range .Functions -}}
+{{- $docData := prepareFunctionDocData . $.Framework}}
+{{if $docData.Abstract}}// {{$docData.Abstract}} [Full Topic]{{else}}// {{$docData.Name}} is a {{$docData.Framework}} function. [Full Topic]{{end}}
+{{if $docData.HasAvailability -}}
+//
+{{if $docData.IsDeprecated -}}
+// Deprecated: This function was deprecated in {{$docData.DeprecatedPlatform}} {{$docData.DeprecatedVersion}}.
+//
+{{end -}}
+// Added in {{$docData.IntroducedPlatform}} {{$docData.IntroducedVersion}}.
+{{end -}}
+{{if $docData.DocURL -}}
+//
+// [Full Topic]: {{$docData.DocURL}}
+{{end -}}
+func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}} {{$p.Type}}{{end}}){{if $docData.ReturnType}} {{$docData.ReturnType}}{{end}} {
+	{{if $docData.ReturnType}}return {{end}}_{{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}}{{end}})
+}
+
+{{end}}
+
+-- classes.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+// {{.Framework}} Classes
+//
+// This file contains class declarations discovered from Apple's documentation.
+// These represent Objective-C classes that can be used with objc runtime bindings.
+
+// Discovered classes ({{.Count}} total):
+
+{{range .Classes -}}
+{{$class := . -}}
+// {{.Name}}{{if .SuperClass}} : {{.SuperClass}}{{end}}
+{{- if not .Availability.IsEmpty}}
+//
+// Availability:
+{{- range .Availability.Platforms}}
+//   - {{.}} {{index $class.Availability.IntroducedAt .}}+{{if $class.Availability.Beta}} (Beta){{else}}{{if index $class.Availability.DeprecatedAt .}} (Deprecated in {{index $class.Availability.DeprecatedAt .}}){{end}}{{end}}
+{{- end}}
+{{- end}}
+
+{{end -}}
+
+-- protocols.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+// {{.Framework}} Protocols
+//
+// This file contains protocol declarations discovered from Apple's documentation.
+// These represent Objective-C protocols that can be used with objc runtime bindings.
+
+// Discovered protocols ({{.Count}} total):
+
+{{range .Protocols -}}
+// @protocol {{.Name}}
+{{- if not .Availability.IsEmpty}}
+//
+// Availability:
+{{- range .Availability.Platforms}}
+//   - {{.}} {{index $.Availability.IntroducedAt .}}+{{if $.Availability.Beta}} (Beta){{else}}{{if index $.Availability.DeprecatedAt .}} (Deprecated in {{index $.Availability.DeprecatedAt .}}){{end}}{{end}}
+{{- end}}
+{{- end}}
+
+{{end -}}
