@@ -326,6 +326,17 @@ func parseDeclaration(tokens []Token) (*ParsedFunction, error) {
 		Parameters: []Parameter{},
 	}
 
+	// Filter out Swift-only declarations
+	// Look for Swift-specific keywords: class func, static func, var, ->
+	for _, tok := range tokens {
+		if tok.Kind == "keyword" && (tok.Text == "class" || tok.Text == "static" || tok.Text == "var") {
+			return nil, fmt.Errorf("skipping Swift declaration with keyword: %s", tok.Text)
+		}
+		if tok.Text == "->" {
+			return nil, fmt.Errorf("skipping Swift declaration with -> syntax")
+		}
+	}
+
 	// C function format: [extern] <returnType> <functionName>(<params>);
 	// Parse: skip "extern" if present, collect return type, get function name, parse parameters
 
@@ -408,9 +419,10 @@ func parseDeclaration(tokens []Token) (*ParsedFunction, error) {
 				}
 			}
 
-			// Part of type
-			if tokens[i].Text != "" && strings.TrimSpace(tokens[i].Text) != "" {
-				paramTypeParts = append(paramTypeParts, tokens[i].Text)
+			// Part of type - exclude punctuation marks
+			text := tokens[i].Text
+			if text != "" && strings.TrimSpace(text) != "" && text != ";" && text != ")" && text != "(" {
+				paramTypeParts = append(paramTypeParts, text)
 			}
 			i++
 		}
@@ -434,6 +446,10 @@ func parseDeclaration(tokens []Token) (*ParsedFunction, error) {
 	if fn.Name == "" {
 		return nil, fmt.Errorf("failed to parse function name")
 	}
+
+	// Clean up return type - remove trailing semicolons and parentheses
+	fn.ReturnType = strings.TrimRight(fn.ReturnType, ";)")
+	fn.ReturnType = strings.TrimSpace(fn.ReturnType)
 
 	return fn, nil
 }
@@ -792,10 +808,14 @@ func generateFunctionComment(f *os.File, fn *ParsedFunction) {
 			if j > 0 {
 				fmt.Fprintf(f, ", ")
 			}
+			// Clean parameter type - remove trailing punctuation
+			paramType := strings.TrimRight(p.Type, ",;)")
+			paramType = strings.TrimSpace(paramType)
+
 			if p.Name != "" {
 				fmt.Fprintf(f, "%s ", p.Name)
 			}
-			fmt.Fprintf(f, "%s", p.Type)
+			fmt.Fprintf(f, "%s", paramType)
 		}
 		fmt.Fprintf(f, ")")
 	} else {
