@@ -38,7 +38,7 @@ type SwiftCG struct {
 }
 
 func NewSwiftCG() (*SwiftCG, error) {
-	lib, err := purego.Dlopen("./libcoregraphics_swift.dylib", purego.RTLD_LAZY|purego.RTLD_GLOBAL)
+	lib, err := purego.Dlopen("./libCoreGraphicsSwift.dylib", purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to load library: %w", err)
 	}

@@ -28,6 +28,15 @@ Compare with ObjC approach:
 Go (purego) → ObjC runtime → ObjC wrapper → CoreGraphics (C API)
 ```
 
+## Shared Library
+
+This example uses the shared Swift CoreGraphics wrapper located at:
+```
+../../generated/swift/frameworks/coregraphics/
+```
+
+This allows multiple examples to reuse the same Swift→CG bindings without duplication.
+
 ## Building
 
 ```bash

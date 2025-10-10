@@ -1,15 +1,25 @@
-.PHONY: all clean run test
+.PHONY: all clean run test build-lib
 
-all: libcoregraphics_swift.dylib
+SWIFT_LIB_DIR = ../../generated/swift/frameworks/coregraphics
+SWIFT_LIB = libCoreGraphicsSwift.dylib
 
-libcoregraphics_swift.dylib: coregraphics_swift.swift
-	swiftc -emit-library coregraphics_swift.swift -o libcoregraphics_swift.dylib -framework CoreGraphics -framework Foundation -framework ImageIO
+all: build-lib link-lib
 
-run: libcoregraphics_swift.dylib
+build-lib:
+	@echo "Building shared CoreGraphics Swift library..."
+	cd $(SWIFT_LIB_DIR) && swift build -c release
+	@echo "✓ Library built at $(SWIFT_LIB_DIR)/.build/release/$(SWIFT_LIB)"
+
+link-lib: build-lib
+	@echo "Linking library to local directory..."
+	ln -sf $(SWIFT_LIB_DIR)/.build/release/$(SWIFT_LIB) ./$(SWIFT_LIB)
+
+run: link-lib
 	go run main.go
 
 clean:
-	rm -f libcoregraphics_swift.dylib output.png
+	rm -f $(SWIFT_LIB) output.png
+	cd $(SWIFT_LIB_DIR) && swift package clean
 
 test: run
 	@echo "Checking if output.png was created..."
