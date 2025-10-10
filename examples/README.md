@@ -200,6 +200,73 @@ type NSString struct {
 ...
 ```
 
+### 7. Cross-Reference (New!)
+
+Navigate between Swift and Objective-C documentation variants using the cross-reference API.
+
+```bash
+cd cross-reference
+go run main.go
+```
+
+**Features:**
+- Get cross-reference information between Swift and ObjC
+- Check language variant availability
+- Extract declarations for specific languages
+- Transform documents between language variants
+
+**Output:**
+```
+=== NSString Cross-Reference ===
+Symbol: NSString
+Kind: class
+
+Swift Declaration:
+  class NSString
+
+Objective-C Declaration:
+  @interface NSString : NSObject
+
+=== Language Variant Availability ===
+Foundation/NSArray            : Swift=true ObjC=true
+Foundation/NSDate             : Swift=true ObjC=true
+Foundation/NSURL              : Swift=true ObjC=true
+```
+
+### 8. CoreGraphics Methods (Work in Progress)
+
+Demonstrate method-style CoreGraphics API combined with cross-reference support.
+
+```bash
+cd coregraphics-methods
+go run main.go
+```
+
+**Features:**
+- Method-style CoreGraphics API (e.g., `ctx.MoveToPoint(x, y)`)
+- Creating bitmap contexts
+- Drawing with method-style wrappers
+- Cross-referencing CoreGraphics functions with their Swift/ObjC equivalents
+
+**Example API:**
+```go
+// Create context
+ctx := cg.CGBitmapContextCreate(...)
+
+// Use method-style API - much more ergonomic!
+ctx.BeginPath()
+ctx.MoveToPoint(50, 50)
+ctx.AddLineToPoint(150, 50)
+ctx.FillPath()
+
+// Compare with documentation
+doc, _ := appledocs.GetSymbol(fsys, "CoreGraphics/CGContextMoveToPoint")
+ref := appledocs.GetCrossReference(doc)
+fmt.Printf("Swift: %s\n", ref.SwiftDeclaration)
+fmt.Printf("ObjC:  %s\n", ref.ObjCDeclaration)
+fmt.Printf("Go:    ctx.MoveToPoint(x, y)\n")
+```
+
 ## Building and Installing
 
 To install an example as a command-line tool:
