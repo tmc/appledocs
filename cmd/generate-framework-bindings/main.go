@@ -299,15 +299,17 @@ func getObjectiveCVariant(doc *AppleDoc) []Token {
 						}
 					}
 
-					// Check for primaryContentSections replacement (common for classes)
+					// Check for primaryContentSections replacement (common for functions)
 					if patch.Path == "/primaryContentSections/0" {
 						var section struct {
 							Declarations []struct {
-								Tokens []Token `json:"tokens"`
+								Languages []string `json:"languages"`
+								Platforms []string `json:"platforms"`
+								Tokens    []Token  `json:"tokens"`
 							} `json:"declarations"`
 						}
 						if err := json.Unmarshal(patch.Value, &section); err == nil {
-							if len(section.Declarations) > 0 {
+							if len(section.Declarations) > 0 && len(section.Declarations[0].Tokens) > 0 {
 								return section.Declarations[0].Tokens
 							}
 						}
@@ -324,67 +326,96 @@ func parseDeclaration(tokens []Token) (*ParsedFunction, error) {
 		Parameters: []Parameter{},
 	}
 
-	// Find function name and parse signature
-	var i int
+	// C function format: [extern] <returnType> <functionName>(<params>);
+	// Parse: skip "extern" if present, collect return type, get function name, parse parameters
+
+	i := 0
+	// Skip "extern" keyword
+	if i < len(tokens) && tokens[i].Kind == "keyword" && tokens[i].Text == "extern" {
+		i++
+		// Skip whitespace after extern
+		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+			i++
+		}
+	}
+
+	// Collect return type (everything before function name/opening paren)
+	// Return type ends when we hit an identifier followed by "("
+	returnTypeParts := []string{}
 	for i < len(tokens) {
-		tok := tokens[i]
-
-		if tok.Kind == "identifier" && fn.Name == "" {
-			fn.Name = tok.Text
-			i++
-			continue
-		}
-
-		if tok.Kind == "text" && tok.Text == "(" && fn.Name != "" {
-			// Parse parameters
-			i++
-			break
-		}
-
-		// Collect return type
-		if fn.Name == "" {
-			if fn.ReturnType != "" {
-				fn.ReturnType += " "
+		// Look ahead to see if next non-whitespace token is "("
+		if tokens[i].Kind == "identifier" || tokens[i].Kind == "typeIdentifier" {
+			// Check if this might be the function name
+			j := i + 1
+			for j < len(tokens) && tokens[j].Kind == "text" && strings.TrimSpace(tokens[j].Text) == "" {
+				j++
 			}
-			fn.ReturnType += tok.Text
+			if j < len(tokens) && tokens[j].Text == "(" {
+				// This identifier is the function name
+				fn.Name = tokens[i].Text
+				i = j + 1 // Move past "("
+				break
+			}
 		}
 
+		// Part of return type - collect non-whitespace tokens
+		if tokens[i].Text != "" && strings.TrimSpace(tokens[i].Text) != "" {
+			returnTypeParts = append(returnTypeParts, tokens[i].Text)
+		}
 		i++
 	}
 
+	fn.ReturnType = strings.Join(returnTypeParts, " ")
+
 	// Parse parameters
 	for i < len(tokens) {
-		if tokens[i].Kind == "text" && tokens[i].Text == ")" {
+		// Skip whitespace
+		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+			i++
+		}
+
+		if i >= len(tokens) || tokens[i].Text == ")" || tokens[i].Text == ";" {
 			break
 		}
 
 		param := Parameter{}
-		paramType := ""
+		paramTypeParts := []string{}
 
-		// Collect type tokens until we hit internalParam or identifier
-		for i < len(tokens) && !(tokens[i].Kind == "internalParam" || (tokens[i].Kind == "identifier" && paramType != "")) {
-			if tokens[i].Kind == "text" && (tokens[i].Text == "," || tokens[i].Text == ")") {
+		// Collect parameter type (everything up to parameter name or comma/paren)
+		for i < len(tokens) {
+			if tokens[i].Text == ")" || tokens[i].Text == "," || tokens[i].Text == ";" {
 				break
 			}
-			if paramType != "" && tokens[i].Kind != "text" {
-				paramType += " "
+
+			// Parameter name is typically an internalParam or last identifier
+			if tokens[i].Kind == "internalParam" {
+				param.Name = tokens[i].Text
+				i++
+				break
 			}
-			if tokens[i].Text != "" && tokens[i].Text != "(" {
-				paramType += tokens[i].Text
+
+			// Check if this is parameter name (identifier at end of type)
+			if tokens[i].Kind == "identifier" {
+				// Look ahead - if next is comma or paren, this is the parameter name
+				j := i + 1
+				for j < len(tokens) && tokens[j].Kind == "text" && strings.TrimSpace(tokens[j].Text) == "" {
+					j++
+				}
+				if j < len(tokens) && (tokens[j].Text == "," || tokens[j].Text == ")" || tokens[j].Text == ";") {
+					param.Name = tokens[i].Text
+					i = j
+					break
+				}
+			}
+
+			// Part of type
+			if tokens[i].Text != "" && strings.TrimSpace(tokens[i].Text) != "" {
+				paramTypeParts = append(paramTypeParts, tokens[i].Text)
 			}
 			i++
 		}
 
-		// Get parameter name
-		if i < len(tokens) && tokens[i].Kind == "internalParam" {
-			param.Name = tokens[i].Text
-			i++
-		} else if i < len(tokens) && tokens[i].Kind == "identifier" {
-			param.Name = tokens[i].Text
-			i++
-		}
-
-		param.Type = strings.TrimSpace(paramType)
+		param.Type = strings.Join(paramTypeParts, " ")
 		if param.Type != "" {
 			fn.Parameters = append(fn.Parameters, param)
 		}
@@ -395,11 +426,13 @@ func parseDeclaration(tokens []Token) (*ParsedFunction, error) {
 		}
 	}
 
-	fn.ReturnType = strings.TrimSpace(fn.ReturnType)
-
 	// Skip functions with colons (ObjC selectors)
 	if strings.Contains(fn.Name, ":") {
 		return nil, fmt.Errorf("skipping ObjC selector: %s", fn.Name)
+	}
+
+	if fn.Name == "" {
+		return nil, fmt.Errorf("failed to parse function name")
 	}
 
 	return fn, nil
