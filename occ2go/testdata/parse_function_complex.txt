@@ -1,0 +1,10 @@
+# Test parsing a function with more complex parameter types
+# Uses CGColorSpaceRelease which has void return and a single ref parameter
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+# Parse the function
+exec occ2go $INPUT_DIR/CoreGraphics/1408855-cgcolorspacerelease.json
+stdout 'func CGColorSpaceRelease'
+stdout 'CGColorSpaceRef'
+stdout 'Decrements the retain count'

@@ -1,0 +1,10 @@
+# Test parsing an Objective-C class from Apple's documentation
+# This test uses NSApplication as an example
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+# Parse the class using occ2go command
+exec occ2go $INPUT_DIR/AppKit/NSApplication.json
+stdout 'type NSApplication struct'
+stdout 'NSResponder'
+stdout 'TODO: Add fields'

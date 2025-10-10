@@ -1,0 +1,14 @@
+# Aspirational: Parse typedef declarations
+# Currently typedefs like CGBitmapContextReleaseDataCallback are not supported
+# This test documents the goal for typedef parsing support
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+# Parse the typedef (currently this will fail with "unsupported symbol type")
+! exec occ2go $INPUT_DIR/CoreGraphics/CGBitmapContextReleaseDataCallback.json
+stderr 'unsupported symbol type'
+
+# GOAL: When typedef support is added, the test should expect:
+# exec occ2go $INPUT_DIR/CoreGraphics/CGBitmapContextReleaseDataCallback.json
+# stdout 'type CGBitmapContextReleaseDataCallback'
+# stdout 'func(unsafe.Pointer, unsafe.Pointer)'

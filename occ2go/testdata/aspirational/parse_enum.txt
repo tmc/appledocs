@@ -1,0 +1,16 @@
+# Aspirational: Parse enum declarations
+# Currently enums are not supported (returns "unsupported symbol type")
+# This test documents the goal for enum parsing support
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+# Parse the enum (currently this will fail with "unsupported symbol type")
+! exec occ2go $INPUT_DIR/CoreGraphics/CGBlendMode.json
+stderr 'unsupported symbol type'
+
+# GOAL: When enum support is added, the test should expect:
+# exec occ2go $INPUT_DIR/CoreGraphics/CGBlendMode.json
+# stdout 'type CGBlendMode'
+# stdout 'const ('
+# stdout 'kCGBlendModeNormal'
+# stdout 'kCGBlendModeMultiply'

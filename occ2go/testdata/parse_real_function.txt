@@ -1,0 +1,12 @@
+# Test parsing a real CoreGraphics function from Apple's documentation
+# This test uses CGContextMoveToPoint as an example
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+# Parse the function using occ2go command
+exec occ2go $INPUT_DIR/CoreGraphics/CGContextMoveToPoint.json
+stdout 'func CGContextMoveToPoint'
+stdout 'c CGContextRef'
+stdout 'x CGFloat'
+stdout 'y CGFloat'
+stdout 'Begins a new subpath'

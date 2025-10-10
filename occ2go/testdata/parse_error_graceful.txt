@@ -1,0 +1,13 @@
+# Test that parse errors are handled gracefully with informative comments
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+# Parse a file that will cause a parse error (enum type)
+exec occ2go $INPUT_DIR/CoreGraphics/CGBitmapInfo.json
+
+# Verify it outputs a parse error comment instead of exiting
+stdout 'Parse error'
+stdout 'unsupported symbol type'
+stdout 'Symbol: CGBitmapInfo'
+stdout 'Component information for a bitmap image'
+
+# Verify it doesn't exit with error status (graceful handling)
