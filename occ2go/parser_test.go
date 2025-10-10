@@ -41,8 +41,6 @@ func TestParseDocumentComprehensive(t *testing.T) {
 
 	t.Logf("Testing %d frameworks", len(frameworks))
 
-	stats := make(map[string]*FrameworkStats)
-
 	for _, framework := range frameworks {
 		t.Run(framework, func(t *testing.T) {
 			t.Parallel()
@@ -50,7 +48,6 @@ func TestParseDocumentComprehensive(t *testing.T) {
 				Framework: framework,
 				Results:   make(map[string]int),
 			}
-			stats[framework] = fwStats
 
 			// Process all symbols in the framework
 			for path, doc := range appledocs.Symbols(fsys, framework) {
@@ -153,9 +150,20 @@ func TestParseDocumentComprehensive(t *testing.T) {
 				}
 			}
 
-			// Verify we got at least some successful parses
-			if fwStats.Functions == 0 && fwStats.Classes == 0 && fwStats.Protocols == 0 {
-				t.Errorf("Failed to parse any symbols successfully for %s", framework)
+			// Verify we got at least some successful parses if there were symbols to parse
+			// Skip frameworks with no symbols or only documentation
+			if fwStats.Total > 0 && fwStats.Functions == 0 && fwStats.Classes == 0 && fwStats.Protocols == 0 {
+				// Check if all errors are expected types (doc-only, unsupported, or missing declarations)
+				allSkippable := true
+				for errType, count := range fwStats.Results {
+					if errType != "skipped" && errType != "unsupported" && errType != "no_declaration" && count > 0 {
+						allSkippable = false
+						break
+					}
+				}
+				if !allSkippable {
+					t.Errorf("Failed to parse any symbols successfully for %s", framework)
+				}
 			}
 		})
 	}

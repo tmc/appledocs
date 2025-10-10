@@ -22,7 +22,7 @@ func TestScripts(t *testing.T) {
 	tmpDir := t.TempDir()
 	tmpBin := filepath.Join(tmpDir, "occ2go")
 
-	buildCmd := os.Getenv("PWD") + "/../cmd/occ2go"
+	buildCmd := "../cmd/occ2go"
 	cmd := exec.Command("go", "build", "-o", tmpBin, buildCmd)
 	if out, err := cmd.CombinedOutput(); err != nil {
 		t.Fatalf("Failed to build occ2go binary: %v\nOutput: %s", err, out)
