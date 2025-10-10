@@ -340,6 +340,38 @@ fsys, _ := fetch.Framework("Foundation", "17.0")  // Caches locally
 
 See [DISTRIBUTION.md](DISTRIBUTION.md) for details on module structure and versioning strategy.
 
+## Swift Binding Generation
+
+In addition to documentation parsing, this project includes tooling for generating Go bindings from Swift framework extensions:
+
+- **Parse** .swiftinterface files with SwiftSyntax
+- **Generate** Swift @_cdecl wrappers
+- **Create** idiomatic Go packages with type safety
+
+See [SWIFT_BINDINGS.md](SWIFT_BINDINGS.md) for complete workflow and examples.
+
+### Example: Photos Framework
+
+```go
+import "github.com/tmc/appledocs/photosframework"
+
+// Type-safe, idiomatic Go API for Swift extensions
+library := photosframework.SharedPhotoLibrary()
+defer library.Release()
+
+// Access Swift-only APIs (not available in Objective-C!)
+iter := fetchResult.Iterator()  // Swift Sequence protocol
+for change := iter.Next(); change != nil; change = iter.Next() {
+    // Process persistent changes
+}
+```
+
+**Benefits:**
+- ✅ No cgo required (uses purego)
+- ✅ Type-safe Go wrappers
+- ✅ Automatic memory management
+- ✅ Access to Swift-only framework extensions
+
 ## Related Projects
 
 - [DarwinKit](https://github.com/progrium/darwinkit) - Go bindings for macOS frameworks (uses this package)
