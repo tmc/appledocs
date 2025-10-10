@@ -745,15 +745,17 @@ func generateLoaderFile(outputDir, pkgName, framework string) {
 	fmt.Fprintf(f, "package %s\n\n", pkgName)
 	fmt.Fprintf(f, "import \"github.com/ebitengine/purego\"\n\n")
 
-	fmt.Fprintf(f, "// lib holds the framework library handle\n")
+	fmt.Fprintf(f, "// lib holds the framework library handle.\n")
+	fmt.Fprintf(f, "// Functions are automatically registered in init().\n")
 	fmt.Fprintf(f, "var lib uintptr\n\n")
 
 	fmt.Fprintf(f, "func init() {\n")
 	fmt.Fprintf(f, "\tvar err error\n")
-	fmt.Fprintf(f, "\tlib, err = purego.Dlopen(\"/System/Library/Frameworks/%s.framework/%s\", purego.RTLD_LAZY|purego.RTLD_GLOBAL)\n", framework, framework)
+	fmt.Fprintf(f, "\tlib, err = purego.Dlopen(FrameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)\n")
 	fmt.Fprintf(f, "\tif err != nil {\n")
 	fmt.Fprintf(f, "\t\tpanic(err)\n")
 	fmt.Fprintf(f, "\t}\n")
+	fmt.Fprintf(f, "\tregisterFunctions()\n")
 	fmt.Fprintf(f, "}\n")
 }
 
@@ -767,34 +769,128 @@ func generateFunctionsFile(outputDir, pkgName, framework string, functions []*Pa
 
 	fmt.Fprintf(f, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
 	fmt.Fprintf(f, "package %s\n\n", pkgName)
+	fmt.Fprintf(f, "import \"github.com/ebitengine/purego\"\n\n")
 
-	fmt.Fprintf(f, "// %s Functions\n", framework)
+	fmt.Fprintf(f, "// %s Functions (%d total)\n", framework, len(functions))
 	fmt.Fprintf(f, "//\n")
-	fmt.Fprintf(f, "// This file contains function declarations discovered from Apple's documentation.\n")
-	fmt.Fprintf(f, "// To use these functions, you need to:\n")
-	fmt.Fprintf(f, "//   1. Map C types to Go types\n")
-	fmt.Fprintf(f, "//   2. Create function variables\n")
-	fmt.Fprintf(f, "//   3. Register them with purego.RegisterLibFunc\n")
-	fmt.Fprintf(f, "//\n")
-	fmt.Fprintf(f, "// Example:\n")
-	fmt.Fprintf(f, "//   var CGContextSetRGBFillColor func(c CGContextRef, red, green, blue, alpha CGFloat)\n")
-	fmt.Fprintf(f, "//   purego.RegisterLibFunc(&CGContextSetRGBFillColor, lib, \"CGContextSetRGBFillColor\")\n")
-	fmt.Fprintf(f, "\n")
+	fmt.Fprintf(f, "// This file contains executable function bindings automatically registered via purego.\n")
+	fmt.Fprintf(f, "// All functions are ready to use after package initialization.\n\n")
 
-	fmt.Fprintf(f, "// Discovered functions (%d total):\n\n", len(functions))
-
-	for i, fn := range functions {
+	// Generate function variables
+	for _, fn := range functions {
 		if fn.Name == "" {
 			continue
 		}
+		generateExecutableFunctionDeclaration(f, fn, framework)
+	}
 
-		// Generate function comment with version information
-		generateFunctionComment(f, fn)
-
-		// Add a blank line between functions
-		if (i+1)%3 == 0 {
-			fmt.Fprintf(f, "\n")
+	// Generate registerFunctions
+	fmt.Fprintf(f, "\n// registerFunctions registers all framework functions with purego\n")
+	fmt.Fprintf(f, "func registerFunctions() {\n")
+	for _, fn := range functions {
+		if fn.Name == "" {
+			continue
 		}
+		fmt.Fprintf(f, "\tpurego.RegisterLibFunc(&%s, lib, \"%s\")\n", fn.Name, fn.Name)
+	}
+	fmt.Fprintf(f, "}\n")
+}
+
+// generateExecutableFunctionDeclaration generates an executable function variable declaration
+func generateExecutableFunctionDeclaration(f *os.File, fn *ParsedFunction, framework string) {
+	// Write documentation comment
+	if !fn.Availability.IsEmpty() {
+		for _, platform := range fn.Availability.Platforms() {
+			version := fn.Availability.IntroducedAt[platform]
+			status := ""
+			if fn.Availability.Beta {
+				status = " (Beta)"
+			} else if deprecatedAt, ok := fn.Availability.DeprecatedAt[platform]; ok {
+				status = fmt.Sprintf(" (Deprecated in %s)", deprecatedAt)
+			}
+			if platform == "macOS" { // Only show macOS for now
+				fmt.Fprintf(f, "// %s is available on %s %s+%s\n", fn.Name, platform, version, status)
+				break
+			}
+		}
+	}
+
+	// Write function variable declaration
+	fmt.Fprintf(f, "var %s func(", fn.Name)
+
+	// Write parameters
+	for i, p := range fn.Parameters {
+		if i > 0 {
+			fmt.Fprintf(f, ", ")
+		}
+		// Clean parameter type
+		paramType := strings.TrimRight(p.Type, ",;)")
+		paramType = strings.TrimSpace(paramType)
+		paramType = mapCTypeToGo(paramType, framework)
+
+		if p.Name != "" {
+			fmt.Fprintf(f, "%s %s", p.Name, paramType)
+		} else {
+			fmt.Fprintf(f, "%s", paramType)
+		}
+	}
+
+	fmt.Fprintf(f, ")")
+
+	// Write return type
+	if fn.ReturnType != "" && fn.ReturnType != "void" {
+		returnType := mapCTypeToGo(fn.ReturnType, framework)
+		fmt.Fprintf(f, " %s", returnType)
+	}
+
+	fmt.Fprintf(f, "\n\n")
+}
+
+// mapCTypeToGo maps C types to Go types for a given framework
+func mapCTypeToGo(cType, framework string) string {
+	cType = strings.TrimSpace(cType)
+
+	// Framework-specific types
+	if framework == "CoreGraphics" {
+		switch {
+		case strings.HasPrefix(cType, "CG") && strings.HasSuffix(cType, "Ref"):
+			return cType // Already a Go type
+		case cType == "CGFloat":
+			return "CGFloat"
+		case cType == "CGPoint":
+			return "CGPoint"
+		case cType == "CGSize":
+			return "CGSize"
+		case cType == "CGRect":
+			return "CGRect"
+		case cType == "CGAffineTransform":
+			return "CGAffineTransform"
+		}
+	}
+
+	// Common C types
+	switch {
+	case cType == "void":
+		return ""
+	case cType == "int":
+		return "int"
+	case cType == "size_t":
+		return "uintptr"
+	case cType == "uint32_t":
+		return "uint32"
+	case cType == "uint64_t":
+		return "uint64"
+	case cType == "float":
+		return "float32"
+	case cType == "double":
+		return "float64"
+	case cType == "bool", cType == "BOOL":
+		return "bool"
+	case strings.Contains(cType, "*"):
+		return "unsafe.Pointer"
+	default:
+		// Default to unsafe.Pointer for unknown types
+		return "unsafe.Pointer"
 	}
 }
 
