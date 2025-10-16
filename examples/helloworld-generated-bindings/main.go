@@ -15,6 +15,7 @@ import (
 
 	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 func init() {
@@ -42,17 +43,17 @@ type NSRect struct {
 }
 
 // NewButton creates a new NSButton with the given frame
-func NewButton(frame NSRect) objc.ID {
-	buttonClass := objc.GetClass("NSButton")
-	button := objc.ID(buttonClass).Send(objc.RegisterName("alloc"))
-	return button.Send(objc.RegisterName("initWithFrame:"), frame)
+func NewButton(frame NSRect) appkit.Button {
+	button := appkit.Button{}.Alloc()
+	button.ID = button.ID.Send(objc.RegisterName("initWithFrame:"), frame)
+	return button
 }
 
 // NewTextField creates a new NSTextField with the given frame
-func NewTextField(frame NSRect) objc.ID {
-	textFieldClass := objc.GetClass("NSTextField")
-	textField := objc.ID(textFieldClass).Send(objc.RegisterName("alloc"))
-	return textField.Send(objc.RegisterName("initWithFrame:"), frame)
+func NewTextField(frame NSRect) appkit.TextField {
+	textField := appkit.TextField{}.Alloc()
+	textField.ID = textField.ID.Send(objc.RegisterName("initWithFrame:"), frame)
+	return textField
 }
 
 // NewNSString creates a new NSString from a Go string
@@ -66,7 +67,7 @@ func NewNSString(str string) objc.ID {
 // Global counter and label for button clicks
 var (
 	clickCount   int
-	counterLabel objc.ID
+	counterLabel appkit.TextField
 )
 
 func createAppDelegate() objc.ID {
@@ -125,7 +126,7 @@ func createButtonHandler() objc.ID {
 			fmt.Printf("Button clicked! Count: %d\n", clickCount)
 
 			// Update label
-			counterLabel.Send(objc.RegisterName("setStringValue:"),
+			counterLabel.ID.Send(objc.RegisterName("setStringValue:"),
 				NewNSString(fmt.Sprintf("Button clicks: %d", clickCount)))
 		}
 
@@ -160,8 +161,7 @@ func main() {
 	app.Send(objc.RegisterName("setActivationPolicy:"), 0) // NSApplicationActivationPolicyRegular = 0
 
 	// Create window
-	windowClass := objc.GetClass("NSWindow")
-	window := objc.ID(windowClass).Send(objc.RegisterName("alloc"))
+	window := appkit.Window{}.Alloc()
 
 	frame := NSRect{
 		Origin: NSPoint{X: 100, Y: 100},
@@ -170,7 +170,7 @@ func main() {
 
 	// Initialize window with frame
 	// initWithContentRect:styleMask:backing:defer:
-	window = window.Send(
+	window.ID = window.ID.Send(
 		objc.RegisterName("initWithContentRect:styleMask:backing:defer:"),
 		frame,
 		1|2|8, // NSTitledWindowMask(1) | NSClosableWindowMask(2) | NSResizableWindowMask(8)
@@ -179,39 +179,39 @@ func main() {
 	)
 
 	// Set window title
-	window.Send(objc.RegisterName("setTitle:"), NewNSString("Hello from Generated Bindings!"))
+	window.ID.Send(objc.RegisterName("setTitle:"), NewNSString("Hello from Generated Bindings!"))
 
 	// Create and set delegate to handle window close
 	delegate := createAppDelegate()
-	window.Send(objc.RegisterName("setDelegate:"), delegate)
+	window.ID.Send(objc.RegisterName("setDelegate:"), delegate)
 
 	// Get content view
-	contentView := window.Send(objc.RegisterName("contentView"))
+	contentView := window.ID.Send(objc.RegisterName("contentView"))
 
 	// Add a label
 	label := NewTextField(NSRect{
 		Origin: NSPoint{X: 50, Y: 200},
 		Size:   NSSize{Width: 300, Height: 50},
 	})
-	label.Send(objc.RegisterName("setStringValue:"), NewNSString("This uses only generated bindings!"))
-	label.Send(objc.RegisterName("setEditable:"), false)
-	label.Send(objc.RegisterName("setBordered:"), false)
-	label.Send(objc.RegisterName("setBackgroundColor:"), 0) // nil/transparent
+	label.ID.Send(objc.RegisterName("setStringValue:"), NewNSString("This uses only generated bindings!"))
+	label.ID.Send(objc.RegisterName("setEditable:"), false)
+	label.ID.Send(objc.RegisterName("setBordered:"), false)
+	label.ID.Send(objc.RegisterName("setBackgroundColor:"), 0) // nil/transparent
 
-	contentView.Send(objc.RegisterName("addSubview:"), label)
+	contentView.Send(objc.RegisterName("addSubview:"), label.ID)
 
 	// Add counter label
 	counterLabel = NewTextField(NSRect{
 		Origin: NSPoint{X: 50, Y: 80},
 		Size:   NSSize{Width: 300, Height: 30},
 	})
-	counterLabel.Send(objc.RegisterName("setStringValue:"), NewNSString("Button clicks: 0"))
-	counterLabel.Send(objc.RegisterName("setEditable:"), false)
-	counterLabel.Send(objc.RegisterName("setBordered:"), false)
-	counterLabel.Send(objc.RegisterName("setBackgroundColor:"), 0)
-	counterLabel.Send(objc.RegisterName("setAlignment:"), 2) // NSTextAlignmentCenter = 2
+	counterLabel.ID.Send(objc.RegisterName("setStringValue:"), NewNSString("Button clicks: 0"))
+	counterLabel.ID.Send(objc.RegisterName("setEditable:"), false)
+	counterLabel.ID.Send(objc.RegisterName("setBordered:"), false)
+	counterLabel.ID.Send(objc.RegisterName("setBackgroundColor:"), 0)
+	counterLabel.ID.Send(objc.RegisterName("setAlignment:"), 2) // NSTextAlignmentCenter = 2
 
-	contentView.Send(objc.RegisterName("addSubview:"), counterLabel)
+	contentView.Send(objc.RegisterName("addSubview:"), counterLabel.ID)
 
 	// Create button using NewButton helper
 	button := NewButton(NSRect{
@@ -220,24 +220,24 @@ func main() {
 	})
 
 	// Set button title
-	button.Send(objc.RegisterName("setTitle:"), NewNSString("Click Me!"))
+	button.ID.Send(objc.RegisterName("setTitle:"), NewNSString("Click Me!"))
 
 	// Set button type (NSMomentaryLight = 0)
-	button.Send(objc.RegisterName("setButtonType:"), 0)
+	button.ID.Send(objc.RegisterName("setButtonType:"), 0)
 
 	// Set bezel style (NSRoundedBezelStyle = 1)
-	button.Send(objc.RegisterName("setBezelStyle:"), 1)
+	button.ID.Send(objc.RegisterName("setBezelStyle:"), 1)
 
 	// Create button handler and set as target
 	buttonHandler := createButtonHandler()
-	button.Send(objc.RegisterName("setTarget:"), buttonHandler)
-	button.Send(objc.RegisterName("setAction:"), objc.RegisterName("buttonClicked:"))
+	button.ID.Send(objc.RegisterName("setTarget:"), buttonHandler)
+	button.ID.Send(objc.RegisterName("setAction:"), objc.RegisterName("buttonClicked:"))
 
 	// Add button to window
-	contentView.Send(objc.RegisterName("addSubview:"), button)
+	contentView.Send(objc.RegisterName("addSubview:"), button.ID)
 
 	// Show window
-	window.Send(objc.RegisterName("makeKeyAndOrderFront:"), 0)
+	window.MakeKeyAndOrderFront(0)
 
 	// Activate app
 	app.Send(objc.RegisterName("activateIgnoringOtherApps:"), true)
