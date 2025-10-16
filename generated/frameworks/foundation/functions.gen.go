@@ -47,7 +47,6 @@ package foundation
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // cgRect(string for, :  String) ->  CGRect) class   func
 //
 // Availability:
@@ -77,7 +76,6 @@ package foundation
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 2.0+
-
 
 // string(size for, :  CGSize) ->  String) class   func
 //
@@ -109,7 +107,6 @@ package foundation
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // string(point for, :  CGPoint) ->  String) class   func
 //
 // Availability:
@@ -136,7 +133,6 @@ package foundation
 //   - Mac Catalyst 13.0+
 //   - macOS 10.0+
 
-
 // NSFrameAddress(frame NSUInteger, );) extern   void  *
 //
 // Availability:
@@ -159,7 +155,6 @@ package foundation
 // Availability:
 //   - Mac Catalyst 13.0+
 //   - macOS 10.0+
-
 
 // NSLog(format NSString *, , ...);) extern   void
 //
@@ -189,7 +184,6 @@ package foundation
 //   - Mac Catalyst 13.0+
 //   - macOS 10.0+
 
-
 // NSReturnAddress(frame NSUInteger, );) extern   void  *
 //
 // Availability:
@@ -218,11 +212,9 @@ package foundation
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // NXReadNSObjectFromCoder(decoder NSCoder *, );) extern   NSObject  *
 //
 // Availability:
 //   - macOS 10.0+ (Deprecated in 10.5)
 //
 // Deprecated: This function is deprecated.
-

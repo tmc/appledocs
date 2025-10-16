@@ -2,7 +2,4 @@
 
 package metalkit
 
-import "unsafe"
-
 // MetalKit Types
-

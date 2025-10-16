@@ -36,7 +36,6 @@ package coremedia
 // Availability:
 //   - macOS 10.8+
 
-
 // CMAudioDeviceClockGetAudioDevice(clock _, :  CMClock,  deviceUIDOut:  AutoreleasingUnsafeMutablePointer< CFString?>?,  deviceIDOut:  UnsafeMutablePointer< AudioDeviceID>?,  trackingDefaultDeviceOut:  UnsafeMutablePointer< DarwinBoolean>?) ->  OSStatus) func
 //
 // Availability:
@@ -51,7 +50,6 @@ package coremedia
 //
 // Availability:
 //   - macOS 10.8+
-
 
 // CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(allocator:  CFAllocator?,  audioFormatDescription:  CMAudioFormatDescription,  flavor:  CMSoundDescriptionFlavor?,  blockBufferOut:  UnsafeMutablePointer< CMBlockBuffer?>) ->  OSStatus) func
 //
@@ -86,7 +84,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(soundDescriptionData allocator:  CFAllocator?,  bigEndianSoundDescriptionData, :  UnsafePointer< UInt8>,  size:  Int,  flavor:  CMSoundDescriptionFlavor?,  formatDescriptionOut:  UnsafeMutablePointer< CMAudioFormatDescription?>) ->  OSStatus) func
 //
 // Availability:
@@ -119,7 +116,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMAudioFormatDescriptionGetChannelLayout(desc _, :  CMAudioFormatDescription,  sizeOut:  UnsafeMutablePointer< Int>?) ->  UnsafePointer< AudioChannelLayout>?) func
 //
@@ -154,7 +150,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMAudioFormatDescriptionGetMostCompatibleFormat(desc _, :  CMAudioFormatDescription) ->  UnsafePointer< AudioFormatListItem>?) func
 //
 // Availability:
@@ -187,7 +182,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMAudioSampleBufferCreateReadyWithPacketDescriptions(numSamples allocator:  CFAllocator?,  dataBuffer:  CMBlockBuffer,  formatDescription:  CMFormatDescription,  sampleCount, :  CMItemCount,  presentationTimeStamp:  CMTime,  packetDescriptions:  UnsafePointer< AudioStreamPacketDescription>?,  sampleBufferOut:  UnsafeMutablePointer< CMSampleBuffer?>) ->  OSStatus) func
 //
@@ -222,7 +216,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMBlockBufferAccessDataBytes(theBuffer _, offset :  CMBlockBuffer,  atOffset, :  Int,  length:  Int,  temporaryBlock:  UnsafeMutableRawPointer,  returnedPointerOut:  UnsafeMutablePointer< UnsafeMutablePointer< CChar>?>) ->  OSStatus) func
 //
 // Availability:
@@ -255,7 +248,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMBlockBufferAssureBlockMemory(theBuffer _, :  CMBlockBuffer) ->  OSStatus) func
 //
@@ -290,7 +282,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMBlockBufferCreateEmpty(structureAllocator allocator, subBlockCapacity :  CFAllocator?,  capacity, :  UInt32,  flags:  CMBlockBufferFlags,  blockBufferOut:  UnsafeMutablePointer< CMBlockBuffer?>) ->  OSStatus) func
 //
 // Availability:
@@ -323,7 +314,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMBlockBufferFillDataBytes(fillByte with, destinationBuffer :  CChar,  blockBuffer, :  CMBlockBuffer,  offsetIntoDestination:  Int,  dataLength:  Int) ->  OSStatus) func
 //
@@ -358,7 +348,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMBlockBufferGetTypeID() func
 //
 // Availability:
@@ -391,7 +380,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMBlockBufferReplaceDataBytes(sourceBytes with, destinationBuffer :  UnsafeRawPointer,  blockBuffer, :  CMBlockBuffer,  offsetIntoDestination:  Int,  dataLength:  Int) ->  OSStatus) func
 //
@@ -426,7 +414,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMBufferQueueCopyHead(queue _, :  CMBufferQueue) ->  CMBuffer?) func
 //
 // Availability:
@@ -459,7 +446,6 @@ package coremedia
 //   - tvOS 12.2+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMBufferQueueDequeue(queue _, :  CMBufferQueue) ->  CMBuffer?) func
 //
@@ -494,7 +480,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMBufferQueueGetBufferCount(queue _, :  CMBufferQueue) ->  CMItemCount) func
 //
 // Availability:
@@ -528,7 +513,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMBufferQueueGetDuration(queue _, :  CMBufferQueue) ->  CMTime) func
 //
 // Availability:
@@ -561,7 +545,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMBufferQueueGetFirstPresentationTimeStamp(queue _, :  CMBufferQueue) ->  CMTime) func
 //
@@ -598,7 +581,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMBufferQueueGetMinDecodeTimeStamp(queue _, :  CMBufferQueue) ->  CMTime) func
 //
 // Availability:
@@ -631,7 +613,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMBufferQueueGetTypeID() func
 //
@@ -666,7 +647,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(queue _, condition :  CMBufferQueue,  _, threshold :  CMBufferQueueTriggerCondition,  _, triggerTokenOut :  CMItemCount,  _, handler :  UnsafeMutablePointer< CMBufferQueueTriggerToken?>?,  _, :  CMBufferQueueTriggerHandler?) ->  OSStatus) func
 //
 // Availability:
@@ -699,7 +679,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMBufferQueueIsEmpty(queue _, :  CMBufferQueue) ->  Bool) func
 //
@@ -734,7 +713,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMBufferQueueReset(queue _, :  CMBufferQueue) ->  OSStatus) func
 //
 // Availability:
@@ -767,7 +745,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMBufferQueueSetValidationHandler(queue _, handler :  CMBufferQueue,  _, :  @escaping  CMBufferValidationHandler) ->  OSStatus) func
 //
@@ -802,7 +779,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMClockGetAnchorTime(clock _, :  CMClock,  clockTimeOut:  UnsafeMutablePointer< CMTime>,  referenceClockTimeOut:  UnsafeMutablePointer< CMTime>) ->  OSStatus) func
 //
 // Availability:
@@ -835,7 +811,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMClockGetTypeID() func
 //
@@ -870,7 +845,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMClockMightDrift(clock _, :  CMClock,  otherClock:  CMClock) ->  Bool) func
 //
 // Availability:
@@ -903,7 +877,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(closedCaptionDescriptionData allocator:  CFAllocator?,  bigEndianClosedCaptionDescriptionData, :  UnsafePointer< UInt8>,  size:  Int,  flavor:  CMClosedCaptionDescriptionFlavor?,  formatDescriptionOut:  UnsafeMutablePointer< CMClosedCaptionFormatDescription?>) ->  OSStatus) func
 //
@@ -938,7 +911,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMFormatDescriptionCreate(allocator:  CFAllocator?,  mediaType:  CMMediaType,  mediaSubType:  FourCharCode,  extensions:  CFDictionary?,  formatDescriptionOut:  UnsafeMutablePointer< CMFormatDescription?>) ->  OSStatus) func
 //
 // Availability:
@@ -971,7 +943,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMFormatDescriptionGetExtension(desc _, :  CMFormatDescription,  extensionKey:  CFString) ->  CFPropertyList?) func
 //
@@ -1006,7 +977,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMFormatDescriptionGetMediaType(desc _, :  CMFormatDescription) ->  CMMediaType) func
 //
 // Availability:
@@ -1039,7 +1009,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMMemoryPoolCreate(options:  CFDictionary?) ->  CMMemoryPool) func
 //
@@ -1074,7 +1043,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMMemoryPoolGetTypeID() func
 //
 // Availability:
@@ -1107,7 +1075,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMMetadataCreateKeyFromIdentifier(allocator:  CFAllocator?,  identifier:  CFString,  keyOut:  UnsafeMutablePointer< CFTypeRef?>) ->  OSStatus) func
 //
@@ -1142,7 +1109,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMMetadataDataTypeRegistryDataTypeConformsToDataType(dataType _, conformsToDataType :  CFString,  conformsTo, :  CFString) ->  Bool) func
 //
 // Availability:
@@ -1175,7 +1141,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(dataType _, :  CFString) ->  CFString) func
 //
@@ -1210,7 +1175,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMMetadataDataTypeRegistryGetDataTypeDescription(dataType _, :  CFString) ->  CFString) func
 //
 // Availability:
@@ -1243,7 +1207,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions(allocator:  CFAllocator?,  sourceDescription:  CMMetadataFormatDescription,  otherSourceDescription:  CMMetadataFormatDescription,  formatDescriptionOut:  UnsafeMutablePointer< CMMetadataFormatDescription?>) ->  OSStatus) func
 //
@@ -1278,7 +1241,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMMetadataFormatDescriptionCreateWithKeys(allocator:  CFAllocator?,  metadataType:  CMMetadataFormatType,  keys:  CFArray?,  formatDescriptionOut:  UnsafeMutablePointer< CMMetadataFormatDescription?>) ->  OSStatus) func
 //
 // Availability:
@@ -1311,7 +1273,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMMetadataFormatDescriptionGetIdentifiers(desc _, :  CMMetadataFormatDescription) ->  CFArray?) func
 //
@@ -1346,7 +1307,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMPropagateAttachments(source _, :  CMAttachmentBearer,  destination:  CMAttachmentBearer) func
 //
 // Availability:
@@ -1380,7 +1340,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSampleBufferCallBlockForEachSample(sbuf _, handler :  CMSampleBuffer,  _, : ( CMSampleBuffer,  CMItemCount) ->  OSStatus) ->  OSStatus) func
 //
 // Availability:
@@ -1402,7 +1361,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSampleBufferCopyPCMDataIntoAudioBufferList(sbuf _, frameOffset :  CMSampleBuffer,  at, numFrames :  Int32,  frameCount, bufferList :  Int32,  into, :  UnsafeMutablePointer< AudioBufferList>) ->  OSStatus) func
 //
@@ -1437,7 +1395,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSampleBufferCreateCopy(sbuf allocator:  CFAllocator?,  sampleBuffer, :  CMSampleBuffer,  sampleBufferOut:  UnsafeMutablePointer< CMSampleBuffer?>) ->  OSStatus) func
 //
 // Availability:
@@ -1470,7 +1427,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(allocator _, imageBuffer :  CFAllocator?,  _, dataReady :  CVImageBuffer,  _, formatDescription :  Bool,  _, sampleTiming :  CMVideoFormatDescription,  _, sampleBufferOut :  UnsafePointer< CMSampleTimingInfo>,  _, makeDataReadyHandler :  UnsafeMutablePointer< CMSampleBuffer?>,  _, :  CMSampleBufferMakeDataReadyHandler?) ->  OSStatus) func
 //
@@ -1505,7 +1461,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSampleBufferCreateReadyWithImageBuffer(allocator:  CFAllocator?,  imageBuffer:  CVImageBuffer,  formatDescription:  CMVideoFormatDescription,  sampleTiming:  UnsafePointer< CMSampleTimingInfo>,  sampleBufferOut:  UnsafeMutablePointer< CMSampleBuffer?>) ->  OSStatus) func
 //
 // Availability:
@@ -1538,7 +1493,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(sbuf _, blockBufferStructureAllocator :  CMSampleBuffer,  bufferListSizeNeededOut:  UnsafeMutablePointer< Int>?,  bufferListOut:  UnsafeMutablePointer< AudioBufferList>?,  bufferListSize:  Int,  blockBufferAllocator, blockBufferBlockAllocator :  CFAllocator?,  blockBufferMemoryAllocator, :  CFAllocator?,  flags:  UInt32,  blockBufferOut:  UnsafeMutablePointer< CMBlockBuffer?>?) ->  OSStatus) func
 //
@@ -1573,7 +1527,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSampleBufferGetDataBuffer(sbuf _, :  CMSampleBuffer) ->  CMBlockBuffer?) func
 //
 // Availability:
@@ -1606,7 +1559,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSampleBufferGetFormatDescription(sbuf _, :  CMSampleBuffer) ->  CMFormatDescription?) func
 //
@@ -1641,7 +1593,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSampleBufferGetOutputDecodeTimeStamp(sbuf _, :  CMSampleBuffer) ->  CMTime) func
 //
 // Availability:
@@ -1674,7 +1625,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSampleBufferGetOutputSampleTimingInfoArray(sbuf _, timingArrayEntries :  CMSampleBuffer,  entryCount, timingArrayOut :  CMItemCount,  arrayToFill, timingArrayEntriesNeededOut :  UnsafeMutablePointer< CMSampleTimingInfo>?,  entriesNeededOut, :  UnsafeMutablePointer< CMItemCount>?) ->  OSStatus) func
 //
@@ -1709,7 +1659,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSampleBufferGetSampleSize(sbuf _, sampleIndex :  CMSampleBuffer,  at, :  CMItemIndex) ->  Int) func
 //
 // Availability:
@@ -1742,7 +1691,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSampleBufferGetSampleTimingInfoArray(sbuf _, numSampleTimingEntries :  CMSampleBuffer,  entryCount, timingArrayOut :  CMItemCount,  arrayToFill, timingArrayEntriesNeededOut :  UnsafeMutablePointer< CMSampleTimingInfo>?,  entriesNeededOut, :  UnsafeMutablePointer< CMItemCount>?) ->  OSStatus) func
 //
@@ -1777,7 +1725,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSampleBufferGetTypeID() func
 //
 // Availability:
@@ -1810,7 +1757,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSampleBufferIsValid(sbuf _, :  CMSampleBuffer) ->  Bool) func
 //
@@ -1845,7 +1791,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSampleBufferSetDataBufferFromAudioBufferList(sbuf _, blockBufferStructureAllocator :  CMSampleBuffer,  blockBufferAllocator, blockBufferBlockAllocator :  CFAllocator?,  blockBufferMemoryAllocator, :  CFAllocator?,  flags:  UInt32,  bufferList:  UnsafePointer< AudioBufferList>) ->  OSStatus) func
 //
 // Availability:
@@ -1878,7 +1823,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSampleBufferSetInvalidateCallback(sbuf _, invalidateCallback :  CMSampleBuffer,  callback, invalidateRefCon :  CMSampleBufferInvalidateCallback,  refcon, :  UInt64) ->  OSStatus) func
 //
@@ -1913,7 +1857,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSampleBufferTrackDataReadiness(sbuf _, :  CMSampleBuffer,  sampleBufferToTrack:  CMSampleBuffer) ->  OSStatus) func
 //
 // Availability:
@@ -1946,7 +1889,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSimpleQueueCreate(allocator:  CFAllocator?,  capacity:  Int32,  queueOut:  UnsafeMutablePointer< CMSimpleQueue?>) ->  OSStatus) func
 //
@@ -1981,7 +1923,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSimpleQueueGetCapacity(queue _, :  CMSimpleQueue) ->  Int32) func
 //
 // Availability:
@@ -2014,7 +1955,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSimpleQueueGetTypeID() func
 //
@@ -2049,7 +1989,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSwapBigEndianImageDescriptionToHost(imageDescriptionData _, imageDescriptionSize :  UnsafeMutablePointer< UInt8>,  _, :  Int) ->  OSStatus) func
 //
 // Availability:
@@ -2082,7 +2021,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSwapBigEndianTextDescriptionToHost(textDescriptionData _, textDescriptionSize :  UnsafeMutablePointer< UInt8>,  _, :  Int) ->  OSStatus) func
 //
@@ -2117,7 +2055,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSwapHostEndianImageDescriptionToBig(imageDescriptionData _, imageDescriptionSize :  UnsafeMutablePointer< UInt8>,  _, :  Int) ->  OSStatus) func
 //
 // Availability:
@@ -2150,7 +2087,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSwapHostEndianTextDescriptionToBig(textDescriptionData _, textDescriptionSize :  UnsafeMutablePointer< UInt8>,  _, :  Int) ->  OSStatus) func
 //
@@ -2185,7 +2121,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMSyncGetRelativeRate(ofClockOrTimebase _, relativeToClockOrTimebase :  CMClockOrTimebase,  relativeTo, :  CMClockOrTimebase) ->  Float64) func
 //
 // Availability:
@@ -2218,7 +2153,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMSyncMightDrift(clockOrTimebase1 _, clockOrTimebase2 :  CMClockOrTimebase,  _, :  CMClockOrTimebase) ->  Bool) func
 //
@@ -2253,7 +2187,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTagCollectionAddTag(tagCollection CMMutableTagCollectionRef, tagToAdd ,  CMTag, );) extern   OSStatus
 //
 // Availability:
@@ -2286,7 +2219,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTagCollectionApply(tagCollection CMTagCollectionRef, applier ,  CMTagCollectionApplierFunction, context ,  void *, );) extern   void
 //
@@ -2321,7 +2253,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTagCollectionContainsSpecifiedTags(tagCollection CMTagCollectionRef, containedTags ,  const  CMTag *, containedTagCount ,  CMItemCount, );) extern   Boolean
 //
 // Availability:
@@ -2354,7 +2285,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTagCollectionCopyAsData(tagCollection CMTagCollectionRef, allocator ,  CFAllocatorRef, );) extern   CFDataRef
 //
@@ -2389,7 +2319,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTagCollectionCopyTagsOfCategories(allocator CFAllocatorRef, tagCollection ,  CMTagCollectionRef, categories ,  const  CMTagCategory *, categoriesCount ,  CMItemCount, collectionWithTagsOfCategories ,  CMTagCollectionRef *, );) extern   OSStatus
 //
 // Availability:
@@ -2422,7 +2351,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTagCollectionCreateCopy(tagCollection CMTagCollectionRef, allocator ,  CFAllocatorRef, newCollectionCopyOut ,  CMTagCollectionRef *, );) extern   OSStatus
 //
@@ -2457,7 +2385,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTagCollectionCreateFromData(data CFDataRef, allocator ,  CFAllocatorRef, newCollectionOut ,  CMTagCollectionRef *, );) extern   OSStatus
 //
 // Availability:
@@ -2490,7 +2417,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTagCollectionCreateMutable(allocator CFAllocatorRef, capacity ,  CFIndex, newMutableCollectionOut ,  CMMutableTagCollectionRef *, );) extern   OSStatus
 //
@@ -2525,7 +2451,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTagCollectionGetCount(tagCollection CMTagCollectionRef, );) extern   CMItemCount
 //
 // Availability:
@@ -2558,7 +2483,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTagCollectionGetTagsWithCategory(tagCollection CMTagCollectionRef, category ,  CMTagCategory, tagBuffer ,  CMTag *, tagBufferCount ,  CMItemCount, numberOfTagsCopied ,  CMItemCount *, );) extern   OSStatus
 //
@@ -2593,7 +2517,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTagCollectionIsEmpty(tagCollection CMTagCollectionRef, );) extern   Boolean
 //
 // Availability:
@@ -2626,7 +2549,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTagCollectionRemoveTag(tagCollection CMMutableTagCollectionRef, tagToRemove ,  CMTag, );) extern   OSStatus
 //
@@ -2661,7 +2583,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTagCopyDescription(allocator CFAllocatorRef, tag ,  CMTag, );) extern   CFStringRef
 //
 // Availability:
@@ -2694,7 +2615,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTagGetFlagsValue(tag CMTag, );) extern   uint64_t
 //
@@ -2729,7 +2649,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTagGetSInt64Value(tag CMTag, );) extern   int64_t
 //
 // Availability:
@@ -2762,7 +2681,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTagHasCategory(tag CMTag, category ,  CMTagCategory, );) static   Boolean
 //
@@ -2797,7 +2715,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTagHasOSTypeValue(tag CMTag, );) extern   Boolean
 //
 // Availability:
@@ -2830,7 +2747,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTagIsValid(tag CMTag, );) static   Boolean
 //
@@ -2865,7 +2781,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTagMakeWithFloat64Value(category CMTagCategory, value ,  Float64, );) extern   CMTag
 //
 // Availability:
@@ -2898,7 +2813,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTaggedBufferGroupCreate(allocator CFAllocatorRef, tagCollections ,  CFArrayRef, buffers ,  CFArrayRef, groupOut ,  CMTaggedBufferGroupRef *, );) extern   OSStatus
 //
@@ -2933,7 +2847,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions(allocator CFAllocatorRef, taggedBufferGroup ,  CMTaggedBufferGroupRef, extensions ,  CFDictionaryRef, formatDescriptionOut ,  CMTaggedBufferGroupFormatDescriptionRef *, );) extern   OSStatus
 //
 // Availability:
@@ -2966,7 +2879,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTaggedBufferGroupGetCMSampleBufferForTag(group CMTaggedBufferGroupRef, tag ,  CMTag, indexOut ,  CFIndex *, );) extern   CMSampleBufferRef
 //
@@ -3001,7 +2913,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTaggedBufferGroupGetCVPixelBufferForTag(group CMTaggedBufferGroupRef, tag ,  CMTag, indexOut ,  CFIndex *, );) extern   CVPixelBufferRef
 //
 // Availability:
@@ -3034,7 +2945,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMTaggedBufferGroupGetNumberOfMatchesForTagCollection(group CMTaggedBufferGroupRef, tagCollection ,  CMTagCollectionRef, );) extern   CMItemCount
 //
@@ -3069,7 +2979,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(allocator:  CFAllocator?,  textFormatDescription:  CMTextFormatDescription,  flavor:  CMTextDescriptionFlavor?,  blockBufferOut:  UnsafeMutablePointer< CMBlockBuffer?>) ->  OSStatus) func
 //
 // Availability:
@@ -3102,7 +3011,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTextFormatDescriptionGetDefaultStyle(desc _, :  CMFormatDescription,  localFontIDOut:  UnsafeMutablePointer< UInt16>?,  boldOut:  UnsafeMutablePointer< DarwinBoolean>?,  italicOut:  UnsafeMutablePointer< DarwinBoolean>?,  underlineOut:  UnsafeMutablePointer< DarwinBoolean>?,  fontSizeOut:  UnsafeMutablePointer< CGFloat>?,  colorComponentsOut:  UnsafeMutablePointer< CGFloat>?) ->  OSStatus) func
 //
@@ -3137,7 +3045,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTextFormatDescriptionGetFontName(desc _, :  CMFormatDescription,  localFontID:  UInt16,  fontNameOut:  AutoreleasingUnsafeMutablePointer< CFString?>) ->  OSStatus) func
 //
 // Availability:
@@ -3170,7 +3077,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimeAdd(lhs _, rhs :  CMTime,  _, :  CMTime) ->  CMTime) func
 //
@@ -3205,7 +3111,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimeCodeFormatDescriptionCreate(allocator:  CFAllocator?,  timeCodeFormatType:  CMTimeCodeFormatType,  frameDuration:  CMTime,  frameQuanta:  UInt32,  flags:  UInt32,  extensions:  CFDictionary?,  formatDescriptionOut:  UnsafeMutablePointer< CMTimeCodeFormatDescription?>) ->  OSStatus) func
 //
 // Availability:
@@ -3238,7 +3143,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimeCodeFormatDescriptionGetFrameDuration(timeCodeFormatDescription _, :  CMTimeCodeFormatDescription) ->  CMTime) func
 //
@@ -3273,7 +3177,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimeCompare(time1 _, time2 :  CMTime,  _, :  CMTime) ->  Int32) func
 //
 // Availability:
@@ -3306,7 +3209,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimeCopyDescription(allocator:  CFAllocator?,  time:  CMTime) ->  CFString?) func
 //
@@ -3341,7 +3243,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimeMake(value:  Int64,  timescale:  Int32) ->  CMTime) func
 //
 // Availability:
@@ -3374,7 +3275,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimeMakeWithSeconds(seconds _, :  Float64,  preferredTimescale:  Int32) ->  CMTime) func
 //
@@ -3409,7 +3309,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimeMappingCopyAsDictionary(mapping _, :  CMTimeMapping,  allocator:  CFAllocator?) ->  CFDictionary?) func
 //
 // Availability:
@@ -3442,7 +3341,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimeMappingMakeEmpty(target:  CMTimeRange) ->  CMTimeMapping) func
 //
@@ -3477,7 +3375,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimeMaximum(time1 _, time2 :  CMTime,  _, :  CMTime) ->  CMTime) func
 //
 // Availability:
@@ -3510,7 +3407,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimeMultiplyByFloat64(time _, :  CMTime,  multiplier:  Float64) ->  CMTime) func
 //
@@ -3545,7 +3441,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimeRangeContainsTimeRange(range _, :  CMTimeRange,  otherRange:  CMTimeRange) ->  Bool) func
 //
 // Availability:
@@ -3578,7 +3473,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimeRangeEqual(range1 _, range2 :  CMTimeRange,  _, :  CMTimeRange) ->  Bool) func
 //
@@ -3613,7 +3507,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimeRangeGetIntersection(range _, :  CMTimeRange,  otherRange:  CMTimeRange) ->  CMTimeRange) func
 //
 // Availability:
@@ -3646,7 +3539,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimeRangeMakeFromDictionary(dictionaryRepresentation _, :  CFDictionary) ->  CMTimeRange) func
 //
@@ -3681,7 +3573,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimeSubtract(lhs _, rhs :  CMTime,  _, :  CMTime) ->  CMTime) func
 //
 // Availability:
@@ -3714,7 +3605,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimebaseCopyMaster(timebase _, :  CMTimebase) ->  CMClockOrTimebase) func
 //
@@ -3755,7 +3645,6 @@ package coremedia
 //
 // Deprecated: This function is deprecated.
 
-
 // CMTimebaseCopySource(timebase _, :  CMTimebase) ->  CMClockOrTimebase) func
 //
 // Availability:
@@ -3788,7 +3677,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimebaseCopyUltimateMasterClock(timebase _, :  CMTimebase) ->  CMClock) func
 //
@@ -3827,7 +3715,6 @@ package coremedia
 //
 // Deprecated: This function is deprecated.
 
-
 // CMTimebaseCreateWithMasterTimebase(allocator:  CFAllocator?,  masterTimebase:  CMTimebase,  timebaseOut:  UnsafeMutablePointer< CMTimebase?>) ->  OSStatus) func
 //
 // Availability:
@@ -3862,7 +3749,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimebaseGetEffectiveRate(timebase _, :  CMTimebase) ->  Float64) func
 //
@@ -3899,7 +3785,6 @@ package coremedia
 //
 // Deprecated: This function is deprecated.
 
-
 // CMTimebaseGetMasterTimebase(timebase _, :  CMTimebase) ->  CMTimebase?) func
 //
 // Availability:
@@ -3934,7 +3819,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimebaseGetTimeAndRate(timebase _, :  CMTimebase,  timeOut:  UnsafeMutablePointer< CMTime>?,  rateOut:  UnsafeMutablePointer< Float64>?) ->  OSStatus) func
 //
 // Availability:
@@ -3967,7 +3851,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimebaseGetUltimateMasterClock(timebase _, :  CMTimebase) ->  CMClock?) func
 //
@@ -4002,7 +3885,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimebaseRemoveTimerDispatchSource(timebase _, :  CMTimebase,  timerSource:  dispatch_source_t) ->  OSStatus) func
 //
@@ -4039,7 +3921,6 @@ package coremedia
 //
 // Deprecated: This function is deprecated.
 
-
 // CMTimebaseSetMasterTimebase(timebase _, newMasterTimebase :  CMTimebase,  _, :  CMTimebase) ->  OSStatus) func
 //
 // Availability:
@@ -4075,7 +3956,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimebaseSetSourceClock(timebase _, newSourceClock :  CMTimebase,  _, :  CMClock) ->  OSStatus) func
 //
 // Availability:
@@ -4108,7 +3988,6 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMTimebaseSetTimerDispatchSourceNextFireTime(timebase _, :  CMTimebase,  timerSource:  dispatch_source_t,  fireTime:  CMTime,  flags:  UInt32) ->  OSStatus) func
 //
@@ -4143,7 +4022,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMTimebaseSetTimerToFireImmediately(timebase _, :  CMTimebase,  timer:  CFRunLoopTimer) ->  OSStatus) func
 //
 // Availability:
@@ -4176,7 +4054,6 @@ package coremedia
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // CMVideoFormatDescriptionCreate(allocator:  CFAllocator?,  codecType:  CMVideoCodecType,  width:  Int32,  height:  Int32,  extensions:  CFDictionary?,  formatDescriptionOut:  UnsafeMutablePointer< CMVideoFormatDescription?>) ->  OSStatus) func
 //
@@ -4211,7 +4088,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(imageDescriptionData allocator:  CFAllocator?,  bigEndianImageDescriptionData, :  UnsafePointer< UInt8>,  size:  Int,  stringEncoding:  CFStringEncoding,  flavor:  CMImageDescriptionFlavor?,  formatDescriptionOut:  UnsafeMutablePointer< CMVideoFormatDescription?>) ->  OSStatus) func
 //
 // Availability:
@@ -4244,7 +4120,6 @@ package coremedia
 //   - tvOS 11.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // CMVideoFormatDescriptionGetCleanAperture(videoDesc _, :  CMVideoFormatDescription,  originIsAtTopLeft:  Bool) ->  CGRect) func
 //
@@ -4279,7 +4154,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMVideoFormatDescriptionGetH264ParameterSetAtIndex(videoDesc _, NALUnitHeaderLengthOut :  CMFormatDescription,  parameterSetIndex:  Int,  parameterSetPointerOut:  UnsafeMutablePointer< UnsafePointer< UInt8>?>?,  parameterSetSizeOut:  UnsafeMutablePointer< Int>?,  parameterSetCountOut:  UnsafeMutablePointer< Int>?,  nalUnitHeaderLengthOut, :  UnsafeMutablePointer< Int32>?) ->  OSStatus) func
 //
 // Availability:
@@ -4313,7 +4187,6 @@ package coremedia
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // CMVideoFormatDescriptionMatchesImageBuffer(desc _, :  CMVideoFormatDescription,  imageBuffer:  CVImageBuffer) ->  Bool) func
 //
 // Availability:
@@ -4324,4 +4197,3 @@ package coremedia
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-

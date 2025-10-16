@@ -2,7 +2,4 @@
 
 package xpc
 
-import "unsafe"
-
 // XPC Types
-

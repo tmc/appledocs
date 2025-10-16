@@ -2,15 +2,13 @@
 
 // Package appkit provides Go bindings for the AppKit framework.
 //
-// Minimum macOS version: 10.0
-// Framework path: /System/Library/Frameworks/AppKit.framework/AppKit
+// Construct and manage a graphical, event-driven user interface for your macOS app. [Full Topic]
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AppKit without requiring cgo.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit
 package appkit
 
-// MinMacOSVersion is the minimum macOS version required for this framework.
-const MinMacOSVersion = "10.0"
-
-// FrameworkPath is the system path to the framework binary.
-const FrameworkPath = "/System/Library/Frameworks/AppKit.framework/AppKit"
+// frameworkPath is the system path to the framework binary.
+const frameworkPath = "/System/Library/Frameworks/AppKit.framework/AppKit"

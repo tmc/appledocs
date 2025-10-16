@@ -2,7 +2,4 @@
 
 package corelocation
 
-import "unsafe"
-
 // CoreLocation Types
-

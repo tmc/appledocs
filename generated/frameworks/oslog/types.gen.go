@@ -2,7 +2,4 @@
 
 package oslog
 
-import "unsafe"
-
 // OSLog Types
-

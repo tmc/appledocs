@@ -15,4 +15,3 @@ package spritekit
 //   purego.RegisterLibFunc(&CGContextSetRGBFillColor, lib, "CGContextSetRGBFillColor")
 
 // Discovered functions (0 total):
-

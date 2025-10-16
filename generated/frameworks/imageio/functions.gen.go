@@ -49,7 +49,6 @@ package imageio
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // CGImageDestinationCopyImageSource(idst _, isrc :  CGImageDestination,  _, options :  CGImageSource,  _, err :  CFDictionary?,  _, :  UnsafeMutablePointer< Unmanaged< CFError>?>?) ->  Bool) func
 //
 // Availability:
@@ -82,7 +81,6 @@ package imageio
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 2.0+
-
 
 // CGImageMetadataCopyTagWithPath(metadata _, parent :  CGImageMetadata,  _, path :  CGImageMetadataTag?,  _, :  CFString) ->  CGImageMetadataTag?) func
 //
@@ -117,7 +115,6 @@ package imageio
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // CGImageMetadataSetTagWithPath(metadata _, parent :  CGMutableImageMetadata,  _, path :  CGImageMetadataTag?,  _, tag :  CFString,  _, :  CGImageMetadataTag) ->  Bool) func
 //
 // Availability:
@@ -150,7 +147,6 @@ package imageio
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 2.0+
-
 
 // CGImageMetadataTagCopyQualifiers(tag _, :  CGImageMetadataTag) ->  CFArray?) func
 //
@@ -185,7 +181,6 @@ package imageio
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // CGImageSourceCopyProperties(isrc _, options :  CGImageSource,  _, :  CFDictionary?) ->  CFDictionary?) func
 //
 // Availability:
@@ -219,7 +214,6 @@ package imageio
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // CGImageSourceCreateWithURL(url _, options :  CFURL,  _, :  CFDictionary?) ->  CGImageSource?) func
 //
 // Availability:
@@ -241,4 +235,3 @@ package imageio
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 2.0+
-

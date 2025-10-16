@@ -34,7 +34,6 @@ package diskarbitration
 //   - Mac Catalyst 13.1+
 //   - macOS 10.4+
 
-
 // DADissenterGetStatus(dissenter _, :  DADissenter) ->  DAReturn) func
 //
 // Availability:
@@ -46,4 +45,3 @@ package diskarbitration
 // Availability:
 //   - Mac Catalyst 13.1+
 //   - macOS 10.4+
-

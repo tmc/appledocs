@@ -2,7 +2,4 @@
 
 package vision
 
-import "unsafe"
-
 // Vision Types
-

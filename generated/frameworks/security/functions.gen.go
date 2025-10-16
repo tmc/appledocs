@@ -34,7 +34,6 @@ package security
 //   - Mac Catalyst 13.0+
 //   - macOS 10.0+
 
-
 // AuthorizationCopyPrivilegedReference(authorization AuthorizationRef *, flags ,  AuthorizationFlags, );) OSStatus
 //
 // Availability:
@@ -53,7 +52,6 @@ package security
 // Availability:
 //   - Mac Catalyst 13.0+
 //   - macOS 10.7+
-
 
 // AuthorizationCreate(rights _, environment :  UnsafePointer< AuthorizationRights>?,  _, flags :  UnsafePointer< AuthorizationEnvironment>?,  _, authorization :  AuthorizationFlags,  _, :  UnsafeMutablePointer< AuthorizationRef?>?) ->  OSStatus) func
 //
@@ -74,7 +72,6 @@ package security
 //
 // Deprecated: This function is deprecated.
 
-
 // AuthorizationFree(authorization _, flags :  AuthorizationRef,  _, :  AuthorizationFlags) ->  OSStatus) func
 //
 // Availability:
@@ -93,7 +90,6 @@ package security
 //   - Mac Catalyst 13.0+
 //   - macOS 10.0+
 
-
 // AuthorizationRightGet(rightName _, rightDefinition :  UnsafePointer< CChar>,  _, :  UnsafeMutablePointer< CFDictionary?>?) ->  OSStatus) func
 //
 // Availability:
@@ -111,7 +107,6 @@ package security
 // Availability:
 //   - Mac Catalyst 13.0+
 //   - macOS 10.0+
-
 
 // CMSDecoderCopyAllCerts(cmsDecoder _, certsOut :  CMSDecoder,  _, :  UnsafeMutablePointer< CFArray?>) ->  OSStatus) func
 //
@@ -132,7 +127,6 @@ package security
 //   - macOS 10.2+ (Deprecated in 10.15)
 //
 // Deprecated: This function is deprecated.
-
 
 // SSLSetDiffieHellmanParams(context _, dhParams :  SSLContext,  _, dhParamsLen :  UnsafeRawPointer?,  _, :  Int) ->  OSStatus) func
 //
@@ -158,7 +152,6 @@ package security
 //   - Mac Catalyst 13.0+
 //   - macOS 10.0+
 
-
 // SecCodeCopyStaticCode(code _, flags :  SecCode,  _, staticCode :  SecCSFlags,  _, :  UnsafeMutablePointer< SecStaticCode?>) ->  OSStatus) func
 //
 // Availability:
@@ -180,7 +173,6 @@ package security
 //   - tvOS 11.3+
 //   - visionOS 1.0+
 //   - watchOS 4.3+
-
 
 // SecCreateSharedWebCredentialPassword() func
 //
@@ -208,7 +200,6 @@ package security
 //   - tvOS 11.2+
 //   - visionOS 1.0+
 //   - watchOS 4.2+
-
 
 // SecItemAdd(attributes _, result :  CFDictionary,  _, :  UnsafeMutablePointer< CFTypeRef?>?) ->  OSStatus) func
 //
@@ -243,7 +234,6 @@ package security
 //   - visionOS 1.0+
 //   - watchOS 3.0+
 
-
 // SecKeyCreateWithData(keyData _, attributes :  CFData,  _, error :  CFDictionary,  _, :  UnsafeMutablePointer< Unmanaged< CFError>?>?) ->  SecKey?) func
 //
 // Availability:
@@ -277,7 +267,6 @@ package security
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // SecRandomCopyBytes(rnd _, count :  SecRandomRef?,  _, bytes :  Int,  _, :  UnsafeMutableRawPointer) ->  Int32) func
 //
 // Availability:
@@ -306,7 +295,6 @@ package security
 //   - Mac Catalyst 13.0+
 //   - macOS 10.0+
 
-
 // SecStaticCodeCreateWithPath(path _, flags :  CFURL,  _, staticCode :  SecCSFlags,  _, :  UnsafeMutablePointer< SecStaticCode?>) ->  OSStatus) func
 //
 // Availability:
@@ -325,7 +313,6 @@ package security
 //   - Mac Catalyst 11.0+
 //   - iOS 10.0+
 //   - iPadOS 10.0+
-
 
 // SecTransformConnectTransforms(sourceTransformRef _, sourceAttributeName :  SecTransform,  _, destinationTransformRef :  CFString,  _, destinationAttributeName :  SecTransform,  _, group :  CFString,  _, error :  SecGroupTransform,  _, :  UnsafeMutablePointer< Unmanaged< CFError>?>?) ->  SecGroupTransform?) func
 //
@@ -348,7 +335,6 @@ package security
 //
 // Deprecated: This function is deprecated.
 
-
 // SecTransformExecute(transformRef _, errorRef :  SecTransform,  _, :  UnsafeMutablePointer< Unmanaged< CFError>?>?) ->  CFTypeRef) func
 //
 // Availability:
@@ -370,7 +356,6 @@ package security
 //
 // Deprecated: This function is deprecated.
 
-
 // SecureDownloadFinished(downloadRef SecureDownloadRef, );) OSStatus
 //
 // Availability:
@@ -391,7 +376,6 @@ package security
 //   - macOS 10.5+ (Deprecated in 12.0)
 //
 // Deprecated: This function is deprecated.
-
 
 // SessionCreate(flags _, attributes :  SessionCreationFlags,  _, :  SessionAttributeBits) ->  OSStatus) func
 //
@@ -415,7 +399,6 @@ package security
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // sec_certificate_create(certificate _, :  SecCertificate) ->  sec_certificate_t?) func
 //
@@ -450,7 +433,6 @@ package security
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // sec_identity_copy_ref(identity _, :  sec_identity_t) ->  Unmanaged< SecIdentity>?) func
 //
 // Availability:
@@ -483,7 +465,6 @@ package security
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // sec_protocol_metadata_access_distinguished_names(metadata _, handler :  sec_protocol_metadata_t,  _, :  @escaping  dispatch_data_t) ->  Void) ->  Bool) func
 //
@@ -518,7 +499,6 @@ package security
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // sec_protocol_metadata_access_pre_shared_keys(metadata _, handler :  sec_protocol_metadata_t,  _, :  @escaping  dispatch_data_t,  dispatch_data_t) ->  Void) ->  Bool) func
 //
 // Availability:
@@ -551,7 +531,6 @@ package security
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // sec_protocol_metadata_copy_negotiated_protocol(metadata _, :  sec_protocol_metadata_t) ->  UnsafePointer< CChar>?) func
 //
@@ -586,7 +565,6 @@ package security
 //   - visionOS 2.5+
 //   - watchOS 11.5+
 
-
 // sec_protocol_metadata_create_secret(metadata _, label_len :  sec_protocol_metadata_t,  _, label :  Int,  _, exporter_length :  UnsafePointer< CChar>,  _, :  Int) ->  dispatch_data_t?) func
 //
 // Availability:
@@ -619,7 +597,6 @@ package security
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // sec_protocol_metadata_get_negotiated_ciphersuite(metadata _, :  sec_protocol_metadata_t) ->  SSLCipherSuite) func
 //
@@ -660,7 +637,6 @@ package security
 //
 // Deprecated: This function is deprecated.
 
-
 // sec_protocol_metadata_get_negotiated_tls_ciphersuite(metadata _, :  sec_protocol_metadata_t) ->  tls_ciphersuite_t) func
 //
 // Availability:
@@ -696,7 +672,6 @@ package security
 //
 // Deprecated: This function is deprecated.
 
-
 // sec_protocol_metadata_peers_are_equal(metadataA _, metadataB :  sec_protocol_metadata_t,  _, :  sec_protocol_metadata_t) ->  Bool) func
 //
 // Availability:
@@ -729,7 +704,6 @@ package security
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // sec_protocol_options_add_tls_ciphersuite(options _, ciphersuite :  sec_protocol_options_t,  _, :  SSLCipherSuite) func
 //
@@ -768,7 +742,6 @@ package security
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // sec_protocol_options_append_tls_ciphersuite_group(options _, group :  sec_protocol_options_t,  _, :  tls_ciphersuite_group_t) func
 //
 // Availability:
@@ -801,7 +774,6 @@ package security
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // sec_protocol_options_get_default_max_tls_protocol_version() func
 //
@@ -836,7 +808,6 @@ package security
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // sec_protocol_options_set_challenge_block(options _, challenge_block :  sec_protocol_options_t,  _, challenge_queue :  @escaping  sec_protocol_challenge_t,  _, :  dispatch_queue_t) func
 //
 // Availability:
@@ -870,7 +841,6 @@ package security
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // sec_protocol_options_set_max_tls_protocol_version(options _, version :  sec_protocol_options_t,  _, :  tls_protocol_version_t) func
 //
 // Availability:
@@ -903,7 +873,6 @@ package security
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // sec_protocol_options_set_pre_shared_key_selection_block(options _, psk_selection_block :  sec_protocol_options_t,  _, psk_selection_queue :  @escaping  sec_protocol_pre_shared_key_selection_t,  _, :  dispatch_queue_t) func
 //
@@ -939,7 +908,6 @@ package security
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // sec_protocol_options_set_tls_is_fallback_attempt(options _, is_fallback_attempt :  sec_protocol_options_t,  _, :  Bool) func
 //
@@ -978,7 +946,6 @@ package security
 //
 // Deprecated: This function is deprecated.
 
-
 // sec_protocol_options_set_tls_ocsp_enabled(options _, ocsp_enabled :  sec_protocol_options_t,  _, :  Bool) func
 //
 // Availability:
@@ -1011,7 +978,6 @@ package security
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // sec_protocol_options_set_tls_resumption_enabled(options _, resumption_enabled :  sec_protocol_options_t,  _, :  Bool) func
 //
@@ -1046,7 +1012,6 @@ package security
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // sec_protocol_options_set_tls_tickets_enabled(options _, tickets_enabled :  sec_protocol_options_t,  _, :  Bool) func
 //
 // Availability:
@@ -1080,7 +1045,6 @@ package security
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // sec_retain(obj _, :  UnsafeMutableRawPointer!) ->  UnsafeMutableRawPointer!) func
 //
 // Availability:
@@ -1113,5 +1077,3 @@ package security
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
-

@@ -2,266 +2,635 @@
 
 package appkit
 
-// AppKit Functions
-//
-// This file contains function declarations discovered from Apple's documentation.
-// To use these functions, you need to:
-//   1. Map C types to Go types
-//   2. Create function variables
-//   3. Register them with purego.RegisterLibFunc
-//
-// Example:
-//   var CGContextSetRGBFillColor func(c CGContextRef, red, green, blue, alpha CGFloat)
-//   purego.RegisterLibFunc(&CGContextSetRGBFillColor, lib, "CGContextSetRGBFillColor")
+import (
+	"unsafe"
 
-// Discovered functions (43 total):
+	"github.com/ebitengine/purego"
+)
 
-// raiseBadArgumentException(element _, attribute :  Any!,  _, value :  NSAccessibility. Attribute!,  _, :  Any!)) static   func
+// AppKit Functions (53 total)
 //
-// Availability:
-//   - macOS 10.1+ (Deprecated in 10.11)
-//
-// Deprecated: This function is deprecated.
+// Type-safe package-level functions with graceful error handling.
+// Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
-// screenPoint(parentView fromView, :  NSView,  point:  NSPoint) ->  NSPoint) static   func
-//
-// Availability:
-//   - macOS 10.10+
+var (
+	_NSAccessibilityActionDescription             func(unsafe.Pointer) unsafe.Pointer
+	_NSAccessibilityRoleDescriptionForUIElement   func(unsafe.Pointer) unsafe.Pointer
+	_NSAccessibilityPostNotification              func(unsafe.Pointer, unsafe.Pointer)
+	_NSAccessibilityPostNotificationWithUserInfo  func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSAccessibilityRaiseBadArgumentException     func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSAccessibilityPointInView                   func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSAccessibilityFrameInView                   func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSApplicationMain                            func(int, unsafe.Pointer) int
+	_NSAvailableWindowDepths                      func() unsafe.Pointer
+	_NSBeep                                       func()
+	_NSBeginAlertSheet                            func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSBeginCriticalAlertSheet                    func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSBeginInformationalAlertSheet               func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSBestDepth                                  func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, unsafe.Pointer) unsafe.Pointer
+	_NSNumberOfColorComponents                    func(unsafe.Pointer) unsafe.Pointer
+	_NSConvertGlyphsToPackedGlyphs                func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSCopyBits                                   func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSCountWindows                               func(unsafe.Pointer)
+	_NSCountWindowsForContext                     func(unsafe.Pointer, unsafe.Pointer)
+	_NSDisableScreenUpdates                       func()
+	_NSDottedFrameRect                            func(unsafe.Pointer)
+	_NSDrawColorTiledRects                        func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSEnableScreenUpdates                        func()
+	_NSGetAlertPanel                              func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSGetCriticalAlertPanel                      func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSGetInformationalAlertPanel                 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSGetWindowServerMemory                      func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSInterfaceStyleForKey                       func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSIsControllerMarker                         func(unsafe.Pointer) bool
+	_NSOpenGLGetOption                            func(unsafe.Pointer, unsafe.Pointer)
+	_NSOpenGLGetVersion                           func(unsafe.Pointer, unsafe.Pointer)
+	_NSOpenGLSetOption                            func(unsafe.Pointer, unsafe.Pointer)
+	_NSCreateFileContentsPboardType               func(unsafe.Pointer) unsafe.Pointer
+	_NSCreateFilenamePboardType                   func(unsafe.Pointer) unsafe.Pointer
+	_NSGetFileType                                func(unsafe.Pointer) unsafe.Pointer
+	_NSGetFileTypes                               func(unsafe.Pointer) unsafe.Pointer
+	_NSReadPixel                                  func(unsafe.Pointer) unsafe.Pointer
+	_NSReleaseAlertPanel                          func(unsafe.Pointer)
+	_NSRunAlertPanel                              func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRunAlertPanelRelativeToWindow              func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRunCriticalAlertPanel                      func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRunCriticalAlertPanelRelativeToWindow      func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRunInformationalAlertPanel                 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSRunInformationalAlertPanelRelativeToWindow func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSSetShowsServicesMenuItem                   func(unsafe.Pointer, bool) unsafe.Pointer
+	_NSShowAnimationEffect                        func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_NSShowsServicesMenuItem                      func(unsafe.Pointer) bool
+	_NSBitsPerPixelFromDepth                      func(unsafe.Pointer) unsafe.Pointer
+	_NSBitsPerSampleFromDepth                     func(unsafe.Pointer) unsafe.Pointer
+	_NSColorSpaceFromDepth                        func(unsafe.Pointer) unsafe.Pointer
+	_NSPlanarFromDepth                            func(unsafe.Pointer) bool
+	_NSWindowList                                 func(unsafe.Pointer, unsafe.Pointer)
+	_NSWindowListForContext                       func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+)
 
-// screenRect(parentView fromView, frame :  NSView,  rect, :  NSRect) ->  NSRect) static   func
-//
-// Availability:
-//   - macOS 10.10+
+func init() {
+	lib, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
+	if err != nil {
+		panic(err)
+	}
 
+	tryRegister(&_NSAccessibilityActionDescription, lib, "NSAccessibilityActionDescription")
+	tryRegister(&_NSAccessibilityRoleDescriptionForUIElement, lib, "NSAccessibilityRoleDescriptionForUIElement")
+	tryRegister(&_NSAccessibilityPostNotification, lib, "NSAccessibilityPostNotification")
+	tryRegister(&_NSAccessibilityPostNotificationWithUserInfo, lib, "NSAccessibilityPostNotificationWithUserInfo")
+	tryRegister(&_NSAccessibilityRaiseBadArgumentException, lib, "NSAccessibilityRaiseBadArgumentException")
+	tryRegister(&_NSAccessibilityPointInView, lib, "NSAccessibilityPointInView")
+	tryRegister(&_NSAccessibilityFrameInView, lib, "NSAccessibilityFrameInView")
+	tryRegister(&_NSApplicationMain, lib, "NSApplicationMain")
+	tryRegister(&_NSAvailableWindowDepths, lib, "NSAvailableWindowDepths")
+	tryRegister(&_NSBeep, lib, "NSBeep")
+	tryRegister(&_NSBeginAlertSheet, lib, "NSBeginAlertSheet")
+	tryRegister(&_NSBeginCriticalAlertSheet, lib, "NSBeginCriticalAlertSheet")
+	tryRegister(&_NSBeginInformationalAlertSheet, lib, "NSBeginInformationalAlertSheet")
+	tryRegister(&_NSBestDepth, lib, "NSBestDepth")
+	tryRegister(&_NSNumberOfColorComponents, lib, "NSNumberOfColorComponents")
+	tryRegister(&_NSConvertGlyphsToPackedGlyphs, lib, "NSConvertGlyphsToPackedGlyphs")
+	tryRegister(&_NSCopyBits, lib, "NSCopyBits")
+	tryRegister(&_NSCountWindows, lib, "NSCountWindows")
+	tryRegister(&_NSCountWindowsForContext, lib, "NSCountWindowsForContext")
+	tryRegister(&_NSDisableScreenUpdates, lib, "NSDisableScreenUpdates")
+	tryRegister(&_NSDottedFrameRect, lib, "NSDottedFrameRect")
+	tryRegister(&_NSDrawColorTiledRects, lib, "NSDrawColorTiledRects")
+	tryRegister(&_NSEnableScreenUpdates, lib, "NSEnableScreenUpdates")
+	tryRegister(&_NSGetAlertPanel, lib, "NSGetAlertPanel")
+	tryRegister(&_NSGetCriticalAlertPanel, lib, "NSGetCriticalAlertPanel")
+	tryRegister(&_NSGetInformationalAlertPanel, lib, "NSGetInformationalAlertPanel")
+	tryRegister(&_NSGetWindowServerMemory, lib, "NSGetWindowServerMemory")
+	tryRegister(&_NSInterfaceStyleForKey, lib, "NSInterfaceStyleForKey")
+	tryRegister(&_NSIsControllerMarker, lib, "NSIsControllerMarker")
+	tryRegister(&_NSOpenGLGetOption, lib, "NSOpenGLGetOption")
+	tryRegister(&_NSOpenGLGetVersion, lib, "NSOpenGLGetVersion")
+	tryRegister(&_NSOpenGLSetOption, lib, "NSOpenGLSetOption")
+	tryRegister(&_NSCreateFileContentsPboardType, lib, "NSCreateFileContentsPboardType")
+	tryRegister(&_NSCreateFilenamePboardType, lib, "NSCreateFilenamePboardType")
+	tryRegister(&_NSGetFileType, lib, "NSGetFileType")
+	tryRegister(&_NSGetFileTypes, lib, "NSGetFileTypes")
+	tryRegister(&_NSReadPixel, lib, "NSReadPixel")
+	tryRegister(&_NSReleaseAlertPanel, lib, "NSReleaseAlertPanel")
+	tryRegister(&_NSRunAlertPanel, lib, "NSRunAlertPanel")
+	tryRegister(&_NSRunAlertPanelRelativeToWindow, lib, "NSRunAlertPanelRelativeToWindow")
+	tryRegister(&_NSRunCriticalAlertPanel, lib, "NSRunCriticalAlertPanel")
+	tryRegister(&_NSRunCriticalAlertPanelRelativeToWindow, lib, "NSRunCriticalAlertPanelRelativeToWindow")
+	tryRegister(&_NSRunInformationalAlertPanel, lib, "NSRunInformationalAlertPanel")
+	tryRegister(&_NSRunInformationalAlertPanelRelativeToWindow, lib, "NSRunInformationalAlertPanelRelativeToWindow")
+	tryRegister(&_NSSetShowsServicesMenuItem, lib, "NSSetShowsServicesMenuItem")
+	tryRegister(&_NSShowAnimationEffect, lib, "NSShowAnimationEffect")
+	tryRegister(&_NSShowsServicesMenuItem, lib, "NSShowsServicesMenuItem")
+	tryRegister(&_NSBitsPerPixelFromDepth, lib, "NSBitsPerPixelFromDepth")
+	tryRegister(&_NSBitsPerSampleFromDepth, lib, "NSBitsPerSampleFromDepth")
+	tryRegister(&_NSColorSpaceFromDepth, lib, "NSColorSpaceFromDepth")
+	tryRegister(&_NSPlanarFromDepth, lib, "NSPlanarFromDepth")
+	tryRegister(&_NSWindowList, lib, "NSWindowList")
+	tryRegister(&_NSWindowListForContext, lib, "NSWindowListForContext")
+}
 
-// NSApplicationMain(argc int, argv ,  const  char *, []);) extern   int
+// tryRegister attempts to register a function, silently ignoring failures.
+// This allows the library to load even if some symbols are missing.
+func tryRegister(fn interface{}, lib uintptr, name string) {
+	defer func() {
+		if r := recover(); r != nil {
+			// Symbol not found - function will remain nil and panic when called
+			// This is expected for inline functions, macros, or version-specific APIs
+		}
+	}()
+	purego.RegisterLibFunc(fn, lib, name)
+}
 
-// NSBeep() extern   void
+// Returns a standard description for an action. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/description
+func NSAccessibilityActionDescription(action unsafe.Pointer) unsafe.Pointer {
+	return _NSAccessibilityActionDescription(action)
+}
 
-// NSBeginAlertSheet(title NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, docWindow ,  NSWindow *, modalDelegate ,  id, didEndSelector ,  SEL, didDismissSelector ,  SEL, contextInfo ,  void *, msgFormat ,  NSString *, , ...);) extern   void
+// Returns a standard role description for a user interface element. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/description(for:)
+func NSAccessibilityRoleDescriptionForUIElement(element unsafe.Pointer) unsafe.Pointer {
+	return _NSAccessibilityRoleDescriptionForUIElement(element)
+}
 
+// Sends a notification to any observing assistive apps. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)
+func NSAccessibilityPostNotification(element unsafe.Pointer, notification unsafe.Pointer) {
+	_NSAccessibilityPostNotification(element, notification)
+}
 
-// NSBeginCriticalAlertSheet(title NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, docWindow ,  NSWindow *, modalDelegate ,  id, didEndSelector ,  SEL, didDismissSelector ,  SEL, contextInfo ,  void *, msgFormat ,  NSString *, , ...);) extern   void
+// Sends a notification and an optional user info dictionary to any observing assistive apps. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
+// Added in macOS 10.7.
 //
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:userinfo:)
+func NSAccessibilityPostNotificationWithUserInfo(element unsafe.Pointer, notification unsafe.Pointer, userInfo unsafe.Pointer) {
+	_NSAccessibilityPostNotificationWithUserInfo(element, notification, userInfo)
+}
 
-// NSBeginInformationalAlertSheet(title NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, docWindow ,  NSWindow *, modalDelegate ,  id, didEndSelector ,  SEL, didDismissSelector ,  SEL, contextInfo ,  void *, msgFormat ,  NSString *, , ...);) extern   void
+// Raises an error if the parameter is the wrong type or has an illegal value [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
+// Deprecated: This function was deprecated in macOS 10.11.
 //
-// Deprecated: This function is deprecated.
+// Added in macOS 10.1.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/raisebadargumentexception(_:_:_:)
+func NSAccessibilityRaiseBadArgumentException(element unsafe.Pointer, attribute unsafe.Pointer, value unsafe.Pointer) {
+	_NSAccessibilityRaiseBadArgumentException(element, attribute, value)
+}
 
-// NSConvertGlyphsToPackedGlyphs(glBuf _, count :  UnsafeMutablePointer< NSGlyph>,  _, packing :  Int,  _, packedGlyphs :  NSMultibyteGlyphPacking,  _, :  UnsafeMutablePointer< CChar>) ->  Int) func
+// Returns the point in screen coordinates. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.13)
+// Added in macOS 10.10.
 //
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/screenpoint(fromview:point:)
+func NSAccessibilityPointInView(parentView unsafe.Pointer, point unsafe.Pointer) unsafe.Pointer {
+	return _NSAccessibilityPointInView(parentView, point)
+}
 
+// Returns the frame in screen coordinates. [Full Topic]
+//
+// Added in macOS 10.10.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/screenrect(fromview:rect:)
+func NSAccessibilityFrameInView(parentView unsafe.Pointer, frame unsafe.Pointer) unsafe.Pointer {
+	return _NSAccessibilityFrameInView(parentView, frame)
+}
 
-// NSCopyBits(srcGState _, srcRect :  Int,  _, destPoint :  NSRect,  _, :  NSPoint) func
+// Called by the main function to create and run the application. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplicationmain
+func NSApplicationMain(argc int, argv unsafe.Pointer) int {
+	return _NSApplicationMain(argc, argv)
+}
 
-// NSCountWindows(count NSInteger *, );) extern   void
+// Returns the available window depth values. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.6)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsavailablewindowdepths
+func NSAvailableWindowDepths() unsafe.Pointer {
+	return _NSAvailableWindowDepths()
+}
 
-// NSCountWindowsForContext(context NSInteger, count ,  NSInteger *, );) extern   void
+// Plays the system beep. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.6)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbeep
+func NSBeep() {
+	_NSBeep()
+}
 
+// Creates and runs an alert sheet. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbeginalertsheet
+func NSBeginAlertSheet(title unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer, modalDelegate unsafe.Pointer, didEndSelector unsafe.Pointer, didDismissSelector unsafe.Pointer, contextInfo unsafe.Pointer, msgFormat unsafe.Pointer) {
+	_NSBeginAlertSheet(title, defaultButton, alternateButton, otherButton, docWindow, modalDelegate, didEndSelector, didDismissSelector, contextInfo, msgFormat)
+}
 
-// NSDisableScreenUpdates() func
+// Creates and runs a critical alert sheet. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.11)
+// Deprecated: This function was deprecated in macOS 10.10.
 //
-// Deprecated: This function is deprecated.
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbegincriticalalertsheet
+func NSBeginCriticalAlertSheet(title unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer, modalDelegate unsafe.Pointer, didEndSelector unsafe.Pointer, didDismissSelector unsafe.Pointer, contextInfo unsafe.Pointer, msgFormat unsafe.Pointer) {
+	_NSBeginCriticalAlertSheet(title, defaultButton, alternateButton, otherButton, docWindow, modalDelegate, didEndSelector, didDismissSelector, contextInfo, msgFormat)
+}
 
-// NSDottedFrameRect(rect _, :  NSRect) func
+// Creates and runs an informational alert sheet. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbegininformationalalertsheet
+func NSBeginInformationalAlertSheet(title unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer, modalDelegate unsafe.Pointer, didEndSelector unsafe.Pointer, didDismissSelector unsafe.Pointer, contextInfo unsafe.Pointer, msgFormat unsafe.Pointer) {
+	_NSBeginInformationalAlertSheet(title, defaultButton, alternateButton, otherButton, docWindow, modalDelegate, didEndSelector, didDismissSelector, contextInfo, msgFormat)
+}
 
-// NSDrawColorTiledRects(boundsRect _, clipRect :  NSRect,  _, sides :  NSRect,  _, colors :  UnsafePointer< NSRectEdge>,  _, count :  AutoreleasingUnsafeMutablePointer< NSColor>,  _, :  Int) ->  NSRect) func
+// Attempts to return a window depth adequate for the specified parameters. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbestdepth
+func NSBestDepth(colorSpace unsafe.Pointer, bps unsafe.Pointer, bpp unsafe.Pointer, planar bool, exactMatch unsafe.Pointer) unsafe.Pointer {
+	return _NSBestDepth(colorSpace, bps, bpp, planar, exactMatch)
+}
 
+// Returns the number of color components in the specified color space. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspacename/numberofcolorcomponents
+func NSNumberOfColorComponents(colorSpaceName unsafe.Pointer) unsafe.Pointer {
+	return _NSNumberOfColorComponents(colorSpaceName)
+}
 
-// NSEnableScreenUpdates() func
+// Prepares a set of glyphs for processing by character-based routines. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.11)
+// Deprecated: This function was deprecated in macOS 10.13.
 //
-// Deprecated: This function is deprecated.
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsconvertglyphstopackedglyphs(_:_:_:_:)
+func NSConvertGlyphsToPackedGlyphs(glBuf unsafe.Pointer, count unsafe.Pointer, packing unsafe.Pointer, packedGlyphs unsafe.Pointer) unsafe.Pointer {
+	return _NSConvertGlyphsToPackedGlyphs(glBuf, count, packing, packedGlyphs)
+}
 
-// NSGetAlertPanel(title NSString *, msgFormat ,  NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, , ...);) extern   id
+// Copies a bitmap image to the location specified by a destination point. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
+// Deprecated: This function was deprecated in macOS 10.10.
 //
-// Deprecated: This function is deprecated.
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscopybits(_:_:_:)
+func NSCopyBits(srcGState unsafe.Pointer, srcRect unsafe.Pointer, destPoint unsafe.Pointer) {
+	_NSCopyBits(srcGState, srcRect, destPoint)
+}
 
+// Counts the number of onscreen windows. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.6.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscountwindows
+func NSCountWindows(count unsafe.Pointer) {
+	_NSCountWindows(count)
+}
 
-// NSGetCriticalAlertPanel(title NSString *, msgFormat ,  NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, , ...);) extern   id
+// Counts the number of onscreen windows belonging to a particular application. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
+// Deprecated: This function was deprecated in macOS 10.6.
 //
-// Deprecated: This function is deprecated.
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscountwindowsforcontext
+func NSCountWindowsForContext(context unsafe.Pointer, count unsafe.Pointer) {
+	_NSCountWindowsForContext(context, count)
+}
 
-// NSGetInformationalAlertPanel(title NSString *, msgFormat ,  NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, , ...);) extern   id
+// Disables screen updates. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
+// Deprecated: This function was deprecated in macOS 10.11.
 //
-// Deprecated: This function is deprecated.
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdisablescreenupdates()
+func NSDisableScreenUpdates() {
+	_NSDisableScreenUpdates()
+}
 
-// NSGetWindowServerMemory(context _, virtualMemory :  Int,  _, windowBackingMemory :  UnsafeMutablePointer< Int>,  _, windowDumpString :  UnsafeMutablePointer< Int>,  _, :  AutoreleasingUnsafeMutablePointer< NSString>) ->  Int) func
+// Draws a bordered rectangle. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.14)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdottedframerect(_:)
+func NSDottedFrameRect(rect unsafe.Pointer) {
+	_NSDottedFrameRect(rect)
+}
 
-
-// NSInterfaceStyleForKey(key NSString *, responder ,  NSResponder *, );) extern   NSInterfaceStyle
+// Draws a single-color, bordered rectangle. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.8)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawcolortiledrects(_:_:_:_:_:)
+func NSDrawColorTiledRects(boundsRect unsafe.Pointer, clipRect unsafe.Pointer, sides unsafe.Pointer, colors unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
+	return _NSDrawColorTiledRects(boundsRect, clipRect, sides, colors, count)
+}
 
-// NSIsControllerMarker(object _, :  Any?) ->  Bool) func
-
-// NSOpenGLGetOption(pname NSOpenGLGlobalOption, param ,  GLint *, );) extern   void
+// Enables screen updates. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.14)
+// Deprecated: This function was deprecated in macOS 10.11.
 //
-// Deprecated: This function is deprecated.
-
-
-// NSOpenGLGetVersion(major GLint *, minor ,  GLint *, );) extern   void
+// Added in macOS 10.0.
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.14)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsenablescreenupdates()
+func NSEnableScreenUpdates() {
+	_NSEnableScreenUpdates()
+}
 
-// NSOpenGLSetOption(pname NSOpenGLGlobalOption, param ,  GLint, );) extern   void
+// Returns an alert panel. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.14)
+// Deprecated: This function was deprecated in macOS 10.10.
 //
-// Deprecated: This function is deprecated.
-
-// fileContentsType(fileType forPathExtension, :  String) ->  NSPasteboard. PasteboardType!) static   func
-
-
-// fileNameType(fileType forPathExtension, :  String) ->  NSPasteboard. PasteboardType!) static   func
-
-// representedPathExtension() var
-
-// representedPathExtensions(pboardTypes from, : [ NSPasteboard. PasteboardType]) -> [ String]?) static   func
-
-
-// NSReadPixel(passedPoint _, :  NSPoint) ->  NSColor?) func
+// Added in macOS 10.0.
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.14)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgetalertpanel
+func NSGetAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+	return _NSGetAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
+}
 
-// NSReleaseAlertPanel(panel _, :  Any!)) func
+// Returns an alert panel to display a critical message. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
+// Deprecated: This function was deprecated in macOS 10.10.
 //
-// Deprecated: This function is deprecated.
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgetcriticalalertpanel
+func NSGetCriticalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+	return _NSGetCriticalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
+}
 
-// NSRunAlertPanel(title NSString *, msgFormat ,  NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, , ...);) extern   NSInteger
+// Returns an alert panel to display an informational message. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
+// Deprecated: This function was deprecated in macOS 10.10.
 //
-// Deprecated: This function is deprecated.
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgetinformationalalertpanel
+func NSGetInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+	return _NSGetInformationalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
+}
 
+// Returns the amount of memory being used by a context. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.14.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgetwindowservermemory(_:_:_:_:)
+func NSGetWindowServerMemory(context unsafe.Pointer, virtualMemory unsafe.Pointer, windowBackingMemory unsafe.Pointer, windowDumpString unsafe.Pointer) unsafe.Pointer {
+	return _NSGetWindowServerMemory(context, virtualMemory, windowBackingMemory, windowDumpString)
+}
 
-// NSRunAlertPanelRelativeToWindow(title NSString *, msgFormat ,  NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, docWindow ,  NSWindow *, , ...);) extern   NSInteger
+// Returns an interface style value for the specified key and responder. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.0)
+// Deprecated: This function was deprecated in macOS 10.8.
 //
-// Deprecated: This function is deprecated.
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsinterfacestyleforkey
+func NSInterfaceStyleForKey(key unsafe.Pointer, responder unsafe.Pointer) unsafe.Pointer {
+	return _NSInterfaceStyleForKey(key, responder)
+}
 
-// NSRunCriticalAlertPanel(title NSString *, msgFormat ,  NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, , ...);) extern   NSInteger
+// Tests whether a given object is special marker object used for indicating the state of a selection in relation to a key. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsiscontrollermarker(_:)
+func NSIsControllerMarker(object unsafe.Pointer) bool {
+	return _NSIsControllerMarker(object)
+}
 
-// NSRunCriticalAlertPanelRelativeToWindow(title NSString *, msgFormat ,  NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, docWindow ,  NSWindow *, , ...);) extern   NSInteger
+// Returns global OpenGL options. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.0)
+// Deprecated: This function was deprecated in macOS 10.14.
 //
-// Deprecated: This function is deprecated.
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglgetoption
+func NSOpenGLGetOption(pname unsafe.Pointer, param unsafe.Pointer) {
+	_NSOpenGLGetOption(pname, param)
+}
 
-
-// NSRunInformationalAlertPanel(title NSString *, msgFormat ,  NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, , ...);) extern   NSInteger
+// Returns the NSOpenGL version numbers. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.10)
+// Deprecated: This function was deprecated in macOS 10.14.
 //
-// Deprecated: This function is deprecated.
-
-// NSRunInformationalAlertPanelRelativeToWindow(title NSString *, msgFormat ,  NSString *, defaultButton ,  NSString *, alternateButton ,  NSString *, otherButton ,  NSString *, docWindow ,  NSWindow *, , ...);) extern   NSInteger
+// Added in macOS 10.0.
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.0)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglgetversion
+func NSOpenGLGetVersion(major unsafe.Pointer, minor unsafe.Pointer) {
+	_NSOpenGLGetVersion(major, minor)
+}
+
+// Sets global OpenGL options. [Full Topic]
 //
-// Deprecated: This function is deprecated.
-
-// NSSetShowsServicesMenuItem(itemName _, enabled :  String,  _, :  Bool) ->  Int) func
-
-
-// NSShowAnimationEffect(animationEffect NSAnimationEffect, centerLocation ,  NSPoint, size ,  NSSize, animationDelegate ,  id, didEndSelector ,  SEL, contextInfo ,  void *, );) extern   void
+// Deprecated: This function was deprecated in macOS 10.14.
 //
-// Availability:
-//   - macOS 10.3+ (Deprecated in 14.0)
+// Added in macOS 10.0.
 //
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglsetoption
+func NSOpenGLSetOption(pname unsafe.Pointer, param unsafe.Pointer) {
+	_NSOpenGLSetOption(pname, param)
+}
 
-// NSShowsServicesMenuItem(itemName _, :  String) ->  Bool) func
-
-// NSWindowList(size NSInteger, list ,  NSInteger, []);) extern   void
+// Returns a pasteboard type based on the passed file type. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.6)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/filecontentstype(forpathextension:)
+func NSCreateFileContentsPboardType(fileType unsafe.Pointer) unsafe.Pointer {
+	return _NSCreateFileContentsPboardType(fileType)
+}
 
-
-// NSWindowListForContext(context NSInteger, size ,  NSInteger, list ,  NSInteger, []);) extern   void
+// Returns a pasteboard type based on the passed file type. [Full Topic]
 //
-// Availability:
-//   - macOS 10.0+ (Deprecated in 10.6)
-//
-// Deprecated: This function is deprecated.
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/filenametype(forpathextension:)
+func NSCreateFilenamePboardType(fileType unsafe.Pointer) unsafe.Pointer {
+	return _NSCreateFilenamePboardType(fileType)
+}
 
+// A file type based on the passed pasteboard type. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/representedpathextension
+func NSGetFileType(pboardType unsafe.Pointer) unsafe.Pointer {
+	return _NSGetFileType(pboardType)
+}
+
+// Returns an array of file types based on the passed pasteboard types. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/representedpathextensions(from:)
+func NSGetFileTypes(pboardTypes unsafe.Pointer) unsafe.Pointer {
+	return _NSGetFileTypes(pboardTypes)
+}
+
+// Reads the color of the pixel at the specified location. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.14.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsreadpixel(_:)
+func NSReadPixel(passedPoint unsafe.Pointer) unsafe.Pointer {
+	return _NSReadPixel(passedPoint)
+}
+
+// Disposes of an alert panel. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsreleasealertpanel(_:)
+func NSReleaseAlertPanel(panel unsafe.Pointer) {
+	_NSReleaseAlertPanel(panel)
+}
+
+// Creates an alert panel. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunalertpanel
+func NSRunAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+	return _NSRunAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
+}
+
+// NSRunAlertPanelRelativeToWindow is a AppKit function. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.0.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunalertpanelrelativetowindow
+func NSRunAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer) unsafe.Pointer {
+	return _NSRunAlertPanelRelativeToWindow(title, msgFormat, defaultButton, alternateButton, otherButton, docWindow)
+}
+
+// Creates and runs a critical alert panel. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruncriticalalertpanel
+func NSRunCriticalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+	return _NSRunCriticalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
+}
+
+// NSRunCriticalAlertPanelRelativeToWindow is a AppKit function. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.0.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruncriticalalertpanelrelativetowindow
+func NSRunCriticalAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer) unsafe.Pointer {
+	return _NSRunCriticalAlertPanelRelativeToWindow(title, msgFormat, defaultButton, alternateButton, otherButton, docWindow)
+}
+
+// Creates and runs an informational alert panel. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.10.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruninformationalalertpanel
+func NSRunInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) unsafe.Pointer {
+	return _NSRunInformationalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
+}
+
+// NSRunInformationalAlertPanelRelativeToWindow is a AppKit function. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.0.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruninformationalalertpanelrelativetowindow
+func NSRunInformationalAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer) unsafe.Pointer {
+	return _NSRunInformationalAlertPanelRelativeToWindow(title, msgFormat, defaultButton, alternateButton, otherButton, docWindow)
+}
+
+// Specifies whether an item should be included in Services menus. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssetshowsservicesmenuitem(_:_:)
+func NSSetShowsServicesMenuItem(itemName unsafe.Pointer, enabled bool) unsafe.Pointer {
+	return _NSSetShowsServicesMenuItem(itemName, enabled)
+}
+
+// Runs a system animation effect. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 14.0.
+//
+// Added in macOS 10.3.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshowanimationeffect
+func NSShowAnimationEffect(animationEffect unsafe.Pointer, centerLocation unsafe.Pointer, size unsafe.Pointer, animationDelegate unsafe.Pointer, didEndSelector unsafe.Pointer, contextInfo unsafe.Pointer) {
+	_NSShowAnimationEffect(animationEffect, centerLocation, size, animationDelegate, didEndSelector, contextInfo)
+}
+
+// Specifies whether a Services menu item is currently enabled. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshowsservicesmenuitem(_:)
+func NSShowsServicesMenuItem(itemName unsafe.Pointer) bool {
+	return _NSShowsServicesMenuItem(itemName)
+}
+
+// Returns the bits per pixel for the specified window depth. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/bitsperpixel
+func NSBitsPerPixelFromDepth(depth unsafe.Pointer) unsafe.Pointer {
+	return _NSBitsPerPixelFromDepth(depth)
+}
+
+// Returns the bits per sample for the specified window depth. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/bitspersample
+func NSBitsPerSampleFromDepth(depth unsafe.Pointer) unsafe.Pointer {
+	return _NSBitsPerSampleFromDepth(depth)
+}
+
+// Returns the name of the color space corresponding to the passed window depth. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/colorspacename
+func NSColorSpaceFromDepth(depth unsafe.Pointer) unsafe.Pointer {
+	return _NSColorSpaceFromDepth(depth)
+}
+
+// Returns whether the specified window depth is planar. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/isplanar
+func NSPlanarFromDepth(depth unsafe.Pointer) bool {
+	return _NSPlanarFromDepth(depth)
+}
+
+// Gets information about onscreen windows. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.6.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowlist
+func NSWindowList(size unsafe.Pointer, list unsafe.Pointer) {
+	_NSWindowList(size, list)
+}
+
+// Gets information about an application’s onscreen windows. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.6.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowlistforcontext
+func NSWindowListForContext(context unsafe.Pointer, size unsafe.Pointer, list unsafe.Pointer) {
+	_NSWindowListForContext(context, size, list)
+}

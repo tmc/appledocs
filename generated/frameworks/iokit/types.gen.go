@@ -2,7 +2,4 @@
 
 package iokit
 
-import "unsafe"
-
 // IOKit Types
-

@@ -39,7 +39,6 @@ package systemconfiguration
 // Availability:
 //   - macOS 10.1+
 
-
 // DHCPInfoGetOptionData(info CFDictionaryRef, code ,  UInt8, );) CFDataRef
 //
 // Availability:
@@ -54,7 +53,6 @@ package systemconfiguration
 //
 // Availability:
 //   - macOS 10.1+
-
 
 // SCDynamicStoreKeyCreateComputerName(allocator _, :  CFAllocator?) ->  CFString) func
 //
@@ -72,7 +70,6 @@ package systemconfiguration
 //
 // Availability:
 //   - macOS 10.3+
-
 
 // SCNetworkReachabilityCreateWithAddressPair(allocator _, localAddress :  CFAllocator?,  _, remoteAddress :  UnsafePointer< sockaddr>?,  _, :  UnsafePointer< sockaddr>?) ->  SCNetworkReachability?) func
 //
@@ -101,7 +98,6 @@ package systemconfiguration
 // Availability:
 //   - macOS 10.1+
 
-
 // SCPreferencesCreate(allocator _, name :  CFAllocator?,  _, prefsID :  CFString,  _, :  CFString?) ->  SCPreferences?) func
 //
 // Availability:
@@ -116,5 +112,3 @@ package systemconfiguration
 //
 // Availability:
 //   - macOS 10.1+
-
-

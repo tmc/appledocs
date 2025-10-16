@@ -2,15 +2,13 @@
 
 // Package coregraphics provides Go bindings for the CoreGraphics framework.
 //
-// Minimum macOS version: 10.0
-// Framework path: /System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+// Harness the power of Quartz technology to perform lightweight 2D rendering with high-fidelity output. Handle path-based drawing, antialiased rendering, gradients, images, color management, PDF documents, and more. [Full Topic]
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreGraphics without requiring cgo.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coregraphics
 package coregraphics
 
-// MinMacOSVersion is the minimum macOS version required for this framework.
-const MinMacOSVersion = "10.0"
-
-// FrameworkPath is the system path to the framework binary.
-const FrameworkPath = "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics"
+// frameworkPath is the system path to the framework binary.
+const frameworkPath = "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics"

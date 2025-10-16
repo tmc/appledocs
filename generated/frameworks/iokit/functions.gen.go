@@ -37,7 +37,6 @@ package iokit
 //   - Mac Catalyst 13.0+
 //   - macOS 10.0+
 
-
 // IOHIDManagerSetDeviceMatching(IOHIDManagerRef manager,  CFDictionaryRef matching);)
 //
 // Availability:
@@ -58,7 +57,6 @@ package iokit
 //   - iPadOS 18.4+
 //   - macOS 10.0+
 //   - visionOS 2.4+
-
 
 // IOCatalogueGetData(mainPort _, flag :  mach_port_t,  _, buffer :  UInt32,  _, size :  UnsafeMutablePointer< UnsafeMutablePointer< CChar>?>!,  _, :  UnsafeMutablePointer< UInt32>!) ->  kern_return_t) func
 //
@@ -83,7 +81,6 @@ package iokit
 //   - macOS 10.5+
 //   - visionOS 1.0+
 
-
 // IORegistryEntryCopyFromPath(mainPort _, path :  mach_port_t,  _, :  CFString!) ->  io_registry_entry_t) func
 //
 // Availability:
@@ -102,7 +99,6 @@ package iokit
 //
 // Availability:
 //   - macOS 10.0+
-
 
 // IOCFUnserialize(buffer _, allocator :  UnsafePointer< CChar>!,  _, options :  CFAllocator!,  _, errorString :  CFOptionFlags,  _, :  UnsafeMutablePointer< Unmanaged< CFString>?>!) ->  CFTypeRef!) func
 //
@@ -128,7 +124,6 @@ package iokit
 //   - iPadOS 4.0+
 //   - macOS 10.5+
 //   - visionOS 1.0+
-
 
 // IODataQueueDequeue(dataQueue _, data :  UnsafeMutablePointer< IODataQueueMemory>!,  _, dataSize :  UnsafeMutableRawPointer!,  _, :  UnsafeMutablePointer< UInt32>!) ->  IOReturn) func
 //
@@ -157,7 +152,6 @@ package iokit
 //   - macOS 10.5+
 //   - visionOS 1.0+
 
-
 // IORegistryEntryCreateCFProperties(entry _, properties :  io_registry_entry_t,  _, allocator :  UnsafeMutablePointer< Unmanaged< CFMutableDictionary>?>!,  _, options :  CFAllocator!,  _, :  IOOptionBits) ->  kern_return_t) func
 //
 // Availability:
@@ -184,7 +178,6 @@ package iokit
 //   - iPadOS 18.4+
 //   - macOS 10.0+
 //   - visionOS 2.4+
-
 
 // IOObjectGetKernelRetainCount(object _, :  io_object_t) ->  UInt32) func
 //
@@ -213,7 +206,6 @@ package iokit
 //   - macOS 10.1+
 //   - visionOS 2.4+
 
-
 // IOConnectTrap5(connect _, index :  io_connect_t,  _, p1 :  UInt32,  _, p2 :  UInt,  _, p3 :  UInt,  _, p4 :  UInt,  _, p5 :  UInt,  _, :  UInt) ->  kern_return_t) func
 //
 // Availability:
@@ -232,7 +224,6 @@ package iokit
 //   - iPadOS 18.4+
 //   - macOS 10.0+
 //   - visionOS 2.4+
-
 
 // IOServiceRequestProbe(service _, options :  io_service_t,  _, :  UInt32) ->  kern_return_t) func
 //
@@ -256,7 +247,6 @@ package iokit
 //   - iPadOS 4.0+
 //   - macOS 10.4+
 //   - visionOS 1.0+
-
 
 // IOConnectMapMemory(connect _, memoryType :  io_connect_t,  _, intoTask :  UInt32,  _, atAddress :  task_port_t,  _, ofSize :  UnsafeMutablePointer< mach_vm_address_t>!,  _, options :  UnsafeMutablePointer< mach_vm_size_t>!,  _, :  IOOptionBits) ->  kern_return_t) func
 //
@@ -283,7 +273,6 @@ package iokit
 //
 // Deprecated: This function is deprecated.
 
-
 // IODataQueueDataAvailable(dataQueue _, :  UnsafeMutablePointer< IODataQueueMemory>!) ->  Bool) func
 //
 // Availability:
@@ -307,7 +296,6 @@ package iokit
 // Availability:
 //   - macOS 10.0+
 
-
 // IOConnectTrap4(connect _, index :  io_connect_t,  _, p1 :  UInt32,  _, p2 :  UInt,  _, p3 :  UInt,  _, p4 :  UInt,  _, :  UInt) ->  kern_return_t) func
 //
 // Availability:
@@ -326,7 +314,6 @@ package iokit
 //   - iPadOS 18.4+
 //   - macOS 10.0+
 //   - visionOS 2.4+
-
 
 // IOConnectCallAsyncMethod(connection _, selector :  mach_port_t,  _, wake_port :  UInt32,  _, reference :  mach_port_t,  _, referenceCnt :  UnsafeMutablePointer< UInt64>!,  _, input :  UInt32,  _, inputCnt :  UnsafePointer< UInt64>!,  _, inputStruct :  UInt32,  _, inputStructCnt :  UnsafeRawPointer!,  _, output :  Int,  _, outputCnt :  UnsafeMutablePointer< UInt64>!,  _, outputStruct :  UnsafeMutablePointer< UInt32>!,  _, outputStructCnt :  UnsafeMutableRawPointer!,  _, :  UnsafeMutablePointer< Int>!) ->  kern_return_t) func
 //
@@ -355,7 +342,6 @@ package iokit
 //   - macOS 10.0+
 //   - visionOS 2.4+
 
-
 // IORegistryEntryGetParentEntry(entry _, plane :  io_registry_entry_t,  _, parent :  UnsafePointer< CChar>!,  _, :  UnsafeMutablePointer< io_registry_entry_t>!) ->  kern_return_t) func
 //
 // Availability:
@@ -382,7 +368,6 @@ package iokit
 //   - iPadOS 4.0+
 //   - macOS 10.6+
 //   - visionOS 1.0+
-
 
 // IORegistryEntryGetNameInPlane(entry _, plane :  io_registry_entry_t,  _, name :  UnsafePointer< CChar>!,  _, :  UnsafeMutablePointer< CChar>!) ->  kern_return_t) func
 //
@@ -411,7 +396,6 @@ package iokit
 //   - macOS 10.5+
 //   - visionOS 1.0+
 
-
 // IOBSDNameMatching(mainPort _, options :  mach_port_t,  _, bsdName :  UInt32,  _, :  UnsafePointer< CChar>!) ->  CFMutableDictionary!) func
 //
 // Availability:
@@ -434,7 +418,6 @@ package iokit
 //   - iPadOS 18.4+
 //   - macOS 10.0+
 //   - visionOS 2.4+
-
 
 // IODataQueueAllocateNotificationPort() func
 //
@@ -460,7 +443,6 @@ package iokit
 //   - Mac Catalyst 13.0+
 //   - Xcode 6.1+
 //   - macOS 10.9+
-
 
 // IOObjectConformsTo(object _, className :  io_object_t,  _, :  UnsafePointer< CChar>!) ->  boolean_t) func
 //
@@ -489,7 +471,6 @@ package iokit
 //   - macOS 10.0+
 //   - visionOS 2.4+
 
-
 // IOConnectUnmapMemory(connect _, memoryType :  io_connect_t,  _, fromTask :  UInt32,  _, atAddress :  task_port_t,  _, :  mach_vm_address_t) ->  kern_return_t) func
 //
 // Availability:
@@ -512,7 +493,6 @@ package iokit
 //   - iPadOS 18.4+
 //   - macOS 10.2+
 //   - visionOS 2.4+
-
 
 // IORegistryEntrySearchCFProperty(entry _, plane :  io_registry_entry_t,  _, key :  UnsafePointer< CChar>!,  _, allocator :  CFString!,  _, options :  CFAllocator!,  _, :  IOOptionBits) ->  CFTypeRef!) func
 //
@@ -541,7 +521,6 @@ package iokit
 //   - macOS 10.0+
 //   - visionOS 2.4+
 
-
 // IOObjectIsEqualTo(object _, anObject :  io_object_t,  _, :  io_object_t) ->  boolean_t) func
 //
 // Availability:
@@ -569,7 +548,6 @@ package iokit
 //   - macOS 10.6+
 //   - visionOS 1.0+
 
-
 // IONotificationPortGetRunLoopSource(notify _, :  IONotificationPortRef!) ->  Unmanaged< CFRunLoopSource>!) func
 //
 // Availability:
@@ -592,7 +570,6 @@ package iokit
 //
 // Availability:
 //   - macOS 10.0+
-
 
 // IOObjectRelease(object _, :  io_object_t) ->  kern_return_t) func
 //
@@ -621,7 +598,6 @@ package iokit
 //   - macOS 10.0+
 //   - visionOS 2.4+
 
-
 // IODataQueuePeek(dataQueue _, :  UnsafeMutablePointer< IODataQueueMemory>!) ->  UnsafeMutablePointer< IODataQueueEntry>!) func
 //
 // Availability:
@@ -646,7 +622,6 @@ package iokit
 //
 // Deprecated: This function is deprecated.
 
-
 // IOCatalogueTerminate(mainPort _, flag :  mach_port_t,  _, description :  UInt32,  _, :  UnsafeMutablePointer< CChar>!) ->  kern_return_t) func
 //
 // Availability:
@@ -665,7 +640,6 @@ package iokit
 //
 // Availability:
 //   - macOS 10.0+
-
 
 // IOServiceMatchPropertyTable(service _, matching :  io_service_t,  _, matches :  CFDictionary!,  _, :  UnsafeMutablePointer< boolean_t>!) ->  kern_return_t) func
 //
@@ -694,7 +668,6 @@ package iokit
 //   - macOS 10.0+
 //   - visionOS 2.4+
 
-
 // IOCreateReceivePort(msgType _, recvPort :  UInt32,  _, :  UnsafeMutablePointer< mach_port_t>!) ->  kern_return_t) func
 //
 // Availability:
@@ -718,7 +691,6 @@ package iokit
 //   - macOS 10.0+
 //   - visionOS 2.4+
 
-
 // IOConnectSetCFProperties(connect _, properties :  io_connect_t,  _, :  CFTypeRef!) ->  kern_return_t) func
 //
 // Availability:
@@ -739,7 +711,6 @@ package iokit
 //   - iPadOS 18.4+
 //   - macOS 10.6+
 //   - visionOS 2.4+
-
 
 // IOConnectAddRef(connect _, :  io_connect_t) ->  kern_return_t) func
 //
@@ -768,7 +739,6 @@ package iokit
 //   - macOS 10.10+
 //   - visionOS 2.4+
 
-
 // IONotificationPortDestroy(notify _, :  IONotificationPortRef!) func
 //
 // Availability:
@@ -795,7 +765,6 @@ package iokit
 //   - iPadOS 18.4+
 //   - macOS 10.5+
 //   - visionOS 2.4+
-
 
 // IOObjectRetain(object _, :  io_object_t) ->  kern_return_t) func
 //
@@ -824,7 +793,6 @@ package iokit
 //   - macOS 10.4+
 //   - visionOS 1.0+
 
-
 // IOConnectCallScalarMethod(connection _, selector :  mach_port_t,  _, input :  UInt32,  _, inputCnt :  UnsafePointer< UInt64>!,  _, output :  UInt32,  _, outputCnt :  UnsafeMutablePointer< UInt64>!,  _, :  UnsafeMutablePointer< UInt32>!) ->  kern_return_t) func
 //
 // Availability:
@@ -847,7 +815,6 @@ package iokit
 //   - iPadOS 18.4+
 //   - macOS 10.0+
 //   - visionOS 2.4+
-
 
 // IOConnectTrap1(connect _, index :  io_connect_t,  _, p1 :  UInt32,  _, :  UInt) ->  kern_return_t) func
 //
@@ -872,7 +839,6 @@ package iokit
 //   - macOS 10.0+
 //   - visionOS 2.4+
 
-
 // IOConnectTrap3(connect _, index :  io_connect_t,  _, p1 :  UInt32,  _, p2 :  UInt,  _, p3 :  UInt,  _, :  UInt) ->  kern_return_t) func
 //
 // Availability:
@@ -893,7 +859,6 @@ package iokit
 //   - iPadOS 9.0+
 //   - macOS 10.11+
 //   - visionOS 1.0+
-
 
 // IOConnectMapMemory64(connect _, memoryType :  io_connect_t,  _, intoTask :  UInt32,  _, atAddress :  task_port_t,  _, ofSize :  UnsafeMutablePointer< mach_vm_address_t>!,  _, options :  UnsafeMutablePointer< mach_vm_size_t>!,  _, :  IOOptionBits) ->  kern_return_t) func
 //
@@ -922,7 +887,6 @@ package iokit
 //   - macOS 10.0+
 //   - visionOS 2.4+
 
-
 // IOCFUnserializeBinary(buffer _, bufferSize :  UnsafePointer< CChar>!,  _, allocator :  Int,  _, options :  CFAllocator!,  _, errorString :  CFOptionFlags,  _, :  UnsafeMutablePointer< Unmanaged< CFString>?>!) ->  CFTypeRef!) func
 //
 // Availability:
@@ -945,7 +909,6 @@ package iokit
 //
 // Availability:
 //   - macOS 10.0+
-
 
 // IORegistryEntryIDMatching(entryID _, :  UInt64) ->  CFMutableDictionary!) func
 //
@@ -970,7 +933,6 @@ package iokit
 //   - macOS 10.5+
 //   - visionOS 1.0+
 
-
 // IOCatalogueModuleLoaded(mainPort _, name :  mach_port_t,  _, :  UnsafeMutablePointer< CChar>!) ->  kern_return_t) func
 //
 // Availability:
@@ -991,7 +953,6 @@ package iokit
 //   - macOS 10.13+
 //   - visionOS 2.4+
 
-
 // IORPCMessageFromMach(msg _, reply :  UnsafeMutablePointer< IORPCMessageMach>!,  _, :  Bool) ->  UnsafeMutablePointer< IORPCMessage>!) func
 //
 // Availability:
@@ -1006,4 +967,3 @@ package iokit
 //   - iPadOS 15.0+
 //   - macOS 12.0+
 //   - visionOS 1.0+
-

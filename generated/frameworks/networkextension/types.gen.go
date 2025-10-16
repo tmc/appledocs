@@ -2,7 +2,4 @@
 
 package networkextension
 
-import "unsafe"
-
 // NetworkExtension Types
-

@@ -2,7 +2,4 @@
 
 package createml
 
-import "unsafe"
-
 // CreateML Types
-

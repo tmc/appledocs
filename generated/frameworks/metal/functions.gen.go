@@ -22,7 +22,6 @@ package metal
 
 // MTLCoordinate2DMake(x _, y :  Float,  _, :  Float) ->  MTLCoordinate2D) func
 
-
 // MTLCopyAllDevices() func
 //
 // Availability:
@@ -47,7 +46,6 @@ package metal
 //   - macOS 10.11+
 //   - visionOS 1.0+
 
-
 // MTLIOCompressionContextAppendData(context _, data :  MTLIOCompressionContext,  _, size :  UnsafeRawPointer,  _, :  Int) func
 //
 // Availability:
@@ -69,7 +67,6 @@ package metal
 //   - macOS 13.0+
 //   - tvOS 16.0+
 //   - visionOS 1.0+
-
 
 // MTLIOFlushAndDestroyCompressionContext(context _, :  MTLIOCompressionContext) ->  MTLIOCompressionStatus) func
 //
@@ -93,6 +90,4 @@ package metal
 
 // MTLPackedFloat3Make(x _, y :  Float,  _, z :  Float,  _, :  Float) ->  MTLPackedFloat3) func
 
-
 // MTLPackedFloatQuaternionMake(x float, y ,  float, z ,  float, w ,  float, );) static   MTLPackedFloatQuaternion
-

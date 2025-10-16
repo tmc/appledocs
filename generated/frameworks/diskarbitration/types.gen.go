@@ -2,7 +2,4 @@
 
 package diskarbitration
 
-import "unsafe"
-
 // DiskArbitration Types
-

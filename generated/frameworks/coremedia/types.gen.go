@@ -2,7 +2,4 @@
 
 package coremedia
 
-import "unsafe"
-
 // CoreMedia Types
-

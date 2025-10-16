@@ -49,7 +49,6 @@ package corevideo
 //   - visionOS 1.0+
 //   - watchOS 4.0+
 
-
 // CVDisplayLinkGetOutputVideoLatency(displayLink _, :  CVDisplayLink) ->  CVTime) func
 //
 // Availability:
@@ -73,7 +72,6 @@ package corevideo
 //   - macOS 10.4+ (Deprecated in 15.0)
 //
 // Deprecated: This function is deprecated.
-
 
 // CVImageBufferGetDisplaySize(imageBuffer _, :  CVImageBuffer) ->  CGSize) func
 //
@@ -108,7 +106,6 @@ package corevideo
 //   - visionOS 1.0+
 //   - watchOS 8.0+
 
-
 // CVMetalBufferCacheCreate(allocator _, cacheAttributes :  CFAllocator?,  _, metalDevice :  CFDictionary?,  _, cacheOut : any  MTLDevice,  _, :  UnsafeMutablePointer< CVMetalBufferCache?>) ->  CVReturn) func
 //
 // Availability:
@@ -138,7 +135,6 @@ package corevideo
 //   - macOS 15.0+
 //   - tvOS 18.0+
 //   - visionOS 2.0+
-
 
 // CVMetalBufferCacheGetTypeID() func
 //
@@ -170,7 +166,6 @@ package corevideo
 //   - tvOS 18.0+
 //   - visionOS 2.0+
 
-
 // CVMetalTextureCacheCreate(allocator _, cacheAttributes :  CFAllocator?,  _, metalDevice :  CFDictionary?,  _, textureAttributes : any  MTLDevice,  _, cacheOut :  CFDictionary?,  _, :  UnsafeMutablePointer< CVMetalTextureCache?>) ->  CVReturn) func
 //
 // Availability:
@@ -201,7 +196,6 @@ package corevideo
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 
-
 // CVMetalTextureGetTexture(image _, :  CVMetalTexture) -> (any  MTLTexture)?) func
 //
 // Availability:
@@ -229,7 +223,6 @@ package corevideo
 //
 // Deprecated: This function is deprecated.
 
-
 // CVOpenGLBufferPoolCreate(allocator _, poolAttributes :  CFAllocator?,  _, openGLBufferAttributes :  CFDictionary?,  _, poolOut :  CFDictionary?,  _, :  UnsafeMutablePointer< CVOpenGLBufferPool?>) ->  CVReturn) func
 //
 // Availability:
@@ -250,7 +243,6 @@ package corevideo
 //   - macOS 10.4+ (Deprecated in 10.14)
 //
 // Deprecated: This function is deprecated.
-
 
 // CVOpenGLBufferPoolRetain(openGLBufferPool CVOpenGLBufferPoolRef, );) extern   CVOpenGLBufferPoolRef
 //
@@ -274,7 +266,6 @@ package corevideo
 //   - tvOS 9.0+ (Deprecated in 12.0)
 //
 // Deprecated: This function is deprecated.
-
 
 // CVOpenGLESTextureCacheCreateTextureFromImage(allocator _, textureCache :  CFAllocator?,  _, sourceImage :  CVOpenGLESTextureCache,  _, textureAttributes :  CVImageBuffer,  _, target :  CFDictionary?,  _, internalFormat :  GLenum,  _, width :  GLint,  _, height :  GLsizei,  _, format :  GLsizei,  _, type :  GLenum,  _, planeIndex :  GLenum,  _, textureOut :  Int,  _, :  UnsafeMutablePointer< CVOpenGLESTexture?>) ->  CVReturn) func
 //
@@ -303,7 +294,6 @@ package corevideo
 //
 // Deprecated: This function is deprecated.
 
-
 // CVOpenGLESTextureGetTarget(image _, :  CVOpenGLESTexture) ->  GLenum) func
 //
 // Availability:
@@ -331,7 +321,6 @@ package corevideo
 //
 // Deprecated: This function is deprecated.
 
-
 // CVOpenGLTextureCacheRelease(textureCache CVOpenGLTextureCacheRef, );) extern   void
 //
 // Availability:
@@ -352,7 +341,6 @@ package corevideo
 //   - macOS 10.4+ (Deprecated in 10.14)
 //
 // Deprecated: This function is deprecated.
-
 
 // CVOpenGLTextureRetain(texture CVOpenGLTextureRef, );) extern   CVOpenGLTextureRef
 //
@@ -382,7 +370,6 @@ package corevideo
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 2.0+
-
 
 // CVPixelBufferGetBaseAddressOfPlane(pixelBuffer _, planeIndex :  CVPixelBuffer,  _, :  Int) ->  UnsafeMutableRawPointer?) func
 //
@@ -417,7 +404,6 @@ package corevideo
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // CVPixelBufferIsCompatibleWithAttributes(pixelBuffer _, attributes :  CVPixelBuffer,  _, :  CFDictionary?) ->  Bool) func
 //
 // Availability:
@@ -451,7 +437,6 @@ package corevideo
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 
-
 // CVPixelBufferPoolCreate(allocator _, poolAttributes :  CFAllocator?,  _, pixelBufferAttributes :  CFDictionary?,  _, poolOut :  CFDictionary?,  _, :  UnsafeMutablePointer< CVPixelBufferPool?>) ->  CVReturn) func
 //
 // Availability:
@@ -483,7 +468,6 @@ package corevideo
 //   - macOS 10.4+
 //   - tvOS 9.0+
 //   - visionOS 1.0+
-
 
 // CVPixelBufferUnlockBaseAddress(pixelBuffer _, unlockFlags :  CVPixelBuffer,  _, :  CVPixelBufferLockFlags) ->  CVReturn) func
 //
@@ -518,7 +502,6 @@ package corevideo
 //   - visionOS 1.0+
 //   - watchOS 4.0+
 
-
 // CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString _, :  CFString?) ->  Int32) func
 //
 // Availability:
@@ -529,4 +512,3 @@ package corevideo
 //   - tvOS 11.0+
 //   - visionOS 1.0+
 //   - watchOS 4.0+
-

@@ -49,7 +49,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_advertise_descriptor_get_application_service_name(advertise_descriptor _, :  nw_advertise_descriptor_t) ->  UnsafePointer< CChar>?) func
 //
 // Availability:
@@ -82,7 +81,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_advertise_descriptor_set_txt_record(advertise_descriptor _, txt_record :  nw_advertise_descriptor_t,  _, txt_length :  UnsafeRawPointer?,  _, :  Int) func
 //
@@ -117,7 +115,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 9.0+
 
-
 // nw_browse_descriptor_create_bonjour_service(type _, domain :  UnsafePointer< CChar>,  _, :  UnsafePointer< CChar>?) ->  nw_browse_descriptor_t) func
 //
 // Availability:
@@ -150,7 +147,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_browse_descriptor_get_bonjour_service_type(descriptor _, :  nw_browse_descriptor_t) ->  UnsafePointer< CChar>) func
 //
@@ -185,7 +181,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_browse_result_copy_endpoint(result _, :  nw_browse_result_t) ->  nw_endpoint_t) func
 //
 // Availability:
@@ -218,7 +213,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_browse_result_get_changes(old_result _, new_result :  nw_browse_result_t?,  _, :  nw_browse_result_t?) ->  nw_browse_result_change_t) func
 //
@@ -253,7 +247,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_browser_copy_browse_descriptor(browser _, :  nw_browser_t) ->  nw_browse_descriptor_t) func
 //
 // Availability:
@@ -286,7 +279,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_browser_set_browse_results_changed_handler(browser _, handler :  nw_browser_t,  _, :  nw_browser_browse_results_changed_handler_t?)) func
 //
@@ -321,7 +313,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_browser_start(browser _, :  nw_browser_t) func
 //
 // Availability:
@@ -354,7 +345,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_connection_cancel(connection _, :  nw_connection_t) func
 //
@@ -389,7 +379,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_connection_copy_description(connection _, :  nw_connection_t) ->  UnsafeMutablePointer< CChar>) func
 //
 // Availability:
@@ -422,7 +411,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_connection_copy_protocol_metadata(connection _, definition :  nw_connection_t,  _, :  nw_protocol_definition_t) ->  nw_protocol_metadata_t?) func
 //
@@ -457,7 +445,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_connection_force_cancel(connection _, :  nw_connection_t) func
 //
 // Availability:
@@ -490,7 +477,6 @@ package network
 //   - tvOS 14.0+
 //   - visionOS 1.0+
 //   - watchOS 7.0+
-
 
 // nw_connection_group_copy_descriptor(group _, :  nw_connection_group_t) ->  nw_group_descriptor_t) func
 //
@@ -525,7 +511,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 7.0+
 
-
 // nw_connection_group_copy_path_for_message(group _, context :  nw_connection_group_t,  _, :  nw_content_context_t) ->  nw_path_t?) func
 //
 // Availability:
@@ -558,7 +543,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_connection_group_copy_remote_endpoint_for_message(group _, context :  nw_connection_group_t,  _, :  nw_content_context_t) ->  nw_endpoint_t?) func
 //
@@ -593,7 +577,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 8.0+
 
-
 // nw_connection_group_extract_connection_for_message(group _, context :  nw_connection_group_t,  _, :  nw_content_context_t) ->  nw_connection_t?) func
 //
 // Availability:
@@ -626,7 +609,6 @@ package network
 //   - tvOS 14.0+
 //   - visionOS 1.0+
 //   - watchOS 7.0+
-
 
 // nw_connection_group_send_message(group _, content :  nw_connection_group_t,  _, endpoint :  dispatch_data_t?,  _, context :  nw_endpoint_t?,  _, completion :  nw_content_context_t,  _, :  @escaping  nw_connection_group_send_completion_t) func
 //
@@ -661,7 +643,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 7.0+
 
-
 // nw_connection_group_set_receive_handler(group _, maximum_message_size :  nw_connection_group_t,  _, reject_oversized_messages :  UInt32,  _, receive_handler :  Bool,  _, :  nw_connection_group_receive_handler_t?)) func
 //
 // Availability:
@@ -694,7 +675,6 @@ package network
 //   - tvOS 14.0+
 //   - visionOS 1.0+
 //   - watchOS 7.0+
-
 
 // nw_connection_receive(connection _, minimum_incomplete_length :  nw_connection_t,  _, maximum_length :  UInt32,  _, completion :  UInt32,  _, :  @escaping  nw_connection_receive_completion_t) func
 //
@@ -729,7 +709,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_connection_send(connection _, content :  nw_connection_t,  _, context :  dispatch_data_t?,  _, is_complete :  nw_content_context_t,  _, completion :  Bool,  _, :  @escaping  nw_connection_send_completion_t) func
 //
 // Availability:
@@ -762,7 +741,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_connection_set_queue(connection _, queue :  nw_connection_t,  _, :  dispatch_queue_t) func
 //
@@ -797,7 +775,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_connection_start(connection _, :  nw_connection_t) func
 //
 // Availability:
@@ -830,7 +807,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_content_context_create(context_identifier _, :  UnsafePointer< CChar>) ->  nw_content_context_t) func
 //
@@ -865,7 +841,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_content_context_get_identifier(context _, :  nw_content_context_t) ->  UnsafePointer< CChar>) func
 //
 // Availability:
@@ -898,7 +873,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_content_context_set_antecedent(context _, antecedent_context :  nw_content_context_t,  _, :  nw_content_context_t?)) func
 //
@@ -933,7 +907,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_content_context_set_metadata_for_protocol(context _, protocol_metadata :  nw_content_context_t,  _, :  nw_protocol_metadata_t) func
 //
 // Availability:
@@ -966,7 +939,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_data_transfer_report_copy_path_interface(report _, path_index :  nw_data_transfer_report_t,  _, :  UInt32) ->  nw_interface_t) func
 //
@@ -1001,7 +973,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_data_transfer_report_get_path_radio_type(report _, path_index :  nw_data_transfer_report_t,  _, :  UInt32) ->  nw_interface_radio_type_t) func
 //
 // Availability:
@@ -1034,7 +1005,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_data_transfer_report_get_received_transport_byte_count(report _, path_index :  nw_data_transfer_report_t,  _, :  UInt32) ->  UInt64) func
 //
@@ -1069,7 +1039,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_data_transfer_report_get_sent_application_byte_count(report _, path_index :  nw_data_transfer_report_t,  _, :  UInt32) ->  UInt64) func
 //
 // Availability:
@@ -1102,7 +1071,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(report _, path_index :  nw_data_transfer_report_t,  _, :  UInt32) ->  UInt64) func
 //
@@ -1137,7 +1105,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_data_transfer_report_get_transport_rtt_variance(report _, path_index :  nw_data_transfer_report_t,  _, :  UInt32) ->  UInt64) func
 //
 // Availability:
@@ -1170,7 +1137,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_endpoint_copy_port_string(endpoint _, :  nw_endpoint_t) ->  UnsafeMutablePointer< CChar>) func
 //
@@ -1205,7 +1171,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_endpoint_create_bonjour_service(name _, type :  UnsafePointer< CChar>,  _, domain :  UnsafePointer< CChar>,  _, :  UnsafePointer< CChar>) ->  nw_endpoint_t) func
 //
 // Availability:
@@ -1238,7 +1203,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_endpoint_get_address(endpoint _, :  nw_endpoint_t) ->  UnsafePointer< sockaddr>) func
 //
@@ -1273,7 +1237,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_endpoint_get_bonjour_service_type(endpoint _, :  nw_endpoint_t) ->  UnsafePointer< CChar>) func
 //
 // Availability:
@@ -1306,7 +1269,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_endpoint_get_signature(endpoint _, out_signature_length :  nw_endpoint_t,  _, :  UnsafeMutablePointer< Int>) ->  UnsafePointer< UInt8>?) func
 //
@@ -1341,7 +1303,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_error_copy_cf_error(error _, :  nw_error_t) ->  Unmanaged< CFError>) func
 //
 // Availability:
@@ -1374,7 +1335,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_establishment_report_copy_proxy_endpoint(report _, :  nw_establishment_report_t) ->  nw_endpoint_t?) func
 //
@@ -1409,7 +1369,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 7.0+
 
-
 // nw_establishment_report_enumerate_resolutions(report _, enumerate_block :  nw_establishment_report_t,  _, : ( nw_report_resolution_source_t,  UInt64,  UInt32,  nw_endpoint_t,  nw_endpoint_t) ->  Bool) func
 //
 // Availability:
@@ -1442,7 +1401,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_establishment_report_get_previous_attempt_count(report _, :  nw_establishment_report_t) ->  UInt32) func
 //
@@ -1477,7 +1435,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_ethernet_channel_cancel(ethernet_channel _, :  nw_ethernet_channel_t) func
 //
 // Availability:
@@ -1492,7 +1449,6 @@ package network
 //
 // Availability:
 //   - macOS 13.0+
-
 
 // nw_ethernet_channel_get_maximum_payload_size(ethernet_channel _, :  nw_ethernet_channel_t) ->  UInt32) func
 //
@@ -1509,7 +1465,6 @@ package network
 // Availability:
 //   - macOS 10.15+
 
-
 // nw_ethernet_channel_set_receive_handler(ethernet_channel _, handler :  nw_ethernet_channel_t,  _, :  nw_ethernet_channel_receive_handler_t?)) func
 //
 // Availability:
@@ -1524,7 +1479,6 @@ package network
 //
 // Availability:
 //   - macOS 10.15+
-
 
 // nw_framer_async(framer _, async_block :  nw_framer_t,  _, :  @escaping  nw_framer_block_t) func
 //
@@ -1559,7 +1513,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 8.4+
 
-
 // nw_framer_copy_parameters(framer _, :  nw_framer_t) ->  nw_parameters_t) func
 //
 // Availability:
@@ -1592,7 +1545,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_framer_create_options(framer_definition _, :  nw_protocol_definition_t) ->  nw_protocol_options_t) func
 //
@@ -1627,7 +1579,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_framer_mark_failed_with_error(framer _, error_code :  nw_framer_t,  _, :  Int32) func
 //
 // Availability:
@@ -1660,7 +1611,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_framer_message_copy_object_value(message _, key :  nw_framer_message_t,  _, :  UnsafePointer< CChar>) ->  Any?) func
 //
@@ -1695,7 +1645,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_framer_message_set_value(message _, key :  nw_framer_message_t,  _, value :  UnsafePointer< CChar>,  _, dispose_value :  UnsafeMutableRawPointer?,  _, :  nw_framer_message_dispose_value_t?)) func
 //
 // Availability:
@@ -1728,7 +1677,6 @@ package network
 //   - tvOS 15.4+
 //   - visionOS 1.0+
 //   - watchOS 8.4+
-
 
 // nw_framer_parse_input(framer _, minimum_incomplete_length :  nw_framer_t,  _, maximum_length :  Int,  _, temp_buffer :  Int,  _, parse :  UnsafeMutablePointer< UInt8>?,  _, : ( UnsafeMutablePointer< UInt8>?,  Int,  Bool) ->  Int) ->  Bool) func
 //
@@ -1763,7 +1711,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_framer_pass_through_output(framer _, :  nw_framer_t) func
 //
 // Availability:
@@ -1796,7 +1743,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_framer_schedule_wakeup(framer _, milliseconds :  nw_framer_t,  _, :  UInt64) func
 //
@@ -1831,7 +1777,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_framer_set_output_handler(framer _, output_handler :  nw_framer_t,  _, :  @escaping  nw_framer_output_handler_t) func
 //
 // Availability:
@@ -1864,7 +1809,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_framer_write_output(framer _, output_buffer :  nw_framer_t,  _, output_length :  UnsafePointer< UInt8>,  _, :  Int) func
 //
@@ -1899,7 +1843,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_group_descriptor_add_endpoint(descriptor _, endpoint :  nw_group_descriptor_t,  _, :  nw_endpoint_t) ->  Bool) func
 //
 // Availability:
@@ -1932,7 +1875,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_group_descriptor_enumerate_endpoints(descriptor _, enumerate_block :  nw_group_descriptor_t,  _, : ( nw_endpoint_t) ->  Bool) func
 //
@@ -1967,7 +1909,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_interface_get_type(interface _, :  nw_interface_t) ->  nw_interface_type_t) func
 //
 // Availability:
@@ -2000,7 +1941,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_ip_metadata_get_receive_time(metadata _, :  nw_protocol_metadata_t) ->  UInt64) func
 //
@@ -2035,7 +1975,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_ip_metadata_set_service_class(metadata _, service_class :  nw_protocol_metadata_t,  _, :  nw_service_class_t) func
 //
 // Availability:
@@ -2068,7 +2007,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_ip_options_set_disable_multicast_loopback(options _, disable_multicast_loopback :  nw_protocol_options_t,  _, :  Bool) func
 //
@@ -2103,7 +2041,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_ip_options_set_use_minimum_mtu(options _, use_minimum_mtu :  nw_protocol_options_t,  _, :  Bool) func
 //
 // Availability:
@@ -2137,7 +2074,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_listener_create(parameters _, :  nw_parameters_t) ->  nw_listener_t?) func
 //
 // Availability:
@@ -2164,7 +2100,6 @@ package network
 //
 // Availability:
 //   - macOS 10.14+
-
 
 // nw_listener_create_with_port(port _, parameters :  UnsafePointer< CChar>,  _, :  nw_parameters_t) ->  nw_listener_t?) func
 //
@@ -2199,7 +2134,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_listener_set_advertise_descriptor(listener _, advertise_descriptor :  nw_listener_t,  _, :  nw_advertise_descriptor_t?)) func
 //
 // Availability:
@@ -2232,7 +2166,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_listener_set_new_connection_handler(listener _, handler :  nw_listener_t,  _, :  nw_listener_new_connection_handler_t?)) func
 //
@@ -2267,7 +2200,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_listener_set_state_changed_handler(listener _, handler :  nw_listener_t,  _, :  nw_listener_state_changed_handler_t?)) func
 //
 // Availability:
@@ -2300,7 +2232,6 @@ package network
 //   - tvOS 14.0+
 //   - visionOS 1.0+
 //   - watchOS 7.0+
-
 
 // nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descriptor _, disable_unicast_traffic :  nw_group_descriptor_t,  _, :  Bool) func
 //
@@ -2335,7 +2266,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_parameters_clear_prohibited_interfaces(parameters _, :  nw_parameters_t) func
 //
 // Availability:
@@ -2368,7 +2298,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_parameters_copy_local_endpoint(parameters _, :  nw_parameters_t) ->  nw_endpoint_t?) func
 //
@@ -2403,7 +2332,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_parameters_create_application_service() func
 //
 // Availability:
@@ -2430,7 +2358,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_parameters_create_secure_tcp(configure_tls _, configure_tcp :  @escaping  nw_parameters_configure_protocol_block_t,  _, :  @escaping  nw_parameters_configure_protocol_block_t) ->  nw_parameters_t) func
 //
@@ -2465,7 +2392,6 @@ package network
 //   - visionOS 26.0+
 //   - watchOS 26.0+
 
-
 // nw_parameters_get_attribution(parameters _, :  nw_parameters_t) ->  nw_parameters_attribution_t) func
 //
 // Availability:
@@ -2498,7 +2424,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_parameters_get_include_peer_to_peer(parameters _, :  nw_parameters_t) ->  Bool) func
 //
@@ -2533,7 +2458,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_parameters_get_prefer_no_proxy(parameters _, :  nw_parameters_t) ->  Bool) func
 //
 // Availability:
@@ -2566,7 +2490,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_parameters_get_required_interface_type(parameters _, :  nw_parameters_t) ->  nw_interface_type_t) func
 //
@@ -2601,7 +2524,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_parameters_iterate_prohibited_interface_types(parameters _, iterate_block :  nw_parameters_t,  _, : ( nw_interface_type_t) ->  Bool) func
 //
 // Availability:
@@ -2634,7 +2556,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_parameters_prohibit_interface_type(parameters _, interface_type :  nw_parameters_t,  _, :  nw_interface_type_t) func
 //
@@ -2669,7 +2590,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 9.0+
 
-
 // nw_parameters_set_allow_ultra_constrained(parameters _, allow_ultra_constrained :  nw_parameters_t,  _, :  Bool) func
 //
 // Availability:
@@ -2702,7 +2622,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_parameters_set_fast_open_enabled(parameters _, fast_open_enabled :  nw_parameters_t,  _, :  Bool) func
 //
@@ -2737,7 +2656,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_parameters_set_local_only(parameters _, local_only :  nw_parameters_t,  _, :  Bool) func
 //
 // Availability:
@@ -2770,7 +2688,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_parameters_set_privacy_context(parameters _, privacy_context :  nw_parameters_t,  _, :  nw_privacy_context_t) func
 //
@@ -2805,7 +2722,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_parameters_set_required_interface_type(parameters _, interface_type :  nw_parameters_t,  _, :  nw_interface_type_t) func
 //
 // Availability:
@@ -2838,7 +2754,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_parameters_set_service_class(parameters _, service_class :  nw_parameters_t,  _, :  nw_service_class_t) func
 //
@@ -2873,7 +2788,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_path_enumerate_gateways(path _, enumerate_block :  nw_path_t,  _, : ( nw_endpoint_t) ->  Bool) func
 //
 // Availability:
@@ -2906,7 +2820,6 @@ package network
 //   - tvOS 26.0+
 //   - visionOS 26.0+
 //   - watchOS 26.0+
-
 
 // nw_path_get_status(path _, :  nw_path_t) ->  nw_path_status_t) func
 //
@@ -2941,7 +2854,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_path_has_ipv4(path _, :  nw_path_t) ->  Bool) func
 //
 // Availability:
@@ -2974,7 +2886,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_path_is_equal(path _, other_path :  nw_path_t,  _, :  nw_path_t) ->  Bool) func
 //
@@ -3009,7 +2920,6 @@ package network
 //   - visionOS 26.0+
 //   - watchOS 26.0+
 
-
 // nw_path_monitor_cancel(monitor _, :  nw_path_monitor_t) func
 //
 // Availability:
@@ -3036,7 +2946,6 @@ package network
 //
 // Availability:
 //   - macOS 13.0+
-
 
 // nw_path_monitor_create_with_type(required_interface_type _, :  nw_interface_type_t) ->  nw_path_monitor_t) func
 //
@@ -3071,7 +2980,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_path_monitor_set_queue(monitor _, queue :  nw_path_monitor_t,  _, :  dispatch_queue_t) func
 //
 // Availability:
@@ -3104,7 +3012,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_path_uses_interface_type(path _, interface_type :  nw_path_t,  _, :  nw_interface_type_t) ->  Bool) func
 //
@@ -3139,7 +3046,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 8.0+
 
-
 // nw_protocol_copy_tcp_definition() func
 //
 // Availability:
@@ -3172,7 +3078,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_protocol_copy_ws_definition() func
 //
@@ -3207,7 +3112,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_protocol_metadata_is_ip(metadata _, :  nw_protocol_metadata_t) ->  Bool) func
 //
 // Availability:
@@ -3240,7 +3144,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_protocol_metadata_is_tls(metadata _, :  nw_protocol_metadata_t) ->  Bool) func
 //
@@ -3275,7 +3178,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_protocol_options_is_quic(options _, :  nw_protocol_options_t) ->  Bool) func
 //
 // Availability:
@@ -3308,7 +3210,6 @@ package network
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-
 
 // nw_proxy_config_clear_excluded_domains(config _, :  nw_proxy_config_t) func
 //
@@ -3343,7 +3244,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 10.0+
 
-
 // nw_proxy_config_enumerate_match_domains(config _, enumerator :  nw_proxy_config_t,  _, : ( UnsafePointer< CChar>) ->  Void) func
 //
 // Availability:
@@ -3376,7 +3276,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_quic_copy_sec_protocol_options(options _, :  nw_protocol_options_t) ->  sec_protocol_options_t) func
 //
@@ -3411,7 +3310,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 8.0+
 
-
 // nw_quic_get_application_error_reason(metadata _, :  nw_protocol_metadata_t) ->  UnsafePointer< CChar>?) func
 //
 // Availability:
@@ -3444,7 +3342,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_quic_get_initial_max_stream_data_bidirectional_local(options _, :  nw_protocol_options_t) ->  UInt64) func
 //
@@ -3479,7 +3376,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 8.0+
 
-
 // nw_quic_get_initial_max_streams_bidirectional(options _, :  nw_protocol_options_t) ->  UInt64) func
 //
 // Availability:
@@ -3512,7 +3408,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_quic_get_local_max_streams_bidirectional(metadata _, :  nw_protocol_metadata_t) ->  UInt64) func
 //
@@ -3547,7 +3442,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 9.0+
 
-
 // nw_quic_get_max_udp_payload_size(options _, :  nw_protocol_options_t) ->  UInt16) func
 //
 // Availability:
@@ -3580,7 +3474,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_quic_get_remote_max_streams_unidirectional(metadata _, :  nw_protocol_metadata_t) ->  UInt64) func
 //
@@ -3615,7 +3508,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 8.0+
 
-
 // nw_quic_get_stream_is_datagram(options _, :  nw_protocol_options_t) ->  Bool) func
 //
 // Availability:
@@ -3648,7 +3540,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_quic_get_stream_usable_datagram_frame_size(metadata _, :  nw_protocol_metadata_t) ->  UInt16) func
 //
@@ -3683,7 +3574,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 8.0+
 
-
 // nw_quic_set_initial_max_data(options _, initial_max_data :  nw_protocol_options_t,  _, :  UInt64) func
 //
 // Availability:
@@ -3716,7 +3606,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_quic_set_initial_max_stream_data_unidirectional(options _, initial_max_stream_data_unidirectional :  nw_protocol_options_t,  _, :  UInt64) func
 //
@@ -3751,7 +3640,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 8.0+
 
-
 // nw_quic_set_keepalive_interval(metadata _, keepalive_interval :  nw_protocol_metadata_t,  _, :  UInt16) func
 //
 // Availability:
@@ -3784,7 +3672,6 @@ package network
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 //   - watchOS 8.0+
-
 
 // nw_quic_set_max_datagram_frame_size(options _, max_datagram_frame_size :  nw_protocol_options_t,  _, :  UInt16) func
 //
@@ -3819,7 +3706,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 8.0+
 
-
 // nw_quic_set_stream_is_datagram(options _, is_datagram :  nw_protocol_options_t,  _, :  Bool) func
 //
 // Availability:
@@ -3852,7 +3738,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_resolution_report_copy_preferred_endpoint(resolution_report _, :  nw_resolution_report_t) ->  nw_endpoint_t) func
 //
@@ -3887,7 +3772,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 7.0+
 
-
 // nw_resolution_report_get_milliseconds(resolution_report _, :  nw_resolution_report_t) ->  UInt64) func
 //
 // Availability:
@@ -3920,7 +3804,6 @@ package network
 //   - tvOS 14.0+
 //   - visionOS 1.0+
 //   - watchOS 7.0+
-
 
 // nw_retain(obj void *, );) void  *
 //
@@ -3955,7 +3838,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_tcp_get_available_send_buffer(metadata _, :  nw_protocol_metadata_t) ->  UInt32) func
 //
 // Availability:
@@ -3988,7 +3870,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_tcp_options_set_disable_ecn(options _, disable_ecn :  nw_protocol_options_t,  _, :  Bool) func
 //
@@ -4023,7 +3904,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_tcp_options_set_keepalive_count(options _, keepalive_count :  nw_protocol_options_t,  _, :  UInt32) func
 //
 // Availability:
@@ -4056,7 +3936,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_tcp_options_set_maximum_segment_size(options _, maximum_segment_size :  nw_protocol_options_t,  _, :  UInt32) func
 //
@@ -4091,7 +3970,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_tcp_options_set_no_options(options _, no_options :  nw_protocol_options_t,  _, :  Bool) func
 //
 // Availability:
@@ -4124,7 +4002,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_tcp_options_set_retransmit_connection_drop_time(options _, retransmit_connection_drop_time :  nw_protocol_options_t,  _, :  UInt32) func
 //
@@ -4159,7 +4036,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 5.0+
 
-
 // nw_tls_copy_sec_protocol_options(options _, :  nw_protocol_options_t) ->  sec_protocol_options_t) func
 //
 // Availability:
@@ -4192,7 +4068,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_txt_record_access_key(txt_record _, key :  nw_txt_record_t,  _, access_value :  UnsafePointer< CChar>,  _, :  @escaping  nw_txt_record_access_key_t) ->  Bool) func
 //
@@ -4227,7 +4102,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_txt_record_create_dictionary() func
 //
 // Availability:
@@ -4260,7 +4134,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_txt_record_get_key_count(txt_record _, :  nw_txt_record_t?) ->  Int) func
 //
@@ -4295,7 +4168,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_txt_record_remove_key(txt_record _, key :  nw_txt_record_t,  _, :  UnsafePointer< CChar>) ->  Bool) func
 //
 // Availability:
@@ -4328,7 +4200,6 @@ package network
 //   - tvOS 12.0+
 //   - visionOS 1.0+
 //   - watchOS 5.0+
-
 
 // nw_udp_create_options() func
 //
@@ -4363,7 +4234,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_ws_create_options(version _, :  nw_ws_version_t) ->  nw_protocol_options_t) func
 //
 // Availability:
@@ -4396,7 +4266,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_ws_metadata_get_opcode(metadata _, :  nw_protocol_metadata_t) ->  nw_ws_opcode_t) func
 //
@@ -4431,7 +4300,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_ws_options_add_additional_header(options _, name :  nw_protocol_options_t,  _, value :  UnsafePointer< CChar>,  _, :  UnsafePointer< CChar>)) func
 //
 // Availability:
@@ -4464,7 +4332,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_ws_options_set_client_request_handler(options _, client_queue :  nw_protocol_options_t,  _, handler :  dispatch_queue_t,  _, :  @escaping  nw_ws_client_request_handler_t) func
 //
@@ -4499,7 +4366,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_ws_request_enumerate_additional_headers(request _, enumerator :  nw_ws_request_t,  _, : ( UnsafePointer< CChar>,  UnsafePointer< CChar>) ->  Bool) ->  Bool) func
 //
 // Availability:
@@ -4532,7 +4398,6 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-
 
 // nw_ws_response_create(status _, selected_subprotocol :  nw_ws_response_status_t,  _, :  UnsafePointer< CChar>?) ->  nw_ws_response_t) func
 //
@@ -4567,7 +4432,6 @@ package network
 //   - visionOS 1.0+
 //   - watchOS 6.0+
 
-
 // nw_ws_response_get_status(response _, :  nw_ws_response_t?) ->  nw_ws_response_status_t) func
 //
 // Availability:
@@ -4578,4 +4442,3 @@ package network
 //   - tvOS 13.0+
 //   - visionOS 1.0+
 //   - watchOS 6.0+
-

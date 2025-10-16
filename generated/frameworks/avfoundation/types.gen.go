@@ -2,7 +2,4 @@
 
 package avfoundation
 
-import "unsafe"
-
 // AVFoundation Types
-

@@ -2,7 +2,4 @@
 
 package quartzcore
 
-import "unsafe"
-
 // QuartzCore Types
-

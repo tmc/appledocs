@@ -2,7 +2,4 @@
 
 package corevideo
 
-import "unsafe"
-
 // CoreVideo Types
-

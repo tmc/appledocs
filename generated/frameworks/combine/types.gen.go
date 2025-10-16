@@ -2,7 +2,4 @@
 
 package combine
 
-import "unsafe"
-
 // Combine Types
-

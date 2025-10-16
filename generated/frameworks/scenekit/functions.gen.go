@@ -28,4 +28,3 @@ package scenekit
 //   - watchOS 3.0+ (Deprecated in 26.0)
 //
 // Deprecated: This function is deprecated.
-

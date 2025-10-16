@@ -46,7 +46,6 @@ package metalkit
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 
-
 // MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor MDLVertexDescriptor *, error ,  NSError * *, );) extern   MTLVertexDescriptor  *
 //
 // Availability:
@@ -77,7 +76,6 @@ package metalkit
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 
-
 // MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor MTLVertexDescriptor *, error ,  NSError * *, );) extern   MDLVertexDescriptor  *
 //
 // Availability:
@@ -97,4 +95,3 @@ package metalkit
 //   - macOS 10.11+
 //   - tvOS 9.0+
 //   - visionOS 1.0+
-

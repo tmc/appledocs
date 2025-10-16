@@ -15,4 +15,3 @@ package oslog
 //   purego.RegisterLibFunc(&CGContextSetRGBFillColor, lib, "CGContextSetRGBFillColor")
 
 // Discovered functions (0 total):
-

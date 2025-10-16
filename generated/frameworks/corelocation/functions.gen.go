@@ -37,4 +37,3 @@ package corelocation
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //   - watchOS 2.0+
-

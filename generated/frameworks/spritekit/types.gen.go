@@ -2,7 +2,4 @@
 
 package spritekit
 
-import "unsafe"
-
 // SpriteKit Types
-

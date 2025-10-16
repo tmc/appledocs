@@ -40,7 +40,6 @@ package coreaudio
 //
 // Deprecated: This function is deprecated.
 
-
 // AudioDeviceAddPropertyListener(inDevice AudioDeviceID, inChannel ,  UInt32, isInput ,  Boolean, inPropertyID ,  AudioDevicePropertyID, inProc ,  AudioDevicePropertyListenerProc, inClientData ,  void *, );) extern   OSStatus
 //
 // Availability:
@@ -64,7 +63,6 @@ package coreaudio
 //   - iOS 7.0+
 //   - iPadOS 7.0+
 //   - macOS 10.7+
-
 
 // AudioDeviceDestroyIOProcID(inDevice _, inIOProcID :  AudioObjectID,  _, :  AudioDeviceIOProcID) ->  OSStatus) func
 //
@@ -90,7 +88,6 @@ package coreaudio
 //   - iPadOS 2.0+
 //   - macOS 10.3+
 
-
 // AudioDeviceGetProperty(inDevice AudioDeviceID, inChannel ,  UInt32, isInput ,  Boolean, inPropertyID ,  AudioDevicePropertyID, ioPropertyDataSize ,  UInt32 *, outPropertyData ,  void *, );) extern   OSStatus
 //
 // Availability:
@@ -114,7 +111,6 @@ package coreaudio
 //   - macOS 10.1+ (Deprecated in 10.5)
 //
 // Deprecated: This function is deprecated.
-
 
 // AudioDeviceRemoveIOProc(inDevice AudioDeviceID, inProc ,  AudioDeviceIOProc, );) extern   OSStatus
 //
@@ -140,7 +136,6 @@ package coreaudio
 //
 // Deprecated: This function is deprecated.
 
-
 // AudioDeviceStart(inDevice _, inProcID :  AudioObjectID,  _, :  AudioDeviceIOProcID?) ->  OSStatus) func
 //
 // Availability:
@@ -165,7 +160,6 @@ package coreaudio
 //   - iPadOS 2.0+
 //   - macOS 10.0+
 
-
 // AudioDeviceTranslateTime(inDevice _, inTime :  AudioObjectID,  _, outTime :  UnsafePointer< AudioTimeStamp>,  _, :  UnsafeMutablePointer< AudioTimeStamp>) ->  OSStatus) func
 //
 // Availability:
@@ -178,20 +172,17 @@ package coreaudio
 
 // AudioDriverPlugInDeviceGetProperty(inDevice AudioDeviceID, inChannel ,  UInt32, isInput ,  Boolean, inPropertyID ,  AudioDevicePropertyID, ioPropertyDataSize ,  UInt32 *, outPropertyData ,  void *, );) extern   OSStatus
 
-
 // AudioDriverPlugInDeviceGetPropertyInfo(inDevice AudioDeviceID, inChannel ,  UInt32, isInput ,  Boolean, inPropertyID ,  AudioDevicePropertyID, outSize ,  UInt32 *, outWritable ,  Boolean *, );) extern   OSStatus
 
 // AudioDriverPlugInDeviceSetProperty(inDevice AudioDeviceID, inWhen ,  const  AudioTimeStamp *, inChannel ,  UInt32, isInput ,  Boolean, inPropertyID ,  AudioDevicePropertyID, inPropertyDataSize ,  UInt32, inPropertyData ,  const  void *, );) extern   OSStatus
 
 // AudioDriverPlugInOpen(inHostInfo AudioDriverPlugInHostInfo *, );) extern   OSStatus
 
-
 // AudioDriverPlugInStreamGetProperty(inDevice AudioDeviceID, inIOAudioStream ,  io_object_t, inChannel ,  UInt32, inPropertyID ,  AudioDevicePropertyID, ioPropertyDataSize ,  UInt32 *, outPropertyData ,  void *, );) extern   OSStatus
 
 // AudioDriverPlugInStreamGetPropertyInfo(inDevice AudioDeviceID, inIOAudioStream ,  io_object_t, inChannel ,  UInt32, inPropertyID ,  AudioDevicePropertyID, outSize ,  UInt32 *, outWritable ,  Boolean *, );) extern   OSStatus
 
 // AudioDriverPlugInStreamSetProperty(inDevice AudioDeviceID, inIOAudioStream ,  io_object_t, inWhen ,  const  AudioTimeStamp *, inChannel ,  UInt32, inPropertyID ,  AudioDevicePropertyID, inPropertyDataSize ,  UInt32, inPropertyData ,  const  void *, );) extern   OSStatus
-
 
 // AudioGetCurrentHostTime() func
 //
@@ -217,7 +208,6 @@ package coreaudio
 //   - iPadOS 2.0+
 //   - macOS 10.0+
 
-
 // AudioHardwareAddPropertyListener(inPropertyID AudioHardwarePropertyID, inProc ,  AudioHardwarePropertyListenerProc, inClientData ,  void *, );) extern   OSStatus
 //
 // Availability:
@@ -242,7 +232,6 @@ package coreaudio
 //   - iPadOS 7.0+
 //   - macOS 10.9+
 
-
 // AudioHardwareCreateProcessTap(inDescription _, outTapID :  CATapDescription!,  _, :  UnsafeMutablePointer< AudioObjectID>!) ->  OSStatus) func
 //
 // Availability:
@@ -260,7 +249,6 @@ package coreaudio
 //
 // Availability:
 //   - macOS 14.2+
-
 
 // AudioHardwareGetProperty(inPropertyID AudioHardwarePropertyID, ioPropertyDataSize ,  UInt32 *, outPropertyData ,  void *, );) extern   OSStatus
 //
@@ -286,7 +274,6 @@ package coreaudio
 //
 // Deprecated: This function is deprecated.
 
-
 // AudioHardwareRemoveRunLoopSource(inRunLoopSource CFRunLoopSourceRef, );) extern   OSStatus
 //
 // Availability:
@@ -310,7 +297,6 @@ package coreaudio
 //   - iOS 2.0+
 //   - iPadOS 2.0+
 //   - macOS 10.1+
-
 
 // AudioObjectAddPropertyListener(inObjectID _, inAddress :  AudioObjectID,  _, inListener :  UnsafePointer< AudioObjectPropertyAddress>,  _, inClientData :  AudioObjectPropertyListenerProc,  _, :  UnsafeMutableRawPointer?) ->  OSStatus) func
 //
@@ -336,7 +322,6 @@ package coreaudio
 //   - iPadOS 2.0+
 //   - macOS 10.4+
 
-
 // AudioObjectGetPropertyDataSize(inObjectID _, inAddress :  AudioObjectID,  _, inQualifierDataSize :  UnsafePointer< AudioObjectPropertyAddress>,  _, inQualifierData :  UInt32,  _, outDataSize :  UnsafeRawPointer?,  _, :  UnsafeMutablePointer< UInt32>) ->  OSStatus) func
 //
 // Availability:
@@ -360,7 +345,6 @@ package coreaudio
 //   - iOS 2.0+
 //   - iPadOS 2.0+
 //   - macOS 10.4+
-
 
 // AudioObjectRemovePropertyListener(inObjectID _, inAddress :  AudioObjectID,  _, inListener :  UnsafePointer< AudioObjectPropertyAddress>,  _, inClientData :  AudioObjectPropertyListenerProc,  _, :  UnsafeMutableRawPointer?) ->  OSStatus) func
 //
@@ -386,7 +370,6 @@ package coreaudio
 //   - iPadOS 2.0+
 //   - macOS 10.4+
 
-
 // AudioObjectShow(inObjectID _, :  AudioObjectID) func
 //
 // Availability:
@@ -411,7 +394,6 @@ package coreaudio
 //
 // Deprecated: This function is deprecated.
 
-
 // AudioStreamGetPropertyInfo(inStream AudioStreamID, inChannel ,  UInt32, inPropertyID ,  AudioDevicePropertyID, outSize ,  UInt32 *, outWritable ,  Boolean *, );) extern   OSStatus
 //
 // Availability:
@@ -435,5 +417,3 @@ package coreaudio
 //   - macOS 10.1+ (Deprecated in 10.6)
 //
 // Deprecated: This function is deprecated.
-
-

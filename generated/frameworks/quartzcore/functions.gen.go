@@ -45,7 +45,6 @@ package quartzcore
 //   - tvOS 15.0+
 //   - visionOS 1.0+
 
-
 // CATransform3DConcat(a _, b :  CATransform3D,  _, :  CATransform3D) ->  CATransform3D) func
 //
 // Availability:
@@ -75,7 +74,6 @@ package quartzcore
 //   - macOS 10.5+
 //   - tvOS 9.0+
 //   - visionOS 1.0+
-
 
 // CATransform3DInvert(t _, :  CATransform3D) ->  CATransform3D) func
 //
@@ -107,7 +105,6 @@ package quartzcore
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 
-
 // CATransform3DMakeAffineTransform(m _, :  CGAffineTransform) ->  CATransform3D) func
 //
 // Availability:
@@ -137,7 +134,6 @@ package quartzcore
 //   - macOS 10.5+
 //   - tvOS 9.0+
 //   - visionOS 1.0+
-
 
 // CATransform3DMakeTranslation(tx _, ty :  CGFloat,  _, tz :  CGFloat,  _, :  CGFloat) ->  CATransform3D) func
 //
@@ -169,7 +165,6 @@ package quartzcore
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 
-
 // CATransform3DTranslate(t _, tx :  CATransform3D,  _, ty :  CGFloat,  _, tz :  CGFloat,  _, :  CGFloat) ->  CATransform3D) func
 //
 // Availability:
@@ -179,4 +174,3 @@ package quartzcore
 //   - macOS 10.5+
 //   - tvOS 9.0+
 //   - visionOS 1.0+
-

@@ -26,4 +26,3 @@ package coreml
 //   - tvOS 17.0+
 //   - visionOS 1.0+
 //   - watchOS 10.0+
-

@@ -2,7 +2,4 @@
 
 package corefoundation
 
-import "unsafe"
-
 // CoreFoundation Types
-

@@ -2,7 +2,4 @@
 
 package naturallanguage
 
-import "unsafe"
-
 // NaturalLanguage Types
-

@@ -2,7 +2,4 @@
 
 package imageio
 
-import "unsafe"
-
 // ImageIO Types
-

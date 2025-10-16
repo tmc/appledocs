@@ -2,7 +2,4 @@
 
 package security
 
-import "unsafe"
-
 // Security Types
-

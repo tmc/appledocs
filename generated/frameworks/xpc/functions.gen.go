@@ -40,7 +40,6 @@ package xpc
 //   - iPadOS 17.4+
 //   - macOS 14.4+
 
-
 // xpc_connection_set_peer_platform_identity_requirement(connection _, signing_identifier :  xpc_connection_t,  _, :  UnsafePointer< CChar>?) ->  Int32) func
 //
 // Availability:
@@ -64,7 +63,6 @@ package xpc
 //   - iOS 17.4+
 //   - iPadOS 17.4+
 //   - macOS 14.4+
-
 
 // xpc_listener_set_peer_requirement(listener xpc_listener_t, requirement ,  xpc_peer_requirement_t, );) extern   void
 //
@@ -90,7 +88,6 @@ package xpc
 //   - iPadOS 26.0+
 //   - macOS 26.0+
 
-
 // xpc_peer_requirement_create_lwcr(lwcr xpc_object_t, error_out ,  xpc_rich_error_t *, );) extern   xpc_peer_requirement_t
 //
 // Availability:
@@ -115,7 +112,6 @@ package xpc
 //   - iPadOS 26.0+
 //   - macOS 26.0+
 
-
 // xpc_peer_requirement_match_received_message(peer_requirement xpc_peer_requirement_t, message ,  xpc_object_t, error_out ,  xpc_rich_error_t *, );) extern   bool
 //
 // Availability:
@@ -131,4 +127,3 @@ package xpc
 //   - iOS 26.0+
 //   - iPadOS 26.0+
 //   - macOS 26.0+
-

@@ -2,7 +2,4 @@
 
 package scenekit
 
-import "unsafe"
-
 // SceneKit Types
-

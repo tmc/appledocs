@@ -2,7 +2,4 @@
 
 package network
 
-import "unsafe"
-
 // Network Types
-

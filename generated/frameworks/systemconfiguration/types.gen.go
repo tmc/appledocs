@@ -2,7 +2,4 @@
 
 package systemconfiguration
 
-import "unsafe"
-
 // SystemConfiguration Types
-

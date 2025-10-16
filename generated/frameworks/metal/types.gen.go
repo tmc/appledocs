@@ -2,7 +2,4 @@
 
 package metal
 
-import "unsafe"
-
 // Metal Types
-

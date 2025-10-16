@@ -2,7 +2,4 @@
 
 package coreml
 
-import "unsafe"
-
 // CoreML Types
-
