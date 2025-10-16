@@ -4,8 +4,10 @@ package main
 import (
 	"fmt"
 
+	"github.com/progrium/darwinkit/helper/action"
 	"github.com/progrium/darwinkit/macos/appkit"
 	"github.com/progrium/darwinkit/macos/foundation"
+	"github.com/progrium/darwinkit/objc"
 )
 
 // Global counter and label
@@ -14,13 +16,28 @@ var (
 	counterLabel appkit.TextField
 )
 
+// AppDelegate handles application lifecycle events
+type AppDelegate struct {
+	appkit.ApplicationDelegate
+}
+
+// ApplicationShouldTerminateAfterLastWindowClosed makes the app quit when window closes
+func (d *AppDelegate) ApplicationShouldTerminateAfterLastWindowClosed(sender appkit.Application) bool {
+	return true
+}
+
 func main() {
 	// Initialize the application
 	app := appkit.Application_SharedApplication()
 	app.SetActivationPolicy(appkit.ApplicationActivationPolicyRegular)
 
+	// Create and set app delegate to handle window closing
+	delegate := &AppDelegate{}
+	app.SetDelegate(delegate)
+
 	fmt.Println("✓ Starting AppKit application...")
 	fmt.Println("  A window will appear - click the button to increment the counter")
+	fmt.Println("  Close the window or press Cmd+Q to quit")
 
 	// Create the main window
 	window := createMainWindow()
@@ -102,35 +119,17 @@ func createMainWindow() appkit.Window {
 	button := appkit.NewButtonWithFrame(buttonFrame)
 	button.SetTitle("Click Me!")
 	button.SetBezelStyle(appkit.BezelStyleRounded)
-	button.SetButtonType(appkit.ButtonTypeMomentaryPushIn)
+
+	// Set up button action using the DarwinKit action helper
+	// This properly wraps the Go callback and sets it as the button's action
+	action.Set(button, func(sender objc.Object) {
+		clickCount++
+		counterLabel.SetStringValue(fmt.Sprintf("Button clicks: %d", clickCount))
+		fmt.Printf("Button clicked! Count: %d\n", clickCount)
+	})
 
 	// Add button to window
 	contentView.AddSubview(button)
-
-	// Use NSTimer to periodically check if button is being pressed
-	// This approach polls the button state - a workaround for target/action complexity
-	lastHighlighted := false
-
-	timer := foundation.Timer_TimerWithTimeIntervalRepeatsBlock(
-		0.05, // Check every 50ms
-		true,  // repeats
-		func(timer foundation.Timer) {
-			// Check if button is currently highlighted (being clicked)
-			isHighlighted := button.IsHighlighted()
-
-			// Detect the transition from highlighted to not highlighted (button release)
-			if lastHighlighted && !isHighlighted {
-				clickCount++
-				counterLabel.SetStringValue(fmt.Sprintf("Button clicks: %d", clickCount))
-				fmt.Printf("Button clicked! Count: %d\n", clickCount)
-			}
-
-			lastHighlighted = isHighlighted
-		},
-	)
-
-	// Add timer to run loop so it actually fires
-	foundation.RunLoop_CurrentRunLoop().AddTimerForMode(timer, foundation.RunLoopCommonModes)
 
 	return window
 }
