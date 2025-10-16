@@ -275,3 +275,83 @@ func SearchSymbols(fsys *FS, framework, query string) ([]string, error) {
 
 	return matches, nil
 }
+
+// Symbols returns an iterator over all symbols in a framework.
+// The iterator yields (symbolPath, Document) pairs.
+//
+// Example:
+//
+//	for path, doc := range appledocs.Symbols(fsys, "Foundation") {
+//	    if doc.Metadata.SymbolKind == "class" {
+//	        fmt.Println("Class:", doc.Metadata.Title)
+//	    }
+//	}
+func Symbols(fsys *FS, framework string) func(yield func(string, *Document) bool) {
+	return func(yield func(string, *Document) bool) {
+		symbols, err := ListSymbols(fsys, framework)
+		if err != nil {
+			return
+		}
+
+		for _, symbol := range symbols {
+			path := filepath.Join(framework, symbol+".json")
+			doc, err := fsys.ReadDocument(path)
+			if err != nil {
+				continue // Skip symbols that can't be read
+			}
+
+			if !yield(path, doc) {
+				return
+			}
+		}
+	}
+}
+
+// SymbolEntry represents a symbol document with its framework.
+type SymbolEntry struct {
+	Framework string
+	Path      string
+	Doc       *Document
+}
+
+// AllSymbols returns an iterator over all symbols in all frameworks.
+// The iterator yields SymbolEntry structs containing framework, path, and document.
+//
+// Example:
+//
+//	for entry := range appledocs.AllSymbols(fsys) {
+//	    fmt.Printf("%s/%s: %s\n", entry.Framework, entry.Path, entry.Doc.Metadata.Title)
+//	}
+func AllSymbols(fsys *FS) func(yield func(SymbolEntry) bool) {
+	return func(yield func(SymbolEntry) bool) {
+		frameworks, err := ListFrameworks(fsys)
+		if err != nil {
+			return
+		}
+
+		for _, framework := range frameworks {
+			symbols, err := ListSymbols(fsys, framework)
+			if err != nil {
+				continue // Skip frameworks that can't be listed
+			}
+
+			for _, symbol := range symbols {
+				path := filepath.Join(framework, symbol+".json")
+				doc, err := fsys.ReadDocument(path)
+				if err != nil {
+					continue // Skip symbols that can't be read
+				}
+
+				entry := SymbolEntry{
+					Framework: framework,
+					Path:      path,
+					Doc:       doc,
+				}
+
+				if !yield(entry) {
+					return
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,24 @@
+# Test AppKit generation with Application filter
+# Verifies that filtering works correctly and produces valid output
+
+# Generate AppKit bindings filtered to Application-related symbols
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+exec generate-framework-bindings -framework AppKit -input $INPUT_DIR -filter Application -output testoutput
+stderr 'Generating.*AppKit'
+stderr 'Generated bindings'
+stderr 'Filter.*Application.*matched'
+
+# Verify key files were generated
+exists testoutput/appkit/doc.gen.go
+exists testoutput/appkit/functions.gen.go
+
+# Check package name is correct
+grep 'package appkit' testoutput/appkit/doc.gen.go
+grep 'package appkit' testoutput/appkit/functions.gen.go
+
+# Verify Application function is present
+grep 'Application' testoutput/appkit/functions.gen.go
+
+# Check that generated code is valid Go
+exec go vet testoutput/appkit/doc.gen.go
+exec go vet testoutput/appkit/functions.gen.go

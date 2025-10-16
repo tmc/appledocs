@@ -146,7 +146,7 @@ func TestEndToEndWorkflow(t *testing.T) {
 	// Set up test server
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		
+
 		switch r.URL.Path {
 		case "/tutorials/data/documentation/technologies.json":
 			// Return a simple technologies index
@@ -159,13 +159,13 @@ func TestEndToEndWorkflow(t *testing.T) {
 				},
 			}
 			json.NewEncoder(w).Encode(response)
-			
+
 		case "/tutorials/data/documentation/TestFramework.json":
 			json.NewEncoder(w).Encode(testFramework)
-			
+
 		case "/tutorials/data/documentation/TestFramework/TestClass.json":
 			json.NewEncoder(w).Encode(testClass)
-			
+
 		default:
 			w.WriteHeader(http.StatusNotFound)
 			fmt.Fprintf(w, `{"error": "Not found"}`)
@@ -283,11 +283,11 @@ func TestEndToEndWorkflow(t *testing.T) {
 func TestPrintURLsOnlyWithMockServer(t *testing.T) {
 	// Store original flag values
 	originals := struct {
-		baseURL     string
-		entryPoint  string
-		cacheDir    string
-		timeout     time.Duration
-		verbose     bool
+		baseURL    string
+		entryPoint string
+		cacheDir   string
+		timeout    time.Duration
+		verbose    bool
 	}{
 		*baseURL,
 		*entryPoint,
@@ -312,7 +312,7 @@ func TestPrintURLsOnlyWithMockServer(t *testing.T) {
 	// Set up test server
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		
+
 		switch r.URL.Path {
 		case "/tutorials/data/documentation/technologies.json":
 			response := map[string]interface{}{
@@ -328,7 +328,7 @@ func TestPrintURLsOnlyWithMockServer(t *testing.T) {
 				},
 			}
 			json.NewEncoder(w).Encode(response)
-			
+
 		case "/tutorials/data/documentation/SwiftUI.json":
 			response := map[string]interface{}{
 				"metadata": map[string]interface{}{
@@ -342,7 +342,7 @@ func TestPrintURLsOnlyWithMockServer(t *testing.T) {
 				},
 			}
 			json.NewEncoder(w).Encode(response)
-			
+
 		default:
 			w.WriteHeader(http.StatusNotFound)
 		}
@@ -377,7 +377,7 @@ func TestPrintURLsOnlyWithMockServer(t *testing.T) {
 			if err != nil {
 				t.Errorf("printURLsOnly() error = %v", err)
 			}
-			
+
 			// In a real test, we would capture stdout and verify the URLs
 			// For now, we just ensure no error occurs
 		})
@@ -463,7 +463,7 @@ func TestErrorHandlingInRealScenarios(t *testing.T) {
 			defer cancel()
 
 			err := run(ctx)
-			
+
 			if tt.expectError && err == nil {
 				t.Errorf("Expected error but got none")
 			} else if !tt.expectError && err != nil {
@@ -511,7 +511,7 @@ func TestConcurrentOperations(t *testing.T) {
 	// Create a server that simulates multiple frameworks
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		
+
 		switch r.URL.Path {
 		case "/tutorials/data/documentation/technologies.json":
 			// Return multiple frameworks to test concurrent processing
@@ -526,7 +526,7 @@ func TestConcurrentOperations(t *testing.T) {
 				"technologies": technologies,
 			}
 			json.NewEncoder(w).Encode(response)
-			
+
 		default:
 			// Handle framework requests
 			if strings.HasPrefix(r.URL.Path, "/tutorials/data/documentation/Framework") {
@@ -570,7 +570,7 @@ func TestConcurrentOperations(t *testing.T) {
 // TestResourceCleanup tests that resources are properly cleaned up
 func TestResourceCleanup(t *testing.T) {
 	tempDir := t.TempDir()
-	
+
 	// Store original values
 	originals := struct {
 		outputDir string
@@ -606,7 +606,7 @@ func TestResourceCleanup(t *testing.T) {
 
 	// This should timeout and test cleanup paths
 	err := run(ctx)
-	
+
 	// Should handle timeout gracefully
 	if err != nil && err != context.DeadlineExceeded {
 		t.Errorf("Unexpected error during timeout test: %v", err)
@@ -616,7 +616,7 @@ func TestResourceCleanup(t *testing.T) {
 	if _, err := os.Stat(*outputDir); os.IsNotExist(err) {
 		t.Errorf("Output directory should be created even with timeout")
 	}
-	
+
 	if _, err := os.Stat(*cacheDir); os.IsNotExist(err) {
 		t.Errorf("Cache directory should be created even with timeout")
 	}
@@ -660,7 +660,7 @@ func BenchmarkEndToEndWorkflow(b *testing.B) {
 	// Create a simple test server
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		
+
 		switch r.URL.Path {
 		case "/tutorials/data/documentation/technologies.json":
 			response := map[string]interface{}{
@@ -672,7 +672,7 @@ func BenchmarkEndToEndWorkflow(b *testing.B) {
 				},
 			}
 			json.NewEncoder(w).Encode(response)
-			
+
 		case "/tutorials/data/documentation/TestFramework.json":
 			response := map[string]interface{}{
 				"metadata": map[string]interface{}{
@@ -683,7 +683,7 @@ func BenchmarkEndToEndWorkflow(b *testing.B) {
 				},
 			}
 			json.NewEncoder(w).Encode(response)
-			
+
 		default:
 			w.WriteHeader(http.StatusNotFound)
 		}
@@ -693,7 +693,7 @@ func BenchmarkEndToEndWorkflow(b *testing.B) {
 	*baseURL = server.URL
 
 	b.ResetTimer()
-	
+
 	for i := 0; i < b.N; i++ {
 		// Create fresh temp directories for each iteration
 		tempDir := b.TempDir()
@@ -702,7 +702,7 @@ func BenchmarkEndToEndWorkflow(b *testing.B) {
 		*mdOutputDir = filepath.Join(tempDir, "markdown")
 
 		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-		
+
 		// Run crawl phase
 		err := run(ctx)
 		if err != nil {

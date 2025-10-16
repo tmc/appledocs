@@ -1,0 +1,17 @@
+# Test different framework generation options
+# Verifies that various command-line options work correctly
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+# Test: Generate Foundation framework
+mkdir foundation_output
+exec generate-framework-bindings -framework Foundation -input $INPUT_DIR -output foundation_output
+exists foundation_output/foundation/functions.gen.go
+exists foundation_output/foundation/types.gen.go
+grep 'package foundation' foundation_output/foundation/functions.gen.go
+
+# Test: Output directory for CoreGraphics
+mkdir purego_output
+exec generate-framework-bindings -framework CoreGraphics -input $INPUT_DIR -output purego_output
+exists purego_output/coregraphics/functions.gen.go
+grep 'package coregraphics' purego_output/coregraphics/functions.gen.go

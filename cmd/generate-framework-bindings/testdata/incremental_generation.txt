@@ -1,0 +1,32 @@
+# Test incremental generation and idempotency
+# Verifies that running the generator multiple times produces consistent output
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+mkdir incremental_output
+
+# First generation
+exec generate-framework-bindings -framework CoreGraphics -input $INPUT_DIR -output incremental_output
+exists incremental_output/coregraphics/functions.gen.go
+exists incremental_output/coregraphics/types.gen.go
+
+# Save checksums of generated files
+exec sh -c 'shasum incremental_output/coregraphics/functions.gen.go > checksums1.txt'
+exec sh -c 'shasum incremental_output/coregraphics/types.gen.go >> checksums1.txt'
+
+# Second generation (should produce identical output)
+exec generate-framework-bindings -framework CoreGraphics -input $INPUT_DIR -output incremental_output
+
+# Compare checksums
+exec sh -c 'shasum incremental_output/coregraphics/functions.gen.go > checksums2.txt'
+exec sh -c 'shasum incremental_output/coregraphics/types.gen.go >> checksums2.txt'
+
+# Verify files are identical (same checksums)
+exec diff checksums1.txt checksums2.txt
+
+# Test that modifying output and regenerating works
+exec sh -c 'echo "// Modified" >> incremental_output/coregraphics/functions.gen.go'
+exec generate-framework-bindings -framework CoreGraphics -input $INPUT_DIR -output incremental_output
+
+# Verify the modification was overwritten (no "Modified" comment)
+! grep 'Modified' incremental_output/coregraphics/functions.gen.go

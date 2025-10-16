@@ -11,10 +11,10 @@ import (
 
 // NavItem represents a navigation item with optional children
 type NavItem struct {
-	Title    string      `json:"title"`
-	Path     string      `json:"path"`
-	Children []NavItem   `json:"children,omitempty"`
-	Topics   []NavTopic  `json:"topics,omitempty"`  // Topic groupings for class navigation
+	Title    string     `json:"title"`
+	Path     string     `json:"path"`
+	Children []NavItem  `json:"children,omitempty"`
+	Topics   []NavTopic `json:"topics,omitempty"` // Topic groupings for class navigation
 }
 
 // NavTopic represents a topic group within a class
@@ -361,13 +361,13 @@ type classInfo struct {
 	Title   string
 	Path    string
 	Methods []methodInfo
-	Topics  []topicInfo  // Topic sections with grouped methods
+	Topics  []topicInfo // Topic sections with grouped methods
 }
 
 // topicInfo holds information about a topic section
 type topicInfo struct {
-	Title      string
-	Identifiers []string  // Method identifiers in this topic
+	Title       string
+	Identifiers []string // Method identifiers in this topic
 }
 
 // methodInfo holds information about a method
@@ -375,8 +375,8 @@ type methodInfo struct {
 	ID        string
 	Title     string
 	Path      string
-	Signature string  // Full method signature for display
-	Topic     string  // Topic this method belongs to
+	Signature string // Full method signature for display
+	Topic     string // Topic this method belongs to
 }
 
 // buildSignature constructs a full method signature from fragments

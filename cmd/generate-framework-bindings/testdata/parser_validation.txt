@@ -1,0 +1,22 @@
+# Test that generated code handles various function signatures correctly
+# This validates the parser's ability to handle different parameter types
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+mkdir parser_output
+
+# Generate CoreGraphics which has diverse function signatures
+exec generate-framework-bindings -framework CoreGraphics -input $INPUT_DIR -output parser_output
+
+# Verify common CGRect functions are generated
+grep 'CGRectGetMinX' parser_output/coregraphics/functions.gen.go
+grep 'CGRectGetMaxX' parser_output/coregraphics/functions.gen.go
+
+# Verify CGRect type exists
+grep 'CGRect' parser_output/coregraphics/types.gen.go
+
+# Verify CGFloat type exists
+grep 'CGFloat' parser_output/coregraphics/types.gen.go
+
+# Check that reference types are handled
+grep 'CGContext' parser_output/coregraphics/functions.gen.go

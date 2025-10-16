@@ -1,0 +1,24 @@
+# Test comprehensive output validation
+# Verifies that generated code has correct structure and can be compiled
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+mkdir validated_output
+exec generate-framework-bindings -framework CoreGraphics -input $INPUT_DIR -output validated_output
+
+# Verify file structure
+exists validated_output/coregraphics/functions.gen.go
+exists validated_output/coregraphics/types.gen.go
+
+# Check functions.gen.go structure
+grep 'package coregraphics' validated_output/coregraphics/functions.gen.go
+grep '// Code generated from Apple documentation' validated_output/coregraphics/functions.gen.go
+
+# Check types.gen.go structure
+grep 'package coregraphics' validated_output/coregraphics/types.gen.go
+
+# Verify type definitions
+grep 'type CGRect struct' validated_output/coregraphics/types.gen.go
+
+# Verify function references exist
+grep 'CGRect' validated_output/coregraphics/functions.gen.go

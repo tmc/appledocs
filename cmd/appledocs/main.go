@@ -55,21 +55,21 @@ var (
 	excludePaths = flag.String("exclude-paths", "en-US/docs/Mozilla", "comma-separated list of paths to exclude from crawling")
 
 	// Crawling options
-	concurrency   = flag.Int("concurrency", 1, "number of concurrent downloads")
-	delay         = flag.Duration("delay", 0, "delay between urls")
-	rateLimit     = flag.Float64("rate-limit", 10.0, "requests per second rate limit (0 = no limit)")
-	forceRefresh  = flag.Bool("force", false, "force refresh all content")
-	timeout       = flag.Duration("timeout", 30*time.Second, "HTTP request timeout")
-	maxTime       = flag.Duration("max-time", time.Hour, "maximum time to run the program")
-	skipSymbols   = flag.Bool("skip-symbols", false, "skip individual symbol level documentation")
-	printURLs     = flag.Bool("print-urls", false, "only print discovered URLs from entry point and exit")
+	concurrency  = flag.Int("concurrency", 1, "number of concurrent downloads")
+	delay        = flag.Duration("delay", 0, "delay between urls")
+	rateLimit    = flag.Float64("rate-limit", 10.0, "requests per second rate limit (0 = no limit)")
+	forceRefresh = flag.Bool("force", false, "force refresh all content")
+	timeout      = flag.Duration("timeout", 30*time.Second, "HTTP request timeout")
+	maxTime      = flag.Duration("max-time", time.Hour, "maximum time to run the program")
+	skipSymbols  = flag.Bool("skip-symbols", false, "skip individual symbol level documentation")
+	printURLs    = flag.Bool("print-urls", false, "only print discovered URLs from entry point and exit")
 
 	// Output options
-	prettyJSON    = flag.Bool("pretty", true, "pretty-print JSON files")
-	verbose       = flag.Bool("verbose", false, "enable verbose logging")
-	logLevel      = flag.String("log-level", "info", "log level: debug, info, warn, error")
-	exportMetrics = flag.String("export-metrics", "", "export detailed metrics to JSON file (optional path)")
-	validateCache = flag.Bool("validate-cache", false, "validate cache integrity on startup")
+	prettyJSON         = flag.Bool("pretty", true, "pretty-print JSON files")
+	verbose            = flag.Bool("verbose", false, "enable verbose logging")
+	logLevel           = flag.String("log-level", "info", "log level: debug, info, warn, error")
+	exportMetrics      = flag.String("export-metrics", "", "export detailed metrics to JSON file (optional path)")
+	validateCache      = flag.Bool("validate-cache", false, "validate cache integrity on startup")
 	checksumValidation = flag.Bool("checksum-validation", false, "enable enhanced checksum-based cache validation")
 	fetchBothLanguages = flag.Bool("fetch-both-languages", true, "fetch both Swift and Objective-C variants")
 
@@ -78,14 +78,14 @@ var (
 
 	// list-demos options
 	listDemosFramework = flag.String("framework", "", "filter demo code by framework name (optional)")
-	downloadDemos = flag.Bool("download", false, "download demo code (requires -mode list-demos)")
-	demosOutputDir = flag.String("demos-output", filepath.Join(os.Getenv("HOME"), "go", "src", "github.com", "tmc", "appledocs-examples"), "directory to store downloaded demo code")
+	downloadDemos      = flag.Bool("download", false, "download demo code (requires -mode list-demos)")
+	demosOutputDir     = flag.String("demos-output", filepath.Join(os.Getenv("HOME"), "go", "src", "github.com", "tmc", "appledocs-examples"), "directory to store downloaded demo code")
 
 	// Markdown-specific options
 	mdOutputDir = flag.String("md-output", "markdown", "directory to store Markdown documentation")
 
 	// Type generation options
-	genTypesOutput = flag.String("gentypes-output", "types/types_generated.go", "output file for generated types")
+	genTypesOutput   = flag.String("gentypes-output", "types/types_generated.go", "output file for generated types")
 	genTypesMaxFiles = flag.Int("gentypes-max-files", 1000, "maximum number of files to scan for type generation")
 
 	// Legacy flags for backward compatibility
@@ -100,10 +100,10 @@ type JSONFileEntry struct {
 
 // crawler holds all the application settings
 type crawler struct {
-	client       *http.Client
-	visitedURLs  sync.Map // map[string]bool - tracks visited URLs, safe for concurrent access
-	jsonEntries  []JSONFileEntry
-	entriesMutex sync.Mutex
+	client         *http.Client
+	visitedURLs    sync.Map // map[string]bool - tracks visited URLs, safe for concurrent access
+	jsonEntries    []JSONFileEntry
+	entriesMutex   sync.Mutex
 	processedCount int
 	badURLs        map[string]bool // URLs known to be 404s or invalid
 	urlDepths      map[string]int  // Track semantic depth of each URL
@@ -119,7 +119,7 @@ type crawler struct {
 	statsMutex     sync.Mutex
 
 	// Enhanced metrics
-	startTime         time.Time
+	startTime            time.Time
 	totalBytesDownloaded int64
 	totalBytesFromCache  int64
 	avgResponseTime      time.Duration
@@ -338,17 +338,17 @@ func initLogger() error {
 	}
 
 	opts := &slog.HandlerOptions{
-		Level: level,
+		Level:     level,
 		AddSource: level == slog.LevelDebug,
 	}
 
 	// Use text handler for human-readable logs
 	handler := slog.NewTextHandler(os.Stderr, opts)
 	logger = slog.New(handler)
-	
+
 	// Set as default logger
 	slog.SetDefault(logger)
-	
+
 	return nil
 }
 
@@ -377,7 +377,7 @@ func main() {
 		}
 		os.Exit(1)
 	}
-	
+
 	// Print warnings if any
 	if len(flagValidation.Warnings) > 0 {
 		log.Printf("Command-line validation warnings:")
@@ -548,14 +548,14 @@ func run(ctx context.Context) error {
 	if *validateCache {
 		log.Printf("Validating cache integrity...")
 		var cacheValidation ValidationResult
-		
+
 		if *checksumValidation {
 			log.Printf("Using enhanced checksum-based validation...")
 			cacheValidation = ValidateCacheIntegrityWithChecksums(*cacheDir)
 		} else {
 			cacheValidation = ValidateCache(*cacheDir)
 		}
-		
+
 		if len(cacheValidation.Errors) > 0 {
 			log.Printf("Cache validation errors found:")
 			for _, err := range cacheValidation.Errors {
@@ -590,23 +590,23 @@ func run(ctx context.Context) error {
 				return
 			case <-ticker.C:
 				metrics := app.getEnhancedMetrics()
-				
+
 				// Enhanced progress reporting with more detail
-				log.Printf("Progress: %d files processed | Cache: %d hits (%.1f%%), %d misses | %.2f MB/s | Avg: %v/req | Errors: %d | Retries: %d", 
-					metrics.Processed, 
-					metrics.CacheHits, 
+				log.Printf("Progress: %d files processed | Cache: %d hits (%.1f%%), %d misses | %.2f MB/s | Avg: %v/req | Errors: %d | Retries: %d",
+					metrics.Processed,
+					metrics.CacheHits,
 					metrics.CacheHitRate,
 					metrics.CacheMisses,
 					metrics.DownloadRate,
 					metrics.AvgResponseTime,
 					metrics.Errors,
 					metrics.RetryCount)
-				
+
 				// Additional metrics when verbose
 				if *verbose && metrics.EstimatedTimeRemaining > 0 {
-					log.Printf("Content: %d frameworks, %d classes, %d methods | ETA: %v", 
-						metrics.FrameworkCount, 
-						metrics.ClassCount, 
+					log.Printf("Content: %d frameworks, %d classes, %d methods | ETA: %v",
+						metrics.FrameworkCount,
+						metrics.ClassCount,
 						metrics.MethodCount,
 						metrics.EstimatedTimeRemaining.Round(time.Second))
 				}
@@ -710,20 +710,20 @@ func run(ctx context.Context) error {
 	log.Printf("  - Runtime: %v", metrics.RuntimeDuration.Round(time.Second))
 	log.Printf("  - Processed: %d JSON files (%.2f files/sec)", metrics.Processed, metrics.ProcessingRate)
 	log.Printf("  - Cache: %d hits (%.1f%%), %d misses", metrics.CacheHits, metrics.CacheHitRate, metrics.CacheMisses)
-	log.Printf("  - Data: %.2f MB downloaded, %.2f MB from cache (%.2f MB/s)", 
+	log.Printf("  - Data: %.2f MB downloaded, %.2f MB from cache (%.2f MB/s)",
 		float64(metrics.TotalBytesDownloaded)/1024/1024,
 		float64(metrics.TotalBytesFromCache)/1024/1024,
 		metrics.DownloadRate)
-	log.Printf("  - Network: %d requests, avg %v/req, %d retries", 
+	log.Printf("  - Network: %d requests, avg %v/req, %d retries",
 		metrics.RequestCount, metrics.AvgResponseTime, metrics.RetryCount)
-	log.Printf("  - Content: %d frameworks, %d classes, %d methods", 
+	log.Printf("  - Content: %d frameworks, %d classes, %d methods",
 		metrics.FrameworkCount, metrics.ClassCount, metrics.MethodCount)
 	log.Printf("  - Errors: %d", metrics.Errors)
 	log.Printf("  - Skipped URLs: %d", metrics.SkippedURLs)
 	if *skipSymbols {
 		log.Printf("  - Skipped symbol URLs: %d", metrics.SkippedSymbols)
 	}
-	
+
 	// Report HTTP errors if any
 	if len(metrics.HTTPErrors) > 0 {
 		log.Printf("  - HTTP Errors by status code:")
@@ -738,7 +738,7 @@ func run(ctx context.Context) error {
 		if metricsPath == "true" || metricsPath == "1" {
 			metricsPath = "metrics.json"
 		}
-		
+
 		metricsJSON, err := json.MarshalIndent(metrics, "", "  ")
 		if err != nil {
 			log.Printf("Warning: Failed to marshal metrics: %v", err)
@@ -827,7 +827,7 @@ func (app *crawler) incrementRetryCount() {
 func (app *crawler) recordContentType(path string) {
 	app.statsMutex.Lock()
 	defer app.statsMutex.Unlock()
-	
+
 	// Classify content based on URL path patterns
 	if strings.Contains(path, "/documentation/") {
 		pathParts := strings.Split(path, "/")
@@ -849,31 +849,31 @@ func (app *crawler) recordContentType(path string) {
 // MetricsSnapshot represents a comprehensive snapshot of all metrics
 type MetricsSnapshot struct {
 	// Basic metrics
-	Processed    int    `json:"processed"`
-	CacheHits    int    `json:"cache_hits"`
-	CacheMisses  int    `json:"cache_misses"`
-	Errors       int    `json:"errors"`
-	SkippedURLs  int    `json:"skipped_urls"`
-	SkippedSymbols int  `json:"skipped_symbols"`
-	
+	Processed      int `json:"processed"`
+	CacheHits      int `json:"cache_hits"`
+	CacheMisses    int `json:"cache_misses"`
+	Errors         int `json:"errors"`
+	SkippedURLs    int `json:"skipped_urls"`
+	SkippedSymbols int `json:"skipped_symbols"`
+
 	// Enhanced metrics
-	StartTime            time.Time         `json:"start_time"`
-	RuntimeDuration      time.Duration     `json:"runtime_duration"`
-	TotalBytesDownloaded int64             `json:"total_bytes_downloaded"`
-	TotalBytesFromCache  int64             `json:"total_bytes_from_cache"`
-	AvgResponseTime      time.Duration     `json:"avg_response_time"`
-	RequestCount         int               `json:"request_count"`
-	HTTPErrors           map[int]int       `json:"http_errors"`
-	RetryCount           int               `json:"retry_count"`
-	FrameworkCount       int               `json:"framework_count"`
-	ClassCount           int               `json:"class_count"`
-	MethodCount          int               `json:"method_count"`
-	
+	StartTime            time.Time     `json:"start_time"`
+	RuntimeDuration      time.Duration `json:"runtime_duration"`
+	TotalBytesDownloaded int64         `json:"total_bytes_downloaded"`
+	TotalBytesFromCache  int64         `json:"total_bytes_from_cache"`
+	AvgResponseTime      time.Duration `json:"avg_response_time"`
+	RequestCount         int           `json:"request_count"`
+	HTTPErrors           map[int]int   `json:"http_errors"`
+	RetryCount           int           `json:"retry_count"`
+	FrameworkCount       int           `json:"framework_count"`
+	ClassCount           int           `json:"class_count"`
+	MethodCount          int           `json:"method_count"`
+
 	// Calculated metrics
-	CacheHitRate         float64           `json:"cache_hit_rate"`
-	DownloadRate         float64           `json:"download_rate_mbps"`
-	ProcessingRate       float64           `json:"processing_rate_per_sec"`
-	EstimatedTimeRemaining time.Duration   `json:"estimated_time_remaining"`
+	CacheHitRate           float64       `json:"cache_hit_rate"`
+	DownloadRate           float64       `json:"download_rate_mbps"`
+	ProcessingRate         float64       `json:"processing_rate_per_sec"`
+	EstimatedTimeRemaining time.Duration `json:"estimated_time_remaining"`
 }
 
 // getStats returns current statistics in a thread-safe way (legacy method)
@@ -896,30 +896,30 @@ func (app *crawler) getEnhancedMetrics() MetricsSnapshot {
 	app.entriesMutex.Lock()
 	processed := len(app.jsonEntries)
 	app.entriesMutex.Unlock()
-	
+
 	now := time.Now()
 	runtime := now.Sub(app.startTime)
-	
+
 	// Calculate derived metrics
 	var cacheHitRate float64
 	totalRequests := app.cacheHits + app.cacheMisses
 	if totalRequests > 0 {
 		cacheHitRate = float64(app.cacheHits) / float64(totalRequests) * 100
 	}
-	
+
 	// Download rate in MB/s
 	var downloadRate float64
 	if runtime.Seconds() > 0 {
 		totalMB := float64(app.totalBytesDownloaded) / 1024 / 1024
 		downloadRate = totalMB / runtime.Seconds()
 	}
-	
+
 	// Processing rate (files per second)
 	var processingRate float64
 	if runtime.Seconds() > 0 {
 		processingRate = float64(processed) / runtime.Seconds()
 	}
-	
+
 	// Estimate time remaining (very rough estimate)
 	var estimatedTimeRemaining time.Duration
 	// Count visited URLs (sync.Map doesn't have a Len method)
@@ -933,7 +933,7 @@ func (app *crawler) getEnhancedMetrics() MetricsSnapshot {
 		remaining := totalURLs - processed
 		estimatedTimeRemaining = time.Duration(float64(remaining)/processingRate) * time.Second
 	}
-	
+
 	return MetricsSnapshot{
 		Processed:              processed,
 		CacheHits:              app.cacheHits,
@@ -1331,22 +1331,22 @@ func fetchWithCache(ctx context.Context, client *http.Client, u string, app *cra
 		startTime := time.Now()
 		resp, err = client.Do(req)
 		requestDuration := time.Since(startTime)
-		
+
 		// Record response time for successful requests
 		if err == nil {
 			app.recordResponseTime(requestDuration)
 		}
-		
+
 		// Check if we should retry this attempt
 		shouldRetry := false
 		var retryReason string
-		
+
 		if err != nil {
 			// Check if it's a retryable network error
 			isRetryable := strings.Contains(err.Error(), "timeout") ||
 				strings.Contains(err.Error(), "connection reset") ||
 				strings.Contains(err.Error(), "temporary failure")
-			
+
 			if isRetryable && attempt < maxRetries {
 				shouldRetry = true
 				retryReason = fmt.Sprintf("network error: %v", err)
@@ -1417,7 +1417,7 @@ func fetchWithCache(ctx context.Context, client *http.Client, u string, app *cra
 			// Success, break out of retry loop
 			break
 		}
-		
+
 		// Handle retry backoff
 		if shouldRetry {
 			backoffDuration := time.Duration(1<<uint(attempt)) * time.Second
@@ -1511,7 +1511,7 @@ func writeFileAtomic(filename string, data []byte) error {
 		return fmt.Errorf("create temporary file: %v", err)
 	}
 	tmpPath := tmpFile.Name()
-	
+
 	// Ensure cleanup of temp file on error
 	defer func() {
 		if tmpFile != nil {
@@ -1519,28 +1519,28 @@ func writeFileAtomic(filename string, data []byte) error {
 			os.Remove(tmpPath)
 		}
 	}()
-	
+
 	// Write data to temp file
 	if _, err := tmpFile.Write(data); err != nil {
 		return fmt.Errorf("write to temporary file: %v", err)
 	}
-	
+
 	// Sync to ensure data is written to disk
 	if err := tmpFile.Sync(); err != nil {
 		return fmt.Errorf("sync temporary file: %v", err)
 	}
-	
+
 	// Close temp file
 	if err := tmpFile.Close(); err != nil {
 		return fmt.Errorf("close temporary file: %v", err)
 	}
 	tmpFile = nil // Mark as closed to avoid double-close in defer
-	
+
 	// Atomically move temp file to final location
 	if err := os.Rename(tmpPath, filename); err != nil {
 		return fmt.Errorf("rename temporary file: %v", err)
 	}
-	
+
 	return nil
 }
 
@@ -1600,14 +1600,14 @@ func extractJSONURLs(data []byte) []string {
 	// Get a slice from the pool
 	urls := urlSlicePool.Get().([]string)
 	urls = urls[:0] // Reset length but keep capacity
-	
+
 	extractJSONURLsFromValue(result, &urls)
-	
+
 	// Create a copy to return and put the slice back in the pool
 	result_urls := make([]string, len(urls))
 	copy(result_urls, urls)
 	urlSlicePool.Put(urls)
-	
+
 	return result_urls
 }
 
@@ -2066,10 +2066,10 @@ func writeBadURLsFile(app *crawler) error {
 
 // DemoCodeInfo holds information about a sample code download
 type DemoCodeInfo struct {
-	Title      string
-	Framework  string
+	Title       string
+	Framework   string
 	DownloadURL string
-	DocURL     string
+	DocURL      string
 }
 
 // listDemoCode scans cached documentation and lists all available sample code downloads

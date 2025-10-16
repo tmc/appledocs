@@ -27,8 +27,8 @@ func TestMetricsSnapshot(t *testing.T) {
 	app.incrementRetryCount()
 	app.incrementCacheHits()
 	app.incrementCacheMisses()
-	app.recordContentType("tutorials/data/documentation/SwiftUI.json")       // Framework
-	app.recordContentType("tutorials/data/documentation/SwiftUI/View.json")  // Class
+	app.recordContentType("tutorials/data/documentation/SwiftUI.json")           // Framework
+	app.recordContentType("tutorials/data/documentation/SwiftUI/View.json")      // Class
 	app.recordContentType("tutorials/data/documentation/SwiftUI/View/init.json") // Method
 
 	metrics := app.getEnhancedMetrics()

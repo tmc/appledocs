@@ -30,8 +30,8 @@ func (e ValidationError) Error() string {
 
 // ValidationResult contains the results of validation
 type ValidationResult struct {
-	Valid   bool
-	Errors  []ValidationError
+	Valid    bool
+	Errors   []ValidationError
 	Warnings []ValidationError
 }
 
@@ -351,9 +351,9 @@ func isValidVersionString(version string) bool {
 
 func isValidReferenceURL(url string) bool {
 	// Apple doc URLs should match certain patterns
-	return strings.HasPrefix(url, "doc://") || 
-		   strings.HasPrefix(url, "https://") ||
-		   strings.HasPrefix(url, "/documentation/")
+	return strings.HasPrefix(url, "doc://") ||
+		strings.HasPrefix(url, "https://") ||
+		strings.HasPrefix(url, "/documentation/")
 }
 
 func min(a, b int) int {
@@ -443,7 +443,7 @@ func (cm *ChecksumManager) loadMetadata() error {
 // saveMetadata saves checksum metadata to disk
 func (cm *ChecksumManager) saveMetadata() error {
 	cm.metadata.UpdatedAt = time.Now()
-	
+
 	data, err := json.MarshalIndent(cm.metadata, "", "  ")
 	if err != nil {
 		return fmt.Errorf("failed to marshal checksum metadata: %v", err)
@@ -474,7 +474,7 @@ func calculateFileSHA256(filePath string) (string, error) {
 // VerifyFileIntegrity verifies a file's integrity using checksums
 func (cm *ChecksumManager) VerifyFileIntegrity(filePath string) ValidationResult {
 	result := ValidationResult{Valid: true}
-	
+
 	// Get file info
 	info, err := os.Stat(filePath)
 	if err != nil {
@@ -491,25 +491,25 @@ func (cm *ChecksumManager) VerifyFileIntegrity(filePath string) ValidationResult
 
 	// Get relative path for metadata key
 	relPath, _ := filepath.Rel(filepath.Dir(cm.metadataPath), filePath)
-	
+
 	// Check if we have stored checksum
 	if storedChecksum, exists := cm.metadata.Files[relPath]; exists {
 		// Verify checksum
 		if storedChecksum.SHA256 != currentChecksum {
-			result.AddError("integrity", "file checksum mismatch - file may be corrupted or tampered", 
+			result.AddError("integrity", "file checksum mismatch - file may be corrupted or tampered",
 				fmt.Sprintf("expected: %s, got: %s", storedChecksum.SHA256, currentChecksum), filePath)
 			return result
 		}
 
 		// Check if size matches
 		if storedChecksum.Size != info.Size() {
-			result.AddWarning("integrity", "file size changed", 
+			result.AddWarning("integrity", "file size changed",
 				fmt.Sprintf("expected: %d, got: %d", storedChecksum.Size, info.Size()), filePath)
 		}
 
 		// Check if modification time changed
 		if !storedChecksum.ModTime.Equal(info.ModTime()) {
-			result.AddWarning("integrity", "file modification time changed", 
+			result.AddWarning("integrity", "file modification time changed",
 				fmt.Sprintf("expected: %s, got: %s", storedChecksum.ModTime, info.ModTime()), filePath)
 		}
 
@@ -534,10 +534,10 @@ func (cm *ChecksumManager) VerifyFileIntegrity(filePath string) ValidationResult
 // ValidateAndUpdateChecksum validates file integrity and updates checksum metadata
 func (cm *ChecksumManager) ValidateAndUpdateChecksum(filePath string, data []byte) ValidationResult {
 	result := ValidationResult{Valid: true}
-	
+
 	// Calculate checksum from provided data
 	dataChecksum := calculateSHA256(data)
-	
+
 	// Get file info
 	info, err := os.Stat(filePath)
 	if err != nil {
@@ -547,7 +547,7 @@ func (cm *ChecksumManager) ValidateAndUpdateChecksum(filePath string, data []byt
 
 	// Get relative path for metadata key
 	relPath, _ := filepath.Rel(filepath.Dir(cm.metadataPath), filePath)
-	
+
 	// Store/update checksum
 	cm.metadata.Files[relPath] = FileChecksum{
 		Path:     relPath,
@@ -563,9 +563,9 @@ func (cm *ChecksumManager) ValidateAndUpdateChecksum(filePath string, data []byt
 // ValidateCacheIntegrityWithChecksums validates integrity of all files in cache using checksums
 func ValidateCacheIntegrityWithChecksums(cacheDir string) ValidationResult {
 	result := ValidationResult{Valid: true}
-	
+
 	cm := NewChecksumManager(cacheDir)
-	
+
 	// Check if cache directory exists
 	if _, err := os.Stat(cacheDir); os.IsNotExist(err) {
 		result.AddWarning("cache", "cache directory does not exist", cacheDir)
@@ -595,14 +595,14 @@ func ValidateCacheIntegrityWithChecksums(cacheDir string) ValidationResult {
 
 		filesChecked++
 		fileResult := cm.VerifyFileIntegrity(path)
-		
+
 		// Count corruption and new files
 		for _, err := range fileResult.Errors {
 			if err.Field == "integrity" {
 				filesCorrupted++
 			}
 		}
-		
+
 		for _, warning := range fileResult.Warnings {
 			if warning.Field == "integrity" && strings.Contains(warning.Message, "no previous checksum") {
 				filesNew++

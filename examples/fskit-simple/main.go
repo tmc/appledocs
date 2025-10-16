@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 
 	// Import the generated FSKit bindings
 	_ "github.com/tmc/appledocs/generated/frameworks/fskit"

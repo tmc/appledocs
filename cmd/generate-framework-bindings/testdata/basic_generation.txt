@@ -1,0 +1,23 @@
+# Test basic framework generation for CoreGraphics
+# This test verifies that the generator can process CoreGraphics
+# and produce valid Go bindings.
+
+# Run the generator for CoreGraphics
+# Explicitly specify input directory to ensure it uses the cache
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+exec generate-framework-bindings -framework CoreGraphics -input $INPUT_DIR -output testoutput
+stdout 'Generated CoreGraphics bindings'
+
+# The generator creates output in testoutput/coregraphics/
+# Verify that key files were generated
+exists testoutput/coregraphics/functions.gen.go
+exists testoutput/coregraphics/types.gen.go
+
+# Check that the generated functions file contains expected patterns
+grep 'package coregraphics' testoutput/coregraphics/functions.gen.go
+
+# Check that the types file was generated with proper structure
+grep 'package coregraphics' testoutput/coregraphics/types.gen.go
+
+# Verify at least some common CoreGraphics types are defined
+grep 'CGRect' testoutput/coregraphics/types.gen.go

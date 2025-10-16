@@ -9,7 +9,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"runtime"
 	"unsafe"
 
@@ -29,11 +28,14 @@ type (
 
 // CoreGraphics types
 type (
-	CGFloat           float64
-	CGContextRef      unsafe.Pointer
-	CGPoint           struct{ X, Y CGFloat }
-	CGSize            struct{ Width, Height CGFloat }
-	CGRect            struct{ Origin CGPoint; Size CGSize }
+	CGFloat      float64
+	CGContextRef unsafe.Pointer
+	CGPoint      struct{ X, Y CGFloat }
+	CGSize       struct{ Width, Height CGFloat }
+	CGRect       struct {
+		Origin CGPoint
+		Size   CGSize
+	}
 	CGPathDrawingMode int32
 )
 

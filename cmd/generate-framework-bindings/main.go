@@ -12,12 +12,12 @@ package main
 
 import (
 	"bytes"
-	_ "embed"
+	"embed"
 	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
-	"log"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -30,11 +30,8 @@ import (
 	"golang.org/x/tools/txtar"
 )
 
-//go:embed funcs.go
-var _ string // Force funcs.go to be included in binary for template compilation
-
-//go:embed templates.txtar
-var templatesData []byte
+//go:embed funcs.go templates.txtar templates_*.txtar
+var embeddedFS embed.FS
 
 var (
 	docTemplate               *template.Template
@@ -42,69 +39,270 @@ var (
 	classesTemplate           *template.Template
 	protocolsTemplate         *template.Template
 	functionsGenTemplate      *template.Template
+	methodsTemplate           *template.Template
 )
 
+var templateArchive *txtar.Archive
+var variantArchives map[string]*txtar.Archive
+
+// Generator encapsulates the state and methods for generating bindings
+type Generator struct {
+	Framework        string
+	PackageName      string
+	InputDir         string
+	Variant          string
+	WithRefMethods   bool
+	GenerateTests    bool
+	GenerateExamples bool
+
+	Functions []*occ2go.ParsedFunction
+	Classes   []*occ2go.ParsedClass
+	Protocols []*occ2go.ParsedProtocol
+
+	// Computed/cached data
+	frameworkAbstract string
+	frameworkURL      string
+	refTypes          []string
+	typeMethods       map[string][]*occ2go.ParsedFunction
+	typeToRef         map[string]string
+
+	// Error collection
+	Errors []error
+}
+
+// NewGenerator creates a new Generator instance
+func NewGenerator(framework, packageName, inputDir, variant string, withRefMethods, generateTests, generateExamples bool) *Generator {
+	return &Generator{
+		Framework:        framework,
+		PackageName:      packageName,
+		InputDir:         inputDir,
+		Variant:          variant,
+		WithRefMethods:   withRefMethods,
+		GenerateTests:    generateTests,
+		GenerateExamples: generateExamples,
+		Errors:           make([]error, 0),
+	}
+}
+
+// AddError adds an error to the error collection
+func (g *Generator) AddError(err error) {
+	if err != nil {
+		g.Errors = append(g.Errors, err)
+	}
+}
+
+// prepare computes cached data needed for generation
+func (g *Generator) prepare() {
+	g.frameworkAbstract, g.frameworkURL = loadFrameworkMetadata(g.InputDir, g.Framework)
+	g.refTypes = extractRefTypes(g.Functions, getFrameworkPrefix(g.Framework))
+	g.typeMethods = groupFunctionsByType(g.Functions, g.Framework)
+	g.typeToRef = make(map[string]string)
+	for _, refType := range g.refTypes {
+		prefix := getFrameworkPrefix(g.Framework)
+		if strings.HasPrefix(refType, prefix) && strings.HasSuffix(refType, "Ref") {
+			typeName := strings.TrimSuffix(strings.TrimPrefix(refType, prefix), "Ref")
+			g.typeToRef[typeName] = refType
+		}
+	}
+}
+
+// Helper methods for templates
+
+// FunctionCount returns the number of functions
+func (g *Generator) FunctionCount() int {
+	return len(g.Functions)
+}
+
+// ClassCount returns the number of classes
+func (g *Generator) ClassCount() int {
+	return len(g.Classes)
+}
+
+// ProtocolCount returns the number of protocols
+func (g *Generator) ProtocolCount() int {
+	return len(g.Protocols)
+}
+
+// MinVersion returns the minimum macOS version
+func (g *Generator) MinVersion() string {
+	return findMinimumMacOSVersion(g.Functions)
+}
+
+// Abstract returns the framework abstract
+func (g *Generator) Abstract() string {
+	return g.frameworkAbstract
+}
+
+// DocURL returns the framework documentation URL
+func (g *Generator) DocURL() string {
+	return g.frameworkURL
+}
+
+// RefTypes returns the ref types
+func (g *Generator) RefTypes() []string {
+	return g.refTypes
+}
+
+// TypeMethods returns the type methods map
+func (g *Generator) TypeMethods() map[string][]*occ2go.ParsedFunction {
+	return g.typeMethods
+}
+
+// TypeToRef returns the type to ref map
+func (g *Generator) TypeToRef() map[string]string {
+	return g.typeToRef
+}
+
+// Count returns function count (for backward compatibility)
+func (g *Generator) Count() int {
+	return len(g.Functions)
+}
+
+var verbose bool
+
 func init() {
-	// Parse txtar archive
-	archive := txtar.Parse(templatesData)
+	// Load base templates
+	templatesData, err := embeddedFS.ReadFile("templates.txtar")
+	if err != nil {
+		panic(fmt.Errorf("failed to read templates.txtar: %w", err))
+	}
+	templateArchive = txtar.Parse(templatesData)
+
+	// Load variant templates
+	variantArchives = make(map[string]*txtar.Archive)
+	entries, err := fs.ReadDir(embeddedFS, ".")
+	if err == nil {
+		for _, entry := range entries {
+			if entry.IsDir() {
+				continue
+			}
+			name := entry.Name()
+			// Match templates_<variant>.txtar pattern
+			if strings.HasPrefix(name, "templates_") && strings.HasSuffix(name, ".txtar") {
+				variantName := strings.TrimSuffix(strings.TrimPrefix(name, "templates_"), ".txtar")
+				data, err := embeddedFS.ReadFile(name)
+				if err == nil {
+					variantArchives[variantName] = txtar.Parse(data)
+					if verbose {
+						fmt.Fprintf(os.Stderr, "Loaded template variant: %s\n", variantName)
+					}
+				}
+			}
+		}
+	}
+
 	templates := make(map[string]string)
-	for _, file := range archive.Files {
+	for _, file := range templateArchive.Files {
 		templates[file.Name] = string(file.Data)
 	}
 
-	var err error
-	docTemplate, err = template.New("doc.gen.go").Funcs(templateFuncs).Parse(templates["doc.gen.go"])
-	if err != nil {
-		panic(fmt.Errorf("failed to parse doc.gen.go: %w", err))
+	var parseErr error
+	docTemplate, parseErr = template.New("doc.gen.go").Funcs(templateFuncs).Parse(templates["doc.gen.go"])
+	if parseErr != nil {
+		panic(fmt.Errorf("failed to parse doc.gen.go: %w", parseErr))
 	}
 
-	coreGraphicsTypesTemplate, err = template.New("types.gen.go").Funcs(templateFuncs).Parse(templates["types.gen.go"])
-	if err != nil {
-		panic(fmt.Errorf("failed to parse types.gen.go: %w", err))
+	coreGraphicsTypesTemplate, parseErr = template.New("types.gen.go").Funcs(templateFuncs).Parse(templates["types.gen.go"])
+	if parseErr != nil {
+		panic(fmt.Errorf("failed to parse types.gen.go: %w", parseErr))
 	}
 
-	classesTemplate, err = template.New("classes.gen.go").Funcs(templateFuncs).Parse(templates["classes.gen.go"])
-	if err != nil {
-		panic(fmt.Errorf("failed to parse classes.gen.go: %w", err))
+	classesTemplate, parseErr = template.New("classes.gen.go").Funcs(templateFuncs).Parse(templates["classes.gen.go"])
+	if parseErr != nil {
+		panic(fmt.Errorf("failed to parse classes.gen.go: %w", parseErr))
 	}
 
-	protocolsTemplate, err = template.New("protocols.gen.go").Funcs(templateFuncs).Parse(templates["protocols.gen.go"])
-	if err != nil {
-		panic(fmt.Errorf("failed to parse protocols.gen.go: %w", err))
+	protocolsTemplate, parseErr = template.New("protocols.gen.go").Funcs(templateFuncs).Parse(templates["protocols.gen.go"])
+	if parseErr != nil {
+		panic(fmt.Errorf("failed to parse protocols.gen.go: %w", parseErr))
 	}
 
-	functionsGenTemplate, err = template.New("functions.gen.go").Funcs(templateFuncs).Parse(templates["functions.gen.go"])
-	if err != nil {
-		panic(fmt.Errorf("failed to parse functions.gen.go: %w", err))
+	functionsGenTemplate, parseErr = template.New("functions.gen.go").Funcs(templateFuncs).Parse(templates["functions.gen.go"])
+	if parseErr != nil {
+		panic(fmt.Errorf("failed to parse functions.gen.go: %w", parseErr))
 	}
+
+	methodsTemplate, parseErr = template.New("methods.gen.go").Funcs(templateFuncs).Parse(templates["methods.gen.go"])
+	if parseErr != nil {
+		panic(fmt.Errorf("failed to parse methods.gen.go: %w", parseErr))
+	}
+}
+
+// getTemplateVariant returns the template content for a given file, checking variant archives.
+// Supports comma-separated variant layering from separate files. For example:
+//
+//	variant="darwinkit,ref-methods" and filename="types.gen.go" will look for (in order):
+//	1. types.gen.go in templates_ref-methods.txtar
+//	2. types.gen.go in templates_darwinkit.txtar
+//	3. types.gen.go in templates.txtar (fallback)
+//
+// The first match wins, allowing later variants to override earlier ones.
+func getTemplateVariant(filename, variant string) (string, error) {
+	// Try variants in reverse order (rightmost first) so later variants override earlier ones
+	if variant != "" {
+		variants := strings.Split(variant, ",")
+		for i := len(variants) - 1; i >= 0; i-- {
+			v := strings.TrimSpace(variants[i])
+			if v == "" {
+				continue
+			}
+			// Look in variant archive
+			if archive, ok := variantArchives[v]; ok {
+				for _, file := range archive.Files {
+					if file.Name == filename {
+						return string(file.Data), nil
+					}
+				}
+			}
+		}
+	}
+
+	// Fallback to base template
+	for _, file := range templateArchive.Files {
+		if file.Name == filename {
+			return string(file.Data), nil
+		}
+	}
+
+	return "", fmt.Errorf("template not found: %s", filename)
 }
 
 func main() {
 	framework := flag.String("framework", "CoreGraphics", "Framework to generate bindings for")
 	inputDir := flag.String("input", "", "Input directory with JSON files (defaults to ~/.appledocs/cache/developer.apple.com/tutorials/data/documentation)")
 	outputDir := flag.String("output", "generated", "Output directory for generated bindings")
-	style := flag.String("style", "purego", "Binding style: purego, darwinkit, or simple")
 	filterRegexp := flag.String("filter", "", "Only generate symbols matching this regexp (e.g., '^CGRect' or '^NS(Window|View)')")
 	txtarOutput := flag.Bool("txtar", false, "Output as txtar format to stdout instead of files")
+	variant := flag.String("variant", "", "Comma-separated template variants (e.g., 'darwinkit' or 'base,ref-methods'). Later variants override earlier ones.")
+	withRefMethods := flag.Bool("with-ref-methods", false, "Generate struct-wrapped Ref types with methods (enables method-style API)")
+	generateTests := flag.Bool("generate-tests", false, "Generate test files for the bindings")
+	generateExamples := flag.Bool("generate-examples", false, "Generate example code demonstrating API usage")
+	verboseFlag := flag.Bool("v", false, "Enable verbose output")
 	flag.Parse()
+
+	verbose = *verboseFlag
 
 	// Default to cache directory if not specified
 	if *inputDir == "" {
 		homeDir, err := os.UserHomeDir()
 		if err != nil {
-			log.Fatalf("Failed to get home directory: %v", err)
+			fmt.Fprintf(os.Stderr, "Error: failed to get home directory: %v\n", err)
+			os.Exit(1)
 		}
 		*inputDir = filepath.Join(homeDir, ".appledocs/cache/developer.apple.com/tutorials/data/documentation")
 	}
 
-	log.Printf("Generating %s bindings for %s framework", *style, *framework)
-	log.Printf("Input directory: %s", *inputDir)
-	log.Printf("Output directory: %s", *outputDir)
+	if verbose {
+		fmt.Fprintf(os.Stderr, "Generating bindings for %s\n", *framework)
+		fmt.Fprintf(os.Stderr, "Input: %s\n", *inputDir)
+		fmt.Fprintf(os.Stderr, "Output: %s\n", *outputDir)
+	}
 
 	// Open the appledocs filesystem
 	fsys, err := appledocs.Open(*inputDir)
 	if err != nil {
-		log.Fatalf("Failed to open appledocs filesystem: %v", err)
+		fmt.Fprintf(os.Stderr, "Error: failed to open appledocs filesystem: %v\n", err)
+		os.Exit(1)
 	}
 
 	// Parse all symbols in the framework using the appledocs iterator
@@ -113,6 +311,7 @@ func main() {
 	var protocols []*occ2go.ParsedProtocol
 
 	processedFiles := 0
+	parseErrors := 0
 	for path, doc := range appledocs.Symbols(fsys, *framework) {
 		processedFiles++
 		fn, cls, proto, err := occ2go.ParseDocument(doc)
@@ -127,12 +326,23 @@ func main() {
 				protocols = append(protocols, proto)
 			}
 		} else {
-			log.Printf("Warning: failed to parse %s: %v", path, err)
+			parseErrors++
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Warning: failed to parse %s: %v\n", path, err)
+			}
 		}
 	}
 
-	log.Printf("Processed %d symbols in %s", processedFiles, *framework)
-	log.Printf("Found %d functions, %d classes, %d protocols", len(functions), len(classes), len(protocols))
+	if verbose {
+		fmt.Fprintf(os.Stderr, "Processed %d files (%d parse errors)\n", processedFiles, parseErrors)
+		fmt.Fprintf(os.Stderr, "Found: %d functions, %d classes, %d protocols\n", len(functions), len(classes), len(protocols))
+	}
+
+	// Fail if no symbols were found and no filter was applied
+	if len(functions) == 0 && len(classes) == 0 && len(protocols) == 0 && *filterRegexp == "" && processedFiles == 0 {
+		fmt.Fprintf(os.Stderr, "Error: no symbols found for framework %s\n", *framework)
+		os.Exit(1)
+	}
 
 	// Deduplicate functions by name (keep first occurrence)
 	seenFunctions := make(map[string]bool)
@@ -144,7 +354,9 @@ func main() {
 		}
 	}
 	if len(uniqueFunctions) < len(functions) {
-		log.Printf("Deduplicated %d functions down to %d unique functions", len(functions), len(uniqueFunctions))
+		if verbose {
+			fmt.Fprintf(os.Stderr, "Deduplicated functions: %d -> %d\n", len(functions), len(uniqueFunctions))
+		}
 		functions = uniqueFunctions
 	}
 
@@ -152,7 +364,8 @@ func main() {
 	if *filterRegexp != "" {
 		re, err := regexp.Compile(*filterRegexp)
 		if err != nil {
-			log.Fatalf("Invalid filter regexp: %v", err)
+			fmt.Fprintf(os.Stderr, "Error: invalid filter regexp: %v\n", err)
+			os.Exit(1)
 		}
 
 		filteredFunctions := make([]*occ2go.ParsedFunction, 0)
@@ -176,11 +389,13 @@ func main() {
 			}
 		}
 
-		log.Printf("Filter '%s' matched %d/%d functions, %d/%d classes, %d/%d protocols",
-			*filterRegexp,
-			len(filteredFunctions), len(functions),
-			len(filteredClasses), len(classes),
-			len(filteredProtocols), len(protocols))
+		if verbose {
+			fmt.Fprintf(os.Stderr, "Filter '%s' matched: %d/%d functions, %d/%d classes, %d/%d protocols\n",
+				*filterRegexp,
+				len(filteredFunctions), len(functions),
+				len(filteredClasses), len(classes),
+				len(filteredProtocols), len(protocols))
+		}
 
 		functions = filteredFunctions
 		classes = filteredClasses
@@ -192,46 +407,92 @@ func main() {
 	outDir := filepath.Join(*outputDir, packageName)
 	if !*txtarOutput {
 		if err := os.MkdirAll(outDir, 0755); err != nil {
-			log.Fatalf("Failed to create output directory: %v", err)
+			fmt.Fprintf(os.Stderr, "Error: failed to create output directory: %v\n", err)
+			os.Exit(1)
 		}
 	}
 
 	// Generate bindings
 	if *txtarOutput {
-		if err := generateTxtar(os.Stdout, *framework, packageName, *inputDir, functions, classes, protocols); err != nil {
-			log.Fatalf("Failed to generate bindings: %v", err)
+		if err := generateTxtar(os.Stdout, *framework, packageName, *inputDir, functions, classes, protocols, *withRefMethods, *generateTests, *generateExamples, *variant); err != nil {
+			fmt.Fprintf(os.Stderr, "Error: failed to generate bindings: %v\n", err)
+			os.Exit(1)
 		}
 	} else {
-		if err := generateFiles(outDir, *framework, packageName, *inputDir, functions, classes, protocols); err != nil {
-			log.Fatalf("Failed to generate bindings: %v", err)
+		if err := generateFiles(outDir, *framework, packageName, *inputDir, functions, classes, protocols, *withRefMethods, *generateTests, *generateExamples, *variant); err != nil {
+			fmt.Fprintf(os.Stderr, "Error: failed to generate bindings: %v\n", err)
+			os.Exit(1)
 		}
-		log.Printf("Generated bindings in %s", outDir)
+		fmt.Printf("Generated %s bindings in %s\n", *framework, outDir)
 	}
 }
 
 // generateFiles generates all files to disk
-func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol) error {
+func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, withRefMethods, generateTests, generateExamples bool, variant string) error {
+	// Create generator to get gen.go data
+	gen := NewGenerator(framework, packageName, inputDir, variant, withRefMethods, generateTests, generateExamples)
+	gen.Functions = functions
+	gen.Classes = classes
+	gen.Protocols = protocols
+	gen.prepare()
+
 	generators := []struct {
 		filename string
 		generate func(io.Writer) error
 	}{
-		{"doc.gen.go", func(w io.Writer) error { return generateDoc(w, framework, packageName, inputDir, functions) }},
-		{"types.gen.go", func(w io.Writer) error { return generateTypes(w, framework, packageName, functions) }},
-		{"functions.gen.go", func(w io.Writer) error { return generateFunctions(w, framework, packageName, functions) }},
+		{"gen.go", func(w io.Writer) error {
+			templateContent, err := getTemplateVariant("gen.go", variant)
+			if err != nil {
+				return err
+			}
+			tmpl, err := template.New("gen.go").Funcs(templateFuncs).Parse(templateContent)
+			if err != nil {
+				return err
+			}
+			return tmpl.Execute(w, gen)
+		}},
+		{"doc.gen.go", func(w io.Writer) error { return generateDoc(w, framework, packageName, inputDir, functions, variant) }},
+		{"types.gen.go", func(w io.Writer) error {
+			return generateTypes(w, framework, packageName, functions, withRefMethods, variant)
+		}},
+		{"functions.gen.go", func(w io.Writer) error {
+			return generateFunctions(w, framework, packageName, functions, withRefMethods, variant)
+		}},
+	}
+
+	if withRefMethods {
+		generators = append(generators, struct {
+			filename string
+			generate func(io.Writer) error
+		}{"methods.gen.go", func(w io.Writer) error { return generateMethods(w, framework, packageName, functions, variant) }})
 	}
 
 	if len(classes) > 0 {
 		generators = append(generators, struct {
 			filename string
 			generate func(io.Writer) error
-		}{"classes.gen.go", func(w io.Writer) error { return generateClasses(w, framework, packageName, classes) }})
+		}{"classes.gen.go", func(w io.Writer) error { return generateClasses(w, framework, packageName, classes, variant) }})
 	}
 
 	if len(protocols) > 0 {
 		generators = append(generators, struct {
 			filename string
 			generate func(io.Writer) error
-		}{"protocols.gen.go", func(w io.Writer) error { return generateProtocols(w, framework, packageName, protocols) }})
+		}{"protocols.gen.go", func(w io.Writer) error { return generateProtocols(w, framework, packageName, protocols, variant) }})
+	}
+
+	if generateTests {
+		generators = append(generators, struct {
+			filename string
+			generate func(io.Writer) error
+		}{"functions_test.gen.go", func(w io.Writer) error { return generateTestsFile(w, framework, packageName, functions, variant) }})
+	}
+
+	if generateExamples {
+		generators = append(generators, struct {
+			filename string
+			generate func(io.Writer) error
+		}{"examples_test.gen.go", func(w io.Writer) error { return generateExamplesFile(w, framework, packageName, functions, variant) }})
 	}
 
 	for _, gen := range generators {
@@ -249,8 +510,98 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 	return nil
 }
 
+// GenerateTxtarFromModule generates the entire txtar output using the module template
+func (g *Generator) GenerateTxtarFromModule(w io.Writer) error {
+	g.prepare()
+
+	// Load all templates as named templates
+	moduleContent, err := getTemplateVariant("module", g.Variant)
+	if err != nil {
+		return err
+	}
+
+	// Create master template and parse all sub-templates
+	tmpl := template.New("module").Funcs(templateFuncs)
+
+	// Dynamically discover all templates from the archive (except "module")
+	templateFiles := make(map[string]bool)
+
+	// Collect from base archive
+	for _, file := range templateArchive.Files {
+		if file.Name != "module" && file.Name != "" {
+			templateFiles[file.Name] = true
+		}
+	}
+
+	// Collect from variant archives
+	if g.Variant != "" {
+		variants := strings.Split(g.Variant, ",")
+		for _, v := range variants {
+			v = strings.TrimSpace(v)
+			if archive, ok := variantArchives[v]; ok {
+				for _, file := range archive.Files {
+					if file.Name != "module" && file.Name != "" {
+						templateFiles[file.Name] = true
+					}
+				}
+			}
+		}
+	}
+
+	// Parse all discovered templates as associated templates
+	for filename := range templateFiles {
+		content, err := getTemplateVariant(filename, g.Variant)
+		if err != nil {
+			g.AddError(fmt.Errorf("warning: skipping template %s: %w", filename, err))
+			continue // Skip if template doesn't exist
+		}
+		_, err = tmpl.New(filename).Parse(content)
+		if err != nil {
+			return fmt.Errorf("failed to parse template %s: %w", filename, err)
+		}
+	}
+
+	// Parse the module template last
+	tmpl, err = tmpl.Parse(moduleContent)
+	if err != nil {
+		return fmt.Errorf("failed to parse module template: %w", err)
+	}
+
+	// Execute template - pass Generator directly as context
+	var buf bytes.Buffer
+	if err := tmpl.Execute(&buf, g); err != nil {
+		return err
+	}
+
+	// Replace #-- with -- to convert to proper txtar format
+	output := strings.ReplaceAll(buf.String(), "#-- ", "-- ")
+	_, err = w.Write([]byte(output))
+	return err
+}
+
 // generateTxtar generates all files as txtar format
-func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol) error {
+func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, withRefMethods, generateTests, generateExamples bool, variant string) error {
+	// Create generator instance
+	gen := NewGenerator(framework, packageName, inputDir, variant, withRefMethods, generateTests, generateExamples)
+	gen.Functions = functions
+	gen.Classes = classes
+	gen.Protocols = protocols
+
+	// Try to use the module template if it exists
+	if _, err := getTemplateVariant("module", variant); err == nil {
+		if err := gen.GenerateTxtarFromModule(w); err != nil {
+			return err
+		}
+		// Log any collected errors/warnings
+		if verbose {
+			for _, e := range gen.Errors {
+				fmt.Fprintf(os.Stderr, "Warning: %v\n", e)
+			}
+		}
+		return nil
+	}
+
+	// Fallback to individual file generation
 	files := make(map[string][]byte)
 
 	genFile := func(filename string, generator func(io.Writer) error) error {
@@ -262,22 +613,31 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 		return nil
 	}
 
-	if err := genFile("doc.gen.go", func(w io.Writer) error { return generateDoc(w, framework, packageName, inputDir, functions) }); err != nil {
+	if err := genFile("doc.gen.go", func(w io.Writer) error { return generateDoc(w, framework, packageName, inputDir, functions, variant) }); err != nil {
 		return err
 	}
-	if err := genFile("types.gen.go", func(w io.Writer) error { return generateTypes(w, framework, packageName, functions) }); err != nil {
+	if err := genFile("types.gen.go", func(w io.Writer) error {
+		return generateTypes(w, framework, packageName, functions, withRefMethods, variant)
+	}); err != nil {
 		return err
 	}
-	if err := genFile("functions.gen.go", func(w io.Writer) error { return generateFunctions(w, framework, packageName, functions) }); err != nil {
+	if err := genFile("functions.gen.go", func(w io.Writer) error {
+		return generateFunctions(w, framework, packageName, functions, withRefMethods, variant)
+	}); err != nil {
 		return err
+	}
+	if withRefMethods {
+		if err := genFile("methods.gen.go", func(w io.Writer) error { return generateMethods(w, framework, packageName, functions, variant) }); err != nil {
+			return err
+		}
 	}
 	if len(classes) > 0 {
-		if err := genFile("classes.gen.go", func(w io.Writer) error { return generateClasses(w, framework, packageName, classes) }); err != nil {
+		if err := genFile("classes.gen.go", func(w io.Writer) error { return generateClasses(w, framework, packageName, classes, variant) }); err != nil {
 			return err
 		}
 	}
 	if len(protocols) > 0 {
-		if err := genFile("protocols.gen.go", func(w io.Writer) error { return generateProtocols(w, framework, packageName, protocols) }); err != nil {
+		if err := genFile("protocols.gen.go", func(w io.Writer) error { return generateProtocols(w, framework, packageName, protocols, variant) }); err != nil {
 			return err
 		}
 	}
@@ -308,7 +668,7 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 }
 
 // generateDoc generates package documentation
-func generateDoc(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction) error {
+func generateDoc(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, variant string) error {
 	frameworkAbstract, frameworkURL := loadFrameworkMetadata(inputDir, framework)
 
 	data := struct {
@@ -325,19 +685,39 @@ func generateDoc(w io.Writer, framework, packageName, inputDir string, functions
 		DocURL:      frameworkURL,
 	}
 
-	return docTemplate.Execute(w, data)
+	// Load template with variant support
+	templateContent, err := getTemplateVariant("doc.gen.go", variant)
+	if err != nil {
+		return err
+	}
+	tmpl, err := template.New("doc.gen.go").Funcs(templateFuncs).Parse(templateContent)
+	if err != nil {
+		return err
+	}
+	return tmpl.Execute(w, data)
 }
 
 // generateTypes generates framework-specific type definitions
-func generateTypes(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction) error {
+func generateTypes(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, withRefMethods bool, variant string) error {
 	if framework == "CoreGraphics" {
 		refTypes := extractRefTypes(functions, "CG")
 		data := struct {
-			Framework   string
-			PackageName string
-			RefTypes    []string
-		}{framework, packageName, refTypes}
-		return coreGraphicsTypesTemplate.Execute(w, data)
+			Framework      string
+			PackageName    string
+			RefTypes       []string
+			WithRefMethods bool
+		}{framework, packageName, refTypes, withRefMethods}
+
+		// Load template with variant support
+		templateContent, err := getTemplateVariant("types.gen.go", variant)
+		if err != nil {
+			return err
+		}
+		tmpl, err := template.New("types.gen.go").Funcs(templateFuncs).Parse(templateContent)
+		if err != nil {
+			return err
+		}
+		return tmpl.Execute(w, data)
 	}
 
 	// Empty types file for other frameworks
@@ -347,19 +727,29 @@ func generateTypes(w io.Writer, framework, packageName string, functions []*occ2
 }
 
 // generateFunctions generates function bindings
-func generateFunctions(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction) error {
+func generateFunctions(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, withRefMethods bool, variant string) error {
 	data := struct {
-		Framework   string
-		PackageName string
-		Count       int
-		Functions   []*occ2go.ParsedFunction
-	}{framework, packageName, len(functions), functions}
+		Framework      string
+		PackageName    string
+		Count          int
+		Functions      []*occ2go.ParsedFunction
+		WithRefMethods bool
+	}{framework, packageName, len(functions), functions, withRefMethods}
 
-	return functionsGenTemplate.Execute(w, data)
+	// Load template with variant support
+	templateContent, err := getTemplateVariant("functions.gen.go", variant)
+	if err != nil {
+		return err
+	}
+	tmpl, err := template.New("functions.gen.go").Funcs(templateFuncs).Parse(templateContent)
+	if err != nil {
+		return err
+	}
+	return tmpl.Execute(w, data)
 }
 
 // generateClasses generates class declarations
-func generateClasses(w io.Writer, framework, packageName string, classes []*occ2go.ParsedClass) error {
+func generateClasses(w io.Writer, framework, packageName string, classes []*occ2go.ParsedClass, variant string) error {
 	data := struct {
 		Framework   string
 		PackageName string
@@ -367,11 +757,20 @@ func generateClasses(w io.Writer, framework, packageName string, classes []*occ2
 		Classes     []*occ2go.ParsedClass
 	}{framework, packageName, len(classes), classes}
 
-	return classesTemplate.Execute(w, data)
+	// Load template with variant support
+	templateContent, err := getTemplateVariant("classes.gen.go", variant)
+	if err != nil {
+		return err
+	}
+	tmpl, err := template.New("classes.gen.go").Funcs(templateFuncs).Parse(templateContent)
+	if err != nil {
+		return err
+	}
+	return tmpl.Execute(w, data)
 }
 
 // generateProtocols generates protocol declarations
-func generateProtocols(w io.Writer, framework, packageName string, protocols []*occ2go.ParsedProtocol) error {
+func generateProtocols(w io.Writer, framework, packageName string, protocols []*occ2go.ParsedProtocol, variant string) error {
 	data := struct {
 		Framework   string
 		PackageName string
@@ -379,7 +778,67 @@ func generateProtocols(w io.Writer, framework, packageName string, protocols []*
 		Protocols   []*occ2go.ParsedProtocol
 	}{framework, packageName, len(protocols), protocols}
 
-	return protocolsTemplate.Execute(w, data)
+	// Load template with variant support
+	templateContent, err := getTemplateVariant("protocols.gen.go", variant)
+	if err != nil {
+		return err
+	}
+	tmpl, err := template.New("protocols.gen.go").Funcs(templateFuncs).Parse(templateContent)
+	if err != nil {
+		return err
+	}
+	return tmpl.Execute(w, data)
+}
+
+// generateMethods generates method-style wrappers
+func generateMethods(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, variant string) error {
+	// Group functions by type
+	typeMethods := groupFunctionsByType(functions, framework)
+
+	// Build a map from type names to their underlying ref type
+	typeToRef := make(map[string]string)
+	refTypes := extractRefTypes(functions, getFrameworkPrefix(framework))
+
+	for _, refType := range refTypes {
+		// Extract type name from ref type (e.g., CGContextRef -> Context)
+		prefix := getFrameworkPrefix(framework)
+		if strings.HasPrefix(refType, prefix) && strings.HasSuffix(refType, "Ref") {
+			typeName := strings.TrimSuffix(strings.TrimPrefix(refType, prefix), "Ref")
+			typeToRef[typeName] = refType
+		}
+	}
+
+	data := struct {
+		Framework   string
+		PackageName string
+		TypeMethods map[string][]*occ2go.ParsedFunction
+		TypeToRef   map[string]string
+	}{framework, packageName, typeMethods, typeToRef}
+
+	// Load template with variant support
+	templateContent, err := getTemplateVariant("methods.gen.go", variant)
+	if err != nil {
+		return err
+	}
+	tmpl, err := template.New("methods.gen.go").Funcs(templateFuncs).Parse(templateContent)
+	if err != nil {
+		return err
+	}
+	return tmpl.Execute(w, data)
+}
+
+// getFrameworkPrefix returns the common type prefix for a framework
+func getFrameworkPrefix(framework string) string {
+	switch framework {
+	case "CoreGraphics":
+		return "CG"
+	case "CoreFoundation":
+		return "CF"
+	case "CoreAudio":
+		return "CA"
+	default:
+		return ""
+	}
 }
 
 // extractRefTypes extracts all Ref types from function signatures
@@ -507,4 +966,44 @@ func parseVersion(s string) (major, minor int, ok bool) {
 	}
 
 	return major, minor, true
+}
+
+// generateTestsFile generates test file
+func generateTestsFile(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, variant string) error {
+	data := struct {
+		Framework   string
+		PackageName string
+		Functions   []*occ2go.ParsedFunction
+	}{framework, packageName, functions}
+
+	// Load template with variant support
+	templateContent, err := getTemplateVariant("functions_test.gen.go", variant)
+	if err != nil {
+		return err
+	}
+	tmpl, err := template.New("functions_test.gen.go").Funcs(templateFuncs).Parse(templateContent)
+	if err != nil {
+		return err
+	}
+	return tmpl.Execute(w, data)
+}
+
+// generateExamplesFile generates examples file
+func generateExamplesFile(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, variant string) error {
+	data := struct {
+		Framework   string
+		PackageName string
+		Functions   []*occ2go.ParsedFunction
+	}{framework, packageName, functions}
+
+	// Load template with variant support
+	templateContent, err := getTemplateVariant("examples_test.gen.go", variant)
+	if err != nil {
+		return err
+	}
+	tmpl, err := template.New("examples_test.gen.go").Funcs(templateFuncs).Parse(templateContent)
+	if err != nil {
+		return err
+	}
+	return tmpl.Execute(w, data)
 }

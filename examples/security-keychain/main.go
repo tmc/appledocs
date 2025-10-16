@@ -13,7 +13,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"runtime"
 	"unsafe"
 
@@ -36,10 +35,10 @@ type (
 // Security framework constants
 const (
 	// OSStatus codes
-	errSecSuccess          OSStatus = 0
-	errSecItemNotFound     OSStatus = -25300
-	errSecDuplicateItem    OSStatus = -25299
-	errSecAuthFailed       OSStatus = -25293
+	errSecSuccess       OSStatus = 0
+	errSecItemNotFound  OSStatus = -25300
+	errSecDuplicateItem OSStatus = -25299
+	errSecAuthFailed    OSStatus = -25293
 
 	// CFString encoding
 	kCFStringEncodingUTF8 CFStringEncoding = 0x08000100

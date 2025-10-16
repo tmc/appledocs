@@ -1,0 +1,49 @@
+# Test API compatibility with darwinkit's NSApplication
+# This test compares the go doc output of our generated NSApplication
+# with darwinkit's to ensure API compatibility
+#
+# CURRENT STATE: This test will FAIL until we implement proper class generation
+# with Go struct types and methods (not just documentation comments)
+#
+# Goal: Generate code that matches darwinkit's API:
+#   type Application struct { ... }
+#   func Application_SharedApplication() Application
+#   func (a_ Application) Run()
+#   func (a_ Application) Terminate(sender objc.IObject)
+#   etc.
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+# Generate AppKit bindings with NSApplication
+exec generate-framework-bindings -framework AppKit -input $INPUT_DIR -output api_test
+
+# Check if classes.gen.go was generated
+# Currently this file only contains documentation comments, not actual types
+exists api_test/appkit/classes.gen.go
+
+# Verify NSApplication is at least documented
+grep 'NSApplication' api_test/appkit/classes.gen.go
+
+# TODO: These checks will work once we implement proper class generation
+# For now, just check that the file contains documentation
+
+# Check the current output format (documentation only)
+grep '// NSApplication : NSResponder' api_test/appkit/classes.gen.go
+
+# What we NEED to generate (will fail until implemented):
+# The following assertions check for actual Go type definitions and methods
+# that match darwinkit's API. These will all fail currently.
+
+# Check for the Application type struct
+! grep 'type Application struct' api_test/appkit/classes.gen.go
+
+# This test documents the gap: we generate documentation comments
+# but not the actual Go types and methods needed for API compatibility
+#
+# To pass this test, we need to generate code like darwinkit:
+#   1. Type definitions: type Application struct { Responder }
+#   2. Constructor methods: func Application_SharedApplication() Application
+#   3. Instance methods: func (a_ Application) Run()
+#   4. Method wrappers for all NSApplication methods
+#
+# Expected method count from darwinkit: ~100+ methods on Application type

@@ -1,0 +1,93 @@
+# Test API parity with darwinkit for CGContextMoveToPoint
+# This test compares our generated CGContextMoveToPoint to darwinkit's
+#
+# GOAL: Generate code that matches or improves upon darwinkit's API
+#
+# Current darwinkit signature:
+#   func CGContextMoveToPoint(c unsafe.Pointer, x unsafe.Pointer, y unsafe.Pointer)
+#
+# Our goal signature (type-safe):
+#   func CGContextMoveToPoint(c CGContextRef, x CGFloat, y CGFloat)
+#
+# This is an ASPIRATIONAL test - we're already better than darwinkit in some ways
+# (type safety), but this test ensures we maintain API compatibility.
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+# Generate CoreGraphics bindings with MoveToPoint
+exec generate-framework-bindings -framework CoreGraphics -input $INPUT_DIR -filter CGContextMoveToPoint -output cg_test
+
+# Verify the function was generated
+exists cg_test/coregraphics/functions.gen.go
+
+# Check that CGContextMoveToPoint exists
+grep 'func CGContextMoveToPoint' cg_test/coregraphics/functions.gen.go
+
+# Verify it has the correct typed signature (better than darwinkit's unsafe.Pointer)
+grep 'func CGContextMoveToPoint(c CGContextRef, x CGFloat, y CGFloat)' cg_test/coregraphics/functions.gen.go
+
+# Check for the internal variable declaration
+grep '_CGContextMoveToPoint func(CGContextRef, CGFloat, CGFloat)' cg_test/coregraphics/functions.gen.go
+
+# Verify types are defined
+exists cg_test/coregraphics/types.gen.go
+grep 'type CGContextRef' cg_test/coregraphics/types.gen.go
+grep 'type CGFloat' cg_test/coregraphics/types.gen.go
+
+# Create a test to compare against darwinkit's actual package
+mkdir compare_test
+exec sh -c 'cat > compare_test/go.mod <<EOF
+module comparetest
+
+go 1.24
+
+require (
+	github.com/ebitengine/purego v0.9.0
+	github.com/progrium/darwinkit v0.5.0
+)
+EOF'
+
+# Create a comparison test file
+exec sh -c 'cat > compare_test/compare_test.go <<EOF
+package comparetest
+
+import (
+	"testing"
+	"unsafe"
+
+	darwinkit "github.com/progrium/darwinkit/macos/coregraphics"
+)
+
+// This test documents the API differences between our generator and darwinkit
+func TestAPIParity(t *testing.T) {
+	// Darwinkit signature (current):
+	// func CGContextMoveToPoint(c unsafe.Pointer, x unsafe.Pointer, y unsafe.Pointer)
+
+	// Our signature (goal):
+	// func CGContextMoveToPoint(c CGContextRef, x CGFloat, y CGFloat)
+
+	// Both should be callable, but ours is type-safe
+
+	// Document that darwinkit uses unsafe.Pointer
+	var _ func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) = darwinkit.CGContextMoveToPoint
+
+	t.Log("Darwinkit uses unsafe.Pointer for all parameters")
+	t.Log("Our generator produces type-safe CGContextRef and CGFloat")
+	t.Log("This is an improvement in type safety while maintaining C interop")
+}
+EOF'
+
+# Verify the test compiles (documents the difference)
+exec go test -C compare_test -v
+
+# ASPIRATIONAL: Compare full package-level API
+# When ready, we could do:
+# exec go doc -all ./cg_test/coregraphics > our_api.txt
+# exec go doc -all github.com/progrium/darwinkit/macos/coregraphics > darwinkit_api.txt
+# exec diff -u darwinkit_api.txt our_api.txt
+
+# SUCCESS CRITERIA:
+# 1. CGContextMoveToPoint is generated with type-safe signature
+# 2. Function is callable from Go code
+# 3. Types (CGContextRef, CGFloat) are properly defined
+# 4. API is at least as good as darwinkit (we add type safety)

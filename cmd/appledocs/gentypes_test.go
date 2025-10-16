@@ -114,9 +114,9 @@ func TestToGoTypeName(t *testing.T) {
 
 func TestInferGoType(t *testing.T) {
 	tests := []struct {
-		value      interface{}
-		goType     string
-		isArray    bool
+		value   interface{}
+		goType  string
+		isArray bool
 	}{
 		{nil, "interface{}", false},
 		{true, "bool", false},
@@ -146,10 +146,10 @@ func TestAnalyzeObject(t *testing.T) {
 
 	// Test object
 	obj := map[string]interface{}{
-		"name":  "test",
-		"count": 42.0,
+		"name":   "test",
+		"count":  42.0,
 		"active": true,
-		"tags":  []interface{}{"a", "b", "c"},
+		"tags":   []interface{}{"a", "b", "c"},
 		"metadata": map[string]interface{}{
 			"created": "2025-01-01",
 		},
@@ -192,8 +192,8 @@ func TestAnalyzeObject(t *testing.T) {
 
 func TestTruncateExample(t *testing.T) {
 	tests := []struct {
-		input    interface{}
-		maxLen   int
+		input  interface{}
+		maxLen int
 	}{
 		{"short", 50},
 		{"this is a very long string that should be truncated to fit the maximum length allowed for examples", 50},

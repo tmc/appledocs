@@ -1,0 +1,20 @@
+# Test error handling for invalid inputs
+# Verifies that the generator handles error cases gracefully
+
+env INPUT_DIR=$HOME/.appledocs/cache/developer.apple.com/tutorials/data/documentation
+
+# Test: Invalid framework name
+! exec generate-framework-bindings -framework NonExistentFramework12345 -input $INPUT_DIR -output output2
+stderr '(?i)not found|failed|error'
+
+# Test: Missing output directory creates it automatically
+mkdir test_output
+exec generate-framework-bindings -framework CoreGraphics -input $INPUT_DIR -output test_output/generated
+exists test_output/generated/coregraphics/functions.gen.go
+
+# Test: Output directory with existing files (should overwrite)
+mkdir existing_output
+exec sh -c 'echo "old content" > existing_output/functions.gen.go'
+exec generate-framework-bindings -framework CoreGraphics -input $INPUT_DIR -output existing_output
+grep 'Code generated from Apple documentation' existing_output/coregraphics/functions.gen.go
+! grep 'old content' existing_output/coregraphics/functions.gen.go

@@ -141,17 +141,17 @@ func TestExtractJSONURLs(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			result := extractJSONURLs([]byte(tt.input))
-			
+
 			if len(result) != len(tt.expected) {
 				t.Errorf("extractJSONURLs() returned %d URLs, expected %d. Got: %v", len(result), len(tt.expected), result)
 				return
 			}
-			
+
 			// Sort both to compare regardless of order since extraction order may vary
 			sort.Strings(result)
 			expected := append([]string{}, tt.expected...)
 			sort.Strings(expected)
-			
+
 			for i, url := range result {
 				if url != expected[i] {
 					t.Errorf("extractJSONURLs()[%d] = %v, want %v", i, url, expected[i])
@@ -355,7 +355,7 @@ func TestPrettyPrintJSON(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			result, err := prettyPrintJSON(tt.input)
-			
+
 			if tt.shouldError {
 				if err == nil {
 					t.Errorf("prettyPrintJSON() should have returned an error")
@@ -364,11 +364,11 @@ func TestPrettyPrintJSON(t *testing.T) {
 				if err != nil {
 					t.Errorf("prettyPrintJSON() unexpected error: %v", err)
 				}
-				
+
 				if len(result) == 0 {
 					t.Errorf("prettyPrintJSON() returned empty result")
 				}
-				
+
 				// Verify the result is valid JSON
 				if !isJSON(result) {
 					t.Errorf("prettyPrintJSON() result is not valid JSON")
@@ -437,7 +437,7 @@ func TestCountDirectories(t *testing.T) {
 	}
 
 	count := countDirectories(root)
-	
+
 	// Should count dir1 and subdir (not root)
 	expected := 2
 	if count != expected {
@@ -447,7 +447,7 @@ func TestCountDirectories(t *testing.T) {
 
 func TestAddBrowserLikeHeaders(t *testing.T) {
 	req := httptest.NewRequest("GET", "https://developer.apple.com/documentation/SwiftUI.json", nil)
-	
+
 	addBrowserLikeHeaders(req)
 
 	// Check essential headers are set
@@ -637,12 +637,12 @@ func TestBuildFrameworkURLs(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			result := buildFrameworkURLs(tt.framework)
-			
+
 			if len(result) != len(tt.expected) {
 				t.Errorf("buildFrameworkURLs() returned %d URLs, expected %d", len(result), len(tt.expected))
 				return
 			}
-			
+
 			for i, url := range result {
 				if url != tt.expected[i] {
 					t.Errorf("buildFrameworkURLs()[%d] = %v, want %v", i, url, tt.expected[i])
@@ -675,7 +675,7 @@ func TestAppledocsStatsMethods(t *testing.T) {
 	app.incrementSkippedSymbols()
 
 	processed, cacheHits, cacheMisses, errors, skipped = app.getStats()
-	
+
 	if cacheHits != 2 {
 		t.Errorf("Expected 2 cache hits, got %d", cacheHits)
 	}
@@ -835,7 +835,7 @@ func TestProcessURLContextCancellation(t *testing.T) {
 	defer close(urlQueue)
 
 	err := app.processURL(ctx, "https://example.com/test.json", urlQueue)
-	
+
 	// Should handle cancellation gracefully
 	if err != nil && err != context.Canceled && !strings.Contains(err.Error(), "context deadline exceeded") && !strings.Contains(err.Error(), "context canceled") {
 		t.Errorf("processURL() should handle context cancellation gracefully, got error: %v", err)

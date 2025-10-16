@@ -668,7 +668,7 @@ func TestMarkdownSpecialCharacterEscaping(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var buf strings.Builder
-			
+
 			if tt.name == "code voice with backticks" || tt.name == "code voice without backticks" {
 				inline := InlineContent{
 					Type: "codeVoice",
@@ -848,7 +848,7 @@ func BenchmarkComplexMarkdownGeneration(b *testing.B) {
 			{Type: "text", Text: "A complex framework for benchmarking markdown generation performance."},
 		},
 		PrimaryContentSections: make([]ContentSection, 10), // 10 sections
-		TopicSections:          make([]TopicSection, 5),     // 5 topic sections
+		TopicSections:          make([]TopicSection, 5),    // 5 topic sections
 		References:             make(map[string]Reference),
 	}
 
@@ -909,7 +909,7 @@ func BenchmarkComplexMarkdownGeneration(b *testing.B) {
 		for j := 0; j < 10; j++ {
 			identifier := fmt.Sprintf("doc://com.apple.documentation/documentation/ComplexFramework/Class%d_%d", i, j)
 			identifiers[j] = identifier
-			
+
 			// Add reference
 			doc.References[identifier] = Reference{
 				Title: fmt.Sprintf("Class%d_%d", i, j),
@@ -919,7 +919,7 @@ func BenchmarkComplexMarkdownGeneration(b *testing.B) {
 				},
 			}
 		}
-		
+
 		doc.TopicSections[i] = TopicSection{
 			Title:       fmt.Sprintf("Topic Group %d", i+1),
 			Identifiers: identifiers,
@@ -927,7 +927,7 @@ func BenchmarkComplexMarkdownGeneration(b *testing.B) {
 	}
 
 	b.ResetTimer()
-	
+
 	for i := 0; i < b.N; i++ {
 		var buf strings.Builder
 		_ = writeMarkdownContent(&buf, doc)

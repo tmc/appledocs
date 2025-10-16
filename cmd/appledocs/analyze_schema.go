@@ -13,10 +13,10 @@ import (
 
 // SchemaAnalyzer analyzes JSON schema patterns
 type SchemaAnalyzer struct {
-	fieldFrequency   map[string]int              // field path -> occurrence count
-	fieldTypes       map[string]map[string]int   // field path -> type -> count
-	fieldExamples    map[string][]interface{}    // field path -> examples
-	arrayElementTypes map[string]map[string]int  // array field -> element type -> count
+	fieldFrequency    map[string]int            // field path -> occurrence count
+	fieldTypes        map[string]map[string]int // field path -> type -> count
+	fieldExamples     map[string][]interface{}  // field path -> examples
+	arrayElementTypes map[string]map[string]int // array field -> element type -> count
 }
 
 // NewSchemaAnalyzer creates a new schema analyzer

@@ -312,3 +312,98 @@ func TestTypedAPIFragments(t *testing.T) {
 		t.Error("expected to find at least one reference with fragments")
 	}
 }
+
+func TestSymbolsIterator(t *testing.T) {
+	fsys, err := Open(testDocsDir)
+	if err != nil {
+		t.Skipf("skipping: %v", err)
+	}
+
+	count := 0
+	foundNSString := false
+
+	for path, doc := range Symbols(fsys, "Foundation") {
+		count++
+		if doc.Metadata.Title == "NSString" {
+			foundNSString = true
+			t.Logf("Found NSString at: %s", path)
+		}
+
+		// Test early exit
+		if count >= 10 {
+			break
+		}
+	}
+
+	if count == 0 {
+		t.Error("iterator yielded no symbols")
+	}
+
+	if count < 10 && !foundNSString {
+		t.Error("did not find NSString in first 10 symbols")
+	}
+
+	t.Logf("Iterated over %d symbols", count)
+}
+
+func TestAllSymbolsIterator(t *testing.T) {
+	fsys, err := Open(testDocsDir)
+	if err != nil {
+		t.Skipf("skipping: %v", err)
+	}
+
+	count := 0
+	frameworkCount := make(map[string]int)
+
+	for entry := range AllSymbols(fsys) {
+		count++
+		frameworkCount[entry.Framework]++
+
+		if entry.Doc.Metadata.Title == "" {
+			t.Errorf("empty title at %s/%s", entry.Framework, entry.Path)
+		}
+
+		// Only test first 50 symbols for speed
+		if count >= 50 {
+			break
+		}
+	}
+
+	if count == 0 {
+		t.Error("iterator yielded no symbols")
+	}
+
+	if len(frameworkCount) == 0 {
+		t.Error("no frameworks were iterated")
+	}
+
+	t.Logf("Iterated over %d symbols across %d frameworks", count, len(frameworkCount))
+	for fw, cnt := range frameworkCount {
+		t.Logf("  %s: %d symbols", fw, cnt)
+	}
+}
+
+func TestSymbolsIteratorWithFilter(t *testing.T) {
+	fsys, err := Open(testDocsDir)
+	if err != nil {
+		t.Skipf("skipping: %v", err)
+	}
+
+	classes := []string{}
+	for _, doc := range Symbols(fsys, "Foundation") {
+		if doc.Metadata.SymbolKind == "class" {
+			classes = append(classes, doc.Metadata.Title)
+		}
+
+		// Only check first 100
+		if len(classes) >= 10 {
+			break
+		}
+	}
+
+	if len(classes) == 0 {
+		t.Error("found no classes in Foundation")
+	}
+
+	t.Logf("Found %d classes: %v", len(classes), classes)
+}

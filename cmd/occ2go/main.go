@@ -6,11 +6,13 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
 	"log/slog"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 
@@ -20,6 +22,7 @@ import (
 
 func main() {
 	update := flag.Bool("update", false, "Update JSON file with parsed information (future)")
+	goTest := flag.Bool("go-test", false, "Run go test on generated code to validate syntax")
 	flag.Parse()
 
 	if flag.NArg() < 1 {
@@ -55,26 +58,103 @@ func main() {
 	// Determine framework from path (e.g., CoreGraphics/CGContextMoveToPoint.json -> CoreGraphics)
 	framework := extractFramework(jsonFile)
 
+	// Capture output in buffer
+	var buf bytes.Buffer
+
 	if err != nil {
 		// Handle parse errors gracefully by printing a comment
-		printParseError(&doc, framework, err)
-		return
+		printParseErrorToBuf(&buf, &doc, framework, err)
+	} else {
+		// Print Go code to buffer
+		if fn != nil {
+			printFunctionToBuf(&buf, fn, framework)
+		}
+		if cls != nil {
+			printClassToBuf(&buf, cls, framework)
+		}
+		if proto != nil {
+			printProtocolToBuf(&buf, proto, framework)
+		}
 	}
 
-	// Print Go code
-	if fn != nil {
-		printFunction(fn, framework)
+	// Run goimports on the output
+	formatted, err := runGoimports(buf.Bytes())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "goimports failed: %v\n", err)
+		os.Exit(1)
 	}
-	if cls != nil {
-		printClass(cls, framework)
+
+	// Run go test on the generated code (if requested)
+	if *goTest {
+		if err := runGoTest(formatted); err != nil {
+			fmt.Fprintf(os.Stderr, "go test failed: %v\n", err)
+			os.Exit(1)
+		}
 	}
-	if proto != nil {
-		printProtocol(proto, framework)
-	}
+
+	// Print formatted output
+	fmt.Print(string(formatted))
 
 	if *update {
 		slog.Info("Update mode not yet implemented")
 	}
+}
+
+// runGoimports runs goimports on the provided Go code
+func runGoimports(code []byte) ([]byte, error) {
+	cmd := exec.Command("goimports")
+	cmd.Stdin = bytes.NewReader(code)
+	var stdout, stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+
+	if err := cmd.Run(); err != nil {
+		return nil, fmt.Errorf("%w\nStderr: %s", err, stderr.String())
+	}
+
+	return stdout.Bytes(), nil
+}
+
+// runGoTest runs go test on the provided Go code by writing it to a temporary file
+func runGoTest(code []byte) error {
+	// Create a temporary directory for testing
+	tmpDir, err := os.MkdirTemp("", "occ2go-test-*")
+	if err != nil {
+		return fmt.Errorf("failed to create temp dir: %w", err)
+	}
+	defer os.RemoveAll(tmpDir)
+
+	// Write the code to a go file
+	goFile := filepath.Join(tmpDir, "generated.go")
+
+	// Wrap the code in a package for testing
+	fullCode := fmt.Sprintf(`package occ2gotest
+
+%s
+`, code)
+
+	if err := os.WriteFile(goFile, []byte(fullCode), 0644); err != nil {
+		return fmt.Errorf("failed to write test file: %w", err)
+	}
+
+	// Initialize a go module in the temp directory
+	modInit := exec.Command("go", "mod", "init", "occ2gotest")
+	modInit.Dir = tmpDir
+	if out, err := modInit.CombinedOutput(); err != nil {
+		return fmt.Errorf("go mod init failed: %w\nOutput: %s", err, out)
+	}
+
+	// Run go build to check syntax
+	cmd := exec.Command("go", "build", "-o", "/dev/null", ".")
+	cmd.Dir = tmpDir
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
+
+	if err := cmd.Run(); err != nil {
+		return fmt.Errorf("%w\nStderr: %s", err, stderr.String())
+	}
+
+	return nil
 }
 
 // extractFramework extracts the framework name from a file path
@@ -89,44 +169,44 @@ func extractFramework(path string) string {
 	return framework
 }
 
-// printParseError prints a comment indicating a parse error
-func printParseError(doc *appledocs.Document, framework string, err error) {
+// printParseErrorToBuf prints a comment indicating a parse error to a buffer
+func printParseErrorToBuf(buf *bytes.Buffer, doc *appledocs.Document, framework string, err error) {
 	// Print a comment showing the error
-	fmt.Printf("// Parse error: %v\n", err)
-	fmt.Printf("//\n")
+	fmt.Fprintf(buf, "// Parse error: %v\n", err)
+	fmt.Fprintf(buf, "//\n")
 
 	// Print symbol information if available
 	if doc.Metadata.Title != "" {
-		fmt.Printf("// Symbol: %s\n", doc.Metadata.Title)
+		fmt.Fprintf(buf, "// Symbol: %s\n", doc.Metadata.Title)
 	}
 	if doc.Metadata.ExternalID != "" {
-		fmt.Printf("// ExternalID: %s\n", doc.Metadata.ExternalID)
+		fmt.Fprintf(buf, "// ExternalID: %s\n", doc.Metadata.ExternalID)
 	}
 	if doc.Identifier.URL != "" {
-		fmt.Printf("// URL: %s\n", occ2go.ConvertDocURLToWeb(doc.Identifier.URL))
+		fmt.Fprintf(buf, "// URL: %s\n", occ2go.ConvertDocURLToWeb(doc.Identifier.URL))
 	}
 
 	// Extract abstract if available
 	abstract := occ2go.ExtractAbstract(doc.Abstract)
 	if abstract != "" {
-		fmt.Printf("//\n// %s\n", abstract)
+		fmt.Fprintf(buf, "//\n// %s\n", abstract)
 	}
 
-	fmt.Println()
+	fmt.Fprintln(buf)
 }
 
-// printFunction prints a Go function declaration
-func printFunction(fn *occ2go.ParsedFunction, framework string) {
+// printFunctionToBuf prints a Go function declaration to a buffer
+func printFunctionToBuf(buf *bytes.Buffer, fn *occ2go.ParsedFunction, framework string) {
 	// Print documentation
 	if fn.Abstract != "" {
-		fmt.Printf("// %s\n", fn.Abstract)
+		fmt.Fprintf(buf, "// %s\n", fn.Abstract)
 	}
 	if fn.DocURL != "" {
-		fmt.Printf("//\n// [Full Topic]: %s\n", fn.DocURL)
+		fmt.Fprintf(buf, "//\n// [Full Topic]: %s\n", fn.DocURL)
 	}
 
 	// Print function signature
-	fmt.Printf("func %s(", fn.Name)
+	fmt.Fprintf(buf, "func %s(", fn.Name)
 
 	// Parameters
 	params := make([]string, len(fn.Parameters))
@@ -134,50 +214,50 @@ func printFunction(fn *occ2go.ParsedFunction, framework string) {
 		goType := occ2go.MapCTypeToGo(p.Type, framework)
 		params[i] = fmt.Sprintf("%s %s", p.Name, goType)
 	}
-	fmt.Print(strings.Join(params, ", "))
-	fmt.Print(")")
+	fmt.Fprint(buf, strings.Join(params, ", "))
+	fmt.Fprint(buf, ")")
 
 	// Return type
 	if fn.ReturnType != "" && fn.ReturnType != "void" {
 		goReturnType := occ2go.MapCTypeToGo(fn.ReturnType, framework)
 		if goReturnType != "" {
-			fmt.Printf(" %s", goReturnType)
+			fmt.Fprintf(buf, " %s", goReturnType)
 		}
 	}
 
-	fmt.Println(" {")
-	fmt.Println("\t// TODO: Implementation")
-	fmt.Println("}")
-	fmt.Println()
+	fmt.Fprintln(buf, " {")
+	fmt.Fprintln(buf, "\t// TODO: Implementation")
+	fmt.Fprintln(buf, "}")
+	fmt.Fprintln(buf)
 }
 
-// printClass prints a Go type declaration for a class
-func printClass(cls *occ2go.ParsedClass, framework string) {
+// printClassToBuf prints a Go type declaration for a class to a buffer
+func printClassToBuf(buf *bytes.Buffer, cls *occ2go.ParsedClass, framework string) {
 	// Print documentation
 	if cls.Comment != "" {
-		fmt.Printf("// %s\n", cls.Comment)
+		fmt.Fprintf(buf, "// %s\n", cls.Comment)
 	}
 
 	// Print type declaration
-	fmt.Printf("type %s struct {\n", cls.Name)
+	fmt.Fprintf(buf, "type %s struct {\n", cls.Name)
 	if cls.SuperClass != "" {
-		fmt.Printf("\t%s\n", cls.SuperClass)
+		fmt.Fprintf(buf, "\t%s\n", cls.SuperClass)
 	}
-	fmt.Println("\t// TODO: Add fields")
-	fmt.Println("}")
-	fmt.Println()
+	fmt.Fprintln(buf, "\t// TODO: Add fields")
+	fmt.Fprintln(buf, "}")
+	fmt.Fprintln(buf)
 }
 
-// printProtocol prints a Go interface declaration
-func printProtocol(proto *occ2go.ParsedProtocol, framework string) {
+// printProtocolToBuf prints a Go interface declaration to a buffer
+func printProtocolToBuf(buf *bytes.Buffer, proto *occ2go.ParsedProtocol, framework string) {
 	// Print documentation
 	if proto.Comment != "" {
-		fmt.Printf("// %s\n", proto.Comment)
+		fmt.Fprintf(buf, "// %s\n", proto.Comment)
 	}
 
 	// Print interface declaration
-	fmt.Printf("type %s interface {\n", proto.Name)
-	fmt.Println("\t// TODO: Add methods")
-	fmt.Println("}")
-	fmt.Println()
+	fmt.Fprintf(buf, "type %s interface {\n", proto.Name)
+	fmt.Fprintln(buf, "\t// TODO: Add methods")
+	fmt.Fprintln(buf, "}")
+	fmt.Fprintln(buf)
 }

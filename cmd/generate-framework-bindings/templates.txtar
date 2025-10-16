@@ -1,6 +1,51 @@
 # Code generation templates for Apple framework bindings
 # These templates use occ2go helpers via FuncMap for type mapping and parameter processing
 
+-- module --
+# Generated bindings for {{.Framework}} framework
+# Package: {{.PackageName}}
+#
+# Functions: {{.FunctionCount}}
+# Classes: {{.ClassCount}}
+# Protocols: {{.ProtocolCount}}
+
+#-- gen.go --
+{{template "gen.go" .}}
+#-- doc.gen.go --
+{{template "doc.gen.go" .}}
+#-- types.gen.go --
+{{template "types.gen.go" .}}
+#-- functions.gen.go --
+{{template "functions.gen.go" .}}
+{{if .WithRefMethods -}}
+#-- methods.gen.go --
+{{template "methods.gen.go" .}}
+{{end -}}
+{{if gt .ClassCount 0 -}}
+#-- classes.gen.go --
+{{template "classes.gen.go" .}}
+{{end -}}
+{{if gt .ProtocolCount 0 -}}
+#-- protocols.gen.go --
+{{template "protocols.gen.go" .}}
+{{end -}}
+{{if .GenerateTests -}}
+#-- functions_test.gen.go --
+{{template "functions_test.gen.go" .}}
+{{end -}}
+{{if .GenerateExamples -}}
+#-- examples_test.gen.go --
+{{template "examples_test.gen.go" .}}
+{{end -}}
+
+-- gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+//go:generate rm -f *.gen.go
+//go:generate generate-framework-bindings -framework {{.Framework}}{{if .Variant}} -variant {{.Variant}}{{end}}{{if .WithRefMethods}} -with-ref-methods{{end}} -output .
+
 -- doc.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
@@ -30,11 +75,60 @@ package {{.PackageName}}
 
 import "unsafe"
 
+{{if .WithRefMethods -}}
+{{range .RefTypes -}}
+// {{.}} is a CoreGraphics opaque type.
+//
+// The underlying representation is unsafe.Pointer, wrapped to allow methods.
+type {{.}} struct {
+	p unsafe.Pointer
+}
+
+// To{{.}} converts an unsafe.Pointer to {{.}}.
+func To{{.}}(p unsafe.Pointer) {{.}} {
+	return {{.}}{p: p}
+}
+
+// Ptr returns the underlying unsafe.Pointer.
+func (ref {{.}}) Ptr() unsafe.Pointer {
+	return ref.p
+}
+
+{{end}}
+{{else -}}
 {{range .RefTypes -}}
 // {{.}} is a CoreGraphics opaque type.
 type {{.}} unsafe.Pointer
 
 {{end}}
+{{end -}}
+
+// Common CoreGraphics struct types
+type CGFloat = float64
+
+type CGPoint struct {
+	X CGFloat
+	Y CGFloat
+}
+
+type CGSize struct {
+	Width  CGFloat
+	Height CGFloat
+}
+
+type CGRect struct {
+	Origin CGPoint
+	Size   CGSize
+}
+
+type CGAffineTransform struct {
+	A  CGFloat
+	B  CGFloat
+	C  CGFloat
+	D  CGFloat
+	Tx CGFloat
+	Ty CGFloat
+}
 
 -- functions.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
@@ -99,7 +193,15 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: {{$docData.DocURL}}
 {{end -}}
 func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}} {{$p.Type}}{{end}}){{if $docData.ReturnType}} {{$docData.ReturnType}}{{end}} {
+	{{if $.WithRefMethods -}}
+	fn := _{{$docData.Name}}.(func({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}unsafe.Pointer{{end}}){{if $docData.ReturnType}} unsafe.Pointer{{end}})
+	{{if $docData.ReturnType}}ret := {{end}}fn({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}}.Ptr(){{end}})
+	{{if $docData.ReturnType -}}
+	return To{{$docData.ReturnType}}(ret)
+	{{end -}}
+	{{else -}}
 	{{if $docData.ReturnType}}return {{end}}_{{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}}{{end}})
+	{{end -}}
 }
 
 {{end}}
@@ -142,13 +244,109 @@ package {{.PackageName}}
 // Discovered protocols ({{.Count}} total):
 
 {{range .Protocols -}}
+{{$proto := . -}}
 // @protocol {{.Name}}
 {{- if not .Availability.IsEmpty}}
 //
 // Availability:
 {{- range .Availability.Platforms}}
-//   - {{.}} {{index $.Availability.IntroducedAt .}}+{{if $.Availability.Beta}} (Beta){{else}}{{if index $.Availability.DeprecatedAt .}} (Deprecated in {{index $.Availability.DeprecatedAt .}}){{end}}{{end}}
+//   - {{.}} {{index $proto.Availability.IntroducedAt .}}+{{if $proto.Availability.Beta}} (Beta){{else}}{{if index $proto.Availability.DeprecatedAt .}} (Deprecated in {{index $proto.Availability.DeprecatedAt .}}){{end}}{{end}}
 {{- end}}
 {{- end}}
 
 {{end -}}
+
+-- methods.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+import "unsafe"
+
+// Method-style wrappers for {{.Framework}} functions.
+// These provide a more idiomatic Go API by grouping related functions as methods on receiver types.
+
+{{range $typeName, $methods := .TypeMethods -}}
+{{range $methods -}}
+{{- $docData := prepareFunctionDocData . $.Framework}}
+{{if $docData.Abstract}}// {{$docData.Abstract}} [Full Topic]{{else}}// {{$docData.MethodName}} is a {{$docData.Framework}} function. [Full Topic]{{end}}
+{{if $docData.HasAvailability -}}
+//
+{{if $docData.IsDeprecated -}}
+// Deprecated: This function was deprecated in {{$docData.DeprecatedPlatform}} {{$docData.DeprecatedVersion}}.
+//
+{{end -}}
+// Added in {{$docData.IntroducedPlatform}} {{$docData.IntroducedVersion}}.
+{{end -}}
+{{if $docData.DocURL -}}
+//
+// [Full Topic]: {{$docData.DocURL}}
+{{end -}}
+func (c {{index $.TypeToRef $typeName}}) {{$docData.MethodName}}({{range $i, $p := $docData.MethodParameters}}{{if $i}}, {{end}}{{$p.Name}} {{$p.Type}}{{end}}){{if $docData.ReturnType}} {{$docData.ReturnType}}{{end}} {
+	{{if $docData.ReturnType}}return {{end}}{{$docData.Name}}(c.Ptr(){{if $docData.MethodParameters}}, {{end}}{{range $i, $p := $docData.MethodParameters}}{{if $i}}, {{end}}{{$p.Name}}{{end}})
+}
+
+{{end -}}
+{{end -}}
+
+-- functions_test.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}_test
+
+import (
+	"testing"
+	"unsafe"
+
+	"{{.PackageName}}"
+)
+
+{{range .Functions -}}
+{{- $docData := prepareFunctionDocData . $.Framework}}
+// Test{{$docData.Name}} tests the {{$docData.Name}} function.
+// This is a basic smoke test that verifies the function can be called without panicking.
+func Test{{$docData.Name}}(t *testing.T) {
+	{{if eq (len $docData.Parameters) 0 -}}
+	// Function takes no parameters - call directly
+	{{if $docData.ReturnType -}}
+	_ = {{$.PackageName}}.{{$docData.Name}}()
+	{{else -}}
+	{{$.PackageName}}.{{$docData.Name}}()
+	{{end -}}
+	{{else -}}
+	t.Skip("TODO: Provide test inputs for {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Type}}{{end}})")
+	{{end -}}
+}
+
+{{end}}
+
+-- examples_test.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}_test
+
+import (
+	"fmt"
+
+	"{{.PackageName}}"
+)
+
+{{range .Functions -}}
+{{- $docData := prepareFunctionDocData . $.Framework}}
+{{if eq (len $docData.Parameters) 0 -}}
+// Example{{$docData.Name}} demonstrates how to use the {{$docData.Name}} function.
+{{if $docData.Abstract -}}
+// {{$docData.Abstract}}
+{{end -}}
+func Example{{$docData.Name}}() {
+	{{if $docData.ReturnType -}}
+	result := {{$.PackageName}}.{{$docData.Name}}()
+	fmt.Printf("Result: %v\n", result)
+	{{else -}}
+	{{$.PackageName}}.{{$docData.Name}}()
+	fmt.Println("Function called successfully")
+	{{end -}}
+}
+
+{{end -}}
+{{end}}

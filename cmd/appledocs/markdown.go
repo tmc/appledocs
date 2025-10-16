@@ -223,11 +223,11 @@ type TechnologyGroup struct {
 
 // Technology represents a technology entry
 type Technology struct {
-	Title       string      `json:"title,omitempty"`
-	Destination Destination `json:"destination,omitempty"`
+	Title       string        `json:"title,omitempty"`
+	Destination Destination   `json:"destination,omitempty"`
 	Content     []TextContent `json:"content,omitempty"`
-	Tags        []string    `json:"tags,omitempty"`
-	Languages   []string    `json:"languages,omitempty"`
+	Tags        []string      `json:"tags,omitempty"`
+	Languages   []string      `json:"languages,omitempty"`
 }
 
 // Destination represents a reference destination
@@ -519,7 +519,7 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 					originalLang := decl.Languages[0]
 					language = strings.ToLower(originalLang)
 					languageDisplay = originalLang
-					
+
 					// Enhanced language mapping for better syntax highlighting
 					switch language {
 					case "swift":
@@ -677,12 +677,12 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 					if hasMultipleTypes {
 						fmt.Fprintf(w, "#### %ss\n\n", cases.Title(lang.English).String(itemType))
 					}
-					
+
 					// Sort items alphabetically for better navigation
 					sort.Slice(items, func(i, j int) bool {
 						return items[i].Title < items[j].Title
 					})
-					
+
 					for _, ref := range items {
 						writeTopicReference(w, ref)
 					}
@@ -703,12 +703,12 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 					if hasMultipleTypes {
 						fmt.Fprintf(w, "#### %ss\n\n", cases.Title(lang.English).String(itemType))
 					}
-					
+
 					// Sort items alphabetically
 					sort.Slice(items, func(i, j int) bool {
 						return items[i].Title < items[j].Title
 					})
-					
+
 					for _, ref := range items {
 						writeTopicReference(w, ref)
 					}
@@ -721,12 +721,12 @@ func writeMarkdownContent(w io.Writer, doc *DocJSONData) error {
 				if hasMultipleTypes {
 					fmt.Fprintf(w, "#### 🔗 Other\n\n")
 				}
-				
+
 				// Sort ungrouped items
 				sort.Slice(ungroupedItems, func(i, j int) bool {
 					return ungroupedItems[i].Title < ungroupedItems[j].Title
 				})
-				
+
 				for _, ref := range ungroupedItems {
 					writeTopicReference(w, ref)
 				}

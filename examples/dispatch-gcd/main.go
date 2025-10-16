@@ -12,7 +12,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"runtime"
 	"sync"
 	"time"
@@ -23,11 +22,11 @@ import (
 
 // Dispatch types
 type (
-	DispatchQueue      unsafe.Pointer
-	DispatchGroup      unsafe.Pointer
-	DispatchQueueAttr  uintptr
-	DispatchTime       uint64
-	DispatchQoSClass   uint32
+	DispatchQueue     unsafe.Pointer
+	DispatchGroup     unsafe.Pointer
+	DispatchQueueAttr uintptr
+	DispatchTime      uint64
+	DispatchQoSClass  uint32
 )
 
 // Dispatch constants
@@ -49,25 +48,25 @@ var (
 	dispatchLib uintptr
 
 	// Queue creation and management
-	dispatch_queue_create            func(label *byte, attr DispatchQueueAttr) DispatchQueue
-	dispatch_get_global_queue        func(qos DispatchQoSClass, flags uintptr) DispatchQueue
+	dispatch_queue_create     func(label *byte, attr DispatchQueueAttr) DispatchQueue
+	dispatch_get_global_queue func(qos DispatchQoSClass, flags uintptr) DispatchQueue
 
 	// Async execution
-	dispatch_async_f                 func(queue DispatchQueue, context unsafe.Pointer, work func(unsafe.Pointer))
-	dispatch_sync_f                  func(queue DispatchQueue, context unsafe.Pointer, work func(unsafe.Pointer))
+	dispatch_async_f func(queue DispatchQueue, context unsafe.Pointer, work func(unsafe.Pointer))
+	dispatch_sync_f  func(queue DispatchQueue, context unsafe.Pointer, work func(unsafe.Pointer))
 
 	// Dispatch groups
-	dispatch_group_create            func() DispatchGroup
-	dispatch_group_async_f           func(group DispatchGroup, queue DispatchQueue, context unsafe.Pointer, work func(unsafe.Pointer))
-	dispatch_group_wait              func(group DispatchGroup, timeout DispatchTime) int
-	dispatch_group_notify_f          func(group DispatchGroup, queue DispatchQueue, context unsafe.Pointer, work func(unsafe.Pointer))
+	dispatch_group_create   func() DispatchGroup
+	dispatch_group_async_f  func(group DispatchGroup, queue DispatchQueue, context unsafe.Pointer, work func(unsafe.Pointer))
+	dispatch_group_wait     func(group DispatchGroup, timeout DispatchTime) int
+	dispatch_group_notify_f func(group DispatchGroup, queue DispatchQueue, context unsafe.Pointer, work func(unsafe.Pointer))
 
 	// Time functions
-	dispatch_time                    func(when DispatchTime, delta int64) DispatchTime
-	dispatch_after_f                 func(when DispatchTime, queue DispatchQueue, context unsafe.Pointer, work func(unsafe.Pointer))
+	dispatch_time    func(when DispatchTime, delta int64) DispatchTime
+	dispatch_after_f func(when DispatchTime, queue DispatchQueue, context unsafe.Pointer, work func(unsafe.Pointer))
 
 	// Utility
-	dispatch_release                 func(object unsafe.Pointer)
+	dispatch_release func(object unsafe.Pointer)
 )
 
 // Queue attribute constants (these are actually pointers to global vars)
