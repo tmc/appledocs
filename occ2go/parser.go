@@ -63,7 +63,21 @@ func ParseDocument(doc *appledocs.Document) (*ParsedFunction, *ParsedClass, *Par
 			return nil, nil, nil, fmt.Errorf("failed to parse protocol declaration")
 		}
 		proto.Availability = availability
+		proto.DocURL = docURL
+		proto.Abstract = abstract
 		return nil, nil, proto, nil
+
+	case strings.HasPrefix(externalID, "c:objc(cs)") && strings.Contains(externalID, "(im)"):
+		// Objective-C instance method
+		return nil, nil, nil, fmt.Errorf("instance method (use ParseMethod): %s", externalID)
+
+	case strings.HasPrefix(externalID, "c:objc(cs)") && strings.Contains(externalID, "(cm)"):
+		// Objective-C class method
+		return nil, nil, nil, fmt.Errorf("class method (use ParseMethod): %s", externalID)
+
+	case strings.HasPrefix(externalID, "c:objc(cs)") && strings.Contains(externalID, "(py)"):
+		// Objective-C property
+		return nil, nil, nil, fmt.Errorf("property (use ParseProperty): %s", externalID)
 
 	case strings.HasPrefix(externalID, "c:@E@"),
 		strings.HasPrefix(externalID, "c:@T@"),
@@ -476,4 +490,354 @@ func ParseProtocolDeclaration(tokens []appledocs.Token) *ParsedProtocol {
 	}
 
 	return proto
+}
+
+// ParseMethod parses an Objective-C method declaration from a document.
+// External IDs:
+//   - c:objc(cs)NSButton(im)initWithFrame: (instance method)
+//   - c:objc(cs)NSButton(cm)buttonWithTitle:target:action: (class method)
+func ParseMethod(doc *appledocs.Document) (*ParsedMethod, error) {
+	if doc == nil {
+		return nil, fmt.Errorf("document is nil")
+	}
+
+	externalID := doc.Metadata.ExternalID
+	availability := ExtractAvailability(doc.Metadata.Platforms)
+	docURL := ConvertDocURLToWeb(doc.Identifier.URL)
+	abstract := ExtractAbstract(doc.Abstract)
+
+	// Determine if it's a class or instance method
+	isClassMethod := strings.Contains(externalID, "(cm)")
+	if !isClassMethod && !strings.Contains(externalID, "(im)") {
+		return nil, fmt.Errorf("not a method: %s", externalID)
+	}
+
+	// Get Objective-C variant tokens
+	tokens := GetObjectiveCVariant(doc)
+	if tokens == nil {
+		// Fall back to primary declarations
+		for _, section := range doc.PrimaryContentSections {
+			if len(section.Declarations) > 0 && len(section.Declarations[0].Tokens) > 0 {
+				tokens = section.Declarations[0].Tokens
+				break
+			}
+		}
+	}
+
+	if tokens == nil || len(tokens) == 0 {
+		return nil, fmt.Errorf("no declaration found for %s", externalID)
+	}
+
+	method, err := ParseMethodDeclaration(tokens, isClassMethod)
+	if err != nil {
+		return nil, err
+	}
+
+	method.Availability = availability
+	method.DocURL = docURL
+	method.Abstract = abstract
+
+	return method, nil
+}
+
+// ParseMethodDeclaration parses an Objective-C method declaration from tokens.
+// Objective-C method syntax:
+//   - (ReturnType)methodName:(Type1)param1 withArg:(Type2)param2
+//   + (ReturnType)classMethod:(Type)param
+func ParseMethodDeclaration(tokens []appledocs.Token, isClassMethod bool) (*ParsedMethod, error) {
+	method := &ParsedMethod{
+		IsClassMethod: isClassMethod,
+		Parameters:    []Parameter{},
+	}
+
+	i := 0
+
+	// Skip leading +/- if present
+	if i < len(tokens) && (tokens[i].Text == "+" || tokens[i].Text == "-") {
+		i++
+		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+			i++
+		}
+	}
+
+	// Parse return type in parentheses
+	if i < len(tokens) && strings.Contains(tokens[i].Text, "(") {
+		// Skip opening paren
+		for i < len(tokens) && !strings.Contains(tokens[i].Text, "(") {
+			i++
+		}
+		if i < len(tokens) {
+			i++
+		}
+
+		// Collect return type until closing paren
+		returnTypeParts := []string{}
+		for i < len(tokens) && !strings.Contains(tokens[i].Text, ")") {
+			if tokens[i].Text != "" && strings.TrimSpace(tokens[i].Text) != "" {
+				returnTypeParts = append(returnTypeParts, tokens[i].Text)
+			}
+			i++
+		}
+		method.ReturnType = strings.Join(returnTypeParts, " ")
+
+		// Skip closing paren
+		if i < len(tokens) && strings.Contains(tokens[i].Text, ")") {
+			i++
+		}
+
+		// Skip whitespace
+		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+			i++
+		}
+	}
+
+	// Parse selector and parameters
+	selectorParts := []string{}
+	paramNames := []string{}
+
+	for i < len(tokens) {
+		// Look for selector component (identifier followed by colon)
+		if i < len(tokens) && tokens[i].Kind == "identifier" {
+			selectorPart := tokens[i].Text
+			i++
+
+			// Check if followed by colon
+			hasColon := false
+			for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+				i++
+			}
+
+			if i < len(tokens) && strings.HasPrefix(tokens[i].Text, ":") {
+				hasColon = true
+				selectorPart += ":"
+				i++
+			}
+
+			selectorParts = append(selectorParts, selectorPart)
+
+			// If there was a colon, parse the parameter
+			if hasColon {
+				// Skip whitespace
+				for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+					i++
+				}
+
+				// Parse parameter type in parentheses
+				param := Parameter{}
+				if i < len(tokens) && strings.Contains(tokens[i].Text, "(") {
+					// Skip opening paren
+					for i < len(tokens) && !strings.Contains(tokens[i].Text, "(") {
+						i++
+					}
+					if i < len(tokens) {
+						i++
+					}
+
+					// Collect parameter type
+					paramTypeParts := []string{}
+					for i < len(tokens) && !strings.Contains(tokens[i].Text, ")") {
+						if tokens[i].Text != "" && strings.TrimSpace(tokens[i].Text) != "" {
+							paramTypeParts = append(paramTypeParts, tokens[i].Text)
+						}
+						i++
+					}
+					param.Type = strings.Join(paramTypeParts, " ")
+
+					// Skip closing paren
+					if i < len(tokens) && strings.Contains(tokens[i].Text, ")") {
+						i++
+					}
+
+					// Skip whitespace
+					for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+						i++
+					}
+
+					// Get parameter name
+					if i < len(tokens) && tokens[i].Kind == "internalParam" {
+						param.Name = tokens[i].Text
+						i++
+					} else if i < len(tokens) && tokens[i].Kind == "identifier" {
+						param.Name = tokens[i].Text
+						i++
+					}
+
+					method.Parameters = append(method.Parameters, param)
+					paramNames = append(paramNames, param.Name)
+				}
+			}
+
+			// Skip whitespace
+			for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+				i++
+			}
+
+			// Check for end of method declaration
+			if i < len(tokens) && (strings.Contains(tokens[i].Text, ";") || tokens[i].Kind == "keyword") {
+				break
+			}
+		} else {
+			// Skip non-identifier tokens
+			i++
+		}
+
+		// Safety check to avoid infinite loops
+		if i >= len(tokens) {
+			break
+		}
+	}
+
+	method.Selector = strings.Join(selectorParts, "")
+
+	// Generate Go method name from selector
+	method.Name = SelectorToGoName(method.Selector)
+
+	if method.Selector == "" {
+		return nil, fmt.Errorf("failed to parse method selector")
+	}
+
+	return method, nil
+}
+
+// SelectorToGoName converts an Objective-C selector to a Go method name.
+// Examples:
+//   - "initWithFrame:" -> "InitWithFrame"
+//   - "buttonWithTitle:target:action:" -> "ButtonWithTitleTargetAction"
+//   - "title" -> "Title"
+func SelectorToGoName(selector string) string {
+	// Remove trailing colon if present
+	selector = strings.TrimSuffix(selector, ":")
+
+	// Split by colon
+	parts := strings.Split(selector, ":")
+
+	// Capitalize each part
+	for i, part := range parts {
+		if len(part) > 0 {
+			parts[i] = strings.ToUpper(part[:1]) + part[1:]
+		}
+	}
+
+	return strings.Join(parts, "")
+}
+
+// ParseProperty parses an Objective-C property declaration from a document.
+// External ID: c:objc(cs)NSButton(py)title
+func ParseProperty(doc *appledocs.Document) (*ParsedProperty, error) {
+	if doc == nil {
+		return nil, fmt.Errorf("document is nil")
+	}
+
+	externalID := doc.Metadata.ExternalID
+	availability := ExtractAvailability(doc.Metadata.Platforms)
+	docURL := ConvertDocURLToWeb(doc.Identifier.URL)
+	abstract := ExtractAbstract(doc.Abstract)
+
+	if !strings.Contains(externalID, "(py)") {
+		return nil, fmt.Errorf("not a property: %s", externalID)
+	}
+
+	// Get Objective-C variant tokens
+	tokens := GetObjectiveCVariant(doc)
+	if tokens == nil {
+		// Fall back to primary declarations
+		for _, section := range doc.PrimaryContentSections {
+			if len(section.Declarations) > 0 && len(section.Declarations[0].Tokens) > 0 {
+				tokens = section.Declarations[0].Tokens
+				break
+			}
+		}
+	}
+
+	if tokens == nil || len(tokens) == 0 {
+		return nil, fmt.Errorf("no declaration found for %s", externalID)
+	}
+
+	property, err := ParsePropertyDeclaration(tokens)
+	if err != nil {
+		return nil, err
+	}
+
+	property.Availability = availability
+	property.DocURL = docURL
+	property.Abstract = abstract
+
+	return property, nil
+}
+
+// ParsePropertyDeclaration parses an Objective-C property declaration from tokens.
+// Property syntax: @property (attributes) Type name;
+func ParsePropertyDeclaration(tokens []appledocs.Token) (*ParsedProperty, error) {
+	property := &ParsedProperty{
+		Attributes: []string{},
+	}
+
+	i := 0
+
+	// Look for @property keyword
+	for i < len(tokens) && !(tokens[i].Kind == "keyword" && tokens[i].Text == "@property") {
+		i++
+	}
+
+	if i >= len(tokens) {
+		return nil, fmt.Errorf("@property keyword not found")
+	}
+
+	i++ // Skip @property
+
+	// Skip whitespace
+	for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+		i++
+	}
+
+	// Parse attributes in parentheses
+	if i < len(tokens) && strings.Contains(tokens[i].Text, "(") {
+		// Skip opening paren
+		for i < len(tokens) && !strings.Contains(tokens[i].Text, "(") {
+			i++
+		}
+		if i < len(tokens) {
+			i++
+		}
+
+		// Collect attributes until closing paren
+		for i < len(tokens) && !strings.Contains(tokens[i].Text, ")") {
+			if tokens[i].Kind == "keyword" || tokens[i].Kind == "identifier" {
+				property.Attributes = append(property.Attributes, tokens[i].Text)
+			}
+			i++
+		}
+
+		// Skip closing paren
+		if i < len(tokens) && strings.Contains(tokens[i].Text, ")") {
+			i++
+		}
+	}
+
+	// Skip whitespace
+	for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+		i++
+	}
+
+	// Parse property type
+	typeParts := []string{}
+	for i < len(tokens) && tokens[i].Kind != "identifier" {
+		if tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "keyword" {
+			typeParts = append(typeParts, tokens[i].Text)
+		}
+		i++
+	}
+
+	property.Type = strings.Join(typeParts, " ")
+
+	// Parse property name
+	if i < len(tokens) && tokens[i].Kind == "identifier" {
+		property.Name = tokens[i].Text
+	}
+
+	if property.Name == "" {
+		return nil, fmt.Errorf("failed to parse property name")
+	}
+
+	return property, nil
 }

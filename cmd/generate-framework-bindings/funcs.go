@@ -40,6 +40,21 @@ var templateFuncs = template.FuncMap{
 	"generateConstructorName": generateConstructorName,
 	"isPropertyGetter":        isPropertyGetter,
 	"isPropertySetter":        isPropertySetter,
+
+	// DarwinKit class generation helpers
+	"classFileName":            classFileName,
+	"receiverName":             receiverName,
+	"selectorToGoName":         selectorToGoName,
+	"mapObjCTypeToGo":          mapObjCTypeToGo,
+	"formatMethodParams":       formatMethodParams,
+	"formatMethodParamNames":   formatMethodParamNames,
+	"isConstructor":            isConstructor,
+	"stripNSPrefix":            stripNSPrefix,
+	"needsFoundationImport":    needsFoundationImport,
+	"needsQuartzCoreImport":    needsQuartzCoreImport,
+	"prepareClassMethods":      prepareClassMethods,
+	"prepareInstanceMethods":   prepareInstanceMethods,
+	"sortMethodsByName":        sortMethodsByName,
 }
 
 // FunctionData represents data for function template rendering.
@@ -548,4 +563,250 @@ func isPropertySetter(method MethodInfo) bool {
 	}
 
 	return false
+}
+
+// classFileName converts a class name to a file name (snake_case).
+// Examples:
+//   NSButton -> button.gen.go
+//   NSTableView -> table_view.gen.go
+//   NSURLRequest -> url_request.gen.go
+func classFileName(className string) string {
+	name := stripObjCPrefix(className)
+	return toSnakeCase(name) + ".gen.go"
+}
+
+// toSnakeCase converts CamelCase to snake_case
+func toSnakeCase(s string) string {
+	var result strings.Builder
+	for i, ch := range s {
+		if i > 0 && ch >= 'A' && ch <= 'Z' {
+			// Check if previous character was lowercase or next character is lowercase
+			prevIsLower := i > 0 && s[i-1] >= 'a' && s[i-1] <= 'z'
+			nextIsLower := i < len(s)-1 && s[i+1] >= 'a' && s[i+1] <= 'z'
+			if prevIsLower || nextIsLower {
+				result.WriteByte('_')
+			}
+		}
+		result.WriteRune(ch)
+	}
+	return strings.ToLower(result.String())
+}
+
+// receiverName generates a short receiver name for methods.
+// Examples:
+//   Button, false -> b_
+//   Button, true -> bc
+func receiverName(className string, isClass bool) string {
+	name := stripObjCPrefix(className)
+	if len(name) == 0 {
+		return "x"
+	}
+	short := strings.ToLower(string(name[0]))
+	if isClass {
+		return short + "c"
+	}
+	return short + "_"
+}
+
+// selectorToGoName converts an Objective-C selector to Go name.
+// This wraps the occ2go.SelectorToGoName function.
+func selectorToGoName(selector string) string {
+	return occ2go.SelectorToGoName(selector)
+}
+
+// mapObjCTypeToGo maps Objective-C types to Go types for darwinkit style.
+// Examples:
+//   NSString * -> string
+//   id -> objc.Object
+//   NSButton * -> Button (interface type in parameters)
+func mapObjCTypeToGo(objcType, framework string) string {
+	objcType = strings.TrimSpace(objcType)
+
+	// Handle pointers
+	isPointer := strings.HasSuffix(objcType, "*")
+	objcType = strings.TrimSpace(strings.TrimSuffix(objcType, "*"))
+
+	// Special built-in types
+	switch objcType {
+	case "id":
+		return "objc.Object"
+	case "Class":
+		return "objc.Class"
+	case "SEL":
+		return "objc.Selector"
+	case "BOOL":
+		return "bool"
+	case "NSInteger":
+		return "int"
+	case "NSUInteger":
+		return "uint"
+	case "CGFloat":
+		return "float64"
+	case "void":
+		if isPointer {
+			return "unsafe.Pointer"
+		}
+		return "void"
+	}
+
+	// For class types, strip prefix and use interface name
+	if isPointer && (strings.HasPrefix(objcType, "NS") ||
+	                 strings.HasPrefix(objcType, "CG") ||
+	                 strings.HasPrefix(objcType, "CF")) {
+		return "I" + stripObjCPrefix(objcType)
+	}
+
+	// Fall back to occ2go mapping
+	return occ2go.MapCTypeToGo(objcType, framework)
+}
+
+// formatMethodParams formats method parameters for Go function signature.
+// Returns: "title string, target objc.IObject, action objc.Selector"
+func formatMethodParams(method *occ2go.ParsedMethod, framework string) string {
+	if len(method.Parameters) == 0 {
+		return ""
+	}
+
+	parts := make([]string, len(method.Parameters))
+	for i, p := range method.Parameters {
+		paramName := p.Name
+		if paramName == "" {
+			paramName = fmt.Sprintf("p%d", i)
+		}
+		if isGoKeyword(paramName) {
+			paramName += "_"
+		}
+		goType := mapObjCTypeToGo(p.Type, framework)
+		parts[i] = fmt.Sprintf("%s %s", paramName, goType)
+	}
+	return strings.Join(parts, ", ")
+}
+
+// formatMethodParamNames formats method parameter names for calling.
+// Returns: "title, target, action"
+func formatMethodParamNames(method *occ2go.ParsedMethod) string {
+	if len(method.Parameters) == 0 {
+		return ""
+	}
+
+	parts := make([]string, len(method.Parameters))
+	for i, p := range method.Parameters {
+		paramName := p.Name
+		if paramName == "" {
+			paramName = fmt.Sprintf("p%d", i)
+		}
+		if isGoKeyword(paramName) {
+			paramName += "_"
+		}
+		parts[i] = paramName
+	}
+	return strings.Join(parts, ", ")
+}
+
+// isConstructor checks if a method is a constructor (returns instance of class).
+func isConstructor(method *occ2go.ParsedMethod, className string) bool {
+	// Class methods that start with class name or common constructor prefixes
+	if !method.IsClassMethod {
+		return false
+	}
+
+	// Check if it's a factory method that returns the class type
+	selector := strings.ToLower(method.Selector)
+	classNameLower := strings.ToLower(stripObjCPrefix(className))
+
+	if strings.HasPrefix(selector, classNameLower) {
+		return true
+	}
+
+	// Common factory method patterns
+	factoryPrefixes := []string{"new", "create", "make", "alloc"}
+	for _, prefix := range factoryPrefixes {
+		if strings.HasPrefix(selector, prefix) {
+			return true
+		}
+	}
+
+	return false
+}
+
+// stripNSPrefix is an alias for stripObjCPrefix for clarity in templates
+func stripNSPrefix(className string) string {
+	return stripObjCPrefix(className)
+}
+
+// needsFoundationImport checks if any types require foundation import
+func needsFoundationImport(methods []*occ2go.ParsedMethod) bool {
+	for _, m := range methods {
+		// Check return type
+		if strings.Contains(m.ReturnType, "NS") &&
+		   !strings.Contains(m.ReturnType, "NSInteger") &&
+		   !strings.Contains(m.ReturnType, "NSUInteger") {
+			return true
+		}
+		// Check parameters
+		for _, p := range m.Parameters {
+			if strings.Contains(p.Type, "NS") &&
+			   !strings.Contains(p.Type, "NSInteger") &&
+			   !strings.Contains(p.Type, "NSUInteger") {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// needsQuartzCoreImport checks if any types require quartzcore import
+func needsQuartzCoreImport(methods []*occ2go.ParsedMethod) bool {
+	for _, m := range methods {
+		// Check return type
+		if strings.Contains(m.ReturnType, "CA") || strings.Contains(m.ReturnType, "CI") {
+			return true
+		}
+		// Check parameters
+		for _, p := range m.Parameters {
+			if strings.Contains(p.Type, "CA") || strings.Contains(p.Type, "CI") {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// prepareClassMethods filters methods to return only class methods
+func prepareClassMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
+	result := make([]*occ2go.ParsedMethod, 0)
+	for _, m := range methods {
+		if m.IsClassMethod {
+			result = append(result, m)
+		}
+	}
+	return result
+}
+
+// prepareInstanceMethods filters methods to return only instance methods
+func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
+	result := make([]*occ2go.ParsedMethod, 0)
+	for _, m := range methods {
+		if !m.IsClassMethod {
+			result = append(result, m)
+		}
+	}
+	return result
+}
+
+// sortMethodsByName sorts methods by name for consistent output
+func sortMethodsByName(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
+	sorted := make([]*occ2go.ParsedMethod, len(methods))
+	copy(sorted, methods)
+
+	// Simple bubble sort by Name
+	for i := 0; i < len(sorted)-1; i++ {
+		for j := i + 1; j < len(sorted); j++ {
+			if sorted[i].Name > sorted[j].Name {
+				sorted[i], sorted[j] = sorted[j], sorted[i]
+			}
+		}
+	}
+
+	return sorted
 }

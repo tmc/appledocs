@@ -19,6 +19,32 @@ type ParsedClass struct {
 	SuperClass   string
 	Comment      string
 	Availability Availability
+	DocURL       string
+	Abstract     string
+}
+
+// ParsedMethod represents an Objective-C method declaration.
+type ParsedMethod struct {
+	Name          string   // Go-style method name (e.g., "InitWithFrame")
+	Selector      string   // Objective-C selector (e.g., "initWithFrame:")
+	IsClassMethod bool     // true for class methods (+), false for instance methods (-)
+	ReturnType    string   // Objective-C return type
+	Parameters    []Parameter
+	Comment       string
+	Availability  Availability
+	DocURL        string
+	Abstract      string
+}
+
+// ParsedProperty represents an Objective-C property declaration.
+type ParsedProperty struct {
+	Name         string
+	Type         string
+	Attributes   []string // e.g., "readonly", "nonatomic", "strong"
+	Comment      string
+	Availability Availability
+	DocURL       string
+	Abstract     string
 }
 
 // ParsedProtocol represents an Objective-C protocol declaration.
@@ -26,6 +52,8 @@ type ParsedProtocol struct {
 	Name         string
 	Comment      string
 	Availability Availability
+	DocURL       string
+	Abstract     string
 }
 
 // Parameter represents a function parameter.
