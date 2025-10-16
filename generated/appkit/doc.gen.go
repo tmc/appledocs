@@ -13,3 +13,4 @@ package appkit
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/AppKit.framework/AppKit"
 
+

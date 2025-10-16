@@ -3,8 +3,6 @@
 package appkit
 
 import (
-	"unsafe"
-
 	"github.com/ebitengine/purego"
 )
 
@@ -21,6 +19,9 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+
+	_ = lib // Suppress unused variable warning when no functions are registered
+
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -34,6 +35,8 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
+
 
 
 
