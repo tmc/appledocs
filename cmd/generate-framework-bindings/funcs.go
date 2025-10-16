@@ -15,6 +15,7 @@ var templateFuncs = template.FuncMap{
 	"lower":     strings.ToLower,
 	"trimspace": strings.TrimSpace,
 	"trimRight": strings.TrimRight,
+	"dict":      dict,
 
 	// occ2go type mapping
 	"mapCTypeToGo": occ2go.MapCTypeToGo,
@@ -43,6 +44,8 @@ var templateFuncs = template.FuncMap{
 
 	// DarwinKit class generation helpers
 	"classFileName":            classFileName,
+	"classTestFileName":        classTestFileName,
+	"protocolFileName":         protocolFileName,
 	"receiverName":             receiverName,
 	"selectorToGoName":         selectorToGoName,
 	"mapObjCTypeToGo":          mapObjCTypeToGo,
@@ -55,6 +58,7 @@ var templateFuncs = template.FuncMap{
 	"prepareClassMethods":      prepareClassMethods,
 	"prepareInstanceMethods":   prepareInstanceMethods,
 	"sortMethodsByName":        sortMethodsByName,
+	"wrapObjCReturn":           wrapObjCReturn,
 }
 
 // FunctionData represents data for function template rendering.
@@ -575,6 +579,25 @@ func classFileName(className string) string {
 	return toSnakeCase(name) + ".gen.go"
 }
 
+// protocolFileName converts a protocol name to a file name (snake_case).
+// Examples:
+//   NSCopying -> copying_protocol.gen.go
+//   NSTableViewDataSource -> table_view_data_source_protocol.gen.go
+func protocolFileName(protocolName string) string {
+	name := stripObjCPrefix(protocolName)
+	return toSnakeCase(name) + "_protocol.gen.go"
+}
+
+// classTestFileName converts a class name to a test file name (snake_case).
+// Examples:
+//   NSButton -> button.gen_test.go
+//   NSTableView -> table_view.gen_test.go
+//   NSURLRequest -> url_request.gen_test.go
+func classTestFileName(className string) string {
+	name := stripObjCPrefix(className)
+	return toSnakeCase(name) + ".gen_test.go"
+}
+
 // toSnakeCase converts CamelCase to snake_case
 func toSnakeCase(s string) string {
 	var result strings.Builder
@@ -629,7 +652,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	// Special built-in types
 	switch objcType {
 	case "id":
-		return "objc.Object"
+		return "objc.ID"
 	case "Class":
 		return "objc.Class"
 	case "SEL":
@@ -809,4 +832,41 @@ func sortMethodsByName(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 	}
 
 	return sorted
+}
+
+// wrapObjCReturn generates the return statement for converting objc.ID to Go types.
+// It handles special cases like bool conversion and objc.Object mapping.
+// Examples:
+//   wrapObjCReturn("bool") -> "ret != 0"
+//   wrapObjCReturn("objc.Object") -> "objc.ID(ret)"
+//   wrapObjCReturn("int") -> "int(ret)"
+func wrapObjCReturn(goType string) string {
+	switch goType {
+	case "bool":
+		return "ret != 0"
+	case "objc.ID":
+		return "ret"
+	case "unsafe.Pointer":
+		return "unsafe.Pointer(ret)"
+	default:
+		// Default cast
+		return fmt.Sprintf("%s(ret)", goType)
+	}
+}
+
+// dict creates a map from alternating key-value pairs.
+// Usage: {{template "name" (dict "key1" .Value1 "key2" .Value2)}}
+func dict(values ...interface{}) (map[string]interface{}, error) {
+	if len(values)%2 != 0 {
+		return nil, fmt.Errorf("dict requires an even number of arguments")
+	}
+	dict := make(map[string]interface{}, len(values)/2)
+	for i := 0; i < len(values); i += 2 {
+		key, ok := values[i].(string)
+		if !ok {
+			return nil, fmt.Errorf("dict keys must be strings")
+		}
+		dict[key] = values[i+1]
+	}
+	return dict, nil
 }

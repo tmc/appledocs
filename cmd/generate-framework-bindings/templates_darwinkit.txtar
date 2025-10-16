@@ -2,6 +2,168 @@
 # These templates generate one file per class with darwinkit-compatible bindings
 # Following the pattern from https://github.com/progrium/darwinkit
 
+-- module --
+{{/* Module template for DarwinKit variant - generates one file per class */}}
+#-- doc.gen.go --
+{{template "doc.gen.go" .}}
+#-- gen.go --
+{{template "gen.go" .}}
+{{- if gt (len .Functions) 0}}
+#-- functions.gen.go --
+{{template "functions.gen.go" .}}
+{{- end}}
+{{- if gt (len .Classes) 0}}
+#-- types.gen.go --
+{{template "types.gen.go" .}}
+{{- $framework := .Framework}}
+{{- range .Classes}}
+#-- {{classFileName .Name}} --
+{{/* Pass class as . and framework via define/template context */}}
+// Code generated from Apple documentation for {{$framework}}. DO NOT EDIT.
+
+package {{$.PackageName}}
+
+import (
+	"unsafe"
+{{- if needsFoundationImport .Methods}}
+
+	"github.com/progrium/darwinkit/macos/foundation"
+{{- end}}
+{{- if needsQuartzCoreImport .Methods}}
+	"github.com/progrium/darwinkit/macos/quartzcore"
+{{- end}}
+	"github.com/progrium/darwinkit/objc"
+)
+
+// The class instance for the [{{classToStructName .Name}}] class.
+var {{classToVarName .Name}} _{{classToVarName .Name}}
+
+func init() {
+	{{classToVarName .Name}} = _{{classToVarName .Name}}{objc.GetClass("{{.Name}}")}
+}
+
+type _{{classToVarName .Name}} struct {
+	objc.Class
+}
+
+// An interface definition for the [{{classToStructName .Name}}] class.
+type {{classToInterfaceName .Name}} interface {
+{{- if .SuperClass}}
+	{{classToInterfaceName .SuperClass}}
+{{- else}}
+	objc.IObject
+{{- end}}
+{{- range sortMethodsByName .Methods}}
+	{{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}}
+{{- end}}
+}
+
+{{if .Abstract -}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{if .DocURL -}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+type {{classToStructName .Name}} struct {
+{{- if .SuperClass}}
+	{{classToStructName .SuperClass}}
+{{- else}}
+	objc.Object
+{{- end}}
+}
+
+func {{classToStructName .Name}}From(ptr unsafe.Pointer) {{classToStructName .Name}} {
+	return {{classToStructName .Name}}{
+{{- if .SuperClass}}
+		{{classToStructName .SuperClass}}: {{classToStructName .SuperClass}}From(ptr),
+{{- else}}
+		Object: objc.ObjectFrom(ptr),
+{{- end}}
+	}
+}
+
+{{$className := .Name -}}
+{{$structName := classToStructName .Name -}}
+{{$varName := classToVarName .Name -}}
+{{$classReceiver := receiverName $structName true -}}
+{{$instReceiver := receiverName $structName false -}}
+
+// Alloc allocates a new instance without initialization.
+func ({{$classReceiver}} _{{$varName}}) Alloc() {{$structName}} {
+	rv := objc.Call[{{$structName}}]({{$classReceiver}}, objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new initialized instance.
+func ({{$classReceiver}} _{{$varName}}) New() {{$structName}} {
+	rv := objc.Call[{{$structName}}]({{$classReceiver}}, objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// New{{$structName}} creates and returns a new initialized instance.
+func New{{$structName}}() {{$structName}} {
+	return {{$varName}}.New()
+}
+
+// Init initializes the instance.
+func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
+	rv := objc.Call[{{$structName}}]({{$instReceiver}}, objc.Sel("init"))
+	return rv
+}
+
+{{- range prepareClassMethods .Methods}}
+
+{{- if .Abstract}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func ({{$classReceiver}} _{{$varName}}) {{.Name}}({{formatMethodParams . $framework}}) {{mapObjCTypeToGo .ReturnType $framework}} {
+{{- $paramNames := formatMethodParamNames .}}
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}rv := {{end}}objc.Call[{{if and (ne .ReturnType "") (ne .ReturnType "void")}}{{mapObjCTypeToGo .ReturnType $framework}}{{else}}objc.Void{{end}}]({{$classReceiver}}, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	return rv
+	{{- end}}
+}
+
+{{- if isConstructor . $className}}
+
+// {{$structName}}_{{.Name}} creates a new instance via class method. [Full Topic]
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func {{$structName}}_{{.Name}}({{formatMethodParams . $framework}}) {{mapObjCTypeToGo .ReturnType $framework}} {
+	return {{$varName}}.{{.Name}}({{formatMethodParamNames .}})
+}
+{{- end}}
+{{- end}}
+
+{{- range prepareInstanceMethods .Methods}}
+
+{{- if .Abstract}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}} {
+{{- $paramNames := formatMethodParamNames .}}
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}rv := {{end}}objc.Call[{{if and (ne .ReturnType "") (ne .ReturnType "void")}}{{mapObjCTypeToGo .ReturnType $framework}}{{else}}objc.Void{{end}}]({{$instReceiver}}, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	return rv
+	{{- end}}
+}
+{{- end}}
+
+{{- end}}
+{{- end}}
+
 -- doc.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
@@ -65,7 +227,7 @@ type {{classToInterfaceName .Name}} interface {
 	objc.IObject
 {{- end}}
 {{- range sortMethodsByName .Methods}}
-	{{.Name}}({{formatMethodParams . $.Framework}}){{if ne .ReturnType "" | if ne .ReturnType "void"}} {{mapObjCTypeToGo .ReturnType $.Framework}}{{end}}
+	{{.Name}}({{formatMethodParams . $.Framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $.Framework}}{{end}}
 {{- end}}
 }
 
@@ -135,8 +297,8 @@ func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
 {{end -}}
 func ({{$classReceiver}} _{{$varName}}) {{.Name}}({{formatMethodParams . $.Framework}}) {{mapObjCTypeToGo .ReturnType $.Framework}} {
 {{- $paramNames := formatMethodParamNames .}}
-	{{- if ne .ReturnType "" | if ne .ReturnType "void"}}rv := {{end}}objc.Call[{{if ne .ReturnType "" | if ne .ReturnType "void"}}{{mapObjCTypeToGo .ReturnType $.Framework}}{{else}}objc.Void{{end}}]({{$classReceiver}}, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	{{- if ne .ReturnType "" | if ne .ReturnType "void"}}
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}rv := {{end}}objc.Call[{{if and (ne .ReturnType "") (ne .ReturnType "void")}}{{mapObjCTypeToGo .ReturnType $.Framework}}{{else}}objc.Void{{end}}]({{$classReceiver}}, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	return rv
 	{{- end}}
 }
@@ -163,10 +325,10 @@ func {{$structName}}_{{.Name}}({{formatMethodParams . $.Framework}}) {{mapObjCTy
 //
 // [Full Topic]: {{.DocURL}}
 {{end -}}
-func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $.Framework}}){{if ne .ReturnType "" | if ne .ReturnType "void"}} {{mapObjCTypeToGo .ReturnType $.Framework}}{{end}} {
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $.Framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $.Framework}}{{end}} {
 {{- $paramNames := formatMethodParamNames .}}
-	{{- if ne .ReturnType "" | if ne .ReturnType "void"}}rv := {{end}}objc.Call[{{if ne .ReturnType "" | if ne .ReturnType "void"}}{{mapObjCTypeToGo .ReturnType $.Framework}}{{else}}objc.Void{{end}}]({{$instReceiver}}, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	{{- if ne .ReturnType "" | if ne .ReturnType "void"}}
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}rv := {{end}}objc.Call[{{if and (ne .ReturnType "") (ne .ReturnType "void")}}{{mapObjCTypeToGo .ReturnType $.Framework}}{{else}}objc.Void{{end}}]({{$instReceiver}}, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	return rv
 	{{- end}}
 }
@@ -181,9 +343,6 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
-{{- if .NeedsFoundation}}
-	"github.com/progrium/darwinkit/macos/foundation"
-{{- end}}
 )
 
 var (

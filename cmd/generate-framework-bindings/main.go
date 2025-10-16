@@ -338,6 +338,61 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Found: %d functions, %d classes, %d protocols\n", len(functions), len(classes), len(protocols))
 	}
 
+	// Second pass: collect methods and properties for each class
+	if len(classes) > 0 {
+		classMethodsMap := make(map[string][]*occ2go.ParsedMethod)
+		classPropertiesMap := make(map[string][]*occ2go.ParsedProperty)
+
+		methodCount := 0
+		propertyCount := 0
+		for _, doc := range appledocs.Symbols(fsys, *framework) {
+			externalID := doc.Metadata.ExternalID
+
+			// Check for methods: c:objc(cs)ClassName(im)methodName or c:objc(cs)ClassName(cm)methodName
+			if strings.Contains(externalID, "(im)") || strings.Contains(externalID, "(cm)") {
+				method, err := occ2go.ParseMethod(doc)
+				if err == nil && method != nil {
+					// Extract class name from external ID
+					// Format: c:objc(cs)NSButton(im)initWithFrame:
+					parts := strings.Split(externalID, "(")
+					if len(parts) >= 2 {
+						className := strings.TrimPrefix(parts[1], "cs)")
+						classMethodsMap[className] = append(classMethodsMap[className], method)
+						methodCount++
+					}
+				}
+			}
+
+			// Check for properties: c:objc(cs)ClassName(py)propertyName
+			if strings.Contains(externalID, "(py)") {
+				property, err := occ2go.ParseProperty(doc)
+				if err == nil && property != nil {
+					// Extract class name from external ID
+					parts := strings.Split(externalID, "(")
+					if len(parts) >= 2 {
+						className := strings.TrimPrefix(parts[1], "cs)")
+						classPropertiesMap[className] = append(classPropertiesMap[className], property)
+						propertyCount++
+					}
+				}
+			}
+		}
+
+		// Attach methods and properties to classes
+		for _, cls := range classes {
+			if methods, ok := classMethodsMap[cls.Name]; ok {
+				cls.Methods = methods
+			}
+			if properties, ok := classPropertiesMap[cls.Name]; ok {
+				cls.Properties = properties
+			}
+		}
+
+		if verbose {
+			fmt.Fprintf(os.Stderr, "Found %d methods and %d properties for %d classes\n", methodCount, propertyCount, len(classes))
+		}
+	}
+
 	// Fail if no symbols were found and no filter was applied
 	if len(functions) == 0 && len(classes) == 0 && len(protocols) == 0 && *filterRegexp == "" && processedFiles == 0 {
 		fmt.Fprintf(os.Stderr, "Error: no symbols found for framework %s\n", *framework)
@@ -436,6 +491,38 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 	gen.Protocols = protocols
 	gen.prepare()
 
+	// Try to use the module template if it exists
+	if _, err := getTemplateVariant("module", variant); err == nil {
+		// Generate using module template and parse txtar output
+		var buf bytes.Buffer
+		if err := gen.GenerateTxtarFromModule(&buf); err != nil {
+			return err
+		}
+
+		// Parse txtar output
+		archive := txtar.Parse(buf.Bytes())
+
+		// Write each file from the archive
+		for _, file := range archive.Files {
+			if file.Name == "" {
+				continue
+			}
+			filePath := filepath.Join(outDir, file.Name)
+			if err := os.WriteFile(filePath, file.Data, 0644); err != nil {
+				return fmt.Errorf("failed to write %s: %w", file.Name, err)
+			}
+		}
+
+		// Log any collected errors/warnings
+		if verbose {
+			for _, e := range gen.Errors {
+				fmt.Fprintf(os.Stderr, "Warning: %v\n", e)
+			}
+		}
+		return nil
+	}
+
+	// Fallback to individual file generation
 	generators := []struct {
 		filename string
 		generate func(io.Writer) error

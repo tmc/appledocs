@@ -22,12 +22,18 @@
 {{template "methods.gen.go" .}}
 {{end -}}
 {{if gt .ClassCount 0 -}}
-#-- classes.gen.go --
-{{template "classes.gen.go" .}}
+{{- range .Classes}}
+#-- {{classFileName .Name}} --
+{{template "class.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName)}}
+#-- {{classTestFileName .Name}} --
+{{template "class_test.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName)}}
+{{end -}}
 {{end -}}
 {{if gt .ProtocolCount 0 -}}
-#-- protocols.gen.go --
-{{template "protocols.gen.go" .}}
+{{- range .Protocols}}
+#-- {{protocolFileName .Name}} --
+{{template "protocol.gen.go" (dict "Protocol" . "Framework" $.Framework "PackageName" $.PackageName)}}
+{{end -}}
 {{end -}}
 {{if .GenerateTests -}}
 #-- functions_test.gen.go --
@@ -73,8 +79,10 @@ const frameworkPath = "/System/Library/Frameworks/{{.Framework}}.framework/{{.Fr
 
 package {{.PackageName}}
 
+{{if or .WithRefMethods (gt (len .RefTypes) 0) -}}
 import "unsafe"
 
+{{end -}}
 {{if .WithRefMethods -}}
 {{range .RefTypes -}}
 // {{.}} is a CoreGraphics opaque type.
@@ -136,9 +144,9 @@ type CGAffineTransform struct {
 package {{.PackageName}}
 
 import (
-	"unsafe"
+	{{if .WithRefMethods}}"unsafe"
 
-	"github.com/ebitengine/purego"
+	{{end}}"github.com/ebitengine/purego"
 )
 
 // {{.Framework}} Functions ({{.Count}} total)
@@ -159,7 +167,9 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
+{{if eq (len .Functions) 0}}
+	_ = lib // Suppress unused variable warning when no functions are registered
+{{end}}
 {{- range .Functions}}
 	tryRegister(&_{{.Name}}, lib, "{{.Name}}")
 {{- end}}
@@ -211,24 +221,248 @@ func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}
 
 package {{.PackageName}}
 
-// {{.Framework}} Classes
-//
-// This file contains class declarations discovered from Apple's documentation.
-// These represent Objective-C classes that can be used with objc runtime bindings.
+import (
+	"unsafe"
 
-// Discovered classes ({{.Count}} total):
+	"github.com/ebitengine/purego/objc"
+)
+
+// {{.Framework}} Classes - Objective-C runtime bindings
+//
+// This file contains class declarations and methods discovered from Apple's documentation.
+// These use purego/objc runtime bindings to provide Go wrappers for Objective-C classes.
 
 {{range .Classes -}}
-{{$class := . -}}
-// {{.Name}}{{if .SuperClass}} : {{.SuperClass}}{{end}}
-{{- if not .Availability.IsEmpty}}
+{{$className := .Name -}}
+{{$structName := classToStructName .Name -}}
+{{$varName := classToVarName .Name -}}
+{{$classReceiver := receiverName $structName true -}}
+{{$instReceiver := receiverName $structName false -}}
+
+// The class instance for the [{{$structName}}] class.
+var {{$varName}} objc.Class
+
+func init() {
+	{{$varName}} = objc.GetClass("{{.Name}}")
+}
+
+{{if .Abstract -}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{if .DocURL -}}
 //
-// Availability:
-{{- range .Availability.Platforms}}
-//   - {{.}} {{index $class.Availability.IntroducedAt .}}+{{if $class.Availability.Beta}} (Beta){{else}}{{if index $class.Availability.DeprecatedAt .}} (Deprecated in {{index $class.Availability.DeprecatedAt .}}){{end}}{{end}}
-{{- end}}
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+type {{$structName}} struct {
+	objc.ID
+}
+
+func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
+	return {{$structName}}{
+		ID: objc.ID(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func ({{$classReceiver}} {{$structName}}) Alloc() {{$structName}} {
+	ret := objc.ID({{$varName}}).Send(objc.RegisterName("alloc"))
+	return {{$structName}}{ret}
+}
+
+// New creates and returns a new initialized instance.
+func ({{$classReceiver}} {{$structName}}) New() {{$structName}} {
+	ret := objc.ID({{$varName}}).Send(objc.RegisterName("new"))
+	return {{$structName}}{ret}
+}
+
+// New{{$structName}} creates and returns a new initialized instance.
+func New{{$structName}}() {{$structName}} {
+	ret := objc.ID({{$varName}}).Send(objc.RegisterName("new"))
+	return {{$structName}}{ret}
+}
+
+// Init initializes the instance.
+func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
+	ret := {{$instReceiver}}.ID.Send(objc.RegisterName("init"))
+	return {{$structName}}{ret}
+}
+
+{{- range prepareClassMethods .Methods}}
+{{- $paramNames := formatMethodParamNames .}}
+
+{{- if .Abstract}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func ({{$classReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $.Framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $.Framework}}{{end}} {
+	sel := objc.RegisterName("{{.Selector}}")
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	ret := objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	return {{mapObjCTypeToGo .ReturnType $.Framework}}(ret)
+	{{- else}}
+	objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- end}}
+}
 {{- end}}
 
+{{- range prepareInstanceMethods .Methods}}
+{{- $paramNames := formatMethodParamNames .}}
+{{- $goType := mapObjCTypeToGo .ReturnType $.Framework}}
+
+{{- if .Abstract}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $.Framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}} {
+	sel := objc.RegisterName("{{.Selector}}")
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	ret := {{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	return {{wrapObjCReturn $goType}}
+	{{- else}}
+	{{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- end}}
+}
+{{- end}}
+
+{{end -}}
+
+-- class.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+import (
+	"unsafe"
+
+	"github.com/ebitengine/purego/objc"
+)
+
+{{with .Class -}}
+{{$framework := $.Framework -}}
+{{$className := .Name -}}
+{{$structName := classToStructName .Name -}}
+{{$varName := classToVarName .Name -}}
+{{$classReceiver := receiverName $structName true -}}
+{{$instReceiver := receiverName $structName false -}}
+
+// The class instance for the [{{$structName}}] class.
+var {{$varName}} objc.Class
+
+func init() {
+	{{$varName}} = objc.GetClass("{{.Name}}")
+}
+
+{{if .Abstract -}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{if .DocURL -}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+type {{$structName}} struct {
+	objc.ID
+}
+
+func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
+	return {{$structName}}{
+		ID: objc.ID(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func ({{$classReceiver}} {{$structName}}) Alloc() {{$structName}} {
+	ret := objc.ID({{$varName}}).Send(objc.RegisterName("alloc"))
+	return {{$structName}}{ret}
+}
+
+// New creates and returns a new initialized instance.
+func ({{$classReceiver}} {{$structName}}) New() {{$structName}} {
+	ret := objc.ID({{$varName}}).Send(objc.RegisterName("new"))
+	return {{$structName}}{ret}
+}
+
+// New{{$structName}} creates and returns a new initialized instance.
+func New{{$structName}}() {{$structName}} {
+	ret := objc.ID({{$varName}}).Send(objc.RegisterName("new"))
+	return {{$structName}}{ret}
+}
+
+// Init initializes the instance.
+func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
+	ret := {{$instReceiver}}.ID.Send(objc.RegisterName("init"))
+	return {{$structName}}{ret}
+}
+
+{{- range prepareClassMethods .Methods}}
+{{- $paramNames := formatMethodParamNames .}}
+
+{{- if .Abstract}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func ({{$classReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}} {
+	sel := objc.RegisterName("{{.Selector}}")
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	ret := objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	return {{mapObjCTypeToGo .ReturnType $framework}}(ret)
+	{{- else}}
+	objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- end}}
+}
+{{- end}}
+
+{{- range prepareInstanceMethods .Methods}}
+{{- $paramNames := formatMethodParamNames .}}
+{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+
+{{- if .Abstract}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}} {
+	sel := objc.RegisterName("{{.Selector}}")
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	ret := {{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	return {{wrapObjCReturn $goType}}
+	{{- else}}
+	{{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- end}}
+}
+{{- end}}
+{{end -}}
+
+-- class_test.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}_test
+
+import (
+	"github.com/tmc/appledocs/cmd/generate-framework-bindings/generated/{{.PackageName}}"
+)
+
+{{with .Class -}}
+{{$structName := classToStructName .Name -}}
+
+// ExampleNew{{$structName}} demonstrates how to create a {{$structName}} instance.
+{{if .Abstract -}}
+// {{.Abstract}}
+{{end -}}
+func ExampleNew{{$structName}}() {
+	_ = {{$.PackageName}}.New{{$structName}}()
+	// output:
+}
 {{end -}}
 
 -- protocols.gen.go --
@@ -254,6 +488,23 @@ package {{.PackageName}}
 {{- end}}
 {{- end}}
 
+{{end -}}
+
+-- protocol.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+{{with .Protocol -}}
+{{$proto := . -}}
+// @protocol {{.Name}}
+{{- if not .Availability.IsEmpty}}
+//
+// Availability:
+{{- range .Availability.Platforms}}
+//   - {{.}} {{index $proto.Availability.IntroducedAt .}}+{{if $proto.Availability.Beta}} (Beta){{else}}{{if index $proto.Availability.DeprecatedAt .}} (Deprecated in {{index $proto.Availability.DeprecatedAt .}}){{end}}{{end}}
+{{- end}}
+{{- end}}
 {{end -}}
 
 -- methods.gen.go --

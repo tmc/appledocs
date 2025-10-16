@@ -17,6 +17,8 @@ type ParsedFunction struct {
 type ParsedClass struct {
 	Name         string
 	SuperClass   string
+	Methods      []*ParsedMethod   // Instance and class methods
+	Properties   []*ParsedProperty // Properties
 	Comment      string
 	Availability Availability
 	DocURL       string
