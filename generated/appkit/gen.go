@@ -3,5 +3,6 @@
 package appkit
 
 //go:generate rm -f *.gen.go
-//go:generate generate-framework-bindings -framework AppKit -output .
+//go:generate appledocs generate -framework AppKit -variant darwinkit -output .
+
 

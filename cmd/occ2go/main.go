@@ -23,6 +23,7 @@ import (
 func main() {
 	update := flag.Bool("update", false, "Update JSON file with parsed information (future)")
 	goTest := flag.Bool("go-test", false, "Run go test on generated code to validate syntax")
+	debug := flag.Bool("debug", false, "Print debug information about parsed methods")
 	flag.Parse()
 
 	if flag.NArg() < 1 {
@@ -55,8 +56,20 @@ func main() {
 	// Parse document
 	fn, cls, proto, err := occ2go.ParseDocument(&doc)
 
+	// Also try to parse as method if it's a method
+	var method *occ2go.ParsedMethod
+	if strings.Contains(doc.Metadata.ExternalID, "(im)") || strings.Contains(doc.Metadata.ExternalID, "(cm)") {
+		method, _ = occ2go.ParseMethod(&doc)
+	}
+
 	// Determine framework from path (e.g., CoreGraphics/CGContextMoveToPoint.json -> CoreGraphics)
 	framework := extractFramework(jsonFile)
+
+	// Print debug info if requested
+	if *debug {
+		printDebugInfo(&doc, fn, cls, proto, method)
+		return
+	}
 
 	// Capture output in buffer
 	var buf bytes.Buffer
@@ -260,4 +273,59 @@ func printProtocolToBuf(buf *bytes.Buffer, proto *occ2go.ParsedProtocol, framewo
 	fmt.Fprintln(buf, "\t// TODO: Add methods")
 	fmt.Fprintln(buf, "}")
 	fmt.Fprintln(buf)
+}
+
+// printDebugInfo prints debug information about a parsed document
+func printDebugInfo(doc *appledocs.Document, fn *occ2go.ParsedFunction, cls *occ2go.ParsedClass, proto *occ2go.ParsedProtocol, method *occ2go.ParsedMethod) {
+	fmt.Printf("ExternalID: %s\n", doc.Metadata.ExternalID)
+	fmt.Printf("Title: %s\n", doc.Metadata.Title)
+
+	// Print tokens
+	tokens := occ2go.GetObjectiveCVariant(doc)
+	if tokens == nil {
+		for _, section := range doc.PrimaryContentSections {
+			if len(section.Declarations) > 0 && len(section.Declarations[0].Tokens) > 0 {
+				tokens = section.Declarations[0].Tokens
+				break
+			}
+		}
+	}
+	if tokens != nil {
+		fmt.Printf("\nTokens (%d):\n", len(tokens))
+		for i, tok := range tokens {
+			fmt.Printf("  [%d] %-15s %q\n", i, tok.Kind, tok.Text)
+		}
+	}
+	fmt.Println()
+
+	if fn != nil {
+		fmt.Printf("Function: %s\n", fn.Name)
+		fmt.Printf("  ReturnType: %s\n", fn.ReturnType)
+		fmt.Printf("  Parameters: %d\n", len(fn.Parameters))
+		for i, p := range fn.Parameters {
+			fmt.Printf("    [%d] %s: %s\n", i, p.Name, p.Type)
+		}
+	}
+
+	if cls != nil {
+		fmt.Printf("Class: %s\n", cls.Name)
+		if cls.SuperClass != "" {
+			fmt.Printf("  SuperClass: %s\n", cls.SuperClass)
+		}
+	}
+
+	if proto != nil {
+		fmt.Printf("Protocol: %s\n", proto.Name)
+	}
+
+	if method != nil {
+		fmt.Printf("Method: %s\n", method.Name)
+		fmt.Printf("  Selector: %s\n", method.Selector)
+		fmt.Printf("  IsClassMethod: %v\n", method.IsClassMethod)
+		fmt.Printf("  ReturnType: %s\n", method.ReturnType)
+		fmt.Printf("  Parameters: %d\n", len(method.Parameters))
+		for i, p := range method.Parameters {
+			fmt.Printf("    [%d] %s: %s\n", i, p.Name, p.Type)
+		}
+	}
 }

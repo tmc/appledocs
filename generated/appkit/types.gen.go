@@ -2,32 +2,13 @@
 
 package appkit
 
+import "github.com/ebitengine/purego/objc"
 
-// Common CoreGraphics struct types
-type CGFloat = float64
-
-type CGPoint struct {
-	X CGFloat
-	Y CGFloat
-}
-
-type CGSize struct {
-	Width  CGFloat
-	Height CGFloat
-}
-
-type CGRect struct {
-	Origin CGPoint
-	Size   CGSize
-}
-
-type CGAffineTransform struct {
-	A  CGFloat
-	B  CGFloat
-	C  CGFloat
-	D  CGFloat
-	Tx CGFloat
-	Ty CGFloat
-}
-
+// Common selectors cached for performance
+var (
+	selAlloc       = objc.RegisterName("alloc")
+	selNew         = objc.RegisterName("new")
+	selInit        = objc.RegisterName("init")
+	selAutorelease = objc.RegisterName("autorelease")
+)
 

@@ -59,6 +59,11 @@ var templateFuncs = template.FuncMap{
 	"prepareInstanceMethods":   prepareInstanceMethods,
 	"sortMethodsByName":        sortMethodsByName,
 	"wrapObjCReturn":           wrapObjCReturn,
+
+	// Property generation helpers
+	"propertyToGoName":         propertyToGoName,
+	"contains":                 sliceContainsString,
+	"capitalize":               capitalizeFirst,
 }
 
 // FunctionData represents data for function template rendering.
@@ -100,6 +105,8 @@ var goKeywords = map[string]bool{
 	"func": true, "go": true, "goto": true, "if": true, "import": true,
 	"interface": true, "map": true, "package": true, "range": true, "return": true,
 	"select": true, "struct": true, "switch": true, "type": true, "var": true,
+	// Special identifiers that cannot be used as type/variable names
+	"init": true,
 }
 
 // isGoKeyword checks if a string is a Go reserved keyword.
@@ -396,8 +403,11 @@ func classToVarName(className string) string {
 	return name + "Class"
 }
 
-// stripObjCPrefix removes common Objective-C prefixes from a class name
+// stripObjCPrefix removes common Objective-C prefixes and invalid identifier characters from a class name
 func stripObjCPrefix(className string) string {
+	// First strip colons and other invalid identifier characters
+	className = strings.ReplaceAll(className, ":", "")
+
 	prefixes := []string{"NS", "CG", "CF", "CA", "CI", "CL", "CM", "CV", "CT"}
 	for _, prefix := range prefixes {
 		if strings.HasPrefix(className, prefix) {
@@ -405,11 +415,22 @@ func stripObjCPrefix(className string) string {
 			if len(className) > len(prefix) {
 				nextChar := className[len(prefix)]
 				if nextChar >= 'A' && nextChar <= 'Z' {
-					return className[len(prefix):]
+					name := className[len(prefix):]
+					// Check if result is a Go keyword and escape it
+					if isGoKeyword(strings.ToLower(name)) {
+						return name + "_"
+					}
+					return name
 				}
 			}
 		}
 	}
+
+	// Check if the className (after stripping invalid chars) is a Go keyword
+	if isGoKeyword(strings.ToLower(className)) {
+		return className + "_"
+	}
+
 	return className
 }
 
@@ -598,8 +619,11 @@ func classTestFileName(className string) string {
 	return toSnakeCase(name) + ".gen_test.go"
 }
 
-// toSnakeCase converts CamelCase to snake_case
+// toSnakeCase converts CamelCase to snake_case and strips invalid filename characters
 func toSnakeCase(s string) string {
+	// First strip colons and other invalid filename characters
+	s = strings.ReplaceAll(s, ":", "")
+
 	var result strings.Builder
 	for i, ch := range s {
 		if i > 0 && ch >= 'A' && ch <= 'Z' {
@@ -649,6 +673,18 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	isPointer := strings.HasSuffix(objcType, "*")
 	objcType = strings.TrimSpace(strings.TrimSuffix(objcType, "*"))
 
+	// Handle Objective-C generic types (e.g., NSArray<NSString *>)
+	// These cannot be directly represented in Go, so map to unsafe.Pointer
+	if strings.Contains(objcType, "<") {
+		return "unsafe.Pointer"
+	}
+
+	// Handle Objective-C blocks (e.g., void (^)(NSModalResponse))
+	// Blocks are closures that cannot be easily represented in Go, so map to unsafe.Pointer
+	if strings.Contains(objcType, "^") {
+		return "unsafe.Pointer"
+	}
+
 	// Special built-in types
 	switch objcType {
 	case "id":
@@ -656,7 +692,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	case "Class":
 		return "objc.Class"
 	case "SEL":
-		return "objc.Selector"
+		return "objc.SEL"
 	case "BOOL":
 		return "bool"
 	case "NSInteger":
@@ -669,18 +705,26 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		if isPointer {
 			return "unsafe.Pointer"
 		}
-		return "void"
+		return ""
 	}
 
-	// For class types, strip prefix and use interface name
+	// For class types, we map them to unsafe.Pointer since we're not generating full interfaces
+	// (In a full darwinkit implementation, these would be interface types like IWindow, IString, etc.)
 	if isPointer && (strings.HasPrefix(objcType, "NS") ||
 	                 strings.HasPrefix(objcType, "CG") ||
 	                 strings.HasPrefix(objcType, "CF")) {
-		return "I" + stripObjCPrefix(objcType)
+		return "unsafe.Pointer"
 	}
 
 	// Fall back to occ2go mapping
-	return occ2go.MapCTypeToGo(objcType, framework)
+	goType := occ2go.MapCTypeToGo(objcType, framework)
+
+	// Never return empty string for a type - default to unsafe.Pointer
+	if goType == "" {
+		return "unsafe.Pointer"
+	}
+
+	return goType
 }
 
 // formatMethodParams formats method parameters for Go function signature.
@@ -806,11 +850,17 @@ func prepareClassMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod 
 	return result
 }
 
-// prepareInstanceMethods filters methods to return only instance methods
+// prepareInstanceMethods filters methods to return only instance methods,
+// excluding lifecycle methods that are auto-generated (init, alloc, new)
 func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 	result := make([]*occ2go.ParsedMethod, 0)
 	for _, m := range methods {
 		if !m.IsClassMethod {
+			// Skip lifecycle methods that are auto-generated by the template
+			selector := strings.ToLower(m.Selector)
+			if selector == "init" || selector == "alloc" || selector == "new" {
+				continue
+			}
 			result = append(result, m)
 		}
 	}
@@ -869,4 +919,38 @@ func dict(values ...interface{}) (map[string]interface{}, error) {
 		dict[key] = values[i+1]
 	}
 	return dict, nil
+}
+
+// propertyToGoName converts an Objective-C property name to a Go method name.
+// Examples:
+//   title -> Title
+//   isEnabled -> IsEnabled
+//   backgroundColor -> BackgroundColor
+func propertyToGoName(propName string) string {
+	if propName == "" {
+		return ""
+	}
+	// Capitalize first letter
+	return strings.ToUpper(propName[:1]) + propName[1:]
+}
+
+// sliceContainsString checks if a string slice contains a specific string.
+func sliceContainsString(slice []string, str string) bool {
+	for _, s := range slice {
+		if s == str {
+			return true
+		}
+	}
+	return false
+}
+
+// capitalizeFirst capitalizes the first letter of a string.
+// Examples:
+//   title -> Title
+//   backgroundColor -> BackgroundColor
+func capitalizeFirst(s string) string {
+	if s == "" {
+		return ""
+	}
+	return strings.ToUpper(s[:1]) + s[1:]
 }

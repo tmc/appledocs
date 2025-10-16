@@ -35,6 +35,8 @@ func ParseDocument(doc *appledocs.Document) (*ParsedFunction, *ParsedClass, *Par
 	}
 
 	// Determine symbol type by external ID prefix
+	// IMPORTANT: Check for methods and properties BEFORE checking for classes,
+	// since method/property IDs also start with "c:objc(cs)"
 	switch {
 	case strings.HasPrefix(externalID, "c:@F@"):
 		// C function
@@ -47,8 +49,20 @@ func ParseDocument(doc *appledocs.Document) (*ParsedFunction, *ParsedClass, *Par
 		fn.Abstract = abstract
 		return fn, nil, nil, nil
 
+	case strings.HasPrefix(externalID, "c:objc(cs)") && strings.Contains(externalID, "(im)"):
+		// Objective-C instance method
+		return nil, nil, nil, fmt.Errorf("instance method (use ParseMethod): %s", externalID)
+
+	case strings.HasPrefix(externalID, "c:objc(cs)") && strings.Contains(externalID, "(cm)"):
+		// Objective-C class method
+		return nil, nil, nil, fmt.Errorf("class method (use ParseMethod): %s", externalID)
+
+	case strings.HasPrefix(externalID, "c:objc(cs)") && strings.Contains(externalID, "(py)"):
+		// Objective-C property
+		return nil, nil, nil, fmt.Errorf("property (use ParseProperty): %s", externalID)
+
 	case strings.HasPrefix(externalID, "c:objc(cs)"):
-		// Objective-C class
+		// Objective-C class (must come AFTER method/property checks)
 		cls := ParseClassDeclaration(tokens)
 		if cls == nil {
 			return nil, nil, nil, fmt.Errorf("failed to parse class declaration")
@@ -66,18 +80,6 @@ func ParseDocument(doc *appledocs.Document) (*ParsedFunction, *ParsedClass, *Par
 		proto.DocURL = docURL
 		proto.Abstract = abstract
 		return nil, nil, proto, nil
-
-	case strings.HasPrefix(externalID, "c:objc(cs)") && strings.Contains(externalID, "(im)"):
-		// Objective-C instance method
-		return nil, nil, nil, fmt.Errorf("instance method (use ParseMethod): %s", externalID)
-
-	case strings.HasPrefix(externalID, "c:objc(cs)") && strings.Contains(externalID, "(cm)"):
-		// Objective-C class method
-		return nil, nil, nil, fmt.Errorf("class method (use ParseMethod): %s", externalID)
-
-	case strings.HasPrefix(externalID, "c:objc(cs)") && strings.Contains(externalID, "(py)"):
-		// Objective-C property
-		return nil, nil, nil, fmt.Errorf("property (use ParseProperty): %s", externalID)
 
 	case strings.HasPrefix(externalID, "c:@E@"),
 		strings.HasPrefix(externalID, "c:@T@"),
@@ -601,16 +603,20 @@ func ParseMethodDeclaration(tokens []appledocs.Token, isClassMethod bool) (*Pars
 			selectorPart := tokens[i].Text
 			i++
 
-			// Check if followed by colon
-			hasColon := false
-			for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
-				i++
-			}
+			// Check if the identifier already includes the colon (e.g., "buttonWithTitle:")
+			hasColon := strings.HasSuffix(selectorPart, ":")
 
-			if i < len(tokens) && strings.HasPrefix(tokens[i].Text, ":") {
-				hasColon = true
-				selectorPart += ":"
-				i++
+			if !hasColon {
+				// Check if followed by colon as a separate token
+				for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+					i++
+				}
+
+				if i < len(tokens) && strings.HasPrefix(tokens[i].Text, ":") {
+					hasColon = true
+					selectorPart += ":"
+					i++
+				}
 			}
 
 			selectorParts = append(selectorParts, selectorPart)
@@ -633,15 +639,48 @@ func ParseMethodDeclaration(tokens []appledocs.Token, isClassMethod bool) (*Pars
 						i++
 					}
 
-					// Collect parameter type
-					paramTypeParts := []string{}
-					for i < len(tokens) && !strings.Contains(tokens[i].Text, ")") {
-						if tokens[i].Text != "" && strings.TrimSpace(tokens[i].Text) != "" {
-							paramTypeParts = append(paramTypeParts, tokens[i].Text)
+				// Collect parameter type
+				// Need to handle nested parentheses for blocks like: void (^)(NSModalResponse)
+				paramTypeParts := []string{}
+				parenDepth := 0
+
+				for i < len(tokens) {
+					text := tokens[i].Text
+
+					// Count opening and closing parens in this token
+					for _, ch := range text {
+						if ch == '(' {
+							parenDepth++
+						} else if ch == ')'{
+							parenDepth--
+							// If we go negative, we've hit the closing paren for the parameter type
+							if parenDepth < 0 {
+								break
+							}
 						}
-						i++
 					}
-					param.Type = strings.Join(paramTypeParts, " ")
+
+					// If we've closed all parens, check if there's content before the closing paren
+					if parenDepth < 0 {
+						// Extract any content before the closing paren
+						if idx := strings.Index(text, ")"); idx > 0 {
+							beforeParen := strings.TrimSpace(text[:idx])
+							if beforeParen != "" {
+								paramTypeParts = append(paramTypeParts, beforeParen)
+							}
+						}
+						break
+					}
+
+					// Add token text if non-empty
+					if text != "" && strings.TrimSpace(text) != "" {
+						paramTypeParts = append(paramTypeParts, text)
+					}
+
+					i++
+				}
+
+				param.Type = strings.Join(paramTypeParts, " ")
 
 					// Skip closing paren
 					if i < len(tokens) && strings.Contains(tokens[i].Text, ")") {

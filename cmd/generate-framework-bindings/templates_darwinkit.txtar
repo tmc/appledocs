@@ -25,14 +25,8 @@ package {{$.PackageName}}
 
 import (
 	"unsafe"
-{{- if needsFoundationImport .Methods}}
 
-	"github.com/progrium/darwinkit/macos/foundation"
-{{- end}}
-{{- if needsQuartzCoreImport .Methods}}
-	"github.com/progrium/darwinkit/macos/quartzcore"
-{{- end}}
-	"github.com/progrium/darwinkit/objc"
+	"github.com/ebitengine/purego/objc"
 )
 
 // The class instance for the [{{classToStructName .Name}}] class.
@@ -48,12 +42,8 @@ type _{{classToVarName .Name}} struct {
 
 // An interface definition for the [{{classToStructName .Name}}] class.
 type {{classToInterfaceName .Name}} interface {
-{{- if .SuperClass}}
-	{{classToInterfaceName .SuperClass}}
-{{- else}}
-	objc.IObject
-{{- end}}
-{{- range sortMethodsByName .Methods}}
+	ID() objc.ID
+{{- range sortMethodsByName (prepareInstanceMethods .Methods)}}
 	{{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}}
 {{- end}}
 }
@@ -66,21 +56,18 @@ type {{classToInterfaceName .Name}} interface {
 // [Full Topic]: {{.DocURL}}
 {{end -}}
 type {{classToStructName .Name}} struct {
-{{- if .SuperClass}}
-	{{classToStructName .SuperClass}}
-{{- else}}
-	objc.Object
-{{- end}}
+	id objc.ID
 }
 
 func {{classToStructName .Name}}From(ptr unsafe.Pointer) {{classToStructName .Name}} {
 	return {{classToStructName .Name}}{
-{{- if .SuperClass}}
-		{{classToStructName .SuperClass}}: {{classToStructName .SuperClass}}From(ptr),
-{{- else}}
-		Object: objc.ObjectFrom(ptr),
-{{- end}}
+		id: objc.ID(ptr),
 	}
+}
+
+// ID returns the underlying objc.ID.
+func ({{receiverName (classToStructName .Name) false}} {{classToStructName .Name}}) ID() objc.ID {
+	return {{receiverName (classToStructName .Name) false}}.id
 }
 
 {{$className := .Name -}}
@@ -91,14 +78,14 @@ func {{classToStructName .Name}}From(ptr unsafe.Pointer) {{classToStructName .Na
 
 // Alloc allocates a new instance without initialization.
 func ({{$classReceiver}} _{{$varName}}) Alloc() {{$structName}} {
-	rv := objc.Call[{{$structName}}]({{$classReceiver}}, objc.Sel("alloc"))
+	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.Class), selAlloc)
 	return rv
 }
 
 // New creates and returns a new initialized instance.
 func ({{$classReceiver}} _{{$varName}}) New() {{$structName}} {
-	rv := objc.Call[{{$structName}}]({{$classReceiver}}, objc.Sel("new"))
-	rv.Autorelease()
+	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.Class), selNew)
+	objc.Send[objc.ID](rv.ID(), selAutorelease)
 	return rv
 }
 
@@ -109,7 +96,7 @@ func New{{$structName}}() {{$structName}} {
 
 // Init initializes the instance.
 func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
-	rv := objc.Call[{{$structName}}]({{$instReceiver}}, objc.Sel("init"))
+	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID(), selInit)
 	return rv
 }
 
@@ -124,10 +111,12 @@ func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
 {{end -}}
 func ({{$classReceiver}} _{{$varName}}) {{.Name}}({{formatMethodParams . $framework}}) {{mapObjCTypeToGo .ReturnType $framework}} {
 {{- $paramNames := formatMethodParamNames .}}
-	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}rv := {{end}}objc.Call[{{if and (ne .ReturnType "") (ne .ReturnType "void")}}{{mapObjCTypeToGo .ReturnType $framework}}{{else}}objc.Void{{end}}]({{$classReceiver}}, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	rv := objc.Send[{{mapObjCTypeToGo .ReturnType $framework}}](objc.ID({{$classReceiver}}.Class), objc.RegisterName("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
-	{{- end}}
+{{- else}}
+	objc.Send[objc.ID](objc.ID({{$classReceiver}}.Class), objc.RegisterName("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+{{- end}}
 }
 
 {{- if isConstructor . $className}}
@@ -154,11 +143,47 @@ func {{$structName}}_{{.Name}}({{formatMethodParams . $framework}}) {{mapObjCTyp
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}} {
 {{- $paramNames := formatMethodParamNames .}}
-	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}rv := {{end}}objc.Call[{{if and (ne .ReturnType "") (ne .ReturnType "void")}}{{mapObjCTypeToGo .ReturnType $framework}}{{else}}objc.Void{{end}}]({{$instReceiver}}, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
-	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	rv := objc.Send[{{mapObjCTypeToGo .ReturnType $framework}}]({{$instReceiver}}.ID(), objc.RegisterName("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
-	{{- end}}
+{{- else}}
+	objc.Send[objc.ID]({{$instReceiver}}.ID(), objc.RegisterName("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+{{- end}}
 }
+{{- end}}
+
+{{- range .Properties}}
+{{- $propName := propertyToGoName .Name}}
+{{- $propType := mapObjCTypeToGo .Type $framework}}
+{{- $isReadonly := contains .Attributes "readonly"}}
+{{- if ne $propType ""}}
+
+{{- if .Abstract}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) {{$propName}}() {{$propType}} {
+	rv := objc.Send[{{$propType}}]({{$instReceiver}}.ID(), objc.RegisterName("{{.Name}}"))
+	return rv
+}
+
+{{- if not $isReadonly}}
+
+{{- if .Abstract}}
+// Set{{$propName}} sets the value of the {{.Name}} property. [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) Set{{$propName}}(value {{$propType}}) {
+	objc.Send[objc.ID]({{$instReceiver}}.ID(), objc.RegisterName("set{{capitalize .Name}}:"), value)
+}
+{{- end}}
+{{- end}}
 {{- end}}
 
 {{- end}}
@@ -198,14 +223,8 @@ package {{.PackageName}}
 
 import (
 	"unsafe"
-{{- if needsFoundationImport .Methods}}
 
-	"github.com/progrium/darwinkit/macos/foundation"
-{{- end}}
-{{- if needsQuartzCoreImport .Methods}}
-	"github.com/progrium/darwinkit/macos/quartzcore"
-{{- end}}
-	"github.com/progrium/darwinkit/objc"
+	"github.com/ebitengine/purego/objc"
 )
 
 // The class instance for the [{{classToStructName .Name}}] class.
@@ -224,9 +243,9 @@ type {{classToInterfaceName .Name}} interface {
 {{- if .SuperClass}}
 	{{classToInterfaceName .SuperClass}}
 {{- else}}
-	objc.IObject
+	ID() objc.ID
 {{- end}}
-{{- range sortMethodsByName .Methods}}
+{{- range sortMethodsByName (prepareInstanceMethods .Methods)}}
 	{{.Name}}({{formatMethodParams . $.Framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $.Framework}}{{end}}
 {{- end}}
 }
@@ -242,7 +261,7 @@ type {{classToStructName .Name}} struct {
 {{- if .SuperClass}}
 	{{classToStructName .SuperClass}}
 {{- else}}
-	objc.Object
+	id objc.ID
 {{- end}}
 }
 
@@ -251,9 +270,18 @@ func {{classToStructName .Name}}From(ptr unsafe.Pointer) {{classToStructName .Na
 {{- if .SuperClass}}
 		{{classToStructName .SuperClass}}: {{classToStructName .SuperClass}}From(ptr),
 {{- else}}
-		Object: objc.ObjectFrom(ptr),
+		id: objc.ID(ptr),
 {{- end}}
 	}
+}
+
+// ID returns the underlying objc.ID.
+func ({{receiverName (classToStructName .Name) false}} {{classToStructName .Name}}) ID() objc.ID {
+{{- if .SuperClass}}
+	return {{receiverName (classToStructName .Name) false}}.{{classToStructName .SuperClass}}.ID()
+{{- else}}
+	return {{receiverName (classToStructName .Name) false}}.id
+{{- end}}
 }
 
 {{$className := .Name -}}
@@ -264,14 +292,14 @@ func {{classToStructName .Name}}From(ptr unsafe.Pointer) {{classToStructName .Na
 
 // Alloc allocates a new instance without initialization.
 func ({{$classReceiver}} _{{$varName}}) Alloc() {{$structName}} {
-	rv := objc.Call[{{$structName}}]({{$classReceiver}}, objc.Sel("alloc"))
+	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.Class), selAlloc)
 	return rv
 }
 
 // New creates and returns a new initialized instance.
 func ({{$classReceiver}} _{{$varName}}) New() {{$structName}} {
-	rv := objc.Call[{{$structName}}]({{$classReceiver}}, objc.Sel("new"))
-	rv.Autorelease()
+	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.Class), selNew)
+	objc.Send[objc.ID](rv.ID(), selAutorelease)
 	return rv
 }
 
@@ -282,7 +310,7 @@ func New{{$structName}}() {{$structName}} {
 
 // Init initializes the instance.
 func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
-	rv := objc.Call[{{$structName}}]({{$instReceiver}}, objc.Sel("init"))
+	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID(), selInit)
 	return rv
 }
 
@@ -390,4 +418,12 @@ func {{.Name}}({{range $i, $p := prepareParams .Parameters $.Framework}}{{if $i}
 
 package {{.PackageName}}
 
-// Type definitions for {{.Framework}}
+import "github.com/ebitengine/purego/objc"
+
+// Common selectors cached for performance
+var (
+	selAlloc       = objc.RegisterName("alloc")
+	selNew         = objc.RegisterName("new")
+	selInit        = objc.RegisterName("init")
+	selAutorelease = objc.RegisterName("autorelease")
+)

@@ -10,4 +10,7 @@ require (
 	rsc.io/script v0.0.2
 )
 
-require golang.org/x/tools v0.36.0 // indirect
+require (
+	github.com/progrium/darwinkit v0.5.0
+	golang.org/x/tools v0.36.0
+)

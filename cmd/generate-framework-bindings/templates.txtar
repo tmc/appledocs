@@ -470,34 +470,36 @@ func ExampleNew{{$structName}}() {
 
 package {{.PackageName}}
 
-// {{.Framework}} Protocols
+import "github.com/ebitengine/purego/objc"
+
+// {{.Framework}} Protocols ({{.ProtocolCount}} total)
 //
-// This file contains protocol declarations discovered from Apple's documentation.
-// These represent Objective-C protocols that can be used with objc runtime bindings.
+// This file contains protocol references for {{.Framework}}.
+// Use these when registering custom classes that conform to these protocols.
 
-// Discovered protocols ({{.Count}} total):
-
-{{range .Protocols -}}
-{{$proto := . -}}
-// @protocol {{.Name}}
-{{- if not .Availability.IsEmpty}}
-//
-// Availability:
-{{- range .Availability.Platforms}}
-//   - {{.}} {{index $proto.Availability.IntroducedAt .}}+{{if $proto.Availability.Beta}} (Beta){{else}}{{if index $proto.Availability.DeprecatedAt .}} (Deprecated in {{index $proto.Availability.DeprecatedAt .}}){{end}}{{end}}
+var (
+{{- range .Protocols}}
+	{{stripNSPrefix .Name}}Protocol *objc.Protocol
 {{- end}}
-{{- end}}
+)
 
-{{end -}}
+func init() {
+{{- range .Protocols}}
+	{{stripNSPrefix .Name}}Protocol = objc.GetProtocol("{{.Name}}")
+{{- end}}
+}
 
 -- protocol.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
 package {{.PackageName}}
 
+import "github.com/ebitengine/purego/objc"
+
 {{with .Protocol -}}
 {{$proto := . -}}
-// @protocol {{.Name}}
+{{- $protocolVarName := stripNSPrefix .Name -}}
+// {{$protocolVarName}}Protocol is the {{.Name}} protocol.
 {{- if not .Availability.IsEmpty}}
 //
 // Availability:
@@ -505,6 +507,13 @@ package {{.PackageName}}
 //   - {{.}} {{index $proto.Availability.IntroducedAt .}}+{{if $proto.Availability.Beta}} (Beta){{else}}{{if index $proto.Availability.DeprecatedAt .}} (Deprecated in {{index $proto.Availability.DeprecatedAt .}}){{end}}{{end}}
 {{- end}}
 {{- end}}
+//
+// Use this protocol when registering custom classes that conform to {{.Name}}.
+var {{$protocolVarName}}Protocol *objc.Protocol
+
+func init() {
+	{{$protocolVarName}}Protocol = objc.GetProtocol("{{.Name}}")
+}
 {{end -}}
 
 -- methods.gen.go --
