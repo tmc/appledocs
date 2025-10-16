@@ -57,8 +57,8 @@ func ParseDocument(doc *appledocs.Document) (*ParsedFunction, *ParsedClass, *Par
 		// Objective-C class method
 		return nil, nil, nil, fmt.Errorf("class method (use ParseMethod): %s", externalID)
 
-	case strings.HasPrefix(externalID, "c:objc(cs)") && strings.Contains(externalID, "(py)"):
-		// Objective-C property
+	case strings.HasPrefix(externalID, "c:objc(cs)") && (strings.Contains(externalID, "(py)") || strings.Contains(externalID, "(cpy)")):
+		// Objective-C property (instance or class property)
 		return nil, nil, nil, fmt.Errorf("property (use ParseProperty): %s", externalID)
 
 	case strings.HasPrefix(externalID, "c:objc(cs)"):
