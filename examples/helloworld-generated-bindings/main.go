@@ -41,6 +41,12 @@ type NSRect struct {
 	Size   NSSize
 }
 
+// Global counter and label for button clicks
+var (
+	clickCount   int
+	counterLabel objc.ID
+)
+
 func createAppDelegate() objc.ID {
 	// Create a delegate class that handles window close events
 	className := "AppDelegate"
@@ -78,6 +84,50 @@ func createAppDelegate() objc.ID {
 	delegate := objc.ID(class).Send(objc.RegisterName("alloc"))
 	delegate = delegate.Send(objc.RegisterName("init"))
 	return delegate
+}
+
+func createButtonHandler() objc.ID {
+	// Create a handler class for button clicks
+	className := "ButtonHandler"
+
+	// Check if class already exists
+	class := objc.GetClass(className)
+	if class == 0 {
+		// Register new class inheriting from NSObject
+		superClass := objc.GetClass("NSObject")
+
+		// Define the buttonClicked: method
+		buttonClicked := func(self objc.ID, _cmd objc.SEL, sender objc.ID) {
+			// Increment counter
+			clickCount++
+			fmt.Printf("Button clicked! Count: %d\n", clickCount)
+
+			// Update label
+			labelText := objc.ID(objc.GetClass("NSString")).Send(
+				objc.RegisterName("stringWithUTF8String:"),
+				fmt.Sprintf("Button clicks: %d", clickCount),
+			)
+			counterLabel.Send(objc.RegisterName("setStringValue:"), labelText)
+		}
+
+		class, _ = objc.RegisterClass(
+			className,
+			superClass,
+			[]*objc.Protocol{},
+			[]objc.FieldDef{},
+			[]objc.MethodDef{
+				{
+					Cmd: objc.RegisterName("buttonClicked:"),
+					Fn:  buttonClicked,
+				},
+			},
+		)
+	}
+
+	// Create instance of handler
+	handler := objc.ID(class).Send(objc.RegisterName("alloc"))
+	handler = handler.Send(objc.RegisterName("init"))
+	return handler
 }
 
 func main() {
@@ -120,6 +170,54 @@ func main() {
 	delegate := createAppDelegate()
 	window.Send(objc.RegisterName("setDelegate:"), delegate)
 
+	// Get content view
+	contentView := window.Send(objc.RegisterName("contentView"))
+
+	// Add a label
+	textFieldClass := objc.GetClass("NSTextField")
+	label := objc.ID(textFieldClass).Send(objc.RegisterName("alloc"))
+
+	labelFrame := NSRect{
+		Origin: NSPoint{X: 50, Y: 200},
+		Size:   NSSize{Width: 300, Height: 50},
+	}
+
+	label = label.Send(objc.RegisterName("initWithFrame:"), labelFrame)
+
+	labelText := objc.ID(objc.GetClass("NSString")).Send(
+		objc.RegisterName("stringWithUTF8String:"),
+		"This uses only generated bindings!",
+	)
+	label.Send(objc.RegisterName("setStringValue:"), labelText)
+	label.Send(objc.RegisterName("setEditable:"), false)
+	label.Send(objc.RegisterName("setBordered:"), false)
+	label.Send(objc.RegisterName("setBackgroundColor:"), 0) // nil/transparent
+
+	contentView.Send(objc.RegisterName("addSubview:"), label)
+
+	// Add counter label
+	counterLabel = objc.ID(textFieldClass).Send(objc.RegisterName("alloc"))
+
+	counterFrame := NSRect{
+		Origin: NSPoint{X: 50, Y: 80},
+		Size:   NSSize{Width: 300, Height: 30},
+	}
+
+	counterLabel = counterLabel.Send(objc.RegisterName("initWithFrame:"), counterFrame)
+
+	counterText := objc.ID(objc.GetClass("NSString")).Send(
+		objc.RegisterName("stringWithUTF8String:"),
+		"Button clicks: 0",
+	)
+	counterLabel.Send(objc.RegisterName("setStringValue:"), counterText)
+	counterLabel.Send(objc.RegisterName("setEditable:"), false)
+	counterLabel.Send(objc.RegisterName("setBordered:"), false)
+	counterLabel.Send(objc.RegisterName("setBackgroundColor:"), 0)
+	// Center align
+	counterLabel.Send(objc.RegisterName("setAlignment:"), 2) // NSTextAlignmentCenter = 2
+
+	contentView.Send(objc.RegisterName("addSubview:"), counterLabel)
+
 	// Create button
 	buttonClass := objc.GetClass("NSButton")
 	button := objc.ID(buttonClass).Send(objc.RegisterName("alloc"))
@@ -144,31 +242,13 @@ func main() {
 	// Set bezel style (NSRoundedBezelStyle = 1)
 	button.Send(objc.RegisterName("setBezelStyle:"), 1)
 
-	// Get content view and add button
-	contentView := window.Send(objc.RegisterName("contentView"))
+	// Create button handler and set as target
+	buttonHandler := createButtonHandler()
+	button.Send(objc.RegisterName("setTarget:"), buttonHandler)
+	button.Send(objc.RegisterName("setAction:"), objc.RegisterName("buttonClicked:"))
+
+	// Add button to window
 	contentView.Send(objc.RegisterName("addSubview:"), button)
-
-	// Add a label
-	textFieldClass := objc.GetClass("NSTextField")
-	label := objc.ID(textFieldClass).Send(objc.RegisterName("alloc"))
-
-	labelFrame := NSRect{
-		Origin: NSPoint{X: 50, Y: 200},
-		Size:   NSSize{Width: 300, Height: 50},
-	}
-
-	label = label.Send(objc.RegisterName("initWithFrame:"), labelFrame)
-
-	labelText := objc.ID(objc.GetClass("NSString")).Send(
-		objc.RegisterName("stringWithUTF8String:"),
-		"This uses only generated bindings!",
-	)
-	label.Send(objc.RegisterName("setStringValue:"), labelText)
-	label.Send(objc.RegisterName("setEditable:"), false)
-	label.Send(objc.RegisterName("setBordered:"), false)
-	label.Send(objc.RegisterName("setBackgroundColor:"), 0) // nil/transparent
-
-	contentView.Send(objc.RegisterName("addSubview:"), label)
 
 	// Show window
 	window.Send(objc.RegisterName("makeKeyAndOrderFront:"), 0)
@@ -181,7 +261,8 @@ func main() {
 	fmt.Println("   Using:")
 	fmt.Println("   - purego/objc for Objective-C runtime")
 	fmt.Println("   - Generated type definitions")
-	fmt.Println("   Press Cmd+Q to quit\n")
+	fmt.Println("   Click the button to see the counter increment!")
+	fmt.Println("   Close window or press Cmd+Q to quit\n")
 
 	// Run event loop
 	app.Send(objc.RegisterName("run"))
