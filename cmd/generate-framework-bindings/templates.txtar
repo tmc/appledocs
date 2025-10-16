@@ -17,6 +17,10 @@
 {{template "types.gen.go" .}}
 #-- functions.gen.go --
 {{template "functions.gen.go" .}}
+{{if or (gt .ClassCount 0) .GenerateTests .GenerateExamples -}}
+#-- main_test.go --
+{{template "main_test.go" .}}
+{{end -}}
 {{if .WithRefMethods -}}
 #-- methods.gen.go --
 {{template "methods.gen.go" .}}
@@ -645,3 +649,21 @@ func Example{{$docData.Name}}() {
 
 {{end -}}
 {{end}}
+
+-- main_test.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}_test
+
+import (
+	"os"
+	"runtime"
+	"testing"
+)
+
+// TestMain locks the main test goroutine to the OS thread before running tests.
+// This is required for {{.Framework}} operations which must run on the main thread.
+func TestMain(m *testing.M) {
+	runtime.LockOSThread()
+	os.Exit(m.Run())
+}
