@@ -263,6 +263,7 @@ func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
 	}
 }
 
+{{if .HasInitMethods -}}
 // Alloc allocates a new instance without initialization.
 func ({{$classReceiver}} {{$structName}}) Alloc() {{$structName}} {
 	ret := objc.ID({{$varName}}).Send(objc.RegisterName("alloc"))
@@ -287,6 +288,7 @@ func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
 	return {{$structName}}{ret}
 }
 
+{{end -}}
 {{- range prepareClassMethods .Methods}}
 {{- $paramNames := formatMethodParamNames .}}
 
@@ -375,6 +377,7 @@ func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
 	}
 }
 
+{{if .HasInitMethods -}}
 // Alloc allocates a new instance without initialization.
 func ({{$classReceiver}} {{$structName}}) Alloc() {{$structName}} {
 	ret := objc.ID({{$varName}}).Send(objc.RegisterName("alloc"))
@@ -399,6 +402,7 @@ func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
 	return {{$structName}}{ret}
 }
 
+{{end -}}
 {{- range prepareClassMethods .Methods}}
 {{- $paramNames := formatMethodParamNames .}}
 
@@ -423,6 +427,7 @@ func ({{$classReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $fram
 {{- range prepareInstanceMethods .Methods}}
 {{- $paramNames := formatMethodParamNames .}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+{{- $isInitMethod := hasPrefix .Selector "init"}}
 
 {{- if .Abstract}}
 // {{.Abstract}} [Full Topic]
@@ -431,9 +436,12 @@ func ({{$classReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $fram
 //
 // [Full Topic]: {{.DocURL}}
 {{end -}}
-func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}} {
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
 	sel := objc.RegisterName("{{.Selector}}")
-	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	{{- if $isInitMethod}}
+	ret := {{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	return {{$structName}}{ret}
+	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	ret := {{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
 	return {{wrapObjCReturn $goType}}
 	{{- else}}
@@ -454,6 +462,7 @@ import (
 
 {{with .Class -}}
 {{$structName := classToStructName .Name -}}
+{{if .HasInitMethods -}}
 
 // ExampleNew{{$structName}} demonstrates how to create a {{$structName}} instance.
 {{if .Abstract -}}
@@ -463,6 +472,7 @@ func ExampleNew{{$structName}}() {
 	_ = {{$.PackageName}}.New{{$structName}}()
 	// output:
 }
+{{end -}}
 {{end -}}
 
 -- protocols.gen.go --

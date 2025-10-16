@@ -15,6 +15,7 @@ var templateFuncs = template.FuncMap{
 	"lower":     strings.ToLower,
 	"trimspace": strings.TrimSpace,
 	"trimRight": strings.TrimRight,
+	"hasPrefix": strings.HasPrefix,
 	"dict":      dict,
 
 	// occ2go type mapping
