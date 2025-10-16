@@ -233,6 +233,7 @@ import (
 // These use purego/objc runtime bindings to provide Go wrappers for Objective-C classes.
 
 {{range .Classes -}}
+{{$framework := $.Framework -}}
 {{$className := .Name -}}
 {{$structName := classToStructName .Name -}}
 {{$varName := classToVarName .Name -}}
@@ -270,23 +271,35 @@ func ({{$classReceiver}} {{$structName}}) Alloc() {{$structName}} {
 	return {{$structName}}{ret}
 }
 
-// New creates and returns a new initialized instance.
-func ({{$classReceiver}} {{$structName}}) New() {{$structName}} {
-	ret := objc.ID({{$varName}}).Send(objc.RegisterName("new"))
-	return {{$structName}}{ret}
-}
-
-// New{{$structName}} creates and returns a new initialized instance.
-func New{{$structName}}() {{$structName}} {
-	ret := objc.ID({{$varName}}).Send(objc.RegisterName("new"))
-	return {{$structName}}{ret}
-}
-
 // Init initializes the instance.
 func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
 	ret := {{$instReceiver}}.ID.Send(objc.RegisterName("init"))
 	return {{$structName}}{ret}
 }
+
+{{- range prepareInitMethods .Methods}}
+{{- $constructorName := initMethodToConstructorName $className .Selector}}
+{{- $paramNames := formatMethodParamNames .}}
+
+{{- if .Abstract}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
+	instance := {{$structName}}{}.Alloc()
+	{{- if eq .Selector "init"}}
+	instance = instance.Init()
+	{{- else}}
+	sel := objc.RegisterName("{{.Selector}}")
+	ret := instance.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	instance = {{$structName}}{ret}
+	{{- end}}
+	return instance
+}
+{{- end}}
 
 {{end -}}
 {{- range prepareClassMethods .Methods}}
@@ -384,23 +397,35 @@ func ({{$classReceiver}} {{$structName}}) Alloc() {{$structName}} {
 	return {{$structName}}{ret}
 }
 
-// New creates and returns a new initialized instance.
-func ({{$classReceiver}} {{$structName}}) New() {{$structName}} {
-	ret := objc.ID({{$varName}}).Send(objc.RegisterName("new"))
-	return {{$structName}}{ret}
-}
-
-// New{{$structName}} creates and returns a new initialized instance.
-func New{{$structName}}() {{$structName}} {
-	ret := objc.ID({{$varName}}).Send(objc.RegisterName("new"))
-	return {{$structName}}{ret}
-}
-
 // Init initializes the instance.
 func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
 	ret := {{$instReceiver}}.ID.Send(objc.RegisterName("init"))
 	return {{$structName}}{ret}
 }
+
+{{- range prepareInitMethods .Methods}}
+{{- $constructorName := initMethodToConstructorName $className .Selector}}
+{{- $paramNames := formatMethodParamNames .}}
+
+{{- if .Abstract}}
+// {{.Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{.DocURL}}
+{{end -}}
+func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
+	instance := {{$structName}}{}.Alloc()
+	{{- if eq .Selector "init"}}
+	instance = instance.Init()
+	{{- else}}
+	sel := objc.RegisterName("{{.Selector}}")
+	ret := instance.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	instance = {{$structName}}{ret}
+	{{- end}}
+	return instance
+}
+{{- end}}
 
 {{end -}}
 {{- range prepareClassMethods .Methods}}
