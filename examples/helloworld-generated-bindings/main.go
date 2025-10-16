@@ -41,6 +41,28 @@ type NSRect struct {
 	Size   NSSize
 }
 
+// NewButton creates a new NSButton with the given frame
+func NewButton(frame NSRect) objc.ID {
+	buttonClass := objc.GetClass("NSButton")
+	button := objc.ID(buttonClass).Send(objc.RegisterName("alloc"))
+	return button.Send(objc.RegisterName("initWithFrame:"), frame)
+}
+
+// NewTextField creates a new NSTextField with the given frame
+func NewTextField(frame NSRect) objc.ID {
+	textFieldClass := objc.GetClass("NSTextField")
+	textField := objc.ID(textFieldClass).Send(objc.RegisterName("alloc"))
+	return textField.Send(objc.RegisterName("initWithFrame:"), frame)
+}
+
+// NewNSString creates a new NSString from a Go string
+func NewNSString(str string) objc.ID {
+	return objc.ID(objc.GetClass("NSString")).Send(
+		objc.RegisterName("stringWithUTF8String:"),
+		str,
+	)
+}
+
 // Global counter and label for button clicks
 var (
 	clickCount   int
@@ -103,11 +125,8 @@ func createButtonHandler() objc.ID {
 			fmt.Printf("Button clicked! Count: %d\n", clickCount)
 
 			// Update label
-			labelText := objc.ID(objc.GetClass("NSString")).Send(
-				objc.RegisterName("stringWithUTF8String:"),
-				fmt.Sprintf("Button clicks: %d", clickCount),
-			)
-			counterLabel.Send(objc.RegisterName("setStringValue:"), labelText)
+			counterLabel.Send(objc.RegisterName("setStringValue:"),
+				NewNSString(fmt.Sprintf("Button clicks: %d", clickCount)))
 		}
 
 		class, _ = objc.RegisterClass(
@@ -160,11 +179,7 @@ func main() {
 	)
 
 	// Set window title
-	titleStr := objc.ID(objc.GetClass("NSString")).Send(
-		objc.RegisterName("stringWithUTF8String:"),
-		"Hello from Generated Bindings!",
-	)
-	window.Send(objc.RegisterName("setTitle:"), titleStr)
+	window.Send(objc.RegisterName("setTitle:"), NewNSString("Hello from Generated Bindings!"))
 
 	// Create and set delegate to handle window close
 	delegate := createAppDelegate()
@@ -174,21 +189,11 @@ func main() {
 	contentView := window.Send(objc.RegisterName("contentView"))
 
 	// Add a label
-	textFieldClass := objc.GetClass("NSTextField")
-	label := objc.ID(textFieldClass).Send(objc.RegisterName("alloc"))
-
-	labelFrame := NSRect{
+	label := NewTextField(NSRect{
 		Origin: NSPoint{X: 50, Y: 200},
 		Size:   NSSize{Width: 300, Height: 50},
-	}
-
-	label = label.Send(objc.RegisterName("initWithFrame:"), labelFrame)
-
-	labelText := objc.ID(objc.GetClass("NSString")).Send(
-		objc.RegisterName("stringWithUTF8String:"),
-		"This uses only generated bindings!",
-	)
-	label.Send(objc.RegisterName("setStringValue:"), labelText)
+	})
+	label.Send(objc.RegisterName("setStringValue:"), NewNSString("This uses only generated bindings!"))
 	label.Send(objc.RegisterName("setEditable:"), false)
 	label.Send(objc.RegisterName("setBordered:"), false)
 	label.Send(objc.RegisterName("setBackgroundColor:"), 0) // nil/transparent
@@ -196,45 +201,26 @@ func main() {
 	contentView.Send(objc.RegisterName("addSubview:"), label)
 
 	// Add counter label
-	counterLabel = objc.ID(textFieldClass).Send(objc.RegisterName("alloc"))
-
-	counterFrame := NSRect{
+	counterLabel = NewTextField(NSRect{
 		Origin: NSPoint{X: 50, Y: 80},
 		Size:   NSSize{Width: 300, Height: 30},
-	}
-
-	counterLabel = counterLabel.Send(objc.RegisterName("initWithFrame:"), counterFrame)
-
-	counterText := objc.ID(objc.GetClass("NSString")).Send(
-		objc.RegisterName("stringWithUTF8String:"),
-		"Button clicks: 0",
-	)
-	counterLabel.Send(objc.RegisterName("setStringValue:"), counterText)
+	})
+	counterLabel.Send(objc.RegisterName("setStringValue:"), NewNSString("Button clicks: 0"))
 	counterLabel.Send(objc.RegisterName("setEditable:"), false)
 	counterLabel.Send(objc.RegisterName("setBordered:"), false)
 	counterLabel.Send(objc.RegisterName("setBackgroundColor:"), 0)
-	// Center align
 	counterLabel.Send(objc.RegisterName("setAlignment:"), 2) // NSTextAlignmentCenter = 2
 
 	contentView.Send(objc.RegisterName("addSubview:"), counterLabel)
 
-	// Create button
-	buttonClass := objc.GetClass("NSButton")
-	button := objc.ID(buttonClass).Send(objc.RegisterName("alloc"))
-
-	buttonFrame := NSRect{
+	// Create button using NewButton helper
+	button := NewButton(NSRect{
 		Origin: NSPoint{X: 150, Y: 130},
 		Size:   NSSize{Width: 100, Height: 40},
-	}
-
-	button = button.Send(objc.RegisterName("initWithFrame:"), buttonFrame)
+	})
 
 	// Set button title
-	buttonTitle := objc.ID(objc.GetClass("NSString")).Send(
-		objc.RegisterName("stringWithUTF8String:"),
-		"Click Me!",
-	)
-	button.Send(objc.RegisterName("setTitle:"), buttonTitle)
+	button.Send(objc.RegisterName("setTitle:"), NewNSString("Click Me!"))
 
 	// Set button type (NSMomentaryLight = 0)
 	button.Send(objc.RegisterName("setButtonType:"), 0)
