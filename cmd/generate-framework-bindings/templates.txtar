@@ -28,10 +28,10 @@
 {{if gt .ClassCount 0 -}}
 {{- range .Classes}}
 #-- {{classFileName .Name}} --
-{{template "class.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName)}}
+{{template "class.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}
 {{if .HasInitMethods -}}
 #-- {{classTestFileName .Name}} --
-{{template "class_test.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName)}}
+{{template "class_test.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}
 {{end -}}
 {{end -}}
 {{end -}}
@@ -73,7 +73,7 @@ package {{.PackageName}}
 // provide purego-based access to {{.Framework}} without requiring cgo.
 {{if .DocURL -}}
 //
-// [Full Topic]: {{.DocURL}}
+// [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 package {{.PackageName}}
 
@@ -149,10 +149,10 @@ type Range = CGPoint  // NSRange
 type Size = CGSize    // NSSize
 type Point = CGPoint  // NSPoint
 type Rect = CGRect    // NSRect
+type TimeInterval = float64  // NSTimeInterval
 
 {{if eq .Framework "Foundation" -}}
 // Foundation-specific types
-type TimeInterval = float64
 
 // RectEdge defines which edge of a rectangle.
 type RectEdge int
@@ -227,7 +227,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 {{range .Functions -}}
 {{- $docData := prepareFunctionDocData . $.Framework}}
-{{if $docData.Abstract}}// {{$docData.Abstract}} [Full Topic]{{else}}// {{$docData.Name}} is a {{$docData.Framework}} function. [Full Topic]{{end}}
+{{if $docData.Abstract}}// {{commentLine $docData.Abstract}} [Full Topic]{{else}}// {{$docData.Name}} is a {{$docData.Framework}} function. [Full Topic]{{end}}
 {{if $docData.HasAvailability -}}
 //
 {{if $docData.IsDeprecated -}}
@@ -238,7 +238,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 {{end -}}
 {{if $docData.DocURL -}}
 //
-// [Full Topic]: {{$docData.DocURL}}
+// [Full Topic]: {{convertDocURL $docData.DocURL}}
 {{end -}}
 func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}} {{$p.Type}}{{end}}){{if $docData.ReturnType}} {{$docData.ReturnType}}{{end}} {
 	{{if $.WithRefMethods -}}
@@ -286,11 +286,11 @@ func init() {
 }
 
 {{if .Abstract -}}
-// {{.Abstract}} [Full Topic]
+// {{commentLine .Abstract}} [Full Topic]
 {{end -}}
 {{if .DocURL -}}
 //
-// [Full Topic]: {{.DocURL}}
+// [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 type {{$structName}} struct {
 	objc.ID
@@ -320,11 +320,11 @@ func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
 {{- $paramNames := formatMethodParamNames .}}
 
 {{- if .Abstract}}
-// {{.Abstract}} [Full Topic]
+// {{commentLine .Abstract}} [Full Topic]
 {{end -}}
 {{- if .DocURL}}
 //
-// [Full Topic]: {{.DocURL}}
+// [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 	instance := {{$structName}}{}.Alloc()
@@ -345,11 +345,11 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{- $paramNames := formatMethodParamNames .}}
 
 {{- if .Abstract}}
-// {{.Abstract}} [Full Topic]
+// {{commentLine .Abstract}} [Full Topic]
 {{end -}}
 {{- if .DocURL}}
 //
-// [Full Topic]: {{.DocURL}}
+// [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func ({{$classReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $.Framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $.Framework}}{{end}} {
 	sel := objc.RegisterName("{{.Selector}}")
@@ -367,11 +367,11 @@ func ({{$classReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $.Fra
 {{- $goType := mapObjCTypeToGo .ReturnType $.Framework}}
 
 {{- if .Abstract}}
-// {{.Abstract}} [Full Topic]
+// {{commentLine .Abstract}} [Full Topic]
 {{end -}}
 {{- if .DocURL}}
 //
-// [Full Topic]: {{.DocURL}}
+// [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $.Framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}} {
 	sel := objc.RegisterName("{{.Selector}}")
@@ -394,7 +394,7 @@ package {{.PackageName}}
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"{{.OutputModule}}/objc"
 )
 
 {{with .Class -}}
@@ -402,22 +402,23 @@ import (
 {{$className := .Name -}}
 {{$structName := classToStructName .Name -}}
 {{$varName := classToVarName .Name -}}
+{{$classTypeName := print "_" $structName "Class" -}}
 {{$classReceiver := receiverName $structName true -}}
 {{$instReceiver := receiverName $structName false -}}
 
 // The class instance for the [{{$structName}}] class.
-var {{$varName}} objc.Class
+var {{$structName}}Class = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
 
-func init() {
-	{{$varName}} = objc.GetClass("{{.Name}}")
+type {{$classTypeName}} struct {
+	objc.Class
 }
 
 {{if .Abstract -}}
-// {{.Abstract}} [Full Topic]
+// {{commentLine .Abstract}} [Full Topic]
 {{end -}}
 {{if .DocURL -}}
 //
-// [Full Topic]: {{.DocURL}}
+// [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 type {{$structName}} struct {
 	objc.ID
@@ -431,88 +432,105 @@ func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
 
 {{if .HasInitMethods -}}
 // Alloc allocates a new instance without initialization.
-func ({{$classReceiver}} {{$structName}}) Alloc() {{$structName}} {
-	ret := objc.ID({{$varName}}).Send(objc.RegisterName("alloc"))
-	return {{$structName}}{ret}
+func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
+	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.Class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func ({{$classReceiver}} {{$classTypeName}}) New() {{$structName}} {
+	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.Class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
 }
 
 // Init initializes the instance.
 func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
-	ret := {{$instReceiver}}.ID.Send(objc.RegisterName("init"))
-	return {{$structName}}{ret}
+	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func ({{$instReceiver}} {{$structName}}) Autorelease() {{$structName}} {
+	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// New{{$structName}} creates a new {{$structName}} instance.
+func New{{$structName}}() {{$structName}} {
+	return {{$structName}}Class.New()
 }
 
 {{- range prepareInitMethods .Methods}}
+{{- if ne .Selector "init"}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
 {{- $paramNames := formatMethodParamNames .}}
 
 {{- if .Abstract}}
-// {{.Abstract}} [Full Topic]
+// {{commentLine .Abstract}} [Full Topic]
 {{end -}}
 {{- if .DocURL}}
 //
-// [Full Topic]: {{.DocURL}}
+// [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
-	instance := {{$structName}}{}.Alloc()
-	{{- if eq .Selector "init"}}
-	instance = instance.Init()
-	{{- else}}
-	sel := objc.RegisterName("{{.Selector}}")
-	ret := instance.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	instance = {{$structName}}{ret}
-	{{- end}}
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
+	instance := {{$structName}}Class.Alloc()
+	rv := objc.Send[{{$structName}}](instance.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv.Autorelease()
+	return rv
 }
+{{- end}}
 {{- end}}
 
 {{end -}}
 {{- range prepareClassMethods .Methods}}
+{{- if not (isEssentialSelector .Selector)}}
 {{- $paramNames := formatMethodParamNames .}}
+{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 
 {{- if .Abstract}}
-// {{.Abstract}} [Full Topic]
+// {{commentLine .Abstract}} [Full Topic]
 {{end -}}
 {{- if .DocURL}}
 //
-// [Full Topic]: {{.DocURL}}
+// [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
-func ({{$classReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}} {
-	sel := objc.RegisterName("{{.Selector}}")
+func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	ret := objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	return {{wrapObjCReturn (mapObjCTypeToGo .ReturnType $framework)}}
+	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.Class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	return rv
 	{{- else}}
-	objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	objc.Send[objc.ID](objc.ID({{$classReceiver}}.Class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
 }
 {{- end}}
+{{- end}}
 
 {{- range prepareInstanceMethods .Methods}}
+{{- if not (isEssentialSelector .Selector)}}
 {{- $paramNames := formatMethodParamNames .}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 {{- $isInitMethod := hasPrefix .Selector "init"}}
 
 {{- if .Abstract}}
-// {{.Abstract}} [Full Topic]
+// {{commentLine .Abstract}} [Full Topic]
 {{end -}}
 {{- if .DocURL}}
 //
-// [Full Topic]: {{.DocURL}}
+// [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
-	sel := objc.RegisterName("{{.Selector}}")
 	{{- if $isInitMethod}}
-	ret := {{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	return {{$structName}}{ret}
+	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	return rv
 	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	ret := {{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	return {{wrapObjCReturn $goType}}
+	rv := objc.Send[{{$goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	return rv
 	{{- else}}
-	{{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
+	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
 }
+{{- end}}
 {{- end}}
 {{end -}}
 
@@ -522,21 +540,27 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 package {{.PackageName}}_test
 
 import (
-	"{{.PackageName}}"
+	"{{.OutputModule}}/{{.PackageName}}"
 )
 
 {{with .Class -}}
 {{$structName := classToStructName .Name -}}
+{{$packageName := $.PackageName -}}
+{{$className := .Name -}}
 {{if .HasInitMethods -}}
+{{- range prepareInitMethods .Methods}}
+{{- if eq .Selector "init"}}
 
 // ExampleNew{{$structName}} demonstrates how to create a {{$structName}} instance.
 {{if .Abstract -}}
 // {{.Abstract}}
 {{end -}}
 func ExampleNew{{$structName}}() {
-	_ = {{$.PackageName}}.New{{$structName}}()
-	// output:
+	_ = {{$packageName}}.New{{$structName}}()
+	// Output:
 }
+{{end -}}
+{{end -}}
 {{end -}}
 {{end -}}
 
@@ -604,7 +628,7 @@ import "unsafe"
 {{range $typeName, $methods := .TypeMethods -}}
 {{range $methods -}}
 {{- $docData := prepareFunctionDocData . $.Framework}}
-{{if $docData.Abstract}}// {{$docData.Abstract}} [Full Topic]{{else}}// {{$docData.MethodName}} is a {{$docData.Framework}} function. [Full Topic]{{end}}
+{{if $docData.Abstract}}// {{commentLine $docData.Abstract}} [Full Topic]{{else}}// {{$docData.MethodName}} is a {{$docData.Framework}} function. [Full Topic]{{end}}
 {{if $docData.HasAvailability -}}
 //
 {{if $docData.IsDeprecated -}}
@@ -702,4 +726,111 @@ import (
 func TestMain(m *testing.M) {
 	runtime.LockOSThread()
 	os.Exit(m.Run())
+}
+
+-- objc/sel.go --
+// Package objc provides cached Objective-C runtime helpers.
+//
+// This package wraps purego/objc to provide selector caching for better performance.
+package objc
+
+import (
+	"sync"
+
+	purego "github.com/ebitengine/purego/objc"
+)
+
+// Type aliases for convenience
+type (
+	ID    = purego.ID
+	SEL   = purego.SEL
+	Class = purego.Class
+)
+
+var (
+	selCache sync.Map // map[string]purego.SEL
+)
+
+// Sel returns a cached selector for the given name.
+// This avoids the global lock in purego.RegisterName on repeated calls.
+func Sel(name string) SEL {
+	if sel, ok := selCache.Load(name); ok {
+		return sel.(SEL)
+	}
+	sel := purego.RegisterName(name)
+	selCache.Store(name, sel)
+	return sel
+}
+
+// Send calls purego.Send with the given arguments.
+func Send[T any](id ID, sel SEL, args ...any) T {
+	return purego.Send[T](id, sel, args...)
+}
+
+// GetClass returns the class with the given name.
+func GetClass(name string) Class {
+	return purego.GetClass(name)
+}
+
+-- objc/sel_bench_test.go --
+package objc
+
+import (
+	"testing"
+
+	purego "github.com/ebitengine/purego/objc"
+)
+
+// BenchmarkSelCached benchmarks the cached Sel() function
+func BenchmarkSelCached(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = Sel("alloc")
+	}
+}
+
+// BenchmarkRegisterNameDirect benchmarks direct objc.RegisterName calls
+func BenchmarkRegisterNameDirect(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = purego.RegisterName("alloc")
+	}
+}
+
+// BenchmarkSelCachedParallel benchmarks the cached Sel() function with parallel access
+func BenchmarkSelCachedParallel(b *testing.B) {
+	b.ResetTimer()
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			_ = Sel("alloc")
+		}
+	})
+}
+
+// BenchmarkRegisterNameDirectParallel benchmarks direct objc.RegisterName with parallel access
+func BenchmarkRegisterNameDirectParallel(b *testing.B) {
+	b.ResetTimer()
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			_ = purego.RegisterName("alloc")
+		}
+	})
+}
+
+// BenchmarkSelCachedMultipleSelectors benchmarks cache with different selectors
+func BenchmarkSelCachedMultipleSelectors(b *testing.B) {
+	selectors := []string{"alloc", "init", "new", "autorelease", "length", "bytes"}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = Sel(selectors[i%len(selectors)])
+	}
+}
+
+// BenchmarkRegisterNameMultipleSelectors benchmarks RegisterName with different selectors
+func BenchmarkRegisterNameMultipleSelectors(b *testing.B) {
+	selectors := []string{"alloc", "init", "new", "autorelease", "length", "bytes"}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = purego.RegisterName(selectors[i%len(selectors)])
+	}
 }

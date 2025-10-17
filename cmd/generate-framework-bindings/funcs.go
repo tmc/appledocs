@@ -11,12 +11,13 @@ import (
 // templateFuncs is the FuncMap available to all templates
 var templateFuncs = template.FuncMap{
 	// String utilities
-	"join":      strings.Join,
-	"lower":     strings.ToLower,
-	"trimspace": strings.TrimSpace,
-	"trimRight": strings.TrimRight,
-	"hasPrefix": strings.HasPrefix,
-	"dict":      dict,
+	"join":        strings.Join,
+	"lower":       strings.ToLower,
+	"trimspace":   strings.TrimSpace,
+	"trimRight":   strings.TrimRight,
+	"hasPrefix":   strings.HasPrefix,
+	"commentLine": commentLine,
+	"dict":        dict,
 
 	// occ2go type mapping
 	"mapCTypeToGo": occ2go.MapCTypeToGo,
@@ -65,6 +66,8 @@ var templateFuncs = template.FuncMap{
 	"initMethodToConstructorName": initMethodToConstructorName,
 	"sortMethodsByName":           sortMethodsByName,
 	"wrapObjCReturn":              wrapObjCReturn,
+	"isEssentialSelector":         isEssentialSelector,
+	"convertDocURL":               convertDocURL,
 
 	// Property generation helpers
 	"propertyToGoName":         propertyToGoName,
@@ -851,39 +854,51 @@ func needsQuartzCoreImport(methods []*occ2go.ParsedMethod) bool {
 	return false
 }
 
-// prepareClassMethods filters methods to return only class methods
+// prepareClassMethods filters methods to return only class methods, deduplicated by selector.
+// When multiple methods have the same selector, the first one is kept.
 func prepareClassMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 	result := make([]*occ2go.ParsedMethod, 0)
+	seen := make(map[string]bool)
+
 	for _, m := range methods {
-		if m.IsClassMethod {
+		if m.IsClassMethod && !seen[m.Selector] {
 			result = append(result, m)
+			seen[m.Selector] = true
 		}
 	}
 	return result
 }
 
 // prepareInstanceMethods filters methods to return only instance methods,
-// excluding ALL init methods (which are converted to constructors)
+// excluding ALL init methods (which are converted to constructors), deduplicated by selector.
+// When multiple methods have the same selector, the first one is kept.
 func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 	result := make([]*occ2go.ParsedMethod, 0)
+	seen := make(map[string]bool)
+
 	for _, m := range methods {
-		if !m.IsClassMethod {
+		if !m.IsClassMethod && !seen[m.Selector] {
 			// Skip ALL init methods - they're converted to package-level constructors
 			if strings.HasPrefix(m.Selector, "init") {
 				continue
 			}
 			result = append(result, m)
+			seen[m.Selector] = true
 		}
 	}
 	return result
 }
 
-// prepareInitMethods filters methods to return only init methods (for constructor generation)
+// prepareInitMethods filters methods to return only init methods (for constructor generation), deduplicated by selector.
+// When multiple methods have the same selector, the first one is kept.
 func prepareInitMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 	result := make([]*occ2go.ParsedMethod, 0)
+	seen := make(map[string]bool)
+
 	for _, m := range methods {
-		if !m.IsClassMethod && strings.HasPrefix(m.Selector, "init") {
+		if !m.IsClassMethod && strings.HasPrefix(m.Selector, "init") && !seen[m.Selector] {
 			result = append(result, m)
+			seen[m.Selector] = true
 		}
 	}
 	return result
@@ -1088,4 +1103,77 @@ func mergeImports(map1, map2 map[string]bool) map[string]bool {
 	}
 
 	return result
+}
+
+// commentLine formats a string as a single-line Go comment, handling newlines and special characters.
+// Multi-line text is collapsed to a single line with spaces.
+func commentLine(s string) string {
+	if s == "" {
+		return ""
+	}
+	// Replace newlines with spaces
+	s = strings.ReplaceAll(s, "\n", " ")
+	s = strings.ReplaceAll(s, "\r", " ")
+
+	// Collapse multiple spaces
+	for strings.Contains(s, "  ") {
+		s = strings.ReplaceAll(s, "  ", " ")
+	}
+
+	return strings.TrimSpace(s)
+}
+
+// isEssentialSelector checks if a selector is one of the essential methods
+// we generate manually (alloc, new, init, autorelease, etc.) for classes with init methods,
+// or would conflict with embedded fields (like "class" which conflicts with the Class field).
+// These should be skipped when generating methods from Apple's documentation to avoid duplicates.
+func isEssentialSelector(selector string) bool {
+	essentialSelectors := []string{
+		"alloc",
+		"allocWithZone:",
+		"new",
+		"init",
+		"autorelease",
+		"copy",
+		"copyWithZone:",
+		"mutableCopy",
+		"mutableCopyWithZone:",
+		"class",  // Conflicts with embedded objc.Class field
+	}
+
+	for _, essential := range essentialSelectors {
+		if selector == essential {
+			return true
+		}
+	}
+	return false
+}
+
+// convertDocURL converts Apple's doc:// scheme URLs to https:// URLs.
+// If the URL doesn't start with "doc://", it returns it unchanged.
+// Examples:
+//   doc://com.apple.foundation/documentation/Foundation/NSString -> https://developer.apple.com/documentation/foundation/nsstring
+//   https://developer.apple.com/... -> https://developer.apple.com/... (unchanged)
+func convertDocURL(url string) string {
+	if url == "" {
+		return ""
+	}
+
+	// If it's already an https URL or doesn't start with doc://, return as-is
+	if !strings.HasPrefix(url, "doc://") {
+		return url
+	}
+
+	// Strip doc:// prefix
+	url = strings.TrimPrefix(url, "doc://")
+
+	// Remove the domain part (e.g., com.apple.foundation, com.apple.objectivec)
+	parts := strings.SplitN(url, "/", 2)
+	if len(parts) < 2 {
+		// Malformed URL, return empty to skip it
+		return ""
+	}
+
+	// Construct https URL
+	return "https://developer.apple.com/" + parts[1]
 }
