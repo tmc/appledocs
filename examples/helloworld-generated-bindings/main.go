@@ -12,6 +12,7 @@ package main
 import (
 	"fmt"
 	"runtime"
+	"unsafe"
 
 	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
@@ -44,14 +45,14 @@ type NSRect struct {
 
 // NewButton creates a new NSButton with the given frame
 func NewButton(frame NSRect) appkit.Button {
-	button := appkit.Button{}.Alloc()
+	button := appkit.ButtonClass.Alloc()
 	button.ID = button.ID.Send(objc.RegisterName("initWithFrame:"), frame)
 	return button
 }
 
 // NewTextField creates a new NSTextField with the given frame
 func NewTextField(frame NSRect) appkit.TextField {
-	textField := appkit.TextField{}.Alloc()
+	textField := appkit.TextFieldClass.Alloc()
 	textField.ID = textField.ID.Send(objc.RegisterName("initWithFrame:"), frame)
 	return textField
 }
@@ -83,9 +84,8 @@ func createAppDelegate() objc.ID {
 		// Define the windowShouldClose: method that terminates the app
 		windowShouldClose := func(self objc.ID, _cmd objc.SEL, sender objc.ID) bool {
 			// Terminate the application when window closes
-			appClass := objc.GetClass("NSApplication")
-			app := objc.ID(appClass).Send(objc.RegisterName("sharedApplication"))
-			app.Send(objc.RegisterName("terminate:"), 0)
+			app := appkit.SharedApplication()
+			app.Terminate(0)
 			return true
 		}
 
@@ -125,9 +125,8 @@ func createButtonHandler() objc.ID {
 			clickCount++
 			fmt.Printf("Button clicked! Count: %d\n", clickCount)
 
-			// Update label
-			counterLabel.ID.Send(objc.RegisterName("setStringValue:"),
-				NewNSString(fmt.Sprintf("Button clicks: %d", clickCount)))
+			// Update label using typed method
+			counterLabel.SetStringValue(fmt.Sprintf("Button clicks: %d", clickCount))
 		}
 
 		class, _ = objc.RegisterClass(
@@ -153,15 +152,14 @@ func createButtonHandler() objc.ID {
 func main() {
 	fmt.Println("=== Hello World (Generated Bindings Only) ===\n")
 
-	// Get NSApplication shared instance
-	appClass := objc.GetClass("NSApplication")
-	app := objc.ID(appClass).Send(objc.RegisterName("sharedApplication"))
+	// Get NSApplication shared instance using typed method
+	app := appkit.SharedApplication()
 
 	// Set activation policy to regular (makes it a proper app with dock icon)
-	app.Send(objc.RegisterName("setActivationPolicy:"), 0) // NSApplicationActivationPolicyRegular = 0
+	app.SetActivationPolicy(0) // NSApplicationActivationPolicyRegular = 0
 
 	// Create window
-	window := appkit.Window{}.Alloc()
+	window := appkit.WindowClass.Alloc()
 
 	frame := NSRect{
 		Origin: NSPoint{X: 100, Y: 100},
@@ -178,40 +176,40 @@ func main() {
 		false,
 	)
 
-	// Set window title
-	window.ID.Send(objc.RegisterName("setTitle:"), NewNSString("Hello from Generated Bindings!"))
+	// Set window title using typed method
+	window.SetTitle("Hello from Generated Bindings!")
 
 	// Create and set delegate to handle window close
 	delegate := createAppDelegate()
-	window.ID.Send(objc.RegisterName("setDelegate:"), delegate)
+	window.SetDelegate(delegate)
 
-	// Get content view
-	contentView := window.ID.Send(objc.RegisterName("contentView"))
+	// Get content view using typed method
+	contentView := appkit.ViewFrom(window.ContentView())
 
-	// Add a label
+	// Add a label using typed methods
 	label := NewTextField(NSRect{
 		Origin: NSPoint{X: 50, Y: 200},
 		Size:   NSSize{Width: 300, Height: 50},
 	})
-	label.ID.Send(objc.RegisterName("setStringValue:"), NewNSString("This uses only generated bindings!"))
-	label.ID.Send(objc.RegisterName("setEditable:"), false)
-	label.ID.Send(objc.RegisterName("setBordered:"), false)
-	label.ID.Send(objc.RegisterName("setBackgroundColor:"), 0) // nil/transparent
+	label.SetStringValue("This uses only generated bindings!")
+	label.SetEditable(false)
+	label.SetBordered(false)
+	label.SetBackgroundColor(nil) // transparent
 
-	contentView.Send(objc.RegisterName("addSubview:"), label.ID)
+	contentView.AddSubview(unsafe.Pointer(label.ID))
 
-	// Add counter label
+	// Add counter label using typed methods
 	counterLabel = NewTextField(NSRect{
 		Origin: NSPoint{X: 50, Y: 80},
 		Size:   NSSize{Width: 300, Height: 30},
 	})
-	counterLabel.ID.Send(objc.RegisterName("setStringValue:"), NewNSString("Button clicks: 0"))
-	counterLabel.ID.Send(objc.RegisterName("setEditable:"), false)
-	counterLabel.ID.Send(objc.RegisterName("setBordered:"), false)
-	counterLabel.ID.Send(objc.RegisterName("setBackgroundColor:"), 0)
-	counterLabel.ID.Send(objc.RegisterName("setAlignment:"), 2) // NSTextAlignmentCenter = 2
+	counterLabel.SetStringValue("Button clicks: 0")
+	counterLabel.SetEditable(false)
+	counterLabel.SetBordered(false)
+	counterLabel.SetBackgroundColor(nil) // transparent
+	counterLabel.SetAlignment(2)         // NSTextAlignmentCenter = 2
 
-	contentView.Send(objc.RegisterName("addSubview:"), counterLabel.ID)
+	contentView.AddSubview(unsafe.Pointer(counterLabel.ID))
 
 	// Create button using NewButton helper
 	button := NewButton(NSRect{
@@ -219,37 +217,33 @@ func main() {
 		Size:   NSSize{Width: 100, Height: 40},
 	})
 
-	// Set button title
-	button.ID.Send(objc.RegisterName("setTitle:"), NewNSString("Click Me!"))
-
-	// Set button type (NSMomentaryLight = 0)
-	button.ID.Send(objc.RegisterName("setButtonType:"), 0)
-
-	// Set bezel style (NSRoundedBezelStyle = 1)
-	button.ID.Send(objc.RegisterName("setBezelStyle:"), 1)
+	// Configure button using typed methods
+	button.SetTitle("Click Me!")
+	button.SetButtonType(0) // NSMomentaryLight = 0
+	button.SetBezelStyle(1) // NSRoundedBezelStyle = 1
 
 	// Create button handler and set as target
 	buttonHandler := createButtonHandler()
-	button.ID.Send(objc.RegisterName("setTarget:"), buttonHandler)
-	button.ID.Send(objc.RegisterName("setAction:"), objc.RegisterName("buttonClicked:"))
+	button.SetTarget(buttonHandler)
+	button.SetAction(objc.RegisterName("buttonClicked:"))
 
 	// Add button to window
-	contentView.Send(objc.RegisterName("addSubview:"), button.ID)
+	contentView.AddSubview(unsafe.Pointer(button.ID))
 
 	// Show window
 	window.MakeKeyAndOrderFront(0)
 
-	// Activate app
-	app.Send(objc.RegisterName("activateIgnoringOtherApps:"), true)
+	// Activate app using typed method
+	app.ActivateIgnoringOtherApps(true)
 
-	fmt.Println("✅ Window created using only generated bindings")
+	fmt.Println("✅ Window created using typed generated bindings")
 	fmt.Println("   No darwinkit dependency!")
 	fmt.Println("   Using:")
+	fmt.Println("   - Typed methods from generated bindings")
 	fmt.Println("   - purego/objc for Objective-C runtime")
-	fmt.Println("   - Generated type definitions")
 	fmt.Println("   Click the button to see the counter increment!")
 	fmt.Println("   Close window or press Cmd+Q to quit\n")
 
-	// Run event loop
-	app.Send(objc.RegisterName("run"))
+	// Run event loop using typed method
+	app.Run()
 }
