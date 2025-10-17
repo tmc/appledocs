@@ -290,6 +290,30 @@ type {{$classTypeName}} struct {
 	class objc.Class
 }
 
+// An interface definition for the [{{$structName}}] class.
+type I{{$structName}} interface {
+	{{- if and .SuperClass (ne .SuperClass "NSObject")}}
+	{{- $superStructName := classToStructName .SuperClass}}
+	{{- $superResolved := resolveType $.Framework $superStructName}}
+	{{- if hasPrefix $superResolved "foundation."}}
+	I{{trimPrefix $superResolved "foundation."}}
+	{{- else if hasPrefix $superResolved "objectivec."}}
+	I{{trimPrefix $superResolved "objectivec."}}
+	{{- else}}
+	I{{$superStructName}}
+	{{- end}}
+	{{- else}}
+	objc.IObject
+	{{- end}}
+	{{- range prepareInstanceMethods .Methods}}
+	{{- if not (isEssentialSelector .Selector)}}
+	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $isInitMethod := hasPrefix .Selector "init"}}
+	{{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
+	{{- end}}
+	{{- end}}
+}
+
 {{if .Abstract -}}
 // {{commentLine .Abstract}} [Full Topic]
 {{end -}}
@@ -510,6 +534,30 @@ var {{$varName}} = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
 
 type {{$classTypeName}} struct {
 	class objc.Class
+}
+
+// An interface definition for the [{{$structName}}] class.
+type I{{$structName}} interface {
+	{{- if and .SuperClass (ne .SuperClass "NSObject")}}
+	{{- $superStructName := classToStructName .SuperClass}}
+	{{- $superResolved := resolveType $.Framework $superStructName}}
+	{{- if hasPrefix $superResolved "foundation."}}
+	I{{trimPrefix $superResolved "foundation."}}
+	{{- else if hasPrefix $superResolved "objectivec."}}
+	I{{trimPrefix $superResolved "objectivec."}}
+	{{- else}}
+	I{{$superStructName}}
+	{{- end}}
+	{{- else}}
+	objc.IObject
+	{{- end}}
+	{{- range prepareInstanceMethods .Methods}}
+	{{- if not (isEssentialSelector .Selector)}}
+	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $isInitMethod := hasPrefix .Selector "init"}}
+	{{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
+	{{- end}}
+	{{- end}}
 }
 
 {{if .Abstract -}}

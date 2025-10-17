@@ -15,6 +15,7 @@ var templateFuncs = template.FuncMap{
 	"lower":       strings.ToLower,
 	"trimspace":   strings.TrimSpace,
 	"trimRight":   strings.TrimRight,
+	"trimPrefix":  strings.TrimPrefix,
 	"hasPrefix":   strings.HasPrefix,
 	"commentLine": commentLine,
 	"dict":        dict,
