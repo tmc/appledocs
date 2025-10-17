@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Progress] class.
-var ProgressClass objc.Class
+var ProgressClass = _ProgressClass{objc.GetClass("NSProgress")}
 
-func init() {
-	ProgressClass = objc.GetClass("NSProgress")
+type _ProgressClass struct {
+	class objc.Class
 }
 
 type Progress struct {
@@ -26,53 +26,67 @@ func ProgressFrom(ptr unsafe.Pointer) Progress {
 }
 
 // Alloc allocates a new instance without initialization.
-func (pc Progress) Alloc() Progress {
-	ret := objc.ID(ProgressClass).Send(objc.RegisterName("alloc"))
-	return Progress{ret}
+func (pc _ProgressClass) Alloc() Progress {
+	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _ProgressClass) New() Progress {
+	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
 }
 
 // Init initializes the instance.
 func (p_ Progress) Init() Progress {
-	ret := p_.ID.Send(objc.RegisterName("init"))
-	return Progress{ret}
+	rv := objc.Send[Progress](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ Progress) Autorelease() Progress {
+	rv := objc.Send[Progress](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewProgress creates a new Progress instance.
+func NewProgress() Progress {
+	return ProgressClass.New()
 }
 // Creates a new progress instance. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/Progress/init(parent:userInfo:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(parent:userInfo:)
 func NewProgressWithParentUserInfo(parentProgressOrNil unsafe.Pointer, userInfoOrNil unsafe.Pointer) Progress {
-	instance := Progress{}.Alloc()
-	sel := objc.RegisterName("initWithParent:userInfo:")
-	ret := instance.ID.Send(sel, parentProgressOrNil, userInfoOrNil)
-	instance = Progress{ret}
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
+	instance := ProgressClass.Alloc()
+	rv := objc.Send[Progress](instance.ID, objc.Sel("initWithParent:userInfo:"), parentProgressOrNil, userInfoOrNil)
+	rv.Autorelease()
+	return rv
 }
 
 
 // Creates and returns a progress instance. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/Progress/init(totalUnitCount:)
-func (pc Progress) ProgressWithTotalUnitCount(unitCount unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("progressWithTotalUnitCount:")
-	ret := objc.ID(ProgressClass).Send(sel, unitCount)
-	return unsafe.Pointer(ret)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
+func (pc _ProgressClass) ProgressWithTotalUnitCount(unitCount unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
+	return rv
 }
 // Sets the progress object as the current object of the current thread, and assigns the amount of work for the next suboperation progress object to perform. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/Progress/becomeCurrent(withPendingUnitCount:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/becomeCurrent(withPendingUnitCount:)
 func (p_ Progress) BecomeCurrentWithPendingUnitCount(unitCount unsafe.Pointer) {
-	sel := objc.RegisterName("becomeCurrentWithPendingUnitCount:")
-	p_.ID.Send(sel, unitCount)
+	objc.Send[objc.ID](p_.ID, objc.Sel("becomeCurrentWithPendingUnitCount:"), unitCount)
 }
 // Cancels progress tracking. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/Progress/cancel()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/cancel()
 func (p_ Progress) Cancel() {
-	sel := objc.RegisterName("cancel")
-	p_.ID.Send(sel)
+	objc.Send[objc.ID](p_.ID, objc.Sel("cancel"))
 }
+
 

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [OrderedSet] class.
-var OrderedSetClass objc.Class
+var OrderedSetClass = _OrderedSetClass{objc.GetClass("NSOrderedSet")}
 
-func init() {
-	OrderedSetClass = objc.GetClass("NSOrderedSet")
+type _OrderedSetClass struct {
+	class objc.Class
 }
 
 type OrderedSet struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Expression] class.
-var ExpressionClass objc.Class
+var ExpressionClass = _ExpressionClass{objc.GetClass("NSExpression")}
 
-func init() {
-	ExpressionClass = objc.GetClass("NSExpression")
+type _ExpressionClass struct {
+	class objc.Class
 }
 
 type Expression struct {
@@ -29,11 +29,10 @@ func ExpressionFrom(ptr unsafe.Pointer) Expression {
 // Evaluates an expression using a specified object and context. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSExpression/expressionValue(with:context:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionValue(with:context:)
 func (e_ Expression) ExpressionValueWithObjectContext(object objc.ID, context unsafe.Pointer) objc.ID {
-	sel := objc.RegisterName("expressionValueWithObject:context:")
-	ret := e_.ID.Send(sel, object, context)
-	return ret
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("expressionValueWithObject:context:"), object, context)
+	return rv
 }
 
 

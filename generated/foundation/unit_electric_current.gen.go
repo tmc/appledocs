@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitElectricCurrent] class.
-var UnitElectricCurrentClass objc.Class
+var UnitElectricCurrentClass = _UnitElectricCurrentClass{objc.GetClass("NSUnitElectricCurrent")}
 
-func init() {
-	UnitElectricCurrentClass = objc.GetClass("NSUnitElectricCurrent")
+type _UnitElectricCurrentClass struct {
+	class objc.Class
 }
 
 type UnitElectricCurrent struct {

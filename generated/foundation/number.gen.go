@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Number] class.
-var NumberClass objc.Class
+var NumberClass = _NumberClass{objc.GetClass("NSNumber")}
 
-func init() {
-	NumberClass = objc.GetClass("NSNumber")
+type _NumberClass struct {
+	class objc.Class
 }
 
 type Number struct {
@@ -29,11 +29,10 @@ func NumberFrom(ptr unsafe.Pointer) Number {
 // Returns a string that represents the contents of the number object for a given locale. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSNumber/description(withLocale:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/description(withLocale:)
 func (n_ Number) DescriptionWithLocale(locale objc.ID) unsafe.Pointer {
-	sel := objc.RegisterName("descriptionWithLocale:")
-	ret := n_.ID.Send(sel, locale)
-	return unsafe.Pointer(ret)
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("descriptionWithLocale:"), locale)
+	return rv
 }
 
 

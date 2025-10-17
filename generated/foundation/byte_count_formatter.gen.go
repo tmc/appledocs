@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ByteCountFormatter] class.
-var ByteCountFormatterClass objc.Class
+var ByteCountFormatterClass = _ByteCountFormatterClass{objc.GetClass("NSByteCountFormatter")}
 
-func init() {
-	ByteCountFormatterClass = objc.GetClass("NSByteCountFormatter")
+type _ByteCountFormatterClass struct {
+	class objc.Class
 }
 
 type ByteCountFormatter struct {

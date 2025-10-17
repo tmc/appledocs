@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ExtensionItem] class.
-var ExtensionItemClass objc.Class
+var ExtensionItemClass = _ExtensionItemClass{objc.GetClass("NSExtensionItem")}
 
-func init() {
-	ExtensionItemClass = objc.GetClass("NSExtensionItem")
+type _ExtensionItemClass struct {
+	class objc.Class
 }
 
 type ExtensionItem struct {

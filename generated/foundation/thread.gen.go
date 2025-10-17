@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Thread] class.
-var ThreadClass objc.Class
+var ThreadClass = _ThreadClass{objc.GetClass("NSThread")}
 
-func init() {
-	ThreadClass = objc.GetClass("NSThread")
+type _ThreadClass struct {
+	class objc.Class
 }
 
 type Thread struct {

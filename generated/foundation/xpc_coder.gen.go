@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XPCCoder] class.
-var XPCCoderClass objc.Class
+var XPCCoderClass = _XPCCoderClass{objc.GetClass("NSXPCCoder")}
 
-func init() {
-	XPCCoderClass = objc.GetClass("NSXPCCoder")
+type _XPCCoderClass struct {
+	class objc.Class
 }
 
 type XPCCoder struct {

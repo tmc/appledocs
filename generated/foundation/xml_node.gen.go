@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XMLNode] class.
-var XMLNodeClass objc.Class
+var XMLNodeClass = _XMLNodeClass{objc.GetClass("NSXMLNode")}
 
-func init() {
-	XMLNodeClass = objc.GetClass("NSXMLNode")
+type _XMLNodeClass struct {
+	class objc.Class
 }
 
 type XMLNode struct {

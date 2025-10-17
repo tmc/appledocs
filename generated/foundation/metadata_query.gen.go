@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MetadataQuery] class.
-var MetadataQueryClass objc.Class
+var MetadataQueryClass = _MetadataQueryClass{objc.GetClass("NSMetadataQuery")}
 
-func init() {
-	MetadataQueryClass = objc.GetClass("NSMetadataQuery")
+type _MetadataQueryClass struct {
+	class objc.Class
 }
 
 type MetadataQuery struct {

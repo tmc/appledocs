@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XPCListener] class.
-var XPCListenerClass objc.Class
+var XPCListenerClass = _XPCListenerClass{objc.GetClass("NSXPCListener")}
 
-func init() {
-	XPCListenerClass = objc.GetClass("NSXPCListener")
+type _XPCListenerClass struct {
+	class objc.Class
 }
 
 type XPCListener struct {
@@ -29,11 +29,10 @@ func XPCListenerFrom(ptr unsafe.Pointer) XPCListener {
 // Returns a new anonymous listener connection. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSXPCListener/anonymous()
-func (xc XPCListener) AnonymousListener() unsafe.Pointer {
-	sel := objc.RegisterName("anonymousListener")
-	ret := objc.ID(XPCListenerClass).Send(sel)
-	return unsafe.Pointer(ret)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/anonymous()
+func (xc _XPCListenerClass) AnonymousListener() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(xc.class), objc.Sel("anonymousListener"))
+	return rv
 }
 
 

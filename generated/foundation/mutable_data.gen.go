@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableData] class.
-var MutableDataClass objc.Class
+var MutableDataClass = _MutableDataClass{objc.GetClass("NSMutableData")}
 
-func init() {
-	MutableDataClass = objc.GetClass("NSMutableData")
+type _MutableDataClass struct {
+	class objc.Class
 }
 
 type MutableData struct {

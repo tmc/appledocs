@@ -3,13 +3,15 @@
 package foundation_test
 
 import (
-	"foundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
+
+
 
 // ExampleNewURLSession demonstrates how to create a URLSession instance.
 func ExampleNewURLSession() {
 	_ = foundation.NewURLSession()
-	// output:
+	// Output:
 }
 
 

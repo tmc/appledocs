@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLAuthenticationChallenge] class.
-var URLAuthenticationChallengeClass objc.Class
+var URLAuthenticationChallengeClass = _URLAuthenticationChallengeClass{objc.GetClass("NSURLAuthenticationChallenge")}
 
-func init() {
-	URLAuthenticationChallengeClass = objc.GetClass("NSURLAuthenticationChallenge")
+type _URLAuthenticationChallengeClass struct {
+	class objc.Class
 }
 
 type URLAuthenticationChallenge struct {

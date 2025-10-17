@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLConnection] class.
-var URLConnectionClass objc.Class
+var URLConnectionClass = _URLConnectionClass{objc.GetClass("NSURLConnection")}
 
-func init() {
-	URLConnectionClass = objc.GetClass("NSURLConnection")
+type _URLConnectionClass struct {
+	class objc.Class
 }
 
 type URLConnection struct {

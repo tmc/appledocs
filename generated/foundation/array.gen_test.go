@@ -3,13 +3,16 @@
 package foundation_test
 
 import (
-	"foundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
+
+
 // ExampleNewArray demonstrates how to create a Array instance.
+// Initializes a newly allocated array.
 func ExampleNewArray() {
 	_ = foundation.NewArray()
-	// output:
+	// Output:
 }
 
 

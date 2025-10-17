@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Formatter] class.
-var FormatterClass objc.Class
+var FormatterClass = _FormatterClass{objc.GetClass("NSFormatter")}
 
-func init() {
-	FormatterClass = objc.GetClass("NSFormatter")
+type _FormatterClass struct {
+	class objc.Class
 }
 
 type Formatter struct {
@@ -29,11 +29,10 @@ func FormatterFrom(ptr unsafe.Pointer) Formatter {
 // The default implementation of this method raises an exception. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/Formatter/string(for:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/string(for:)
 func (f_ Formatter) StringForObjectValue(obj objc.ID) unsafe.Pointer {
-	sel := objc.RegisterName("stringForObjectValue:")
-	ret := f_.ID.Send(sel, obj)
-	return unsafe.Pointer(ret)
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("stringForObjectValue:"), obj)
+	return rv
 }
 
 

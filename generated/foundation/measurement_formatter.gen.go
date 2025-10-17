@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MeasurementFormatter] class.
-var MeasurementFormatterClass objc.Class
+var MeasurementFormatterClass = _MeasurementFormatterClass{objc.GetClass("NSMeasurementFormatter")}
 
-func init() {
-	MeasurementFormatterClass = objc.GetClass("NSMeasurementFormatter")
+type _MeasurementFormatterClass struct {
+	class objc.Class
 }
 
 type MeasurementFormatter struct {

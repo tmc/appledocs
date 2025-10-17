@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MachPort] class.
-var MachPortClass objc.Class
+var MachPortClass = _MachPortClass{objc.GetClass("NSMachPort")}
 
-func init() {
-	MachPortClass = objc.GetClass("NSMachPort")
+type _MachPortClass struct {
+	class objc.Class
 }
 
 type MachPort struct {

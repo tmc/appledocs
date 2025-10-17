@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLSessionConfiguration] class.
-var URLSessionConfigurationClass objc.Class
+var URLSessionConfigurationClass = _URLSessionConfigurationClass{objc.GetClass("NSURLSessionConfiguration")}
 
-func init() {
-	URLSessionConfigurationClass = objc.GetClass("NSURLSessionConfiguration")
+type _URLSessionConfigurationClass struct {
+	class objc.Class
 }
 
 type URLSessionConfiguration struct {
@@ -29,11 +29,10 @@ func URLSessionConfigurationFrom(ptr unsafe.Pointer) URLSessionConfiguration {
 // Returns a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/URLSessionConfiguration/backgroundSessionConfiguration(_:)
-func (uc URLSessionConfiguration) BackgroundSessionConfiguration(identifier string) unsafe.Pointer {
-	sel := objc.RegisterName("backgroundSessionConfiguration:")
-	ret := objc.ID(URLSessionConfigurationClass).Send(sel, identifier)
-	return unsafe.Pointer(ret)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/backgroundSessionConfiguration(_:)
+func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("backgroundSessionConfiguration:"), identifier)
+	return rv
 }
 
 

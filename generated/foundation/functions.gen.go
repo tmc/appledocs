@@ -87,7 +87,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSClassFromString(_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassFromString(_:)
 func NSClassFromString(aClassName unsafe.Pointer) unsafe.Pointer {
 	return _NSClassFromString(aClassName)
 	}
@@ -99,7 +99,7 @@ func NSClassFromString(aClassName unsafe.Pointer) unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSCopyObject
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyObject
 func NSCopyObject(object unsafe.Pointer, extraBytes unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
 	return _NSCopyObject(object, extraBytes, zone)
 	}
@@ -109,7 +109,7 @@ func NSCopyObject(object unsafe.Pointer, extraBytes unsafe.Pointer, zone unsafe.
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSCountFrames
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountFrames
 func NSCountFrames() unsafe.Pointer {
 	return _NSCountFrames()
 	}
@@ -119,7 +119,7 @@ func NSCountFrames() unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSFileTypeForHFSTypeCode(_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileTypeForHFSTypeCode(_:)
 func NSFileTypeForHFSTypeCode(hfsFileTypeCode unsafe.Pointer) unsafe.Pointer {
 	return _NSFileTypeForHFSTypeCode(hfsFileTypeCode)
 	}
@@ -129,7 +129,7 @@ func NSFileTypeForHFSTypeCode(hfsFileTypeCode unsafe.Pointer) unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSFrameAddress
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFrameAddress
 func NSFrameAddress(frame unsafe.Pointer) unsafe.Pointer {
 	return _NSFrameAddress(frame)
 	}
@@ -139,7 +139,7 @@ func NSFrameAddress(frame unsafe.Pointer) unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSFullUserName()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFullUserName()
 func NSFullUserName() unsafe.Pointer {
 	return _NSFullUserName()
 	}
@@ -149,7 +149,7 @@ func NSFullUserName() unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSGetUncaughtExceptionHandler()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetUncaughtExceptionHandler()
 func NSGetUncaughtExceptionHandler() unsafe.Pointer {
 	return _NSGetUncaughtExceptionHandler()
 	}
@@ -159,7 +159,7 @@ func NSGetUncaughtExceptionHandler() unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSHFSTypeCodeFromFileType(_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHFSTypeCodeFromFileType(_:)
 func NSHFSTypeCodeFromFileType(fileTypeString unsafe.Pointer) unsafe.Pointer {
 	return _NSHFSTypeCodeFromFileType(fileTypeString)
 	}
@@ -169,7 +169,7 @@ func NSHFSTypeCodeFromFileType(fileTypeString unsafe.Pointer) unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSHFSTypeOfFile(_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHFSTypeOfFile(_:)
 func NSHFSTypeOfFile(fullFilePath unsafe.Pointer) unsafe.Pointer {
 	return _NSHFSTypeOfFile(fullFilePath)
 	}
@@ -179,7 +179,7 @@ func NSHFSTypeOfFile(fullFilePath unsafe.Pointer) unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSHomeDirectory()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHomeDirectory()
 func NSHomeDirectory() unsafe.Pointer {
 	return _NSHomeDirectory()
 	}
@@ -189,7 +189,7 @@ func NSHomeDirectory() unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSHomeDirectoryForUser(_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHomeDirectoryForUser(_:)
 func NSHomeDirectoryForUser(userName unsafe.Pointer) unsafe.Pointer {
 	return _NSHomeDirectoryForUser(userName)
 	}
@@ -199,7 +199,7 @@ func NSHomeDirectoryForUser(userName unsafe.Pointer) unsafe.Pointer {
 //
 // Added in macOS 10.7.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSIntegralRectWithOptions(_:_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntegralRectWithOptions(_:_:)
 func NSIntegralRectWithOptions(aRect unsafe.Pointer, opts unsafe.Pointer) unsafe.Pointer {
 	return _NSIntegralRectWithOptions(aRect, opts)
 	}
@@ -209,7 +209,7 @@ func NSIntegralRectWithOptions(aRect unsafe.Pointer, opts unsafe.Pointer) unsafe
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSIsFreedObject
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIsFreedObject
 func NSIsFreedObject(anObject unsafe.Pointer) bool {
 	return _NSIsFreedObject(anObject)
 	}
@@ -219,7 +219,7 @@ func NSIsFreedObject(anObject unsafe.Pointer) bool {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSLog
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLog
 func NSLog(format unsafe.Pointer) {
 	_NSLog(format)
 	}
@@ -229,7 +229,7 @@ func NSLog(format unsafe.Pointer) {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSLogv(_:_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogv(_:_:)
 func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
 	_NSLogv(format, args)
 	}
@@ -239,7 +239,7 @@ func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSOpenStepRootDirectory()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOpenStepRootDirectory()
 func NSOpenStepRootDirectory() unsafe.Pointer {
 	return _NSOpenStepRootDirectory()
 	}
@@ -249,7 +249,7 @@ func NSOpenStepRootDirectory() unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSRecordAllocationEvent
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecordAllocationEvent
 func NSRecordAllocationEvent(eventType int, object unsafe.Pointer) {
 	_NSRecordAllocationEvent(eventType, object)
 	}
@@ -259,7 +259,7 @@ func NSRecordAllocationEvent(eventType int, object unsafe.Pointer) {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSReturnAddress
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSReturnAddress
 func NSReturnAddress(frame unsafe.Pointer) unsafe.Pointer {
 	return _NSReturnAddress(frame)
 	}
@@ -269,7 +269,7 @@ func NSReturnAddress(frame unsafe.Pointer) unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSSearchPathForDirectoriesInDomains(_:_:_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSearchPathForDirectoriesInDomains(_:_:_:)
 func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask unsafe.Pointer, expandTilde bool) unsafe.Pointer {
 	return _NSSearchPathForDirectoriesInDomains(directory, domainMask, expandTilde)
 	}
@@ -279,7 +279,7 @@ func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask un
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSSetUncaughtExceptionHandler(_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetUncaughtExceptionHandler(_:)
 func NSSetUncaughtExceptionHandler() {
 	_NSSetUncaughtExceptionHandler()
 	}
@@ -289,7 +289,7 @@ func NSSetUncaughtExceptionHandler() {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSTemporaryDirectory()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTemporaryDirectory()
 func NSTemporaryDirectory() unsafe.Pointer {
 	return _NSTemporaryDirectory()
 	}
@@ -299,7 +299,7 @@ func NSTemporaryDirectory() unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSUserName()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserName()
 func NSUserName() unsafe.Pointer {
 	return _NSUserName()
 	}
@@ -311,7 +311,7 @@ func NSUserName() unsafe.Pointer {
 //
 // Added in macOS 10.0.
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NXReadNSObjectFromCoder
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NXReadNSObjectFromCoder
 func NXReadNSObjectFromCoder(decoder unsafe.Pointer) unsafe.Pointer {
 	return _NXReadNSObjectFromCoder(decoder)
 	}

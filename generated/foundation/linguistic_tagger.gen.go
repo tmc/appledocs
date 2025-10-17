@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LinguisticTagger] class.
-var LinguisticTaggerClass objc.Class
+var LinguisticTaggerClass = _LinguisticTaggerClass{objc.GetClass("NSLinguisticTagger")}
 
-func init() {
-	LinguisticTaggerClass = objc.GetClass("NSLinguisticTagger")
+type _LinguisticTaggerClass struct {
+	class objc.Class
 }
 
 type LinguisticTagger struct {
@@ -29,10 +29,9 @@ func LinguisticTaggerFrom(ptr unsafe.Pointer) LinguisticTagger {
 // Enumerates over a given range of the string and calls the specified block for each tag. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSLinguisticTagger/enumerateTags(in:scheme:options:using:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/enumerateTags(in:scheme:options:using:)
 func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ unsafe.Pointer, tagScheme unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer) {
-	sel := objc.RegisterName("enumerateTagsInRange:scheme:options:usingBlock:")
-	l_.ID.Send(sel, range_, tagScheme, opts, block)
+	objc.Send[objc.ID](l_.ID, objc.Sel("enumerateTagsInRange:scheme:options:usingBlock:"), range_, tagScheme, opts, block)
 }
 
 

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableURLRequest] class.
-var MutableURLRequestClass objc.Class
+var MutableURLRequestClass = _MutableURLRequestClass{objc.GetClass("NSMutableURLRequest")}
 
-func init() {
-	MutableURLRequestClass = objc.GetClass("NSMutableURLRequest")
+type _MutableURLRequestClass struct {
+	class objc.Class
 }
 
 type MutableURLRequest struct {

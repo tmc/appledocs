@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Error] class.
-var ErrorClass objc.Class
+var ErrorClass = _ErrorClass{objc.GetClass("NSError")}
 
-func init() {
-	ErrorClass = objc.GetClass("NSError")
+type _ErrorClass struct {
+	class objc.Class
 }
 
 type Error struct {
@@ -26,76 +26,87 @@ func ErrorFrom(ptr unsafe.Pointer) Error {
 }
 
 // Alloc allocates a new instance without initialization.
-func (ec Error) Alloc() Error {
-	ret := objc.ID(ErrorClass).Send(objc.RegisterName("alloc"))
-	return Error{ret}
+func (ec _ErrorClass) Alloc() Error {
+	rv := objc.Send[Error](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _ErrorClass) New() Error {
+	rv := objc.Send[Error](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
 }
 
 // Init initializes the instance.
 func (e_ Error) Init() Error {
-	ret := e_.ID.Send(objc.RegisterName("init"))
-	return Error{ret}
+	rv := objc.Send[Error](e_.ID, objc.Sel("init"))
+	return rv
 }
-// Returns an   object initialized for a given domain and code with a given   dictionary. [Full Topic]
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ Error) Autorelease() Error {
+	rv := objc.Send[Error](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewError creates a new Error instance.
+func NewError() Error {
+	return ErrorClass.New()
+}
+// Returns an object initialized for a given domain and code with a given dictionary. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSError/init(domain:code:userInfo:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/init(domain:code:userInfo:)
 func NewErrorWithDomainCodeUserInfo(domain unsafe.Pointer, code int, dict unsafe.Pointer) Error {
-	instance := Error{}.Alloc()
-	sel := objc.RegisterName("initWithDomain:code:userInfo:")
-	ret := instance.ID.Send(sel, domain, code, dict)
-	instance = Error{ret}
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
+	instance := ErrorClass.Alloc()
+	rv := objc.Send[Error](instance.ID, objc.Sel("initWithDomain:code:userInfo:"), domain, code, dict)
+	rv.Autorelease()
+	return rv
 }
 
 
-// Creates and initializes an   object for a given domain and code with a given   dictionary. [Full Topic]
+// Creates and initializes an object for a given domain and code with a given dictionary. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSError/errorWithDomain:code:userInfo:
-func (ec Error) ErrorWithDomainCodeUserInfo(domain unsafe.Pointer, code int, dict unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("errorWithDomain:code:userInfo:")
-	ret := objc.ID(ErrorClass).Send(sel, domain, code, dict)
-	return unsafe.Pointer(ret)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/errorWithDomain:code:userInfo:
+func (ec _ErrorClass) ErrorWithDomainCodeUserInfo(domain unsafe.Pointer, code int, dict unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("errorWithDomain:code:userInfo:"), domain, code, dict)
+	return rv
 }
-// Returns a properly formatted error object with a   error code. [Full Topic]
+// Returns a properly formatted error object with a error code. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSError/fileProviderErrorForCollision(with:)
-func (ec Error) FileProviderErrorForCollisionWithItem(existingItem unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("fileProviderErrorForCollisionWithItem:")
-	ret := objc.ID(ErrorClass).Send(sel, existingItem)
-	return unsafe.Pointer(ret)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForCollision(with:)
+func (ec _ErrorClass) FileProviderErrorForCollisionWithItem(existingItem unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForCollisionWithItem:"), existingItem)
+	return rv
 }
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSError/fileProviderErrorForNonExistentItem(withIdentifier:)
-func (ec Error) FileProviderErrorForNonExistentItemWithIdentifier(itemIdentifier unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("fileProviderErrorForNonExistentItemWithIdentifier:")
-	ret := objc.ID(ErrorClass).Send(sel, itemIdentifier)
-	return unsafe.Pointer(ret)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForNonExistentItem(withIdentifier:)
+func (ec _ErrorClass) FileProviderErrorForNonExistentItemWithIdentifier(itemIdentifier unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForNonExistentItemWithIdentifier:"), itemIdentifier)
+	return rv
 }
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSError/fileProviderErrorForRejectedDeletion(of:)
-func (ec Error) FileProviderErrorForRejectedDeletionOfItem(updatedVersion unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("fileProviderErrorForRejectedDeletionOfItem:")
-	ret := objc.ID(ErrorClass).Send(sel, updatedVersion)
-	return unsafe.Pointer(ret)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForRejectedDeletion(of:)
+func (ec _ErrorClass) FileProviderErrorForRejectedDeletionOfItem(updatedVersion unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForRejectedDeletionOfItem:"), updatedVersion)
+	return rv
 }
 // Specifies a block to call when the corresponding property is not present in the user info dictionary. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSError/setUserInfoValueProvider(forDomain:provider:)
-func (ec Error) SetUserInfoValueProviderForDomainProvider(errorDomain unsafe.Pointer, provider unsafe.Pointer) {
-	sel := objc.RegisterName("setUserInfoValueProviderForDomain:provider:")
-	objc.ID(ErrorClass).Send(sel, errorDomain, provider)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/setUserInfoValueProvider(forDomain:provider:)
+func (ec _ErrorClass) SetUserInfoValueProviderForDomainProvider(errorDomain unsafe.Pointer, provider unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("setUserInfoValueProviderForDomain:provider:"), errorDomain, provider)
 }
 // Returns any user info provider specified for a given error domain. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSError/userInfoValueProvider(forDomain:)
-func (ec Error) UserInfoValueProviderForDomain(errorDomain unsafe.Pointer) {
-	sel := objc.RegisterName("userInfoValueProviderForDomain:")
-	objc.ID(ErrorClass).Send(sel, errorDomain)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfoValueProvider(forDomain:)
+func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("userInfoValueProviderForDomain:"), errorDomain)
 }
+
 

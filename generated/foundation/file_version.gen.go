@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FileVersion] class.
-var FileVersionClass objc.Class
+var FileVersionClass = _FileVersionClass{objc.GetClass("NSFileVersion")}
 
-func init() {
-	FileVersionClass = objc.GetClass("NSFileVersion")
+type _FileVersionClass struct {
+	class objc.Class
 }
 
 type FileVersion struct {

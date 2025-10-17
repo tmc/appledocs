@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SocketPort] class.
-var SocketPortClass objc.Class
+var SocketPortClass = _SocketPortClass{objc.GetClass("NSSocketPort")}
 
-func init() {
-	SocketPortClass = objc.GetClass("NSSocketPort")
+type _SocketPortClass struct {
+	class objc.Class
 }
 
 type SocketPort struct {

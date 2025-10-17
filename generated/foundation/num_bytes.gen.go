@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [numBytes] class.
-var numBytesClass objc.Class
+var numBytesClass = _numBytesClass{objc.GetClass("numBytes")}
 
-func init() {
-	numBytesClass = objc.GetClass("numBytes")
+type _numBytesClass struct {
+	class objc.Class
 }
 
 type numBytes struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RandomSpecifier] class.
-var RandomSpecifierClass objc.Class
+var RandomSpecifierClass = _RandomSpecifierClass{objc.GetClass("NSRandomSpecifier")}
 
-func init() {
-	RandomSpecifierClass = objc.GetClass("NSRandomSpecifier")
+type _RandomSpecifierClass struct {
+	class objc.Class
 }
 
 type RandomSpecifier struct {

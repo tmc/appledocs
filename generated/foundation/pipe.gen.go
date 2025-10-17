@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Pipe] class.
-var PipeClass objc.Class
+var PipeClass = _PipeClass{objc.GetClass("NSPipe")}
 
-func init() {
-	PipeClass = objc.GetClass("NSPipe")
+type _PipeClass struct {
+	class objc.Class
 }
 
 type Pipe struct {

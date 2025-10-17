@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLCache] class.
-var URLCacheClass objc.Class
+var URLCacheClass = _URLCacheClass{objc.GetClass("NSURLCache")}
 
-func init() {
-	URLCacheClass = objc.GetClass("NSURLCache")
+type _URLCacheClass struct {
+	class objc.Class
 }
 
 type URLCache struct {

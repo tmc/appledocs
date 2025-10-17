@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DistantObject] class.
-var DistantObjectClass objc.Class
+var DistantObjectClass = _DistantObjectClass{objc.GetClass("NSDistantObject")}
 
-func init() {
-	DistantObjectClass = objc.GetClass("NSDistantObject")
+type _DistantObjectClass struct {
+	class objc.Class
 }
 
 type DistantObject struct {

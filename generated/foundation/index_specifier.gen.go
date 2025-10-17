@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [IndexSpecifier] class.
-var IndexSpecifierClass objc.Class
+var IndexSpecifierClass = _IndexSpecifierClass{objc.GetClass("NSIndexSpecifier")}
 
-func init() {
-	IndexSpecifierClass = objc.GetClass("NSIndexSpecifier")
+type _IndexSpecifierClass struct {
+	class objc.Class
 }
 
 type IndexSpecifier struct {

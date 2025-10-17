@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SortDescriptor] class.
-var SortDescriptorClass objc.Class
+var SortDescriptorClass = _SortDescriptorClass{objc.GetClass("NSSortDescriptor")}
 
-func init() {
-	SortDescriptorClass = objc.GetClass("NSSortDescriptor")
+type _SortDescriptorClass struct {
+	class objc.Class
 }
 
 type SortDescriptor struct {
@@ -26,46 +26,61 @@ func SortDescriptorFrom(ptr unsafe.Pointer) SortDescriptor {
 }
 
 // Alloc allocates a new instance without initialization.
-func (sc SortDescriptor) Alloc() SortDescriptor {
-	ret := objc.ID(SortDescriptorClass).Send(objc.RegisterName("alloc"))
-	return SortDescriptor{ret}
+func (sc _SortDescriptorClass) Alloc() SortDescriptor {
+	rv := objc.Send[SortDescriptor](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SortDescriptorClass) New() SortDescriptor {
+	rv := objc.Send[SortDescriptor](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
 }
 
 // Init initializes the instance.
 func (s_ SortDescriptor) Init() SortDescriptor {
-	ret := s_.ID.Send(objc.RegisterName("init"))
-	return SortDescriptor{ret}
+	rv := objc.Send[SortDescriptor](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SortDescriptor) Autorelease() SortDescriptor {
+	rv := objc.Send[SortDescriptor](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSortDescriptor creates a new SortDescriptor instance.
+func NewSortDescriptor() SortDescriptor {
+	return SortDescriptorClass.New()
 }
 // Creates a sort descriptor with a specified string key path and sort order. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSSortDescriptor/init(key:ascending:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:)
 func NewSortDescriptorWithKeyAscending(key string, ascending bool) SortDescriptor {
-	instance := SortDescriptor{}.Alloc()
-	sel := objc.RegisterName("initWithKey:ascending:")
-	ret := instance.ID.Send(sel, key, ascending)
-	instance = SortDescriptor{ret}
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
+	instance := SortDescriptorClass.Alloc()
+	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:"), key, ascending)
+	rv.Autorelease()
+	return rv
 }
 
 
 // Creates and returns a sort descriptor initialized with the specified key path and ordering, and a comparator block. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSSortDescriptor/sortDescriptorWithKey:ascending:comparator:
-func (sc SortDescriptor) SortDescriptorWithKeyAscendingComparator(key string, ascending bool, cmptr unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("sortDescriptorWithKey:ascending:comparator:")
-	ret := objc.ID(SortDescriptorClass).Send(sel, key, ascending, cmptr)
-	return unsafe.Pointer(ret)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/sortDescriptorWithKey:ascending:comparator:
+func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingComparator(key string, ascending bool, cmptr unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sortDescriptorWithKey:ascending:comparator:"), key, ascending, cmptr)
+	return rv
 }
 // Returns a comparison result value that indicates the sort order of two objects. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSSortDescriptor/compare(_:to:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/compare(_:to:)
 func (s_ SortDescriptor) CompareObjectToObject(object1 objc.ID, object2 objc.ID) unsafe.Pointer {
-	sel := objc.RegisterName("compareObject:toObject:")
-	ret := s_.ID.Send(sel, object1, object2)
-	return unsafe.Pointer(ret)
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compareObject:toObject:"), object1, object2)
+	return rv
 }
+
 

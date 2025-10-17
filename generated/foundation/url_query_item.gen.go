@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLQueryItem] class.
-var URLQueryItemClass objc.Class
+var URLQueryItemClass = _URLQueryItemClass{objc.GetClass("NSURLQueryItem")}
 
-func init() {
-	URLQueryItemClass = objc.GetClass("NSURLQueryItem")
+type _URLQueryItemClass struct {
+	class objc.Class
 }
 
 type URLQueryItem struct {

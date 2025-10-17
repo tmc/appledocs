@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BundleResourceRequest] class.
-var BundleResourceRequestClass objc.Class
+var BundleResourceRequestClass = _BundleResourceRequestClass{objc.GetClass("NSBundleResourceRequest")}
 
-func init() {
-	BundleResourceRequestClass = objc.GetClass("NSBundleResourceRequest")
+type _BundleResourceRequestClass struct {
+	class objc.Class
 }
 
 type BundleResourceRequest struct {

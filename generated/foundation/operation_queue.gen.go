@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [OperationQueue] class.
-var OperationQueueClass objc.Class
+var OperationQueueClass = _OperationQueueClass{objc.GetClass("NSOperationQueue")}
 
-func init() {
-	OperationQueueClass = objc.GetClass("NSOperationQueue")
+type _OperationQueueClass struct {
+	class objc.Class
 }
 
 type OperationQueue struct {
@@ -29,10 +29,9 @@ func OperationQueueFrom(ptr unsafe.Pointer) OperationQueue {
 // Cancels all queued and executing operations. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/OperationQueue/cancelAllOperations()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/cancelAllOperations()
 func (o_ OperationQueue) CancelAllOperations() {
-	sel := objc.RegisterName("cancelAllOperations")
-	o_.ID.Send(sel)
+	objc.Send[objc.ID](o_.ID, objc.Sel("cancelAllOperations"))
 }
 
 

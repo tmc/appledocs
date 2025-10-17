@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AffineTransform] class.
-var AffineTransformClass objc.Class
+var AffineTransformClass = _AffineTransformClass{objc.GetClass("NSAffineTransform")}
 
-func init() {
-	AffineTransformClass = objc.GetClass("NSAffineTransform")
+type _AffineTransformClass struct {
+	class objc.Class
 }
 
 type AffineTransform struct {

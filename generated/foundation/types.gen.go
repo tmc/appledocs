@@ -35,9 +35,9 @@ type Range = CGPoint  // NSRange
 type Size = CGSize    // NSSize
 type Point = CGPoint  // NSPoint
 type Rect = CGRect    // NSRect
+type TimeInterval = float64  // NSTimeInterval
 
 // Foundation-specific types
-type TimeInterval = float64
 
 // RectEdge defines which edge of a rectangle.
 type RectEdge int

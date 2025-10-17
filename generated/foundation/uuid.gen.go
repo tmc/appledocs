@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UUID] class.
-var UUIDClass objc.Class
+var UUIDClass = _UUIDClass{objc.GetClass("NSUUID")}
 
-func init() {
-	UUIDClass = objc.GetClass("NSUUID")
+type _UUIDClass struct {
+	class objc.Class
 }
 
 type UUID struct {

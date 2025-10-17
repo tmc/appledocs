@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [KeyedArchiver] class.
-var KeyedArchiverClass objc.Class
+var KeyedArchiverClass = _KeyedArchiverClass{objc.GetClass("NSKeyedArchiver")}
 
-func init() {
-	KeyedArchiverClass = objc.GetClass("NSKeyedArchiver")
+type _KeyedArchiverClass struct {
+	class objc.Class
 }
 
 type KeyedArchiver struct {
@@ -26,13 +26,12 @@ func KeyedArchiverFrom(ptr unsafe.Pointer) KeyedArchiver {
 }
 
 
-// Encodes a given   value and associates it with a key. [Full Topic]
+// Encodes a given value and associates it with a key. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-1mkfl
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-1mkfl
 func (k_ KeyedArchiver) EncodeDoubleForKey(value float64, key string) {
-	sel := objc.RegisterName("encodeDouble:forKey:")
-	k_.ID.Send(sel, value, key)
+	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, key)
 }
 
 

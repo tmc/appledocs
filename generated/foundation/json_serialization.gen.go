@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [JSONSerialization] class.
-var JSONSerializationClass objc.Class
+var JSONSerializationClass = _JSONSerializationClass{objc.GetClass("NSJSONSerialization")}
 
-func init() {
-	JSONSerializationClass = objc.GetClass("NSJSONSerialization")
+type _JSONSerializationClass struct {
+	class objc.Class
 }
 
 type JSONSerialization struct {

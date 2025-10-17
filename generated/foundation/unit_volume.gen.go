@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitVolume] class.
-var UnitVolumeClass objc.Class
+var UnitVolumeClass = _UnitVolumeClass{objc.GetClass("NSUnitVolume")}
 
-func init() {
-	UnitVolumeClass = objc.GetClass("NSUnitVolume")
+type _UnitVolumeClass struct {
+	class objc.Class
 }
 
 type UnitVolume struct {

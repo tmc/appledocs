@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScriptWhoseTest] class.
-var ScriptWhoseTestClass objc.Class
+var ScriptWhoseTestClass = _ScriptWhoseTestClass{objc.GetClass("NSScriptWhoseTest")}
 
-func init() {
-	ScriptWhoseTestClass = objc.GetClass("NSScriptWhoseTest")
+type _ScriptWhoseTestClass struct {
+	class objc.Class
 }
 
 type ScriptWhoseTest struct {

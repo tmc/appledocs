@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FileWrapper] class.
-var FileWrapperClass objc.Class
+var FileWrapperClass = _FileWrapperClass{objc.GetClass("NSFileWrapper")}
 
-func init() {
-	FileWrapperClass = objc.GetClass("NSFileWrapper")
+type _FileWrapperClass struct {
+	class objc.Class
 }
 
 type FileWrapper struct {

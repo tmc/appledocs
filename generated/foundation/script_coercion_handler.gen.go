@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScriptCoercionHandler] class.
-var ScriptCoercionHandlerClass objc.Class
+var ScriptCoercionHandlerClass = _ScriptCoercionHandlerClass{objc.GetClass("NSScriptCoercionHandler")}
 
-func init() {
-	ScriptCoercionHandlerClass = objc.GetClass("NSScriptCoercionHandler")
+type _ScriptCoercionHandlerClass struct {
+	class objc.Class
 }
 
 type ScriptCoercionHandler struct {

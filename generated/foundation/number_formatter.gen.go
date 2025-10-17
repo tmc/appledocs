@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NumberFormatter] class.
-var NumberFormatterClass objc.Class
+var NumberFormatterClass = _NumberFormatterClass{objc.GetClass("NSNumberFormatter")}
 
-func init() {
-	NumberFormatterClass = objc.GetClass("NSNumberFormatter")
+type _NumberFormatterClass struct {
+	class objc.Class
 }
 
 type NumberFormatter struct {

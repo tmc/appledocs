@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScriptCommandDescription] class.
-var ScriptCommandDescriptionClass objc.Class
+var ScriptCommandDescriptionClass = _ScriptCommandDescriptionClass{objc.GetClass("NSScriptCommandDescription")}
 
-func init() {
-	ScriptCommandDescriptionClass = objc.GetClass("NSScriptCommandDescription")
+type _ScriptCommandDescriptionClass struct {
+	class objc.Class
 }
 
 type ScriptCommandDescription struct {

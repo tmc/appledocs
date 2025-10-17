@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [HTTPURLResponse] class.
-var HTTPURLResponseClass objc.Class
+var HTTPURLResponseClass = _HTTPURLResponseClass{objc.GetClass("NSHTTPURLResponse")}
 
-func init() {
-	HTTPURLResponseClass = objc.GetClass("NSHTTPURLResponse")
+type _HTTPURLResponseClass struct {
+	class objc.Class
 }
 
 type HTTPURLResponse struct {

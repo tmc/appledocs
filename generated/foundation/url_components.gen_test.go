@@ -3,13 +3,16 @@
 package foundation_test
 
 import (
-	"foundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
+
+
 // ExampleNewURLComponents demonstrates how to create a URLComponents instance.
+// Creates a URL components object with all components left undefined.
 func ExampleNewURLComponents() {
 	_ = foundation.NewURLComponents()
-	// output:
+	// Output:
 }
 
 

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MoveCommand] class.
-var MoveCommandClass objc.Class
+var MoveCommandClass = _MoveCommandClass{objc.GetClass("NSMoveCommand")}
 
-func init() {
-	MoveCommandClass = objc.GetClass("NSMoveCommand")
+type _MoveCommandClass struct {
+	class objc.Class
 }
 
 type MoveCommand struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ProcessInfo] class.
-var ProcessInfoClass objc.Class
+var ProcessInfoClass = _ProcessInfoClass{objc.GetClass("NSProcessInfo")}
 
-func init() {
-	ProcessInfoClass = objc.GetClass("NSProcessInfo")
+type _ProcessInfoClass struct {
+	class objc.Class
 }
 
 type ProcessInfo struct {
@@ -29,10 +29,9 @@ func ProcessInfoFrom(ptr unsafe.Pointer) ProcessInfo {
 // Performs the specified block asynchronously and notifies you if the process is about to be suspended. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/ProcessInfo/performExpiringActivity(withReason:using:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/performExpiringActivity(withReason:using:)
 func (p_ ProcessInfo) PerformExpiringActivityWithReasonUsingBlock(reason string, block unsafe.Pointer) {
-	sel := objc.RegisterName("performExpiringActivityWithReason:usingBlock:")
-	p_.ID.Send(sel, reason, block)
+	objc.Send[objc.ID](p_.ID, objc.Sel("performExpiringActivityWithReason:usingBlock:"), reason, block)
 }
 
 

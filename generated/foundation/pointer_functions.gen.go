@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PointerFunctions] class.
-var PointerFunctionsClass objc.Class
+var PointerFunctionsClass = _PointerFunctionsClass{objc.GetClass("NSPointerFunctions")}
 
-func init() {
-	PointerFunctionsClass = objc.GetClass("NSPointerFunctions")
+type _PointerFunctionsClass struct {
+	class objc.Class
 }
 
 type PointerFunctions struct {

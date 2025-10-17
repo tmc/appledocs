@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Proxy] class.
-var ProxyClass objc.Class
+var ProxyClass = _ProxyClass{objc.GetClass("NSProxy")}
 
-func init() {
-	ProxyClass = objc.GetClass("NSProxy")
+type _ProxyClass struct {
+	class objc.Class
 }
 
 type Proxy struct {

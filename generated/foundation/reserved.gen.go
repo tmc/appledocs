@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [reserved] class.
-var reservedClass objc.Class
+var reservedClass = _reservedClass{objc.GetClass("reserved")}
 
-func init() {
-	reservedClass = objc.GetClass("reserved")
+type _reservedClass struct {
+	class objc.Class
 }
 
 type reserved struct {

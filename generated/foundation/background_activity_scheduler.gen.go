@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BackgroundActivityScheduler] class.
-var BackgroundActivitySchedulerClass objc.Class
+var BackgroundActivitySchedulerClass = _BackgroundActivitySchedulerClass{objc.GetClass("NSBackgroundActivityScheduler")}
 
-func init() {
-	BackgroundActivitySchedulerClass = objc.GetClass("NSBackgroundActivityScheduler")
+type _BackgroundActivitySchedulerClass struct {
+	class objc.Class
 }
 
 type BackgroundActivityScheduler struct {

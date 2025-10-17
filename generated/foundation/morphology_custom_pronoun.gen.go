@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MorphologyCustomPronoun] class.
-var MorphologyCustomPronounClass objc.Class
+var MorphologyCustomPronounClass = _MorphologyCustomPronounClass{objc.GetClass("NSMorphologyCustomPronoun")}
 
-func init() {
-	MorphologyCustomPronounClass = objc.GetClass("NSMorphologyCustomPronoun")
+type _MorphologyCustomPronounClass struct {
+	class objc.Class
 }
 
 type MorphologyCustomPronoun struct {

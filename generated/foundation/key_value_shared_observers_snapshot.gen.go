@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [KeyValueSharedObserversSnapshot] class.
-var KeyValueSharedObserversSnapshotClass objc.Class
+var KeyValueSharedObserversSnapshotClass = _KeyValueSharedObserversSnapshotClass{objc.GetClass("NSKeyValueSharedObserversSnapshot")}
 
-func init() {
-	KeyValueSharedObserversSnapshotClass = objc.GetClass("NSKeyValueSharedObserversSnapshot")
+type _KeyValueSharedObserversSnapshotClass struct {
+	class objc.Class
 }
 
 type KeyValueSharedObserversSnapshot struct {

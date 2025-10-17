@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [IndexSet] class.
-var IndexSetClass objc.Class
+var IndexSetClass = _IndexSetClass{objc.GetClass("NSIndexSet")}
 
-func init() {
-	IndexSetClass = objc.GetClass("NSIndexSet")
+type _IndexSetClass struct {
+	class objc.Class
 }
 
 type IndexSet struct {

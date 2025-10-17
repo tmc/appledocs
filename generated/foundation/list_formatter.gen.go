@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ListFormatter] class.
-var ListFormatterClass objc.Class
+var ListFormatterClass = _ListFormatterClass{objc.GetClass("NSListFormatter")}
 
-func init() {
-	ListFormatterClass = objc.GetClass("NSListFormatter")
+type _ListFormatterClass struct {
+	class objc.Class
 }
 
 type ListFormatter struct {

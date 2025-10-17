@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CountedSet] class.
-var CountedSetClass objc.Class
+var CountedSetClass = _CountedSetClass{objc.GetClass("NSCountedSet")}
 
-func init() {
-	CountedSetClass = objc.GetClass("NSCountedSet")
+type _CountedSetClass struct {
+	class objc.Class
 }
 
 type CountedSet struct {

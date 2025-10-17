@@ -29,7 +29,7 @@
 {{- range .Classes}}
 #-- {{classFileName .Name}} --
 {{template "class.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}
-{{if .HasInitMethods -}}
+{{if classHasInit .Methods -}}
 #-- {{classTestFileName .Name}} --
 {{template "class_test.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}
 {{end -}}

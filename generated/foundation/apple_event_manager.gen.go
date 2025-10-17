@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AppleEventManager] class.
-var AppleEventManagerClass objc.Class
+var AppleEventManagerClass = _AppleEventManagerClass{objc.GetClass("NSAppleEventManager")}
 
-func init() {
-	AppleEventManagerClass = objc.GetClass("NSAppleEventManager")
+type _AppleEventManagerClass struct {
+	class objc.Class
 }
 
 type AppleEventManager struct {

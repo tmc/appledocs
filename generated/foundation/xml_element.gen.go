@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XMLElement] class.
-var XMLElementClass objc.Class
+var XMLElementClass = _XMLElementClass{objc.GetClass("NSXMLElement")}
 
-func init() {
-	XMLElementClass = objc.GetClass("NSXMLElement")
+type _XMLElementClass struct {
+	class objc.Class
 }
 
 type XMLElement struct {

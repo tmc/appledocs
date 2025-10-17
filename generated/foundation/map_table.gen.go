@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MapTable] class.
-var MapTableClass objc.Class
+var MapTableClass = _MapTableClass{objc.GetClass("NSMapTable")}
 
-func init() {
-	MapTableClass = objc.GetClass("NSMapTable")
+type _MapTableClass struct {
+	class objc.Class
 }
 
 type MapTable struct {

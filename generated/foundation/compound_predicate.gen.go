@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CompoundPredicate] class.
-var CompoundPredicateClass objc.Class
+var CompoundPredicateClass = _CompoundPredicateClass{objc.GetClass("NSCompoundPredicate")}
 
-func init() {
-	CompoundPredicateClass = objc.GetClass("NSCompoundPredicate")
+type _CompoundPredicateClass struct {
+	class objc.Class
 }
 
 type CompoundPredicate struct {

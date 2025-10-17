@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLComponents] class.
-var URLComponentsClass objc.Class
+var URLComponentsClass = _URLComponentsClass{objc.GetClass("NSURLComponents")}
 
-func init() {
-	URLComponentsClass = objc.GetClass("NSURLComponents")
+type _URLComponentsClass struct {
+	class objc.Class
 }
 
 type URLComponents struct {
@@ -26,25 +26,33 @@ func URLComponentsFrom(ptr unsafe.Pointer) URLComponents {
 }
 
 // Alloc allocates a new instance without initialization.
-func (uc URLComponents) Alloc() URLComponents {
-	ret := objc.ID(URLComponentsClass).Send(objc.RegisterName("alloc"))
-	return URLComponents{ret}
+func (uc _URLComponentsClass) Alloc() URLComponents {
+	rv := objc.Send[URLComponents](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _URLComponentsClass) New() URLComponents {
+	rv := objc.Send[URLComponents](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
 }
 
 // Init initializes the instance.
 func (u_ URLComponents) Init() URLComponents {
-	ret := u_.ID.Send(objc.RegisterName("init"))
-	return URLComponents{ret}
+	rv := objc.Send[URLComponents](u_.ID, objc.Sel("init"))
+	return rv
 }
-// Creates a URL components object with all components left undefined. [Full Topic]
 
-//
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSURLComponents/init()
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ URLComponents) Autorelease() URLComponents {
+	rv := objc.Send[URLComponents](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewURLComponents creates a new URLComponents instance.
 func NewURLComponents() URLComponents {
-	instance := URLComponents{}.Alloc()
-	instance = instance.Init()
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
+	return URLComponentsClass.New()
 }
 
 

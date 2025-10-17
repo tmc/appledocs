@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DeleteCommand] class.
-var DeleteCommandClass objc.Class
+var DeleteCommandClass = _DeleteCommandClass{objc.GetClass("NSDeleteCommand")}
 
-func init() {
-	DeleteCommandClass = objc.GetClass("NSDeleteCommand")
+type _DeleteCommandClass struct {
+	class objc.Class
 }
 
 type DeleteCommand struct {

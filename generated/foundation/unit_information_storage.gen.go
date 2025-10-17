@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitInformationStorage] class.
-var UnitInformationStorageClass objc.Class
+var UnitInformationStorageClass = _UnitInformationStorageClass{objc.GetClass("NSUnitInformationStorage")}
 
-func init() {
-	UnitInformationStorageClass = objc.GetClass("NSUnitInformationStorage")
+type _UnitInformationStorageClass struct {
+	class objc.Class
 }
 
 type UnitInformationStorage struct {

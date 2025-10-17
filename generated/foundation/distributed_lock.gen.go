@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DistributedLock] class.
-var DistributedLockClass objc.Class
+var DistributedLockClass = _DistributedLockClass{objc.GetClass("NSDistributedLock")}
 
-func init() {
-	DistributedLockClass = objc.GetClass("NSDistributedLock")
+type _DistributedLockClass struct {
+	class objc.Class
 }
 
 type DistributedLock struct {

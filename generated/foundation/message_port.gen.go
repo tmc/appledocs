@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MessagePort] class.
-var MessagePortClass objc.Class
+var MessagePortClass = _MessagePortClass{objc.GetClass("NSMessagePort")}
 
-func init() {
-	MessagePortClass = objc.GetClass("NSMessagePort")
+type _MessagePortClass struct {
+	class objc.Class
 }
 
 type MessagePort struct {

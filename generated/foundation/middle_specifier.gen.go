@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MiddleSpecifier] class.
-var MiddleSpecifierClass objc.Class
+var MiddleSpecifierClass = _MiddleSpecifierClass{objc.GetClass("NSMiddleSpecifier")}
 
-func init() {
-	MiddleSpecifierClass = objc.GetClass("NSMiddleSpecifier")
+type _MiddleSpecifierClass struct {
+	class objc.Class
 }
 
 type MiddleSpecifier struct {

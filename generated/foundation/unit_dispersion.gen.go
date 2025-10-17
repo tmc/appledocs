@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitDispersion] class.
-var UnitDispersionClass objc.Class
+var UnitDispersionClass = _UnitDispersionClass{objc.GetClass("NSUnitDispersion")}
 
-func init() {
-	UnitDispersionClass = objc.GetClass("NSUnitDispersion")
+type _UnitDispersionClass struct {
+	class objc.Class
 }
 
 type UnitDispersion struct {

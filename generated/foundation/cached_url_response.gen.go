@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CachedURLResponse] class.
-var CachedURLResponseClass objc.Class
+var CachedURLResponseClass = _CachedURLResponseClass{objc.GetClass("NSCachedURLResponse")}
 
-func init() {
-	CachedURLResponseClass = objc.GetClass("NSCachedURLResponse")
+type _CachedURLResponseClass struct {
+	class objc.Class
 }
 
 type CachedURLResponse struct {

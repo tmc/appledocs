@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UniqueIDSpecifier] class.
-var UniqueIDSpecifierClass objc.Class
+var UniqueIDSpecifierClass = _UniqueIDSpecifierClass{objc.GetClass("NSUniqueIDSpecifier")}
 
-func init() {
-	UniqueIDSpecifierClass = objc.GetClass("NSUniqueIDSpecifier")
+type _UniqueIDSpecifierClass struct {
+	class objc.Class
 }
 
 type UniqueIDSpecifier struct {

@@ -3,13 +3,16 @@
 package foundation_test
 
 import (
-	"foundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
+
+
 // ExampleNewString demonstrates how to create a String instance.
+// Returns an initialized   object that contains no characters.
 func ExampleNewString() {
 	_ = foundation.NewString()
-	// output:
+	// Output:
 }
 
 

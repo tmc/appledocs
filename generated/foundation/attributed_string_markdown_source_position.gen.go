@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AttributedStringMarkdownSourcePosition] class.
-var AttributedStringMarkdownSourcePositionClass objc.Class
+var AttributedStringMarkdownSourcePositionClass = _AttributedStringMarkdownSourcePositionClass{objc.GetClass("NSAttributedStringMarkdownSourcePosition")}
 
-func init() {
-	AttributedStringMarkdownSourcePositionClass = objc.GetClass("NSAttributedStringMarkdownSourcePosition")
+type _AttributedStringMarkdownSourcePositionClass struct {
+	class objc.Class
 }
 
 type AttributedStringMarkdownSourcePosition struct {

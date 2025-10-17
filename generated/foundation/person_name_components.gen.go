@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PersonNameComponents] class.
-var PersonNameComponentsClass objc.Class
+var PersonNameComponentsClass = _PersonNameComponentsClass{objc.GetClass("NSPersonNameComponents")}
 
-func init() {
-	PersonNameComponentsClass = objc.GetClass("NSPersonNameComponents")
+type _PersonNameComponentsClass struct {
+	class objc.Class
 }
 
 type PersonNameComponents struct {

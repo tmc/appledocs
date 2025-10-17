@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitSpeed] class.
-var UnitSpeedClass objc.Class
+var UnitSpeedClass = _UnitSpeedClass{objc.GetClass("NSUnitSpeed")}
 
-func init() {
-	UnitSpeedClass = objc.GetClass("NSUnitSpeed")
+type _UnitSpeedClass struct {
+	class objc.Class
 }
 
 type UnitSpeed struct {

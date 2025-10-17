@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LocalizedNumberFormatRule] class.
-var LocalizedNumberFormatRuleClass objc.Class
+var LocalizedNumberFormatRuleClass = _LocalizedNumberFormatRuleClass{objc.GetClass("NSLocalizedNumberFormatRule")}
 
-func init() {
-	LocalizedNumberFormatRuleClass = objc.GetClass("NSLocalizedNumberFormatRule")
+type _LocalizedNumberFormatRuleClass struct {
+	class objc.Class
 }
 
 type LocalizedNumberFormatRule struct {

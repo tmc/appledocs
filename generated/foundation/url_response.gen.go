@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLResponse] class.
-var URLResponseClass objc.Class
+var URLResponseClass = _URLResponseClass{objc.GetClass("NSURLResponse")}
 
-func init() {
-	URLResponseClass = objc.GetClass("NSURLResponse")
+type _URLResponseClass struct {
+	class objc.Class
 }
 
 type URLResponse struct {

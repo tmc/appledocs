@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Invocation] class.
-var InvocationClass objc.Class
+var InvocationClass = _InvocationClass{objc.GetClass("NSInvocation")}
 
-func init() {
-	InvocationClass = objc.GetClass("NSInvocation")
+type _InvocationClass struct {
+	class objc.Class
 }
 
 type Invocation struct {

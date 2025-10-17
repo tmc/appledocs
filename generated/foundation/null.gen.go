@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Null] class.
-var NullClass objc.Class
+var NullClass = _NullClass{objc.GetClass("NSNull")}
 
-func init() {
-	NullClass = objc.GetClass("NSNull")
+type _NullClass struct {
+	class objc.Class
 }
 
 type Null struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [OrderedCollectionDifference] class.
-var OrderedCollectionDifferenceClass objc.Class
+var OrderedCollectionDifferenceClass = _OrderedCollectionDifferenceClass{objc.GetClass("NSOrderedCollectionDifference")}
 
-func init() {
-	OrderedCollectionDifferenceClass = objc.GetClass("NSOrderedCollectionDifference")
+type _OrderedCollectionDifferenceClass struct {
+	class objc.Class
 }
 
 type OrderedCollectionDifference struct {

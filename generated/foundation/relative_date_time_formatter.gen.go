@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RelativeDateTimeFormatter] class.
-var RelativeDateTimeFormatterClass objc.Class
+var RelativeDateTimeFormatterClass = _RelativeDateTimeFormatterClass{objc.GetClass("NSRelativeDateTimeFormatter")}
 
-func init() {
-	RelativeDateTimeFormatterClass = objc.GetClass("NSRelativeDateTimeFormatter")
+type _RelativeDateTimeFormatterClass struct {
+	class objc.Class
 }
 
 type RelativeDateTimeFormatter struct {

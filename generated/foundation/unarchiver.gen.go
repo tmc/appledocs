@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Unarchiver] class.
-var UnarchiverClass objc.Class
+var UnarchiverClass = _UnarchiverClass{objc.GetClass("NSUnarchiver")}
 
-func init() {
-	UnarchiverClass = objc.GetClass("NSUnarchiver")
+type _UnarchiverClass struct {
+	class objc.Class
 }
 
 type Unarchiver struct {

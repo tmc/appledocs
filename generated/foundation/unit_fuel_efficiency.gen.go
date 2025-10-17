@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitFuelEfficiency] class.
-var UnitFuelEfficiencyClass objc.Class
+var UnitFuelEfficiencyClass = _UnitFuelEfficiencyClass{objc.GetClass("NSUnitFuelEfficiency")}
 
-func init() {
-	UnitFuelEfficiencyClass = objc.GetClass("NSUnitFuelEfficiency")
+type _UnitFuelEfficiencyClass struct {
+	class objc.Class
 }
 
 type UnitFuelEfficiency struct {

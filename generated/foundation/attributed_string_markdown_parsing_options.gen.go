@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AttributedStringMarkdownParsingOptions] class.
-var AttributedStringMarkdownParsingOptionsClass objc.Class
+var AttributedStringMarkdownParsingOptionsClass = _AttributedStringMarkdownParsingOptionsClass{objc.GetClass("NSAttributedStringMarkdownParsingOptions")}
 
-func init() {
-	AttributedStringMarkdownParsingOptionsClass = objc.GetClass("NSAttributedStringMarkdownParsingOptions")
+type _AttributedStringMarkdownParsingOptionsClass struct {
+	class objc.Class
 }
 
 type AttributedStringMarkdownParsingOptions struct {

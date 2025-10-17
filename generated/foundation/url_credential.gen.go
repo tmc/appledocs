@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLCredential] class.
-var URLCredentialClass objc.Class
+var URLCredentialClass = _URLCredentialClass{objc.GetClass("NSURLCredential")}
 
-func init() {
-	URLCredentialClass = objc.GetClass("NSURLCredential")
+type _URLCredentialClass struct {
+	class objc.Class
 }
 
 type URLCredential struct {

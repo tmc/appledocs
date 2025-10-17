@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableSet] class.
-var MutableSetClass objc.Class
+var MutableSetClass = _MutableSetClass{objc.GetClass("NSMutableSet")}
 
-func init() {
-	MutableSetClass = objc.GetClass("NSMutableSet")
+type _MutableSetClass struct {
+	class objc.Class
 }
 
 type MutableSet struct {

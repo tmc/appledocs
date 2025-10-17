@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TimeZone] class.
-var TimeZoneClass objc.Class
+var TimeZoneClass = _TimeZoneClass{objc.GetClass("NSTimeZone")}
 
-func init() {
-	TimeZoneClass = objc.GetClass("NSTimeZone")
+type _TimeZoneClass struct {
+	class objc.Class
 }
 
 type TimeZone struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UbiquitousKeyValueStore] class.
-var UbiquitousKeyValueStoreClass objc.Class
+var UbiquitousKeyValueStoreClass = _UbiquitousKeyValueStoreClass{objc.GetClass("NSUbiquitousKeyValueStore")}
 
-func init() {
-	UbiquitousKeyValueStoreClass = objc.GetClass("NSUbiquitousKeyValueStore")
+type _UbiquitousKeyValueStoreClass struct {
+	class objc.Class
 }
 
 type UbiquitousKeyValueStore struct {

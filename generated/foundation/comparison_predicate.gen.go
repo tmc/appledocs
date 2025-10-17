@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ComparisonPredicate] class.
-var ComparisonPredicateClass objc.Class
+var ComparisonPredicateClass = _ComparisonPredicateClass{objc.GetClass("NSComparisonPredicate")}
 
-func init() {
-	ComparisonPredicateClass = objc.GetClass("NSComparisonPredicate")
+type _ComparisonPredicateClass struct {
+	class objc.Class
 }
 
 type ComparisonPredicate struct {

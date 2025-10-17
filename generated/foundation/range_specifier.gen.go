@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RangeSpecifier] class.
-var RangeSpecifierClass objc.Class
+var RangeSpecifierClass = _RangeSpecifierClass{objc.GetClass("NSRangeSpecifier")}
 
-func init() {
-	RangeSpecifierClass = objc.GetClass("NSRangeSpecifier")
+type _RangeSpecifierClass struct {
+	class objc.Class
 }
 
 type RangeSpecifier struct {

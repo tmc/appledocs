@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LogicalTest] class.
-var LogicalTestClass objc.Class
+var LogicalTestClass = _LogicalTestClass{objc.GetClass("NSLogicalTest")}
 
-func init() {
-	LogicalTestClass = objc.GetClass("NSLogicalTest")
+type _LogicalTestClass struct {
+	class objc.Class
 }
 
 type LogicalTest struct {

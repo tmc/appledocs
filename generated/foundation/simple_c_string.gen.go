@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SimpleCString] class.
-var SimpleCStringClass objc.Class
+var SimpleCStringClass = _SimpleCStringClass{objc.GetClass("NSSimpleCString")}
 
-func init() {
-	SimpleCStringClass = objc.GetClass("NSSimpleCString")
+type _SimpleCStringClass struct {
+	class objc.Class
 }
 
 type SimpleCString struct {

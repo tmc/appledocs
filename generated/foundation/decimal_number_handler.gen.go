@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DecimalNumberHandler] class.
-var DecimalNumberHandlerClass objc.Class
+var DecimalNumberHandlerClass = _DecimalNumberHandlerClass{objc.GetClass("NSDecimalNumberHandler")}
 
-func init() {
-	DecimalNumberHandlerClass = objc.GetClass("NSDecimalNumberHandler")
+type _DecimalNumberHandlerClass struct {
+	class objc.Class
 }
 
 type DecimalNumberHandler struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLSessionTask] class.
-var URLSessionTaskClass objc.Class
+var URLSessionTaskClass = _URLSessionTaskClass{objc.GetClass("NSURLSessionTask")}
 
-func init() {
-	URLSessionTaskClass = objc.GetClass("NSURLSessionTask")
+type _URLSessionTaskClass struct {
+	class objc.Class
 }
 
 type URLSessionTask struct {
@@ -29,18 +29,16 @@ func URLSessionTaskFrom(ptr unsafe.Pointer) URLSessionTask {
 // Cancels the task. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/URLSessionTask/cancel()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/cancel()
 func (u_ URLSessionTask) Cancel() {
-	sel := objc.RegisterName("cancel")
-	u_.ID.Send(sel)
+	objc.Send[objc.ID](u_.ID, objc.Sel("cancel"))
 }
 // Resumes the task, if it is suspended. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/URLSessionTask/resume()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/resume()
 func (u_ URLSessionTask) Resume() {
-	sel := objc.RegisterName("resume")
-	u_.ID.Send(sel)
+	objc.Send[objc.ID](u_.ID, objc.Sel("resume"))
 }
 
 

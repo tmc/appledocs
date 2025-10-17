@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [InflectionRuleExplicit] class.
-var InflectionRuleExplicitClass objc.Class
+var InflectionRuleExplicitClass = _InflectionRuleExplicitClass{objc.GetClass("NSInflectionRuleExplicit")}
 
-func init() {
-	InflectionRuleExplicitClass = objc.GetClass("NSInflectionRuleExplicit")
+type _InflectionRuleExplicitClass struct {
+	class objc.Class
 }
 
 type InflectionRuleExplicit struct {

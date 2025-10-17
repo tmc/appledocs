@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Condition] class.
-var ConditionClass objc.Class
+var ConditionClass = _ConditionClass{objc.GetClass("NSCondition")}
 
-func init() {
-	ConditionClass = objc.GetClass("NSCondition")
+type _ConditionClass struct {
+	class objc.Class
 }
 
 type Condition struct {

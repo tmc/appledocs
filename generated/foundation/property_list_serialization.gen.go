@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PropertyListSerialization] class.
-var PropertyListSerializationClass objc.Class
+var PropertyListSerializationClass = _PropertyListSerializationClass{objc.GetClass("NSPropertyListSerialization")}
 
-func init() {
-	PropertyListSerializationClass = objc.GetClass("NSPropertyListSerialization")
+type _PropertyListSerializationClass struct {
+	class objc.Class
 }
 
 type PropertyListSerialization struct {

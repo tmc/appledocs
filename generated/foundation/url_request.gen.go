@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLRequest] class.
-var URLRequestClass objc.Class
+var URLRequestClass = _URLRequestClass{objc.GetClass("NSURLRequest")}
 
-func init() {
-	URLRequestClass = objc.GetClass("NSURLRequest")
+type _URLRequestClass struct {
+	class objc.Class
 }
 
 type URLRequest struct {

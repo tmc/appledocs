@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SecureUnarchiveFromDataTransformer] class.
-var SecureUnarchiveFromDataTransformerClass objc.Class
+var SecureUnarchiveFromDataTransformerClass = _SecureUnarchiveFromDataTransformerClass{objc.GetClass("NSSecureUnarchiveFromDataTransformer")}
 
-func init() {
-	SecureUnarchiveFromDataTransformerClass = objc.GetClass("NSSecureUnarchiveFromDataTransformer")
+type _SecureUnarchiveFromDataTransformerClass struct {
+	class objc.Class
 }
 
 type SecureUnarchiveFromDataTransformer struct {

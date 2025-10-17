@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitLength] class.
-var UnitLengthClass objc.Class
+var UnitLengthClass = _UnitLengthClass{objc.GetClass("NSUnitLength")}
 
-func init() {
-	UnitLengthClass = objc.GetClass("NSUnitLength")
+type _UnitLengthClass struct {
+	class objc.Class
 }
 
 type UnitLength struct {

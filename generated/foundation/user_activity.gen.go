@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UserActivity] class.
-var UserActivityClass objc.Class
+var UserActivityClass = _UserActivityClass{objc.GetClass("NSUserActivity")}
 
-func init() {
-	UserActivityClass = objc.GetClass("NSUserActivity")
+type _UserActivityClass struct {
+	class objc.Class
 }
 
 type UserActivity struct {
@@ -26,94 +26,93 @@ func UserActivityFrom(ptr unsafe.Pointer) UserActivity {
 }
 
 // Alloc allocates a new instance without initialization.
-func (uc UserActivity) Alloc() UserActivity {
-	ret := objc.ID(UserActivityClass).Send(objc.RegisterName("alloc"))
-	return UserActivity{ret}
+func (uc _UserActivityClass) Alloc() UserActivity {
+	rv := objc.Send[UserActivity](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UserActivityClass) New() UserActivity {
+	rv := objc.Send[UserActivity](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
 }
 
 // Init initializes the instance.
 func (u_ UserActivity) Init() UserActivity {
-	ret := u_.ID.Send(objc.RegisterName("init"))
-	return UserActivity{ret}
+	rv := objc.Send[UserActivity](u_.ID, objc.Sel("init"))
+	return rv
 }
-// Creates a user activity object using the first activity type declared in the app’s information property list file. [Full Topic]
 
-//
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSUserActivity/init()
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UserActivity) Autorelease() UserActivity {
+	rv := objc.Send[UserActivity](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUserActivity creates a new UserActivity instance.
 func NewUserActivity() UserActivity {
-	instance := UserActivity{}.Alloc()
-	instance = instance.Init()
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
+	return UserActivityClass.New()
 }
 // Creates a user activity object with the specified type. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSUserActivity/init(activityType:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/init(activityType:)
 func NewUserActivityWithActivityType(activityType string) UserActivity {
-	instance := UserActivity{}.Alloc()
-	sel := objc.RegisterName("initWithActivityType:")
-	ret := instance.ID.Send(sel, activityType)
-	instance = UserActivity{ret}
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
+	instance := UserActivityClass.Alloc()
+	rv := objc.Send[UserActivity](instance.ID, objc.Sel("initWithActivityType:"), activityType)
+	rv.Autorelease()
+	return rv
 }
 
 
 // Deletes all user activities created by your app. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSUserActivity/deleteAllSavedUserActivities(completionHandler:)
-func (uc UserActivity) DeleteAllSavedUserActivitiesWithCompletionHandler(handler unsafe.Pointer) {
-	sel := objc.RegisterName("deleteAllSavedUserActivitiesWithCompletionHandler:")
-	objc.ID(UserActivityClass).Send(sel, handler)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/deleteAllSavedUserActivities(completionHandler:)
+func (uc _UserActivityClass) DeleteAllSavedUserActivitiesWithCompletionHandler(handler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("deleteAllSavedUserActivitiesWithCompletionHandler:"), handler)
 }
 // Deletes user activities created by your app that have the specified persistent identifiers. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSUserActivity/deleteSavedUserActivities(withPersistentIdentifiers:completionHandler:)
-func (uc UserActivity) DeleteSavedUserActivitiesWithPersistentIdentifiersCompletionHandler(persistentIdentifiers unsafe.Pointer, handler unsafe.Pointer) {
-	sel := objc.RegisterName("deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:")
-	objc.ID(UserActivityClass).Send(sel, persistentIdentifiers, handler)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/deleteSavedUserActivities(withPersistentIdentifiers:completionHandler:)
+func (uc _UserActivityClass) DeleteSavedUserActivitiesWithPersistentIdentifiersCompletionHandler(persistentIdentifiers unsafe.Pointer, handler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:"), persistentIdentifiers, handler)
 }
 // Adds the contents of the specified dictionary to the user info dictionary. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSUserActivity/addUserInfoEntries(from:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/addUserInfoEntries(from:)
 func (u_ UserActivity) AddUserInfoEntriesFromDictionary(otherDictionary unsafe.Pointer) {
-	sel := objc.RegisterName("addUserInfoEntriesFromDictionary:")
-	u_.ID.Send(sel, otherDictionary)
+	objc.Send[objc.ID](u_.ID, objc.Sel("addUserInfoEntriesFromDictionary:"), otherDictionary)
 }
 // Marks the activity as currently in use by the user. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSUserActivity/becomeCurrent()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/becomeCurrent()
 func (u_ UserActivity) BecomeCurrent() {
-	sel := objc.RegisterName("becomeCurrent")
-	u_.ID.Send(sel)
+	objc.Send[objc.ID](u_.ID, objc.Sel("becomeCurrent"))
 }
 // Requests streams back to the originating app. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSUserActivity/getContinuationStreams(completionHandler:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/getContinuationStreams(completionHandler:)
 func (u_ UserActivity) GetContinuationStreamsWithCompletionHandler(completionHandler unsafe.Pointer) {
-	sel := objc.RegisterName("getContinuationStreamsWithCompletionHandler:")
-	u_.ID.Send(sel, completionHandler)
+	objc.Send[objc.ID](u_.ID, objc.Sel("getContinuationStreamsWithCompletionHandler:"), completionHandler)
 }
 // Invalidates an activity and marks it as no longer eligible for continuation. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSUserActivity/invalidate()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/invalidate()
 func (u_ UserActivity) Invalidate() {
-	sel := objc.RegisterName("invalidate")
-	u_.ID.Send(sel)
+	objc.Send[objc.ID](u_.ID, objc.Sel("invalidate"))
 }
 // Marks this activity object as inactive without invalidating it. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSUserActivity/resignCurrent()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/resignCurrent()
 func (u_ UserActivity) ResignCurrent() {
-	sel := objc.RegisterName("resignCurrent")
-	u_.ID.Send(sel)
+	objc.Send[objc.ID](u_.ID, objc.Sel("resignCurrent"))
 }
 

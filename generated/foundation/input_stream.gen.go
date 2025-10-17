@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [InputStream] class.
-var InputStreamClass objc.Class
+var InputStreamClass = _InputStreamClass{objc.GetClass("NSInputStream")}
 
-func init() {
-	InputStreamClass = objc.GetClass("NSInputStream")
+type _InputStreamClass struct {
+	class objc.Class
 }
 
 type InputStream struct {

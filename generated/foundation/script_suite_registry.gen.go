@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScriptSuiteRegistry] class.
-var ScriptSuiteRegistryClass objc.Class
+var ScriptSuiteRegistryClass = _ScriptSuiteRegistryClass{objc.GetClass("NSScriptSuiteRegistry")}
 
-func init() {
-	ScriptSuiteRegistryClass = objc.GetClass("NSScriptSuiteRegistry")
+type _ScriptSuiteRegistryClass struct {
+	class objc.Class
 }
 
 type ScriptSuiteRegistry struct {

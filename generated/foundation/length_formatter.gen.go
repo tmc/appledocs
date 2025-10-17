@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [LengthFormatter] class.
-var LengthFormatterClass objc.Class
+var LengthFormatterClass = _LengthFormatterClass{objc.GetClass("NSLengthFormatter")}
 
-func init() {
-	LengthFormatterClass = objc.GetClass("NSLengthFormatter")
+type _LengthFormatterClass struct {
+	class objc.Class
 }
 
 type LengthFormatter struct {

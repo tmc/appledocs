@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DataDetector] class.
-var DataDetectorClass objc.Class
+var DataDetectorClass = _DataDetectorClass{objc.GetClass("NSDataDetector")}
 
-func init() {
-	DataDetectorClass = objc.GetClass("NSDataDetector")
+type _DataDetectorClass struct {
+	class objc.Class
 }
 
 type DataDetector struct {

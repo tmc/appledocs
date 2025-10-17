@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Host] class.
-var HostClass objc.Class
+var HostClass = _HostClass{objc.GetClass("NSHost")}
 
-func init() {
-	HostClass = objc.GetClass("NSHost")
+type _HostClass struct {
+	class objc.Class
 }
 
 type Host struct {

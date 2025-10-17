@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLProtectionSpace] class.
-var URLProtectionSpaceClass objc.Class
+var URLProtectionSpaceClass = _URLProtectionSpaceClass{objc.GetClass("NSURLProtectionSpace")}
 
-func init() {
-	URLProtectionSpaceClass = objc.GetClass("NSURLProtectionSpace")
+type _URLProtectionSpaceClass struct {
+	class objc.Class
 }
 
 type URLProtectionSpace struct {

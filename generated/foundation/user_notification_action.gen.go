@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UserNotificationAction] class.
-var UserNotificationActionClass objc.Class
+var UserNotificationActionClass = _UserNotificationActionClass{objc.GetClass("NSUserNotificationAction")}
 
-func init() {
-	UserNotificationActionClass = objc.GetClass("NSUserNotificationAction")
+type _UserNotificationActionClass struct {
+	class objc.Class
 }
 
 type UserNotificationAction struct {

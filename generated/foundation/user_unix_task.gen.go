@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UserUnixTask] class.
-var UserUnixTaskClass objc.Class
+var UserUnixTaskClass = _UserUnixTaskClass{objc.GetClass("NSUserUnixTask")}
 
-func init() {
-	UserUnixTaskClass = objc.GetClass("NSUserUnixTask")
+type _UserUnixTaskClass struct {
+	class objc.Class
 }
 
 type UserUnixTask struct {

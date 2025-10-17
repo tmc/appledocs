@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XPCListenerEndpoint] class.
-var XPCListenerEndpointClass objc.Class
+var XPCListenerEndpointClass = _XPCListenerEndpointClass{objc.GetClass("NSXPCListenerEndpoint")}
 
-func init() {
-	XPCListenerEndpointClass = objc.GetClass("NSXPCListenerEndpoint")
+type _XPCListenerEndpointClass struct {
+	class objc.Class
 }
 
 type XPCListenerEndpoint struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitTemperature] class.
-var UnitTemperatureClass objc.Class
+var UnitTemperatureClass = _UnitTemperatureClass{objc.GetClass("NSUnitTemperature")}
 
-func init() {
-	UnitTemperatureClass = objc.GetClass("NSUnitTemperature")
+type _UnitTemperatureClass struct {
+	class objc.Class
 }
 
 type UnitTemperature struct {

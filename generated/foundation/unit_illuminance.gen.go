@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitIlluminance] class.
-var UnitIlluminanceClass objc.Class
+var UnitIlluminanceClass = _UnitIlluminanceClass{objc.GetClass("NSUnitIlluminance")}
 
-func init() {
-	UnitIlluminanceClass = objc.GetClass("NSUnitIlluminance")
+type _UnitIlluminanceClass struct {
+	class objc.Class
 }
 
 type UnitIlluminance struct {

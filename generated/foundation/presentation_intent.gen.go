@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PresentationIntent] class.
-var PresentationIntentClass objc.Class
+var PresentationIntentClass = _PresentationIntentClass{objc.GetClass("NSPresentationIntent")}
 
-func init() {
-	PresentationIntentClass = objc.GetClass("NSPresentationIntent")
+type _PresentationIntentClass struct {
+	class objc.Class
 }
 
 type PresentationIntent struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PurgeableData] class.
-var PurgeableDataClass objc.Class
+var PurgeableDataClass = _PurgeableDataClass{objc.GetClass("NSPurgeableData")}
 
-func init() {
-	PurgeableDataClass = objc.GetClass("NSPurgeableData")
+type _PurgeableDataClass struct {
+	class objc.Class
 }
 
 type PurgeableData struct {

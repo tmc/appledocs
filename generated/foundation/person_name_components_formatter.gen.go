@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PersonNameComponentsFormatter] class.
-var PersonNameComponentsFormatterClass objc.Class
+var PersonNameComponentsFormatterClass = _PersonNameComponentsFormatterClass{objc.GetClass("NSPersonNameComponentsFormatter")}
 
-func init() {
-	PersonNameComponentsFormatterClass = objc.GetClass("NSPersonNameComponentsFormatter")
+type _PersonNameComponentsFormatterClass struct {
+	class objc.Class
 }
 
 type PersonNameComponentsFormatter struct {
@@ -29,11 +29,10 @@ func PersonNameComponentsFormatterFrom(ptr unsafe.Pointer) PersonNameComponentsF
 // Returns a person name components object from a given string. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/PersonNameComponentsFormatter/personNameComponents(from:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/personNameComponents(from:)
 func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string string) unsafe.Pointer {
-	sel := objc.RegisterName("personNameComponentsFromString:")
-	ret := p_.ID.Send(sel, string)
-	return unsafe.Pointer(ret)
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("personNameComponentsFromString:"), string)
+	return rv
 }
 
 

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ExistsCommand] class.
-var ExistsCommandClass objc.Class
+var ExistsCommandClass = _ExistsCommandClass{objc.GetClass("NSExistsCommand")}
 
-func init() {
-	ExistsCommandClass = objc.GetClass("NSExistsCommand")
+type _ExistsCommandClass struct {
+	class objc.Class
 }
 
 type ExistsCommand struct {

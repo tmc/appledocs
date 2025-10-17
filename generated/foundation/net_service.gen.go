@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NetService] class.
-var NetServiceClass objc.Class
+var NetServiceClass = _NetServiceClass{objc.GetClass("NSNetService")}
 
-func init() {
-	NetServiceClass = objc.GetClass("NSNetService")
+type _NetServiceClass struct {
+	class objc.Class
 }
 
 type NetService struct {
@@ -26,157 +26,158 @@ func NetServiceFrom(ptr unsafe.Pointer) NetService {
 }
 
 // Alloc allocates a new instance without initialization.
-func (nc NetService) Alloc() NetService {
-	ret := objc.ID(NetServiceClass).Send(objc.RegisterName("alloc"))
-	return NetService{ret}
+func (nc _NetServiceClass) Alloc() NetService {
+	rv := objc.Send[NetService](objc.ID(nc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (nc _NetServiceClass) New() NetService {
+	rv := objc.Send[NetService](objc.ID(nc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
 }
 
 // Init initializes the instance.
 func (n_ NetService) Init() NetService {
-	ret := n_.ID.Send(objc.RegisterName("init"))
-	return NetService{ret}
+	rv := objc.Send[NetService](n_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (n_ NetService) Autorelease() NetService {
+	rv := objc.Send[NetService](n_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewNetService creates a new NetService instance.
+func NewNetService() NetService {
+	return NetServiceClass.New()
 }
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/init(domain:type:name:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:)
 func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) NetService {
-	instance := NetService{}.Alloc()
-	sel := objc.RegisterName("initWithDomain:type:name:")
-	ret := instance.ID.Send(sel, domain, type_, name)
-	instance = NetService{ret}
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
+	instance := NetServiceClass.Alloc()
+	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), domain, type_, name)
+	rv.Autorelease()
+	return rv
 }
-// Initializes the receiver for publishing a network service of type   at the socket location specified by  ,  , and  . [Full Topic]
+// Initializes the receiver for publishing a network service of type at the socket location specified by , , and . [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/init(domain:type:name:port:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
 func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name string, port int) NetService {
-	instance := NetService{}.Alloc()
-	sel := objc.RegisterName("initWithDomain:type:name:port:")
-	ret := instance.ID.Send(sel, domain, type_, name, port)
-	instance = NetService{ret}
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
+	instance := NetServiceClass.Alloc()
+	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), domain, type_, name, port)
+	rv.Autorelease()
+	return rv
 }
 
 
-// Returns an   object representing a TXT record formed from a given dictionary. [Full Topic]
+// Returns an object representing a TXT record formed from a given dictionary. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/data(fromTXTRecord:)
-func (nc NetService) DataFromTXTRecordDictionary(txtDictionary unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("dataFromTXTRecordDictionary:")
-	ret := objc.ID(NetServiceClass).Send(sel, txtDictionary)
-	return unsafe.Pointer(ret)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/data(fromTXTRecord:)
+func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("dataFromTXTRecordDictionary:"), txtDictionary)
+	return rv
 }
-// Returns a dictionary representing a TXT record given as an   object. [Full Topic]
+// Returns a dictionary representing a TXT record given as an object. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
-func (nc NetService) DictionaryFromTXTRecordData(txtData unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("dictionaryFromTXTRecordData:")
-	ret := objc.ID(NetServiceClass).Send(sel, txtData)
-	return unsafe.Pointer(ret)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
+func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
+	return rv
 }
 // Creates a pair of input and output streams for the receiver and returns a Boolean value that indicates whether they were retrieved successfully. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/getInputStream(_:outputStream:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/getInputStream(_:outputStream:)
 func (n_ NetService) GetInputStreamOutputStream(inputStream unsafe.Pointer, outputStream unsafe.Pointer) bool {
-	sel := objc.RegisterName("getInputStream:outputStream:")
-	ret := n_.ID.Send(sel, inputStream, outputStream)
-	return ret != 0
+	rv := objc.Send[bool](n_.ID, objc.Sel("getInputStream:outputStream:"), inputStream, outputStream)
+	return rv
 }
 // Attempts to advertise the receiver’s on the network. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/publish()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/publish()
 func (n_ NetService) Publish() {
-	sel := objc.RegisterName("publish")
-	n_.ID.Send(sel)
+	objc.Send[objc.ID](n_.ID, objc.Sel("publish"))
 }
 // Attempts to advertise the receiver on the network, with the given options. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/publish(options:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/publish(options:)
 func (n_ NetService) PublishWithOptions(options unsafe.Pointer) {
-	sel := objc.RegisterName("publishWithOptions:")
-	n_.ID.Send(sel, options)
+	objc.Send[objc.ID](n_.ID, objc.Sel("publishWithOptions:"), options)
 }
 // Removes the service from the given run loop for a given mode. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/remove(from:forMode:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/remove(from:forMode:)
 func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
-	sel := objc.RegisterName("removeFromRunLoop:forMode:")
-	n_.ID.Send(sel, aRunLoop, mode)
+	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
 // Starts a resolve process for the service. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/resolve()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/resolve()
 func (n_ NetService) Resolve() {
-	sel := objc.RegisterName("resolve")
-	n_.ID.Send(sel)
+	objc.Send[objc.ID](n_.ID, objc.Sel("resolve"))
 }
 // Starts a resolve process of a finite duration for the service. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/resolve(withTimeout:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/resolve(withTimeout:)
 func (n_ NetService) ResolveWithTimeout(timeout TimeInterval) {
-	sel := objc.RegisterName("resolveWithTimeout:")
-	n_.ID.Send(sel, timeout)
+	objc.Send[objc.ID](n_.ID, objc.Sel("resolveWithTimeout:"), timeout)
 }
 // Adds the service to the specified run loop. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/schedule(in:forMode:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/schedule(in:forMode:)
 func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
-	sel := objc.RegisterName("scheduleInRunLoop:forMode:")
-	n_.ID.Send(sel, aRunLoop, mode)
+	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 // Sets the TXT record for the receiver, and returns a Boolean value that indicates whether the operation was successful. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/setTXTRecord(_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/setTXTRecord(_:)
 func (n_ NetService) SetTXTRecordData(recordData unsafe.Pointer) bool {
-	sel := objc.RegisterName("setTXTRecordData:")
-	ret := n_.ID.Send(sel, recordData)
-	return ret != 0
+	rv := objc.Send[bool](n_.ID, objc.Sel("setTXTRecordData:"), recordData)
+	return rv
 }
 // Starts the monitoring of TXT-record updates for the receiver. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/startMonitoring()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/startMonitoring()
 func (n_ NetService) StartMonitoring() {
-	sel := objc.RegisterName("startMonitoring")
-	n_.ID.Send(sel)
+	objc.Send[objc.ID](n_.ID, objc.Sel("startMonitoring"))
 }
 // Halts a currently running attempt to publish or resolve a service. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/stop()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/stop()
 func (n_ NetService) Stop() {
-	sel := objc.RegisterName("stop")
-	n_.ID.Send(sel)
+	objc.Send[objc.ID](n_.ID, objc.Sel("stop"))
 }
 // Stops the monitoring of TXT-record updates for the receiver. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/stopMonitoring()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/stopMonitoring()
 func (n_ NetService) StopMonitoring() {
-	sel := objc.RegisterName("stopMonitoring")
-	n_.ID.Send(sel)
+	objc.Send[objc.ID](n_.ID, objc.Sel("stopMonitoring"))
 }
 // Returns the TXT record for the receiver. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NetService/txtRecordData()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/txtRecordData()
 func (n_ NetService) TXTRecordData() unsafe.Pointer {
-	sel := objc.RegisterName("TXTRecordData")
-	ret := n_.ID.Send(sel)
-	return unsafe.Pointer(ret)
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("TXTRecordData"))
+	return rv
 }
+
 

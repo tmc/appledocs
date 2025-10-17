@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Dimension] class.
-var DimensionClass objc.Class
+var DimensionClass = _DimensionClass{objc.GetClass("NSDimension")}
 
-func init() {
-	DimensionClass = objc.GetClass("NSDimension")
+type _DimensionClass struct {
+	class objc.Class
 }
 
 type Dimension struct {

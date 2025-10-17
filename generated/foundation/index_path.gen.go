@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [IndexPath] class.
-var IndexPathClass objc.Class
+var IndexPathClass = _IndexPathClass{objc.GetClass("NSIndexPath")}
 
-func init() {
-	IndexPathClass = objc.GetClass("NSIndexPath")
+type _IndexPathClass struct {
+	class objc.Class
 }
 
 type IndexPath struct {

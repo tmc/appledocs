@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PropertySpecifier] class.
-var PropertySpecifierClass objc.Class
+var PropertySpecifierClass = _PropertySpecifierClass{objc.GetClass("NSPropertySpecifier")}
 
-func init() {
-	PropertySpecifierClass = objc.GetClass("NSPropertySpecifier")
+type _PropertySpecifierClass struct {
+	class objc.Class
 }
 
 type PropertySpecifier struct {

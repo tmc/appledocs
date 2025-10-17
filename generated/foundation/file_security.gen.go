@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FileSecurity] class.
-var FileSecurityClass objc.Class
+var FileSecurityClass = _FileSecurityClass{objc.GetClass("NSFileSecurity")}
 
-func init() {
-	FileSecurityClass = objc.GetClass("NSFileSecurity")
+type _FileSecurityClass struct {
+	class objc.Class
 }
 
 type FileSecurity struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Set] class.
-var SetClass objc.Class
+var SetClass = _SetClass{objc.GetClass("NSSet")}
 
-func init() {
-	SetClass = objc.GetClass("NSSet")
+type _SetClass struct {
+	class objc.Class
 }
 
 type Set struct {

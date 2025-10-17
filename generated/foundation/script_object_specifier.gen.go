@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScriptObjectSpecifier] class.
-var ScriptObjectSpecifierClass objc.Class
+var ScriptObjectSpecifierClass = _ScriptObjectSpecifierClass{objc.GetClass("NSScriptObjectSpecifier")}
 
-func init() {
-	ScriptObjectSpecifierClass = objc.GetClass("NSScriptObjectSpecifier")
+type _ScriptObjectSpecifierClass struct {
+	class objc.Class
 }
 
 type ScriptObjectSpecifier struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FileCoordinator] class.
-var FileCoordinatorClass objc.Class
+var FileCoordinatorClass = _FileCoordinatorClass{objc.GetClass("NSFileCoordinator")}
 
-func init() {
-	FileCoordinatorClass = objc.GetClass("NSFileCoordinator")
+type _FileCoordinatorClass struct {
+	class objc.Class
 }
 
 type FileCoordinator struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TextCheckingResult] class.
-var TextCheckingResultClass objc.Class
+var TextCheckingResultClass = _TextCheckingResultClass{objc.GetClass("NSTextCheckingResult")}
 
-func init() {
-	TextCheckingResultClass = objc.GetClass("NSTextCheckingResult")
+type _TextCheckingResultClass struct {
+	class objc.Class
 }
 
 type TextCheckingResult struct {

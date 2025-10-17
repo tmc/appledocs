@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [GetCommand] class.
-var GetCommandClass objc.Class
+var GetCommandClass = _GetCommandClass{objc.GetClass("NSGetCommand")}
 
-func init() {
-	GetCommandClass = objc.GetClass("NSGetCommand")
+type _GetCommandClass struct {
+	class objc.Class
 }
 
 type GetCommand struct {

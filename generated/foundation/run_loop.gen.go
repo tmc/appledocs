@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RunLoop] class.
-var RunLoopClass objc.Class
+var RunLoopClass = _RunLoopClass{objc.GetClass("NSRunLoop")}
 
-func init() {
-	RunLoopClass = objc.GetClass("NSRunLoop")
+type _RunLoopClass struct {
+	class objc.Class
 }
 
 type RunLoop struct {
@@ -29,19 +29,17 @@ func RunLoopFrom(ptr unsafe.Pointer) RunLoop {
 // Registers a given timer with a given input mode. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/RunLoop/add(_:forMode:)-392ag
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/add(_:forMode:)-392ag
 func (r_ RunLoop) AddTimerForMode(timer unsafe.Pointer, mode unsafe.Pointer) {
-	sel := objc.RegisterName("addTimer:forMode:")
-	r_.ID.Send(sel, timer, mode)
+	objc.Send[objc.ID](r_.ID, objc.Sel("addTimer:forMode:"), timer, mode)
 }
 // Returns the receiver’s underlying run loop object. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/RunLoop/getCFRunLoop()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/getCFRunLoop()
 func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {
-	sel := objc.RegisterName("getCFRunLoop")
-	ret := r_.ID.Send(sel)
-	return unsafe.Pointer(ret)
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("getCFRunLoop"))
+	return rv
 }
 
 

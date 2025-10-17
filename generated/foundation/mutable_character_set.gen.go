@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableCharacterSet] class.
-var MutableCharacterSetClass objc.Class
+var MutableCharacterSetClass = _MutableCharacterSetClass{objc.GetClass("NSMutableCharacterSet")}
 
-func init() {
-	MutableCharacterSetClass = objc.GetClass("NSMutableCharacterSet")
+type _MutableCharacterSetClass struct {
+	class objc.Class
 }
 
 type MutableCharacterSet struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [EnergyFormatter] class.
-var EnergyFormatterClass objc.Class
+var EnergyFormatterClass = _EnergyFormatterClass{objc.GetClass("NSEnergyFormatter")}
 
-func init() {
-	EnergyFormatterClass = objc.GetClass("NSEnergyFormatter")
+type _EnergyFormatterClass struct {
+	class objc.Class
 }
 
 type EnergyFormatter struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ConstantString] class.
-var ConstantStringClass objc.Class
+var ConstantStringClass = _ConstantStringClass{objc.GetClass("NSConstantString")}
 
-func init() {
-	ConstantStringClass = objc.GetClass("NSConstantString")
+type _ConstantStringClass struct {
+	class objc.Class
 }
 
 type ConstantString struct {

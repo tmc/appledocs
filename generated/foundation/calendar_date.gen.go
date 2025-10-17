@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CalendarDate] class.
-var CalendarDateClass objc.Class
+var CalendarDateClass = _CalendarDateClass{objc.GetClass("NSCalendarDate")}
 
-func init() {
-	CalendarDateClass = objc.GetClass("NSCalendarDate")
+type _CalendarDateClass struct {
+	class objc.Class
 }
 
 type CalendarDate struct {

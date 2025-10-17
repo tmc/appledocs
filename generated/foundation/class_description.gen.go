@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ClassDescription] class.
-var ClassDescriptionClass objc.Class
+var ClassDescriptionClass = _ClassDescriptionClass{objc.GetClass("NSClassDescription")}
 
-func init() {
-	ClassDescriptionClass = objc.GetClass("NSClassDescription")
+type _ClassDescriptionClass struct {
+	class objc.Class
 }
 
 type ClassDescription struct {

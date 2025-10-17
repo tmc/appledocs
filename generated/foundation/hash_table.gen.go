@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [HashTable] class.
-var HashTableClass objc.Class
+var HashTableClass = _HashTableClass{objc.GetClass("NSHashTable")}
 
-func init() {
-	HashTableClass = objc.GetClass("NSHashTable")
+type _HashTableClass struct {
+	class objc.Class
 }
 
 type HashTable struct {

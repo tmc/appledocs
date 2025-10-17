@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLSessionDownloadTask] class.
-var URLSessionDownloadTaskClass objc.Class
+var URLSessionDownloadTaskClass = _URLSessionDownloadTaskClass{objc.GetClass("NSURLSessionDownloadTask")}
 
-func init() {
-	URLSessionDownloadTaskClass = objc.GetClass("NSURLSessionDownloadTask")
+type _URLSessionDownloadTaskClass struct {
+	class objc.Class
 }
 
 type URLSessionDownloadTask struct {

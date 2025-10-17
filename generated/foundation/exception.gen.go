@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Exception] class.
-var ExceptionClass objc.Class
+var ExceptionClass = _ExceptionClass{objc.GetClass("NSException")}
 
-func init() {
-	ExceptionClass = objc.GetClass("NSException")
+type _ExceptionClass struct {
+	class objc.Class
 }
 
 type Exception struct {

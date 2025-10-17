@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Morphology] class.
-var MorphologyClass objc.Class
+var MorphologyClass = _MorphologyClass{objc.GetClass("NSMorphology")}
 
-func init() {
-	MorphologyClass = objc.GetClass("NSMorphology")
+type _MorphologyClass struct {
+	class objc.Class
 }
 
 type Morphology struct {

@@ -64,6 +64,7 @@ var templateFuncs = template.FuncMap{
 	"prepareInstanceMethods":      prepareInstanceMethods,
 	"prepareInitMethods":          prepareInitMethods,
 	"initMethodToConstructorName": initMethodToConstructorName,
+	"classHasInit":                classHasInit,
 	"sortMethodsByName":           sortMethodsByName,
 	"wrapObjCReturn":              wrapObjCReturn,
 	"isEssentialSelector":         isEssentialSelector,
@@ -1174,4 +1175,15 @@ func convertDocURL(url string) string {
 
 	// Construct https URL
 	return "https://developer.apple.com/" + parts[1]
+}
+
+// classHasInit checks if a class has any init methods (with selector "init").
+// This is used to determine if a test file should be generated.
+func classHasInit(methods []*occ2go.ParsedMethod) bool {
+	for _, m := range methods {
+		if !m.IsClassMethod && m.Selector == "init" {
+			return true
+		}
+	}
+	return false
 }

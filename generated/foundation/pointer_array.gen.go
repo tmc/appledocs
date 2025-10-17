@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PointerArray] class.
-var PointerArrayClass objc.Class
+var PointerArrayClass = _PointerArrayClass{objc.GetClass("NSPointerArray")}
 
-func init() {
-	PointerArrayClass = objc.GetClass("NSPointerArray")
+type _PointerArrayClass struct {
+	class objc.Class
 }
 
 type PointerArray struct {

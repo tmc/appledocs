@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AssertionHandler] class.
-var AssertionHandlerClass objc.Class
+var AssertionHandlerClass = _AssertionHandlerClass{objc.GetClass("NSAssertionHandler")}
 
-func init() {
-	AssertionHandlerClass = objc.GetClass("NSAssertionHandler")
+type _AssertionHandlerClass struct {
+	class objc.Class
 }
 
 type AssertionHandler struct {

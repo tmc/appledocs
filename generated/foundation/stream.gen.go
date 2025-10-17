@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Stream] class.
-var StreamClass objc.Class
+var StreamClass = _StreamClass{objc.GetClass("NSStream")}
 
-func init() {
-	StreamClass = objc.GetClass("NSStream")
+type _StreamClass struct {
+	class objc.Class
 }
 
 type Stream struct {
@@ -27,10 +27,9 @@ func StreamFrom(ptr unsafe.Pointer) Stream {
 
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/Stream/getStreamsToHost(withName:port:inputStream:outputStream:)
-func (sc Stream) GetStreamsToHostWithNamePortInputStreamOutputStream(hostname string, port int, inputStream unsafe.Pointer, outputStream unsafe.Pointer) {
-	sel := objc.RegisterName("getStreamsToHostWithName:port:inputStream:outputStream:")
-	objc.ID(StreamClass).Send(sel, hostname, port, inputStream, outputStream)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getStreamsToHost(withName:port:inputStream:outputStream:)
+func (sc _StreamClass) GetStreamsToHostWithNamePortInputStreamOutputStream(hostname string, port int, inputStream unsafe.Pointer, outputStream unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStreamsToHostWithName:port:inputStream:outputStream:"), hostname, port, inputStream, outputStream)
 }
 
 

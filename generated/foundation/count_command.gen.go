@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CountCommand] class.
-var CountCommandClass objc.Class
+var CountCommandClass = _CountCommandClass{objc.GetClass("NSCountCommand")}
 
-func init() {
-	CountCommandClass = objc.GetClass("NSCountCommand")
+type _CountCommandClass struct {
+	class objc.Class
 }
 
 type CountCommand struct {

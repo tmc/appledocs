@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RelativeSpecifier] class.
-var RelativeSpecifierClass objc.Class
+var RelativeSpecifierClass = _RelativeSpecifierClass{objc.GetClass("NSRelativeSpecifier")}
 
-func init() {
-	RelativeSpecifierClass = objc.GetClass("NSRelativeSpecifier")
+type _RelativeSpecifierClass struct {
+	class objc.Class
 }
 
 type RelativeSpecifier struct {

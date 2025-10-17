@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FileProviderService] class.
-var FileProviderServiceClass objc.Class
+var FileProviderServiceClass = _FileProviderServiceClass{objc.GetClass("NSFileProviderService")}
 
-func init() {
-	FileProviderServiceClass = objc.GetClass("NSFileProviderService")
+type _FileProviderServiceClass struct {
+	class objc.Class
 }
 
 type FileProviderService struct {

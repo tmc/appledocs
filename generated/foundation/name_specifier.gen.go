@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [NameSpecifier] class.
-var NameSpecifierClass objc.Class
+var NameSpecifierClass = _NameSpecifierClass{objc.GetClass("NSNameSpecifier")}
 
-func init() {
-	NameSpecifierClass = objc.GetClass("NSNameSpecifier")
+type _NameSpecifierClass struct {
+	class objc.Class
 }
 
 type NameSpecifier struct {

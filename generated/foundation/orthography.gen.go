@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Orthography] class.
-var OrthographyClass objc.Class
+var OrthographyClass = _OrthographyClass{objc.GetClass("NSOrthography")}
 
-func init() {
-	OrthographyClass = objc.GetClass("NSOrthography")
+type _OrthographyClass struct {
+	class objc.Class
 }
 
 type Orthography struct {

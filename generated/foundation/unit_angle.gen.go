@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitAngle] class.
-var UnitAngleClass objc.Class
+var UnitAngleClass = _UnitAngleClass{objc.GetClass("NSUnitAngle")}
 
-func init() {
-	UnitAngleClass = objc.GetClass("NSUnitAngle")
+type _UnitAngleClass struct {
+	class objc.Class
 }
 
 type UnitAngle struct {

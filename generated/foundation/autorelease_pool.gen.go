@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AutoreleasePool] class.
-var AutoreleasePoolClass objc.Class
+var AutoreleasePoolClass = _AutoreleasePoolClass{objc.GetClass("NSAutoreleasePool")}
 
-func init() {
-	AutoreleasePoolClass = objc.GetClass("NSAutoreleasePool")
+type _AutoreleasePoolClass struct {
+	class objc.Class
 }
 
 type AutoreleasePool struct {

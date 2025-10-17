@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Coder] class.
-var CoderClass objc.Class
+var CoderClass = _CoderClass{objc.GetClass("NSCoder")}
 
-func init() {
-	CoderClass = objc.GetClass("NSCoder")
+type _CoderClass struct {
+	class objc.Class
 }
 
 type Coder struct {
@@ -29,11 +29,10 @@ func CoderFrom(ptr unsafe.Pointer) Coder {
 // Decodes an object for the key, restricted to the specified class. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSCoder/decodeObjectOfClass:forKey:
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeObjectOfClass:forKey:
 func (c_ Coder) DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID {
-	sel := objc.RegisterName("decodeObjectOfClass:forKey:")
-	ret := c_.ID.Send(sel, aClass, key)
-	return ret
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeObjectOfClass:forKey:"), aClass, key)
+	return rv
 }
 
 

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DistributedNotificationCenter] class.
-var DistributedNotificationCenterClass objc.Class
+var DistributedNotificationCenterClass = _DistributedNotificationCenterClass{objc.GetClass("NSDistributedNotificationCenter")}
 
-func init() {
-	DistributedNotificationCenterClass = objc.GetClass("NSDistributedNotificationCenter")
+type _DistributedNotificationCenterClass struct {
+	class objc.Class
 }
 
 type DistributedNotificationCenter struct {

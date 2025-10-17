@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ValueTransformer] class.
-var ValueTransformerClass objc.Class
+var ValueTransformerClass = _ValueTransformerClass{objc.GetClass("NSValueTransformer")}
 
-func init() {
-	ValueTransformerClass = objc.GetClass("NSValueTransformer")
+type _ValueTransformerClass struct {
+	class objc.Class
 }
 
 type ValueTransformer struct {

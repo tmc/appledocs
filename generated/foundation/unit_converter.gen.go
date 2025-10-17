@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitConverter] class.
-var UnitConverterClass objc.Class
+var UnitConverterClass = _UnitConverterClass{objc.GetClass("NSUnitConverter")}
 
-func init() {
-	UnitConverterClass = objc.GetClass("NSUnitConverter")
+type _UnitConverterClass struct {
+	class objc.Class
 }
 
 type UnitConverter struct {

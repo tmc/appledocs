@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PositionalSpecifier] class.
-var PositionalSpecifierClass objc.Class
+var PositionalSpecifierClass = _PositionalSpecifierClass{objc.GetClass("NSPositionalSpecifier")}
 
-func init() {
-	PositionalSpecifierClass = objc.GetClass("NSPositionalSpecifier")
+type _PositionalSpecifierClass struct {
+	class objc.Class
 }
 
 type PositionalSpecifier struct {

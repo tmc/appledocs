@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MethodSignature] class.
-var MethodSignatureClass objc.Class
+var MethodSignatureClass = _MethodSignatureClass{objc.GetClass("NSMethodSignature")}
 
-func init() {
-	MethodSignatureClass = objc.GetClass("NSMethodSignature")
+type _MethodSignatureClass struct {
+	class objc.Class
 }
 
 type MethodSignature struct {

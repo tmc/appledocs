@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Value] class.
-var ValueClass objc.Class
+var ValueClass = _ValueClass{objc.GetClass("NSValue")}
 
-func init() {
-	ValueClass = objc.GetClass("NSValue")
+type _ValueClass struct {
+	class objc.Class
 }
 
 type Value struct {

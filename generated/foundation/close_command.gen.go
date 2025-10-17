@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CloseCommand] class.
-var CloseCommandClass objc.Class
+var CloseCommandClass = _CloseCommandClass{objc.GetClass("NSCloseCommand")}
 
-func init() {
-	CloseCommandClass = objc.GetClass("NSCloseCommand")
+type _CloseCommandClass struct {
+	class objc.Class
 }
 
 type CloseCommand struct {

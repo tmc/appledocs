@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MassFormatter] class.
-var MassFormatterClass objc.Class
+var MassFormatterClass = _MassFormatterClass{objc.GetClass("NSMassFormatter")}
 
-func init() {
-	MassFormatterClass = objc.GetClass("NSMassFormatter")
+type _MassFormatterClass struct {
+	class objc.Class
 }
 
 type MassFormatter struct {

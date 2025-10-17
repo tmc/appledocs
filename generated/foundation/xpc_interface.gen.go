@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XPCInterface] class.
-var XPCInterfaceClass objc.Class
+var XPCInterfaceClass = _XPCInterfaceClass{objc.GetClass("NSXPCInterface")}
 
-func init() {
-	XPCInterfaceClass = objc.GetClass("NSXPCInterface")
+type _XPCInterfaceClass struct {
+	class objc.Class
 }
 
 type XPCInterface struct {

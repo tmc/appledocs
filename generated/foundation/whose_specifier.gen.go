@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [WhoseSpecifier] class.
-var WhoseSpecifierClass objc.Class
+var WhoseSpecifierClass = _WhoseSpecifierClass{objc.GetClass("NSWhoseSpecifier")}
 
-func init() {
-	WhoseSpecifierClass = objc.GetClass("NSWhoseSpecifier")
+type _WhoseSpecifierClass struct {
+	class objc.Class
 }
 
 type WhoseSpecifier struct {

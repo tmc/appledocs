@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DateIntervalFormatter] class.
-var DateIntervalFormatterClass objc.Class
+var DateIntervalFormatterClass = _DateIntervalFormatterClass{objc.GetClass("NSDateIntervalFormatter")}
 
-func init() {
-	DateIntervalFormatterClass = objc.GetClass("NSDateIntervalFormatter")
+type _DateIntervalFormatterClass struct {
+	class objc.Class
 }
 
 type DateIntervalFormatter struct {

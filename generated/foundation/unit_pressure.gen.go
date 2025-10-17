@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitPressure] class.
-var UnitPressureClass objc.Class
+var UnitPressureClass = _UnitPressureClass{objc.GetClass("NSUnitPressure")}
 
-func init() {
-	UnitPressureClass = objc.GetClass("NSUnitPressure")
+type _UnitPressureClass struct {
+	class objc.Class
 }
 
 type UnitPressure struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [HTTPCookie] class.
-var HTTPCookieClass objc.Class
+var HTTPCookieClass = _HTTPCookieClass{objc.GetClass("NSHTTPCookie")}
 
-func init() {
-	HTTPCookieClass = objc.GetClass("NSHTTPCookie")
+type _HTTPCookieClass struct {
+	class objc.Class
 }
 
 type HTTPCookie struct {

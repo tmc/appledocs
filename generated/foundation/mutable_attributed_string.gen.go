@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableAttributedString] class.
-var MutableAttributedStringClass objc.Class
+var MutableAttributedStringClass = _MutableAttributedStringClass{objc.GetClass("NSMutableAttributedString")}
 
-func init() {
-	MutableAttributedStringClass = objc.GetClass("NSMutableAttributedString")
+type _MutableAttributedStringClass struct {
+	class objc.Class
 }
 
 type MutableAttributedString struct {
@@ -29,10 +29,9 @@ func MutableAttributedStringFrom(ptr unsafe.Pointer) MutableAttributedString {
 // Adds the characters and attributes of a given attributed string to the end of the receiver. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSMutableAttributedString/append(_:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/append(_:)
 func (m_ MutableAttributedString) AppendAttributedString(attrString unsafe.Pointer) {
-	sel := objc.RegisterName("appendAttributedString:")
-	m_.ID.Send(sel, attrString)
+	objc.Send[objc.ID](m_.ID, objc.Sel("appendAttributedString:"), attrString)
 }
 
 

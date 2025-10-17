@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [TermOfAddress] class.
-var TermOfAddressClass objc.Class
+var TermOfAddressClass = _TermOfAddressClass{objc.GetClass("NSTermOfAddress")}
 
-func init() {
-	TermOfAddressClass = objc.GetClass("NSTermOfAddress")
+type _TermOfAddressClass struct {
+	class objc.Class
 }
 
 type TermOfAddress struct {

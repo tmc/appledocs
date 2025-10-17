@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [XMLDocument] class.
-var XMLDocumentClass objc.Class
+var XMLDocumentClass = _XMLDocumentClass{objc.GetClass("NSXMLDocument")}
 
-func init() {
-	XMLDocumentClass = objc.GetClass("NSXMLDocument")
+type _XMLDocumentClass struct {
+	class objc.Class
 }
 
 type XMLDocument struct {

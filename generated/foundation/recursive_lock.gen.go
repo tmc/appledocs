@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RecursiveLock] class.
-var RecursiveLockClass objc.Class
+var RecursiveLockClass = _RecursiveLockClass{objc.GetClass("NSRecursiveLock")}
 
-func init() {
-	RecursiveLockClass = objc.GetClass("NSRecursiveLock")
+type _RecursiveLockClass struct {
+	class objc.Class
 }
 
 type RecursiveLock struct {

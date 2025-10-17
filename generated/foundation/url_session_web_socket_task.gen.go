@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLSessionWebSocketTask] class.
-var URLSessionWebSocketTaskClass objc.Class
+var URLSessionWebSocketTaskClass = _URLSessionWebSocketTaskClass{objc.GetClass("NSURLSessionWebSocketTask")}
 
-func init() {
-	URLSessionWebSocketTaskClass = objc.GetClass("NSURLSessionWebSocketTask")
+type _URLSessionWebSocketTaskClass struct {
+	class objc.Class
 }
 
 type URLSessionWebSocketTask struct {

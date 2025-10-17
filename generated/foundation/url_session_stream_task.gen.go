@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [URLSessionStreamTask] class.
-var URLSessionStreamTaskClass objc.Class
+var URLSessionStreamTaskClass = _URLSessionStreamTaskClass{objc.GetClass("NSURLSessionStreamTask")}
 
-func init() {
-	URLSessionStreamTaskClass = objc.GetClass("NSURLSessionStreamTask")
+type _URLSessionStreamTaskClass struct {
+	class objc.Class
 }
 
 type URLSessionStreamTask struct {
@@ -29,10 +29,9 @@ func URLSessionStreamTaskFrom(ptr unsafe.Pointer) URLSessionStreamTask {
 // Asynchronously writes the specified data to the stream, and calls a handler upon completion. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/URLSessionStreamTask/write(_:timeout:completionHandler:)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/write(_:timeout:completionHandler:)
 func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data unsafe.Pointer, timeout TimeInterval, completionHandler unsafe.Pointer) {
-	sel := objc.RegisterName("writeData:timeout:completionHandler:")
-	u_.ID.Send(sel, data, timeout, completionHandler)
+	objc.Send[objc.ID](u_.ID, objc.Sel("writeData:timeout:completionHandler:"), data, timeout, completionHandler)
 }
 
 

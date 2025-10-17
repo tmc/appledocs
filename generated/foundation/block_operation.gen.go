@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BlockOperation] class.
-var BlockOperationClass objc.Class
+var BlockOperationClass = _BlockOperationClass{objc.GetClass("NSBlockOperation")}
 
-func init() {
-	BlockOperationClass = objc.GetClass("NSBlockOperation")
+type _BlockOperationClass struct {
+	class objc.Class
 }
 
 type BlockOperation struct {

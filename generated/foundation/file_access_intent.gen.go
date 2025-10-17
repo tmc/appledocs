@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FileAccessIntent] class.
-var FileAccessIntentClass objc.Class
+var FileAccessIntentClass = _FileAccessIntentClass{objc.GetClass("NSFileAccessIntent")}
 
-func init() {
-	FileAccessIntentClass = objc.GetClass("NSFileAccessIntent")
+type _FileAccessIntentClass struct {
+	class objc.Class
 }
 
 type FileAccessIntent struct {

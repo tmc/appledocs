@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FileHandle] class.
-var FileHandleClass objc.Class
+var FileHandleClass = _FileHandleClass{objc.GetClass("NSFileHandle")}
 
-func init() {
-	FileHandleClass = objc.GetClass("NSFileHandle")
+type _FileHandleClass struct {
+	class objc.Class
 }
 
 type FileHandle struct {
@@ -29,10 +29,9 @@ func FileHandleFrom(ptr unsafe.Pointer) FileHandle {
 // Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing. [Full Topic]
 
 //
-// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/FileHandle/closeFile()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/closeFile()
 func (f_ FileHandle) CloseFile() {
-	sel := objc.RegisterName("closeFile")
-	f_.ID.Send(sel)
+	objc.Send[objc.ID](f_.ID, objc.Sel("closeFile"))
 }
 
 

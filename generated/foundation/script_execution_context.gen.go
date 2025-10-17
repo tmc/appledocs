@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ScriptExecutionContext] class.
-var ScriptExecutionContextClass objc.Class
+var ScriptExecutionContextClass = _ScriptExecutionContextClass{objc.GetClass("NSScriptExecutionContext")}
 
-func init() {
-	ScriptExecutionContextClass = objc.GetClass("NSScriptExecutionContext")
+type _ScriptExecutionContextClass struct {
+	class objc.Class
 }
 
 type ScriptExecutionContext struct {

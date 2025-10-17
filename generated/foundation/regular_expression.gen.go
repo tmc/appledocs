@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [RegularExpression] class.
-var RegularExpressionClass objc.Class
+var RegularExpressionClass = _RegularExpressionClass{objc.GetClass("NSRegularExpression")}
 
-func init() {
-	RegularExpressionClass = objc.GetClass("NSRegularExpression")
+type _RegularExpressionClass struct {
+	class objc.Class
 }
 
 type RegularExpression struct {

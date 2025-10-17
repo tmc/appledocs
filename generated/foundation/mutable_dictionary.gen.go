@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MutableDictionary] class.
-var MutableDictionaryClass objc.Class
+var MutableDictionaryClass = _MutableDictionaryClass{objc.GetClass("NSMutableDictionary")}
 
-func init() {
-	MutableDictionaryClass = objc.GetClass("NSMutableDictionary")
+type _MutableDictionaryClass struct {
+	class objc.Class
 }
 
 type MutableDictionary struct {

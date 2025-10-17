@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [CloneCommand] class.
-var CloneCommandClass objc.Class
+var CloneCommandClass = _CloneCommandClass{objc.GetClass("NSCloneCommand")}
 
-func init() {
-	CloneCommandClass = objc.GetClass("NSCloneCommand")
+type _CloneCommandClass struct {
+	class objc.Class
 }
 
 type CloneCommand struct {

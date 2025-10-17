@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [SpellServer] class.
-var SpellServerClass objc.Class
+var SpellServerClass = _SpellServerClass{objc.GetClass("NSSpellServer")}
 
-func init() {
-	SpellServerClass = objc.GetClass("NSSpellServer")
+type _SpellServerClass struct {
+	class objc.Class
 }
 
 type SpellServer struct {

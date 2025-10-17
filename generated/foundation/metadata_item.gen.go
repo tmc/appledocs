@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MetadataItem] class.
-var MetadataItemClass objc.Class
+var MetadataItemClass = _MetadataItemClass{objc.GetClass("NSMetadataItem")}
 
-func init() {
-	MetadataItemClass = objc.GetClass("NSMetadataItem")
+type _MetadataItemClass struct {
+	class objc.Class
 }
 
 type MetadataItem struct {

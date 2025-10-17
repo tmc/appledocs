@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [OutputStream] class.
-var OutputStreamClass objc.Class
+var OutputStreamClass = _OutputStreamClass{objc.GetClass("NSOutputStream")}
 
-func init() {
-	OutputStreamClass = objc.GetClass("NSOutputStream")
+type _OutputStreamClass struct {
+	class objc.Class
 }
 
 type OutputStream struct {

@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [DirectoryEnumerator] class.
-var DirectoryEnumeratorClass objc.Class
+var DirectoryEnumeratorClass = _DirectoryEnumeratorClass{objc.GetClass("NSDirectoryEnumerator")}
 
-func init() {
-	DirectoryEnumeratorClass = objc.GetClass("NSDirectoryEnumerator")
+type _DirectoryEnumeratorClass struct {
+	class objc.Class
 }
 
 type DirectoryEnumerator struct {

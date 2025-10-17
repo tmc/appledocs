@@ -3,13 +3,16 @@
 package foundation_test
 
 import (
-	"foundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
+
+
 // ExampleNewNetServiceBrowser demonstrates how to create a NetServiceBrowser instance.
+// Initializes an allocated   object.
 func ExampleNewNetServiceBrowser() {
 	_ = foundation.NewNetServiceBrowser()
-	// output:
+	// Output:
 }
 
 

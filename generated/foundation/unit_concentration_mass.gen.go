@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [UnitConcentrationMass] class.
-var UnitConcentrationMassClass objc.Class
+var UnitConcentrationMassClass = _UnitConcentrationMassClass{objc.GetClass("NSUnitConcentrationMass")}
 
-func init() {
-	UnitConcentrationMassClass = objc.GetClass("NSUnitConcentrationMass")
+type _UnitConcentrationMassClass struct {
+	class objc.Class
 }
 
 type UnitConcentrationMass struct {

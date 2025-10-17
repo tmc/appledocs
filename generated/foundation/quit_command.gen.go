@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [QuitCommand] class.
-var QuitCommandClass objc.Class
+var QuitCommandClass = _QuitCommandClass{objc.GetClass("NSQuitCommand")}
 
-func init() {
-	QuitCommandClass = objc.GetClass("NSQuitCommand")
+type _QuitCommandClass struct {
+	class objc.Class
 }
 
 type QuitCommand struct {

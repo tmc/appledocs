@@ -5,14 +5,14 @@ package foundation
 import (
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [Date] class.
-var DateClass objc.Class
+var DateClass = _DateClass{objc.GetClass("NSDate")}
 
-func init() {
-	DateClass = objc.GetClass("NSDate")
+type _DateClass struct {
+	class objc.Class
 }
 
 type Date struct {

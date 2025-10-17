@@ -3,13 +3,16 @@
 package foundation_test
 
 import (
-	"foundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
+
+
 // ExampleNewDictionary demonstrates how to create a Dictionary instance.
+// Initializes a newly allocated dictionary.
 func ExampleNewDictionary() {
 	_ = foundation.NewDictionary()
-	// output:
+	// Output:
 }
 
 
