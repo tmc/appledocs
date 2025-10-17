@@ -16,6 +16,13 @@ type _ItemProviderClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ItemProvider] class.
+type IItemProvider interface {
+	objectivec.IObject
+	CanLoadObjectOfClass(aClass unsafe.Pointer) bool
+	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions unsafe.Pointer, visibility unsafe.Pointer, loadHandler unsafe.Pointer)
+}
+
 // An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider

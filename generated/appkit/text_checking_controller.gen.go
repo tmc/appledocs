@@ -16,6 +16,11 @@ type _TextCheckingControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextCheckingController] class.
+type ITextCheckingController interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextCheckingController
 

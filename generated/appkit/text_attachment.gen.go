@@ -16,6 +16,11 @@ type _TextAttachmentClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextAttachment] class.
+type ITextAttachment interface {
+	objectivec.IObject
+}
+
 // The values for the attachment characteristics of attributed strings and related objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment

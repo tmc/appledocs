@@ -15,6 +15,11 @@ type _MeasurementFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MeasurementFormatter] class.
+type IMeasurementFormatter interface {
+	IFormatter
+}
+
 // A formatter that provides localized representations of units and measurements. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter

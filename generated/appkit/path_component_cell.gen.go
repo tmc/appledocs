@@ -15,6 +15,11 @@ type _PathComponentCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PathComponentCell] class.
+type IPathComponentCell interface {
+	ITextFieldCell
+}
+
 // A component of a path. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathComponentCell

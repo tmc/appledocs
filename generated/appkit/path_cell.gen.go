@@ -15,6 +15,11 @@ type _PathCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PathCell] class.
+type IPathCell interface {
+	IActionCell
+}
+
 // The user interface of a path control object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathCell

@@ -16,6 +16,11 @@ type _GradientClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Gradient] class.
+type IGradient interface {
+	objectivec.IObject
+}
+
 // An object that can draw gradient fill colors [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient

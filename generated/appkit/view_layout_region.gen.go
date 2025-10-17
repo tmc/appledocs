@@ -16,6 +16,11 @@ type _ViewLayoutRegionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ViewLayoutRegion] class.
+type IViewLayoutRegion interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion
 

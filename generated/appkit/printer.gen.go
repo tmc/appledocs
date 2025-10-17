@@ -16,6 +16,11 @@ type _PrinterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Printer] class.
+type IPrinter interface {
+	objectivec.IObject
+}
+
 // An object that describes a printer’s capabilities. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter

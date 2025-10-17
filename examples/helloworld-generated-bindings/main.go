@@ -112,7 +112,8 @@ func main() {
 			objc.RegisterName("initWithFrame:"),
 			NSRect{Origin: NSPoint{50, 80}, Size: NSSize{300, 30}},
 		)))
-	counterLabel.ID.Send(objc.RegisterName("setStringValue:"), nsString("Clicks: 0"))
+	// counterLabel.ID.Send(objc.RegisterName("setStringValue:"), nsString("Clicks: 0"))
+	counterLabel.SetStringValue("Clicks: 0")
 	counterLabel.ID.Send(objc.RegisterName("setEditable:"), false)
 	counterLabel.ID.Send(objc.RegisterName("setBordered:"), false)
 	counterLabel.ID.Send(objc.RegisterName("setDrawsBackground:"), false)

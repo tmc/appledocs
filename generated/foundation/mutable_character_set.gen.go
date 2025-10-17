@@ -15,6 +15,11 @@ type _MutableCharacterSetClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableCharacterSet] class.
+type IMutableCharacterSet interface {
+	ICharacterSet
+}
+
 // An object representing a mutable set of Unicode character values for use in search operations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet

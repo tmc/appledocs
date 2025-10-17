@@ -16,6 +16,12 @@ type _ExpressionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Expression] class.
+type IExpression interface {
+	objectivec.IObject
+	ExpressionValueWithObjectContext(object objc.ID, context unsafe.Pointer) objc.ID
+}
+
 // An expression for use in a comparison predicate. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression

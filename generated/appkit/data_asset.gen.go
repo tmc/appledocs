@@ -16,6 +16,11 @@ type _DataAssetClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DataAsset] class.
+type IDataAsset interface {
+	objectivec.IObject
+}
+
 // An object from a data set type stored in an asset catalog. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset

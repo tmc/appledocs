@@ -15,6 +15,11 @@ type _UnitDurationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitDuration] class.
+type IUnitDuration interface {
+	IDimension
+}
+
 // A unit of measure for a duration of time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration

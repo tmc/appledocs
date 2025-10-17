@@ -16,6 +16,14 @@ type _WorkspaceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Workspace] class.
+type IWorkspace interface {
+	objectivec.IObject
+	LaunchApplicationAtURLOptionsConfigurationError(url unsafe.Pointer, options unsafe.Pointer, configuration unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	OpenURL(url unsafe.Pointer) bool
+	OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls unsafe.Pointer, applicationURL unsafe.Pointer, configuration unsafe.Pointer, completionHandler unsafe.Pointer)
+}
+
 // A workspace that can launch other apps and perform a variety of file-handling services. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace

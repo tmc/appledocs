@@ -16,6 +16,11 @@ type _LocalizedNumberFormatRuleClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LocalizedNumberFormatRule] class.
+type ILocalizedNumberFormatRule interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocalizedNumberFormatRule
 

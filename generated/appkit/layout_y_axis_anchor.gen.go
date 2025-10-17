@@ -15,6 +15,11 @@ type _LayoutYAxisAnchorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LayoutYAxisAnchor] class.
+type ILayoutYAxisAnchor interface {
+	ILayoutAnchor
+}
+
 // A factory class for creating vertical layout constraint objects using a fluent API. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutYAxisAnchor

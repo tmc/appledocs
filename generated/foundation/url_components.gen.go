@@ -16,6 +16,11 @@ type _URLComponentsClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLComponents] class.
+type IURLComponents interface {
+	objectivec.IObject
+}
+
 // An object that parses URLs into and constructs URLs from their constituent parts. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents

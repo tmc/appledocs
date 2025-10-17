@@ -16,6 +16,11 @@ type _ScriptCoercionHandlerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScriptCoercionHandler] class.
+type IScriptCoercionHandler interface {
+	objectivec.IObject
+}
+
 // A mechanism for converting one kind of scripting data to another. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCoercionHandler

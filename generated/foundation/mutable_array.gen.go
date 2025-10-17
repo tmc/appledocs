@@ -15,6 +15,12 @@ type _MutableArrayClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableArray] class.
+type IMutableArray interface {
+	IArray
+	SortUsingDescriptors(sortDescriptors unsafe.Pointer)
+}
+
 // A dynamic ordered collection of objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray

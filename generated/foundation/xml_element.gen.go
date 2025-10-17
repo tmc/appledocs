@@ -15,6 +15,11 @@ type _XMLElementClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [XMLElement] class.
+type IXMLElement interface {
+	IXMLNode
+}
+
 // The element nodes in an XML tree structure. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement

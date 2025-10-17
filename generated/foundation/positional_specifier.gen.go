@@ -16,6 +16,11 @@ type _PositionalSpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PositionalSpecifier] class.
+type IPositionalSpecifier interface {
+	objectivec.IObject
+}
+
 // A specifier for an insertion point in a container relative to another object in the container. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier

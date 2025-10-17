@@ -16,6 +16,11 @@ type _ScriptCommandClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScriptCommand] class.
+type IScriptCommand interface {
+	objectivec.IObject
+}
+
 // A self-contained scripting statement. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand

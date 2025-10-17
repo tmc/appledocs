@@ -15,6 +15,11 @@ type _OutputStreamClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [OutputStream] class.
+type IOutputStream interface {
+	IStream
+}
+
 // A stream that provides write-only stream functionality. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream

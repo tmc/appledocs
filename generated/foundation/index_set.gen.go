@@ -16,6 +16,11 @@ type _IndexSetClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [IndexSet] class.
+type IIndexSet interface {
+	objectivec.IObject
+}
+
 // An immutable collection of unique integer values that represent indexes in another collection. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet

@@ -16,6 +16,11 @@ type _HTTPCookieStorageClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [HTTPCookieStorage] class.
+type IHTTPCookieStorage interface {
+	objectivec.IObject
+}
+
 // A container that manages the storage of cookies. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage

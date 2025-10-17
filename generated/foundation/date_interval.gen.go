@@ -16,6 +16,11 @@ type _DateIntervalClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DateInterval] class.
+type IDateInterval interface {
+	objectivec.IObject
+}
+
 // An object representing the span of time between a specific start date and end date. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval

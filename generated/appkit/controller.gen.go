@@ -16,6 +16,11 @@ type _ControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Controller] class.
+type IController interface {
+	objectivec.IObject
+}
+
 // An abstract class that implements the and informal protocols required for controller classes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController

@@ -16,6 +16,11 @@ type _ScriptCommandDescriptionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScriptCommandDescription] class.
+type IScriptCommandDescription interface {
+	objectivec.IObject
+}
+
 // A script command that a macOS app supports. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription

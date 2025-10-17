@@ -16,6 +16,11 @@ type _OrderedCollectionDifferenceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [OrderedCollectionDifference] class.
+type IOrderedCollectionDifference interface {
+	objectivec.IObject
+}
+
 // An object representing the difference between two ordered collections. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference

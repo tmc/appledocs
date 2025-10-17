@@ -16,6 +16,11 @@ type _TextInputContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextInputContext] class.
+type ITextInputContext interface {
+	objectivec.IObject
+}
+
 // An object that represents the Cocoa text input system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext

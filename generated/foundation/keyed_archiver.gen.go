@@ -15,6 +15,12 @@ type _KeyedArchiverClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [KeyedArchiver] class.
+type IKeyedArchiver interface {
+	ICoder
+	EncodeDoubleForKey(value float64, key string)
+}
+
 // An encoder that stores an object’s data to an archive referenced by keys. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver

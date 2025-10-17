@@ -16,6 +16,12 @@ type _TouchClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Touch] class.
+type ITouch interface {
+	objectivec.IObject
+	PreviousLocationInView(view unsafe.Pointer) unsafe.Pointer
+}
+
 // A snapshot of a particular touch at an instant in time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch

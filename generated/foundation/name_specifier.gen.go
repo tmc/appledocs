@@ -15,6 +15,11 @@ type _NameSpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [NameSpecifier] class.
+type INameSpecifier interface {
+	IScriptObjectSpecifier
+}
+
 // A specifier for an object in a collection (or container) by name. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier

@@ -16,6 +16,11 @@ type _CursorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Cursor] class.
+type ICursor interface {
+	objectivec.IObject
+}
+
 // A pointer (also called a cursor). [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor

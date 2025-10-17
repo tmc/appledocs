@@ -15,6 +15,11 @@ type _ButtonTouchBarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ButtonTouchBarItem] class.
+type IButtonTouchBarItem interface {
+	ITouchBarItem
+}
+
 // A bar item that provides a button. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonTouchBarItem

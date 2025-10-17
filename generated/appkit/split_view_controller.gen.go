@@ -15,6 +15,11 @@ type _SplitViewControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SplitViewController] class.
+type ISplitViewController interface {
+	IViewController
+}
+
 // An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController

@@ -15,6 +15,11 @@ type _MenuToolbarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MenuToolbarItem] class.
+type IMenuToolbarItem interface {
+	IToolbarItem
+}
+
 // A control that presents a menu in a window’s toolbar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem

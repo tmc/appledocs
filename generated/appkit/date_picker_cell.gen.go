@@ -15,6 +15,11 @@ type _DatePickerCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DatePickerCell] class.
+type IDatePickerCell interface {
+	IActionCell
+}
+
 // An object that controls the behavior of a date picker, or of a single date picker cell in a matrix. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell

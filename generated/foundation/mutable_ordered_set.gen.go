@@ -15,6 +15,11 @@ type _MutableOrderedSetClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableOrderedSet] class.
+type IMutableOrderedSet interface {
+	IOrderedSet
+}
+
 // A dynamic, ordered collection of unique objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet

@@ -15,6 +15,11 @@ type _ArrayControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ArrayController] class.
+type IArrayController interface {
+	IObjectController
+}
+
 // A bindings-compatible controller that manages a collection of objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController

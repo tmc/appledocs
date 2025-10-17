@@ -16,6 +16,11 @@ type _KeyValueSharedObserversSnapshotClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [KeyValueSharedObserversSnapshot] class.
+type IKeyValueSharedObserversSnapshot interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSharedObserversSnapshot
 

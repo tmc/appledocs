@@ -16,6 +16,11 @@ type _URLCacheClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLCache] class.
+type IURLCache interface {
+	objectivec.IObject
+}
+
 // An object that maps URL requests to cached response objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache

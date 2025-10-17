@@ -16,6 +16,11 @@ type _UserNotificationCenterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UserNotificationCenter] class.
+type IUserNotificationCenter interface {
+	objectivec.IObject
+}
+
 // An object that delivers notifications from apps to the user. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter

@@ -15,6 +15,11 @@ type _URLSessionDownloadTaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLSessionDownloadTask] class.
+type IURLSessionDownloadTask interface {
+	IURLSessionTask
+}
+
 // A URL session task that stores downloaded data to a file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDownloadTask

@@ -16,6 +16,11 @@ type _TrackingAreaClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TrackingArea] class.
+type ITrackingArea interface {
+	objectivec.IObject
+}
+
 // A region of a view that generates mouse-tracking and cursor-update events when the pointer is over that region. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea

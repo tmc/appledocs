@@ -15,6 +15,11 @@ type _XMLDocumentClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [XMLDocument] class.
+type IXMLDocument interface {
+	IXMLNode
+}
+
 // An XML document as internalized into a logical tree structure. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument

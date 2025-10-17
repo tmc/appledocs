@@ -15,6 +15,12 @@ type _MutableAttributedStringClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableAttributedString] class.
+type IMutableAttributedString interface {
+	IAttributedString
+	AppendAttributedString(attrString unsafe.Pointer)
+}
+
 // A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString

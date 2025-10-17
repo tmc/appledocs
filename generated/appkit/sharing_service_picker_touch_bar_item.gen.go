@@ -15,6 +15,11 @@ type _SharingServicePickerTouchBarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SharingServicePickerTouchBarItem] class.
+type ISharingServicePickerTouchBarItem interface {
+	ITouchBarItem
+}
+
 // A bar item that, along with its delegate, provides a list of objects eligible for sharing. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem

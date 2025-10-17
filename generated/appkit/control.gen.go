@@ -15,6 +15,32 @@ type _ControlClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Control] class.
+type IControl interface {
+	IView
+	AbortEditing() bool
+	CurrentEditor() unsafe.Pointer
+	DrawWithExpansionFrameInView(contentFrame unsafe.Pointer, view unsafe.Pointer)
+	EditWithFrameEditorDelegateEvent(rect unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer)
+	EndEditing(textObj unsafe.Pointer)
+	ExpansionFrameWithFrame(contentFrame unsafe.Pointer) unsafe.Pointer
+	InvalidateIntrinsicContentSizeForCell(cell unsafe.Pointer)
+	PerformClick(sender objc.ID)
+	SelectWithFrameEditorDelegateStartLength(rect unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int)
+	SendActionTo(action objc.SEL, target objc.ID) bool
+	SendActionOn(mask unsafe.Pointer) int
+	SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, rightDigits uint)
+	SizeThatFits(size unsafe.Pointer) unsafe.Pointer
+	SizeToFit()
+	TakeDoubleValueFrom(sender objc.ID)
+	TakeFloatValueFrom(sender objc.ID)
+	TakeIntValueFrom(sender objc.ID)
+	TakeIntegerValueFrom(sender objc.ID)
+	TakeObjectValueFrom(sender objc.ID)
+	TakeStringValueFrom(sender objc.ID)
+	ValidateEditing()
+}
+
 // A specialized view, such as a button or text field, that notifies your app of relevant events using the target-action design pattern. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl

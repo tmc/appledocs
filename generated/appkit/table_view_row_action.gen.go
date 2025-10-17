@@ -16,6 +16,11 @@ type _TableViewRowActionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TableViewRowAction] class.
+type ITableViewRowAction interface {
+	objectivec.IObject
+}
+
 // A single action to present when the user swipes horizontally on a table row. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction

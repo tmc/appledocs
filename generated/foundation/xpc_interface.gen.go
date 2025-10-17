@@ -16,6 +16,11 @@ type _XPCInterfaceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [XPCInterface] class.
+type IXPCInterface interface {
+	objectivec.IObject
+}
+
 // An interface that may be sent to an exported object or remote object proxy. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface

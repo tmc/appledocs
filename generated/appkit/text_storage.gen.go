@@ -16,6 +16,11 @@ type _TextStorageClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextStorage] class.
+type ITextStorage interface {
+	IMutableAttributedString
+}
+
 // The fundamental storage mechanism of TextKit that contains the text managed by the system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage

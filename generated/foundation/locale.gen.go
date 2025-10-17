@@ -16,6 +16,11 @@ type _LocaleClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Locale] class.
+type ILocale interface {
+	objectivec.IObject
+}
+
 // Information about linguistic, cultural, and technological conventions for use in formatting data for presentation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale

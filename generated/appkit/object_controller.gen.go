@@ -15,6 +15,11 @@ type _ObjectControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ObjectController] class.
+type IObjectController interface {
+	IController
+}
+
 // A controller that can manage an object’s properties referenced by key-value paths. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController

@@ -16,6 +16,21 @@ type _ExtensionContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ExtensionContext] class.
+type IExtensionContext interface {
+	objectivec.IObject
+	CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL unsafe.Pointer, broadcastConfiguration unsafe.Pointer, setupInfo unsafe.Pointer)
+	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL unsafe.Pointer, setupInfo unsafe.Pointer)
+	DismissNotificationContentExtension()
+	InterfaceParametersDescription() unsafe.Pointer
+	LoadBroadcastingApplicationInfoWithCompletion(handler unsafe.Pointer)
+	MediaPlayingPaused()
+	MediaPlayingStarted()
+	OpenURLCompletionHandler(URL unsafe.Pointer, completionHandler unsafe.Pointer)
+	PerformNotificationDefaultAction()
+	WidgetMaximumSizeForDisplayMode(displayMode unsafe.Pointer) unsafe.Pointer
+}
+
 // The host app context from which an app extension is invoked. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext

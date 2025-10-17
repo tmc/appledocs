@@ -15,6 +15,18 @@ type _RulerViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RulerView] class.
+type IRulerView interface {
+	IView
+	AddMarker(marker unsafe.Pointer)
+	DrawHashMarksAndLabelsInRect(rect unsafe.Pointer)
+	DrawMarkersInRect(rect unsafe.Pointer)
+	InvalidateHashMarks()
+	MoveRulerlineFromLocationToLocation(oldLocation float64, newLocation float64)
+	RemoveMarker(marker unsafe.Pointer)
+	TrackMarkerWithMouseEvent(marker unsafe.Pointer, event unsafe.Pointer) bool
+}
+
 // A ruler and the markers above or to the side of a scroll view’s document view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView
@@ -60,14 +72,6 @@ func (r_ RulerView) Autorelease() RulerView {
 func NewRulerView() RulerView {
 	return rulerViewClass.New()
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
-func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
-	instance := rulerViewClass.Alloc()
-	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
 // Initializes a newly allocated NSRulerView to have ( or ) within . [Full Topic]
 
 //
@@ -75,6 +79,14 @@ func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
 func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientation unsafe.Pointer) RulerView {
 	instance := rulerViewClass.Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithScrollView:orientation:"), scrollView, orientation)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
+func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
+	instance := rulerViewClass.Alloc()
+	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

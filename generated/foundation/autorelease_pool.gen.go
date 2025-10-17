@@ -16,6 +16,11 @@ type _AutoreleasePoolClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AutoreleasePool] class.
+type IAutoreleasePool interface {
+	objectivec.IObject
+}
+
 // An object that supports Cocoa’s reference-counted memory management system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAutoreleasePool

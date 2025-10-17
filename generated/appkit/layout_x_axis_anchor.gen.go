@@ -15,6 +15,11 @@ type _LayoutXAxisAnchorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LayoutXAxisAnchor] class.
+type ILayoutXAxisAnchor interface {
+	ILayoutAnchor
+}
+
 // A factory class for creating horizontal layout constraint objects using a fluent API. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor

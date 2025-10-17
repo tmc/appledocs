@@ -16,6 +16,11 @@ type _FileVersionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FileVersion] class.
+type IFileVersion interface {
+	objectivec.IObject
+}
+
 // A snapshot of a file at a specific point in time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion

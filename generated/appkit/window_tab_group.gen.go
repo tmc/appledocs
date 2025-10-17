@@ -16,6 +16,14 @@ type _WindowTabGroupClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [WindowTabGroup] class.
+type IWindowTabGroup interface {
+	objectivec.IObject
+	AddWindow(window unsafe.Pointer)
+	InsertWindowAtIndex(window unsafe.Pointer, index int)
+	RemoveWindow(window unsafe.Pointer)
+}
+
 // A group of windows that display together as a single tabbed window. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup

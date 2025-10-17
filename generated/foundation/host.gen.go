@@ -16,6 +16,11 @@ type _HostClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Host] class.
+type IHost interface {
+	objectivec.IObject
+}
+
 // A representation of an individual host on the network. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host

@@ -15,6 +15,11 @@ type _ScrubberSelectionViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScrubberSelectionView] class.
+type IScrubberSelectionView interface {
+	IScrubberArrangedView
+}
+
 // An abstract base class for specifying the appearance of a highlighted or selected item in a scrubber. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionView

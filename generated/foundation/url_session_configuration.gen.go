@@ -16,6 +16,11 @@ type _URLSessionConfigurationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLSessionConfiguration] class.
+type IURLSessionConfiguration interface {
+	objectivec.IObject
+}
+
 // A configuration object that defines behavior and policies for a URL session. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration

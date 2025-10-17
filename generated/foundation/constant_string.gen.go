@@ -15,6 +15,11 @@ type _ConstantStringClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ConstantString] class.
+type IConstantString interface {
+	ISimpleCString
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConstantString
 

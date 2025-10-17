@@ -15,6 +15,11 @@ type _MutableDictionaryClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableDictionary] class.
+type IMutableDictionary interface {
+	IDictionary
+}
+
 // A dynamic collection of objects associated with unique keys. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary

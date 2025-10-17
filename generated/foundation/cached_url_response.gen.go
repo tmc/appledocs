@@ -16,6 +16,11 @@ type _CachedURLResponseClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CachedURLResponse] class.
+type ICachedURLResponse interface {
+	objectivec.IObject
+}
+
 // A cached response to a URL request. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse

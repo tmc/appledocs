@@ -15,6 +15,11 @@ type _ClickGestureRecognizerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ClickGestureRecognizer] class.
+type IClickGestureRecognizer interface {
+	IGestureRecognizer
+}
+
 // A discrete gesture recognizer that tracks a specified number of mouse clicks. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClickGestureRecognizer

@@ -15,6 +15,11 @@ type _PanGestureRecognizerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PanGestureRecognizer] class.
+type IPanGestureRecognizer interface {
+	IGestureRecognizer
+}
+
 // A continuous gesture recognizer for panning gestures. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer

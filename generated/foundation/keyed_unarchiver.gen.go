@@ -15,6 +15,11 @@ type _KeyedUnarchiverClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [KeyedUnarchiver] class.
+type IKeyedUnarchiver interface {
+	ICoder
+}
+
 // A decoder that restores data from an archive referenced by keys. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver

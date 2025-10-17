@@ -15,6 +15,11 @@ type _DataDetectorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DataDetector] class.
+type IDataDetector interface {
+	IRegularExpression
+}
+
 // A specialized regular expression object that matches natural language text for predefined data patterns. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector

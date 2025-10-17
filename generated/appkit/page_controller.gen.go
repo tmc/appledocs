@@ -15,6 +15,11 @@ type _PageControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PageController] class.
+type IPageController interface {
+	IViewController
+}
+
 // An object that controls swipe navigation and animations between views or view content. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController

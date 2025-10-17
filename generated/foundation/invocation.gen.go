@@ -16,6 +16,11 @@ type _InvocationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Invocation] class.
+type IInvocation interface {
+	objectivec.IObject
+}
+
 // An Objective-C message rendered as an object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation

@@ -16,6 +16,11 @@ type _AlignmentFeedbackFilterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AlignmentFeedbackFilter] class.
+type IAlignmentFeedbackFilter interface {
+	objectivec.IObject
+}
+
 // An object that can filter the movement of an object and provides haptic feedback when alignment occurs. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter

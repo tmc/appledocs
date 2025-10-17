@@ -16,6 +16,12 @@ type _FileHandleClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FileHandle] class.
+type IFileHandle interface {
+	objectivec.IObject
+	CloseFile()
+}
+
 // An object-oriented wrapper for a file descriptor. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle

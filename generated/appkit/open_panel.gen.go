@@ -15,6 +15,11 @@ type _OpenPanelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [OpenPanel] class.
+type IOpenPanel interface {
+	ISavePanel
+}
+
 // A panel that prompts the user to select a file to open. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel

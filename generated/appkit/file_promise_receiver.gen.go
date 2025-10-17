@@ -16,6 +16,11 @@ type _FilePromiseReceiverClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FilePromiseReceiver] class.
+type IFilePromiseReceiver interface {
+	objectivec.IObject
+}
+
 // An object that receives a file promise from the pasteboard. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver

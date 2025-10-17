@@ -15,6 +15,11 @@ type _XPCCoderClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [XPCCoder] class.
+type IXPCCoder interface {
+	ICoder
+}
+
 // A coder that encodes and decodes objects that your app sends over an XPC connection. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder

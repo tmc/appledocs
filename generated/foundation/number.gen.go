@@ -15,6 +15,12 @@ type _NumberClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Number] class.
+type INumber interface {
+	IValue
+	DescriptionWithLocale(locale objc.ID) unsafe.Pointer
+}
+
 // An object wrapper for primitive scalar numeric values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber

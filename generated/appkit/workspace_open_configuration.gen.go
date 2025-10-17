@@ -16,6 +16,11 @@ type _WorkspaceOpenConfigurationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [WorkspaceOpenConfiguration] class.
+type IWorkspaceOpenConfiguration interface {
+	objectivec.IObject
+}
+
 // The configuration options for opening URLs or launching apps. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration

@@ -15,6 +15,11 @@ type _DimensionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Dimension] class.
+type IDimension interface {
+	IUnit
+}
+
 // An abstract class representing a dimensional unit of measure. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension

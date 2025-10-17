@@ -15,6 +15,11 @@ type _TableCellViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TableCellView] class.
+type ITableCellView interface {
+	IView
+}
+
 // A reusable container view shown for a particular cell in a table view that uses rows for content. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView

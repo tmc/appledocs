@@ -15,6 +15,11 @@ type _ISO8601DateFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ISO8601DateFormatter] class.
+type IISO8601DateFormatter interface {
+	IFormatter
+}
+
 // A formatter that converts between dates and their ISO 8601 string representations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter

@@ -15,6 +15,11 @@ type _UnitElectricCurrentClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitElectricCurrent] class.
+type IUnitElectricCurrent interface {
+	IDimension
+}
+
 // A unit of measure for electric current. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent

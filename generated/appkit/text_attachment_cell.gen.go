@@ -15,6 +15,11 @@ type _TextAttachmentCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextAttachmentCell] class.
+type ITextAttachmentCell interface {
+	ICell
+}
+
 // An object that implements the functionality of the text attachment cell protocol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentCell-swift.class

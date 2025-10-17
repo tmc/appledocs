@@ -16,6 +16,11 @@ type _DocumentControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DocumentController] class.
+type IDocumentController interface {
+	objectivec.IObject
+}
+
 // An object that manages an app’s documents. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController

@@ -15,6 +15,11 @@ type _MagnificationGestureRecognizerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MagnificationGestureRecognizer] class.
+type IMagnificationGestureRecognizer interface {
+	IGestureRecognizer
+}
+
 // A continuous gesture recognizer that tracks a pinch gesture that magnifies content. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMagnificationGestureRecognizer

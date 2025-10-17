@@ -16,6 +16,16 @@ type _UserActivityClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UserActivity] class.
+type IUserActivity interface {
+	objectivec.IObject
+	AddUserInfoEntriesFromDictionary(otherDictionary unsafe.Pointer)
+	BecomeCurrent()
+	GetContinuationStreamsWithCompletionHandler(completionHandler unsafe.Pointer)
+	Invalidate()
+	ResignCurrent()
+}
+
 // A representation of the state of your app at a moment in time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity

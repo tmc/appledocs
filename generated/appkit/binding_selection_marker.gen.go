@@ -16,6 +16,11 @@ type _BindingSelectionMarkerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BindingSelectionMarker] class.
+type IBindingSelectionMarker interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBindingSelectionMarker
 

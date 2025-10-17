@@ -15,6 +15,15 @@ type _OpenGLViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [OpenGLView] class.
+type IOpenGLView interface {
+	IView
+	ClearGLContext()
+	PrepareOpenGL()
+	Reshape()
+	Update()
+}
+
 // A view that displays OpenGL content in a view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView

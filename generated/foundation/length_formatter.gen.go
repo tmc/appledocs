@@ -15,6 +15,11 @@ type _LengthFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LengthFormatter] class.
+type ILengthFormatter interface {
+	IFormatter
+}
+
 // A formatter that provides localized descriptions of linear distances, such as length and height measurements. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter

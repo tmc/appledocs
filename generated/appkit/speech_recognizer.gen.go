@@ -16,6 +16,11 @@ type _SpeechRecognizerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SpeechRecognizer] class.
+type ISpeechRecognizer interface {
+	objectivec.IObject
+}
+
 // The Cocoa interface to speech recognition in macOS. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer

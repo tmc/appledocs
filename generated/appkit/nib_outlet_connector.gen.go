@@ -15,6 +15,11 @@ type _NibOutletConnectorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [NibOutletConnector] class.
+type INibOutletConnector interface {
+	INibConnector
+}
+
 // An outlet connection between Interface Builder objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibOutletConnector

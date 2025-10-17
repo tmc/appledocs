@@ -15,6 +15,11 @@ type _ListFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ListFormatter] class.
+type IListFormatter interface {
+	IFormatter
+}
+
 // An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter

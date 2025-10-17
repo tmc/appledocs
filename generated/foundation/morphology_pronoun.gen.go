@@ -16,6 +16,11 @@ type _MorphologyPronounClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MorphologyPronoun] class.
+type IMorphologyPronoun interface {
+	objectivec.IObject
+}
+
 // A custom pronoun for referring to a third person. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun

@@ -16,6 +16,11 @@ type _DockTileClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DockTile] class.
+type IDockTile interface {
+	objectivec.IObject
+}
+
 // The visual representation of your app’s miniaturized windows and app icon as they appear in the Dock. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile

@@ -15,6 +15,11 @@ type _WindowControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [WindowController] class.
+type IWindowController interface {
+	IResponder
+}
+
 // A controller that manages a window, usually a window stored in a nib file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController

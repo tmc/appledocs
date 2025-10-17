@@ -15,6 +15,11 @@ type _UserAutomatorTaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UserAutomatorTask] class.
+type IUserAutomatorTask interface {
+	IUserScriptTask
+}
+
 // An object that executes Automator workflows. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask

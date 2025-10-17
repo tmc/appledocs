@@ -15,6 +15,11 @@ type _MassFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MassFormatter] class.
+type IMassFormatter interface {
+	IFormatter
+}
+
 // A formatter that provides localized descriptions of mass and weight values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter

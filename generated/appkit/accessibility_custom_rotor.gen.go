@@ -16,6 +16,11 @@ type _AccessibilityCustomRotorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AccessibilityCustomRotor] class.
+type IAccessibilityCustomRotor interface {
+	objectivec.IObject
+}
+
 // A context-sensitive function that helps VoiceOver users find the next instance of a related accessibility element. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotor

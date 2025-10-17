@@ -15,6 +15,11 @@ type _StepperTouchBarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [StepperTouchBarItem] class.
+type IStepperTouchBarItem interface {
+	ITouchBarItem
+}
+
 // A bar item that provides a stepper control for incrementing or decrementing a value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem

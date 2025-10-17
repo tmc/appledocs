@@ -16,6 +16,12 @@ type _SharingServicePickerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SharingServicePicker] class.
+type ISharingServicePicker interface {
+	objectivec.IObject
+	ShowRelativeToRectOfViewPreferredEdge(rect unsafe.Pointer, view unsafe.Pointer, preferredEdge int)
+}
+
 // A list of sharing services that the user can choose from. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker

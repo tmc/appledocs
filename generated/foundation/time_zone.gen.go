@@ -16,6 +16,11 @@ type _TimeZoneClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TimeZone] class.
+type ITimeZone interface {
+	objectivec.IObject
+}
+
 // Information about standard time conventions associated with a specific geopolitical region. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone

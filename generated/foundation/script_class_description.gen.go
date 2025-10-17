@@ -15,6 +15,11 @@ type _ScriptClassDescriptionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScriptClassDescription] class.
+type IScriptClassDescription interface {
+	IClassDescription
+}
+
 // A scriptable class that a macOS app supports. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription

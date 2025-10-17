@@ -15,6 +15,11 @@ type _UnitVolumeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitVolume] class.
+type IUnitVolume interface {
+	IDimension
+}
+
 // A unit of measure for volume. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume

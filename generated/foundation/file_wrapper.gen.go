@@ -16,6 +16,11 @@ type _FileWrapperClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FileWrapper] class.
+type IFileWrapper interface {
+	objectivec.IObject
+}
+
 // A representation of a node (a file, directory, or symbolic link) in the file system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper

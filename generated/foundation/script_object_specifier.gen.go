@@ -16,6 +16,11 @@ type _ScriptObjectSpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScriptObjectSpecifier] class.
+type IScriptObjectSpecifier interface {
+	objectivec.IObject
+}
+
 // An abstract class used to represent natural language expressions. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier

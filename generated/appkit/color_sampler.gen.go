@@ -16,6 +16,11 @@ type _ColorSamplerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ColorSampler] class.
+type IColorSampler interface {
+	objectivec.IObject
+}
+
 // An object that displays the system’s color-sampling interface and returns the selected color to your app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSampler

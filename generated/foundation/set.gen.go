@@ -16,6 +16,11 @@ type _SetClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Set] class.
+type ISet interface {
+	objectivec.IObject
+}
+
 // A static, unordered collection of unique objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet

@@ -16,6 +16,11 @@ type _AttributedStringMarkdownParsingOptionsClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AttributedStringMarkdownParsingOptions] class.
+type IAttributedStringMarkdownParsingOptions interface {
+	objectivec.IObject
+}
+
 // Options that affect the parsing of Markdown content into an attributed string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions

@@ -16,6 +16,11 @@ type _CacheClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Cache] class.
+type ICache interface {
+	objectivec.IObject
+}
+
 // A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache

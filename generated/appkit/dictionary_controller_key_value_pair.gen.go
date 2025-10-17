@@ -16,6 +16,11 @@ type _DictionaryControllerKeyValuePairClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DictionaryControllerKeyValuePair] class.
+type IDictionaryControllerKeyValuePair interface {
+	objectivec.IObject
+}
+
 // A set of methods implemented by arranged objects to give access to information about those objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair

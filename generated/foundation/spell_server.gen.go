@@ -16,6 +16,11 @@ type _SpellServerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SpellServer] class.
+type ISpellServer interface {
+	objectivec.IObject
+}
+
 // A server that your app uses to provide a spell checker service to other apps running in the system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer

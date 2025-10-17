@@ -16,6 +16,11 @@ type _URLCredentialClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLCredential] class.
+type IURLCredential interface {
+	objectivec.IObject
+}
+
 // n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential

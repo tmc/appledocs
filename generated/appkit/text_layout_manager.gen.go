@@ -16,6 +16,11 @@ type _TextLayoutManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextLayoutManager] class.
+type ITextLayoutManager interface {
+	objectivec.IObject
+}
+
 // The primary class that you use to manage text layout and presentation for custom text displays. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager

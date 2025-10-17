@@ -15,6 +15,14 @@ type _BoxClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Box] class.
+type IBox interface {
+	IView
+	SetFrameFromContentFrame(contentFrame unsafe.Pointer)
+	SetTitleWithMnemonic(stringWithAmpersand string)
+	SizeToFit()
+}
+
 // A stylized rectangular box with an optional title. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox

@@ -16,6 +16,11 @@ type _FileCoordinatorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FileCoordinator] class.
+type IFileCoordinator interface {
+	objectivec.IObject
+}
+
 // An object that coordinates the reading and writing of files and directories among file presenters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator

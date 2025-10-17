@@ -16,6 +16,11 @@ type _StoryboardSegueClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [StoryboardSegue] class.
+type IStoryboardSegue interface {
+	objectivec.IObject
+}
+
 // A transition or containment relationship between two scenes in a storyboard. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue

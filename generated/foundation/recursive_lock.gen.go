@@ -16,6 +16,11 @@ type _RecursiveLockClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RecursiveLock] class.
+type IRecursiveLock interface {
+	objectivec.IObject
+}
+
 // A lock that may be acquired multiple times by the same thread without causing a deadlock. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock

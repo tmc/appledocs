@@ -15,6 +15,11 @@ type _TitlebarAccessoryViewControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TitlebarAccessoryViewController] class.
+type ITitlebarAccessoryViewController interface {
+	IViewController
+}
+
 // An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController

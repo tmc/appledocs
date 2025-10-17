@@ -15,6 +15,11 @@ type _ImageViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ImageView] class.
+type IImageView interface {
+	IControl
+}
+
 // A display of image data in a frame. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView

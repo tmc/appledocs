@@ -16,6 +16,11 @@ type _ConditionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Condition] class.
+type ICondition interface {
+	objectivec.IObject
+}
+
 // A condition variable whose semantics follow those used for POSIX-style conditions. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition

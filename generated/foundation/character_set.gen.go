@@ -16,6 +16,11 @@ type _CharacterSetClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CharacterSet] class.
+type ICharacterSet interface {
+	objectivec.IObject
+}
+
 // An object representing a fixed set of Unicode character values for use in search operations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet

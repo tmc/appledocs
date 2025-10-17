@@ -16,6 +16,11 @@ type _ExceptionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Exception] class.
+type IException interface {
+	objectivec.IObject
+}
+
 // An object that represents a special condition that interrupts the normal flow of program execution. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException

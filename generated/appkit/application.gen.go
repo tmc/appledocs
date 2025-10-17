@@ -15,6 +15,26 @@ type _ApplicationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Application] class.
+type IApplication interface {
+	IResponder
+	BeginModalSessionForWindow(window unsafe.Pointer) unsafe.Pointer
+	DiscardEventsMatchingMaskBeforeEvent(mask unsafe.Pointer, lastEvent unsafe.Pointer)
+	NextEventMatchingMaskUntilDateInModeDequeue(mask unsafe.Pointer, expiration unsafe.Pointer, mode unsafe.Pointer, deqFlag bool) unsafe.Pointer
+	OrderFrontStandardAboutPanel(sender objc.ID)
+	PostEventAtStart(event unsafe.Pointer, atStart bool)
+	RegisterForRemoteNotifications()
+	ReportException(exception unsafe.Pointer)
+	RunModalForWindow(window unsafe.Pointer) unsafe.Pointer
+	RunModalSession(session unsafe.Pointer) unsafe.Pointer
+	SendActionToFrom(action objc.SEL, target objc.ID, sender objc.ID) bool
+	SendEvent(event unsafe.Pointer)
+	SetWindowsNeedUpdate(needUpdate bool)
+	ToggleTouchBarCustomizationPalette(sender objc.ID)
+	UpdateWindows()
+	ValidRequestorForSendTypeReturnType(sendType unsafe.Pointer, returnType unsafe.Pointer) objc.ID
+}
+
 // An object that manages an app’s main event loop and resources used by all of that app’s objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication

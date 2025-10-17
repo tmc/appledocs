@@ -16,6 +16,11 @@ type _ScriptExecutionContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScriptExecutionContext] class.
+type IScriptExecutionContext interface {
+	objectivec.IObject
+}
+
 // The context in which the current script command is executed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptExecutionContext

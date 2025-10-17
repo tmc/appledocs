@@ -16,6 +16,11 @@ type _TabViewItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TabViewItem] class.
+type ITabViewItem interface {
+	objectivec.IObject
+}
+
 // An item in a tab view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem

@@ -15,6 +15,26 @@ type _TabViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TabView] class.
+type ITabView interface {
+	IView
+	AddTabViewItem(tabViewItem unsafe.Pointer)
+	IndexOfTabViewItem(tabViewItem unsafe.Pointer) int
+	IndexOfTabViewItemWithIdentifier(identifier objc.ID) int
+	InsertTabViewItemAtIndex(tabViewItem unsafe.Pointer, index int)
+	RemoveTabViewItem(tabViewItem unsafe.Pointer)
+	SelectFirstTabViewItem(sender objc.ID)
+	SelectLastTabViewItem(sender objc.ID)
+	SelectNextTabViewItem(sender objc.ID)
+	SelectPreviousTabViewItem(sender objc.ID)
+	SelectTabViewItem(tabViewItem unsafe.Pointer)
+	SelectTabViewItemAtIndex(index int)
+	SelectTabViewItemWithIdentifier(identifier objc.ID)
+	TabViewItemAtIndex(index int) unsafe.Pointer
+	TabViewItemAtPoint(point unsafe.Pointer) unsafe.Pointer
+	TakeSelectedTabViewItemFromSender(sender objc.ID)
+}
+
 // A multipage interface that displays one page at a time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView

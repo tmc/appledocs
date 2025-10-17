@@ -16,6 +16,11 @@ type _PortClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Port] class.
+type IPort interface {
+	objectivec.IObject
+}
+
 // An abstract class that represents a communication channel. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Port

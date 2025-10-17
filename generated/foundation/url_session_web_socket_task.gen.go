@@ -15,6 +15,11 @@ type _URLSessionWebSocketTaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLSessionWebSocketTask] class.
+type IURLSessionWebSocketTask interface {
+	IURLSessionTask
+}
+
 // A URL session task that communicates over the WebSockets protocol standard. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask

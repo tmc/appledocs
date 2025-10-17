@@ -16,6 +16,12 @@ type _CoderClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Coder] class.
+type ICoder interface {
+	objectivec.IObject
+	DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
+}
+
 // An abstract class that serves as the basis for objects that enable archiving and distribution of other objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder

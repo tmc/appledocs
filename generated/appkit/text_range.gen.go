@@ -16,6 +16,11 @@ type _TextRangeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextRange] class.
+type ITextRange interface {
+	objectivec.IObject
+}
+
 // A class that represents a contiguous range between two locations inside document contents. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextRange

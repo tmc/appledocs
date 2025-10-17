@@ -15,6 +15,11 @@ type _PopUpButtonClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PopUpButton] class.
+type IPopUpButton interface {
+	IButton
+}
+
 // A control for selecting an item from a list. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton

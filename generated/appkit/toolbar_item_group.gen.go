@@ -15,6 +15,11 @@ type _ToolbarItemGroupClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ToolbarItemGroup] class.
+type IToolbarItemGroup interface {
+	IToolbarItem
+}
+
 // A group of subitems in a toolbar item. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup

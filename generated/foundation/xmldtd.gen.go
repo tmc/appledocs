@@ -15,6 +15,11 @@ type _XMLDTDClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [XMLDTD] class.
+type IXMLDTD interface {
+	IXMLNode
+}
+
 // A representation of a Document Type Definition. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD

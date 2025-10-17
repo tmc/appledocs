@@ -16,6 +16,11 @@ type _UnitClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Unit] class.
+type IUnit interface {
+	objectivec.IObject
+}
+
 // An abstract class representing a unit of measure. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit

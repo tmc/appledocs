@@ -15,6 +15,11 @@ type _ScrubberProportionalLayoutClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScrubberProportionalLayout] class.
+type IScrubberProportionalLayout interface {
+	IScrubberLayout
+}
+
 // A concrete layout object that sizes each item to some fraction of the scrubber’s visible size. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout

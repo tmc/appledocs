@@ -16,6 +16,11 @@ type _PDFInfoClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PDFInfo] class.
+type IPDFInfo interface {
+	objectivec.IObject
+}
+
 // An object that stores information associated with the creation of a PDF file, such as its URL, tag names, page orientation, and paper size. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo

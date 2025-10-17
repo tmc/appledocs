@@ -15,6 +15,11 @@ type _CloseCommandClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CloseCommand] class.
+type ICloseCommand interface {
+	IScriptCommand
+}
+
 // A command that closes one or more scriptable objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloseCommand

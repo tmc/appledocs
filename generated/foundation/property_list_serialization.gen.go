@@ -16,6 +16,11 @@ type _PropertyListSerializationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PropertyListSerialization] class.
+type IPropertyListSerialization interface {
+	objectivec.IObject
+}
+
 // An object that converts between a property list and one of several serialized representations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization

@@ -16,6 +16,11 @@ type _InflectionRuleClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [InflectionRule] class.
+type IInflectionRule interface {
+	objectivec.IObject
+}
+
 // A rule that affects how an attributed string performs automatic grammatical agreement. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule

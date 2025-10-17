@@ -16,6 +16,11 @@ type _UserInterfaceCompressionOptionsClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UserInterfaceCompressionOptions] class.
+type IUserInterfaceCompressionOptions interface {
+	objectivec.IObject
+}
+
 // An object that specifies how user interface elements resize themselves when space is constrained. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions

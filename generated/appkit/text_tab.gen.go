@@ -16,6 +16,11 @@ type _TextTabClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextTab] class.
+type ITextTab interface {
+	objectivec.IObject
+}
+
 // A tab in a paragraph. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTab

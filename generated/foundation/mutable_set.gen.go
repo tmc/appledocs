@@ -15,6 +15,11 @@ type _MutableSetClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableSet] class.
+type IMutableSet interface {
+	ISet
+}
+
 // A dynamic unordered collection of unique objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet

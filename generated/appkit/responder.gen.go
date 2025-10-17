@@ -16,6 +16,74 @@ type _ResponderClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Responder] class.
+type IResponder interface {
+	objectivec.IObject
+	BecomeFirstResponder() bool
+	BeginGestureWithEvent(event unsafe.Pointer)
+	ChangeModeWithEvent(event unsafe.Pointer)
+	ContextMenuKeyDown(event unsafe.Pointer)
+	CursorUpdate(event unsafe.Pointer)
+	EncodeRestorableStateWithCoder(coder unsafe.Pointer)
+	EncodeRestorableStateWithCoderBackgroundQueue(coder unsafe.Pointer, queue unsafe.Pointer)
+	EndGestureWithEvent(event unsafe.Pointer)
+	FlagsChanged(event unsafe.Pointer)
+	FlushBufferedKeyEvents()
+	HelpRequested(eventPtr unsafe.Pointer)
+	InterfaceStyle() unsafe.Pointer
+	InterpretKeyEvents(eventArray unsafe.Pointer)
+	InvalidateRestorableState()
+	KeyDown(event unsafe.Pointer)
+	KeyUp(event unsafe.Pointer)
+	MagnifyWithEvent(event unsafe.Pointer)
+	MakeTouchBar() unsafe.Pointer
+	MouseCancelled(event unsafe.Pointer)
+	MouseDown(event unsafe.Pointer)
+	MouseDragged(event unsafe.Pointer)
+	MouseEntered(event unsafe.Pointer)
+	MouseExited(event unsafe.Pointer)
+	MouseMoved(event unsafe.Pointer)
+	MouseUp(event unsafe.Pointer)
+	NewWindowForTab(sender objc.ID)
+	NoResponderFor(eventSelector objc.SEL)
+	OtherMouseDown(event unsafe.Pointer)
+	OtherMouseDragged(event unsafe.Pointer)
+	OtherMouseUp(event unsafe.Pointer)
+	PerformKeyEquivalent(event unsafe.Pointer) bool
+	PerformMnemonic(string string) bool
+	PerformTextFinderAction(sender objc.ID)
+	PresentError(error unsafe.Pointer) bool
+	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error unsafe.Pointer, window unsafe.Pointer, delegate objc.ID, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	PressureChangeWithEvent(event unsafe.Pointer)
+	QuickLookWithEvent(event unsafe.Pointer)
+	ResignFirstResponder() bool
+	RestoreStateWithCoder(coder unsafe.Pointer)
+	RightMouseDown(event unsafe.Pointer)
+	RightMouseDragged(event unsafe.Pointer)
+	RightMouseUp(event unsafe.Pointer)
+	RotateWithEvent(event unsafe.Pointer)
+	ScrollWheel(event unsafe.Pointer)
+	SetInterfaceStyle(interfaceStyle unsafe.Pointer)
+	ShouldBeTreatedAsInkEvent(event unsafe.Pointer) bool
+	ShowWritingTools(sender objc.ID)
+	SmartMagnifyWithEvent(event unsafe.Pointer)
+	SupplementalTargetForActionSender(action objc.SEL, sender objc.ID) objc.ID
+	SwipeWithEvent(event unsafe.Pointer)
+	TabletPoint(event unsafe.Pointer)
+	TabletProximity(event unsafe.Pointer)
+	TouchesBeganWithEvent(event unsafe.Pointer)
+	TouchesCancelledWithEvent(event unsafe.Pointer)
+	TouchesEndedWithEvent(event unsafe.Pointer)
+	TouchesMovedWithEvent(event unsafe.Pointer)
+	TryToPerformWith(action objc.SEL, object objc.ID) bool
+	UpdateUserActivityState(userActivity unsafe.Pointer)
+	ValidRequestorForSendTypeReturnType(sendType unsafe.Pointer, returnType unsafe.Pointer) objc.ID
+	ValidateProposedFirstResponderForEvent(responder unsafe.Pointer, event unsafe.Pointer) bool
+	WantsForwardedScrollEventsForAxis(axis unsafe.Pointer) bool
+	WantsScrollEventsForSwipeTrackingOnAxis(axis unsafe.Pointer) bool
+	WillPresentError(error unsafe.Pointer) unsafe.Pointer
+}
+
 // An abstract class that forms the basis of event and command processing in AppKit. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder

@@ -16,6 +16,11 @@ type _StoryboardClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Storyboard] class.
+type IStoryboard interface {
+	objectivec.IObject
+}
+
 // An encapsulation of the design-time view controller and window controller graph represented in an Interface Builder storyboard resource file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard

@@ -15,6 +15,11 @@ type _PanelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Panel] class.
+type IPanel interface {
+	IWindow
+}
+
 // A special kind of window that typically performs a function that is auxiliary to the main window. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel

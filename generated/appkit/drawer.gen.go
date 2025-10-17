@@ -15,6 +15,11 @@ type _DrawerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Drawer] class.
+type IDrawer interface {
+	IResponder
+}
+
 // A user interface element that contains and displays text, scroll, and browser views, in addition to other view subclasses. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer

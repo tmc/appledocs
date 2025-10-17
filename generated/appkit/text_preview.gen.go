@@ -16,6 +16,11 @@ type _TextPreviewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextPreview] class.
+type ITextPreview interface {
+	objectivec.IObject
+}
+
 // A snapshot of the text in your view, which the system uses to create user-visible effects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextPreview

@@ -16,6 +16,11 @@ type _ValueTransformerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ValueTransformer] class.
+type IValueTransformer interface {
+	objectivec.IObject
+}
+
 // An abstract class used to transform values from one representation to another. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer

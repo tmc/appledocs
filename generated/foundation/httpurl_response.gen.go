@@ -15,6 +15,11 @@ type _HTTPURLResponseClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [HTTPURLResponse] class.
+type IHTTPURLResponse interface {
+	IURLResponse
+}
+
 // The metadata associated with the response to an HTTP protocol URL load request. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse

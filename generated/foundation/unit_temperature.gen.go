@@ -15,6 +15,11 @@ type _UnitTemperatureClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitTemperature] class.
+type IUnitTemperature interface {
+	IDimension
+}
+
 // A unit of measure for temperature. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature

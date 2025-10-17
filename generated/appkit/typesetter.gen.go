@@ -16,6 +16,11 @@ type _TypesetterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Typesetter] class.
+type ITypesetter interface {
+	objectivec.IObject
+}
+
 // An abstract class that performs various type layout tasks. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter

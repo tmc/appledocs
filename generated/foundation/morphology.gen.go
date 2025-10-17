@@ -16,6 +16,11 @@ type _MorphologyClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Morphology] class.
+type IMorphology interface {
+	objectivec.IObject
+}
+
 // A description of the grammatical properties of a string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology

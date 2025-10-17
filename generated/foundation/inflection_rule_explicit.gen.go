@@ -15,6 +15,11 @@ type _InflectionRuleExplicitClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [InflectionRuleExplicit] class.
+type IInflectionRuleExplicit interface {
+	IInflectionRule
+}
+
 // An inflection rule that uses a morphology instance to determine how to inflect attribued strings. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRuleExplicit

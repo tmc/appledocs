@@ -16,6 +16,11 @@ type _MetadataQueryClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MetadataQuery] class.
+type IMetadataQuery interface {
+	objectivec.IObject
+}
+
 // A query that you perform against Spotlight metadata. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery

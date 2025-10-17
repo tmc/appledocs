@@ -15,6 +15,11 @@ type _LayoutDimensionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LayoutDimension] class.
+type ILayoutDimension interface {
+	ILayoutAnchor
+}
+
 // A factory class for creating size-based layout constraint objects using a fluent API. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutDimension

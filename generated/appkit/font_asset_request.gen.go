@@ -16,6 +16,11 @@ type _FontAssetRequestClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FontAssetRequest] class.
+type IFontAssetRequest interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest
 

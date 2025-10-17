@@ -16,6 +16,11 @@ type _OpenGLPixelFormatClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [OpenGLPixelFormat] class.
+type IOpenGLPixelFormat interface {
+	objectivec.IObject
+}
+
 // An object that specifies the types of buffers and other attributes of the OpenGL context. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat

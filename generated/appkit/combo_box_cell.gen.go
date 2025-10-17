@@ -15,6 +15,11 @@ type _ComboBoxCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ComboBoxCell] class.
+type IComboBoxCell interface {
+	ITextFieldCell
+}
+
 // The user interface of a combo box. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell

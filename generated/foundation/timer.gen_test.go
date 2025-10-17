@@ -7,18 +7,6 @@ import (
 )
 
 
-// ExampleNewTimerWithFireDateIntervalRepeatsBlock demonstrates how to create a Timer instance using NewTimerWithFireDateIntervalRepeatsBlock.
-// Initializes a timer for the specified date and time interval with the specified block.
-func ExampleNewTimerWithFireDateIntervalRepeatsBlock() {
-	_ = foundation.NewTimerWithFireDateIntervalRepeatsBlock(
-		nil, // date unsafe.Pointer
-		foundation.TimeInterval(0), // interval TimeInterval
-		false, // repeats bool
-		nil, // block unsafe.Pointer
-	)
-	// Output:
-}
-
 // ExampleNewTimerWithFireDateIntervalTargetSelectorUserInfoRepeats demonstrates how to create a Timer instance using NewTimerWithFireDateIntervalTargetSelectorUserInfoRepeats.
 // Initializes a timer using the specified object and selector.
 func ExampleNewTimerWithFireDateIntervalTargetSelectorUserInfoRepeats() {
@@ -64,6 +52,18 @@ func ExampleNewTimerWithTimeIntervalTargetSelectorUserInfoRepeats() {
 		0, // aSelector objc.SEL
 		0, // userInfo objc.ID
 		false, // yesOrNo bool
+	)
+	// Output:
+}
+
+// ExampleNewTimerWithFireDateIntervalRepeatsBlock demonstrates how to create a Timer instance using NewTimerWithFireDateIntervalRepeatsBlock.
+// Initializes a timer for the specified date and time interval with the specified block.
+func ExampleNewTimerWithFireDateIntervalRepeatsBlock() {
+	_ = foundation.NewTimerWithFireDateIntervalRepeatsBlock(
+		nil, // date unsafe.Pointer
+		foundation.TimeInterval(0), // interval TimeInterval
+		false, // repeats bool
+		nil, // block unsafe.Pointer
 	)
 	// Output:
 }

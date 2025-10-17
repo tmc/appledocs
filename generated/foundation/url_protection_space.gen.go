@@ -16,6 +16,11 @@ type _URLProtectionSpaceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLProtectionSpace] class.
+type IURLProtectionSpace interface {
+	objectivec.IObject
+}
+
 // A server or an area on a server, commonly referred to as a realm, that requires authentication. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace

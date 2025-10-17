@@ -16,6 +16,12 @@ type _SortDescriptorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SortDescriptor] class.
+type ISortDescriptor interface {
+	objectivec.IObject
+	CompareObjectToObject(object1 objc.ID, object2 objc.ID) unsafe.Pointer
+}
+
 // An immutable description of how to order a collection of objects according to a property common to all the objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor

@@ -15,6 +15,11 @@ type _URLSessionDataTaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLSessionDataTask] class.
+type IURLSessionDataTask interface {
+	IURLSessionTask
+}
+
 // A URL session task that returns downloaded data directly to the app in memory. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDataTask

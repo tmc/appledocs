@@ -15,6 +15,11 @@ type _UnitInformationStorageClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitInformationStorage] class.
+type IUnitInformationStorage interface {
+	IDimension
+}
+
 // A unit of measure for quantities of information. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage

@@ -16,6 +16,11 @@ type _SplitViewItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SplitViewItem] class.
+type ISplitViewItem interface {
+	objectivec.IObject
+}
+
 // An item in a split view controller. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem

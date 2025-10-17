@@ -15,6 +15,11 @@ type _ViewAnimationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ViewAnimation] class.
+type IViewAnimation interface {
+	IAnimation
+}
+
 // An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewAnimation

@@ -16,6 +16,11 @@ type _FontManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FontManager] class.
+type IFontManager interface {
+	objectivec.IObject
+}
+
 // The center of activity for the font-conversion system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager

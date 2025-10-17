@@ -15,6 +15,11 @@ type _CustomImageRepClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CustomImageRep] class.
+type ICustomImageRep interface {
+	IImageRep
+}
+
 // An object that uses a delegate object to render an image from a custom format. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep

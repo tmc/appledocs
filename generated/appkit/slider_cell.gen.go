@@ -15,6 +15,11 @@ type _SliderCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SliderCell] class.
+type ISliderCell interface {
+	IActionCell
+}
+
 // The appearance and behavior of an object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell

@@ -15,6 +15,13 @@ type _VisualEffectViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [VisualEffectView] class.
+type IVisualEffectView interface {
+	IView
+	ViewDidMoveToWindow()
+	ViewWillMoveToWindow(newWindow unsafe.Pointer)
+}
+
 // A view that adds translucency and vibrancy effects to the views in your interface. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView

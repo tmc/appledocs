@@ -16,6 +16,11 @@ type _ThreadClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Thread] class.
+type IThread interface {
+	objectivec.IObject
+}
+
 // A thread of execution. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread

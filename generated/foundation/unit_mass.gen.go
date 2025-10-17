@@ -15,6 +15,11 @@ type _UnitMassClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitMass] class.
+type IUnitMass interface {
+	IDimension
+}
+
 // A unit of measure for mass. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass

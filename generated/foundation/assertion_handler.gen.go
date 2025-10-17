@@ -16,6 +16,11 @@ type _AssertionHandlerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AssertionHandler] class.
+type IAssertionHandler interface {
+	objectivec.IObject
+}
+
 // An object that logs an assertion to the console. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler

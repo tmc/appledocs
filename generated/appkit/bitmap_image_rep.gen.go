@@ -15,6 +15,11 @@ type _BitmapImageRepClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BitmapImageRep] class.
+type IBitmapImageRep interface {
+	IImageRep
+}
+
 // An object that renders an image from bitmap data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep

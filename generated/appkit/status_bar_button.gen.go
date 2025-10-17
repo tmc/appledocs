@@ -15,6 +15,11 @@ type _StatusBarButtonClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [StatusBarButton] class.
+type IStatusBarButton interface {
+	IButton
+}
+
 // The appearance and behavior of an item in the systemwide menu bar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBarButton

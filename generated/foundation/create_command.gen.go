@@ -15,6 +15,11 @@ type _CreateCommandClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CreateCommand] class.
+type ICreateCommand interface {
+	IScriptCommand
+}
+
 // A command that creates a scriptable object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand

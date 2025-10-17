@@ -16,6 +16,13 @@ type _RunLoopClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RunLoop] class.
+type IRunLoop interface {
+	objectivec.IObject
+	AddTimerForMode(timer unsafe.Pointer, mode unsafe.Pointer)
+	GetCFRunLoop() unsafe.Pointer
+}
+
 // The programmatic interface to objects that manage input sources. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop

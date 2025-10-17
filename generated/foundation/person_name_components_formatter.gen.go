@@ -15,6 +15,12 @@ type _PersonNameComponentsFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersonNameComponentsFormatter] class.
+type IPersonNameComponentsFormatter interface {
+	IFormatter
+	PersonNameComponentsFromString(string string) unsafe.Pointer
+}
+
 // A formatter that provides localized representations of the components of a person’s name. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter

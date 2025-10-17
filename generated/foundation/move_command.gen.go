@@ -15,6 +15,11 @@ type _MoveCommandClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MoveCommand] class.
+type IMoveCommand interface {
+	IScriptCommand
+}
+
 // A command that moves one or more scriptable objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand

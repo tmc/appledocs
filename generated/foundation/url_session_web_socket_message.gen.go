@@ -16,6 +16,11 @@ type _URLSessionWebSocketMessageClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLSessionWebSocketMessage] class.
+type IURLSessionWebSocketMessage interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage
 

@@ -15,6 +15,11 @@ type _CalendarDateClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CalendarDate] class.
+type ICalendarDate interface {
+	IDate
+}
+
 // A specialized date object with embedded calendar information. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate

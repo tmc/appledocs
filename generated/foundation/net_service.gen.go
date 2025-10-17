@@ -16,6 +16,23 @@ type _NetServiceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [NetService] class.
+type INetService interface {
+	objectivec.IObject
+	GetInputStreamOutputStream(inputStream unsafe.Pointer, outputStream unsafe.Pointer) bool
+	Publish()
+	PublishWithOptions(options unsafe.Pointer)
+	RemoveFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
+	Resolve()
+	ResolveWithTimeout(timeout TimeInterval)
+	ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
+	SetTXTRecordData(recordData unsafe.Pointer) bool
+	StartMonitoring()
+	Stop()
+	StopMonitoring()
+	TXTRecordData() unsafe.Pointer
+}
+
 // A network service that broadcasts its availability using multicast DNS. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService

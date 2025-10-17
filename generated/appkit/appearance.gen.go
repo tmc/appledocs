@@ -16,6 +16,11 @@ type _AppearanceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Appearance] class.
+type IAppearance interface {
+	objectivec.IObject
+}
+
 // An object that manages standard appearance attributes for UI elements in an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance

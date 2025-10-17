@@ -15,6 +15,11 @@ type _SimpleCStringClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SimpleCString] class.
+type ISimpleCString interface {
+	IString
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSimpleCString
 

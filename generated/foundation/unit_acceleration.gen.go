@@ -15,6 +15,11 @@ type _UnitAccelerationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitAcceleration] class.
+type IUnitAcceleration interface {
+	IDimension
+}
+
 // A unit of measure for acceleration. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration

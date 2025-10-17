@@ -16,6 +16,11 @@ type _TextContentManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextContentManager] class.
+type ITextContentManager interface {
+	objectivec.IObject
+}
+
 // An abstract class that defines the interface and a default implementation for managing the text document contents. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager

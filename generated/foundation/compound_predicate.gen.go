@@ -15,6 +15,11 @@ type _CompoundPredicateClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CompoundPredicate] class.
+type ICompoundPredicate interface {
+	IPredicate
+}
+
 // A specialized predicate that evaluates logical combinations of other predicates. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate

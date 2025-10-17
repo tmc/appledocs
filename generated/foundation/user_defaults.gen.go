@@ -16,6 +16,14 @@ type _UserDefaultsClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UserDefaults] class.
+type IUserDefaults interface {
+	objectivec.IObject
+	SetURLForKey(url unsafe.Pointer, defaultName string)
+	SetObjectForKey(value objc.ID, defaultName string)
+	StringForKey(defaultName string) unsafe.Pointer
+}
+
 // An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults

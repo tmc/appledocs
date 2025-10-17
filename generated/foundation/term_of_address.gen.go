@@ -16,6 +16,11 @@ type _TermOfAddressClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TermOfAddress] class.
+type ITermOfAddress interface {
+	objectivec.IObject
+}
+
 // The type for representing grammatical gender in localized text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress

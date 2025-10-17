@@ -15,6 +15,11 @@ type _FontPanelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FontPanel] class.
+type IFontPanel interface {
+	IPanel
+}
+
 // The Font panel—a user interface object that displays a list of available fonts, letting the user preview them and change the font used to display text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontPanel

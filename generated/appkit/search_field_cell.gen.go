@@ -15,6 +15,11 @@ type _SearchFieldCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SearchFieldCell] class.
+type ISearchFieldCell interface {
+	ITextFieldCell
+}
+
 // The programmatic interface for text fields that are used for text-based searches. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell

@@ -15,6 +15,11 @@ type _UnitDispersionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitDispersion] class.
+type IUnitDispersion interface {
+	IDimension
+}
+
 // A unit of measure for specific quantities of dispersion. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDispersion

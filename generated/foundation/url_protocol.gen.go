@@ -16,6 +16,11 @@ type _URLProtocolClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLProtocol] class.
+type IURLProtocol interface {
+	objectivec.IObject
+}
+
 // An abstract class that handles the loading of protocol-specific URL data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol

@@ -16,6 +16,11 @@ type _XPCListenerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [XPCListener] class.
+type IXPCListener interface {
+	objectivec.IObject
+}
+
 // A listener that waits for new incoming connections, configures them, and accepts or rejects them. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener

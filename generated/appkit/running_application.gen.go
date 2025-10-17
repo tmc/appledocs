@@ -16,6 +16,11 @@ type _RunningApplicationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RunningApplication] class.
+type IRunningApplication interface {
+	objectivec.IObject
+}
+
 // An object that can manipulate and provide information for a single instance of an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication

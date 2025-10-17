@@ -15,6 +15,11 @@ type _PropertySpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PropertySpecifier] class.
+type IPropertySpecifier interface {
+	IScriptObjectSpecifier
+}
+
 // A specifier for a simple attribute value, a one-to-one relationship, or all elements of a to-many relationship. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPropertySpecifier

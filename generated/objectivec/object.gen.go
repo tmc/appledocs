@@ -15,6 +15,216 @@ type _ObjectClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Object] class.
+type IObject interface {
+	objc.ID
+	URLResourceDataDidBecomeAvailable(sender unsafe.Pointer, newBytes unsafe.Pointer)
+	URLResourceDidFailLoadingWithReason(sender unsafe.Pointer, reason string)
+	URLResourceDidCancelLoading(sender unsafe.Pointer)
+	URLResourceDidFinishLoading(sender unsafe.Pointer)
+	AcceptsPreviewPanelControl(panel unsafe.Pointer) bool
+	AccessibilityActivate() bool
+	AccessibilityAssistiveTechnologyFocusedIdentifiers() unsafe.Pointer
+	AccessibilityDecrement()
+	AccessibilityElementAtIndex(index int) objc.ID
+	AccessibilityElementCount() int
+	AccessibilityElementIsFocused() bool
+	AccessibilityHitTest(point unsafe.Pointer) objc.ID
+	AccessibilityHitTestWithEvent(point unsafe.Pointer, event unsafe.Pointer) objc.ID
+	AccessibilityIncrement()
+	AccessibilityLineEndPositionFromCurrentSelection() int
+	AccessibilityLineRangeForPosition(position int) unsafe.Pointer
+	AccessibilityLineStartPositionFromCurrentSelection() int
+	AccessibilityZoomInAtPoint(point unsafe.Pointer) bool
+	AccessibilityZoomOutAtPoint(point unsafe.Pointer) bool
+	ActionProperty() unsafe.Pointer
+	ApplicationDelegateHandlesKey(sender unsafe.Pointer, key string) bool
+	AttemptRecoveryFromErrorOptionIndex(error unsafe.Pointer, recoveryOptionIndex uint) bool
+	AttemptRecoveryFromErrorOptionIndexDelegateDidRecoverSelectorContextInfo(error unsafe.Pointer, recoveryOptionIndex uint, delegate objc.ID, didRecoverSelector objc.SEL, contextInfo unsafe.Pointer)
+	AttributedStringForIdentityPropertiesWithNamesInRecordComparisonRecordsFirstLineAttributesSecondLineAttributes(propertyNames unsafe.Pointer, record unsafe.Pointer, comparisonRecords unsafe.Pointer, firstLineAttributes unsafe.Pointer, secondLineAttributes unsafe.Pointer) unsafe.Pointer
+	AttributedStringForPropertiesWithNamesInRecordComparisonRecordsDefaultAttributes(propertyNames unsafe.Pointer, record unsafe.Pointer, comparisonRecords unsafe.Pointer, defaultAttributes unsafe.Pointer) unsafe.Pointer
+	AuthorizationViewCreatedAuthorization(view unsafe.Pointer)
+	AuthorizationViewDidAuthorize(view unsafe.Pointer)
+	AuthorizationViewDidDeauthorize(view unsafe.Pointer)
+	AuthorizationViewDidHide(view unsafe.Pointer)
+	AuthorizationViewReleasedAuthorization(view unsafe.Pointer)
+	AuthorizationViewShouldDeauthorize(view unsafe.Pointer) bool
+	AwakeAfterUsingCoder(coder unsafe.Pointer) objc.ID
+	AwakeFromNib()
+	BeginPreviewPanelControl(panel unsafe.Pointer)
+	BrowserAccessibilityAttributedValueInRange(range_ unsafe.Pointer) unsafe.Pointer
+	BrowserAccessibilityDeleteTextAtCursor(numberOfCharacters int)
+	BrowserAccessibilityInsertTextAtCursor(text string)
+	BrowserAccessibilitySelectedTextRange() unsafe.Pointer
+	BrowserAccessibilitySetSelectedTextRange(range_ unsafe.Pointer)
+	BrowserAccessibilityValueInRange(range_ unsafe.Pointer) unsafe.Pointer
+	BurnProgressPanelBurnDidFinish(theBurnPanel unsafe.Pointer, burn unsafe.Pointer) bool
+	BurnProgressPanelDidFinish(aNotification unsafe.Pointer)
+	BurnProgressPanelWillBegin(aNotification unsafe.Pointer)
+	Candidates(sender objc.ID) unsafe.Pointer
+	CertificatePanelShowHelp(sender unsafe.Pointer) bool
+	ChangeColor(sender objc.ID)
+	ChangeFont(sender objc.ID)
+	ChooseIdentityPanelShowHelp(sender unsafe.Pointer) bool
+	CommitComposition(sender objc.ID)
+	CommitEditing() bool
+	CommitEditingAndReturnError(error unsafe.Pointer) bool
+	CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objc.ID, didCommitSelector objc.SEL, contextInfo unsafe.Pointer)
+	ComposedString(sender objc.ID) objc.ID
+	CompositionParameterViewDidChangeParameterWithKey(parameterView unsafe.Pointer, portKey string)
+	CompositionParameterViewShouldDisplayParameterWithKeyAttributes(parameterView unsafe.Pointer, portKey string, portAttributes unsafe.Pointer) bool
+	CompositionPickerViewDidSelectComposition(pickerView unsafe.Pointer, composition unsafe.Pointer)
+	CompositionPickerViewDidStartAnimating(pickerView unsafe.Pointer)
+	CompositionPickerViewWillStopAnimating(pickerView unsafe.Pointer)
+	ControlTextDidBeginEditing(obj unsafe.Pointer)
+	ControlTextDidChange(obj unsafe.Pointer)
+	ControlTextDidEndEditing(obj unsafe.Pointer)
+	CopyScriptingValueForKeyWithProperties(value objc.ID, key string, properties unsafe.Pointer) objc.ID
+	Dealloc()
+	DidCommandBySelectorClient(aSelector objc.SEL, sender objc.ID) bool
+	DiscardEditing()
+	DoesContain(object objc.ID) bool
+	DoesNotRecognizeSelector(aSelector objc.SEL)
+	DraggedImageBeganAt(image unsafe.Pointer, screenPoint unsafe.Pointer)
+	DraggedImageEndedAtDeposited(image unsafe.Pointer, screenPoint unsafe.Pointer, flag bool)
+	DraggedImageEndedAtOperation(image unsafe.Pointer, screenPoint unsafe.Pointer, operation unsafe.Pointer)
+	DraggedImageMovedTo(image unsafe.Pointer, screenPoint unsafe.Pointer)
+	DraggingSourceOperationMaskForLocal(flag bool) unsafe.Pointer
+	EndPreviewPanelControl(panel unsafe.Pointer)
+	EraseProgressPanelEraseDidFinish(theErasePanel unsafe.Pointer, erase unsafe.Pointer) bool
+	EraseProgressPanelDidFinish(aNotification unsafe.Pointer)
+	EraseProgressPanelWillBegin(aNotification unsafe.Pointer)
+	ExceptionHandlerShouldHandleExceptionMask(sender unsafe.Pointer, exception unsafe.Pointer, aMask uint) bool
+	ExceptionHandlerShouldLogExceptionMask(sender unsafe.Pointer, exception unsafe.Pointer, aMask uint) bool
+	FileManagerShouldProceedAfterError(fm unsafe.Pointer, errorInfo unsafe.Pointer) bool
+	FileManagerWillProcessPath(fm unsafe.Pointer, path string)
+	FileTransferServicesAbortCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
+	FileTransferServicesConnectionCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
+	FileTransferServicesCopyRemoteFileCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
+	FileTransferServicesCopyRemoteFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription unsafe.Pointer)
+	FileTransferServicesCreateFolderCompleteErrorFolder(inServices unsafe.Pointer, inError unsafe.Pointer, inFolderName string)
+	FileTransferServicesDisconnectionCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
+	FileTransferServicesFilePreparationCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
+	FileTransferServicesPathChangeCompleteErrorFinalPath(inServices unsafe.Pointer, inError unsafe.Pointer, inPath string)
+	FileTransferServicesRemoveItemCompleteErrorRemovedItem(inServices unsafe.Pointer, inError unsafe.Pointer, inItemName string)
+	FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices unsafe.Pointer, inError unsafe.Pointer, inListing unsafe.Pointer)
+	FileTransferServicesSendFileCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
+	FileTransferServicesSendFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription unsafe.Pointer)
+	ForwardInvocation(anInvocation unsafe.Pointer)
+	ForwardingTargetForSelector(aSelector objc.SEL) objc.ID
+	GetL2CAPChannelRef() unsafe.Pointer
+	GetOpenGLBufferContextPixelFormat(contextOut unsafe.Pointer, pixelFormatOut unsafe.Pointer)
+	GetPixelBufferPixelFormat(pixelFormatOut unsafe.Pointer)
+	HandleEventClient(event unsafe.Pointer, sender objc.ID) bool
+	IgnoreModifierKeysWhileDragging() bool
+	ImageBrowserBackgroundWasRightClickedWithEvent(aBrowser unsafe.Pointer, event unsafe.Pointer)
+	ImageBrowserCellWasDoubleClickedAtIndex(aBrowser unsafe.Pointer, index uint)
+	ImageBrowserCellWasRightClickedAtIndexWithEvent(aBrowser unsafe.Pointer, index uint, event unsafe.Pointer)
+	ImageBrowserGroupAtIndex(aBrowser unsafe.Pointer, index uint) unsafe.Pointer
+	ImageBrowserItemAtIndex(aBrowser unsafe.Pointer, index uint) objc.ID
+	ImageBrowserMoveItemsAtIndexesToIndex(aBrowser unsafe.Pointer, indexes unsafe.Pointer, destinationIndex uint) bool
+	ImageBrowserRemoveItemsAtIndexes(aBrowser unsafe.Pointer, indexes unsafe.Pointer)
+	ImageBrowserWriteItemsAtIndexesToPasteboard(aBrowser unsafe.Pointer, itemIndexes unsafe.Pointer, pasteboard unsafe.Pointer) uint
+	ImageBrowserSelectionDidChange(aBrowser unsafe.Pointer)
+	ImageRepresentation() objc.ID
+	ImageRepresentationType() unsafe.Pointer
+	ImageSubtitle() unsafe.Pointer
+	ImageTitle() unsafe.Pointer
+	ImageUID() unsafe.Pointer
+	ImageVersion() uint
+	IndexOfAccessibilityElement(element objc.ID) int
+	IndicesOfObjectsByEvaluatingObjectSpecifier(specifier unsafe.Pointer) unsafe.Pointer
+	InputTextClient(string string, sender objc.ID) bool
+	InputTextKeyModifiersClient(string string, keyCode int, flags uint, sender objc.ID) bool
+	InverseForRelationshipKey(relationshipKey string) unsafe.Pointer
+	IsCaseInsensitiveLike(object string) bool
+	IsEqualTo(object objc.ID) bool
+	IsGreaterThan(object objc.ID) bool
+	IsGreaterThanOrEqualTo(object objc.ID) bool
+	IsLessThan(object objc.ID) bool
+	IsLessThanOrEqualTo(object objc.ID) bool
+	IsLike(object string) bool
+	IsNotEqualTo(object objc.ID) bool
+	LayerShouldInheritContentsScaleFromWindow(layer unsafe.Pointer, newScale float64, window unsafe.Pointer) bool
+	MethodForSelector(aSelector objc.SEL) unsafe.Pointer
+	MethodSignatureForSelector(aSelector objc.SEL) unsafe.Pointer
+	NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key string, contentsValue objc.ID, properties unsafe.Pointer) objc.ID
+	NumberOfGroupsInImageBrowser(aBrowser unsafe.Pointer) uint
+	NumberOfItemsInImageBrowser(aBrowser unsafe.Pointer) uint
+	ObjectDidBeginEditing(editor unsafe.Pointer)
+	ObjectDidEndEditing(editor unsafe.Pointer)
+	OriginalString(sender objc.ID) unsafe.Pointer
+	PanelCompareFilenameWithCaseSensitive(sender objc.ID, name1 string, name2 string, caseSensitive bool) unsafe.Pointer
+	PanelDirectoryDidChange(sender objc.ID, path string)
+	PanelIsValidFilename(sender objc.ID, filename string) bool
+	PanelShouldShowFilename(sender objc.ID, filename string) bool
+	PasteboardProvideDataForType(sender unsafe.Pointer, type_ unsafe.Pointer)
+	PasteboardChangedOwner(sender unsafe.Pointer)
+	PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr unsafe.Pointer, arg objc.ID, wait bool)
+	PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr unsafe.Pointer, arg objc.ID, wait bool, array unsafe.Pointer)
+	PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument objc.ID, delay TimeInterval)
+	PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument objc.ID, delay TimeInterval, modes unsafe.Pointer)
+	PerformActionForPersonIdentifier(person unsafe.Pointer, identifier string)
+	PerformSelectorInBackgroundWithObject(aSelector objc.SEL, arg objc.ID)
+	PerformSelectorOnMainThreadWithObjectWaitUntilDone(aSelector objc.SEL, arg objc.ID, wait bool)
+	PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg objc.ID, wait bool, array unsafe.Pointer)
+	PrepareForInterfaceBuilder()
+	ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture unsafe.Pointer, commandBuffer unsafe.Pointer, originx uintptr, originy uintptr, width uintptr, height uintptr, info objc.ID)
+	ProvideImageDataBytesPerRowOriginSizeUserInfo(data unsafe.Pointer, rowbytes uintptr, originx uintptr, originy uintptr, width uintptr, height uintptr, info objc.ID)
+	QuartzFilterManagerDidAddFilter(sender unsafe.Pointer, filter unsafe.Pointer)
+	QuartzFilterManagerDidModifyFilter(sender unsafe.Pointer, filter unsafe.Pointer)
+	QuartzFilterManagerDidRemoveFilter(sender unsafe.Pointer, filter unsafe.Pointer)
+	QuartzFilterManagerDidSelectFilter(sender unsafe.Pointer, filter unsafe.Pointer)
+	ReadLinkQualityForDeviceCompleteDeviceInfoError(controller objc.ID, device unsafe.Pointer, info unsafe.Pointer, error unsafe.Pointer)
+	ReadRSSIForDeviceCompleteDeviceInfoError(controller objc.ID, device unsafe.Pointer, info unsafe.Pointer, error unsafe.Pointer)
+	RegisterIncomingDataListenerRefCon(listener unsafe.Pointer, refCon unsafe.Pointer) unsafe.Pointer
+	RenderIntoOpenGLBufferOnScreenForTime(buffer unsafe.Pointer, screenInOut unsafe.Pointer, timeStamp unsafe.Pointer) bool
+	RenderIntoPixelBufferForTime(buffer unsafe.Pointer, timeStamp unsafe.Pointer) bool
+	ReplacementObjectForCoder(coder unsafe.Pointer) objc.ID
+	ReplacementObjectForKeyedArchiver(archiver unsafe.Pointer) objc.ID
+	ReplacementObjectForArchiver(archiver unsafe.Pointer) objc.ID
+	SaveOptionsShouldShowUTType(saveOptions unsafe.Pointer, utType string) bool
+	ScriptingValueForSpecifier(objectSpecifier unsafe.Pointer) objc.ID
+	SessionDriverDidNegotiateAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
+	SessionDriverDidPullAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
+	SessionDriverDidPushAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
+	SessionDriverDidReceiveSyncAlertAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
+	SessionDriverDidRegisterClientAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
+	SessionDriverWillFinishSessionAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
+	SessionDriverWillNegotiateAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
+	SessionDriverWillPullAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
+	SessionDriverWillPushAndReturnError(sender unsafe.Pointer, outError unsafe.Pointer) bool
+	SessionDriverDidCancelSession(sender unsafe.Pointer)
+	SessionDriverDidFinishSession(sender unsafe.Pointer)
+	SessionDriverWillCancelSession(sender unsafe.Pointer)
+	SetSharedObservers(sharedObservers unsafe.Pointer)
+	SetValueForKey(value objc.ID, key string)
+	SetValueForKeyPath(value objc.ID, keyPath string)
+	SetValuesForKeysWithDictionary(keyedValues unsafe.Pointer)
+	SetupPanelDetermineBestDeviceOfAOrB(aPanel unsafe.Pointer, deviceA unsafe.Pointer, device unsafe.Pointer) unsafe.Pointer
+	SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt string) bool
+	SetupPanelDeviceCouldBeTarget(aPanel unsafe.Pointer, device unsafe.Pointer) bool
+	SetupPanelDeviceSelectionChanged(aNotification unsafe.Pointer)
+	SetupPanelShouldHandleMediaReservations(aPanel unsafe.Pointer) bool
+	ShouldEnableActionForPersonIdentifier(person unsafe.Pointer, identifier string) bool
+	TableViewWriteRowsToPasteboard(tableView unsafe.Pointer, rows unsafe.Pointer, pboard unsafe.Pointer) bool
+	TitleForPersonIdentifier(person unsafe.Pointer, identifier string) unsafe.Pointer
+	ValidModesForFontPanel(fontPanel unsafe.Pointer) unsafe.Pointer
+	ValidateMenuItem(menuItem unsafe.Pointer) bool
+	ValidateToolbarItem(item unsafe.Pointer) bool
+	ValueForKey(key string) objc.ID
+	ValueForKeyPath(keyPath string) objc.ID
+	ViewStringForToolTipPointUserData(view unsafe.Pointer, tag unsafe.Pointer, point unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer
+	WorkflowControllerDidError(controller unsafe.Pointer, error unsafe.Pointer)
+	WorkflowControllerDidRunAction(controller unsafe.Pointer, action unsafe.Pointer)
+	WorkflowControllerWillRunAction(controller unsafe.Pointer, action unsafe.Pointer)
+	WorkflowControllerDidRun(controller unsafe.Pointer)
+	WorkflowControllerDidStop(controller unsafe.Pointer)
+	WorkflowControllerWillRun(controller unsafe.Pointer)
+	WorkflowControllerWillStop(controller unsafe.Pointer)
+	WriteLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer
+}
+
 // The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class

@@ -16,6 +16,11 @@ type _WindowTabClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [WindowTab] class.
+type IWindowTab interface {
+	objectivec.IObject
+}
+
 // A tab associated with a window that is part of a tabbing group. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab

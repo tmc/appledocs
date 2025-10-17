@@ -16,6 +16,11 @@ type _UnitConverterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitConverter] class.
+type IUnitConverter interface {
+	objectivec.IObject
+}
+
 // An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter

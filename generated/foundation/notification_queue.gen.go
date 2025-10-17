@@ -16,6 +16,11 @@ type _NotificationQueueClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [NotificationQueue] class.
+type INotificationQueue interface {
+	objectivec.IObject
+}
+
 // A notification center buffer. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue

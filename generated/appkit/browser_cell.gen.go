@@ -15,6 +15,11 @@ type _BrowserCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BrowserCell] class.
+type IBrowserCell interface {
+	ICell
+}
+
 // The user interface of a browser. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell

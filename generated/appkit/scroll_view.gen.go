@@ -15,6 +15,18 @@ type _ScrollViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScrollView] class.
+type IScrollView interface {
+	IView
+	AddFloatingSubviewForAxis(view unsafe.Pointer, axis unsafe.Pointer)
+	FlashScrollers()
+	MagnifyToFitRect(rect unsafe.Pointer)
+	ReflectScrolledClipView(cView unsafe.Pointer)
+	ScrollWheel(event unsafe.Pointer)
+	SetMagnificationCenteredAtPoint(magnification float64, point unsafe.Pointer)
+	Tile()
+}
+
 // A view that displays a portion of a document view and provides scroll bars that allow the user to move the document view within the scroll view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView

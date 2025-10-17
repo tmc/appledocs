@@ -16,6 +16,11 @@ type _SoundClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Sound] class.
+type ISound interface {
+	objectivec.IObject
+}
+
 // A simple interface for loading and playing audio files. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSound

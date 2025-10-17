@@ -16,6 +16,15 @@ type _PredicateClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Predicate] class.
+type IPredicate interface {
+	objectivec.IObject
+	AllowEvaluation()
+	EvaluateWithObject(object objc.ID) bool
+	EvaluateWithObjectSubstitutionVariables(object objc.ID, bindings unsafe.Pointer) bool
+	PredicateWithSubstitutionVariables(variables unsafe.Pointer) unsafe.Pointer
+}
+
 // A definition of logical conditions for constraining a search for a fetch or for in-memory filtering. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate
@@ -59,24 +68,6 @@ func (p_ Predicate) Autorelease() Predicate {
 func NewPredicate() Predicate {
 	return predicateClass.New()
 }
-// Creates a predicate with a metadata query string. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
-func NewPredicateFromMetadataQueryString(queryString string) Predicate {
-	rv := objc.Send[Predicate](objc.ID(predicateClass.class), objc.Sel("predicateFromMetadataQueryString:"), queryString)
-	rv.Autorelease()
-	return rv
-}
-// Creates and returns a predicate that always evaluates to a specified Boolean value. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
-func NewPredicateWithValue(value bool) Predicate {
-	rv := objc.Send[Predicate](objc.ID(predicateClass.class), objc.Sel("predicateWithValue:"), value)
-	rv.Autorelease()
-	return rv
-}
 // Creates a predicate that evaluates using a specified block object and bindings dictionary. [Full Topic]
 
 //
@@ -101,6 +92,24 @@ func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
 func NewPredicateWithFormatArguments(predicateFormat string, argList unsafe.Pointer) Predicate {
 	rv := objc.Send[Predicate](objc.ID(predicateClass.class), objc.Sel("predicateWithFormat:arguments:"), predicateFormat, argList)
+	rv.Autorelease()
+	return rv
+}
+// Creates a predicate with a metadata query string. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
+func NewPredicateFromMetadataQueryString(queryString string) Predicate {
+	rv := objc.Send[Predicate](objc.ID(predicateClass.class), objc.Sel("predicateFromMetadataQueryString:"), queryString)
+	rv.Autorelease()
+	return rv
+}
+// Creates and returns a predicate that always evaluates to a specified Boolean value. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
+func NewPredicateWithValue(value bool) Predicate {
+	rv := objc.Send[Predicate](objc.ID(predicateClass.class), objc.Sel("predicateWithValue:"), value)
 	rv.Autorelease()
 	return rv
 }

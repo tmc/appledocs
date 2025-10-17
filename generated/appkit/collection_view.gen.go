@@ -15,6 +15,51 @@ type _CollectionViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CollectionView] class.
+type ICollectionView interface {
+	IView
+	DeleteItemsAtIndexPaths(indexPaths unsafe.Pointer)
+	DeleteSections(sections unsafe.Pointer)
+	DeselectAll(sender objc.ID)
+	DeselectItemsAtIndexPaths(indexPaths unsafe.Pointer)
+	DraggingImageForItemsAtIndexPathsWithEventOffset(indexPaths unsafe.Pointer, event unsafe.Pointer, dragImageOffset unsafe.Pointer) unsafe.Pointer
+	DraggingImageForItemsAtIndexesWithEventOffset(indexes unsafe.Pointer, event unsafe.Pointer, dragImageOffset unsafe.Pointer) unsafe.Pointer
+	FrameForItemAtIndex(index uint) unsafe.Pointer
+	FrameForItemAtIndexWithNumberOfItems(index uint, numberOfItems uint) unsafe.Pointer
+	IndexPathForItem(item unsafe.Pointer) unsafe.Pointer
+	IndexPathForItemAtPoint(point unsafe.Pointer) unsafe.Pointer
+	IndexPathsForVisibleItems() unsafe.Pointer
+	IndexPathsForVisibleSupplementaryElementsOfKind(elementKind unsafe.Pointer) unsafe.Pointer
+	InsertItemsAtIndexPaths(indexPaths unsafe.Pointer)
+	InsertSections(sections unsafe.Pointer)
+	ItemAtIndexPath(indexPath unsafe.Pointer) unsafe.Pointer
+	ItemAtIndex(index uint) unsafe.Pointer
+	LayoutAttributesForItemAtIndexPath(indexPath unsafe.Pointer) unsafe.Pointer
+	LayoutAttributesForSupplementaryElementOfKindAtIndexPath(kind unsafe.Pointer, indexPath unsafe.Pointer) unsafe.Pointer
+	MakeItemWithIdentifierForIndexPath(identifier unsafe.Pointer, indexPath unsafe.Pointer) unsafe.Pointer
+	MakeSupplementaryViewOfKindWithIdentifierForIndexPath(elementKind unsafe.Pointer, identifier unsafe.Pointer, indexPath unsafe.Pointer) unsafe.Pointer
+	MoveItemAtIndexPathToIndexPath(indexPath unsafe.Pointer, newIndexPath unsafe.Pointer)
+	MoveSectionToSection(section int, newSection int)
+	NewItemForRepresentedObject(object objc.ID) unsafe.Pointer
+	NumberOfItemsInSection(section int) int
+	PerformBatchUpdatesCompletionHandler(updates unsafe.Pointer, completionHandler unsafe.Pointer)
+	RegisterClassForItemWithIdentifier(itemClass objc.Class, identifier unsafe.Pointer)
+	RegisterNibForItemWithIdentifier(nib unsafe.Pointer, identifier unsafe.Pointer)
+	RegisterClassForSupplementaryViewOfKindWithIdentifier(viewClass objc.Class, kind unsafe.Pointer, identifier unsafe.Pointer)
+	RegisterNibForSupplementaryViewOfKindWithIdentifier(nib unsafe.Pointer, kind unsafe.Pointer, identifier unsafe.Pointer)
+	ReloadData()
+	ReloadItemsAtIndexPaths(indexPaths unsafe.Pointer)
+	ReloadSections(sections unsafe.Pointer)
+	ScrollToItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition unsafe.Pointer)
+	SelectAll(sender objc.ID)
+	SelectItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition unsafe.Pointer)
+	SetDraggingSourceOperationMaskForLocal(dragOperationMask unsafe.Pointer, localDestination bool)
+	SupplementaryViewForElementKindAtIndexPath(elementKind unsafe.Pointer, indexPath unsafe.Pointer) unsafe.Pointer
+	ToggleSectionCollapse(sender objc.ID)
+	VisibleItems() unsafe.Pointer
+	VisibleSupplementaryViewsOfKind(elementKind unsafe.Pointer) unsafe.Pointer
+}
+
 // An ordered collection of data items displayed in a customizable layout. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView

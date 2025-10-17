@@ -15,6 +15,11 @@ type _WhoseSpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [WhoseSpecifier] class.
+type IWhoseSpecifier interface {
+	IScriptObjectSpecifier
+}
+
 // A specifier that indicates every object in a collection matching a condition. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier

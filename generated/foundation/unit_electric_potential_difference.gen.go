@@ -15,6 +15,11 @@ type _UnitElectricPotentialDifferenceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitElectricPotentialDifference] class.
+type IUnitElectricPotentialDifference interface {
+	IDimension
+}
+
 // A unit of measure for electric potential difference. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference

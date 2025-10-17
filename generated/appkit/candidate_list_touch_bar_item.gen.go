@@ -15,6 +15,11 @@ type _CandidateListTouchBarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CandidateListTouchBarItem] class.
+type ICandidateListTouchBarItem interface {
+	ITouchBarItem
+}
+
 // A bar item that, along with its delegate, provides a list of textual suggestions for the current text view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem

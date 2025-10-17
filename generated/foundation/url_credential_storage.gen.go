@@ -16,6 +16,11 @@ type _URLCredentialStorageClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLCredentialStorage] class.
+type IURLCredentialStorage interface {
+	objectivec.IObject
+}
+
 // The manager of a shared credentials cache. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage

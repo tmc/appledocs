@@ -16,6 +16,11 @@ type _AccessibilityCustomActionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AccessibilityCustomAction] class.
+type IAccessibilityCustomAction interface {
+	objectivec.IObject
+}
+
 // A custom action to perform on an accessible object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction

@@ -15,6 +15,11 @@ type _EPSImageRepClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [EPSImageRep] class.
+type IEPSImageRep interface {
+	IImageRep
+}
+
 // An object that can render an image from encapsulated PostScript (EPS) code. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep

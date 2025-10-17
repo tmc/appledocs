@@ -15,6 +15,11 @@ type _DatePickerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DatePicker] class.
+type IDatePicker interface {
+	IControl
+}
+
 // A display of a calendar date with controls for editing the date value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker

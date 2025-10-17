@@ -302,8 +302,12 @@ type I{{$structName}} interface {
 	{{- else}}
 	I{{$superStructName}}
 	{{- end}}
+	{{- else if and (eq $.Framework "ObjectiveC") (eq .Name "NSObject")}}
+	objc.ID
+	{{- else if eq $.Framework "ObjectiveC"}}
+	IObject
 	{{- else}}
-	objc.IObject
+	objectivec.IObject
 	{{- end}}
 	{{- range prepareInstanceMethods .Methods}}
 	{{- if not (isEssentialSelector .Selector)}}
@@ -548,8 +552,12 @@ type I{{$structName}} interface {
 	{{- else}}
 	I{{$superStructName}}
 	{{- end}}
+	{{- else if and (eq $.Framework "ObjectiveC") (eq .Name "NSObject")}}
+	objc.ID
+	{{- else if eq $.Framework "ObjectiveC"}}
+	IObject
 	{{- else}}
-	objc.IObject
+	objectivec.IObject
 	{{- end}}
 	{{- range prepareInstanceMethods .Methods}}
 	{{- if not (isEssentialSelector .Selector)}}

@@ -16,6 +16,11 @@ type _NullClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Null] class.
+type INull interface {
+	objectivec.IObject
+}
+
 // A singleton object used to represent null values in collection objects that don’t allow values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull

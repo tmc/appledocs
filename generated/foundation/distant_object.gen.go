@@ -15,6 +15,11 @@ type _DistantObjectClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DistantObject] class.
+type IDistantObject interface {
+	IProxy
+}
+
 // A proxy for objects in other applications or threads. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject

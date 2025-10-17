@@ -16,6 +16,11 @@ type _TextBlockClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextBlock] class.
+type ITextBlock interface {
+	objectivec.IObject
+}
+
 // A block of text laid out in a subregion of the text container. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock

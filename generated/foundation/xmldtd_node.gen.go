@@ -15,6 +15,11 @@ type _XMLDTDNodeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [XMLDTDNode] class.
+type IXMLDTDNode interface {
+	IXMLNode
+}
+
 // A representation of element, attribute-list, entity, and notation declarations in a Document Type Definition. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode

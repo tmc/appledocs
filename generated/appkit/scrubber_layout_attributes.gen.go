@@ -16,6 +16,11 @@ type _ScrubberLayoutAttributesClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScrubberLayoutAttributes] class.
+type IScrubberLayoutAttributes interface {
+	objectivec.IObject
+}
+
 // The layout of a scrubber item. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes

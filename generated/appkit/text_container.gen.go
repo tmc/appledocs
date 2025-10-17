@@ -16,6 +16,11 @@ type _TextContainerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextContainer] class.
+type ITextContainer interface {
+	objectivec.IObject
+}
+
 // A region where text layout occurs. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer

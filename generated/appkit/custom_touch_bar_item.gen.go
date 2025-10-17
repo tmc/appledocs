@@ -15,6 +15,11 @@ type _CustomTouchBarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CustomTouchBarItem] class.
+type ICustomTouchBarItem interface {
+	ITouchBarItem
+}
+
 // A bar item that contains a responder of your choice, such as a view, a button, or a scrubber. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem

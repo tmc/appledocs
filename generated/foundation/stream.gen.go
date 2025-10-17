@@ -16,6 +16,11 @@ type _StreamClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Stream] class.
+type IStream interface {
+	objectivec.IObject
+}
+
 // An abstract class representing a stream. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream

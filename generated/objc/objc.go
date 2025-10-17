@@ -16,6 +16,12 @@ type (
 	Class = purego.Class
 )
 
+// IObject is the root interface for all Objective-C objects.
+// It provides access to the underlying objc.ID.
+type IObject interface {
+	GetID() ID
+}
+
 var (
 	selCache sync.Map // map[string]purego.SEL
 )

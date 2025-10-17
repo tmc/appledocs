@@ -16,6 +16,11 @@ type _AnimationContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AnimationContext] class.
+type IAnimationContext interface {
+	objectivec.IObject
+}
+
 // An animation context, which contains information about environment and state. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext

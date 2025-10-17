@@ -15,6 +15,11 @@ type _IndexSpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [IndexSpecifier] class.
+type IIndexSpecifier interface {
+	IScriptObjectSpecifier
+}
+
 // A specifier representing an object in a collection (or container) with an index number. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier

@@ -15,6 +15,11 @@ type _ATSTypesetterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ATSTypesetter] class.
+type IATSTypesetter interface {
+	ITypesetter
+}
+
 // A concrete typesetter object that places glyphs during the text layout process. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter

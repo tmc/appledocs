@@ -16,6 +16,11 @@ type _OrderedSetClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [OrderedSet] class.
+type IOrderedSet interface {
+	objectivec.IObject
+}
+
 // A static, ordered collection of unique objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet

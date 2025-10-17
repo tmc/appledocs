@@ -16,6 +16,11 @@ type _BezierPathClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BezierPath] class.
+type IBezierPath interface {
+	objectivec.IObject
+}
+
 // An object that can create paths using PostScript-style commands. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath

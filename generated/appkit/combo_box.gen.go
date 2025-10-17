@@ -15,6 +15,11 @@ type _ComboBoxClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ComboBox] class.
+type IComboBox interface {
+	ITextField
+}
+
 // A view that displays a list of values in a pop-up menu where the user selects a value or types in a custom value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox

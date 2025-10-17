@@ -15,6 +15,11 @@ type _TextViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextView] class.
+type ITextView interface {
+	IText
+}
+
 // A view that draws text and handles user interactions with that text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView

@@ -16,6 +16,14 @@ type _ScannerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Scanner] class.
+type IScanner interface {
+	objectivec.IObject
+	ScanDouble(result unsafe.Pointer) bool
+	ScanFloat(result unsafe.Pointer) bool
+	ScanInt(result unsafe.Pointer) bool
+}
+
 // A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner

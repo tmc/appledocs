@@ -16,6 +16,12 @@ type _FormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Formatter] class.
+type IFormatter interface {
+	objectivec.IObject
+	StringForObjectValue(obj objc.ID) unsafe.Pointer
+}
+
 // An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter

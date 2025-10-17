@@ -16,6 +16,11 @@ type _MediaLibraryBrowserControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MediaLibraryBrowserController] class.
+type IMediaLibraryBrowserController interface {
+	objectivec.IObject
+}
+
 // An object that configures and displays a Media Library Browser panel. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController

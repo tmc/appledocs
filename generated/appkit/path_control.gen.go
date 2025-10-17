@@ -15,6 +15,11 @@ type _PathControlClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PathControl] class.
+type IPathControl interface {
+	IControl
+}
+
 // A display of a file system path or virtual path information. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl

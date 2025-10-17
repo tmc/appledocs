@@ -15,6 +15,11 @@ type _PurgeableDataClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PurgeableData] class.
+type IPurgeableData interface {
+	IMutableData
+}
+
 // A mutable data object containing bytes that can be discarded when they’re no longer needed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPurgeableData

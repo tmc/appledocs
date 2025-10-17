@@ -15,6 +15,11 @@ type _UnitSpeedClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitSpeed] class.
+type IUnitSpeed interface {
+	IDimension
+}
+
 // A unit of measure for speed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed

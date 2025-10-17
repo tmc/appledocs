@@ -16,6 +16,11 @@ type _ColorSpaceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ColorSpace] class.
+type IColorSpace interface {
+	objectivec.IObject
+}
+
 // An object that represents a custom color space. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace

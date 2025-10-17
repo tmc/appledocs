@@ -16,6 +16,11 @@ type _PreviewRepresentingActivityItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PreviewRepresentingActivityItem] class.
+type IPreviewRepresentingActivityItem interface {
+	objectivec.IObject
+}
+
 // A type that adds metadata to an item you share using the macOS share sheet. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem

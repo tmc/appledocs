@@ -16,6 +16,11 @@ type _AppleEventManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AppleEventManager] class.
+type IAppleEventManager interface {
+	objectivec.IObject
+}
+
 // A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager

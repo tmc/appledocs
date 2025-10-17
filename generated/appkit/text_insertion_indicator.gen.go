@@ -15,6 +15,11 @@ type _TextInsertionIndicatorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextInsertionIndicator] class.
+type ITextInsertionIndicator interface {
+	IView
+}
+
 // A view that represents the insertion indicator in text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator

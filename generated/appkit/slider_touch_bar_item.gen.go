@@ -15,6 +15,11 @@ type _SliderTouchBarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SliderTouchBarItem] class.
+type ISliderTouchBarItem interface {
+	ITouchBarItem
+}
+
 // A bar item that provides a slider control for choosing a value in a range. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem

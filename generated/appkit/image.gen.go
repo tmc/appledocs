@@ -16,6 +16,12 @@ type _ImageClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Image] class.
+type IImage interface {
+	objectivec.IObject
+	BestRepresentationForDevice(deviceDescription unsafe.Pointer) unsafe.Pointer
+}
+
 // A high-level interface for manipulating image data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage

@@ -15,6 +15,11 @@ type _UnitConcentrationMassClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitConcentrationMass] class.
+type IUnitConcentrationMass interface {
+	IDimension
+}
+
 // A unit of measure for concentration of mass. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass

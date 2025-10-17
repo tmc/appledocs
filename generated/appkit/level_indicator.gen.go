@@ -15,6 +15,11 @@ type _LevelIndicatorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LevelIndicator] class.
+type ILevelIndicator interface {
+	IControl
+}
+
 // A visual representation of a level or quantity, using discrete values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator

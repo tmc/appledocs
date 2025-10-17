@@ -16,6 +16,11 @@ type _CollectionViewLayoutInvalidationContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CollectionViewLayoutInvalidationContext] class.
+type ICollectionViewLayoutInvalidationContext interface {
+	objectivec.IObject
+}
+
 // An object that identifies the portions of your layout that need to be updated. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext

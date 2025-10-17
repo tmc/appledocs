@@ -16,6 +16,17 @@ type _ToolbarClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Toolbar] class.
+type IToolbar interface {
+	objectivec.IObject
+	InsertItemWithItemIdentifierAtIndex(itemIdentifier unsafe.Pointer, index int)
+	RemoveItemAtIndex(index int)
+	RemoveItemWithItemIdentifier(itemIdentifier unsafe.Pointer)
+	RunCustomizationPalette(sender objc.ID)
+	SetConfigurationFromDictionary(configDict unsafe.Pointer)
+	ValidateVisibleItems()
+}
+
 // An object that manages the space above your app’s custom content and either below or integrated with the window’s title bar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar

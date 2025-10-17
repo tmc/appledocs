@@ -15,6 +15,11 @@ type _MatrixClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Matrix] class.
+type IMatrix interface {
+	IControl
+}
+
 // A legacy interface for grouping radio buttons or other types of cells together. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMatrix

@@ -16,6 +16,13 @@ type _TaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Task] class.
+type ITask interface {
+	objectivec.IObject
+	LaunchAndReturnError(error unsafe.Pointer) bool
+	Terminate()
+}
+
 // An object that represents a subprocess of the current process. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process

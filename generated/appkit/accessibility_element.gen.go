@@ -16,6 +16,13 @@ type _AccessibilityElementClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AccessibilityElement] class.
+type IAccessibilityElement interface {
+	objectivec.IObject
+	AccessibilityAddChildElement(childElement unsafe.Pointer)
+	AccessibilityFrameInParentSpace()
+}
+
 // The basic infrastructure necessary for interacting with an assistive app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class

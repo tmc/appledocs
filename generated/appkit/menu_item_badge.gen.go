@@ -16,6 +16,11 @@ type _MenuItemBadgeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MenuItemBadge] class.
+type IMenuItemBadge interface {
+	objectivec.IObject
+}
+
 // A control that provides additional quantitative information specific to a menu item, such as the number of available updates. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge

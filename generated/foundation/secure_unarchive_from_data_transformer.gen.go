@@ -15,6 +15,11 @@ type _SecureUnarchiveFromDataTransformerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SecureUnarchiveFromDataTransformer] class.
+type ISecureUnarchiveFromDataTransformer interface {
+	IValueTransformer
+}
+
 // A value transformer that converts data to and from classes that support secure coding. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSecureUnarchiveFromDataTransformer

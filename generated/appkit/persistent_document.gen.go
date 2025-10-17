@@ -15,6 +15,11 @@ type _PersistentDocumentClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersistentDocument] class.
+type IPersistentDocument interface {
+	IDocument
+}
+
 // A document object that can integrate with Core Data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument

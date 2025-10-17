@@ -16,6 +16,11 @@ type _SharingServiceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SharingService] class.
+type ISharingService interface {
+	objectivec.IObject
+}
+
 // An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService

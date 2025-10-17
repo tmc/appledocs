@@ -16,6 +16,58 @@ type _CellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Cell] class.
+type ICell interface {
+	objectivec.IObject
+	CalcDrawInfo(rect unsafe.Pointer)
+	CellAttribute(parameter unsafe.Pointer) int
+	CellSizeForBounds(rect unsafe.Pointer) unsafe.Pointer
+	Compare(otherCell objc.ID) unsafe.Pointer
+	ContinueTrackingAtInView(lastPoint unsafe.Pointer, currentPoint unsafe.Pointer, controlView unsafe.Pointer) bool
+	DraggingImageComponentsWithFrameInView(frame unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer
+	DrawWithExpansionFrameInView(cellFrame unsafe.Pointer, view unsafe.Pointer)
+	DrawWithFrameInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer)
+	DrawFocusRingMaskWithFrameInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer)
+	DrawInteriorWithFrameInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer)
+	DrawingRectForBounds(rect unsafe.Pointer) unsafe.Pointer
+	EditWithFrameInViewEditorDelegateEvent(rect unsafe.Pointer, controlView unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer)
+	EndEditing(textObj unsafe.Pointer)
+	EntryType() int
+	ExpansionFrameWithFrameInView(cellFrame unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer
+	FieldEditorForView(controlView unsafe.Pointer) unsafe.Pointer
+	FocusRingMaskBoundsForFrameInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer) unsafe.Pointer
+	GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
+	HighlightWithFrameInView(flag bool, cellFrame unsafe.Pointer, controlView unsafe.Pointer)
+	HighlightColorWithFrameInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer) unsafe.Pointer
+	HitTestForEventInRectOfView(event unsafe.Pointer, cellFrame unsafe.Pointer, controlView unsafe.Pointer) unsafe.Pointer
+	ImageRectForBounds(rect unsafe.Pointer) unsafe.Pointer
+	IsEntryAcceptable(string string) bool
+	MenuForEventInRectOfView(event unsafe.Pointer, cellFrame unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer
+	Mnemonic() unsafe.Pointer
+	MnemonicLocation() uint
+	PerformClick(sender objc.ID)
+	ResetCursorRectInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer)
+	SelectWithFrameInViewEditorDelegateStartLength(rect unsafe.Pointer, controlView unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int)
+	SendActionOn(mask unsafe.Pointer) int
+	SetCellAttributeTo(parameter unsafe.Pointer, value int)
+	SetEntryType(type_ int)
+	SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, rightDigits uint)
+	SetMnemonicLocation(location uint)
+	SetNextState()
+	SetTitleWithMnemonic(stringWithAmpersand string)
+	SetUpFieldEditorAttributes(textObj unsafe.Pointer) unsafe.Pointer
+	StartTrackingAtInView(startPoint unsafe.Pointer, controlView unsafe.Pointer) bool
+	StopTrackingAtInViewMouseIsUp(lastPoint unsafe.Pointer, stopPoint unsafe.Pointer, controlView unsafe.Pointer, flag bool)
+	TakeDoubleValueFrom(sender objc.ID)
+	TakeFloatValueFrom(sender objc.ID)
+	TakeIntValueFrom(sender objc.ID)
+	TakeIntegerValueFrom(sender objc.ID)
+	TakeObjectValueFrom(sender objc.ID)
+	TakeStringValueFrom(sender objc.ID)
+	TitleRectForBounds(rect unsafe.Pointer) unsafe.Pointer
+	TrackMouseInRectOfViewUntilMouseUp(event unsafe.Pointer, cellFrame unsafe.Pointer, controlView unsafe.Pointer, flag bool) bool
+}
+
 // A mechanism for displaying text or images in a view object without the overhead of a full subclass. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell
@@ -59,14 +111,6 @@ func (c_ Cell) Autorelease() Cell {
 func NewCell() Cell {
 	return cellClass.New()
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
-func NewCellWithCoder(coder unsafe.Pointer) Cell {
-	instance := cellClass.Alloc()
-	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
 // Returns an object initialized with the specified image and set to have the cell’s default menu. [Full Topic]
 
 //
@@ -84,6 +128,14 @@ func NewCellImageCell(image unsafe.Pointer) Cell {
 func NewCellTextCell(string string) Cell {
 	instance := cellClass.Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), string)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
+func NewCellWithCoder(coder unsafe.Pointer) Cell {
+	instance := cellClass.Alloc()
+	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

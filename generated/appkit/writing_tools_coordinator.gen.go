@@ -16,6 +16,13 @@ type _WritingToolsCoordinatorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [WritingToolsCoordinator] class.
+type IWritingToolsCoordinator interface {
+	objectivec.IObject
+	UpdateForReflowedTextInContextWithIdentifier(contextID unsafe.Pointer)
+	UpdateRangeWithTextReasonForContextWithIdentifier(range_ unsafe.Pointer, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer)
+}
+
 // An object that manages interactions between Writing Tools and your custom text view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator

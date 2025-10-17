@@ -16,6 +16,11 @@ type _AppleScriptClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AppleScript] class.
+type IAppleScript interface {
+	objectivec.IObject
+}
+
 // An object that provides the ability to load, compile, and execute scripts. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript

@@ -15,6 +15,11 @@ type _TextTableClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextTable] class.
+type ITextTable interface {
+	ITextBlock
+}
+
 // An object that represents a text table as a whole. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable

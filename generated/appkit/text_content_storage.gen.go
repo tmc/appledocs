@@ -15,6 +15,11 @@ type _TextContentStorageClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextContentStorage] class.
+type ITextContentStorage interface {
+	ITextContentManager
+}
+
 // A concrete object for managing your view’s text content and generating the text elements necessary for layout. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage

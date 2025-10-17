@@ -16,6 +16,13 @@ type _URLSessionTaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLSessionTask] class.
+type IURLSessionTask interface {
+	objectivec.IObject
+	Cancel()
+	Resume()
+}
+
 // A task, like downloading a specific resource, performed in a URL session. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask

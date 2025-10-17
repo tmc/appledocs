@@ -15,6 +15,11 @@ type _SegmentedCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SegmentedCell] class.
+type ISegmentedCell interface {
+	IActionCell
+}
+
 // An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell

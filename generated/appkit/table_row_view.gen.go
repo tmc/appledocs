@@ -15,6 +15,16 @@ type _TableRowViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TableRowView] class.
+type ITableRowView interface {
+	IView
+	DrawBackgroundInRect(dirtyRect unsafe.Pointer)
+	DrawDraggingDestinationFeedbackInRect(dirtyRect unsafe.Pointer)
+	DrawSelectionInRect(dirtyRect unsafe.Pointer)
+	DrawSeparatorInRect(dirtyRect unsafe.Pointer)
+	ViewAtColumn(column int) objc.ID
+}
+
 // The view shown for a row in a table view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView

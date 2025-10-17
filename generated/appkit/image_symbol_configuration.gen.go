@@ -16,6 +16,11 @@ type _ImageSymbolConfigurationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ImageSymbolConfiguration] class.
+type IImageSymbolConfiguration interface {
+	objectivec.IObject
+}
+
 // An object that contains the specific font, style, and weight attributes to apply to a symbol image. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class

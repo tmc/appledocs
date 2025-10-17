@@ -15,6 +15,11 @@ type _GlassEffectViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [GlassEffectView] class.
+type IGlassEffectView interface {
+	IView
+}
+
 // A view that embeds its content view in a dynamic glass effect. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView

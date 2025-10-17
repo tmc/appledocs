@@ -16,6 +16,11 @@ type _FontDescriptorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FontDescriptor] class.
+type IFontDescriptor interface {
+	objectivec.IObject
+}
+
 // A dictionary of attributes that describe a font. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor

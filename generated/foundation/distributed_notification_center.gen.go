@@ -15,6 +15,11 @@ type _DistributedNotificationCenterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DistributedNotificationCenter] class.
+type IDistributedNotificationCenter interface {
+	INotificationCenter
+}
+
 // A notification dispatch mechanism that enables the broadcast of notifications across task boundaries. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter

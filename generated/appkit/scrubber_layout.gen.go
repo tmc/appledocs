@@ -16,6 +16,16 @@ type _ScrubberLayoutClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScrubberLayout] class.
+type IScrubberLayout interface {
+	objectivec.IObject
+	InvalidateLayout()
+	LayoutAttributesForItemAtIndex(index int) unsafe.Pointer
+	LayoutAttributesForItemsInRect(rect unsafe.Pointer) unsafe.Pointer
+	PrepareLayout()
+	ShouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(fromVisibleRect unsafe.Pointer, toVisibleRect unsafe.Pointer) bool
+}
+
 // An abstract class that describes the layout of items within a scrubber control. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayout

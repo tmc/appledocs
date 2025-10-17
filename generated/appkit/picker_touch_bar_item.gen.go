@@ -15,6 +15,11 @@ type _PickerTouchBarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PickerTouchBarItem] class.
+type IPickerTouchBarItem interface {
+	ITouchBarItem
+}
+
 // A bar item that provides a picker control with multiple options. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem

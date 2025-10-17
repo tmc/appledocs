@@ -15,6 +15,11 @@ type _NibControlConnectorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [NibControlConnector] class.
+type INibControlConnector interface {
+	INibConnector
+}
+
 // A control connection between two Interface Builder objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibControlConnector

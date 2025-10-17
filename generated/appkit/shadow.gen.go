@@ -16,6 +16,11 @@ type _ShadowClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Shadow] class.
+type IShadow interface {
+	objectivec.IObject
+}
+
 // An object you use to specify attributes to create and style a drop shadow during drawing operations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow

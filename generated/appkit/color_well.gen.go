@@ -15,6 +15,11 @@ type _ColorWellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ColorWell] class.
+type IColorWell interface {
+	IControl
+}
+
 // A control that displays a color value and lets the user change that color value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell

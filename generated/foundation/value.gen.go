@@ -16,6 +16,11 @@ type _ValueClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Value] class.
+type IValue interface {
+	objectivec.IObject
+}
+
 // A simple container for a single C or Objective-C data item. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue

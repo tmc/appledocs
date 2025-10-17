@@ -15,6 +15,11 @@ type _SharingServicePickerToolbarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SharingServicePickerToolbarItem] class.
+type ISharingServicePickerToolbarItem interface {
+	IToolbarItem
+}
+
 // A toolbar item that displays the macOS share sheet. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem

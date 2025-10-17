@@ -15,6 +15,11 @@ type _UnitAngleClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitAngle] class.
+type IUnitAngle interface {
+	IDimension
+}
+
 // A unit of measure for planar angle and rotation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle

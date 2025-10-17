@@ -16,6 +16,16 @@ type _GestureRecognizerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [GestureRecognizer] class.
+type IGestureRecognizer interface {
+	objectivec.IObject
+	LocationInView(view unsafe.Pointer) unsafe.Pointer
+	TouchesBeganWithEvent(event unsafe.Pointer)
+	TouchesCancelledWithEvent(event unsafe.Pointer)
+	TouchesEndedWithEvent(event unsafe.Pointer)
+	TouchesMovedWithEvent(event unsafe.Pointer)
+}
+
 // An object that monitors events and calls its action method when a predefined sequence of events occur. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer

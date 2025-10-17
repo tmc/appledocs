@@ -15,6 +15,18 @@ type _ProgressIndicatorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ProgressIndicator] class.
+type IProgressIndicator interface {
+	IView
+	Animate(sender objc.ID)
+	AnimationDelay() float64
+	IncrementBy(delta float64)
+	SetAnimationDelay(delay float64)
+	SizeToFit()
+	StartAnimation(sender objc.ID)
+	StopAnimation(sender objc.ID)
+}
+
 // An interface that provides visual feedback to the user about the status of an ongoing task. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator

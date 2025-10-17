@@ -15,6 +15,11 @@ type _BlockOperationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BlockOperation] class.
+type IBlockOperation interface {
+	IOperation
+}
+
 // An operation that manages the concurrent execution of one or more blocks. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation

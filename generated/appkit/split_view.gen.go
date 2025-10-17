@@ -15,6 +15,24 @@ type _SplitViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SplitView] class.
+type ISplitView interface {
+	IView
+	AddArrangedSubview(view unsafe.Pointer)
+	AdjustSubviews()
+	DrawDividerInRect(rect unsafe.Pointer)
+	HoldingPriorityForSubviewAtIndex(subviewIndex int) unsafe.Pointer
+	InsertArrangedSubviewAtIndex(view unsafe.Pointer, index int)
+	IsPaneSplitter() bool
+	IsSubviewCollapsed(subview unsafe.Pointer) bool
+	MaxPossiblePositionOfDividerAtIndex(dividerIndex int) float64
+	MinPossiblePositionOfDividerAtIndex(dividerIndex int) float64
+	RemoveArrangedSubview(view unsafe.Pointer)
+	SetHoldingPriorityForSubviewAtIndex(priority unsafe.Pointer, subviewIndex int)
+	SetIsPaneSplitter(flag bool)
+	SetPositionOfDividerAtIndex(position float64, dividerIndex int)
+}
+
 // A view that arranges two or more views in a linear stack running horizontally or vertically. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView

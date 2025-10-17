@@ -15,6 +15,11 @@ type _CachedImageRepClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CachedImageRep] class.
+type ICachedImageRep interface {
+	IImageRep
+}
+
 // An object that stores image data in a form that can be readily transferred to the screen. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCachedImageRep

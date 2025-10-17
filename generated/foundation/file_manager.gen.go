@@ -16,6 +16,79 @@ type _FileManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FileManager] class.
+type IFileManager interface {
+	objectivec.IObject
+	AttributesOfFileSystemForPathError(path string, error unsafe.Pointer) unsafe.Pointer
+	AttributesOfItemAtPathError(path string, error unsafe.Pointer) unsafe.Pointer
+	ChangeCurrentDirectoryPath(path string) bool
+	ChangeFileAttributesAtPath(attributes unsafe.Pointer, path string) bool
+	ComponentsToDisplayForPath(path string) unsafe.Pointer
+	ContainerURLForSecurityApplicationGroupIdentifier(groupIdentifier string) unsafe.Pointer
+	ContentsAtPath(path string) unsafe.Pointer
+	ContentsEqualAtPathAndPath(path1 string, path2 string) bool
+	ContentsOfDirectoryAtURLIncludingPropertiesForKeysOptionsError(url unsafe.Pointer, keys unsafe.Pointer, mask unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	ContentsOfDirectoryAtPathError(path string, error unsafe.Pointer) unsafe.Pointer
+	CopyItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error unsafe.Pointer) bool
+	CopyItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool
+	CreateDirectoryAtURLWithIntermediateDirectoriesAttributesError(url unsafe.Pointer, createIntermediates bool, attributes unsafe.Pointer, error unsafe.Pointer) bool
+	CreateDirectoryAtPathAttributes(path string, attributes unsafe.Pointer) bool
+	CreateDirectoryAtPathWithIntermediateDirectoriesAttributesError(path string, createIntermediates bool, attributes unsafe.Pointer, error unsafe.Pointer) bool
+	CreateFileAtPathContentsAttributes(path string, data unsafe.Pointer, attr unsafe.Pointer) bool
+	CreateSymbolicLinkAtURLWithDestinationURLError(url unsafe.Pointer, destURL unsafe.Pointer, error unsafe.Pointer) bool
+	CreateSymbolicLinkAtPathPathContent(path string, otherpath string) bool
+	CreateSymbolicLinkAtPathWithDestinationPathError(path string, destPath string, error unsafe.Pointer) bool
+	DestinationOfSymbolicLinkAtPathError(path string, error unsafe.Pointer) unsafe.Pointer
+	DirectoryContentsAtPath(path string) unsafe.Pointer
+	DisplayNameAtPath(path string) unsafe.Pointer
+	EnumeratorAtPath(path string) unsafe.Pointer
+	EvictUbiquitousItemAtURLError(url unsafe.Pointer, error unsafe.Pointer) bool
+	FetchLatestRemoteVersionOfItemAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
+	FileAttributesAtPathTraverseLink(path string, yorn bool) unsafe.Pointer
+	FileExistsAtPath(path string) bool
+	FileExistsAtPathIsDirectory(path string, isDirectory unsafe.Pointer) bool
+	FileSystemAttributesAtPath(path string) unsafe.Pointer
+	FileSystemRepresentationWithPath(path string) unsafe.Pointer
+	GetFileProviderServicesForItemAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
+	GetRelationshipOfDirectoryInDomainToItemAtURLError(outRelationship unsafe.Pointer, directory unsafe.Pointer, domainMask unsafe.Pointer, url unsafe.Pointer, error unsafe.Pointer) bool
+	GetRelationshipOfDirectoryAtURLToItemAtURLError(outRelationship unsafe.Pointer, directoryURL unsafe.Pointer, otherURL unsafe.Pointer, error unsafe.Pointer) bool
+	HomeDirectoryForUser(userName string) unsafe.Pointer
+	IsDeletableFileAtPath(path string) bool
+	IsExecutableFileAtPath(path string) bool
+	IsReadableFileAtPath(path string) bool
+	IsUbiquitousItemAtURL(url unsafe.Pointer) bool
+	IsWritableFileAtPath(path string) bool
+	LinkItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error unsafe.Pointer) bool
+	LinkItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool
+	MountedVolumeURLsIncludingResourceValuesForKeysOptions(propertyKeys unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	MoveItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error unsafe.Pointer) bool
+	MoveItemAtPathToPathError(srcPath string, dstPath string, error unsafe.Pointer) bool
+	PathContentOfSymbolicLinkAtPath(path string) unsafe.Pointer
+	PauseSyncForUbiquitousItemAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
+	RemoveItemAtURLError(URL unsafe.Pointer, error unsafe.Pointer) bool
+	RemoveItemAtPathError(path string, error unsafe.Pointer) bool
+	ReplaceItemAtURLWithItemAtURLBackupItemNameOptionsResultingItemURLError(originalItemURL unsafe.Pointer, newItemURL unsafe.Pointer, backupItemName string, options unsafe.Pointer, resultingURL unsafe.Pointer, error unsafe.Pointer) bool
+	ResumeSyncForUbiquitousItemAtURLWithBehaviorCompletionHandler(url unsafe.Pointer, behavior unsafe.Pointer, completionHandler unsafe.Pointer)
+	SetAttributesOfItemAtPathError(attributes unsafe.Pointer, path string, error unsafe.Pointer) bool
+	SetUbiquitousItemAtURLDestinationURLError(flag bool, url unsafe.Pointer, destinationURL unsafe.Pointer, error unsafe.Pointer) bool
+	StartDownloadingUbiquitousItemAtURLError(url unsafe.Pointer, error unsafe.Pointer) bool
+	StringWithFileSystemRepresentationLength(str unsafe.Pointer, len uint) unsafe.Pointer
+	SubpathsAtPath(path string) unsafe.Pointer
+	SubpathsOfDirectoryAtPathError(path string, error unsafe.Pointer) unsafe.Pointer
+	TrashItemAtURLResultingItemURLError(url unsafe.Pointer, outResultingURL unsafe.Pointer, error unsafe.Pointer) bool
+	UnmountVolumeAtURLOptionsCompletionHandler(url unsafe.Pointer, mask unsafe.Pointer, completionHandler unsafe.Pointer)
+	UploadLocalVersionOfUbiquitousItemAtURLWithConflictResolutionPolicyCompletionHandler(url unsafe.Pointer, conflictResolutionPolicy unsafe.Pointer, completionHandler unsafe.Pointer)
+	URLForDirectoryInDomainAppropriateForURLCreateError(directory unsafe.Pointer, domain unsafe.Pointer, url unsafe.Pointer, shouldCreate bool, error unsafe.Pointer) unsafe.Pointer
+	URLForPublishingUbiquitousItemAtURLExpirationDateError(url unsafe.Pointer, outDate unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	URLForUbiquityContainerIdentifier(containerIdentifier string) unsafe.Pointer
+	URLsForDirectoryInDomains(directory unsafe.Pointer, domainMask unsafe.Pointer) unsafe.Pointer
+	CopyPathToPathHandler(src string, dest string, handler objc.ID) bool
+	EnumeratorAtURLIncludingPropertiesForKeysOptionsErrorHandler(url unsafe.Pointer, keys unsafe.Pointer, mask unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer
+	LinkPathToPathHandler(src string, dest string, handler objc.ID) bool
+	MovePathToPathHandler(src string, dest string, handler objc.ID) bool
+	RemoveFileAtPathHandler(path string, handler objc.ID) bool
+}
+
 // A convenient interface to the contents of the file system, and the primary means of interacting with it. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager

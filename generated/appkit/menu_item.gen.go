@@ -16,6 +16,11 @@ type _MenuItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MenuItem] class.
+type IMenuItem interface {
+	objectivec.IObject
+}
+
 // A command item in an app menu. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem

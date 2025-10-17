@@ -15,6 +15,11 @@ type _FormClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Form] class.
+type IForm interface {
+	IMatrix
+}
+
 // An object is a vertical matrix of objects to implement the fields. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSForm

@@ -15,6 +15,11 @@ type _DateIntervalFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DateIntervalFormatter] class.
+type IDateIntervalFormatter interface {
+	IFormatter
+}
+
 // A formatter that creates string representations of time intervals. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter

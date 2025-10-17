@@ -15,6 +15,11 @@ type _UnitIlluminanceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitIlluminance] class.
+type IUnitIlluminance interface {
+	IDimension
+}
+
 // A unit of measure for illuminance. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance

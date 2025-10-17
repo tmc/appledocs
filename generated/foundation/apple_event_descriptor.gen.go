@@ -16,6 +16,11 @@ type _AppleEventDescriptorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AppleEventDescriptor] class.
+type IAppleEventDescriptor interface {
+	objectivec.IObject
+}
+
 // A wrapper for the Apple event descriptor data type. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor

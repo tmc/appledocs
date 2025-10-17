@@ -16,6 +16,13 @@ type _ProgressClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Progress] class.
+type IProgress interface {
+	objectivec.IObject
+	BecomeCurrentWithPendingUnitCount(unitCount unsafe.Pointer)
+	Cancel()
+}
+
 // An object that conveys ongoing progress to the user for a specified task. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress

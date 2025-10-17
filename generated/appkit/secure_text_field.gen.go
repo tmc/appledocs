@@ -15,6 +15,11 @@ type _SecureTextFieldClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SecureTextField] class.
+type ISecureTextField interface {
+	ITextField
+}
+
 // A text field that hides the typed text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextField

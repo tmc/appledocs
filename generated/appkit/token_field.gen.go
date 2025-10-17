@@ -15,6 +15,11 @@ type _TokenFieldClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TokenField] class.
+type ITokenField interface {
+	ITextField
+}
+
 // A text field that converts text into visually distinct tokens. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField

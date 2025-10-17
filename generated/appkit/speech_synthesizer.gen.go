@@ -16,6 +16,11 @@ type _SpeechSynthesizerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SpeechSynthesizer] class.
+type ISpeechSynthesizer interface {
+	objectivec.IObject
+}
+
 // The Cocoa interface to speech synthesis in macOS. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer

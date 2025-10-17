@@ -16,6 +16,18 @@ type _NotificationCenterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [NotificationCenter] class.
+type INotificationCenter interface {
+	objectivec.IObject
+	AddObserverSelectorNameObject(observer objc.ID, aSelector objc.SEL, aName unsafe.Pointer, anObject objc.ID)
+	AddObserverForNameObjectQueueUsingBlock(name unsafe.Pointer, obj objc.ID, queue unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer
+	PostNotification(notification unsafe.Pointer)
+	PostNotificationNameObject(aName unsafe.Pointer, anObject objc.ID)
+	PostNotificationNameObjectUserInfo(aName unsafe.Pointer, anObject objc.ID, aUserInfo unsafe.Pointer)
+	RemoveObserver(observer objc.ID)
+	RemoveObserverNameObject(observer objc.ID, aName unsafe.Pointer, anObject objc.ID)
+}
+
 // A notification dispatch mechanism that enables the broadcast of information to registered observers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter

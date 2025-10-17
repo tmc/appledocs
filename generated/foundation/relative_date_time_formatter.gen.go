@@ -15,6 +15,11 @@ type _RelativeDateTimeFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RelativeDateTimeFormatter] class.
+type IRelativeDateTimeFormatter interface {
+	IFormatter
+}
+
 // A formatter that creates locale-aware string representations of a relative date or time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter

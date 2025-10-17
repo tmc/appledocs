@@ -16,6 +16,17 @@ type _NetServiceBrowserClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [NetServiceBrowser] class.
+type INetServiceBrowser interface {
+	objectivec.IObject
+	RemoveFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
+	ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
+	SearchForBrowsableDomains()
+	SearchForRegistrationDomains()
+	SearchForServicesOfTypeInDomain(type_ string, domainString string)
+	Stop()
+}
+
 // A network service browser that finds published services on a network using multicast DNS. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser

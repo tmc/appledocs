@@ -16,6 +16,13 @@ type _DocumentClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Document] class.
+type IDocument interface {
+	objectivec.IObject
+	EncodeRestorableStateWithCoder(coder unsafe.Pointer)
+	ValidateUserInterfaceItem(item unsafe.Pointer) bool
+}
+
 // An abstract class that defines the interface for macOS documents. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument

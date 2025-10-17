@@ -15,6 +15,11 @@ type _LogicalTestClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LogicalTest] class.
+type ILogicalTest interface {
+	IScriptWhoseTest
+}
+
 // The logical combination of one or more specifier tests. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest

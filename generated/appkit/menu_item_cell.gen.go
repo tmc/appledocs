@@ -15,6 +15,11 @@ type _MenuItemCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MenuItemCell] class.
+type IMenuItemCell interface {
+	IButtonCell
+}
+
 // An object that handles the measurement and display of a single menu item in its encompassing frame. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell

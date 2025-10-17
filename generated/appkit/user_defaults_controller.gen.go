@@ -15,6 +15,11 @@ type _UserDefaultsControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UserDefaultsController] class.
+type IUserDefaultsController interface {
+	IController
+}
+
 // A controller that accesses user preference information for your app from the user’s defaults database. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController

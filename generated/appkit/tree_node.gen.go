@@ -16,6 +16,11 @@ type _TreeNodeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TreeNode] class.
+type ITreeNode interface {
+	objectivec.IObject
+}
+
 // A node in a tree of nodes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeNode

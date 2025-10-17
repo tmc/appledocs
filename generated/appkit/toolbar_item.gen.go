@@ -16,6 +16,11 @@ type _ToolbarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ToolbarItem] class.
+type IToolbarItem interface {
+	objectivec.IObject
+}
+
 // A single item that appears in a window’s toolbar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem

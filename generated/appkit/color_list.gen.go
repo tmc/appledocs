@@ -16,6 +16,11 @@ type _ColorListClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ColorList] class.
+type IColorList interface {
+	objectivec.IObject
+}
+
 // An ordered list of color objects, identified by keys. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList

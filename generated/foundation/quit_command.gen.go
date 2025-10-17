@@ -15,6 +15,11 @@ type _QuitCommandClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [QuitCommand] class.
+type IQuitCommand interface {
+	IScriptCommand
+}
+
 // A command that quits the specified app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSQuitCommand

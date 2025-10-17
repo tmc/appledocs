@@ -16,6 +16,11 @@ type _MeasurementClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Measurement] class.
+type IMeasurement interface {
+	objectivec.IObject
+}
+
 // A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement

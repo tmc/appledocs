@@ -15,6 +15,11 @@ type _CountCommandClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CountCommand] class.
+type ICountCommand interface {
+	IScriptCommand
+}
+
 // A command that counts the number of objects of a specified class in the specified object container. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountCommand

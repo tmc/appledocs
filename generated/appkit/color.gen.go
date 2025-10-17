@@ -16,6 +16,12 @@ type _ColorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Color] class.
+type IColor interface {
+	objectivec.IObject
+	ColorUsingColorSpaceName(name unsafe.Pointer) unsafe.Pointer
+}
+
 // An object that stores color data and sometimes opacity (alpha value). [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor

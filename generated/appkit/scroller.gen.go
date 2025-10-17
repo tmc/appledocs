@@ -15,6 +15,11 @@ type _ScrollerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Scroller] class.
+type IScroller interface {
+	IControl
+}
+
 // An object that controls scrolling of a document view within a scroll view or other type of container view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller

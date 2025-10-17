@@ -15,6 +15,19 @@ type _MutableStringClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableString] class.
+type IMutableString interface {
+	IString
+	AppendString(aString string)
+	AppendFormat(format string)
+	ApplyTransformReverseRangeUpdatedRange(transform unsafe.Pointer, reverse bool, range_ unsafe.Pointer, resultingRange unsafe.Pointer) bool
+	DeleteCharactersInRange(range_ unsafe.Pointer)
+	InsertStringAtIndex(aString string, loc uint)
+	ReplaceCharactersInRangeWithString(range_ unsafe.Pointer, aString string)
+	ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options unsafe.Pointer, searchRange unsafe.Pointer) uint
+	SetString(aString string)
+}
+
 // A dynamic plain-text Unicode string object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString

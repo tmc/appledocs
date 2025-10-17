@@ -16,6 +16,11 @@ type _TextListClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextList] class.
+type ITextList interface {
+	objectivec.IObject
+}
+
 // A section of text that forms a single list. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList

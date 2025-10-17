@@ -16,6 +16,11 @@ type _TableColumnClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TableColumn] class.
+type ITableColumn interface {
+	objectivec.IObject
+}
+
 // The display characteristics and identifier for a column in a table view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn

@@ -16,6 +16,11 @@ type _JSONSerializationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [JSONSerialization] class.
+type IJSONSerialization interface {
+	objectivec.IObject
+}
+
 // An object that converts between JSON and the equivalent Foundation objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization

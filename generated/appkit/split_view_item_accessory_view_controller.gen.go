@@ -15,6 +15,11 @@ type _SplitViewItemAccessoryViewControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SplitViewItemAccessoryViewController] class.
+type ISplitViewItemAccessoryViewController interface {
+	IViewController
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController
 

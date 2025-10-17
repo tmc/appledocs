@@ -15,6 +15,11 @@ type _StepperCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [StepperCell] class.
+type IStepperCell interface {
+	IActionCell
+}
+
 // An object controls the appearance and behavior of an object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell

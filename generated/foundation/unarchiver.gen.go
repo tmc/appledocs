@@ -15,6 +15,11 @@ type _UnarchiverClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Unarchiver] class.
+type IUnarchiver interface {
+	ICoder
+}
+
 // A decoder that restores data from an archive. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver

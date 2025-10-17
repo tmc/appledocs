@@ -16,6 +16,11 @@ type _CalendarClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Calendar] class.
+type ICalendar interface {
+	objectivec.IObject
+}
+
 // A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar

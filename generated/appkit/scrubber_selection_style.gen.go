@@ -16,6 +16,11 @@ type _ScrubberSelectionStyleClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScrubberSelectionStyle] class.
+type IScrubberSelectionStyle interface {
+	objectivec.IObject
+}
+
 // An abstract class that provides decorative accessory views for selected and highlighted items within a scrubber control. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle

@@ -16,6 +16,11 @@ type _MetadataItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MetadataItem] class.
+type IMetadataItem interface {
+	objectivec.IObject
+}
+
 // The metadata associated with a file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem

@@ -15,6 +15,11 @@ type _DateComponentsFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DateComponentsFormatter] class.
+type IDateComponentsFormatter interface {
+	IFormatter
+}
+
 // A formatter that creates string representations of quantities of time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter

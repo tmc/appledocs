@@ -16,6 +16,11 @@ type _XMLNodeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [XMLNode] class.
+type IXMLNode interface {
+	objectivec.IObject
+}
+
 // The nodes in the abstract, logical tree structure that represents an XML document. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode

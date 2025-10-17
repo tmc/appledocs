@@ -15,6 +15,17 @@ type _ClipViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ClipView] class.
+type IClipView interface {
+	IView
+	Autoscroll(event unsafe.Pointer) bool
+	ConstrainBoundsRect(proposedBounds unsafe.Pointer) unsafe.Pointer
+	ConstrainScrollPoint(newOrigin unsafe.Pointer) unsafe.Pointer
+	ScrollToPoint(newOrigin unsafe.Pointer)
+	ViewBoundsChanged(notification unsafe.Pointer)
+	ViewFrameChanged(notification unsafe.Pointer)
+}
+
 // An object that clips a document view to a scroll view’s frame. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView

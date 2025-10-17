@@ -15,6 +15,11 @@ type _GetCommandClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [GetCommand] class.
+type IGetCommand interface {
+	IScriptCommand
+}
+
 // A command that retrieves a value or object from a scriptable object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetCommand

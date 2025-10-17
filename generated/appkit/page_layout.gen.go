@@ -16,6 +16,11 @@ type _PageLayoutClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PageLayout] class.
+type IPageLayout interface {
+	objectivec.IObject
+}
+
 // A panel that queries the user for information such as paper type and orientation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout

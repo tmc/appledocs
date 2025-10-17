@@ -16,6 +16,11 @@ type _HashTableClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [HashTable] class.
+type IHashTable interface {
+	objectivec.IObject
+}
+
 // A collection similar to a set, but with broader range of available memory semantics. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable

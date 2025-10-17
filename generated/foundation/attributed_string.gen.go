@@ -16,6 +16,43 @@ type _AttributedStringClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AttributedString] class.
+type IAttributedString interface {
+	objectivec.IObject
+	AttributeAtIndexEffectiveRange(attrName unsafe.Pointer, location uint, range_ unsafe.Pointer) objc.ID
+	AttributeAtIndexLongestEffectiveRangeInRange(attrName unsafe.Pointer, location uint, range_ unsafe.Pointer, rangeLimit unsafe.Pointer) objc.ID
+	AttributedSubstringFromRange(range_ unsafe.Pointer) unsafe.Pointer
+	AttributesAtIndexEffectiveRange(location uint, range_ unsafe.Pointer) unsafe.Pointer
+	AttributesAtIndexLongestEffectiveRangeInRange(location uint, range_ unsafe.Pointer, rangeLimit unsafe.Pointer) unsafe.Pointer
+	BoundingRectWithSizeOptionsContext(size unsafe.Pointer, options unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer
+	ContainsAttachmentsInRange(range_ unsafe.Pointer) bool
+	DataFromRangeDocumentAttributesError(range_ unsafe.Pointer, dict unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	DocFormatFromRangeDocumentAttributes(range_ unsafe.Pointer, dict unsafe.Pointer) unsafe.Pointer
+	DoubleClickAtIndex(location uint) unsafe.Pointer
+	DrawAtPoint(point unsafe.Pointer)
+	DrawInRect(rect unsafe.Pointer)
+	DrawWithRectOptionsContext(rect unsafe.Pointer, options unsafe.Pointer, context unsafe.Pointer)
+	EnumerateAttributeInRangeOptionsUsingBlock(attrName unsafe.Pointer, enumerationRange unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer)
+	EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer)
+	FileWrapperFromRangeDocumentAttributesError(range_ unsafe.Pointer, dict unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	FontAttributesInRange(range_ unsafe.Pointer) unsafe.Pointer
+	AttributedStringByInflectingString() unsafe.Pointer
+	IsEqualToAttributedString(other unsafe.Pointer) bool
+	ItemNumberInTextListAtIndex(list unsafe.Pointer, location uint) int
+	LineBreakBeforeIndexWithinRange(location uint, aRange unsafe.Pointer) uint
+	LineBreakByHyphenatingBeforeIndexWithinRange(location uint, aRange unsafe.Pointer) uint
+	NextWordFromIndexForward(location uint, isForward bool) uint
+	PrefersRTFDInRange(range_ unsafe.Pointer) bool
+	RangeOfTextBlockAtIndex(block unsafe.Pointer, location uint) unsafe.Pointer
+	RangeOfTextTableAtIndex(table unsafe.Pointer, location uint) unsafe.Pointer
+	RangeOfTextListAtIndex(list unsafe.Pointer, location uint) unsafe.Pointer
+	RTFFromRangeDocumentAttributes(range_ unsafe.Pointer, dict unsafe.Pointer) unsafe.Pointer
+	RTFDFromRangeDocumentAttributes(range_ unsafe.Pointer, dict unsafe.Pointer) unsafe.Pointer
+	RTFDFileWrapperFromRangeDocumentAttributes(range_ unsafe.Pointer, dict unsafe.Pointer) unsafe.Pointer
+	RulerAttributesInRange(range_ unsafe.Pointer) unsafe.Pointer
+	Size() unsafe.Pointer
+}
+
 // A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString

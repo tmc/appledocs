@@ -15,6 +15,11 @@ type _ComboButtonClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ComboButton] class.
+type IComboButton interface {
+	IControl
+}
+
 // A button with a pull-down menu and a default action. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton

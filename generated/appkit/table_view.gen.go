@@ -15,6 +15,13 @@ type _TableViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TableView] class.
+type ITableView interface {
+	IControl
+	RectOfRow(row int) unsafe.Pointer
+	RowAtPoint(point unsafe.Pointer) int
+}
+
 // A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView

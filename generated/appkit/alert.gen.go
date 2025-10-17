@@ -16,6 +16,12 @@ type _AlertClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Alert] class.
+type IAlert interface {
+	objectivec.IObject
+	BeginSheetModalForWindowCompletionHandler(sheetWindow unsafe.Pointer, handler unsafe.Pointer)
+}
+
 // A modal dialog or sheet attached to a document window. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert

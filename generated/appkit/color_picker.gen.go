@@ -16,6 +16,11 @@ type _ColorPickerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ColorPicker] class.
+type IColorPicker interface {
+	objectivec.IObject
+}
+
 // An abstract superclass that implements the default color picking protocol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker

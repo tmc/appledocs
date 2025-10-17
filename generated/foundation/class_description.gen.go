@@ -16,6 +16,11 @@ type _ClassDescriptionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ClassDescription] class.
+type IClassDescription interface {
+	objectivec.IObject
+}
+
 // An abstract class that provides the interface for querying the relationships and properties of a class. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription

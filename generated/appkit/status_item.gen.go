@@ -16,6 +16,11 @@ type _StatusItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [StatusItem] class.
+type IStatusItem interface {
+	objectivec.IObject
+}
+
 // An individual element displayed in the system menu bar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem

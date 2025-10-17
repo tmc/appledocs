@@ -16,6 +16,12 @@ type _PasteboardClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Pasteboard] class.
+type IPasteboard interface {
+	objectivec.IObject
+	SetStringForType(string string, dataType unsafe.Pointer) bool
+}
+
 // An object that transfers data to and from the pasteboard server. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard

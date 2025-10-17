@@ -15,6 +15,11 @@ type _CountedSetClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CountedSet] class.
+type ICountedSet interface {
+	IMutableSet
+}
+
 // A mutable, unordered collection of distinct objects that may appear more than once in the collection. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet

@@ -16,6 +16,11 @@ type _URLConnectionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLConnection] class.
+type IURLConnection interface {
+	objectivec.IObject
+}
+
 // An object that enables you to start and stop URL requests. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection

@@ -16,6 +16,11 @@ type _GridCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [GridCell] class.
+type IGridCell interface {
+	objectivec.IObject
+}
+
 // An individual content area within a grid view, typically at the intersection of a row and a column. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridCell

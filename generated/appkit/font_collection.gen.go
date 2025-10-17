@@ -16,6 +16,11 @@ type _FontCollectionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FontCollection] class.
+type IFontCollection interface {
+	objectivec.IObject
+}
+
 // A font collection, which is a group of font descriptors taken together as a single object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontCollection

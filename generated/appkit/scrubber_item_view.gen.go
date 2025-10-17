@@ -15,6 +15,11 @@ type _ScrubberItemViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScrubberItemView] class.
+type IScrubberItemView interface {
+	IScrubberArrangedView
+}
+
 // An item at a specific index position in the scrubber. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberItemView

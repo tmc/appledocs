@@ -16,6 +16,11 @@ type _ScriptWhoseTestClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScriptWhoseTest] class.
+type IScriptWhoseTest interface {
+	objectivec.IObject
+}
+
 // An abstract class that provides the basis for testing specifiers one at a time or in groups. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest

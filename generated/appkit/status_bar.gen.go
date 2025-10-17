@@ -16,6 +16,11 @@ type _StatusBarClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [StatusBar] class.
+type IStatusBar interface {
+	objectivec.IObject
+}
+
 // An object that manages a collection of status items displayed within the system-wide menu bar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar

@@ -16,6 +16,11 @@ type _OpenGLContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [OpenGLContext] class.
+type IOpenGLContext interface {
+	objectivec.IObject
+}
+
 // An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext

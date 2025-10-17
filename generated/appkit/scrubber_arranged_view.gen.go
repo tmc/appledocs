@@ -15,6 +15,12 @@ type _ScrubberArrangedViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScrubberArrangedView] class.
+type IScrubberArrangedView interface {
+	IView
+	ApplyLayoutAttributes(layoutAttributes unsafe.Pointer)
+}
+
 // An abstract base class for the views whose layout is managed by a scrubber. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView

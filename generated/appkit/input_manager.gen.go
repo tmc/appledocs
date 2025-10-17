@@ -16,6 +16,11 @@ type _InputManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [InputManager] class.
+type IInputManager interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager
 

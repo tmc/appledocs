@@ -15,8 +15,14 @@ type _isaClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [isa] class.
+type Iisa interface {
+	IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isa
+
 type isa struct {
 	Object
 }

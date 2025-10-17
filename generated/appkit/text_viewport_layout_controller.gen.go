@@ -16,6 +16,11 @@ type _TextViewportLayoutControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextViewportLayoutController] class.
+type ITextViewportLayoutController interface {
+	objectivec.IObject
+}
+
 // Manages the layout process inside the viewport interacting with its delegate. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextViewportLayoutController

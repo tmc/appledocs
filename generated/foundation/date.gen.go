@@ -16,6 +16,11 @@ type _DateClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Date] class.
+type IDate interface {
+	objectivec.IObject
+}
+
 // A representation of a specific point in time, independent of any calendar or time zone. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate

@@ -15,6 +15,11 @@ type _UnitAreaClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitArea] class.
+type IUnitArea interface {
+	IDimension
+}
+
 // A unit of measure for area. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea

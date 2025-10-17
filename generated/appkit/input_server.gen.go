@@ -16,6 +16,11 @@ type _InputServerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [InputServer] class.
+type IInputServer interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputServer
 

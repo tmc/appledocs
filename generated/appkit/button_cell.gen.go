@@ -15,6 +15,11 @@ type _ButtonCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ButtonCell] class.
+type IButtonCell interface {
+	IActionCell
+}
+
 // An object that defines the user interface of a button or other clickable region of a view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell

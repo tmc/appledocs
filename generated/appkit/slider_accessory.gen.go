@@ -16,6 +16,11 @@ type _SliderAccessoryClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SliderAccessory] class.
+type ISliderAccessory interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory
 

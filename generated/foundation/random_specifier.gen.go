@@ -15,6 +15,11 @@ type _RandomSpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RandomSpecifier] class.
+type IRandomSpecifier interface {
+	IScriptObjectSpecifier
+}
+
 // A specifier for an arbitrary object in a collection or, if not a one-to-many relationship, the sole object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRandomSpecifier

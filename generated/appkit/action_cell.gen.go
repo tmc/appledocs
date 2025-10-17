@@ -15,6 +15,11 @@ type _ActionCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ActionCell] class.
+type IActionCell interface {
+	ICell
+}
+
 // An active area inside a control. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell

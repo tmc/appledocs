@@ -15,6 +15,12 @@ type _URLSessionStreamTaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLSessionStreamTask] class.
+type IURLSessionStreamTask interface {
+	IURLSessionTask
+	WriteDataTimeoutCompletionHandler(data unsafe.Pointer, timeout TimeInterval, completionHandler unsafe.Pointer)
+}
+
 // A URL session task that is stream-based. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask

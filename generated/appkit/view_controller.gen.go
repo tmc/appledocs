@@ -15,6 +15,19 @@ type _ViewControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ViewController] class.
+type IViewController interface {
+	IResponder
+	DismissViewController(viewController unsafe.Pointer)
+	PresentViewControllerAnimator(viewController unsafe.Pointer, animator unsafe.Pointer)
+	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController unsafe.Pointer, positioningRect unsafe.Pointer, positioningView unsafe.Pointer, preferredEdge int, behavior unsafe.Pointer)
+	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController unsafe.Pointer, positioningRect unsafe.Pointer, positioningView unsafe.Pointer, preferredEdge int, behavior unsafe.Pointer, hasFullSizeContent bool)
+	PresentViewControllerInWidget(viewController unsafe.Pointer)
+	PresentViewControllerAsModalWindow(viewController unsafe.Pointer)
+	PresentViewControllerAsSheet(viewController unsafe.Pointer)
+	RemoveFromParentViewController()
+}
+
 // A controller that manages a view, typically loaded from a nib file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController

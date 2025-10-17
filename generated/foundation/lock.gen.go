@@ -16,6 +16,11 @@ type _LockClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Lock] class.
+type ILock interface {
+	objectivec.IObject
+}
+
 // An object that coordinates the operation of multiple threads of execution within the same application. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock

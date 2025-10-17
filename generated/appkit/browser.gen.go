@@ -15,6 +15,11 @@ type _BrowserClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Browser] class.
+type IBrowser interface {
+	IControl
+}
+
 // An interface that displays a hierarchically organized list of data items that can be navigated and selected. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowser

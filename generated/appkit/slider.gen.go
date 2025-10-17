@@ -15,6 +15,12 @@ type _SliderClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Slider] class.
+type ISlider interface {
+	IControl
+	SetTitleFont(fontObj unsafe.Pointer)
+}
+
 // A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider

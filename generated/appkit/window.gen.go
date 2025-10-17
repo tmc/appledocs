@@ -15,6 +15,148 @@ type _WindowClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Window] class.
+type IWindow interface {
+	IResponder
+	AddChildWindowOrdered(childWin unsafe.Pointer, place WindowOrderingMode)
+	AddTabbedWindowOrdered(window unsafe.Pointer, ordered WindowOrderingMode)
+	AddTitlebarAccessoryViewController(childViewController unsafe.Pointer)
+	AnchorAttributeForOrientation(orientation unsafe.Pointer) unsafe.Pointer
+	AnimationResizeTime(newFrame unsafe.Pointer) float64
+	AutorecalculatesContentBorderThicknessForEdge(edge int) bool
+	BackingAlignedRectOptions(rect unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	BecomeKeyWindow()
+	BecomeMainWindow()
+	BeginCriticalSheetCompletionHandler(sheetWindow unsafe.Pointer, handler unsafe.Pointer)
+	BeginDraggingSessionWithItemsEventSource(items unsafe.Pointer, event unsafe.Pointer, source unsafe.Pointer) unsafe.Pointer
+	BeginSheetCompletionHandler(sheetWindow unsafe.Pointer, handler unsafe.Pointer)
+	CacheImageInRect(rect unsafe.Pointer)
+	CanRepresentDisplayGamut(displayGamut unsafe.Pointer) bool
+	CanStoreColor() bool
+	CascadeTopLeftFromPoint(topLeftPoint unsafe.Pointer) unsafe.Pointer
+	Center()
+	Close()
+	ConstrainFrameRectToScreen(frameRect unsafe.Pointer, screen unsafe.Pointer) unsafe.Pointer
+	ContentBorderThicknessForEdge(edge int) float64
+	ContentRectForFrameRect(frameRect unsafe.Pointer) unsafe.Pointer
+	ConvertBaseToScreen(point unsafe.Pointer) unsafe.Pointer
+	ConvertRectFromBacking(rect unsafe.Pointer) unsafe.Pointer
+	ConvertRectFromScreen(rect unsafe.Pointer) unsafe.Pointer
+	ConvertPointFromScreen(point unsafe.Pointer) unsafe.Pointer
+	ConvertPointToScreen(point unsafe.Pointer) unsafe.Pointer
+	ConvertPointFromBacking(point unsafe.Pointer) unsafe.Pointer
+	ConvertPointToBacking(point unsafe.Pointer) unsafe.Pointer
+	ConvertScreenToBase(point unsafe.Pointer) unsafe.Pointer
+	ConvertRectToBacking(rect unsafe.Pointer) unsafe.Pointer
+	ConvertRectToScreen(rect unsafe.Pointer) unsafe.Pointer
+	DataWithEPSInsideRect(rect unsafe.Pointer) unsafe.Pointer
+	DataWithPDFInsideRect(rect unsafe.Pointer) unsafe.Pointer
+	Deminiaturize(sender objc.ID)
+	DisableCursorRects()
+	DisableFlushWindow()
+	DisableKeyEquivalentForDefaultButtonCell()
+	DisableScreenUpdatesUntilFlush()
+	DisableSnapshotRestoration()
+	DiscardCachedImage()
+	DiscardCursorRects()
+	DiscardEventsMatchingMaskBeforeEvent(mask unsafe.Pointer, lastEvent unsafe.Pointer)
+	Display()
+	DisplayIfNeeded()
+	DisplayLinkWithTargetSelector(target objc.ID, selector objc.SEL) unsafe.Pointer
+	DragImageAtOffsetEventPasteboardSourceSlideBack(image unsafe.Pointer, baseLocation unsafe.Pointer, initialOffset unsafe.Pointer, event unsafe.Pointer, pboard unsafe.Pointer, sourceObj objc.ID, slideFlag bool)
+	EnableCursorRects()
+	EnableFlushWindow()
+	EnableKeyEquivalentForDefaultButtonCell()
+	EnableSnapshotRestoration()
+	EndEditingFor(object objc.ID)
+	EndSheet(sheetWindow unsafe.Pointer)
+	EndSheetReturnCode(sheetWindow unsafe.Pointer, returnCode unsafe.Pointer)
+	FieldEditorForObject(createFlag bool, object objc.ID) unsafe.Pointer
+	FlushWindow()
+	FlushWindowIfNeeded()
+	FrameRectForContentRect(contentRect unsafe.Pointer) unsafe.Pointer
+	GState() int
+	HandleCloseScriptCommand(command unsafe.Pointer) objc.ID
+	HandlePrintScriptCommand(command unsafe.Pointer) objc.ID
+	HandleSaveScriptCommand(command unsafe.Pointer) objc.ID
+	InsertTitlebarAccessoryViewControllerAtIndex(childViewController unsafe.Pointer, index int)
+	InvalidateCursorRectsForView(view unsafe.Pointer)
+	InvalidateShadow()
+	LayoutIfNeeded()
+	MakeFirstResponder(responder unsafe.Pointer) bool
+	MakeKeyWindow()
+	MakeKeyAndOrderFront(sender objc.ID)
+	MakeMainWindow()
+	MergeAllWindows(sender objc.ID)
+	Miniaturize(sender objc.ID)
+	MoveTabToNewWindow(sender objc.ID)
+	NextEventMatchingMask(mask unsafe.Pointer) unsafe.Pointer
+	NextEventMatchingMaskUntilDateInModeDequeue(mask unsafe.Pointer, expiration unsafe.Pointer, mode unsafe.Pointer, deqFlag bool) unsafe.Pointer
+	OrderWindowRelativeTo(place WindowOrderingMode, otherWin int)
+	OrderBack(sender objc.ID)
+	OrderFront(sender objc.ID)
+	OrderFrontRegardless()
+	OrderOut(sender objc.ID)
+	PerformClose(sender objc.ID)
+	PerformWindowDragWithEvent(event unsafe.Pointer)
+	PerformMiniaturize(sender objc.ID)
+	PerformZoom(sender objc.ID)
+	PostEventAtStart(event unsafe.Pointer, flag bool)
+	Print(sender objc.ID)
+	RecalculateKeyViewLoop()
+	RegisterForDraggedTypes(newTypes unsafe.Pointer)
+	RemoveChildWindow(childWin unsafe.Pointer)
+	RemoveTitlebarAccessoryViewControllerAtIndex(index int)
+	RequestSharingOfWindowCompletionHandler(window unsafe.Pointer, completionHandler unsafe.Pointer)
+	RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image unsafe.Pointer, title string, completionHandler unsafe.Pointer)
+	ResetCursorRects()
+	ResignKeyWindow()
+	ResignMainWindow()
+	RestoreCachedImage()
+	RunToolbarCustomizationPalette(sender objc.ID)
+	SaveFrameUsingName(name unsafe.Pointer)
+	SelectKeyViewFollowingView(view unsafe.Pointer)
+	SelectKeyViewPrecedingView(view unsafe.Pointer)
+	SelectNextKeyView(sender objc.ID)
+	SelectNextTab(sender objc.ID)
+	SelectPreviousKeyView(sender objc.ID)
+	SelectPreviousTab(sender objc.ID)
+	SendEvent(event unsafe.Pointer)
+	SetAnchorAttributeForOrientation(attr unsafe.Pointer, orientation unsafe.Pointer)
+	SetAutorecalculatesContentBorderThicknessForEdge(flag bool, edge int)
+	SetContentBorderThicknessForEdge(thickness float64, edge int)
+	SetContentSize(size unsafe.Pointer)
+	SetDynamicDepthLimit(flag bool)
+	SetFrameDisplay(frameRect unsafe.Pointer, flag bool)
+	SetFrameDisplayAnimate(frameRect unsafe.Pointer, displayFlag bool, animateFlag bool)
+	SetFrameFromString(string unsafe.Pointer)
+	SetFrameAutosaveName(name unsafe.Pointer) bool
+	SetFrameOrigin(point unsafe.Pointer)
+	SetFrameTopLeftPoint(point unsafe.Pointer)
+	SetFrameUsingName(name unsafe.Pointer) bool
+	SetFrameUsingNameForce(name unsafe.Pointer, force bool) bool
+	SetIsMiniaturized(flag bool)
+	SetIsVisible(flag bool)
+	SetIsZoomed(flag bool)
+	SetTitleWithRepresentedFilename(filename string)
+	StandardWindowButton(b unsafe.Pointer) unsafe.Pointer
+	ToggleFullScreen(sender objc.ID)
+	ToggleTabBar(sender objc.ID)
+	ToggleTabOverview(sender objc.ID)
+	ToggleToolbarShown(sender objc.ID)
+	TrackEventsMatchingMaskTimeoutModeHandler(mask unsafe.Pointer, timeout float64, mode unsafe.Pointer, trackingHandler unsafe.Pointer)
+	TransferWindowSharingToWindowCompletionHandler(window unsafe.Pointer, completionHandler unsafe.Pointer)
+	TryToPerformWith(action objc.SEL, object objc.ID) bool
+	UnregisterDraggedTypes()
+	Update()
+	UpdateConstraintsIfNeeded()
+	UseOptimizedDrawing(flag bool)
+	UserSpaceScaleFactor() float64
+	ValidRequestorForSendTypeReturnType(sendType unsafe.Pointer, returnType unsafe.Pointer) objc.ID
+	VisualizeConstraints(constraints unsafe.Pointer)
+	Zoom(sender objc.ID)
+}
+
 // A window that an app displays on the screen. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow
@@ -60,16 +202,6 @@ func (w_ Window) Autorelease() Window {
 func NewWindow() Window {
 	return windowClass.New()
 }
-// Initializes the window with the specified values. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
-func NewWindowWithContentRectStyleMaskBackingDefer(contentRect unsafe.Pointer, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
-	instance := windowClass.Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
-	rv.Autorelease()
-	return rv
-}
 // Initializes an allocated window with the specified values. [Full Topic]
 
 //
@@ -96,6 +228,16 @@ func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Wi
 func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
 	instance := windowClass.Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
+	rv.Autorelease()
+	return rv
+}
+// Initializes the window with the specified values. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
+func NewWindowWithContentRectStyleMaskBackingDefer(contentRect unsafe.Pointer, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
+	instance := windowClass.Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
 	rv.Autorelease()
 	return rv
 }

@@ -16,6 +16,11 @@ type _TextSelectionNavigationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextSelectionNavigation] class.
+type ITextSelectionNavigation interface {
+	objectivec.IObject
+}
+
 // An interface you use to expose methods for obtaining results from actions performed on text selections. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelectionNavigation

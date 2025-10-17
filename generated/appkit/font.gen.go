@@ -16,6 +16,11 @@ type _FontClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Font] class.
+type IFont interface {
+	objectivec.IObject
+}
+
 // The representation of a font in an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont

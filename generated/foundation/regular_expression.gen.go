@@ -16,6 +16,11 @@ type _RegularExpressionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RegularExpression] class.
+type IRegularExpression interface {
+	objectivec.IObject
+}
+
 // An immutable representation of a compiled regular expression that you apply to Unicode strings. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression

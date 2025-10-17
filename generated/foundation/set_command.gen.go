@@ -15,6 +15,11 @@ type _SetCommandClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SetCommand] class.
+type ISetCommand interface {
+	IScriptCommand
+}
+
 // A command that sets one or more attributes or relationships to one or more values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand

@@ -15,6 +15,11 @@ type _ArchiverClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Archiver] class.
+type IArchiver interface {
+	ICoder
+}
+
 // A coder that stores an object’s data to an archive. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver

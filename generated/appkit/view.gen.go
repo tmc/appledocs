@@ -15,6 +15,193 @@ type _ViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [View] class.
+type IView interface {
+	IResponder
+	AcceptsFirstMouse(event unsafe.Pointer) bool
+	AddConstraint(constraint unsafe.Pointer)
+	AddConstraints(constraints unsafe.Pointer)
+	AddCursorRectCursor(rect unsafe.Pointer, object unsafe.Pointer)
+	AddGestureRecognizer(gestureRecognizer unsafe.Pointer)
+	AddLayoutGuide(guide unsafe.Pointer)
+	AddSubview(view unsafe.Pointer)
+	AddSubviewPositionedRelativeTo(view unsafe.Pointer, place WindowOrderingMode, otherView unsafe.Pointer)
+	AddToolTipRectOwnerUserData(rect unsafe.Pointer, owner objc.ID, data unsafe.Pointer) unsafe.Pointer
+	AddTrackingArea(trackingArea unsafe.Pointer)
+	AddTrackingRectOwnerUserDataAssumeInside(rect unsafe.Pointer, owner objc.ID, data unsafe.Pointer, flag bool) unsafe.Pointer
+	AdjustPageHeightNewTopBottomLimit(newBottom float64, oldTop float64, oldBottom float64, bottomLimit float64)
+	AdjustPageWidthNewLeftRightLimit(newRight float64, oldLeft float64, oldRight float64, rightLimit float64)
+	AdjustScroll(newVisible unsafe.Pointer) unsafe.Pointer
+	AlignmentRectForFrame(frame unsafe.Pointer) unsafe.Pointer
+	AllocateGState()
+	AncestorSharedWithView(view unsafe.Pointer) unsafe.Pointer
+	Autoscroll(event unsafe.Pointer) bool
+	BackingAlignedRectOptions(rect unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	BeginDocument()
+	BeginDraggingSessionWithItemsEventSource(items unsafe.Pointer, event unsafe.Pointer, source unsafe.Pointer) unsafe.Pointer
+	BeginPageInRectAtPlacement(rect unsafe.Pointer, location unsafe.Pointer)
+	BitmapImageRepForCachingDisplayInRect(rect unsafe.Pointer) unsafe.Pointer
+	CacheDisplayInRectToBitmapImageRep(rect unsafe.Pointer, bitmapImageRep unsafe.Pointer)
+	CenterScanRect(rect unsafe.Pointer) unsafe.Pointer
+	ConstraintsAffectingLayoutForOrientation(orientation unsafe.Pointer) unsafe.Pointer
+	ContentCompressionResistancePriorityForOrientation(orientation unsafe.Pointer) unsafe.Pointer
+	ContentHuggingPriorityForOrientation(orientation unsafe.Pointer) unsafe.Pointer
+	ConvertPointFromView(point unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer
+	ConvertSizeFromView(size unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer
+	ConvertRectFromView(rect unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer
+	ConvertRectToView(rect unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer
+	ConvertSizeToView(size unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer
+	ConvertPointToView(point unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer
+	ConvertPointFromBacking(point unsafe.Pointer) unsafe.Pointer
+	ConvertRectFromBacking(rect unsafe.Pointer) unsafe.Pointer
+	ConvertSizeFromBacking(size unsafe.Pointer) unsafe.Pointer
+	ConvertPointFromLayer(point unsafe.Pointer) unsafe.Pointer
+	ConvertSizeFromLayer(size unsafe.Pointer) unsafe.Pointer
+	ConvertRectFromLayer(rect unsafe.Pointer) unsafe.Pointer
+	ConvertPointFromBase(point unsafe.Pointer) unsafe.Pointer
+	ConvertPointToBase(point unsafe.Pointer) unsafe.Pointer
+	ConvertRectFromBase(rect unsafe.Pointer) unsafe.Pointer
+	ConvertRectToBase(rect unsafe.Pointer) unsafe.Pointer
+	ConvertSizeFromBase(size unsafe.Pointer) unsafe.Pointer
+	ConvertSizeToBase(size unsafe.Pointer) unsafe.Pointer
+	ConvertPointToBacking(point unsafe.Pointer) unsafe.Pointer
+	ConvertRectToBacking(rect unsafe.Pointer) unsafe.Pointer
+	ConvertSizeToBacking(size unsafe.Pointer) unsafe.Pointer
+	ConvertRectToLayer(rect unsafe.Pointer) unsafe.Pointer
+	ConvertSizeToLayer(size unsafe.Pointer) unsafe.Pointer
+	ConvertPointToLayer(point unsafe.Pointer) unsafe.Pointer
+	DataWithEPSInsideRect(rect unsafe.Pointer) unsafe.Pointer
+	DataWithPDFInsideRect(rect unsafe.Pointer) unsafe.Pointer
+	DidAddSubview(subview unsafe.Pointer)
+	DidCloseMenuWithEvent(menu unsafe.Pointer, event unsafe.Pointer)
+	DiscardCursorRects()
+	Display()
+	DisplayRect(rect unsafe.Pointer)
+	DisplayIfNeeded()
+	DisplayIfNeededInRect(rect unsafe.Pointer)
+	DisplayIfNeededIgnoringOpacity()
+	DisplayIfNeededInRectIgnoringOpacity(rect unsafe.Pointer)
+	DisplayRectIgnoringOpacity(rect unsafe.Pointer)
+	DisplayRectIgnoringOpacityInContext(rect unsafe.Pointer, context unsafe.Pointer)
+	DisplayLinkWithTargetSelector(target objc.ID, selector objc.SEL) unsafe.Pointer
+	DragFileFromRectSlideBackEvent(filename string, rect unsafe.Pointer, flag bool, event unsafe.Pointer) bool
+	DragImageAtOffsetEventPasteboardSourceSlideBack(image unsafe.Pointer, viewLocation unsafe.Pointer, initialOffset unsafe.Pointer, event unsafe.Pointer, pboard unsafe.Pointer, sourceObj objc.ID, slideFlag bool)
+	DragPromisedFilesOfTypesFromRectSourceSlideBackEvent(typeArray unsafe.Pointer, rect unsafe.Pointer, sourceObject objc.ID, flag bool, event unsafe.Pointer) bool
+	DrawRect(dirtyRect unsafe.Pointer)
+	DrawFocusRingMask()
+	DrawPageBorderWithSize(borderSize unsafe.Pointer)
+	DrawSheetBorderWithSize(borderSize unsafe.Pointer)
+	EdgeInsetsForLayoutRegion(layoutRegion unsafe.Pointer) unsafe.Pointer
+	EndDocument()
+	EndPage()
+	EnterFullScreenModeWithOptions(screen unsafe.Pointer, options unsafe.Pointer) bool
+	ExerciseAmbiguityInLayout()
+	ExitFullScreenModeWithOptions(options unsafe.Pointer)
+	FrameForAlignmentRect(alignmentRect unsafe.Pointer) unsafe.Pointer
+	GState() int
+	GetRectsBeingDrawnCount(rects unsafe.Pointer, count unsafe.Pointer)
+	GetRectsExposedDuringLiveResizeCount(exposedRects unsafe.Pointer, count unsafe.Pointer)
+	HitTest(point unsafe.Pointer) unsafe.Pointer
+	InvalidateIntrinsicContentSize()
+	IsDescendantOf(view unsafe.Pointer) bool
+	MouseInRect(point unsafe.Pointer, rect unsafe.Pointer) bool
+	KnowsPageRange(range_ unsafe.Pointer) bool
+	Layout()
+	LayoutGuideForLayoutRegion(layoutRegion unsafe.Pointer) unsafe.Pointer
+	LayoutSubtreeIfNeeded()
+	LocationOfPrintRect(rect unsafe.Pointer) unsafe.Pointer
+	LockFocus()
+	LockFocusIfCanDraw() bool
+	LockFocusIfCanDrawInContext(context unsafe.Pointer) bool
+	MakeBackingLayer() unsafe.Pointer
+	MenuForEvent(event unsafe.Pointer) unsafe.Pointer
+	NeedsToDrawRect(rect unsafe.Pointer) bool
+	NoteFocusRingMaskChanged()
+	PerformKeyEquivalent(event unsafe.Pointer) bool
+	PerformMnemonic(string string) bool
+	PrepareContentInRect(rect unsafe.Pointer)
+	PrepareForReuse()
+	Print(sender objc.ID)
+	RectForLayoutRegion(layoutRegion unsafe.Pointer) unsafe.Pointer
+	RectForPage(page int) unsafe.Pointer
+	RectForSmartMagnificationAtPointInRect(location unsafe.Pointer, visibleRect unsafe.Pointer) unsafe.Pointer
+	ReflectScrolledClipView(clipView unsafe.Pointer)
+	RegisterForDraggedTypes(newTypes unsafe.Pointer)
+	ReleaseGState()
+	RemoveAllToolTips()
+	RemoveConstraint(constraint unsafe.Pointer)
+	RemoveConstraints(constraints unsafe.Pointer)
+	RemoveCursorRectCursor(rect unsafe.Pointer, object unsafe.Pointer)
+	RemoveFromSuperview()
+	RemoveFromSuperviewWithoutNeedingDisplay()
+	RemoveGestureRecognizer(gestureRecognizer unsafe.Pointer)
+	RemoveLayoutGuide(guide unsafe.Pointer)
+	RemoveToolTip(tag unsafe.Pointer)
+	RemoveTrackingArea(trackingArea unsafe.Pointer)
+	RemoveTrackingRect(tag unsafe.Pointer)
+	RenewGState()
+	ReplaceSubviewWith(oldView unsafe.Pointer, newView unsafe.Pointer)
+	ResetCursorRects()
+	ResizeWithOldSuperviewSize(oldSize unsafe.Pointer)
+	ResizeSubviewsWithOldSize(oldSize unsafe.Pointer)
+	RotateByAngle(angle float64)
+	RulerViewDidAddMarker(ruler unsafe.Pointer, marker unsafe.Pointer)
+	RulerViewDidMoveMarker(ruler unsafe.Pointer, marker unsafe.Pointer)
+	RulerViewDidRemoveMarker(ruler unsafe.Pointer, marker unsafe.Pointer)
+	RulerViewHandleMouseDown(ruler unsafe.Pointer, event unsafe.Pointer)
+	RulerViewLocationForPoint(ruler unsafe.Pointer, point unsafe.Pointer) float64
+	RulerViewPointForLocation(ruler unsafe.Pointer, point float64) unsafe.Pointer
+	RulerViewShouldAddMarker(ruler unsafe.Pointer, marker unsafe.Pointer) bool
+	RulerViewShouldMoveMarker(ruler unsafe.Pointer, marker unsafe.Pointer) bool
+	RulerViewShouldRemoveMarker(ruler unsafe.Pointer, marker unsafe.Pointer) bool
+	RulerViewWillAddMarkerAtLocation(ruler unsafe.Pointer, marker unsafe.Pointer, location float64) float64
+	RulerViewWillMoveMarkerToLocation(ruler unsafe.Pointer, marker unsafe.Pointer, location float64) float64
+	RulerViewWillSetClientView(ruler unsafe.Pointer, newClient unsafe.Pointer)
+	ScaleUnitSquareToSize(newUnitSize unsafe.Pointer)
+	ScrollPoint(point unsafe.Pointer)
+	ScrollRectBy(rect unsafe.Pointer, delta unsafe.Pointer)
+	ScrollClipViewToPoint(clipView unsafe.Pointer, point unsafe.Pointer)
+	ScrollRectToVisible(rect unsafe.Pointer) bool
+	SetBoundsOrigin(newOrigin unsafe.Pointer)
+	SetBoundsSize(newSize unsafe.Pointer)
+	SetContentCompressionResistancePriorityForOrientation(priority unsafe.Pointer, orientation unsafe.Pointer)
+	SetContentHuggingPriorityForOrientation(priority unsafe.Pointer, orientation unsafe.Pointer)
+	SetFrameOrigin(newOrigin unsafe.Pointer)
+	SetFrameSize(newSize unsafe.Pointer)
+	SetKeyboardFocusRingNeedsDisplayInRect(rect unsafe.Pointer)
+	SetNeedsDisplayInRect(invalidRect unsafe.Pointer)
+	SetUpGState()
+	ShouldDelayWindowOrderingForEvent(event unsafe.Pointer) bool
+	ShouldDrawColor() bool
+	ShowDefinitionForAttributedStringAtPoint(attrString unsafe.Pointer, textBaselineOrigin unsafe.Pointer)
+	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString unsafe.Pointer, targetRange unsafe.Pointer, options unsafe.Pointer, originProvider unsafe.Pointer)
+	SortSubviewsUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
+	TranslateOriginToPoint(translation unsafe.Pointer)
+	TranslateRectsNeedingDisplayInRectBy(clipRect unsafe.Pointer, delta unsafe.Pointer)
+	UnlockFocus()
+	UnregisterDraggedTypes()
+	UpdateConstraints()
+	UpdateConstraintsForSubtreeIfNeeded()
+	UpdateLayer()
+	UpdateTrackingAreas()
+	ViewDidChangeBackingProperties()
+	ViewDidChangeEffectiveAppearance()
+	ViewDidEndLiveResize()
+	ViewDidHide()
+	ViewDidMoveToSuperview()
+	ViewDidMoveToWindow()
+	ViewDidUnhide()
+	ViewWillDraw()
+	ViewWillMoveToSuperview(newSuperview unsafe.Pointer)
+	ViewWillMoveToWindow(newWindow unsafe.Pointer)
+	ViewWillStartLiveResize()
+	ViewWithTag(tag int) unsafe.Pointer
+	WillOpenMenuWithEvent(menu unsafe.Pointer, event unsafe.Pointer)
+	WillRemoveSubview(subview unsafe.Pointer)
+	WriteEPSInsideRectToPasteboard(rect unsafe.Pointer, pasteboard unsafe.Pointer)
+	WritePDFInsideRectToPasteboard(rect unsafe.Pointer, pasteboard unsafe.Pointer)
+}
+
 // The infrastructure for drawing, printing, and handling events in an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView

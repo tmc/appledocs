@@ -15,6 +15,11 @@ type _NumberFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [NumberFormatter] class.
+type INumberFormatter interface {
+	IFormatter
+}
+
 // A formatter that converts between numeric values and their textual representations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter

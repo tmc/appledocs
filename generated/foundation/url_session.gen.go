@@ -16,6 +16,39 @@ type _URLSessionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLSession] class.
+type IURLSession interface {
+	objectivec.IObject
+	DataTaskWithURL(url unsafe.Pointer) unsafe.Pointer
+	DataTaskWithRequest(request unsafe.Pointer) unsafe.Pointer
+	DataTaskWithURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	DataTaskWithRequestCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	DownloadTaskWithURL(url unsafe.Pointer) unsafe.Pointer
+	DownloadTaskWithRequest(request unsafe.Pointer) unsafe.Pointer
+	DownloadTaskWithRequestCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	DownloadTaskWithURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	DownloadTaskWithResumeData(resumeData unsafe.Pointer) unsafe.Pointer
+	DownloadTaskWithResumeDataCompletionHandler(resumeData unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	FinishTasksAndInvalidate()
+	FlushWithCompletionHandler(completionHandler unsafe.Pointer)
+	GetAllTasksWithCompletionHandler(completionHandler unsafe.Pointer)
+	GetTasksWithCompletionHandler(completionHandler unsafe.Pointer)
+	InvalidateAndCancel()
+	ResetWithCompletionHandler(completionHandler unsafe.Pointer)
+	StreamTaskWithNetService(service unsafe.Pointer) unsafe.Pointer
+	StreamTaskWithHostNamePort(hostname string, port int) unsafe.Pointer
+	UploadTaskWithRequestFromData(request unsafe.Pointer, bodyData unsafe.Pointer) unsafe.Pointer
+	UploadTaskWithRequestFromDataCompletionHandler(request unsafe.Pointer, bodyData unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	UploadTaskWithRequestFromFile(request unsafe.Pointer, fileURL unsafe.Pointer) unsafe.Pointer
+	UploadTaskWithRequestFromFileCompletionHandler(request unsafe.Pointer, fileURL unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	UploadTaskWithResumeData(resumeData unsafe.Pointer) unsafe.Pointer
+	UploadTaskWithResumeDataCompletionHandler(resumeData unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	UploadTaskWithStreamedRequest(request unsafe.Pointer) unsafe.Pointer
+	WebSocketTaskWithURL(url unsafe.Pointer) unsafe.Pointer
+	WebSocketTaskWithRequest(request unsafe.Pointer) unsafe.Pointer
+	WebSocketTaskWithURLProtocols(url unsafe.Pointer, protocols unsafe.Pointer) unsafe.Pointer
+}
+
 // An object that coordinates a group of related, network data transfer tasks. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession

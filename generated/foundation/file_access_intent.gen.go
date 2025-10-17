@@ -16,6 +16,11 @@ type _FileAccessIntentClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FileAccessIntent] class.
+type IFileAccessIntent interface {
+	objectivec.IObject
+}
+
 // The details of a coordinated-read or coordinated-write operation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent

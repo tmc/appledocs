@@ -15,6 +15,11 @@ type _RotationGestureRecognizerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RotationGestureRecognizer] class.
+type IRotationGestureRecognizer interface {
+	IGestureRecognizer
+}
+
 // A continuous gesture recognizer that tracks two trackpad touches moving opposite each other in a circular motion. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRotationGestureRecognizer

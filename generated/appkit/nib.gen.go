@@ -16,6 +16,11 @@ type _NibClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Nib] class.
+type INib interface {
+	objectivec.IObject
+}
+
 // An object wrapper, or container, for an Interface Builder nib file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib

@@ -15,6 +15,11 @@ type _UserUnixTaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UserUnixTask] class.
+type IUserUnixTask interface {
+	IUserScriptTask
+}
+
 // An object that executes unix applications. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask

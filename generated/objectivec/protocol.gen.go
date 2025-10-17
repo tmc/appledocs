@@ -15,8 +15,14 @@ type _ProtocolClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Protocol] class.
+type IProtocol interface {
+	IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/Protocol
+
 type Protocol struct {
 	Object
 }

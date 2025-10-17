@@ -16,6 +16,11 @@ type _MovieClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Movie] class.
+type IMovie interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMovie
 

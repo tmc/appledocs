@@ -16,6 +16,11 @@ type _EnumeratorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Enumerator] class.
+type IEnumerator interface {
+	objectivec.IObject
+}
+
 // An abstract class whose subclasses enumerate collections of objects, such as arrays and dictionaries. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerator

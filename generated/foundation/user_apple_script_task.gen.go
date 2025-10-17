@@ -15,6 +15,11 @@ type _UserAppleScriptTaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UserAppleScriptTask] class.
+type IUserAppleScriptTask interface {
+	IUserScriptTask
+}
+
 // An object that executes AppleScript scripts. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAppleScriptTask

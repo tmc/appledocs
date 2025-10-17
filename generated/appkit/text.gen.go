@@ -15,6 +15,42 @@ type _TextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Text] class.
+type IText interface {
+	IView
+	AlignCenter(sender objc.ID)
+	AlignLeft(sender objc.ID)
+	AlignRight(sender objc.ID)
+	ChangeFont(sender objc.ID)
+	CheckSpelling(sender objc.ID)
+	Copy(sender objc.ID)
+	CopyFont(sender objc.ID)
+	CopyRuler(sender objc.ID)
+	Cut(sender objc.ID)
+	Delete(sender objc.ID)
+	Paste(sender objc.ID)
+	PasteFont(sender objc.ID)
+	PasteRuler(sender objc.ID)
+	ReadRTFDFromFile(path string) bool
+	ReplaceCharactersInRangeWithString(range_ unsafe.Pointer, string string)
+	ReplaceCharactersInRangeWithRTF(range_ unsafe.Pointer, rtfData unsafe.Pointer)
+	ReplaceCharactersInRangeWithRTFD(range_ unsafe.Pointer, rtfdData unsafe.Pointer)
+	RTFFromRange(range_ unsafe.Pointer) unsafe.Pointer
+	RTFDFromRange(range_ unsafe.Pointer) unsafe.Pointer
+	ScrollRangeToVisible(range_ unsafe.Pointer)
+	SelectAll(sender objc.ID)
+	SetFontRange(font unsafe.Pointer, range_ unsafe.Pointer)
+	SetTextColorRange(color unsafe.Pointer, range_ unsafe.Pointer)
+	ShowGuessPanel(sender objc.ID)
+	SizeToFit()
+	Subscript(sender objc.ID)
+	Superscript(sender objc.ID)
+	ToggleRuler(sender objc.ID)
+	Underline(sender objc.ID)
+	Unscript(sender objc.ID)
+	WriteRTFDToFileAtomically(path string, flag bool) bool
+}
+
 // The most general programmatic interface for objects that manage text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText

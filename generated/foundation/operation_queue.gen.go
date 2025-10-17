@@ -16,6 +16,12 @@ type _OperationQueueClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [OperationQueue] class.
+type IOperationQueue interface {
+	objectivec.IObject
+	CancelAllOperations()
+}
+
 // A queue that regulates the execution of operations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue

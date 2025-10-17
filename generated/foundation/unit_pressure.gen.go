@@ -15,6 +15,11 @@ type _UnitPressureClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitPressure] class.
+type IUnitPressure interface {
+	IDimension
+}
+
 // A unit of measure for pressure. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure

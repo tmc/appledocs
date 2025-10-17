@@ -16,6 +16,11 @@ type _URLAuthenticationChallengeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLAuthenticationChallenge] class.
+type IURLAuthenticationChallenge interface {
+	objectivec.IObject
+}
+
 // A challenge from a server requiring authentication from the client. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge

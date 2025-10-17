@@ -16,6 +16,11 @@ type _LayoutConstraintClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LayoutConstraint] class.
+type ILayoutConstraint interface {
+	objectivec.IObject
+}
+
 // The relationship between two user interface objects that must be satisfied by the constraint-based layout system. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint

@@ -16,6 +16,11 @@ type _GraphicsContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [GraphicsContext] class.
+type IGraphicsContext interface {
+	objectivec.IObject
+}
+
 // An object that represents a graphics context. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext

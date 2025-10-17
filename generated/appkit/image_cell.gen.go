@@ -15,6 +15,11 @@ type _ImageCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ImageCell] class.
+type IImageCell interface {
+	ICell
+}
+
 // An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageCell

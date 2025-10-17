@@ -16,6 +16,11 @@ type _EventClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Event] class.
+type IEvent interface {
+	objectivec.IObject
+}
+
 // An object that contains information about an input action, such as a mouse click or a key press. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent

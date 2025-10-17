@@ -15,6 +15,27 @@ type _StackViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [StackView] class.
+type IStackView interface {
+	IView
+	AddArrangedSubview(view unsafe.Pointer)
+	AddViewInGravity(view unsafe.Pointer, gravity unsafe.Pointer)
+	ClippingResistancePriorityForOrientation(orientation unsafe.Pointer) unsafe.Pointer
+	CustomSpacingAfterView(view unsafe.Pointer) float64
+	HuggingPriorityForOrientation(orientation unsafe.Pointer) unsafe.Pointer
+	InsertArrangedSubviewAtIndex(view unsafe.Pointer, index int)
+	InsertViewAtIndexInGravity(view unsafe.Pointer, index uint, gravity unsafe.Pointer)
+	RemoveArrangedSubview(view unsafe.Pointer)
+	RemoveView(view unsafe.Pointer)
+	SetClippingResistancePriorityForOrientation(clippingResistancePriority unsafe.Pointer, orientation unsafe.Pointer)
+	SetCustomSpacingAfterView(spacing float64, view unsafe.Pointer)
+	SetHuggingPriorityForOrientation(huggingPriority unsafe.Pointer, orientation unsafe.Pointer)
+	SetViewsInGravity(views unsafe.Pointer, gravity unsafe.Pointer)
+	SetVisibilityPriorityForView(priority unsafe.Pointer, view unsafe.Pointer)
+	ViewsInGravity(gravity unsafe.Pointer) unsafe.Pointer
+	VisibilityPriorityForView(view unsafe.Pointer) unsafe.Pointer
+}
+
 // A view that arranges an array of views horizontally or vertically and updates their placement and sizing when the window size changes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView

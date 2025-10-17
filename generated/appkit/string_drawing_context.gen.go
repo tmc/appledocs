@@ -16,6 +16,11 @@ type _StringDrawingContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [StringDrawingContext] class.
+type IStringDrawingContext interface {
+	objectivec.IObject
+}
+
 // An object that manages metrics for drawing attributed strings. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext

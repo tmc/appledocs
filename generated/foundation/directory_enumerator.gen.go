@@ -15,6 +15,11 @@ type _DirectoryEnumeratorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DirectoryEnumerator] class.
+type IDirectoryEnumerator interface {
+	IEnumerator
+}
+
 // An object that enumerates the contents of a directory. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator

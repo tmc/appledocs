@@ -15,6 +15,11 @@ type _TextParagraphClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextParagraph] class.
+type ITextParagraph interface {
+	ITextElement
+}
+
 // A class that represents a single paragraph backed by an attributed string as the contents. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph

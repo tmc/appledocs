@@ -16,6 +16,12 @@ type _LinguisticTaggerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LinguisticTagger] class.
+type ILinguisticTagger interface {
+	objectivec.IObject
+	EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ unsafe.Pointer, tagScheme unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer)
+}
+
 // Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger

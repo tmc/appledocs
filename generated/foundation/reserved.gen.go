@@ -16,6 +16,11 @@ type _reservedClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [reserved] class.
+type Ireserved interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/reserved
 

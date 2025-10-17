@@ -15,6 +15,11 @@ type _TextFieldCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextFieldCell] class.
+type ITextFieldCell interface {
+	IActionCell
+}
+
 // An object that enhances the text display capabilities of a cell. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell

@@ -15,6 +15,11 @@ type _ComparisonPredicateClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ComparisonPredicate] class.
+type IComparisonPredicate interface {
+	IPredicate
+}
+
 // A specialized predicate for comparing expressions. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate

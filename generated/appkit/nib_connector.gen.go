@@ -16,6 +16,11 @@ type _NibConnectorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [NibConnector] class.
+type INibConnector interface {
+	objectivec.IObject
+}
+
 // A connection between two nibs. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector

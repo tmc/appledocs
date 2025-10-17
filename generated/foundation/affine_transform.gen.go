@@ -16,6 +16,11 @@ type _AffineTransformClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AffineTransform] class.
+type IAffineTransform interface {
+	objectivec.IObject
+}
+
 // A graphics coordinate transformation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform

@@ -16,6 +16,11 @@ type _DraggingImageComponentClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DraggingImageComponent] class.
+type IDraggingImageComponent interface {
+	objectivec.IObject
+}
+
 // A single object in a dragging item. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent

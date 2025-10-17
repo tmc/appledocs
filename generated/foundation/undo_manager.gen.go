@@ -16,6 +16,21 @@ type _UndoManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UndoManager] class.
+type IUndoManager interface {
+	objectivec.IObject
+	EndUndoGrouping()
+	Redo()
+	RegisterUndoWithTargetSelectorObject(target objc.ID, selector objc.SEL, object objc.ID)
+	RemoveAllActions()
+	SetActionName(actionName string)
+	SetActionUserInfoValueForKey(info objc.ID, key unsafe.Pointer)
+	Undo()
+	UndoActionUserInfoValueForKey(key unsafe.Pointer) objc.ID
+	UndoMenuTitleForUndoActionName(actionName string) unsafe.Pointer
+	UndoNestedGroup()
+}
+
 // A general-purpose recorder of operations that enables undo and redo. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager

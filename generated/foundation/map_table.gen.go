@@ -16,6 +16,11 @@ type _MapTableClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MapTable] class.
+type IMapTable interface {
+	objectivec.IObject
+}
+
 // A collection similar to a dictionary, but with a broader range of available memory semantics. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable

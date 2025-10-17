@@ -15,6 +15,11 @@ type _SegmentedControlClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SegmentedControl] class.
+type ISegmentedControl interface {
+	IControl
+}
+
 // Display one or more buttons in a single horizontal group. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl

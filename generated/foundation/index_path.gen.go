@@ -16,6 +16,11 @@ type _IndexPathClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [IndexPath] class.
+type IIndexPath interface {
+	objectivec.IObject
+}
+
 // A list of indexes that together represent the path to a specific location in a tree of nested arrays. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath

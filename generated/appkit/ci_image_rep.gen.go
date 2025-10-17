@@ -15,6 +15,11 @@ type _CIImageRepClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CIImageRep] class.
+type ICIImageRep interface {
+	IImageRep
+}
+
 // An object that can render an image from a Core Image object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCIImageRep

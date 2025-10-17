@@ -16,6 +16,11 @@ type _NotificationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Notification] class.
+type INotification interface {
+	objectivec.IObject
+}
+
 // A container for information broadcast through a notification center to all registered observers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification

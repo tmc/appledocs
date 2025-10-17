@@ -15,6 +15,22 @@ type _ScrubberClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Scrubber] class.
+type IScrubber interface {
+	IView
+	InsertItemsAtIndexes(indexes unsafe.Pointer)
+	ItemViewForItemAtIndex(index int) unsafe.Pointer
+	MakeItemWithIdentifierOwner(itemIdentifier unsafe.Pointer, owner objc.ID) unsafe.Pointer
+	MoveItemAtIndexToIndex(oldIndex int, newIndex int)
+	PerformSequentialBatchUpdates(updateBlock unsafe.Pointer)
+	RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier unsafe.Pointer)
+	RegisterNibForItemIdentifier(nib unsafe.Pointer, itemIdentifier unsafe.Pointer)
+	ReloadData()
+	ReloadItemsAtIndexes(indexes unsafe.Pointer)
+	RemoveItemsAtIndexes(indexes unsafe.Pointer)
+	ScrollItemAtIndexToAlignment(index int, alignment unsafe.Pointer)
+}
+
 // A customizable item picker control for the Touch Bar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber
@@ -60,16 +76,6 @@ func (s_ Scrubber) Autorelease() Scrubber {
 func NewScrubber() Scrubber {
 	return scrubberClass.New()
 }
-// Initializes and returns a newly allocated scrubber object with the specified frame rectangle. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(frame:)
-func NewScrubberWithFrame(frameRect unsafe.Pointer) Scrubber {
-	instance := scrubberClass.Alloc()
-	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithFrame:"), frameRect)
-	rv.Autorelease()
-	return rv
-}
 // Initializes and returns a newly allocated scrubber object from a storyboard or nib file. [Full Topic]
 
 //
@@ -77,6 +83,16 @@ func NewScrubberWithFrame(frameRect unsafe.Pointer) Scrubber {
 func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
 	instance := scrubberClass.Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+// Initializes and returns a newly allocated scrubber object with the specified frame rectangle. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(frame:)
+func NewScrubberWithFrame(frameRect unsafe.Pointer) Scrubber {
+	instance := scrubberClass.Alloc()
+	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
 	return rv
 }

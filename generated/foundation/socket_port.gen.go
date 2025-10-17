@@ -15,6 +15,11 @@ type _SocketPortClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SocketPort] class.
+type ISocketPort interface {
+	IPort
+}
+
 // A port that represents a BSD socket. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort

@@ -16,6 +16,11 @@ type _AttributedStringMarkdownSourcePositionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AttributedStringMarkdownSourcePosition] class.
+type IAttributedStringMarkdownSourcePosition interface {
+	objectivec.IObject
+}
+
 // The position of attributed string text in its original Markdown source string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition

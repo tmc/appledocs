@@ -16,6 +16,11 @@ type _WritingToolsCoordinatorContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [WritingToolsCoordinatorContext] class.
+type IWritingToolsCoordinatorContext interface {
+	objectivec.IObject
+}
+
 // A data object that you use to share your custom view’s text with Writing Tools. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context

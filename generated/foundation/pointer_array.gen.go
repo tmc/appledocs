@@ -16,6 +16,11 @@ type _PointerArrayClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PointerArray] class.
+type IPointerArray interface {
+	objectivec.IObject
+}
+
 // A collection similar to an array, but with a broader range of available memory semantics. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray

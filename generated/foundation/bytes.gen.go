@@ -16,6 +16,11 @@ type _bytesClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [bytes] class.
+type Ibytes interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSimpleCString/bytes
 

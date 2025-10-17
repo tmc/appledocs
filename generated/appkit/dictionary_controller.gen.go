@@ -15,6 +15,11 @@ type _DictionaryControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DictionaryController] class.
+type IDictionaryController interface {
+	IArrayController
+}
+
 // A bindings-compatible controller that manages the display and editing of a dictionary of key-value pairs. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController

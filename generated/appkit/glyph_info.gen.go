@@ -16,6 +16,11 @@ type _GlyphInfoClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [GlyphInfo] class.
+type IGlyphInfo interface {
+	objectivec.IObject
+}
+
 // A glyph attribute in an attributed string. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo

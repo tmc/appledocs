@@ -15,6 +15,11 @@ type _ColorPickerTouchBarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ColorPickerTouchBarItem] class.
+type IColorPickerTouchBarItem interface {
+	ITouchBarItem
+}
+
 // A bar item that provides a system-defined color picker. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem

@@ -16,6 +16,11 @@ type _PrintPanelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PrintPanel] class.
+type IPrintPanel interface {
+	objectivec.IObject
+}
+
 // The Print panel that queries the user for information about a print job. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel

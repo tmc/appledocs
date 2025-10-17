@@ -15,6 +15,11 @@ type _OutlineViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [OutlineView] class.
+type IOutlineView interface {
+	ITableView
+}
+
 // A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView

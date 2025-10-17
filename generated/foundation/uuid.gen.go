@@ -16,6 +16,11 @@ type _UUIDClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UUID] class.
+type IUUID interface {
+	objectivec.IObject
+}
+
 // A universally unique value that can be used to identify types, interfaces, and other items. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID

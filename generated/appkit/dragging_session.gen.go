@@ -16,6 +16,11 @@ type _DraggingSessionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DraggingSession] class.
+type IDraggingSession interface {
+	objectivec.IObject
+}
+
 // The encapsulation of a drag-and-drop action that supports modification of the drag while in progress. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession

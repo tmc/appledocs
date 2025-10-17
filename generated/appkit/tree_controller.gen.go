@@ -15,6 +15,11 @@ type _TreeControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TreeController] class.
+type ITreeController interface {
+	IObjectController
+}
+
 // A bindings-compatible controller that manages a tree of objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController

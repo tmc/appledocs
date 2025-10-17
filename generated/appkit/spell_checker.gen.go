@@ -16,6 +16,12 @@ type _SpellCheckerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SpellChecker] class.
+type ISpellChecker interface {
+	objectivec.IObject
+	RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange unsafe.Pointer, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
+}
+
 // An interface to the Cocoa spell-checking service. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker

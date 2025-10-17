@@ -16,6 +16,17 @@ type _OperationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Operation] class.
+type IOperation interface {
+	objectivec.IObject
+	AddDependency(op unsafe.Pointer)
+	Cancel()
+	Main()
+	RemoveDependency(op unsafe.Pointer)
+	Start()
+	WaitUntilFinished()
+}
+
 // An abstract class that represents the code and data associated with a single task. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation

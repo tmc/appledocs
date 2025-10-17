@@ -16,6 +16,50 @@ type _DictionaryClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Dictionary] class.
+type IDictionary interface {
+	objectivec.IObject
+	AllKeysForObject(anObject unsafe.Pointer) unsafe.Pointer
+	CountByEnumeratingWithStateObjectsCount(state unsafe.Pointer, buffer unsafe.Pointer, len uint) uint
+	DescriptionWithLocale(locale objc.ID) unsafe.Pointer
+	DescriptionWithLocaleIndent(locale objc.ID, level uint) unsafe.Pointer
+	EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer)
+	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer)
+	FileCreationDate() unsafe.Pointer
+	FileExtensionHidden() bool
+	FileGroupOwnerAccountID() unsafe.Pointer
+	FileGroupOwnerAccountName() unsafe.Pointer
+	FileHFSCreatorCode() unsafe.Pointer
+	FileHFSTypeCode() unsafe.Pointer
+	FileIsAppendOnly() bool
+	FileIsImmutable() bool
+	FileModificationDate() unsafe.Pointer
+	FileOwnerAccountID() unsafe.Pointer
+	FileOwnerAccountName() unsafe.Pointer
+	FilePosixPermissions() uint
+	FileSize() unsafe.Pointer
+	FileSystemFileNumber() uint
+	FileSystemNumber() int
+	FileType() unsafe.Pointer
+	GetObjectsAndKeys(objects unsafe.Pointer, keys unsafe.Pointer)
+	GetObjectsAndKeysCount(objects unsafe.Pointer, keys unsafe.Pointer, count uint)
+	IsEqualToDictionary(otherDictionary unsafe.Pointer) bool
+	KeyEnumerator() unsafe.Pointer
+	KeysOfEntriesWithOptionsPassingTest(opts unsafe.Pointer, predicate unsafe.Pointer) unsafe.Pointer
+	KeysOfEntriesPassingTest(predicate unsafe.Pointer) unsafe.Pointer
+	KeysSortedByValueUsingComparator(cmptr unsafe.Pointer) unsafe.Pointer
+	KeysSortedByValueWithOptionsUsingComparator(opts unsafe.Pointer, cmptr unsafe.Pointer) unsafe.Pointer
+	KeysSortedByValueUsingSelector(comparator objc.SEL) unsafe.Pointer
+	ObjectForKey(aKey unsafe.Pointer) unsafe.Pointer
+	ObjectEnumerator() unsafe.Pointer
+	ObjectsForKeysNotFoundMarker(keys unsafe.Pointer, marker unsafe.Pointer) unsafe.Pointer
+	ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer
+	ValueForKey(key string) unsafe.Pointer
+	WriteToURLError(url unsafe.Pointer, error unsafe.Pointer) bool
+	WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool
+	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
+}
+
 // A static collection of objects associated with unique keys. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary
@@ -59,6 +103,26 @@ func (d_ Dictionary) Autorelease() Dictionary {
 func NewDictionary() Dictionary {
 	return dictionaryClass.New()
 }
+// Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:)
+func NewDictionaryWithObjectsForKeys(objects unsafe.Pointer, keys unsafe.Pointer) Dictionary {
+	instance := dictionaryClass.Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:"), objects, keys)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/initWithObjectsAndKeys:
+func NewDictionaryWithObjectsAndKeys(firstObject objc.ID) Dictionary {
+	instance := dictionaryClass.Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjectsAndKeys:"), firstObject)
+	rv.Autorelease()
+	return rv
+}
 // Creates a dictionary initialized from data in the provided unarchiver. [Full Topic]
 
 //
@@ -66,45 +130,6 @@ func NewDictionary() Dictionary {
 func NewDictionaryWithCoder(coder unsafe.Pointer) Dictionary {
 	instance := dictionaryClass.Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated dictionary using the keys and values found in a file at a given path. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfFile:)
-func NewDictionaryWithContentsOfFile(path string) Dictionary {
-	instance := dictionaryClass.Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated dictionary using the keys and values found at a given URL. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:error:)
-func NewDictionaryWithContentsOfURLError(url unsafe.Pointer, error unsafe.Pointer) Dictionary {
-	instance := dictionaryClass.Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error)
-	rv.Autorelease()
-	return rv
-}
-// Creates a dictionary containing a given key and value. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(object:forKey:)
-func NewDictionaryWithObjectForKey(object unsafe.Pointer, key unsafe.Pointer) Dictionary {
-	rv := objc.Send[Dictionary](objc.ID(dictionaryClass.class), objc.Sel("dictionaryWithObject:forKey:"), object, key)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated dictionary using the keys and values found at a given URL. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-4pv16
-func NewDictionaryWithContentsOfURL(url unsafe.Pointer) Dictionary {
-	instance := dictionaryClass.Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
 	return rv
 }
@@ -128,16 +153,6 @@ func NewDictionaryWithDictionaryCopyItems(otherDictionary unsafe.Pointer, flag b
 	rv.Autorelease()
 	return rv
 }
-// Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:)
-func NewDictionaryWithObjectsForKeys(objects unsafe.Pointer, keys unsafe.Pointer) Dictionary {
-	instance := dictionaryClass.Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:"), objects, keys)
-	rv.Autorelease()
-	return rv
-}
 // Initializes a newly allocated dictionary with the specified number of key-value pairs constructed from the provided C arrays of keys and objects. [Full Topic]
 
 //
@@ -148,13 +163,42 @@ func NewDictionaryWithObjectsForKeysCount(objects unsafe.Pointer, keys unsafe.Po
 	rv.Autorelease()
 	return rv
 }
-// Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys. [Full Topic]
+// Initializes a newly allocated dictionary using the keys and values found in a file at a given path. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/initWithObjectsAndKeys:
-func NewDictionaryWithObjectsAndKeys(firstObject objc.ID) Dictionary {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfFile:)
+func NewDictionaryWithContentsOfFile(path string) Dictionary {
 	instance := dictionaryClass.Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjectsAndKeys:"), firstObject)
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated dictionary using the keys and values found at a given URL. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-4pv16
+func NewDictionaryWithContentsOfURL(url unsafe.Pointer) Dictionary {
+	instance := dictionaryClass.Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated dictionary using the keys and values found at a given URL. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:error:)
+func NewDictionaryWithContentsOfURLError(url unsafe.Pointer, error unsafe.Pointer) Dictionary {
+	instance := dictionaryClass.Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error)
+	rv.Autorelease()
+	return rv
+}
+// Creates a dictionary containing a given key and value. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(object:forKey:)
+func NewDictionaryWithObjectForKey(object unsafe.Pointer, key unsafe.Pointer) Dictionary {
+	rv := objc.Send[Dictionary](objc.ID(dictionaryClass.class), objc.Sel("dictionaryWithObject:forKey:"), object, key)
 	rv.Autorelease()
 	return rv
 }

@@ -16,6 +16,12 @@ type _TouchBarClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TouchBar] class.
+type ITouchBar interface {
+	objectivec.IObject
+	ItemForIdentifier(identifier unsafe.Pointer) unsafe.Pointer
+}
+
 // An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar

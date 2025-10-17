@@ -16,6 +16,68 @@ type _ArrayClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Array] class.
+type IArray interface {
+	objectivec.IObject
+	AddObserverForKeyPathOptionsContext(observer unsafe.Pointer, keyPath string, options unsafe.Pointer, context unsafe.Pointer)
+	AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer unsafe.Pointer, indexes unsafe.Pointer, keyPath string, options unsafe.Pointer, context unsafe.Pointer)
+	ArrayByAddingObject(anObject unsafe.Pointer) unsafe.Pointer
+	ArrayByAddingObjectsFromArray(otherArray unsafe.Pointer) unsafe.Pointer
+	ArrayByApplyingDifference(difference unsafe.Pointer) unsafe.Pointer
+	ComponentsJoinedByString(separator string) unsafe.Pointer
+	ContainsObject(anObject unsafe.Pointer) bool
+	DescriptionWithLocale(locale objc.ID) unsafe.Pointer
+	DescriptionWithLocaleIndent(locale objc.ID, level uint) unsafe.Pointer
+	DifferenceFromArray(other unsafe.Pointer) unsafe.Pointer
+	DifferenceFromArrayWithOptions(other unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other unsafe.Pointer, options unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer
+	EnumerateObjectsUsingBlock(block unsafe.Pointer)
+	EnumerateObjectsAtIndexesOptionsUsingBlock(s unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer)
+	EnumerateObjectsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer)
+	FilteredArrayUsingPredicate(predicate unsafe.Pointer) unsafe.Pointer
+	FirstObjectCommonWithArray(otherArray unsafe.Pointer) unsafe.Pointer
+	GetObjects(objects unsafe.Pointer)
+	GetObjectsRange(objects unsafe.Pointer, range_ unsafe.Pointer)
+	IndexOfObject(anObject unsafe.Pointer) uint
+	IndexOfObjectInRange(anObject unsafe.Pointer, range_ unsafe.Pointer) uint
+	IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r unsafe.Pointer, opts unsafe.Pointer, cmp unsafe.Pointer) uint
+	IndexOfObjectAtIndexesOptionsPassingTest(s unsafe.Pointer, opts unsafe.Pointer, predicate unsafe.Pointer) uint
+	IndexOfObjectWithOptionsPassingTest(opts unsafe.Pointer, predicate unsafe.Pointer) uint
+	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint
+	IndexOfObjectIdenticalTo(anObject unsafe.Pointer) uint
+	IndexOfObjectIdenticalToInRange(anObject unsafe.Pointer, range_ unsafe.Pointer) uint
+	IndexesOfObjectsAtIndexesOptionsPassingTest(s unsafe.Pointer, opts unsafe.Pointer, predicate unsafe.Pointer) unsafe.Pointer
+	IndexesOfObjectsWithOptionsPassingTest(opts unsafe.Pointer, predicate unsafe.Pointer) unsafe.Pointer
+	IndexesOfObjectsPassingTest(predicate unsafe.Pointer) unsafe.Pointer
+	IsEqualToArray(otherArray unsafe.Pointer) bool
+	MakeObjectsPerformSelector(aSelector objc.SEL)
+	MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objc.ID)
+	ObjectAtIndex(index uint) unsafe.Pointer
+	ObjectEnumerator() unsafe.Pointer
+	ObjectsAtIndexes(indexes unsafe.Pointer) unsafe.Pointer
+	PathsMatchingExtensions(filterTypes unsafe.Pointer) unsafe.Pointer
+	RemoveObserverForKeyPath(observer unsafe.Pointer, keyPath string)
+	RemoveObserverForKeyPathContext(observer unsafe.Pointer, keyPath string, context unsafe.Pointer)
+	RemoveObserverFromObjectsAtIndexesForKeyPath(observer unsafe.Pointer, indexes unsafe.Pointer, keyPath string)
+	RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer unsafe.Pointer, indexes unsafe.Pointer, keyPath string, context unsafe.Pointer)
+	ReverseObjectEnumerator() unsafe.Pointer
+	SetValueForKey(value objc.ID, key string)
+	ShuffledArray() unsafe.Pointer
+	ShuffledArrayWithRandomSource(randomSource unsafe.Pointer) unsafe.Pointer
+	SortedArrayUsingFunctionContext(comparator unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer
+	SortedArrayUsingFunctionContextHint(comparator unsafe.Pointer, context unsafe.Pointer, hint unsafe.Pointer) unsafe.Pointer
+	SortedArrayUsingComparator(cmptr unsafe.Pointer) unsafe.Pointer
+	SortedArrayWithOptionsUsingComparator(opts unsafe.Pointer, cmptr unsafe.Pointer) unsafe.Pointer
+	SortedArrayUsingDescriptors(sortDescriptors unsafe.Pointer) unsafe.Pointer
+	SortedArrayUsingSelector(comparator objc.SEL) unsafe.Pointer
+	SubarrayWithRange(range_ unsafe.Pointer) unsafe.Pointer
+	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
+	ValueForKey(key string) objc.ID
+	WriteToURLError(url unsafe.Pointer, error unsafe.Pointer) bool
+	WriteToURLAtomically(url unsafe.Pointer, atomically bool) bool
+	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
+}
+
 // A static ordered collection of objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray
@@ -59,6 +121,62 @@ func (a_ Array) Autorelease() Array {
 func NewArray() Array {
 	return arrayClass.New()
 }
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(coder:)
+func NewArrayWithCoder(coder unsafe.Pointer) Array {
+	instance := arrayClass.Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated array with the contents of the location specified by a given URL. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-5lo2y
+func NewArrayWithContentsOfURL(url unsafe.Pointer) Array {
+	instance := arrayClass.Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:error:)
+func NewArrayWithContentsOfURLError(url unsafe.Pointer, error unsafe.Pointer) Array {
+	instance := arrayClass.Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated array by placing in it the objects contained in a given array. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
+func NewArrayWithArray(array unsafe.Pointer) Array {
+	instance := arrayClass.Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:"), array)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated array using as the source of data objects for the array. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:copyItems:)
+func NewArrayWithArrayCopyItems(array unsafe.Pointer, flag bool) Array {
+	instance := arrayClass.Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:copyItems:"), array, flag)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly allocated array with the contents of the file specified by a given path. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfFile:)
+func NewArrayWithContentsOfFile(path string) Array {
+	instance := arrayClass.Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
+	rv.Autorelease()
+	return rv
+}
 // Creates and returns an array containing a given object. [Full Topic]
 
 //
@@ -85,62 +203,6 @@ func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
 func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
 	instance := arrayClass.Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:"), firstObj)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated array by placing in it the objects contained in a given array. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
-func NewArrayWithArray(array unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:"), array)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated array with the contents of the location specified by a given URL. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-5lo2y
-func NewArrayWithContentsOfURL(url unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:error:)
-func NewArrayWithContentsOfURLError(url unsafe.Pointer, error unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated array using as the source of data objects for the array. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:copyItems:)
-func NewArrayWithArrayCopyItems(array unsafe.Pointer, flag bool) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:copyItems:"), array, flag)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(coder:)
-func NewArrayWithCoder(coder unsafe.Pointer) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly allocated array with the contents of the file specified by a given path. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfFile:)
-func NewArrayWithContentsOfFile(path string) Array {
-	instance := arrayClass.Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
 	rv.Autorelease()
 	return rv
 }

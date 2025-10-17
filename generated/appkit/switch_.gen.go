@@ -15,6 +15,11 @@ type _Switch_Class struct {
 	class objc.Class
 }
 
+// An interface definition for the [Switch_] class.
+type ISwitch_ interface {
+	IControl
+}
+
 // A control that offers a binary choice. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSwitch

@@ -15,6 +15,11 @@ type _TextFieldClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextField] class.
+type ITextField interface {
+	IControl
+}
+
 // Text the user can select or edit to send an action message to a target when the user presses the Return key. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField

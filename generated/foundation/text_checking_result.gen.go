@@ -16,6 +16,11 @@ type _TextCheckingResultClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextCheckingResult] class.
+type ITextCheckingResult interface {
+	objectivec.IObject
+}
+
 // An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult

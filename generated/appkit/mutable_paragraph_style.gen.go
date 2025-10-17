@@ -15,6 +15,11 @@ type _MutableParagraphStyleClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableParagraphStyle] class.
+type IMutableParagraphStyle interface {
+	IParagraphStyle
+}
+
 // An object for changing the values of the subattributes in a paragraph style attribute. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle

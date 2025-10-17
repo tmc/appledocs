@@ -142,9 +142,44 @@ func (w Window) SetContentView(view View) {
 // View hierarchy convenience methods
 
 // AddSubviewTyped adds a subview to the view hierarchy.
-// This is a type-safe wrapper around AddSubview that accepts a View instead of unsafe.Pointer.
-func (v View) AddSubviewTyped(subview View) {
-	v.AddSubview(unsafe.Pointer(subview.ID))
+// This is a type-safe wrapper around AddSubview that accepts any type implementing IView.
+// All view types (Button, TextField, etc.) implement IView, making this fully type-safe.
+//
+// Example:
+//   contentView.AddSubviewTyped(button)      // Button implements IView
+//   contentView.AddSubviewTyped(textField)   // TextField implements IView
+//   contentView.AddSubviewTyped(customView)  // Any View type works
+func (v View) AddSubviewTyped(subview IView) {
+	v.AddSubview(unsafe.Pointer(subview.GetID()))
+}
+
+// GetID returns the underlying objc.ID for the view.
+// This method makes View satisfy the IView interface.
+func (v View) GetID() objc.ID {
+	return v.ID
+}
+
+// GetID returns the underlying objc.ID for the responder.
+// This method makes Responder satisfy the IResponder interface.
+func (r Responder) GetID() objc.ID {
+	return r.ID
+}
+
+// AddSubviewPositionedRelativeToTyped inserts a view relative to another view.
+// This is a type-safe wrapper that accepts IView types.
+func (v View) AddSubviewPositionedRelativeToTyped(subview IView, place WindowOrderingMode, otherView IView) {
+	v.AddSubviewPositionedRelativeTo(
+		unsafe.Pointer(subview.GetID()),
+		place,
+		unsafe.Pointer(otherView.GetID()),
+	)
+}
+
+// ReplaceSubviewWithTyped replaces one subview with another.
+// This is a type-safe wrapper that accepts IView types.
+func (v View) ReplaceSubviewWithTyped(oldView IView, newView IView) {
+	objc.Send[objc.ID](v.ID, objc.RegisterName("replaceSubview:with:"),
+		oldView.GetID(), newView.GetID())
 }
 
 // SetFrameRect sets the view's frame rectangle.

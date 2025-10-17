@@ -15,6 +15,11 @@ type _RuleEditorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RuleEditor] class.
+type IRuleEditor interface {
+	IControl
+}
+
 // An interface for configuring a rule-based list of options. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor

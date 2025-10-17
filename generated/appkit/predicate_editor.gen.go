@@ -15,6 +15,11 @@ type _PredicateEditorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PredicateEditor] class.
+type IPredicateEditor interface {
+	IRuleEditor
+}
+
 // A defined set of rules that allows the editing of predicate objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor

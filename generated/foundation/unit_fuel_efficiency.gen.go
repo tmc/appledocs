@@ -15,6 +15,11 @@ type _UnitFuelEfficiencyClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitFuelEfficiency] class.
+type IUnitFuelEfficiency interface {
+	IDimension
+}
+
 // A unit of measure for fuel efficiency. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency

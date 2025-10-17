@@ -16,6 +16,11 @@ type _PrintInfoClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PrintInfo] class.
+type IPrintInfo interface {
+	objectivec.IObject
+}
+
 // An object that stores information that’s used to generate printed output. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo

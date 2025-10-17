@@ -15,6 +15,11 @@ type _ScrubberFlowLayoutClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScrubberFlowLayout] class.
+type IScrubberFlowLayout interface {
+	IScrubberLayout
+}
+
 // A concrete layout object that arranges items end-to-end in a linear strip. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout

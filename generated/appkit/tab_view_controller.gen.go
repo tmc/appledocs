@@ -15,6 +15,11 @@ type _TabViewControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TabViewController] class.
+type ITabViewController interface {
+	IViewController
+}
+
 // A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController

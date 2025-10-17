@@ -15,6 +15,11 @@ type _InputStreamClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [InputStream] class.
+type IInputStream interface {
+	IStream
+}
+
 // A stream that provides read-only stream functionality. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream

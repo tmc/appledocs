@@ -15,6 +15,11 @@ type _UnitElectricChargeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitElectricCharge] class.
+type IUnitElectricCharge interface {
+	IDimension
+}
+
 // A unit of measure for electric charge. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge

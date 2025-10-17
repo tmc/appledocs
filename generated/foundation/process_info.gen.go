@@ -16,6 +16,12 @@ type _ProcessInfoClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ProcessInfo] class.
+type IProcessInfo interface {
+	objectivec.IObject
+	PerformExpiringActivityWithReasonUsingBlock(reason string, block unsafe.Pointer)
+}
+
 // A collection of information about the current process. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo

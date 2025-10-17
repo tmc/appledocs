@@ -15,6 +15,11 @@ type _UnitLengthClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitLength] class.
+type IUnitLength interface {
+	IDimension
+}
+
 // A unit of measure for length. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength

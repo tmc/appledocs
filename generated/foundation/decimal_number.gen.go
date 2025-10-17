@@ -15,6 +15,11 @@ type _DecimalNumberClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DecimalNumber] class.
+type IDecimalNumber interface {
+	INumber
+}
+
 // An object for representing and performing arithmetic on base-10 numbers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber

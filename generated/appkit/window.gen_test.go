@@ -7,15 +7,6 @@ import (
 )
 
 
-// ExampleNewWindowWithWindowRef demonstrates how to create a Window instance using NewWindowWithWindowRef.
-// Returns a Cocoa window created from a Carbon window.
-func ExampleNewWindowWithWindowRef() {
-	_ = appkit.NewWindowWithWindowRef(
-		nil, // windowRef unsafe.Pointer
-	)
-	// Output:
-}
-
 // ExampleNewWindowWithContentRectStyleMaskBackingDefer demonstrates how to create a Window instance using NewWindowWithContentRectStyleMaskBackingDefer.
 // Initializes the window with the specified values.
 func ExampleNewWindowWithContentRectStyleMaskBackingDefer() {
@@ -46,6 +37,15 @@ func ExampleNewWindowWithContentRectStyleMaskBackingDeferScreen() {
 func ExampleNewWindowWithContentViewController() {
 	_ = appkit.NewWindowWithContentViewController(
 		nil, // contentViewController unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewWindowWithWindowRef demonstrates how to create a Window instance using NewWindowWithWindowRef.
+// Returns a Cocoa window created from a Carbon window.
+func ExampleNewWindowWithWindowRef() {
+	_ = appkit.NewWindowWithWindowRef(
+		nil, // windowRef unsafe.Pointer
 	)
 	// Output:
 }

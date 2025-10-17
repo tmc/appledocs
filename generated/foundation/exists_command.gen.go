@@ -15,6 +15,11 @@ type _ExistsCommandClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ExistsCommand] class.
+type IExistsCommand interface {
+	IScriptCommand
+}
+
 // A command that determines whether a scriptable object exists. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExistsCommand

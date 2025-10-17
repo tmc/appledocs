@@ -15,6 +15,11 @@ type _CollectionViewItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CollectionViewItem] class.
+type ICollectionViewItem interface {
+	IViewController
+}
+
 // The visual representation for a single data element in a collection view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem

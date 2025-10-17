@@ -16,6 +16,11 @@ type _PDFPanelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PDFPanel] class.
+type IPDFPanel interface {
+	objectivec.IObject
+}
+
 // A Save or Export as PDF panel that’s consistent with the macOS user interface. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel

@@ -16,6 +16,11 @@ type _DraggingItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DraggingItem] class.
+type IDraggingItem interface {
+	objectivec.IObject
+}
+
 // A single dragged item within a dragging session. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem

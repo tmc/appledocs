@@ -15,6 +15,11 @@ type _UnitFrequencyClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitFrequency] class.
+type IUnitFrequency interface {
+	IDimension
+}
+
 // A unit of measure for frequency. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency

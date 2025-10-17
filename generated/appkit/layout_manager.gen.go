@@ -16,6 +16,11 @@ type _LayoutManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LayoutManager] class.
+type ILayoutManager interface {
+	objectivec.IObject
+}
+
 // An object that coordinates the layout and display of text characters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager

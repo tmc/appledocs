@@ -15,6 +15,11 @@ type _GroupTouchBarItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [GroupTouchBarItem] class.
+type IGroupTouchBarItem interface {
+	ITouchBarItem
+}
+
 // A bar item that provides a bar to contain other items. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem

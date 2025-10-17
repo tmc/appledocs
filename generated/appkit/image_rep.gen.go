@@ -16,6 +16,11 @@ type _ImageRepClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ImageRep] class.
+type IImageRep interface {
+	objectivec.IObject
+}
+
 // A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep

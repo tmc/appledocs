@@ -16,6 +16,11 @@ type _PasteboardItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PasteboardItem] class.
+type IPasteboardItem interface {
+	objectivec.IObject
+}
+
 // An item on a pasteboard. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem

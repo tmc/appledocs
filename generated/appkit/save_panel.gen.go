@@ -15,6 +15,17 @@ type _SavePanelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SavePanel] class.
+type ISavePanel interface {
+	IPanel
+	BeginWithCompletionHandler(handler unsafe.Pointer)
+	BeginSheetModalForWindowCompletionHandler(window unsafe.Pointer, handler unsafe.Pointer)
+	Cancel(sender objc.ID)
+	Ok(sender objc.ID)
+	RunModal() unsafe.Pointer
+	ValidateVisibleColumns()
+}
+
 // A panel that prompts the user for information about where to save a file. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel

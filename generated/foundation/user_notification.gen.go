@@ -16,6 +16,11 @@ type _UserNotificationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UserNotification] class.
+type IUserNotification interface {
+	objectivec.IObject
+}
+
 // A notification that can be scheduled for display in the notification center. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification

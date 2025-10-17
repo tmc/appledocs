@@ -16,6 +16,12 @@ type _BundleClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Bundle] class.
+type IBundle interface {
+	objectivec.IObject
+	ObjectForInfoDictionaryKey(key string) objc.ID
+}
+
 // A representation of the code and resources stored in a bundle directory on disk. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle

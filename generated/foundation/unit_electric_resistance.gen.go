@@ -15,6 +15,11 @@ type _UnitElectricResistanceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitElectricResistance] class.
+type IUnitElectricResistance interface {
+	IDimension
+}
+
 // A unit of measure for electric resistance. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance

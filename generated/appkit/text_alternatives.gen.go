@@ -16,6 +16,11 @@ type _TextAlternativesClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextAlternatives] class.
+type ITextAlternatives interface {
+	objectivec.IObject
+}
+
 // A list of alternative strings for a piece of text. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives

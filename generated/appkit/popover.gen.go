@@ -15,6 +15,11 @@ type _PopoverClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Popover] class.
+type IPopover interface {
+	IResponder
+}
+
 // A means to display additional content related to existing content on the screen. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover

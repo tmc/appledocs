@@ -15,6 +15,11 @@ type _RelativeSpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RelativeSpecifier] class.
+type IRelativeSpecifier interface {
+	IScriptObjectSpecifier
+}
+
 // A specifier that indicates an object in a collection by its position relative to another object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier

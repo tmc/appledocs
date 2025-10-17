@@ -16,6 +16,11 @@ type _CollectionViewUpdateItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CollectionViewUpdateItem] class.
+type ICollectionViewUpdateItem interface {
+	objectivec.IObject
+}
+
 // A description of a single change to make to an item in a collection view. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewUpdateItem

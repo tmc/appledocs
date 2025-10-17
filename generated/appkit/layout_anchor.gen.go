@@ -16,6 +16,11 @@ type _LayoutAnchorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LayoutAnchor] class.
+type ILayoutAnchor interface {
+	objectivec.IObject
+}
+
 // A factory class for creating layout constraint objects using a fluent API. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutAnchor

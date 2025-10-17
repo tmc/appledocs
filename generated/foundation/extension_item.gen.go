@@ -16,6 +16,11 @@ type _ExtensionItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ExtensionItem] class.
+type IExtensionItem interface {
+	objectivec.IObject
+}
+
 // An immutable collection of values representing different aspects of an item for an extension to act upon. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem

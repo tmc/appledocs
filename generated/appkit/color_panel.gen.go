@@ -15,6 +15,11 @@ type _ColorPanelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ColorPanel] class.
+type IColorPanel interface {
+	IPanel
+}
+
 // A standard user interface for selecting color in an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel

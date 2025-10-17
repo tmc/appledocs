@@ -15,6 +15,11 @@ type _RangeSpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RangeSpecifier] class.
+type IRangeSpecifier interface {
+	IScriptObjectSpecifier
+}
+
 // A specifier for a range of objects in a container. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier

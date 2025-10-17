@@ -16,6 +16,13 @@ type _ScreenClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Screen] class.
+type IScreen interface {
+	objectivec.IObject
+	CanRepresentDisplayGamut(displayGamut unsafe.Pointer) bool
+	UserSpaceScaleFactor() float64
+}
+
 // An object that describes the attributes of a computer’s monitor or screen. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen

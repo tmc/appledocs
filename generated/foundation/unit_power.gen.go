@@ -15,6 +15,11 @@ type _UnitPowerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitPower] class.
+type IUnitPower interface {
+	IDimension
+}
+
 // A unit of measure for power. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower

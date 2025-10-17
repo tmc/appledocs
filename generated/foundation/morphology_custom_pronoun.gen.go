@@ -16,6 +16,11 @@ type _MorphologyCustomPronounClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MorphologyCustomPronoun] class.
+type IMorphologyCustomPronoun interface {
+	objectivec.IObject
+}
+
 // A custom pronoun behavior for use in a specific langauge. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun

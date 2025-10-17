@@ -16,6 +16,11 @@ type _ErrorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Error] class.
+type IError interface {
+	objectivec.IObject
+}
+
 // Information about an error condition including a domain, a domain-specific error code, and application-specific information. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError

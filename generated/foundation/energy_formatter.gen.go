@@ -15,6 +15,11 @@ type _EnergyFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [EnergyFormatter] class.
+type IEnergyFormatter interface {
+	IFormatter
+}
+
 // A formatter that provides localized descriptions of energy values. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter

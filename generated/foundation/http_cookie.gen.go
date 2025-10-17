@@ -16,6 +16,11 @@ type _HTTPCookieClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [HTTPCookie] class.
+type IHTTPCookie interface {
+	objectivec.IObject
+}
+
 // A representation of an HTTP cookie. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie

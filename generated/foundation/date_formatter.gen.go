@@ -15,6 +15,11 @@ type _DateFormatterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DateFormatter] class.
+type IDateFormatter interface {
+	IFormatter
+}
+
 // A formatter that converts between dates and their textual representations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter

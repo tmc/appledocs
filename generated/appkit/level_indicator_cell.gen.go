@@ -15,6 +15,11 @@ type _LevelIndicatorCellClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LevelIndicatorCell] class.
+type ILevelIndicatorCell interface {
+	IActionCell
+}
+
 // is a subclass of that provides several level indicator display styles including: capacity, ranking and relevancy. The capacity style provides both continuous and discrete modes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicatorCell

@@ -15,6 +15,11 @@ type _MessagePortClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MessagePort] class.
+type IMessagePort interface {
+	IPort
+}
+
 // A port that can be used as an endpoint for distributed object connections (or raw messaging). [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MessagePort

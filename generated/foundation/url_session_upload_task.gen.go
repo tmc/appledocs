@@ -15,6 +15,11 @@ type _URLSessionUploadTaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [URLSessionUploadTask] class.
+type IURLSessionUploadTask interface {
+	IURLSessionDataTask
+}
+
 // A URL session task that uploads data to the network in a request body. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionUploadTask

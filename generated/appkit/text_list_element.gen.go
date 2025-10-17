@@ -15,6 +15,11 @@ type _TextListElementClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextListElement] class.
+type ITextListElement interface {
+	ITextParagraph
+}
+
 // A class that represents a text list node. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextListElement

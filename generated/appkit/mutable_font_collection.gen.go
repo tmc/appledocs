@@ -15,6 +15,11 @@ type _MutableFontCollectionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableFontCollection] class.
+type IMutableFontCollection interface {
+	IFontCollection
+}
+
 // A mutable collection of font descriptors taken together as a single object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection

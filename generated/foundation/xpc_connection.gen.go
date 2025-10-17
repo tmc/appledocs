@@ -16,6 +16,19 @@ type _XPCConnectionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [XPCConnection] class.
+type IXPCConnection interface {
+	objectivec.IObject
+	Activate()
+	Invalidate()
+	RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
+	Resume()
+	ScheduleSendBarrierBlock(block unsafe.Pointer)
+	SetCodeSigningRequirement(requirement string)
+	Suspend()
+	SynchronousRemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
+}
+
 // A bidirectional communication channel between two processes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection
@@ -59,6 +72,16 @@ func (x_ XPCConnection) Autorelease() XPCConnection {
 func NewXPCConnection() XPCConnection {
 	return xPCConnectionClass.New()
 }
+// Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a . [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
+func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Pointer) XPCConnection {
+	instance := xPCConnectionClass.Alloc()
+	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), name, options)
+	rv.Autorelease()
+	return rv
+}
 // Initializes an object to connect to an object in an XPC service, identified by a service name. [Full Topic]
 
 //
@@ -76,16 +99,6 @@ func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 func NewXPCConnectionWithListenerEndpoint(endpoint unsafe.Pointer) XPCConnection {
 	instance := xPCConnectionClass.Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithListenerEndpoint:"), endpoint)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a . [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
-func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Pointer) XPCConnection {
-	instance := xPCConnectionClass.Alloc()
-	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), name, options)
 	rv.Autorelease()
 	return rv
 }

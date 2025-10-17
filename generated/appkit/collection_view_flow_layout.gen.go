@@ -15,6 +15,11 @@ type _CollectionViewFlowLayoutClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CollectionViewFlowLayout] class.
+type ICollectionViewFlowLayout interface {
+	ICollectionViewLayout
+}
+
 // A layout that organizes items into a flexible and configurable arrangement. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewFlowLayout

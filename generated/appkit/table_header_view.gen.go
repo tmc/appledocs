@@ -15,6 +15,13 @@ type _TableHeaderViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TableHeaderView] class.
+type ITableHeaderView interface {
+	IView
+	ColumnAtPoint(point unsafe.Pointer) int
+	HeaderRectOfColumn(column int) unsafe.Pointer
+}
+
 // An object that draws headers over a table view’s columns and handles mouse events in those headers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView

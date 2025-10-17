@@ -15,6 +15,11 @@ type _UniqueIDSpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UniqueIDSpecifier] class.
+type IUniqueIDSpecifier interface {
+	IScriptObjectSpecifier
+}
+
 // A specifier for an object in a collection (or container) by unique ID. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier

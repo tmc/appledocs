@@ -16,6 +16,11 @@ type _TextSelectionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TextSelection] class.
+type ITextSelection interface {
+	objectivec.IObject
+}
+
 // A class that represents a single logical selection context that corresponds to an insertion point. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection

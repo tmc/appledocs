@@ -15,6 +15,11 @@ type _PDFImageRepClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PDFImageRep] class.
+type IPDFImageRep interface {
+	IImageRep
+}
+
 // An object that can render an image from a PDF format data stream. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep

@@ -16,6 +16,11 @@ type _ConditionLockClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ConditionLock] class.
+type IConditionLock interface {
+	objectivec.IObject
+}
+
 // A lock that can be associated with specific, user-defined conditions. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock

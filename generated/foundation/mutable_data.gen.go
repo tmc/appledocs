@@ -15,6 +15,11 @@ type _MutableDataClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableData] class.
+type IMutableData interface {
+	IData
+}
+
 // An object representing a dynamic byte buffer in memory. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData

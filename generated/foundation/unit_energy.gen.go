@@ -15,6 +15,11 @@ type _UnitEnergyClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitEnergy] class.
+type IUnitEnergy interface {
+	IDimension
+}
+
 // A unit of measure for energy. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy

@@ -16,6 +16,11 @@ type _WritingToolsCoordinatorAnimationParametersClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [WritingToolsCoordinatorAnimationParameters] class.
+type IWritingToolsCoordinatorAnimationParameters interface {
+	objectivec.IObject
+}
+
 // An object you use to configure additional tasks or animations to run alongside the Writing Tools animations. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters

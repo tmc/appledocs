@@ -15,6 +15,11 @@ type _StepperClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Stepper] class.
+type IStepper interface {
+	IControl
+}
+
 // An interface with up and down arrow buttons for incrementing or decrementing a value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper

@@ -15,6 +15,11 @@ type _UnitConverterLinearClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [UnitConverterLinear] class.
+type IUnitConverterLinear interface {
+	IUnitConverter
+}
+
 // A description of how to convert between units using a linear equation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear

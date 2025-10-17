@@ -15,6 +15,11 @@ type _MutableURLRequestClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MutableURLRequest] class.
+type IMutableURLRequest interface {
+	IURLRequest
+}
+
 // A mutable URL load request that is independent of protocol or URL scheme. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest

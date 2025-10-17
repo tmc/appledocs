@@ -16,6 +16,11 @@ type _MenuClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Menu] class.
+type IMenu interface {
+	objectivec.IObject
+}
+
 // An object that manages an app’s menus. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu

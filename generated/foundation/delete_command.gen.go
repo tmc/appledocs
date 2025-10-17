@@ -15,6 +15,11 @@ type _DeleteCommandClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DeleteCommand] class.
+type IDeleteCommand interface {
+	IScriptCommand
+}
+
 // A command that deletes a scriptable object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand

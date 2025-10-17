@@ -16,6 +16,11 @@ type _FilePromiseProviderClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FilePromiseProvider] class.
+type IFilePromiseProvider interface {
+	objectivec.IObject
+}
+
 // An object that provides a promise for the pasteboard. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider

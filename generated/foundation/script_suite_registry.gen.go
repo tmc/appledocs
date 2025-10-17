@@ -16,6 +16,11 @@ type _ScriptSuiteRegistryClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScriptSuiteRegistry] class.
+type IScriptSuiteRegistry interface {
+	objectivec.IObject
+}
+
 // The top-level repository of scriptability information for an app at runtime. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry

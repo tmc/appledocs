@@ -16,6 +16,11 @@ type _PipeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Pipe] class.
+type IPipe interface {
+	objectivec.IObject
+}
+
 // A one-way communications channel between related processes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe

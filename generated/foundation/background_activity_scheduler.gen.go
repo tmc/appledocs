@@ -16,6 +16,11 @@ type _BackgroundActivitySchedulerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BackgroundActivityScheduler] class.
+type IBackgroundActivityScheduler interface {
+	objectivec.IObject
+}
+
 // A task scheduler suitable for low priority operations that can run in the background. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler

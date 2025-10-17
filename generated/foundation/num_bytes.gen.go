@@ -16,6 +16,11 @@ type _numBytesClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [numBytes] class.
+type InumBytes interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSimpleCString/numBytes
 

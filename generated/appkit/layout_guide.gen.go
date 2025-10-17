@@ -16,6 +16,11 @@ type _LayoutGuideClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [LayoutGuide] class.
+type ILayoutGuide interface {
+	objectivec.IObject
+}
+
 // A rectangular area that can interact with Auto Layout. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutGuide

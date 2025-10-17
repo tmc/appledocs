@@ -15,6 +15,11 @@ type _PICTImageRepClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PICTImageRep] class.
+type IPICTImageRep interface {
+	IImageRep
+}
+
 // An object that renders an image from a PICT format data stream of version 1, version 2, and extended version 2. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep

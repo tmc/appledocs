@@ -15,6 +15,11 @@ type _ScrubberImageItemViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ScrubberImageItemView] class.
+type IScrubberImageItemView interface {
+	IScrubberItemView
+}
+
 // A concrete view subclass for displaying images in a scrubber items. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView

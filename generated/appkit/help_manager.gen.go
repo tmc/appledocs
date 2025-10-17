@@ -16,6 +16,18 @@ type _HelpManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [HelpManager] class.
+type IHelpManager interface {
+	objectivec.IObject
+	ContextHelpForObject(object objc.ID) unsafe.Pointer
+	FindStringInBook(query string, book unsafe.Pointer)
+	OpenHelpAnchorInBook(anchor unsafe.Pointer, book unsafe.Pointer)
+	RegisterBooksInBundle(bundle unsafe.Pointer) bool
+	RemoveContextHelpForObject(object objc.ID)
+	SetContextHelpForObject(attrString unsafe.Pointer, object objc.ID)
+	ShowContextHelpForObjectLocationHint(object objc.ID, pt unsafe.Pointer) bool
+}
+
 // An object for displaying online help for an app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager
