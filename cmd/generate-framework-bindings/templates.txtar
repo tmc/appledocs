@@ -301,6 +301,7 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 	ret := instance.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
 	instance = {{$structName}}{ret}
 	{{- end}}
+	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
 	return instance
 }
 {{- end}}
@@ -427,6 +428,7 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 	ret := instance.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
 	instance = {{$structName}}{ret}
 	{{- end}}
+	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
 	return instance
 }
 {{- end}}
