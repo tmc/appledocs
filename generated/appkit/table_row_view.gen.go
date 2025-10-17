@@ -1,0 +1,72 @@
+// Code generated from Apple documentation for AppKit. DO NOT EDIT.
+
+package appkit
+
+import (
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [TableRowView] class.
+var tableRowViewClass = _TableRowViewClass{objc.GetClass("NSTableRowView")}
+
+type _TableRowViewClass struct {
+	class objc.Class
+}
+
+// The view shown for a row in a table view. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView
+
+type TableRowView struct {
+	View
+}
+
+// TableRowViewFrom constructs a [TableRowView] from an unsafe.Pointer.
+//
+// The view shown for a row in a table view.
+func TableRowViewFrom(ptr unsafe.Pointer) TableRowView {
+	return TableRowView{
+		View: ViewFrom(ptr),
+	}
+}
+
+// Draws the background of the row in the rectangle. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawBackground(in:)
+func (t_ TableRowView) DrawBackgroundInRect(dirtyRect unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("drawBackgroundInRect:"), dirtyRect)
+}
+// Draws the row’s dragging destination feedback when the entire row is a drop target. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawDraggingDestinationFeedback(in:)
+func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("drawDraggingDestinationFeedbackInRect:"), dirtyRect)
+}
+// Draws the selected row. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawSelection(in:)
+func (t_ TableRowView) DrawSelectionInRect(dirtyRect unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("drawSelectionInRect:"), dirtyRect)
+}
+// Draws the horizontal separator between table rows. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawSeparator(in:)
+func (t_ TableRowView) DrawSeparatorInRect(dirtyRect unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("drawSeparatorInRect:"), dirtyRect)
+}
+// Provides access to the given view at a particular column. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/view(atColumn:)
+func (t_ TableRowView) ViewAtColumn(column int) objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("viewAtColumn:"), column)
+	return rv
+}
+
+
