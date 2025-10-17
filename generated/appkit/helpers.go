@@ -11,6 +11,53 @@ import (
 	"github.com/ebitengine/purego/objc"
 )
 
+// Application lifecycle convenience methods
+
+// SharedApplication returns the singleton NSApplication instance.
+// This is equivalent to [NSApplication sharedApplication].
+func SharedApplication() Application {
+	appClass := objc.GetClass("NSApplication")
+	return ApplicationFrom(unsafe.Pointer(
+		objc.ID(appClass).Send(objc.RegisterName("sharedApplication")),
+	))
+}
+
+// ActivationPolicy values for SetActivationPolicy.
+const (
+	ActivationPolicyRegular    = 0 // Regular app with Dock icon and menu bar
+	ActivationPolicyAccessory  = 1 // Accessory app without Dock icon
+	ActivationPolicyProhibited = 2 // Cannot activate or become frontmost
+)
+
+// SetActivationPolicy sets the application's activation policy.
+// Use ActivationPolicyRegular for normal applications.
+func (a Application) SetActivationPolicy(policy int) bool {
+	return objc.Send[bool](a.ID, objc.RegisterName("setActivationPolicy:"), policy)
+}
+
+// ActivateIgnoringOtherApps activates the application and brings it to the front.
+// If ignoreOtherApps is true, the application becomes active regardless of other apps.
+func (a Application) ActivateIgnoringOtherApps(ignoreOtherApps bool) {
+	objc.Send[objc.ID](a.ID, objc.RegisterName("activateIgnoringOtherApps:"), ignoreOtherApps)
+}
+
+// Run starts the main event loop. This blocks until the application terminates.
+func (a Application) Run() {
+	objc.Send[objc.ID](a.ID, objc.RegisterName("run"))
+}
+
+// Terminate terminates the application, closing all windows.
+// Sender is typically the object that initiated the termination (can be nil/0).
+func (a Application) Terminate(sender objc.ID) {
+	objc.Send[objc.ID](a.ID, objc.RegisterName("terminate:"), sender)
+}
+
+// FinishLaunching completes the application launch process.
+// This should be called before Run() if you're managing the app lifecycle manually.
+func (a Application) FinishLaunching() {
+	objc.Send[objc.ID](a.ID, objc.RegisterName("finishLaunching"))
+}
+
 // RunApp is a convenience function that handles the boilerplate of setting up and running a macOS application.
 // It:
 // - Locks the calling goroutine to the OS thread (required for AppKit)
@@ -36,23 +83,16 @@ func RunApp(setup func(app Application)) {
 	runtime.LockOSThread()
 	defer runtime.UnlockOSThread()
 
-	// Get NSApplication shared instance
-	appClass := objc.GetClass("NSApplication")
-	app := ApplicationFrom(unsafe.Pointer(
-		objc.ID(appClass).Send(objc.RegisterName("sharedApplication")),
-	))
-
-	// Set activation policy to regular (makes it a proper app with dock icon)
-	// NSApplicationActivationPolicyRegular = 0
-	app.ID.Send(objc.RegisterName("setActivationPolicy:"), 0)
+	app := SharedApplication()
+	app.SetActivationPolicy(ActivationPolicyRegular)
 
 	// Call setup function to let caller configure the app and create windows
 	setup(app)
 
 	// Finish launching and activate app
-	app.ID.Send(objc.RegisterName("finishLaunching"))
-	app.ID.Send(objc.RegisterName("activateIgnoringOtherApps:"), true)
+	app.FinishLaunching()
+	app.ActivateIgnoringOtherApps(true)
 
 	// Run event loop (this blocks until the app quits)
-	app.ID.Send(objc.RegisterName("run"))
+	app.Run()
 }

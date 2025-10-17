@@ -2,7 +2,39 @@ package appkit_test
 
 import (
 	"fmt"
+
+	"github.com/tmc/appledocs/generated/appkit"
 )
+
+// ExampleSharedApplication demonstrates getting the NSApplication singleton.
+func ExampleSharedApplication() {
+	app := appkit.SharedApplication()
+	fmt.Printf("Got application instance: %T\n", app)
+
+	// Output:
+	// Got application instance: appkit.Application
+}
+
+// ExampleApplication_SetActivationPolicy demonstrates setting activation policy.
+func ExampleApplication_SetActivationPolicy() {
+	app := appkit.SharedApplication()
+
+	// Set to regular app (shows in Dock)
+	app.SetActivationPolicy(appkit.ActivationPolicyRegular)
+
+	fmt.Println("Set activation policy to Regular")
+	fmt.Println("Available policies:")
+	fmt.Println("- ActivationPolicyRegular: Normal app with Dock icon")
+	fmt.Println("- ActivationPolicyAccessory: No Dock icon")
+	fmt.Println("- ActivationPolicyProhibited: Cannot activate")
+
+	// Output:
+	// Set activation policy to Regular
+	// Available policies:
+	// - ActivationPolicyRegular: Normal app with Dock icon
+	// - ActivationPolicyAccessory: No Dock icon
+	// - ActivationPolicyProhibited: Cannot activate
+}
 
 // ExampleRunApp demonstrates how to use RunApp to create a simple macOS application.
 // This example shows the minimal code needed to create and display a window.
