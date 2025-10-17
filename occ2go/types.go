@@ -25,6 +25,19 @@ type ParsedClass struct {
 	Abstract     string
 }
 
+// HasInitMethods returns true if the class has at least one documented init method.
+// Init methods have selectors that start with "init" (e.g., "init", "initWithFrame:").
+// Classes without init methods cannot be instantiated directly and should not have
+// New*() constructors generated.
+func (c *ParsedClass) HasInitMethods() bool {
+	for _, method := range c.Methods {
+		if len(method.Selector) >= 4 && method.Selector[:4] == "init" {
+			return true
+		}
+	}
+	return false
+}
+
 // ParsedMethod represents an Objective-C method declaration.
 type ParsedMethod struct {
 	Name          string   // Go-style method name (e.g., "InitWithFrame")

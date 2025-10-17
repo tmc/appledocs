@@ -31,23 +31,35 @@ func (rc RulerView) Alloc() RulerView {
 	return RulerView{ret}
 }
 
-// New creates and returns a new initialized instance.
-func (rc RulerView) New() RulerView {
-	ret := objc.ID(RulerViewClass).Send(objc.RegisterName("new"))
-	return RulerView{ret}
-}
-
-// NewRulerView creates and returns a new initialized instance.
-func NewRulerView() RulerView {
-	ret := objc.ID(RulerViewClass).Send(objc.RegisterName("new"))
-	return RulerView{ret}
-}
-
 // Init initializes the instance.
 func (r_ RulerView) Init() RulerView {
 	ret := r_.ID.Send(objc.RegisterName("init"))
 	return RulerView{ret}
 }
+//
+// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSRulerView/init(coder:)
+func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
+	instance := RulerView{}.Alloc()
+	sel := objc.RegisterName("initWithCoder:")
+	ret := instance.ID.Send(sel, coder)
+	instance = RulerView{ret}
+	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
+	return instance
+}
+// Initializes a newly allocated NSRulerView to have   (  or  ) within  . [Full Topic]
+
+//
+// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSRulerView/init(scrollView:orientation:)
+func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientation unsafe.Pointer) RulerView {
+	instance := RulerView{}.Alloc()
+	sel := objc.RegisterName("initWithScrollView:orientation:")
+	ret := instance.ID.Send(sel, scrollView, orientation)
+	instance = RulerView{ret}
+	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
+	return instance
+}
+
+
 // Registers a new unit of measurement with the NSRulerView class, making it available to all instances of NSRulerView. [Full Topic]
 
 //
@@ -79,22 +91,6 @@ func (r_ RulerView) DrawHashMarksAndLabelsInRect(rect unsafe.Pointer) {
 func (r_ RulerView) DrawMarkersInRect(rect unsafe.Pointer) {
 	sel := objc.RegisterName("drawMarkersInRect:")
 	r_.ID.Send(sel, rect)
-}
-//
-// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSRulerView/init(coder:)
-func (r_ RulerView) InitWithCoder(coder unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("initWithCoder:")
-	ret := r_.ID.Send(sel, coder)
-	return unsafe.Pointer(ret)
-}
-// Initializes a newly allocated NSRulerView to have   (  or  ) within  . [Full Topic]
-
-//
-// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSRulerView/init(scrollView:orientation:)
-func (r_ RulerView) InitWithScrollViewOrientation(scrollView unsafe.Pointer, orientation unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("initWithScrollView:orientation:")
-	ret := r_.ID.Send(sel, scrollView, orientation)
-	return unsafe.Pointer(ret)
 }
 // Forces recalculation of the hash mark spacing for the next time the receiver is displayed. [Full Topic]
 

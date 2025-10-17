@@ -669,12 +669,10 @@ func selectorToGoName(selector string) string {
 //   NSString * -> string
 //   id -> objc.Object
 //   NSButton * -> Button (interface type in parameters)
+//   NSRect -> foundation.Rect
+//   NSWindowStyleMask -> WindowStyleMask
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
-
-	// Handle pointers
-	isPointer := strings.HasSuffix(objcType, "*")
-	objcType = strings.TrimSpace(strings.TrimSuffix(objcType, "*"))
 
 	// Handle Objective-C generic types (e.g., NSArray<NSString *>)
 	// These cannot be directly represented in Go, so map to unsafe.Pointer
@@ -688,7 +686,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "unsafe.Pointer"
 	}
 
-	// Special built-in types
+	// Special built-in types (before checking pointers)
 	switch objcType {
 	case "id":
 		return "objc.ID"
@@ -705,18 +703,23 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	case "CGFloat":
 		return "float64"
 	case "void":
-		if isPointer {
-			return "unsafe.Pointer"
-		}
 		return ""
 	}
 
-	// For class types, we map them to unsafe.Pointer since we're not generating full interfaces
-	// (In a full darwinkit implementation, these would be interface types like IWindow, IString, etc.)
-	if isPointer && (strings.HasPrefix(objcType, "NS") ||
-	                 strings.HasPrefix(objcType, "CG") ||
-	                 strings.HasPrefix(objcType, "CF")) {
-		return "unsafe.Pointer"
+	// Check the type mapping registry first (includes both with and without pointers)
+	if goType, found := lookupTypeMapping(objcType, framework); found {
+		return goType
+	}
+
+	// Handle pointers for types not in the registry
+	isPointer := strings.HasSuffix(objcType, "*")
+	objcTypeNoPtr := strings.TrimSpace(strings.TrimSuffix(objcType, "*"))
+
+	// Check registry again for type without pointer
+	if isPointer && objcTypeNoPtr != objcType {
+		if goType, found := lookupTypeMapping(objcTypeNoPtr, framework); found {
+			return goType
+		}
 	}
 
 	// Fall back to occ2go mapping

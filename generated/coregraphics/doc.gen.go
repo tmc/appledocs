@@ -13,3 +13,4 @@ package coregraphics
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics"
 
+

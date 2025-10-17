@@ -3,8 +3,6 @@
 package coregraphics
 
 import (
-	"unsafe"
-
 	"github.com/ebitengine/purego"
 )
 
@@ -748,6 +746,7 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+
 	tryRegister(&_CGColorSpaceRelease, lib, "CGColorSpaceRelease")
 	tryRegister(&_CGContextSetInterpolationQuality, lib, "CGContextSetInterpolationQuality")
 	tryRegister(&_CGAcquireDisplayFadeReservation, lib, "CGAcquireDisplayFadeReservation")
@@ -8680,6 +8679,7 @@ func CGWindowServerCFMachPort() unsafe.Pointer {
 func CGWindowServerCreateServerPort() unsafe.Pointer {
 	return _CGWindowServerCreateServerPort()
 	}
+
 
 
 
