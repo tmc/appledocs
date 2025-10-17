@@ -68,6 +68,8 @@ func ParseDocument(doc *appledocs.Document) (*ParsedFunction, *ParsedClass, *Par
 			return nil, nil, nil, fmt.Errorf("failed to parse class declaration")
 		}
 		cls.Availability = availability
+		cls.DocURL = docURL
+		cls.Abstract = abstract
 		return nil, cls, nil, nil
 
 	case strings.HasPrefix(externalID, "c:objc(pl)"):
@@ -538,6 +540,7 @@ func ParseMethod(doc *appledocs.Document) (*ParsedMethod, error) {
 	method.Availability = availability
 	method.DocURL = docURL
 	method.Abstract = abstract
+	method.IsInitializer = (doc.Metadata.SymbolKind == "init")
 
 	return method, nil
 }

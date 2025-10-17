@@ -26,11 +26,15 @@ type ParsedClass struct {
 }
 
 // HasInitMethods returns true if the class has at least one documented init method.
-// Init methods have selectors that start with "init" (e.g., "init", "initWithFrame:").
+// Init methods either have selectors that start with "init" (e.g., "init", "initWithFrame:")
+// or are marked as initializers in the documentation (IsInitializer == true).
 // Classes without init methods cannot be instantiated directly and should not have
 // New*() constructors generated.
 func (c *ParsedClass) HasInitMethods() bool {
 	for _, method := range c.Methods {
+		if method.IsInitializer {
+			return true
+		}
 		if len(method.Selector) >= 4 && method.Selector[:4] == "init" {
 			return true
 		}
@@ -43,6 +47,7 @@ type ParsedMethod struct {
 	Name          string   // Go-style method name (e.g., "InitWithFrame")
 	Selector      string   // Objective-C selector (e.g., "initWithFrame:")
 	IsClassMethod bool     // true for class methods (+), false for instance methods (-)
+	IsInitializer bool     // true if this is an initializer (symbolKind == "init" in docs)
 	ReturnType    string   // Objective-C return type
 	Parameters    []Parameter
 	Comment       string
