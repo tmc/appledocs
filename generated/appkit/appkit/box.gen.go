@@ -30,7 +30,7 @@ func BoxFrom(ptr unsafe.Pointer) Box {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSBox/setFrameFromContentFrame(_:)
-func (b_ Box) SetFrameFromContentFrame(contentFrame foundation.Rect) {
+func (b_ Box) SetFrameFromContentFrame(contentFrame unsafe.Pointer) {
 	sel := objc.RegisterName("setFrameFromContentFrame:")
 	b_.ID.Send(sel, contentFrame)
 }
@@ -50,4 +50,5 @@ func (b_ Box) SizeToFit() {
 	sel := objc.RegisterName("sizeToFit")
 	b_.ID.Send(sel)
 }
+
 

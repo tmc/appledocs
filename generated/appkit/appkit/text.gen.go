@@ -48,7 +48,7 @@ func NewTextWithCoder(coder unsafe.Pointer) Text {
 }
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSText/init(frame:)
-func NewTextWithFrame(frameRect foundation.Rect) Text {
+func NewTextWithFrame(frameRect unsafe.Pointer) Text {
 	instance := Text{}.Alloc()
 	sel := objc.RegisterName("initWithFrame:")
 	ret := instance.ID.Send(sel, frameRect)
@@ -175,7 +175,7 @@ func (t_ Text) ReadRTFDFromFile(path string) bool {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSText/replaceCharacters(in:with:)
-func (t_ Text) ReplaceCharactersInRangeWithString(range_ foundation.Range, string string) {
+func (t_ Text) ReplaceCharactersInRangeWithString(range_ unsafe.Pointer, string string) {
 	sel := objc.RegisterName("replaceCharactersInRange:withString:")
 	t_.ID.Send(sel, range_, string)
 }
@@ -183,7 +183,7 @@ func (t_ Text) ReplaceCharactersInRangeWithString(range_ foundation.Range, strin
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSText/replaceCharacters(in:withRTF:)
-func (t_ Text) ReplaceCharactersInRangeWithRTF(range_ foundation.Range, rtfData unsafe.Pointer) {
+func (t_ Text) ReplaceCharactersInRangeWithRTF(range_ unsafe.Pointer, rtfData unsafe.Pointer) {
 	sel := objc.RegisterName("replaceCharactersInRange:withRTF:")
 	t_.ID.Send(sel, range_, rtfData)
 }
@@ -191,7 +191,7 @@ func (t_ Text) ReplaceCharactersInRangeWithRTF(range_ foundation.Range, rtfData 
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSText/replaceCharacters(in:withRTFD:)
-func (t_ Text) ReplaceCharactersInRangeWithRTFD(range_ foundation.Range, rtfdData unsafe.Pointer) {
+func (t_ Text) ReplaceCharactersInRangeWithRTFD(range_ unsafe.Pointer, rtfdData unsafe.Pointer) {
 	sel := objc.RegisterName("replaceCharactersInRange:withRTFD:")
 	t_.ID.Send(sel, range_, rtfdData)
 }
@@ -199,7 +199,7 @@ func (t_ Text) ReplaceCharactersInRangeWithRTFD(range_ foundation.Range, rtfdDat
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSText/rtf(from:)
-func (t_ Text) RTFFromRange(range_ foundation.Range) unsafe.Pointer {
+func (t_ Text) RTFFromRange(range_ unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("RTFFromRange:")
 	ret := t_.ID.Send(sel, range_)
 	return unsafe.Pointer(ret)
@@ -208,7 +208,7 @@ func (t_ Text) RTFFromRange(range_ foundation.Range) unsafe.Pointer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSText/rtfd(from:)
-func (t_ Text) RTFDFromRange(range_ foundation.Range) unsafe.Pointer {
+func (t_ Text) RTFDFromRange(range_ unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("RTFDFromRange:")
 	ret := t_.ID.Send(sel, range_)
 	return unsafe.Pointer(ret)
@@ -217,7 +217,7 @@ func (t_ Text) RTFDFromRange(range_ foundation.Range) unsafe.Pointer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSText/scrollRangeToVisible(_:)
-func (t_ Text) ScrollRangeToVisible(range_ foundation.Range) {
+func (t_ Text) ScrollRangeToVisible(range_ unsafe.Pointer) {
 	sel := objc.RegisterName("scrollRangeToVisible:")
 	t_.ID.Send(sel, range_)
 }
@@ -233,7 +233,7 @@ func (t_ Text) SelectAll(sender objc.ID) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSText/setFont(_:range:)
-func (t_ Text) SetFontRange(font unsafe.Pointer, range_ foundation.Range) {
+func (t_ Text) SetFontRange(font unsafe.Pointer, range_ unsafe.Pointer) {
 	sel := objc.RegisterName("setFont:range:")
 	t_.ID.Send(sel, font, range_)
 }
@@ -241,7 +241,7 @@ func (t_ Text) SetFontRange(font unsafe.Pointer, range_ foundation.Range) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSText/setTextColor(_:range:)
-func (t_ Text) SetTextColorRange(color unsafe.Pointer, range_ foundation.Range) {
+func (t_ Text) SetTextColorRange(color unsafe.Pointer, range_ unsafe.Pointer) {
 	sel := objc.RegisterName("setTextColor:range:")
 	t_.ID.Send(sel, color, range_)
 }

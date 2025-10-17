@@ -36,3 +36,4 @@ func (i_ Image) BestRepresentationForDevice(deviceDescription unsafe.Pointer) un
 	return unsafe.Pointer(ret)
 }
 
+

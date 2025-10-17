@@ -30,8 +30,9 @@ func SharingServicePickerFrom(ptr unsafe.Pointer) SharingServicePicker {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSSharingServicePicker/show(relativeTo:of:preferredEdge:)
-func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect foundation.Rect, view unsafe.Pointer, preferredEdge foundation.RectEdge) {
+func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect unsafe.Pointer, view unsafe.Pointer, preferredEdge int) {
 	sel := objc.RegisterName("showRelativeToRect:ofView:preferredEdge:")
 	s_.ID.Send(sel, rect, view, preferredEdge)
 }
+
 

@@ -30,10 +30,10 @@ func GestureRecognizerFrom(ptr unsafe.Pointer) GestureRecognizer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/location(in:)
-func (g_ GestureRecognizer) LocationInView(view unsafe.Pointer) foundation.Point {
+func (g_ GestureRecognizer) LocationInView(view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("locationInView:")
 	ret := g_.ID.Send(sel, view)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Called when one or more fingers first make contact with an   instance on the Touch Bar. [Full Topic]
 
@@ -67,4 +67,5 @@ func (g_ GestureRecognizer) TouchesMovedWithEvent(event unsafe.Pointer) {
 	sel := objc.RegisterName("touchesMovedWithEvent:")
 	g_.ID.Send(sel, event)
 }
+
 

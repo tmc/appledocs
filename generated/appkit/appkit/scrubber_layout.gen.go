@@ -47,7 +47,7 @@ func (s_ ScrubberLayout) LayoutAttributesForItemAtIndex(index int) unsafe.Pointe
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSScrubberLayout/layoutAttributesForItems(in:)
-func (s_ ScrubberLayout) LayoutAttributesForItemsInRect(rect foundation.Rect) unsafe.Pointer {
+func (s_ ScrubberLayout) LayoutAttributesForItemsInRect(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("layoutAttributesForItemsInRect:")
 	ret := s_.ID.Send(sel, rect)
 	return unsafe.Pointer(ret)
@@ -64,9 +64,10 @@ func (s_ ScrubberLayout) PrepareLayout() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSScrubberLayout/shouldInvalidateLayoutForChange(fromVisibleRect:toVisibleRect:)
-func (s_ ScrubberLayout) ShouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(fromVisibleRect foundation.Rect, toVisibleRect foundation.Rect) bool {
+func (s_ ScrubberLayout) ShouldInvalidateLayoutForChangeFromVisibleRectToVisibleRect(fromVisibleRect unsafe.Pointer, toVisibleRect unsafe.Pointer) bool {
 	sel := objc.RegisterName("shouldInvalidateLayoutForChangeFromVisibleRect:toVisibleRect:")
 	ret := s_.ID.Send(sel, fromVisibleRect, toVisibleRect)
 	return ret != 0
 }
+
 

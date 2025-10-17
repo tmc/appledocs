@@ -39,25 +39,25 @@ func (c_ ClipView) Autoscroll(event unsafe.Pointer) bool {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSClipView/constrainBoundsRect(_:)
-func (c_ ClipView) ConstrainBoundsRect(proposedBounds foundation.Rect) foundation.Rect {
+func (c_ ClipView) ConstrainBoundsRect(proposedBounds unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("constrainBoundsRect:")
 	ret := c_.ID.Send(sel, proposedBounds)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns a scroll point adjusted from the proposed new origin, if necessary, to guarantee the view will lie within its document view. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSClipView/constrainScroll(_:)
-func (c_ ClipView) ConstrainScrollPoint(newOrigin foundation.Point) foundation.Point {
+func (c_ ClipView) ConstrainScrollPoint(newOrigin unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("constrainScrollPoint:")
 	ret := c_.ID.Send(sel, newOrigin)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Changes the origin of the clip view’s bounds rectangle to  . [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSClipView/scroll(to:)
-func (c_ ClipView) ScrollToPoint(newOrigin foundation.Point) {
+func (c_ ClipView) ScrollToPoint(newOrigin unsafe.Pointer) {
 	sel := objc.RegisterName("scrollToPoint:")
 	c_.ID.Send(sel, newOrigin)
 }
@@ -77,4 +77,5 @@ func (c_ ClipView) ViewFrameChanged(notification unsafe.Pointer) {
 	sel := objc.RegisterName("viewFrameChanged:")
 	c_.ID.Send(sel, notification)
 }
+
 

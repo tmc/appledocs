@@ -30,7 +30,7 @@ func TableRowViewFrom(ptr unsafe.Pointer) TableRowView {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSTableRowView/drawBackground(in:)
-func (t_ TableRowView) DrawBackgroundInRect(dirtyRect foundation.Rect) {
+func (t_ TableRowView) DrawBackgroundInRect(dirtyRect unsafe.Pointer) {
 	sel := objc.RegisterName("drawBackgroundInRect:")
 	t_.ID.Send(sel, dirtyRect)
 }
@@ -38,7 +38,7 @@ func (t_ TableRowView) DrawBackgroundInRect(dirtyRect foundation.Rect) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSTableRowView/drawDraggingDestinationFeedback(in:)
-func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect foundation.Rect) {
+func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect unsafe.Pointer) {
 	sel := objc.RegisterName("drawDraggingDestinationFeedbackInRect:")
 	t_.ID.Send(sel, dirtyRect)
 }
@@ -46,7 +46,7 @@ func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect foundatio
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSTableRowView/drawSelection(in:)
-func (t_ TableRowView) DrawSelectionInRect(dirtyRect foundation.Rect) {
+func (t_ TableRowView) DrawSelectionInRect(dirtyRect unsafe.Pointer) {
 	sel := objc.RegisterName("drawSelectionInRect:")
 	t_.ID.Send(sel, dirtyRect)
 }
@@ -54,7 +54,7 @@ func (t_ TableRowView) DrawSelectionInRect(dirtyRect foundation.Rect) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSTableRowView/drawSeparator(in:)
-func (t_ TableRowView) DrawSeparatorInRect(dirtyRect foundation.Rect) {
+func (t_ TableRowView) DrawSeparatorInRect(dirtyRect unsafe.Pointer) {
 	sel := objc.RegisterName("drawSeparatorInRect:")
 	t_.ID.Send(sel, dirtyRect)
 }
@@ -67,4 +67,5 @@ func (t_ TableRowView) ViewAtColumn(column int) objc.ID {
 	ret := t_.ID.Send(sel, column)
 	return ret
 }
+
 

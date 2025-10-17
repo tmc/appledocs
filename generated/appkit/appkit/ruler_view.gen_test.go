@@ -3,7 +3,7 @@
 package appkit_test
 
 import (
-	"github.com/tmc/appledocs/cmd/generate-framework-bindings/generated/appkit"
+	"appkit"
 )
 
 // ExampleNewRulerView demonstrates how to create a RulerView instance.

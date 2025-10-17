@@ -137,7 +137,7 @@ func (t_ TabView) TabViewItemAtIndex(index int) unsafe.Pointer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSTabView/tabViewItem(at:)-8gnqw
-func (t_ TabView) TabViewItemAtPoint(point foundation.Point) unsafe.Pointer {
+func (t_ TabView) TabViewItemAtPoint(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("tabViewItemAtPoint:")
 	ret := t_.ID.Send(sel, point)
 	return unsafe.Pointer(ret)
@@ -150,4 +150,5 @@ func (t_ TabView) TakeSelectedTabViewItemFromSender(sender objc.ID) {
 	sel := objc.RegisterName("takeSelectedTabViewItemFromSender:")
 	t_.ID.Send(sel, sender)
 }
+
 

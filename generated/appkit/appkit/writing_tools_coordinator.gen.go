@@ -38,8 +38,9 @@ func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(c
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)
-func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.Range, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer) {
+func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ unsafe.Pointer, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer) {
 	sel := objc.RegisterName("updateRange:withText:reason:forContextWithIdentifier:")
 	w_.ID.Send(sel, range_, replacementText, reason, contextID)
 }
+
 

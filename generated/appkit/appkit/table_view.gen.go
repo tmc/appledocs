@@ -30,18 +30,19 @@ func TableViewFrom(ptr unsafe.Pointer) TableView {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSTableView/rect(ofRow:)
-func (t_ TableView) RectOfRow(row int) foundation.Rect {
+func (t_ TableView) RectOfRow(row int) unsafe.Pointer {
 	sel := objc.RegisterName("rectOfRow:")
 	ret := t_.ID.Send(sel, row)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the index of the row the specified point lies in. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSTableView/row(at:)
-func (t_ TableView) RowAtPoint(point foundation.Point) int {
+func (t_ TableView) RowAtPoint(point unsafe.Pointer) int {
 	sel := objc.RegisterName("rowAtPoint:")
 	ret := t_.ID.Send(sel, point)
 	return int(ret)
 }
+
 

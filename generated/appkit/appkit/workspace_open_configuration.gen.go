@@ -27,3 +27,4 @@ func WorkspaceOpenConfigurationFrom(ptr unsafe.Pointer) WorkspaceOpenConfigurati
 
 
 
+

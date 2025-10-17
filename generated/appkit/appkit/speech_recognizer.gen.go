@@ -27,3 +27,4 @@ func SpeechRecognizerFrom(ptr unsafe.Pointer) SpeechRecognizer {
 
 
 
+

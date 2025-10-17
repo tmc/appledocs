@@ -34,3 +34,4 @@ func (sc SplitViewItem) InspectorWithViewController(viewController unsafe.Pointe
 	return unsafe.Pointer(ret)
 }
 
+

@@ -30,10 +30,10 @@ func AccessibilityElementFrom(ptr unsafe.Pointer) AccessibilityElement {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElement-swift.class/element(withRole:frame:label:parent:)
-func (ac AccessibilityElement) AccessibilityElementWithRoleFrameLabelParent(role unsafe.Pointer, frame foundation.Rect, label string, parent objc.ID) objc.ID {
+func (ac AccessibilityElement) AccessibilityElementWithRoleFrameLabelParent(role unsafe.Pointer, frame unsafe.Pointer, label string, parent objc.ID) objc.ID {
 	sel := objc.RegisterName("accessibilityElementWithRole:frame:label:parent:")
 	ret := objc.ID(AccessibilityElementClass).Send(sel, role, frame, label, parent)
-	return objc.ID(ret)
+	return ret
 }
 // Adds a child to the accessibility element in the accessibility hierarchy. [Full Topic]
 
@@ -51,4 +51,5 @@ func (a_ AccessibilityElement) AccessibilityFrameInParentSpace() {
 	sel := objc.RegisterName("accessibilityFrameInParentSpace")
 	a_.ID.Send(sel)
 }
+
 

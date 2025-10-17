@@ -27,3 +27,4 @@ func AdaptiveImageGlyphFrom(ptr unsafe.Pointer) AdaptiveImageGlyph {
 
 
 
+

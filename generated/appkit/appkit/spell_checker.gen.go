@@ -28,9 +28,10 @@ func SpellCheckerFrom(ptr unsafe.Pointer) SpellChecker {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSSpellChecker/requestCandidates(forSelectedRange:in:types:options:inSpellDocumentWithTag:completionHandler:)
-func (s_ SpellChecker) RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange foundation.Range, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int {
+func (s_ SpellChecker) RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange unsafe.Pointer, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int {
 	sel := objc.RegisterName("requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:")
 	ret := s_.ID.Send(sel, selectedRange, stringToCheck, checkingTypes, options, tag, completionHandler)
 	return int(ret)
 }
+
 

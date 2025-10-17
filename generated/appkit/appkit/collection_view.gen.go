@@ -80,19 +80,19 @@ func (c_ CollectionView) DraggingImageForItemsAtIndexesWithEventOffset(indexes u
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCollectionView/frameForItem(at:)
-func (c_ CollectionView) FrameForItemAtIndex(index uint) foundation.Rect {
+func (c_ CollectionView) FrameForItemAtIndex(index uint) unsafe.Pointer {
 	sel := objc.RegisterName("frameForItemAtIndex:")
 	ret := c_.ID.Send(sel, index)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the frame of an item based on the number of items in the collection view. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCollectionView/frameForItem(at:withNumberOfItems:)
-func (c_ CollectionView) FrameForItemAtIndexWithNumberOfItems(index uint, numberOfItems uint) foundation.Rect {
+func (c_ CollectionView) FrameForItemAtIndexWithNumberOfItems(index uint, numberOfItems uint) unsafe.Pointer {
 	sel := objc.RegisterName("frameForItemAtIndex:withNumberOfItems:")
 	ret := c_.ID.Send(sel, index, numberOfItems)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the index path of the specified item. [Full Topic]
 
@@ -107,7 +107,7 @@ func (c_ CollectionView) IndexPathForItem(item unsafe.Pointer) unsafe.Pointer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCollectionView/indexPathForItem(at:)
-func (c_ CollectionView) IndexPathForItemAtPoint(point foundation.Point) unsafe.Pointer {
+func (c_ CollectionView) IndexPathForItemAtPoint(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("indexPathForItemAtPoint:")
 	ret := c_.ID.Send(sel, point)
 	return unsafe.Pointer(ret)
@@ -365,4 +365,5 @@ func (c_ CollectionView) VisibleSupplementaryViewsOfKind(elementKind unsafe.Poin
 	ret := c_.ID.Send(sel, elementKind)
 	return unsafe.Pointer(ret)
 }
+
 

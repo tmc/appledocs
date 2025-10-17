@@ -51,3 +51,4 @@ func (w_ WindowTabGroup) RemoveWindow(window unsafe.Pointer) {
 	w_.ID.Send(sel, window)
 }
 
+

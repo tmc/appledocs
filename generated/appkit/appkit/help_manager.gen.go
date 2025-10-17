@@ -80,9 +80,10 @@ func (h_ HelpManager) SetContextHelpForObject(attrString unsafe.Pointer, object 
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSHelpManager/showContextHelp(for:locationHint:)
-func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objc.ID, pt foundation.Point) bool {
+func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objc.ID, pt unsafe.Pointer) bool {
 	sel := objc.RegisterName("showContextHelpForObject:locationHint:")
 	ret := h_.ID.Send(sel, object, pt)
 	return ret != 0
 }
+
 

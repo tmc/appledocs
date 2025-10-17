@@ -80,7 +80,7 @@ func (r_ RulerView) AddMarker(marker unsafe.Pointer) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSRulerView/drawHashMarksAndLabels(in:)
-func (r_ RulerView) DrawHashMarksAndLabelsInRect(rect foundation.Rect) {
+func (r_ RulerView) DrawHashMarksAndLabelsInRect(rect unsafe.Pointer) {
 	sel := objc.RegisterName("drawHashMarksAndLabelsInRect:")
 	r_.ID.Send(sel, rect)
 }
@@ -88,7 +88,7 @@ func (r_ RulerView) DrawHashMarksAndLabelsInRect(rect foundation.Rect) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSRulerView/drawMarkers(in:)
-func (r_ RulerView) DrawMarkersInRect(rect foundation.Rect) {
+func (r_ RulerView) DrawMarkersInRect(rect unsafe.Pointer) {
 	sel := objc.RegisterName("drawMarkersInRect:")
 	r_.ID.Send(sel, rect)
 }

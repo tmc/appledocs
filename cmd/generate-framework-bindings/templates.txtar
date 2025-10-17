@@ -29,8 +29,10 @@
 {{- range .Classes}}
 #-- {{classFileName .Name}} --
 {{template "class.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName)}}
+{{if .HasInitMethods -}}
 #-- {{classTestFileName .Name}} --
 {{template "class_test.gen.go" (dict "Class" . "Framework" $.Framework "PackageName" $.PackageName)}}
+{{end -}}
 {{end -}}
 {{end -}}
 {{if gt .ProtocolCount 0 -}}
@@ -147,6 +149,32 @@ type Range = CGPoint  // NSRange
 type Size = CGSize    // NSSize
 type Point = CGPoint  // NSPoint
 type Rect = CGRect    // NSRect
+
+{{if eq .Framework "Foundation" -}}
+// Foundation-specific types
+type TimeInterval = float64
+
+// RectEdge defines which edge of a rectangle.
+type RectEdge int
+
+const (
+	RectEdgeMinX RectEdge = 0
+	RectEdgeMinY RectEdge = 1
+	RectEdgeMaxX RectEdge = 2
+	RectEdgeMaxY RectEdge = 3
+)
+
+{{end -}}
+{{if eq .Framework "AppKit" -}}
+// AppKit-specific enum types
+type WindowStyleMask int
+type BackingStoreType int
+type WindowOrderingMode int
+type WindowLevel int
+type EventType int
+type EventModifierFlags int
+
+{{end -}}
 
 -- functions.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
@@ -327,7 +355,7 @@ func ({{$classReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $.Fra
 	sel := objc.RegisterName("{{.Selector}}")
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	ret := objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	return {{mapObjCTypeToGo .ReturnType $.Framework}}(ret)
+	return {{wrapObjCReturn (mapObjCTypeToGo .ReturnType $.Framework)}}
 	{{- else}}
 	objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
@@ -454,7 +482,7 @@ func ({{$classReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $fram
 	sel := objc.RegisterName("{{.Selector}}")
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	ret := objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	return {{mapObjCTypeToGo .ReturnType $framework}}(ret)
+	return {{wrapObjCReturn (mapObjCTypeToGo .ReturnType $framework)}}
 	{{- else}}
 	objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
@@ -494,7 +522,7 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 package {{.PackageName}}_test
 
 import (
-	"github.com/tmc/appledocs/cmd/generate-framework-bindings/generated/{{.PackageName}}"
+	"{{.PackageName}}"
 )
 
 {{with .Class -}}

@@ -30,7 +30,7 @@ func TableHeaderViewFrom(ptr unsafe.Pointer) TableHeaderView {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSTableHeaderView/column(at:)
-func (t_ TableHeaderView) ColumnAtPoint(point foundation.Point) int {
+func (t_ TableHeaderView) ColumnAtPoint(point unsafe.Pointer) int {
 	sel := objc.RegisterName("columnAtPoint:")
 	ret := t_.ID.Send(sel, point)
 	return int(ret)
@@ -39,9 +39,10 @@ func (t_ TableHeaderView) ColumnAtPoint(point foundation.Point) int {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSTableHeaderView/headerRect(ofColumn:)
-func (t_ TableHeaderView) HeaderRectOfColumn(column int) foundation.Rect {
+func (t_ TableHeaderView) HeaderRectOfColumn(column int) unsafe.Pointer {
 	sel := objc.RegisterName("headerRectOfColumn:")
 	ret := t_.ID.Send(sel, column)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
+
 

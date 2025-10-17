@@ -43,3 +43,4 @@ func (v_ VisualEffectView) ViewWillMoveToWindow(newWindow unsafe.Pointer) {
 	v_.ID.Send(sel, newWindow)
 }
 
+

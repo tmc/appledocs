@@ -84,7 +84,7 @@ func NewCellTextCell(string string) Cell {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/calcDrawInfo(_:)
-func (c_ Cell) CalcDrawInfo(rect foundation.Rect) {
+func (c_ Cell) CalcDrawInfo(rect unsafe.Pointer) {
 	sel := objc.RegisterName("calcDrawInfo:")
 	c_.ID.Send(sel, rect)
 }
@@ -101,10 +101,10 @@ func (c_ Cell) CellAttribute(parameter unsafe.Pointer) int {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/cellSize(forBounds:)
-func (c_ Cell) CellSizeForBounds(rect foundation.Rect) foundation.Size {
+func (c_ Cell) CellSizeForBounds(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("cellSizeForBounds:")
 	ret := c_.ID.Send(sel, rect)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Compares the string values of the receiver another cell, disregarding case. [Full Topic]
 
@@ -119,7 +119,7 @@ func (c_ Cell) Compare(otherCell objc.ID) unsafe.Pointer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/continueTracking(last:current:in:)
-func (c_ Cell) ContinueTrackingAtInView(lastPoint foundation.Point, currentPoint foundation.Point, controlView unsafe.Pointer) bool {
+func (c_ Cell) ContinueTrackingAtInView(lastPoint unsafe.Pointer, currentPoint unsafe.Pointer, controlView unsafe.Pointer) bool {
 	sel := objc.RegisterName("continueTracking:at:inView:")
 	ret := c_.ID.Send(sel, lastPoint, currentPoint, controlView)
 	return ret != 0
@@ -128,7 +128,7 @@ func (c_ Cell) ContinueTrackingAtInView(lastPoint foundation.Point, currentPoint
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/draggingImageComponents(withFrame:in:)
-func (c_ Cell) DraggingImageComponentsWithFrameInView(frame foundation.Rect, view unsafe.Pointer) unsafe.Pointer {
+func (c_ Cell) DraggingImageComponentsWithFrameInView(frame unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("draggingImageComponentsWithFrame:inView:")
 	ret := c_.ID.Send(sel, frame, view)
 	return unsafe.Pointer(ret)
@@ -137,7 +137,7 @@ func (c_ Cell) DraggingImageComponentsWithFrameInView(frame foundation.Rect, vie
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/draw(withExpansionFrame:in:)
-func (c_ Cell) DrawWithExpansionFrameInView(cellFrame foundation.Rect, view unsafe.Pointer) {
+func (c_ Cell) DrawWithExpansionFrameInView(cellFrame unsafe.Pointer, view unsafe.Pointer) {
 	sel := objc.RegisterName("drawWithExpansionFrame:inView:")
 	c_.ID.Send(sel, cellFrame, view)
 }
@@ -145,7 +145,7 @@ func (c_ Cell) DrawWithExpansionFrameInView(cellFrame foundation.Rect, view unsa
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/draw(withFrame:in:)
-func (c_ Cell) DrawWithFrameInView(cellFrame foundation.Rect, controlView unsafe.Pointer) {
+func (c_ Cell) DrawWithFrameInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer) {
 	sel := objc.RegisterName("drawWithFrame:inView:")
 	c_.ID.Send(sel, cellFrame, controlView)
 }
@@ -153,7 +153,7 @@ func (c_ Cell) DrawWithFrameInView(cellFrame foundation.Rect, controlView unsafe
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/drawFocusRingMask(withFrame:in:)
-func (c_ Cell) DrawFocusRingMaskWithFrameInView(cellFrame foundation.Rect, controlView unsafe.Pointer) {
+func (c_ Cell) DrawFocusRingMaskWithFrameInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer) {
 	sel := objc.RegisterName("drawFocusRingMaskWithFrame:inView:")
 	c_.ID.Send(sel, cellFrame, controlView)
 }
@@ -161,7 +161,7 @@ func (c_ Cell) DrawFocusRingMaskWithFrameInView(cellFrame foundation.Rect, contr
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/drawInterior(withFrame:in:)
-func (c_ Cell) DrawInteriorWithFrameInView(cellFrame foundation.Rect, controlView unsafe.Pointer) {
+func (c_ Cell) DrawInteriorWithFrameInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer) {
 	sel := objc.RegisterName("drawInteriorWithFrame:inView:")
 	c_.ID.Send(sel, cellFrame, controlView)
 }
@@ -169,16 +169,16 @@ func (c_ Cell) DrawInteriorWithFrameInView(cellFrame foundation.Rect, controlVie
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/drawingRect(forBounds:)
-func (c_ Cell) DrawingRectForBounds(rect foundation.Rect) foundation.Rect {
+func (c_ Cell) DrawingRectForBounds(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("drawingRectForBounds:")
 	ret := c_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Begins editing of the receiver’s text using the specified field editor. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/edit(withFrame:in:editor:delegate:event:)
-func (c_ Cell) EditWithFrameInViewEditorDelegateEvent(rect foundation.Rect, controlView unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer) {
+func (c_ Cell) EditWithFrameInViewEditorDelegateEvent(rect unsafe.Pointer, controlView unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer) {
 	sel := objc.RegisterName("editWithFrame:inView:editor:delegate:event:")
 	c_.ID.Send(sel, rect, controlView, textObj, delegate, event)
 }
@@ -203,10 +203,10 @@ func (c_ Cell) EntryType() int {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/expansionFrame(withFrame:in:)
-func (c_ Cell) ExpansionFrameWithFrameInView(cellFrame foundation.Rect, view unsafe.Pointer) foundation.Rect {
+func (c_ Cell) ExpansionFrameWithFrameInView(cellFrame unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("expansionFrameWithFrame:inView:")
 	ret := c_.ID.Send(sel, cellFrame, view)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns a custom field editor for editing in the view. [Full Topic]
 
@@ -221,10 +221,10 @@ func (c_ Cell) FieldEditorForView(controlView unsafe.Pointer) unsafe.Pointer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/focusRingMaskBounds(forFrame:in:)
-func (c_ Cell) FocusRingMaskBoundsForFrameInView(cellFrame foundation.Rect, controlView unsafe.Pointer) foundation.Rect {
+func (c_ Cell) FocusRingMaskBoundsForFrameInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("focusRingMaskBoundsForFrame:inView:")
 	ret := c_.ID.Send(sel, cellFrame, controlView)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the initial delay and repeat values for continuous sending of action messages to target objects. [Full Topic]
 
@@ -238,7 +238,7 @@ func (c_ Cell) GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Po
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/highlight(_:withFrame:in:)
-func (c_ Cell) HighlightWithFrameInView(flag bool, cellFrame foundation.Rect, controlView unsafe.Pointer) {
+func (c_ Cell) HighlightWithFrameInView(flag bool, cellFrame unsafe.Pointer, controlView unsafe.Pointer) {
 	sel := objc.RegisterName("highlight:withFrame:inView:")
 	c_.ID.Send(sel, flag, cellFrame, controlView)
 }
@@ -246,7 +246,7 @@ func (c_ Cell) HighlightWithFrameInView(flag bool, cellFrame foundation.Rect, co
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/highlightColor(withFrame:in:)
-func (c_ Cell) HighlightColorWithFrameInView(cellFrame foundation.Rect, controlView unsafe.Pointer) unsafe.Pointer {
+func (c_ Cell) HighlightColorWithFrameInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("highlightColorWithFrame:inView:")
 	ret := c_.ID.Send(sel, cellFrame, controlView)
 	return unsafe.Pointer(ret)
@@ -255,7 +255,7 @@ func (c_ Cell) HighlightColorWithFrameInView(cellFrame foundation.Rect, controlV
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/hitTest(for:in:of:)
-func (c_ Cell) HitTestForEventInRectOfView(event unsafe.Pointer, cellFrame foundation.Rect, controlView unsafe.Pointer) unsafe.Pointer {
+func (c_ Cell) HitTestForEventInRectOfView(event unsafe.Pointer, cellFrame unsafe.Pointer, controlView unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("hitTestForEvent:inRect:ofView:")
 	ret := c_.ID.Send(sel, event, cellFrame, controlView)
 	return unsafe.Pointer(ret)
@@ -264,10 +264,10 @@ func (c_ Cell) HitTestForEventInRectOfView(event unsafe.Pointer, cellFrame found
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/imageRect(forBounds:)
-func (c_ Cell) ImageRectForBounds(rect foundation.Rect) foundation.Rect {
+func (c_ Cell) ImageRectForBounds(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("imageRectForBounds:")
 	ret := c_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns whether a string representing a numeric or date value is formatted in a suitable way for the cell’s entry type. [Full Topic]
 
@@ -282,7 +282,7 @@ func (c_ Cell) IsEntryAcceptable(string string) bool {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/menu(for:in:of:)
-func (c_ Cell) MenuForEventInRectOfView(event unsafe.Pointer, cellFrame foundation.Rect, view unsafe.Pointer) unsafe.Pointer {
+func (c_ Cell) MenuForEventInRectOfView(event unsafe.Pointer, cellFrame unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("menuForEvent:inRect:ofView:")
 	ret := c_.ID.Send(sel, event, cellFrame, view)
 	return unsafe.Pointer(ret)
@@ -317,7 +317,7 @@ func (c_ Cell) PerformClick(sender objc.ID) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/resetCursorRect(_:in:)
-func (c_ Cell) ResetCursorRectInView(cellFrame foundation.Rect, controlView unsafe.Pointer) {
+func (c_ Cell) ResetCursorRectInView(cellFrame unsafe.Pointer, controlView unsafe.Pointer) {
 	sel := objc.RegisterName("resetCursorRect:inView:")
 	c_.ID.Send(sel, cellFrame, controlView)
 }
@@ -325,7 +325,7 @@ func (c_ Cell) ResetCursorRectInView(cellFrame foundation.Rect, controlView unsa
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/select(withFrame:in:editor:delegate:start:length:)
-func (c_ Cell) SelectWithFrameInViewEditorDelegateStartLength(rect foundation.Rect, controlView unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int) {
+func (c_ Cell) SelectWithFrameInViewEditorDelegateStartLength(rect unsafe.Pointer, controlView unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int) {
 	sel := objc.RegisterName("selectWithFrame:inView:editor:delegate:start:length:")
 	c_.ID.Send(sel, rect, controlView, textObj, delegate, selStart, selLength)
 }
@@ -399,7 +399,7 @@ func (c_ Cell) SetUpFieldEditorAttributes(textObj unsafe.Pointer) unsafe.Pointer
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/startTracking(at:in:)
-func (c_ Cell) StartTrackingAtInView(startPoint foundation.Point, controlView unsafe.Pointer) bool {
+func (c_ Cell) StartTrackingAtInView(startPoint unsafe.Pointer, controlView unsafe.Pointer) bool {
 	sel := objc.RegisterName("startTrackingAt:inView:")
 	ret := c_.ID.Send(sel, startPoint, controlView)
 	return ret != 0
@@ -408,7 +408,7 @@ func (c_ Cell) StartTrackingAtInView(startPoint foundation.Point, controlView un
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/stopTracking(last:current:in:mouseIsUp:)
-func (c_ Cell) StopTrackingAtInViewMouseIsUp(lastPoint foundation.Point, stopPoint foundation.Point, controlView unsafe.Pointer, flag bool) {
+func (c_ Cell) StopTrackingAtInViewMouseIsUp(lastPoint unsafe.Pointer, stopPoint unsafe.Pointer, controlView unsafe.Pointer, flag bool) {
 	sel := objc.RegisterName("stopTracking:at:inView:mouseIsUp:")
 	c_.ID.Send(sel, lastPoint, stopPoint, controlView, flag)
 }
@@ -464,16 +464,16 @@ func (c_ Cell) TakeStringValueFrom(sender objc.ID) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/titleRect(forBounds:)
-func (c_ Cell) TitleRectForBounds(rect foundation.Rect) foundation.Rect {
+func (c_ Cell) TitleRectForBounds(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("titleRectForBounds:")
 	ret := c_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Initiates the mouse tracking behavior in a cell. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSCell/trackMouse(with:in:of:untilMouseUp:)
-func (c_ Cell) TrackMouseInRectOfViewUntilMouseUp(event unsafe.Pointer, cellFrame foundation.Rect, controlView unsafe.Pointer, flag bool) bool {
+func (c_ Cell) TrackMouseInRectOfViewUntilMouseUp(event unsafe.Pointer, cellFrame unsafe.Pointer, controlView unsafe.Pointer, flag bool) bool {
 	sel := objc.RegisterName("trackMouse:inRect:ofView:untilMouseUp:")
 	ret := c_.ID.Send(sel, event, cellFrame, controlView, flag)
 	return ret != 0

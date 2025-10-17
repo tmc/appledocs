@@ -40,7 +40,7 @@ func (o_ OpenGLView) Init() OpenGLView {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
-func NewOpenGLViewWithFramePixelFormat(frameRect foundation.Rect, format unsafe.Pointer) OpenGLView {
+func NewOpenGLViewWithFramePixelFormat(frameRect unsafe.Pointer, format unsafe.Pointer) OpenGLView {
 	instance := OpenGLView{}.Alloc()
 	sel := objc.RegisterName("initWithFrame:pixelFormat:")
 	ret := instance.ID.Send(sel, frameRect, format)

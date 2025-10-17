@@ -3,6 +3,8 @@
 package appkit
 
 import (
+	"unsafe"
+
 	"github.com/ebitengine/purego"
 )
 

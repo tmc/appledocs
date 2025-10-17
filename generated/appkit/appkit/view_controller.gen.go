@@ -70,13 +70,13 @@ func (v_ ViewController) PresentViewControllerAnimator(viewController unsafe.Poi
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)
-func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController unsafe.Pointer, positioningRect foundation.Rect, positioningView unsafe.Pointer, preferredEdge foundation.RectEdge, behavior unsafe.Pointer) {
+func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController unsafe.Pointer, positioningRect unsafe.Pointer, positioningView unsafe.Pointer, preferredEdge int, behavior unsafe.Pointer) {
 	sel := objc.RegisterName("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:")
 	v_.ID.Send(sel, viewController, positioningRect, positioningView, preferredEdge, behavior)
 }
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)
-func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController unsafe.Pointer, positioningRect foundation.Rect, positioningView unsafe.Pointer, preferredEdge foundation.RectEdge, behavior unsafe.Pointer, hasFullSizeContent bool) {
+func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController unsafe.Pointer, positioningRect unsafe.Pointer, positioningView unsafe.Pointer, preferredEdge int, behavior unsafe.Pointer, hasFullSizeContent bool) {
 	sel := objc.RegisterName("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:")
 	v_.ID.Send(sel, viewController, positioningRect, positioningView, preferredEdge, behavior, hasFullSizeContent)
 }

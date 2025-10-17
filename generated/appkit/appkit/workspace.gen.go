@@ -53,3 +53,4 @@ func (w_ Workspace) OpenURLsWithApplicationAtURLConfigurationCompletionHandler(u
 	w_.ID.Send(sel, urls, applicationURL, configuration, completionHandler)
 }
 
+

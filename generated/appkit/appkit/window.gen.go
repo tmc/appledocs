@@ -40,7 +40,7 @@ func (w_ Window) Init() Window {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
-func NewWindowWithContentRectStyleMaskBackingDefer(contentRect foundation.Rect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
+func NewWindowWithContentRectStyleMaskBackingDefer(contentRect unsafe.Pointer, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
 	instance := Window{}.Alloc()
 	sel := objc.RegisterName("initWithContentRect:styleMask:backing:defer:")
 	ret := instance.ID.Send(sel, contentRect, style, backingStoreType, flag)
@@ -52,7 +52,7 @@ func NewWindowWithContentRectStyleMaskBackingDefer(contentRect foundation.Rect, 
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:screen:)
-func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect foundation.Rect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool, screen unsafe.Pointer) Window {
+func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect unsafe.Pointer, style WindowStyleMask, backingStoreType BackingStoreType, flag bool, screen unsafe.Pointer) Window {
 	instance := Window{}.Alloc()
 	sel := objc.RegisterName("initWithContentRect:styleMask:backing:defer:screen:")
 	ret := instance.ID.Send(sel, contentRect, style, backingStoreType, flag, screen)
@@ -78,19 +78,19 @@ func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/contentRect(forFrameRect:styleMask:)
-func (wc Window) ContentRectForFrameRectStyleMask(fRect foundation.Rect, style WindowStyleMask) foundation.Rect {
+func (wc Window) ContentRectForFrameRectStyleMask(fRect unsafe.Pointer, style WindowStyleMask) unsafe.Pointer {
 	sel := objc.RegisterName("contentRectForFrameRect:styleMask:")
 	ret := objc.ID(WindowClass).Send(sel, fRect, style)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the frame rectangle used by a window with a given content rectangle and window style. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/frameRect(forContentRect:styleMask:)
-func (wc Window) FrameRectForContentRectStyleMask(cRect foundation.Rect, style WindowStyleMask) foundation.Rect {
+func (wc Window) FrameRectForContentRectStyleMask(cRect unsafe.Pointer, style WindowStyleMask) unsafe.Pointer {
 	sel := objc.RegisterName("frameRectForContentRect:styleMask:")
 	ret := objc.ID(WindowClass).Send(sel, cRect, style)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Creates a titled window that contains the specified content view controller. [Full Topic]
 
@@ -139,7 +139,7 @@ func (wc Window) StandardWindowButtonForStyleMask(b unsafe.Pointer, styleMask Wi
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/windowNumber(at:belowWindowWithWindowNumber:)
-func (wc Window) WindowNumberAtPointBelowWindowWithWindowNumber(point foundation.Point, windowNumber int) int {
+func (wc Window) WindowNumberAtPointBelowWindowWithWindowNumber(point unsafe.Pointer, windowNumber int) int {
 	sel := objc.RegisterName("windowNumberAtPoint:belowWindowWithWindowNumber:")
 	ret := objc.ID(WindowClass).Send(sel, point, windowNumber)
 	return int(ret)
@@ -190,16 +190,16 @@ func (w_ Window) AnchorAttributeForOrientation(orientation unsafe.Pointer) unsaf
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/animationResizeTime(_:)
-func (w_ Window) AnimationResizeTime(newFrame foundation.Rect) foundation.TimeInterval {
+func (w_ Window) AnimationResizeTime(newFrame unsafe.Pointer) float64 {
 	sel := objc.RegisterName("animationResizeTime:")
 	ret := w_.ID.Send(sel, newFrame)
-	return foundation.TimeInterval(ret)
+	return float64(ret)
 }
 // Indicates whether the window calculates the thickness of a given border automatically. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/autorecalculatesContentBorderThickness(for:)
-func (w_ Window) AutorecalculatesContentBorderThicknessForEdge(edge foundation.RectEdge) bool {
+func (w_ Window) AutorecalculatesContentBorderThicknessForEdge(edge int) bool {
 	sel := objc.RegisterName("autorecalculatesContentBorderThicknessForEdge:")
 	ret := w_.ID.Send(sel, edge)
 	return ret != 0
@@ -208,10 +208,10 @@ func (w_ Window) AutorecalculatesContentBorderThicknessForEdge(edge foundation.R
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/backingAlignedRect(_:options:)
-func (w_ Window) BackingAlignedRectOptions(rect foundation.Rect, options unsafe.Pointer) foundation.Rect {
+func (w_ Window) BackingAlignedRectOptions(rect unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("backingAlignedRect:options:")
 	ret := w_.ID.Send(sel, rect, options)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Informs the window that it has become the key window. [Full Topic]
 
@@ -256,7 +256,7 @@ func (w_ Window) BeginSheetCompletionHandler(sheetWindow unsafe.Pointer, handler
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/cacheImage(in:)
-func (w_ Window) CacheImageInRect(rect foundation.Rect) {
+func (w_ Window) CacheImageInRect(rect unsafe.Pointer) {
 	sel := objc.RegisterName("cacheImageInRect:")
 	w_.ID.Send(sel, rect)
 }
@@ -282,10 +282,10 @@ func (w_ Window) CanStoreColor() bool {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/cascadeTopLeft(from:)
-func (w_ Window) CascadeTopLeftFromPoint(topLeftPoint foundation.Point) foundation.Point {
+func (w_ Window) CascadeTopLeftFromPoint(topLeftPoint unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("cascadeTopLeftFromPoint:")
 	ret := w_.ID.Send(sel, topLeftPoint)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Sets the window’s location to the center of the screen. [Full Topic]
 
@@ -307,16 +307,16 @@ func (w_ Window) Close() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/constrainFrameRect(_:to:)
-func (w_ Window) ConstrainFrameRectToScreen(frameRect foundation.Rect, screen unsafe.Pointer) foundation.Rect {
+func (w_ Window) ConstrainFrameRectToScreen(frameRect unsafe.Pointer, screen unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("constrainFrameRect:toScreen:")
 	ret := w_.ID.Send(sel, frameRect, screen)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Indicates the thickness of a given border of the window. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/contentBorderThickness(for:)
-func (w_ Window) ContentBorderThicknessForEdge(edge foundation.RectEdge) float64 {
+func (w_ Window) ContentBorderThicknessForEdge(edge int) float64 {
 	sel := objc.RegisterName("contentBorderThicknessForEdge:")
 	ret := w_.ID.Send(sel, edge)
 	return float64(ret)
@@ -325,106 +325,106 @@ func (w_ Window) ContentBorderThicknessForEdge(edge foundation.RectEdge) float64
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/contentRect(forFrameRect:)
-func (w_ Window) ContentRectForFrameRect(frameRect foundation.Rect) foundation.Rect {
+func (w_ Window) ContentRectForFrameRect(frameRect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("contentRectForFrameRect:")
 	ret := w_.ID.Send(sel, frameRect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a given point from the window’s base coordinate system to the screen coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/convertBaseToScreen:
-func (w_ Window) ConvertBaseToScreen(point foundation.Point) foundation.Point {
+func (w_ Window) ConvertBaseToScreen(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertBaseToScreen:")
 	ret := w_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a rectangle from its pixel-aligned backing store coordinate system to the window’s coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/convertFromBacking(_:)
-func (w_ Window) ConvertRectFromBacking(rect foundation.Rect) foundation.Rect {
+func (w_ Window) ConvertRectFromBacking(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRectFromBacking:")
 	ret := w_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a rectangle from the screen coordinate system to the window’s coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/convertFromScreen(_:)
-func (w_ Window) ConvertRectFromScreen(rect foundation.Rect) foundation.Rect {
+func (w_ Window) ConvertRectFromScreen(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRectFromScreen:")
 	ret := w_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a point from the screen coordinate system to the window’s coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/convertPoint(fromScreen:)
-func (w_ Window) ConvertPointFromScreen(point foundation.Point) foundation.Point {
+func (w_ Window) ConvertPointFromScreen(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPointFromScreen:")
 	ret := w_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a point to the screen coordinate system from the window’s coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/convertPoint(toScreen:)
-func (w_ Window) ConvertPointToScreen(point foundation.Point) foundation.Point {
+func (w_ Window) ConvertPointToScreen(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPointToScreen:")
 	ret := w_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a point from its pixel-aligned backing store coordinate system to the window’s coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/convertPointFromBacking(_:)
-func (w_ Window) ConvertPointFromBacking(point foundation.Point) foundation.Point {
+func (w_ Window) ConvertPointFromBacking(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPointFromBacking:")
 	ret := w_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a point from the window’s coordinate system to its pixel-aligned backing store coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/convertPointToBacking(_:)
-func (w_ Window) ConvertPointToBacking(point foundation.Point) foundation.Point {
+func (w_ Window) ConvertPointToBacking(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPointToBacking:")
 	ret := w_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a given point from the screen coordinate system to the window’s base coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/convertScreenToBase:
-func (w_ Window) ConvertScreenToBase(point foundation.Point) foundation.Point {
+func (w_ Window) ConvertScreenToBase(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertScreenToBase:")
 	ret := w_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a rectangle from the window’s coordinate system to its pixel-aligned backing store coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/convertToBacking(_:)
-func (w_ Window) ConvertRectToBacking(rect foundation.Rect) foundation.Rect {
+func (w_ Window) ConvertRectToBacking(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRectToBacking:")
 	ret := w_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a rectangle to the screen coordinate system from the window’s coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/convertToScreen(_:)
-func (w_ Window) ConvertRectToScreen(rect foundation.Rect) foundation.Rect {
+func (w_ Window) ConvertRectToScreen(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRectToScreen:")
 	ret := w_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns EPS data that draws the region of the window within a given rectangle. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/dataWithEPS(inside:)
-func (w_ Window) DataWithEPSInsideRect(rect foundation.Rect) unsafe.Pointer {
+func (w_ Window) DataWithEPSInsideRect(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("dataWithEPSInsideRect:")
 	ret := w_.ID.Send(sel, rect)
 	return unsafe.Pointer(ret)
@@ -433,7 +433,7 @@ func (w_ Window) DataWithEPSInsideRect(rect foundation.Rect) unsafe.Pointer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/dataWithPDF(inside:)
-func (w_ Window) DataWithPDFInsideRect(rect foundation.Rect) unsafe.Pointer {
+func (w_ Window) DataWithPDFInsideRect(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("dataWithPDFInsideRect:")
 	ret := w_.ID.Send(sel, rect)
 	return unsafe.Pointer(ret)
@@ -537,7 +537,7 @@ func (w_ Window) DisplayLinkWithTargetSelector(target objc.ID, selector objc.SEL
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/drag(_:at:offset:event:pasteboard:source:slideBack:)
-func (w_ Window) DragImageAtOffsetEventPasteboardSourceSlideBack(image unsafe.Pointer, baseLocation foundation.Point, initialOffset foundation.Size, event unsafe.Pointer, pboard unsafe.Pointer, sourceObj objc.ID, slideFlag bool) {
+func (w_ Window) DragImageAtOffsetEventPasteboardSourceSlideBack(image unsafe.Pointer, baseLocation unsafe.Pointer, initialOffset unsafe.Pointer, event unsafe.Pointer, pboard unsafe.Pointer, sourceObj objc.ID, slideFlag bool) {
 	sel := objc.RegisterName("dragImage:at:offset:event:pasteboard:source:slideBack:")
 	w_.ID.Send(sel, image, baseLocation, initialOffset, event, pboard, sourceObj, slideFlag)
 }
@@ -624,10 +624,10 @@ func (w_ Window) FlushWindowIfNeeded() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/frameRect(forContentRect:)
-func (w_ Window) FrameRectForContentRect(contentRect foundation.Rect) foundation.Rect {
+func (w_ Window) FrameRectForContentRect(contentRect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("frameRectForContentRect:")
 	ret := w_.ID.Send(sel, contentRect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the window’s graphics state object. [Full Topic]
 
@@ -1020,7 +1020,7 @@ func (w_ Window) SetAnchorAttributeForOrientation(attr unsafe.Pointer, orientati
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/setAutorecalculatesContentBorderThickness(_:for:)
-func (w_ Window) SetAutorecalculatesContentBorderThicknessForEdge(flag bool, edge foundation.RectEdge) {
+func (w_ Window) SetAutorecalculatesContentBorderThicknessForEdge(flag bool, edge int) {
 	sel := objc.RegisterName("setAutorecalculatesContentBorderThickness:forEdge:")
 	w_.ID.Send(sel, flag, edge)
 }
@@ -1028,7 +1028,7 @@ func (w_ Window) SetAutorecalculatesContentBorderThicknessForEdge(flag bool, edg
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/setContentBorderThickness(_:for:)
-func (w_ Window) SetContentBorderThicknessForEdge(thickness float64, edge foundation.RectEdge) {
+func (w_ Window) SetContentBorderThicknessForEdge(thickness float64, edge int) {
 	sel := objc.RegisterName("setContentBorderThickness:forEdge:")
 	w_.ID.Send(sel, thickness, edge)
 }
@@ -1036,7 +1036,7 @@ func (w_ Window) SetContentBorderThicknessForEdge(thickness float64, edge founda
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/setContentSize(_:)
-func (w_ Window) SetContentSize(size foundation.Size) {
+func (w_ Window) SetContentSize(size unsafe.Pointer) {
 	sel := objc.RegisterName("setContentSize:")
 	w_.ID.Send(sel, size)
 }
@@ -1052,7 +1052,7 @@ func (w_ Window) SetDynamicDepthLimit(flag bool) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/setFrame(_:display:)
-func (w_ Window) SetFrameDisplay(frameRect foundation.Rect, flag bool) {
+func (w_ Window) SetFrameDisplay(frameRect unsafe.Pointer, flag bool) {
 	sel := objc.RegisterName("setFrame:display:")
 	w_.ID.Send(sel, frameRect, flag)
 }
@@ -1060,7 +1060,7 @@ func (w_ Window) SetFrameDisplay(frameRect foundation.Rect, flag bool) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/setFrame(_:display:animate:)
-func (w_ Window) SetFrameDisplayAnimate(frameRect foundation.Rect, displayFlag bool, animateFlag bool) {
+func (w_ Window) SetFrameDisplayAnimate(frameRect unsafe.Pointer, displayFlag bool, animateFlag bool) {
 	sel := objc.RegisterName("setFrame:display:animate:")
 	w_.ID.Send(sel, frameRect, displayFlag, animateFlag)
 }
@@ -1085,7 +1085,7 @@ func (w_ Window) SetFrameAutosaveName(name unsafe.Pointer) bool {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/setFrameOrigin(_:)
-func (w_ Window) SetFrameOrigin(point foundation.Point) {
+func (w_ Window) SetFrameOrigin(point unsafe.Pointer) {
 	sel := objc.RegisterName("setFrameOrigin:")
 	w_.ID.Send(sel, point)
 }
@@ -1093,7 +1093,7 @@ func (w_ Window) SetFrameOrigin(point foundation.Point) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/setFrameTopLeftPoint(_:)
-func (w_ Window) SetFrameTopLeftPoint(point foundation.Point) {
+func (w_ Window) SetFrameTopLeftPoint(point unsafe.Pointer) {
 	sel := objc.RegisterName("setFrameTopLeftPoint:")
 	w_.ID.Send(sel, point)
 }
@@ -1192,7 +1192,7 @@ func (w_ Window) ToggleToolbarShown(sender objc.ID) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSWindow/trackEvents(matching:timeout:mode:handler:)
-func (w_ Window) TrackEventsMatchingMaskTimeoutModeHandler(mask unsafe.Pointer, timeout foundation.TimeInterval, mode unsafe.Pointer, trackingHandler unsafe.Pointer) {
+func (w_ Window) TrackEventsMatchingMaskTimeoutModeHandler(mask unsafe.Pointer, timeout float64, mode unsafe.Pointer, trackingHandler unsafe.Pointer) {
 	sel := objc.RegisterName("trackEventsMatchingMask:timeout:mode:handler:")
 	w_.ID.Send(sel, mask, timeout, mode, trackingHandler)
 }

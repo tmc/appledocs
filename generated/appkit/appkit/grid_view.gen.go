@@ -52,7 +52,7 @@ func NewGridViewWithCoder(coder unsafe.Pointer) GridView {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSGridView/init(frame:)
-func NewGridViewWithFrame(frameRect foundation.Rect) GridView {
+func NewGridViewWithFrame(frameRect unsafe.Pointer) GridView {
 	instance := GridView{}.Alloc()
 	sel := objc.RegisterName("initWithFrame:")
 	ret := instance.ID.Send(sel, frameRect)
@@ -165,7 +165,7 @@ func (g_ GridView) InsertRowAtIndexWithViews(index int, views unsafe.Pointer) un
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSGridView/mergeCells(inHorizontalRange:verticalRange:)
-func (g_ GridView) MergeCellsInHorizontalRangeVerticalRange(hRange foundation.Range, vRange foundation.Range) {
+func (g_ GridView) MergeCellsInHorizontalRangeVerticalRange(hRange unsafe.Pointer, vRange unsafe.Pointer) {
 	sel := objc.RegisterName("mergeCellsInHorizontalRange:verticalRange:")
 	g_.ID.Send(sel, hRange, vRange)
 }

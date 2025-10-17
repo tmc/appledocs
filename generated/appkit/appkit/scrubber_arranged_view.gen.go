@@ -35,3 +35,4 @@ func (s_ ScrubberArrangedView) ApplyLayoutAttributes(layoutAttributes unsafe.Poi
 	s_.ID.Send(sel, layoutAttributes)
 }
 
+

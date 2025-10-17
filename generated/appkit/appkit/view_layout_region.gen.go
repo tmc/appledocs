@@ -41,3 +41,4 @@ func (vc ViewLayoutRegion) SafeAreaLayoutRegionWithCornerAdaptation(adaptivityAx
 	return unsafe.Pointer(ret)
 }
 
+

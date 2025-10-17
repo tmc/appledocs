@@ -52,7 +52,7 @@ func NewViewWithCoder(coder unsafe.Pointer) View {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/init(frame:)
-func NewViewWithFrame(frameRect foundation.Rect) View {
+func NewViewWithFrame(frameRect unsafe.Pointer) View {
 	instance := View{}.Alloc()
 	sel := objc.RegisterName("initWithFrame:")
 	ret := instance.ID.Send(sel, frameRect)
@@ -91,7 +91,7 @@ func (v_ View) AddConstraints(constraints unsafe.Pointer) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/addCursorRect(_:cursor:)
-func (v_ View) AddCursorRectCursor(rect foundation.Rect, object unsafe.Pointer) {
+func (v_ View) AddCursorRectCursor(rect unsafe.Pointer, object unsafe.Pointer) {
 	sel := objc.RegisterName("addCursorRect:cursor:")
 	v_.ID.Send(sel, rect, object)
 }
@@ -131,7 +131,7 @@ func (v_ View) AddSubviewPositionedRelativeTo(view unsafe.Pointer, place WindowO
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/addToolTip(_:owner:userData:)
-func (v_ View) AddToolTipRectOwnerUserData(rect foundation.Rect, owner objc.ID, data unsafe.Pointer) unsafe.Pointer {
+func (v_ View) AddToolTipRectOwnerUserData(rect unsafe.Pointer, owner objc.ID, data unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("addToolTipRect:owner:userData:")
 	ret := v_.ID.Send(sel, rect, owner, data)
 	return unsafe.Pointer(ret)
@@ -148,7 +148,7 @@ func (v_ View) AddTrackingArea(trackingArea unsafe.Pointer) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/addTrackingRect(_:owner:userData:assumeInside:)
-func (v_ View) AddTrackingRectOwnerUserDataAssumeInside(rect foundation.Rect, owner objc.ID, data unsafe.Pointer, flag bool) unsafe.Pointer {
+func (v_ View) AddTrackingRectOwnerUserDataAssumeInside(rect unsafe.Pointer, owner objc.ID, data unsafe.Pointer, flag bool) unsafe.Pointer {
 	sel := objc.RegisterName("addTrackingRect:owner:userData:assumeInside:")
 	ret := v_.ID.Send(sel, rect, owner, data, flag)
 	return unsafe.Pointer(ret)
@@ -173,19 +173,19 @@ func (v_ View) AdjustPageWidthNewLeftRightLimit(newRight float64, oldLeft float6
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/adjustScroll(_:)
-func (v_ View) AdjustScroll(newVisible foundation.Rect) foundation.Rect {
+func (v_ View) AdjustScroll(newVisible unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("adjustScroll:")
 	ret := v_.ID.Send(sel, newVisible)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the view’s alignment rectangle for a given frame. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/alignmentRect(forFrame:)
-func (v_ View) AlignmentRectForFrame(frame foundation.Rect) foundation.Rect {
+func (v_ View) AlignmentRectForFrame(frame unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("alignmentRectForFrame:")
 	ret := v_.ID.Send(sel, frame)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Causes the view to maintain a private graphics state object, which encapsulates all parameters of the graphics environment. [Full Topic]
 
@@ -217,10 +217,10 @@ func (v_ View) Autoscroll(event unsafe.Pointer) bool {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/backingAlignedRect(_:options:)
-func (v_ View) BackingAlignedRectOptions(rect foundation.Rect, options unsafe.Pointer) foundation.Rect {
+func (v_ View) BackingAlignedRectOptions(rect unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("backingAlignedRect:options:")
 	ret := v_.ID.Send(sel, rect, options)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Invoked at the beginning of the printing session, this method sets up the current graphics context. [Full Topic]
 
@@ -243,7 +243,7 @@ func (v_ View) BeginDraggingSessionWithItemsEventSource(items unsafe.Pointer, ev
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/beginPage(in:atPlacement:)
-func (v_ View) BeginPageInRectAtPlacement(rect foundation.Rect, location foundation.Point) {
+func (v_ View) BeginPageInRectAtPlacement(rect unsafe.Pointer, location unsafe.Pointer) {
 	sel := objc.RegisterName("beginPageInRect:atPlacement:")
 	v_.ID.Send(sel, rect, location)
 }
@@ -251,7 +251,7 @@ func (v_ View) BeginPageInRectAtPlacement(rect foundation.Rect, location foundat
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/bitmapImageRepForCachingDisplay(in:)
-func (v_ View) BitmapImageRepForCachingDisplayInRect(rect foundation.Rect) unsafe.Pointer {
+func (v_ View) BitmapImageRepForCachingDisplayInRect(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("bitmapImageRepForCachingDisplayInRect:")
 	ret := v_.ID.Send(sel, rect)
 	return unsafe.Pointer(ret)
@@ -260,7 +260,7 @@ func (v_ View) BitmapImageRepForCachingDisplayInRect(rect foundation.Rect) unsaf
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/cacheDisplay(in:to:)
-func (v_ View) CacheDisplayInRectToBitmapImageRep(rect foundation.Rect, bitmapImageRep unsafe.Pointer) {
+func (v_ View) CacheDisplayInRectToBitmapImageRep(rect unsafe.Pointer, bitmapImageRep unsafe.Pointer) {
 	sel := objc.RegisterName("cacheDisplayInRect:toBitmapImageRep:")
 	v_.ID.Send(sel, rect, bitmapImageRep)
 }
@@ -268,10 +268,10 @@ func (v_ View) CacheDisplayInRectToBitmapImageRep(rect foundation.Rect, bitmapIm
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/centerScanRect(_:)
-func (v_ View) CenterScanRect(rect foundation.Rect) foundation.Rect {
+func (v_ View) CenterScanRect(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("centerScanRect:")
 	ret := v_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the constraints impacting the layout of the view for a given orientation. [Full Topic]
 
@@ -304,223 +304,223 @@ func (v_ View) ContentHuggingPriorityForOrientation(orientation unsafe.Pointer) 
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:from:)-1dq9l
-func (v_ View) ConvertPointFromView(point foundation.Point, view unsafe.Pointer) foundation.Point {
+func (v_ View) ConvertPointFromView(point unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPoint:fromView:")
 	ret := v_.ID.Send(sel, point, view)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a size from another view’s coordinate system to that of the view. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:from:)-40x0w
-func (v_ View) ConvertSizeFromView(size foundation.Size, view unsafe.Pointer) foundation.Size {
+func (v_ View) ConvertSizeFromView(size unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertSize:fromView:")
 	ret := v_.ID.Send(sel, size, view)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a rectangle from the coordinate system of another view to that of the view. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:from:)-7fbb6
-func (v_ View) ConvertRectFromView(rect foundation.Rect, view unsafe.Pointer) foundation.Rect {
+func (v_ View) ConvertRectFromView(rect unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRect:fromView:")
 	ret := v_.ID.Send(sel, rect, view)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a rectangle from the view’s coordinate system to that of another view. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-3cqqt
-func (v_ View) ConvertRectToView(rect foundation.Rect, view unsafe.Pointer) foundation.Rect {
+func (v_ View) ConvertRectToView(rect unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRect:toView:")
 	ret := v_.ID.Send(sel, rect, view)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a size from the view’s coordinate system to that of another view. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-5nptx
-func (v_ View) ConvertSizeToView(size foundation.Size, view unsafe.Pointer) foundation.Size {
+func (v_ View) ConvertSizeToView(size unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertSize:toView:")
 	ret := v_.ID.Send(sel, size, view)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a point from the view’s coordinate system to that of a given view. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-6u9ir
-func (v_ View) ConvertPointToView(point foundation.Point, view unsafe.Pointer) foundation.Point {
+func (v_ View) ConvertPointToView(point unsafe.Pointer, view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPoint:toView:")
 	ret := v_.ID.Send(sel, point, view)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a point from its pixel aligned backing store coordinate system to the view’s interior coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertFromBacking(_:)-229ps
-func (v_ View) ConvertPointFromBacking(point foundation.Point) foundation.Point {
+func (v_ View) ConvertPointFromBacking(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPointFromBacking:")
 	ret := v_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a rectangle from its pixel aligned backing store coordinate system to the view’s interior coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertFromBacking(_:)-2njpa
-func (v_ View) ConvertRectFromBacking(rect foundation.Rect) foundation.Rect {
+func (v_ View) ConvertRectFromBacking(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRectFromBacking:")
 	ret := v_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a size from its pixel aligned backing store coordinate system to the view’s interior coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertFromBacking(_:)-4agf9
-func (v_ View) ConvertSizeFromBacking(size foundation.Size) foundation.Size {
+func (v_ View) ConvertSizeFromBacking(size unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertSizeFromBacking:")
 	ret := v_.ID.Send(sel, size)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Convert the point from the layer’s interior coordinate system to the view’s interior coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertFromLayer(_:)-3nsbu
-func (v_ View) ConvertPointFromLayer(point foundation.Point) foundation.Point {
+func (v_ View) ConvertPointFromLayer(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPointFromLayer:")
 	ret := v_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Convert the size from the layer’s interior coordinate system to the view’s interior coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertFromLayer(_:)-3usqp
-func (v_ View) ConvertSizeFromLayer(size foundation.Size) foundation.Size {
+func (v_ View) ConvertSizeFromLayer(size unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertSizeFromLayer:")
 	ret := v_.ID.Send(sel, size)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Convert the rectangle from the layer’s interior coordinate system to the view’s interior coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertFromLayer(_:)-8s5bi
-func (v_ View) ConvertRectFromLayer(rect foundation.Rect) foundation.Rect {
+func (v_ View) ConvertRectFromLayer(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRectFromLayer:")
 	ret := v_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts the point from the base coordinate system to the view’s coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertPointFromBase:
-func (v_ View) ConvertPointFromBase(point foundation.Point) foundation.Point {
+func (v_ View) ConvertPointFromBase(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPointFromBase:")
 	ret := v_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts the point from the view’s coordinate system to the base coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertPointToBase:
-func (v_ View) ConvertPointToBase(point foundation.Point) foundation.Point {
+func (v_ View) ConvertPointToBase(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPointToBase:")
 	ret := v_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts the rectangle from the base coordinate system to the view’s coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertRectFromBase:
-func (v_ View) ConvertRectFromBase(rect foundation.Rect) foundation.Rect {
+func (v_ View) ConvertRectFromBase(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRectFromBase:")
 	ret := v_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts the rectangle from the view’s coordinate system to the base coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertRectToBase:
-func (v_ View) ConvertRectToBase(rect foundation.Rect) foundation.Rect {
+func (v_ View) ConvertRectToBase(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRectToBase:")
 	ret := v_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts the size from the base coordinate system to the view’s coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertSizeFromBase:
-func (v_ View) ConvertSizeFromBase(size foundation.Size) foundation.Size {
+func (v_ View) ConvertSizeFromBase(size unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertSizeFromBase:")
 	ret := v_.ID.Send(sel, size)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts the size from the view’s coordinate system to the base coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertSizeToBase:
-func (v_ View) ConvertSizeToBase(size foundation.Size) foundation.Size {
+func (v_ View) ConvertSizeToBase(size unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertSizeToBase:")
 	ret := v_.ID.Send(sel, size)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a point from the view’s interior coordinate system to its pixel aligned backing store coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertToBacking(_:)-2xx45
-func (v_ View) ConvertPointToBacking(point foundation.Point) foundation.Point {
+func (v_ View) ConvertPointToBacking(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPointToBacking:")
 	ret := v_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a rectangle from the view’s interior coordinate system to its pixel aligned backing store coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertToBacking(_:)-3zors
-func (v_ View) ConvertRectToBacking(rect foundation.Rect) foundation.Rect {
+func (v_ View) ConvertRectToBacking(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRectToBacking:")
 	ret := v_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Converts a size from the view’s interior coordinate system to its pixel aligned backing store coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertToBacking(_:)-4ra9y
-func (v_ View) ConvertSizeToBacking(size foundation.Size) foundation.Size {
+func (v_ View) ConvertSizeToBacking(size unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertSizeToBacking:")
 	ret := v_.ID.Send(sel, size)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Convert the size from the view’s interior coordinate system to the layer’s interior coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertToLayer(_:)-160pw
-func (v_ View) ConvertRectToLayer(rect foundation.Rect) foundation.Rect {
+func (v_ View) ConvertRectToLayer(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertRectToLayer:")
 	ret := v_.ID.Send(sel, rect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Convert the size from the view’s interior coordinate system to the layer’s interior coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertToLayer(_:)-2vozx
-func (v_ View) ConvertSizeToLayer(size foundation.Size) foundation.Size {
+func (v_ View) ConvertSizeToLayer(size unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertSizeToLayer:")
 	ret := v_.ID.Send(sel, size)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Convert the size from the view’s interior coordinate system to the layer’s interior coordinate system. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/convertToLayer(_:)-44u7d
-func (v_ View) ConvertPointToLayer(point foundation.Point) foundation.Point {
+func (v_ View) ConvertPointToLayer(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("convertPointToLayer:")
 	ret := v_.ID.Send(sel, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns EPS data that draws the region of the view within a specified rectangle. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/dataWithEPS(inside:)
-func (v_ View) DataWithEPSInsideRect(rect foundation.Rect) unsafe.Pointer {
+func (v_ View) DataWithEPSInsideRect(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("dataWithEPSInsideRect:")
 	ret := v_.ID.Send(sel, rect)
 	return unsafe.Pointer(ret)
@@ -529,7 +529,7 @@ func (v_ View) DataWithEPSInsideRect(rect foundation.Rect) unsafe.Pointer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/dataWithPDF(inside:)
-func (v_ View) DataWithPDFInsideRect(rect foundation.Rect) unsafe.Pointer {
+func (v_ View) DataWithPDFInsideRect(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("dataWithPDFInsideRect:")
 	ret := v_.ID.Send(sel, rect)
 	return unsafe.Pointer(ret)
@@ -570,7 +570,7 @@ func (v_ View) Display() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/display(_:)
-func (v_ View) DisplayRect(rect foundation.Rect) {
+func (v_ View) DisplayRect(rect unsafe.Pointer) {
 	sel := objc.RegisterName("displayRect:")
 	v_.ID.Send(sel, rect)
 }
@@ -586,7 +586,7 @@ func (v_ View) DisplayIfNeeded() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded(_:)
-func (v_ View) DisplayIfNeededInRect(rect foundation.Rect) {
+func (v_ View) DisplayIfNeededInRect(rect unsafe.Pointer) {
 	sel := objc.RegisterName("displayIfNeededInRect:")
 	v_.ID.Send(sel, rect)
 }
@@ -602,7 +602,7 @@ func (v_ View) DisplayIfNeededIgnoringOpacity() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeededIgnoringOpacity(_:)
-func (v_ View) DisplayIfNeededInRectIgnoringOpacity(rect foundation.Rect) {
+func (v_ View) DisplayIfNeededInRectIgnoringOpacity(rect unsafe.Pointer) {
 	sel := objc.RegisterName("displayIfNeededInRectIgnoringOpacity:")
 	v_.ID.Send(sel, rect)
 }
@@ -610,7 +610,7 @@ func (v_ View) DisplayIfNeededInRectIgnoringOpacity(rect foundation.Rect) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/displayIgnoringOpacity(_:)
-func (v_ View) DisplayRectIgnoringOpacity(rect foundation.Rect) {
+func (v_ View) DisplayRectIgnoringOpacity(rect unsafe.Pointer) {
 	sel := objc.RegisterName("displayRectIgnoringOpacity:")
 	v_.ID.Send(sel, rect)
 }
@@ -618,7 +618,7 @@ func (v_ View) DisplayRectIgnoringOpacity(rect foundation.Rect) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/displayIgnoringOpacity(_:in:)
-func (v_ View) DisplayRectIgnoringOpacityInContext(rect foundation.Rect, context unsafe.Pointer) {
+func (v_ View) DisplayRectIgnoringOpacityInContext(rect unsafe.Pointer, context unsafe.Pointer) {
 	sel := objc.RegisterName("displayRectIgnoringOpacity:inContext:")
 	v_.ID.Send(sel, rect, context)
 }
@@ -633,7 +633,7 @@ func (v_ View) DisplayLinkWithTargetSelector(target objc.ID, selector objc.SEL) 
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/dragFile(_:from:slideBack:event:)
-func (v_ View) DragFileFromRectSlideBackEvent(filename string, rect foundation.Rect, flag bool, event unsafe.Pointer) bool {
+func (v_ View) DragFileFromRectSlideBackEvent(filename string, rect unsafe.Pointer, flag bool, event unsafe.Pointer) bool {
 	sel := objc.RegisterName("dragFile:fromRect:slideBack:event:")
 	ret := v_.ID.Send(sel, filename, rect, flag, event)
 	return ret != 0
@@ -642,7 +642,7 @@ func (v_ View) DragFileFromRectSlideBackEvent(filename string, rect foundation.R
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/dragImage:at:offset:event:pasteboard:source:slideBack:
-func (v_ View) DragImageAtOffsetEventPasteboardSourceSlideBack(image unsafe.Pointer, viewLocation foundation.Point, initialOffset foundation.Size, event unsafe.Pointer, pboard unsafe.Pointer, sourceObj objc.ID, slideFlag bool) {
+func (v_ View) DragImageAtOffsetEventPasteboardSourceSlideBack(image unsafe.Pointer, viewLocation unsafe.Pointer, initialOffset unsafe.Pointer, event unsafe.Pointer, pboard unsafe.Pointer, sourceObj objc.ID, slideFlag bool) {
 	sel := objc.RegisterName("dragImage:at:offset:event:pasteboard:source:slideBack:")
 	v_.ID.Send(sel, image, viewLocation, initialOffset, event, pboard, sourceObj, slideFlag)
 }
@@ -650,7 +650,7 @@ func (v_ View) DragImageAtOffsetEventPasteboardSourceSlideBack(image unsafe.Poin
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/dragPromisedFiles(ofTypes:from:source:slideBack:event:)
-func (v_ View) DragPromisedFilesOfTypesFromRectSourceSlideBackEvent(typeArray unsafe.Pointer, rect foundation.Rect, sourceObject objc.ID, flag bool, event unsafe.Pointer) bool {
+func (v_ View) DragPromisedFilesOfTypesFromRectSourceSlideBackEvent(typeArray unsafe.Pointer, rect unsafe.Pointer, sourceObject objc.ID, flag bool, event unsafe.Pointer) bool {
 	sel := objc.RegisterName("dragPromisedFilesOfTypes:fromRect:source:slideBack:event:")
 	ret := v_.ID.Send(sel, typeArray, rect, sourceObject, flag, event)
 	return ret != 0
@@ -659,7 +659,7 @@ func (v_ View) DragPromisedFilesOfTypesFromRectSourceSlideBackEvent(typeArray un
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)
-func (v_ View) DrawRect(dirtyRect foundation.Rect) {
+func (v_ View) DrawRect(dirtyRect unsafe.Pointer) {
 	sel := objc.RegisterName("drawRect:")
 	v_.ID.Send(sel, dirtyRect)
 }
@@ -675,7 +675,7 @@ func (v_ View) DrawFocusRingMask() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/drawPageBorder(with:)
-func (v_ View) DrawPageBorderWithSize(borderSize foundation.Size) {
+func (v_ View) DrawPageBorderWithSize(borderSize unsafe.Pointer) {
 	sel := objc.RegisterName("drawPageBorderWithSize:")
 	v_.ID.Send(sel, borderSize)
 }
@@ -683,7 +683,7 @@ func (v_ View) DrawPageBorderWithSize(borderSize foundation.Size) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/drawSheetBorder(with:)
-func (v_ View) DrawSheetBorderWithSize(borderSize foundation.Size) {
+func (v_ View) DrawSheetBorderWithSize(borderSize unsafe.Pointer) {
 	sel := objc.RegisterName("drawSheetBorderWithSize:")
 	v_.ID.Send(sel, borderSize)
 }
@@ -739,10 +739,10 @@ func (v_ View) ExitFullScreenModeWithOptions(options unsafe.Pointer) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/frame(forAlignmentRect:)
-func (v_ View) FrameForAlignmentRect(alignmentRect foundation.Rect) foundation.Rect {
+func (v_ View) FrameForAlignmentRect(alignmentRect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("frameForAlignmentRect:")
 	ret := v_.ID.Send(sel, alignmentRect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the identifier for the view’s graphics state object, or 0 if the view doesn’t have a graphics state object. [Full Topic]
 
@@ -773,7 +773,7 @@ func (v_ View) GetRectsExposedDuringLiveResizeCount(exposedRects unsafe.Pointer,
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/hitTest(_:)
-func (v_ View) HitTest(point foundation.Point) unsafe.Pointer {
+func (v_ View) HitTest(point unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("hitTest:")
 	ret := v_.ID.Send(sel, point)
 	return unsafe.Pointer(ret)
@@ -799,7 +799,7 @@ func (v_ View) IsDescendantOf(view unsafe.Pointer) bool {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/isMousePoint(_:in:)
-func (v_ View) MouseInRect(point foundation.Point, rect foundation.Rect) bool {
+func (v_ View) MouseInRect(point unsafe.Pointer, rect unsafe.Pointer) bool {
 	sel := objc.RegisterName("mouse:inRect:")
 	ret := v_.ID.Send(sel, point, rect)
 	return ret != 0
@@ -840,10 +840,10 @@ func (v_ View) LayoutSubtreeIfNeeded() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/locationOfPrintRect(_:)
-func (v_ View) LocationOfPrintRect(rect foundation.Rect) foundation.Point {
+func (v_ View) LocationOfPrintRect(rect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("locationOfPrintRect:")
 	ret := v_.ID.Send(sel, rect)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Locks the focus on the view, so subsequent commands take effect in the view’s window and coordinate system. [Full Topic]
 
@@ -893,7 +893,7 @@ func (v_ View) MenuForEvent(event unsafe.Pointer) unsafe.Pointer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/needsToDraw(_:)
-func (v_ View) NeedsToDrawRect(rect foundation.Rect) bool {
+func (v_ View) NeedsToDrawRect(rect unsafe.Pointer) bool {
 	sel := objc.RegisterName("needsToDrawRect:")
 	ret := v_.ID.Send(sel, rect)
 	return ret != 0
@@ -928,7 +928,7 @@ func (v_ View) PerformMnemonic(string string) bool {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/prepareContent(in:)
-func (v_ View) PrepareContentInRect(rect foundation.Rect) {
+func (v_ View) PrepareContentInRect(rect unsafe.Pointer) {
 	sel := objc.RegisterName("prepareContentInRect:")
 	v_.ID.Send(sel, rect)
 }
@@ -950,28 +950,28 @@ func (v_ View) Print(sender objc.ID) {
 }
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/rectForLayoutRegion:
-func (v_ View) RectForLayoutRegion(layoutRegion unsafe.Pointer) foundation.Rect {
+func (v_ View) RectForLayoutRegion(layoutRegion unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("rectForLayoutRegion:")
 	ret := v_.ID.Send(sel, layoutRegion)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Implemented by subclasses to determine the portion of the view to be printed for the specified page number. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/rectForPage(_:)
-func (v_ View) RectForPage(page int) foundation.Rect {
+func (v_ View) RectForPage(page int) unsafe.Pointer {
 	sel := objc.RegisterName("rectForPage:")
 	ret := v_.ID.Send(sel, page)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the appropriate rectangle to use when magnifying around the specified point. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/rectForSmartMagnification(at:in:)
-func (v_ View) RectForSmartMagnificationAtPointInRect(location foundation.Point, visibleRect foundation.Rect) foundation.Rect {
+func (v_ View) RectForSmartMagnificationAtPointInRect(location unsafe.Pointer, visibleRect unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("rectForSmartMagnificationAtPoint:inRect:")
 	ret := v_.ID.Send(sel, location, visibleRect)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Notifies a clip view’s superview that either the clip view’s bounds rectangle or the document view’s frame rectangle has changed, and that any indicators of the scroll position need to be adjusted. [Full Topic]
 
@@ -1025,7 +1025,7 @@ func (v_ View) RemoveConstraints(constraints unsafe.Pointer) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/removeCursorRect(_:cursor:)
-func (v_ View) RemoveCursorRectCursor(rect foundation.Rect, object unsafe.Pointer) {
+func (v_ View) RemoveCursorRectCursor(rect unsafe.Pointer, object unsafe.Pointer) {
 	sel := objc.RegisterName("removeCursorRect:cursor:")
 	v_.ID.Send(sel, rect, object)
 }
@@ -1113,7 +1113,7 @@ func (v_ View) ResetCursorRects() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/resize(withOldSuperviewSize:)
-func (v_ View) ResizeWithOldSuperviewSize(oldSize foundation.Size) {
+func (v_ View) ResizeWithOldSuperviewSize(oldSize unsafe.Pointer) {
 	sel := objc.RegisterName("resizeWithOldSuperviewSize:")
 	v_.ID.Send(sel, oldSize)
 }
@@ -1121,7 +1121,7 @@ func (v_ View) ResizeWithOldSuperviewSize(oldSize foundation.Size) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/resizeSubviews(withOldSize:)
-func (v_ View) ResizeSubviewsWithOldSize(oldSize foundation.Size) {
+func (v_ View) ResizeSubviewsWithOldSize(oldSize unsafe.Pointer) {
 	sel := objc.RegisterName("resizeSubviewsWithOldSize:")
 	v_.ID.Send(sel, oldSize)
 }
@@ -1167,17 +1167,17 @@ func (v_ View) RulerViewHandleMouseDown(ruler unsafe.Pointer, event unsafe.Point
 }
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/rulerView(_:locationFor:)
-func (v_ View) RulerViewLocationForPoint(ruler unsafe.Pointer, point foundation.Point) float64 {
+func (v_ View) RulerViewLocationForPoint(ruler unsafe.Pointer, point unsafe.Pointer) float64 {
 	sel := objc.RegisterName("rulerView:locationForPoint:")
 	ret := v_.ID.Send(sel, ruler, point)
 	return float64(ret)
 }
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/rulerView(_:pointForLocation:)
-func (v_ View) RulerViewPointForLocation(ruler unsafe.Pointer, point float64) foundation.Point {
+func (v_ View) RulerViewPointForLocation(ruler unsafe.Pointer, point float64) unsafe.Pointer {
 	sel := objc.RegisterName("rulerView:pointForLocation:")
 	ret := v_.ID.Send(sel, ruler, point)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
 // Requests permission for   to add  , an NSRulerMarker being dragged onto the ruler by the user. [Full Topic]
 
@@ -1236,7 +1236,7 @@ func (v_ View) RulerViewWillSetClientView(ruler unsafe.Pointer, newClient unsafe
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/scaleUnitSquare(to:)
-func (v_ View) ScaleUnitSquareToSize(newUnitSize foundation.Size) {
+func (v_ View) ScaleUnitSquareToSize(newUnitSize unsafe.Pointer) {
 	sel := objc.RegisterName("scaleUnitSquareToSize:")
 	v_.ID.Send(sel, newUnitSize)
 }
@@ -1244,7 +1244,7 @@ func (v_ View) ScaleUnitSquareToSize(newUnitSize foundation.Size) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/scroll(_:)
-func (v_ View) ScrollPoint(point foundation.Point) {
+func (v_ View) ScrollPoint(point unsafe.Pointer) {
 	sel := objc.RegisterName("scrollPoint:")
 	v_.ID.Send(sel, point)
 }
@@ -1252,7 +1252,7 @@ func (v_ View) ScrollPoint(point foundation.Point) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/scroll(_:by:)
-func (v_ View) ScrollRectBy(rect foundation.Rect, delta foundation.Size) {
+func (v_ View) ScrollRectBy(rect unsafe.Pointer, delta unsafe.Pointer) {
 	sel := objc.RegisterName("scrollRect:by:")
 	v_.ID.Send(sel, rect, delta)
 }
@@ -1260,7 +1260,7 @@ func (v_ View) ScrollRectBy(rect foundation.Rect, delta foundation.Size) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/scroll(_:to:)
-func (v_ View) ScrollClipViewToPoint(clipView unsafe.Pointer, point foundation.Point) {
+func (v_ View) ScrollClipViewToPoint(clipView unsafe.Pointer, point unsafe.Pointer) {
 	sel := objc.RegisterName("scrollClipView:toPoint:")
 	v_.ID.Send(sel, clipView, point)
 }
@@ -1268,7 +1268,7 @@ func (v_ View) ScrollClipViewToPoint(clipView unsafe.Pointer, point foundation.P
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/scrollToVisible(_:)
-func (v_ View) ScrollRectToVisible(rect foundation.Rect) bool {
+func (v_ View) ScrollRectToVisible(rect unsafe.Pointer) bool {
 	sel := objc.RegisterName("scrollRectToVisible:")
 	ret := v_.ID.Send(sel, rect)
 	return ret != 0
@@ -1277,7 +1277,7 @@ func (v_ View) ScrollRectToVisible(rect foundation.Rect) bool {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/setBoundsOrigin(_:)
-func (v_ View) SetBoundsOrigin(newOrigin foundation.Point) {
+func (v_ View) SetBoundsOrigin(newOrigin unsafe.Pointer) {
 	sel := objc.RegisterName("setBoundsOrigin:")
 	v_.ID.Send(sel, newOrigin)
 }
@@ -1285,7 +1285,7 @@ func (v_ View) SetBoundsOrigin(newOrigin foundation.Point) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/setBoundsSize(_:)
-func (v_ View) SetBoundsSize(newSize foundation.Size) {
+func (v_ View) SetBoundsSize(newSize unsafe.Pointer) {
 	sel := objc.RegisterName("setBoundsSize:")
 	v_.ID.Send(sel, newSize)
 }
@@ -1309,7 +1309,7 @@ func (v_ View) SetContentHuggingPriorityForOrientation(priority unsafe.Pointer, 
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/setFrameOrigin(_:)
-func (v_ View) SetFrameOrigin(newOrigin foundation.Point) {
+func (v_ View) SetFrameOrigin(newOrigin unsafe.Pointer) {
 	sel := objc.RegisterName("setFrameOrigin:")
 	v_.ID.Send(sel, newOrigin)
 }
@@ -1317,7 +1317,7 @@ func (v_ View) SetFrameOrigin(newOrigin foundation.Point) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/setFrameSize(_:)
-func (v_ View) SetFrameSize(newSize foundation.Size) {
+func (v_ View) SetFrameSize(newSize unsafe.Pointer) {
 	sel := objc.RegisterName("setFrameSize:")
 	v_.ID.Send(sel, newSize)
 }
@@ -1325,7 +1325,7 @@ func (v_ View) SetFrameSize(newSize foundation.Size) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/setKeyboardFocusRingNeedsDisplay(_:)
-func (v_ View) SetKeyboardFocusRingNeedsDisplayInRect(rect foundation.Rect) {
+func (v_ View) SetKeyboardFocusRingNeedsDisplayInRect(rect unsafe.Pointer) {
 	sel := objc.RegisterName("setKeyboardFocusRingNeedsDisplayInRect:")
 	v_.ID.Send(sel, rect)
 }
@@ -1333,7 +1333,7 @@ func (v_ View) SetKeyboardFocusRingNeedsDisplayInRect(rect foundation.Rect) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/setNeedsDisplay(_:)
-func (v_ View) SetNeedsDisplayInRect(invalidRect foundation.Rect) {
+func (v_ View) SetNeedsDisplayInRect(invalidRect unsafe.Pointer) {
 	sel := objc.RegisterName("setNeedsDisplayInRect:")
 	v_.ID.Send(sel, invalidRect)
 }
@@ -1367,7 +1367,7 @@ func (v_ View) ShouldDrawColor() bool {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/showDefinition(for:at:)
-func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString unsafe.Pointer, textBaselineOrigin foundation.Point) {
+func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString unsafe.Pointer, textBaselineOrigin unsafe.Pointer) {
 	sel := objc.RegisterName("showDefinitionForAttributedString:atPoint:")
 	v_.ID.Send(sel, attrString, textBaselineOrigin)
 }
@@ -1375,7 +1375,7 @@ func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString unsafe.Pointe
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/showDefinition(for:range:options:baselineOriginProvider:)
-func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString unsafe.Pointer, targetRange foundation.Range, options unsafe.Pointer, originProvider unsafe.Pointer) {
+func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString unsafe.Pointer, targetRange unsafe.Pointer, options unsafe.Pointer, originProvider unsafe.Pointer) {
 	sel := objc.RegisterName("showDefinitionForAttributedString:range:options:baselineOriginProvider:")
 	v_.ID.Send(sel, attrString, targetRange, options, originProvider)
 }
@@ -1391,7 +1391,7 @@ func (v_ View) SortSubviewsUsingFunctionContext(compare unsafe.Pointer, context 
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/translateOrigin(to:)
-func (v_ View) TranslateOriginToPoint(translation foundation.Point) {
+func (v_ View) TranslateOriginToPoint(translation unsafe.Pointer) {
 	sel := objc.RegisterName("translateOriginToPoint:")
 	v_.ID.Send(sel, translation)
 }
@@ -1399,7 +1399,7 @@ func (v_ View) TranslateOriginToPoint(translation foundation.Point) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/translateRectsNeedingDisplay(in:by:)
-func (v_ View) TranslateRectsNeedingDisplayInRectBy(clipRect foundation.Rect, delta foundation.Size) {
+func (v_ View) TranslateRectsNeedingDisplayInRectBy(clipRect unsafe.Pointer, delta unsafe.Pointer) {
 	sel := objc.RegisterName("translateRectsNeedingDisplayInRect:by:")
 	v_.ID.Send(sel, clipRect, delta)
 }
@@ -1568,7 +1568,7 @@ func (v_ View) WillRemoveSubview(subview unsafe.Pointer) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/writeEPS(inside:to:)
-func (v_ View) WriteEPSInsideRectToPasteboard(rect foundation.Rect, pasteboard unsafe.Pointer) {
+func (v_ View) WriteEPSInsideRectToPasteboard(rect unsafe.Pointer, pasteboard unsafe.Pointer) {
 	sel := objc.RegisterName("writeEPSInsideRect:toPasteboard:")
 	v_.ID.Send(sel, rect, pasteboard)
 }
@@ -1576,7 +1576,7 @@ func (v_ View) WriteEPSInsideRectToPasteboard(rect foundation.Rect, pasteboard u
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSView/writePDF(inside:to:)
-func (v_ View) WritePDFInsideRectToPasteboard(rect foundation.Rect, pasteboard unsafe.Pointer) {
+func (v_ View) WritePDFInsideRectToPasteboard(rect unsafe.Pointer, pasteboard unsafe.Pointer) {
 	sel := objc.RegisterName("writePDFInsideRect:toPasteboard:")
 	v_.ID.Send(sel, rect, pasteboard)
 }

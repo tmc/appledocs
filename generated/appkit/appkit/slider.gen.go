@@ -35,3 +35,4 @@ func (s_ Slider) SetTitleFont(fontObj unsafe.Pointer) {
 	s_.ID.Send(sel, fontObj)
 }
 
+

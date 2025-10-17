@@ -48,7 +48,7 @@ func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {
 }
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSScrollView/init(frame:)
-func NewScrollViewWithFrame(frameRect foundation.Rect) ScrollView {
+func NewScrollViewWithFrame(frameRect unsafe.Pointer) ScrollView {
 	instance := ScrollView{}.Alloc()
 	sel := objc.RegisterName("initWithFrame:")
 	ret := instance.ID.Send(sel, frameRect)
@@ -62,37 +62,37 @@ func NewScrollViewWithFrame(frameRect foundation.Rect) ScrollView {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSScrollView/contentSize(forFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)
-func (sc ScrollView) ContentSizeForFrameSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(fSize foundation.Size, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ unsafe.Pointer, controlSize unsafe.Pointer, scrollerStyle unsafe.Pointer) foundation.Size {
+func (sc ScrollView) ContentSizeForFrameSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(fSize unsafe.Pointer, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ unsafe.Pointer, controlSize unsafe.Pointer, scrollerStyle unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:")
 	ret := objc.ID(ScrollViewClass).Send(sel, fSize, horizontalScrollerClass, verticalScrollerClass, type_, controlSize, scrollerStyle)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the content size calculated from the frame size and the specified specifications. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSScrollView/contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:
-func (sc ScrollView) ContentSizeForFrameSizeHasHorizontalScrollerHasVerticalScrollerBorderType(fSize foundation.Size, hFlag bool, vFlag bool, type_ unsafe.Pointer) foundation.Size {
+func (sc ScrollView) ContentSizeForFrameSizeHasHorizontalScrollerHasVerticalScrollerBorderType(fSize unsafe.Pointer, hFlag bool, vFlag bool, type_ unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:")
 	ret := objc.ID(ScrollViewClass).Send(sel, fSize, hFlag, vFlag, type_)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the frame size of a scroll view that contains a content view with the specified size. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSScrollView/frameSize(forContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)
-func (sc ScrollView) FrameSizeForContentSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(cSize foundation.Size, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ unsafe.Pointer, controlSize unsafe.Pointer, scrollerStyle unsafe.Pointer) foundation.Size {
+func (sc ScrollView) FrameSizeForContentSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(cSize unsafe.Pointer, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ unsafe.Pointer, controlSize unsafe.Pointer, scrollerStyle unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:")
 	ret := objc.ID(ScrollViewClass).Send(sel, cSize, horizontalScrollerClass, verticalScrollerClass, type_, controlSize, scrollerStyle)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Returns the frame size of an scroll view that contains a content view with the specified size. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSScrollView/frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:
-func (sc ScrollView) FrameSizeForContentSizeHasHorizontalScrollerHasVerticalScrollerBorderType(cSize foundation.Size, hFlag bool, vFlag bool, type_ unsafe.Pointer) foundation.Size {
+func (sc ScrollView) FrameSizeForContentSizeHasHorizontalScrollerHasVerticalScrollerBorderType(cSize unsafe.Pointer, hFlag bool, vFlag bool, type_ unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:")
 	ret := objc.ID(ScrollViewClass).Send(sel, cSize, hFlag, vFlag, type_)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Adds a floating subview to the document view. [Full Topic]
 
@@ -114,7 +114,7 @@ func (s_ ScrollView) FlashScrollers() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSScrollView/magnify(toFit:)
-func (s_ ScrollView) MagnifyToFitRect(rect foundation.Rect) {
+func (s_ ScrollView) MagnifyToFitRect(rect unsafe.Pointer) {
 	sel := objc.RegisterName("magnifyToFitRect:")
 	s_.ID.Send(sel, rect)
 }
@@ -138,7 +138,7 @@ func (s_ ScrollView) ScrollWheel(event unsafe.Pointer) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSScrollView/setMagnification(_:centeredAt:)
-func (s_ ScrollView) SetMagnificationCenteredAtPoint(magnification float64, point foundation.Point) {
+func (s_ ScrollView) SetMagnificationCenteredAtPoint(magnification float64, point unsafe.Pointer) {
 	sel := objc.RegisterName("setMagnification:centeredAtPoint:")
 	s_.ID.Send(sel, magnification, point)
 }

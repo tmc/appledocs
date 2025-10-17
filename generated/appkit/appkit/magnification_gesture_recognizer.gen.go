@@ -27,3 +27,4 @@ func MagnificationGestureRecognizerFrom(ptr unsafe.Pointer) MagnificationGesture
 
 
 
+

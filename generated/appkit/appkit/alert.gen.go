@@ -35,3 +35,4 @@ func (a_ Alert) BeginSheetModalForWindowCompletionHandler(sheetWindow unsafe.Poi
 	a_.ID.Send(sel, sheetWindow, handler)
 }
 
+

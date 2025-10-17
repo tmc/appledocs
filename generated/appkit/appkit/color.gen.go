@@ -36,3 +36,4 @@ func (c_ Color) ColorUsingColorSpaceName(name unsafe.Pointer) unsafe.Pointer {
 	return unsafe.Pointer(ret)
 }
 
+

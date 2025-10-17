@@ -18,24 +18,24 @@ type TypeMapping struct {
 
 // typeRegistry contains all known Objective-C to Go type mappings
 var typeRegistry = []TypeMapping{
-	// Foundation geometry types - when generating Foundation code, use unqualified names
-	// For other frameworks using these types (AppKit, etc.), use qualified names with import
-	{ObjCType: "NSRect", GoType: "Rect", Framework: "Foundation"},
-	{ObjCType: "CGRect", GoType: "Rect", Framework: "Foundation"},
-	{ObjCType: "NSSize", GoType: "Size", Framework: "Foundation"},
-	{ObjCType: "CGSize", GoType: "Size", Framework: "Foundation"},
-	{ObjCType: "NSPoint", GoType: "Point", Framework: "Foundation"},
-	{ObjCType: "CGPoint", GoType: "Point", Framework: "Foundation"},
-	{ObjCType: "NSRange", GoType: "Range", Framework: "Foundation"},
+	// Geometry types - returned as opaque pointers from Objective-C
+	// They are actually passed by value when used as parameters, but returned as pointers
+	{ObjCType: "NSRect", GoType: "unsafe.Pointer", Framework: "Foundation"},
+	{ObjCType: "CGRect", GoType: "unsafe.Pointer", Framework: "Foundation"},
+	{ObjCType: "NSSize", GoType: "unsafe.Pointer", Framework: "Foundation"},
+	{ObjCType: "CGSize", GoType: "unsafe.Pointer", Framework: "Foundation"},
+	{ObjCType: "NSPoint", GoType: "unsafe.Pointer", Framework: "Foundation"},
+	{ObjCType: "CGPoint", GoType: "unsafe.Pointer", Framework: "Foundation"},
+	{ObjCType: "NSRange", GoType: "unsafe.Pointer", Framework: "Foundation"},
 
-	// Foundation types for other frameworks (with imports)
-	{ObjCType: "NSRect", GoType: "foundation.Rect", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "CGRect", GoType: "foundation.Rect", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "NSSize", GoType: "foundation.Size", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "CGSize", GoType: "foundation.Size", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "NSPoint", GoType: "foundation.Point", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "CGPoint", GoType: "foundation.Point", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "NSRange", GoType: "foundation.Range", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
+	// Geometry types for AppKit - also as unsafe.Pointer (no darwinkit imports)
+	{ObjCType: "NSRect", GoType: "unsafe.Pointer", Framework: "AppKit"},
+	{ObjCType: "CGRect", GoType: "unsafe.Pointer", Framework: "AppKit"},
+	{ObjCType: "NSSize", GoType: "unsafe.Pointer", Framework: "AppKit"},
+	{ObjCType: "CGSize", GoType: "unsafe.Pointer", Framework: "AppKit"},
+	{ObjCType: "NSPoint", GoType: "unsafe.Pointer", Framework: "AppKit"},
+	{ObjCType: "CGPoint", GoType: "unsafe.Pointer", Framework: "AppKit"},
+	{ObjCType: "NSRange", GoType: "unsafe.Pointer", Framework: "AppKit"},
 
 	// AppKit window and view types (enums)
 	{ObjCType: "NSWindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},
@@ -46,15 +46,19 @@ var typeRegistry = []TypeMapping{
 	// AppKit string types
 	{ObjCType: "NSString *", GoType: "string", Framework: "AppKit"},
 
-	// Foundation date/time types
-	{ObjCType: "NSTimeInterval", GoType: "foundation.TimeInterval", Framework: "Foundation", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
+	// Foundation date/time types - unqualified within Foundation
+	{ObjCType: "NSTimeInterval", GoType: "TimeInterval", Framework: "Foundation"},
+	// Foundation date/time types for AppKit - as float64 (no darwinkit imports)
+	{ObjCType: "NSTimeInterval", GoType: "float64", Framework: "AppKit"},
 
 	// CoreGraphics types
 	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreGraphics"},
 	{ObjCType: "CGAffineTransform", GoType: "coregraphics.AffineTransform", Framework: "CoreGraphics", RequiresImport: "github.com/progrium/darwinkit/macos/coregraphics"},
 
-	// Foundation edge enum
-	{ObjCType: "NSRectEdge", GoType: "foundation.RectEdge", Framework: "Foundation", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
+	// Foundation edge enum - unqualified within Foundation
+	{ObjCType: "NSRectEdge", GoType: "RectEdge", Framework: "Foundation"},
+	// Foundation edge enum for AppKit - as int (no darwinkit imports)
+	{ObjCType: "NSRectEdge", GoType: "int", Framework: "AppKit"},
 
 	// AppKit event types
 	{ObjCType: "NSEventType", GoType: "EventType", Framework: "AppKit"},

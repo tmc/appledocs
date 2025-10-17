@@ -30,9 +30,10 @@ func TouchFrom(ptr unsafe.Pointer) Touch {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSTouch/previousLocation(in:)
-func (t_ Touch) PreviousLocationInView(view unsafe.Pointer) foundation.Point {
+func (t_ Touch) PreviousLocationInView(view unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("previousLocationInView:")
 	ret := t_.ID.Send(sel, view)
-	return foundation.Point(ret)
+	return unsafe.Pointer(ret)
 }
+
 

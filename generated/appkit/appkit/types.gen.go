@@ -30,4 +30,18 @@ type CGAffineTransform struct {
 	Ty CGFloat
 }
 
+// Common type aliases
+type Range = CGPoint  // NSRange
+type Size = CGSize    // NSSize
+type Point = CGPoint  // NSPoint
+type Rect = CGRect    // NSRect
+
+// AppKit-specific enum types
+type WindowStyleMask int
+type BackingStoreType int
+type WindowOrderingMode int
+type WindowLevel int
+type EventType int
+type EventModifierFlags int
+
 

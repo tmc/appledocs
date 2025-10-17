@@ -85,3 +85,4 @@ func (s_ SavePanel) ValidateVisibleColumns() {
 	s_.ID.Send(sel)
 }
 
+

@@ -52,7 +52,7 @@ func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSScrubber/init(frame:)
-func NewScrubberWithFrame(frameRect foundation.Rect) Scrubber {
+func NewScrubberWithFrame(frameRect unsafe.Pointer) Scrubber {
 	instance := Scrubber{}.Alloc()
 	sel := objc.RegisterName("initWithFrame:")
 	ret := instance.ID.Send(sel, frameRect)

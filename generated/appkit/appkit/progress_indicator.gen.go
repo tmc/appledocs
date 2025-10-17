@@ -38,10 +38,10 @@ func (p_ ProgressIndicator) Animate(sender objc.ID) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSProgressIndicator/animationDelay
-func (p_ ProgressIndicator) AnimationDelay() foundation.TimeInterval {
+func (p_ ProgressIndicator) AnimationDelay() float64 {
 	sel := objc.RegisterName("animationDelay")
 	ret := p_.ID.Send(sel)
-	return foundation.TimeInterval(ret)
+	return float64(ret)
 }
 // Advances the progress bar of a determinate progress indicator by the specified amount. [Full Topic]
 
@@ -55,7 +55,7 @@ func (p_ ProgressIndicator) IncrementBy(delta float64) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSProgressIndicator/setAnimationDelay:
-func (p_ ProgressIndicator) SetAnimationDelay(delay foundation.TimeInterval) {
+func (p_ ProgressIndicator) SetAnimationDelay(delay float64) {
 	sel := objc.RegisterName("setAnimationDelay:")
 	p_.ID.Send(sel, delay)
 }
@@ -83,4 +83,5 @@ func (p_ ProgressIndicator) StopAnimation(sender objc.ID) {
 	sel := objc.RegisterName("stopAnimation:")
 	p_.ID.Send(sel, sender)
 }
+
 

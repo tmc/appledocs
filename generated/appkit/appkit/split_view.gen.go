@@ -46,7 +46,7 @@ func (s_ SplitView) AdjustSubviews() {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSSplitView/drawDivider(in:)
-func (s_ SplitView) DrawDividerInRect(rect foundation.Rect) {
+func (s_ SplitView) DrawDividerInRect(rect unsafe.Pointer) {
 	sel := objc.RegisterName("drawDividerInRect:")
 	s_.ID.Send(sel, rect)
 }
@@ -135,4 +135,5 @@ func (s_ SplitView) SetPositionOfDividerAtIndex(position float64, dividerIndex i
 	sel := objc.RegisterName("setPosition:ofDividerAtIndex:")
 	s_.ID.Send(sel, position, dividerIndex)
 }
+
 

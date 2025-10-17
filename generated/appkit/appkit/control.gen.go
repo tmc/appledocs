@@ -52,7 +52,7 @@ func NewControlWithCoder(coder unsafe.Pointer) Control {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSControl/init(frame:)
-func NewControlWithFrame(frameRect foundation.Rect) Control {
+func NewControlWithFrame(frameRect unsafe.Pointer) Control {
 	instance := Control{}.Alloc()
 	sel := objc.RegisterName("initWithFrame:")
 	ret := instance.ID.Send(sel, frameRect)
@@ -84,7 +84,7 @@ func (c_ Control) CurrentEditor() unsafe.Pointer {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSControl/draw(withExpansionFrame:in:)
-func (c_ Control) DrawWithExpansionFrameInView(contentFrame foundation.Rect, view unsafe.Pointer) {
+func (c_ Control) DrawWithExpansionFrameInView(contentFrame unsafe.Pointer, view unsafe.Pointer) {
 	sel := objc.RegisterName("drawWithExpansionFrame:inView:")
 	c_.ID.Send(sel, contentFrame, view)
 }
@@ -92,7 +92,7 @@ func (c_ Control) DrawWithExpansionFrameInView(contentFrame foundation.Rect, vie
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSControl/edit(withFrame:editor:delegate:event:)
-func (c_ Control) EditWithFrameEditorDelegateEvent(rect foundation.Rect, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer) {
+func (c_ Control) EditWithFrameEditorDelegateEvent(rect unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, event unsafe.Pointer) {
 	sel := objc.RegisterName("editWithFrame:editor:delegate:event:")
 	c_.ID.Send(sel, rect, textObj, delegate, event)
 }
@@ -108,10 +108,10 @@ func (c_ Control) EndEditing(textObj unsafe.Pointer) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSControl/expansionFrame(withFrame:)
-func (c_ Control) ExpansionFrameWithFrame(contentFrame foundation.Rect) foundation.Rect {
+func (c_ Control) ExpansionFrameWithFrame(contentFrame unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("expansionFrameWithFrame:")
 	ret := c_.ID.Send(sel, contentFrame)
-	return foundation.Rect(ret)
+	return unsafe.Pointer(ret)
 }
 // Notifies the control that the intrinsic content size for its cell is no longer valid. [Full Topic]
 
@@ -133,7 +133,7 @@ func (c_ Control) PerformClick(sender objc.ID) {
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSControl/select(withFrame:editor:delegate:start:length:)
-func (c_ Control) SelectWithFrameEditorDelegateStartLength(rect foundation.Rect, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int) {
+func (c_ Control) SelectWithFrameEditorDelegateStartLength(rect unsafe.Pointer, textObj unsafe.Pointer, delegate objc.ID, selStart int, selLength int) {
 	sel := objc.RegisterName("selectWithFrame:editor:delegate:start:length:")
 	c_.ID.Send(sel, rect, textObj, delegate, selStart, selLength)
 }
@@ -167,10 +167,10 @@ func (c_ Control) SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uin
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSControl/sizeThatFits(_:)
-func (c_ Control) SizeThatFits(size foundation.Size) foundation.Size {
+func (c_ Control) SizeThatFits(size unsafe.Pointer) unsafe.Pointer {
 	sel := objc.RegisterName("sizeThatFits:")
 	ret := c_.ID.Send(sel, size)
-	return foundation.Size(ret)
+	return unsafe.Pointer(ret)
 }
 // Resizes the receiver’s frame so that it’s the minimum size needed to contain its cell. [Full Topic]
 

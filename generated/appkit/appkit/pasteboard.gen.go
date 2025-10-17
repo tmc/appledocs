@@ -36,3 +36,4 @@ func (p_ Pasteboard) SetStringForType(string string, dataType unsafe.Pointer) bo
 	return ret != 0
 }
 
+

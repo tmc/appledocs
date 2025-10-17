@@ -27,3 +27,4 @@ func TextPreviewFrom(ptr unsafe.Pointer) TextPreview {
 
 
 
+
