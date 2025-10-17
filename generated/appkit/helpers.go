@@ -96,3 +96,45 @@ func RunApp(setup func(app Application)) {
 	// Run event loop (this blocks until the app quits)
 	app.Run()
 }
+
+// Window convenience methods
+
+// SetTitle sets the window's title string.
+func (w Window) SetTitle(title string) {
+	strClass := objc.GetClass("NSString")
+	nsStr := objc.ID(strClass).Send(objc.RegisterName("stringWithUTF8String:"), title)
+	objc.Send[objc.ID](w.ID, objc.RegisterName("setTitle:"), nsStr)
+}
+
+// Title returns the window's title string.
+func (w Window) Title() string {
+	nsStr := objc.Send[objc.ID](w.ID, objc.RegisterName("title"))
+	if nsStr == 0 {
+		return ""
+	}
+	cStr := objc.Send[*byte](nsStr, objc.RegisterName("UTF8String"))
+	if cStr == nil {
+		return ""
+	}
+	length := 0
+	for ptr := cStr; *ptr != 0; ptr = (*byte)(unsafe.Add(unsafe.Pointer(ptr), 1)) {
+		length++
+	}
+	return string(unsafe.Slice(cStr, length))
+}
+
+// SetDelegate sets the window's delegate.
+func (w Window) SetDelegate(delegate objc.ID) {
+	objc.Send[objc.ID](w.ID, objc.RegisterName("setDelegate:"), delegate)
+}
+
+// ContentView returns the window's content view.
+func (w Window) ContentView() View {
+	view := objc.Send[objc.ID](w.ID, objc.RegisterName("contentView"))
+	return ViewFrom(unsafe.Pointer(view))
+}
+
+// SetContentView sets the window's content view.
+func (w Window) SetContentView(view View) {
+	objc.Send[objc.ID](w.ID, objc.RegisterName("setContentView:"), view.ID)
+}

@@ -36,6 +36,30 @@ func ExampleApplication_SetActivationPolicy() {
 	// - ActivationPolicyProhibited: Cannot activate
 }
 
+// ExampleWindow_SetTitle demonstrates setting a window's title.
+func ExampleWindow_SetTitle() {
+	window := appkit.NewWindow()
+
+	window.SetTitle("My Application Window")
+
+	fmt.Println("Window title set successfully")
+
+	// Output:
+	// Window title set successfully
+}
+
+// ExampleWindow_ContentView demonstrates getting a window's content view.
+func ExampleWindow_ContentView() {
+	window := appkit.NewWindow()
+
+	contentView := window.ContentView()
+
+	fmt.Printf("Got content view: %T\n", contentView)
+
+	// Output:
+	// Got content view: appkit.View
+}
+
 // ExampleRunApp demonstrates how to use RunApp to create a simple macOS application.
 // This example shows the minimal code needed to create and display a window.
 //
