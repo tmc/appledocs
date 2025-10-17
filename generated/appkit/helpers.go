@@ -174,3 +174,63 @@ func (v View) Frame() (x, y, width, height float64) {
 	frame := objc.Send[NSRect](v.ID, objc.RegisterName("frame"))
 	return frame.Origin.X, frame.Origin.Y, frame.Size.Width, frame.Size.Height
 }
+
+// Button convenience methods
+
+// ButtonType constants for SetButtonType.
+const (
+	ButtonTypeMomentaryLight    = 0
+	ButtonTypePushOnPushOff     = 1
+	ButtonTypeToggle            = 2
+	ButtonTypeSwitch            = 3
+	ButtonTypeRadio             = 4
+	ButtonTypeMomentaryChange   = 5
+	ButtonTypeOnOff             = 6
+	ButtonTypeMomentaryPushIn   = 7
+	ButtonTypeAccelerator       = 8
+	ButtonTypeMultiLevelAccelerator = 9
+)
+
+// BezelStyle constants for SetBezelStyle.
+const (
+	BezelStyleRounded           = 1
+	BezelStyleRegularSquare     = 2
+	BezelStyleDisclosure        = 5
+	BezelStyleShadowlessSquare  = 6
+	BezelStyleCircular          = 7
+	BezelStyleTexturedSquare    = 8
+	BezelStyleHelpButton        = 9
+	BezelStyleSmallSquare       = 10
+	BezelStyleTexturedRounded   = 11
+	BezelStyleRoundRect         = 12
+	BezelStyleRecessed          = 13
+	BezelStyleRoundedDisclosure = 14
+	BezelStyleInline            = 15
+)
+
+// SetButtonType sets the button's type.
+func (b Button) SetButtonType(buttonType int) {
+	objc.Send[objc.ID](b.ID, objc.RegisterName("setButtonType:"), buttonType)
+}
+
+// SetBezelStyle sets the button's bezel style.
+func (b Button) SetBezelStyle(bezelStyle int) {
+	objc.Send[objc.ID](b.ID, objc.RegisterName("setBezelStyle:"), bezelStyle)
+}
+
+// SetTarget sets the button's action target.
+func (b Button) SetTarget(target objc.ID) {
+	objc.Send[objc.ID](b.ID, objc.RegisterName("setTarget:"), target)
+}
+
+// SetAction sets the button's action selector.
+func (b Button) SetAction(action objc.SEL) {
+	objc.Send[objc.ID](b.ID, objc.RegisterName("setAction:"), action)
+}
+
+// SetTitleString sets the button's title from a Go string.
+func (b Button) SetTitleString(title string) {
+	strClass := objc.GetClass("NSString")
+	nsStr := objc.ID(strClass).Send(objc.RegisterName("stringWithUTF8String:"), title)
+	objc.Send[objc.ID](b.ID, objc.RegisterName("setTitle:"), nsStr)
+}

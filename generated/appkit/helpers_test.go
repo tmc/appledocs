@@ -86,6 +86,36 @@ func ExampleView_SetFrameRect() {
 	// Set view frame successfully
 }
 
+// ExampleButton_SetTitleString demonstrates setting a button's title.
+func ExampleButton_SetTitleString() {
+	button := appkit.NewButton()
+
+	button.SetTitleString("Click Me!")
+
+	fmt.Println("Button title set")
+
+	// Output:
+	// Button title set
+}
+
+// ExampleButton_SetButtonType demonstrates setting button type with constants.
+func ExampleButton_SetButtonType() {
+	button := appkit.NewButton()
+
+	// Set to momentary light button (standard push button)
+	button.SetButtonType(appkit.ButtonTypeMomentaryLight)
+	button.SetBezelStyle(appkit.BezelStyleRounded)
+
+	fmt.Println("Button type and style configured")
+	fmt.Println("Available types: MomentaryLight, PushOnPushOff, Toggle, Switch, Radio")
+	fmt.Println("Available styles: Rounded, RegularSquare, Circular, HelpButton, etc.")
+
+	// Output:
+	// Button type and style configured
+	// Available types: MomentaryLight, PushOnPushOff, Toggle, Switch, Radio
+	// Available styles: Rounded, RegularSquare, Circular, HelpButton, etc.
+}
+
 // ExampleRunApp demonstrates how to use RunApp to create a simple macOS application.
 // This example shows the minimal code needed to create and display a window.
 //
