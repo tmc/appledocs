@@ -138,3 +138,39 @@ func (w Window) ContentView() View {
 func (w Window) SetContentView(view View) {
 	objc.Send[objc.ID](w.ID, objc.RegisterName("setContentView:"), view.ID)
 }
+
+// View hierarchy convenience methods
+
+// AddSubviewTyped adds a subview to the view hierarchy.
+// This is a type-safe wrapper around AddSubview that accepts a View instead of unsafe.Pointer.
+func (v View) AddSubviewTyped(subview View) {
+	v.AddSubview(unsafe.Pointer(subview.ID))
+}
+
+// SetFrameRect sets the view's frame rectangle.
+func (v View) SetFrameRect(x, y, width, height float64) {
+	// Create NSRect structure
+	type NSPoint struct{ X, Y float64 }
+	type NSSize struct{ Width, Height float64 }
+	type NSRect struct {
+		Origin NSPoint
+		Size   NSSize
+	}
+	frame := NSRect{
+		Origin: NSPoint{X: x, Y: y},
+		Size:   NSSize{Width: width, Height: height},
+	}
+	objc.Send[objc.ID](v.ID, objc.RegisterName("setFrame:"), frame)
+}
+
+// Frame returns the view's frame rectangle as (x, y, width, height).
+func (v View) Frame() (x, y, width, height float64) {
+	type NSPoint struct{ X, Y float64 }
+	type NSSize struct{ Width, Height float64 }
+	type NSRect struct {
+		Origin NSPoint
+		Size   NSSize
+	}
+	frame := objc.Send[NSRect](v.ID, objc.RegisterName("frame"))
+	return frame.Origin.X, frame.Origin.Y, frame.Size.Width, frame.Size.Height
+}

@@ -60,6 +60,32 @@ func ExampleWindow_ContentView() {
 	// Got content view: appkit.View
 }
 
+// ExampleView_AddSubviewTyped demonstrates adding a subview type-safely.
+func ExampleView_AddSubviewTyped() {
+	contentView := appkit.NewWindow().ContentView()
+	subview := appkit.NewView()
+
+	contentView.AddSubviewTyped(subview)
+
+	fmt.Println("Added subview successfully")
+
+	// Output:
+	// Added subview successfully
+}
+
+// ExampleView_SetFrameRect demonstrates setting a view's frame.
+func ExampleView_SetFrameRect() {
+	view := appkit.NewView()
+
+	// Set frame to (x:10, y:20, width:100, height:50)
+	view.SetFrameRect(10, 20, 100, 50)
+
+	fmt.Println("Set view frame successfully")
+
+	// Output:
+	// Set view frame successfully
+}
+
 // ExampleRunApp demonstrates how to use RunApp to create a simple macOS application.
 // This example shows the minimal code needed to create and display a window.
 //
