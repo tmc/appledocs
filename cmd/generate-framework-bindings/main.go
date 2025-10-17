@@ -30,7 +30,7 @@ import (
 	"golang.org/x/tools/txtar"
 )
 
-//go:embed funcs.go templates.txtar templates_*.txtar
+//go:embed funcs.go templates.txtar templates_*.txtar config.yaml
 var embeddedFS embed.FS
 
 var (
@@ -50,6 +50,7 @@ type Generator struct {
 	Framework        string
 	PackageName      string
 	InputDir         string
+	OutputModule     string
 	Variant          string
 	WithRefMethods   bool
 	GenerateTests    bool
@@ -71,11 +72,12 @@ type Generator struct {
 }
 
 // NewGenerator creates a new Generator instance
-func NewGenerator(framework, packageName, inputDir, variant string, withRefMethods, generateTests, generateExamples bool) *Generator {
+func NewGenerator(framework, packageName, inputDir, outputModule, variant string, withRefMethods, generateTests, generateExamples bool) *Generator {
 	return &Generator{
 		Framework:        framework,
 		PackageName:      packageName,
 		InputDir:         inputDir,
+		OutputModule:     outputModule,
 		Variant:          variant,
 		WithRefMethods:   withRefMethods,
 		GenerateTests:    generateTests,
@@ -161,6 +163,11 @@ func (g *Generator) Count() int {
 var verbose bool
 
 func init() {
+	// Load configuration
+	if err := loadConfig(); err != nil {
+		panic(fmt.Errorf("failed to load config: %w", err))
+	}
+
 	// Load base templates
 	templatesData, err := embeddedFS.ReadFile("templates.txtar")
 	if err != nil {
@@ -277,10 +284,21 @@ func main() {
 	withRefMethods := flag.Bool("with-ref-methods", false, "Generate struct-wrapped Ref types with methods (enables method-style API)")
 	generateTests := flag.Bool("generate-tests", false, "Generate test files for the bindings")
 	generateExamples := flag.Bool("generate-examples", false, "Generate example code demonstrating API usage")
+	generateObjcRuntime := flag.Bool("generate-objc-runtime", false, "Generate only the objc runtime package (framework-independent)")
 	verboseFlag := flag.Bool("v", false, "Enable verbose output")
 	flag.Parse()
 
 	verbose = *verboseFlag
+
+	// Handle objc runtime generation
+	if *generateObjcRuntime {
+		if err := generateObjcRuntimePackage(*outputDir); err != nil {
+			fmt.Fprintf(os.Stderr, "Error: failed to generate objc runtime: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Printf("Generated objc runtime package in %s\n", *outputDir)
+		return
+	}
 
 	// Default to cache directory if not specified
 	if *inputDir == "" {
@@ -459,7 +477,7 @@ func main() {
 
 	// Create output directory
 	packageName := strings.ToLower(*framework)
-	outDir := filepath.Join(*outputDir, packageName)
+	outDir := *outputDir
 	if !*txtarOutput {
 		if err := os.MkdirAll(outDir, 0755); err != nil {
 			fmt.Fprintf(os.Stderr, "Error: failed to create output directory: %v\n", err)
@@ -484,8 +502,11 @@ func main() {
 
 // generateFiles generates all files to disk
 func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, withRefMethods, generateTests, generateExamples bool, variant string) error {
+	// Determine output module - default to github.com/tmc/appledocs/generated for now
+	outputModule := "github.com/tmc/appledocs/generated"
+
 	// Create generator to get gen.go data
-	gen := NewGenerator(framework, packageName, inputDir, variant, withRefMethods, generateTests, generateExamples)
+	gen := NewGenerator(framework, packageName, inputDir, outputModule, variant, withRefMethods, generateTests, generateExamples)
 	gen.Functions = functions
 	gen.Classes = classes
 	gen.Protocols = protocols
@@ -508,6 +529,12 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 				continue
 			}
 			filePath := filepath.Join(outDir, file.Name)
+			// Create parent directory if needed
+			if dir := filepath.Dir(filePath); dir != "." {
+				if err := os.MkdirAll(dir, 0755); err != nil {
+					return fmt.Errorf("failed to create directory %s: %w", dir, err)
+				}
+			}
 			if err := os.WriteFile(filePath, file.Data, 0644); err != nil {
 				return fmt.Errorf("failed to write %s: %w", file.Name, err)
 			}
@@ -668,8 +695,11 @@ func (g *Generator) GenerateTxtarFromModule(w io.Writer) error {
 
 // generateTxtar generates all files as txtar format
 func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, withRefMethods, generateTests, generateExamples bool, variant string) error {
+	// Determine output module - default to github.com/tmc/appledocs/generated for now
+	outputModule := "github.com/tmc/appledocs/generated"
+
 	// Create generator instance
-	gen := NewGenerator(framework, packageName, inputDir, variant, withRefMethods, generateTests, generateExamples)
+	gen := NewGenerator(framework, packageName, inputDir, outputModule, variant, withRefMethods, generateTests, generateExamples)
 	gen.Functions = functions
 	gen.Classes = classes
 	gen.Protocols = protocols
@@ -1090,4 +1120,41 @@ func generateExamplesFile(w io.Writer, framework, packageName string, functions 
 		return err
 	}
 	return tmpl.Execute(w, data)
+}
+
+// generateObjcRuntimePackage generates the framework-independent objc runtime package
+// by extracting all templates with the objc/ prefix from the template archive.
+func generateObjcRuntimePackage(outputDir string) error {
+	// Collect all templates that start with "objc/"
+	objcFiles := make(map[string][]byte)
+
+	for _, file := range templateArchive.Files {
+		if strings.HasPrefix(file.Name, "objc/") {
+			// Strip the "objc/" prefix to get the filename
+			filename := strings.TrimPrefix(file.Name, "objc/")
+			objcFiles[filename] = file.Data
+		}
+	}
+
+	if len(objcFiles) == 0 {
+		return fmt.Errorf("no objc/ templates found in template archive")
+	}
+
+	// Create output directory
+	if err := os.MkdirAll(outputDir, 0755); err != nil {
+		return fmt.Errorf("failed to create output directory: %w", err)
+	}
+
+	// Write each file
+	for name, data := range objcFiles {
+		filePath := filepath.Join(outputDir, name)
+		if err := os.WriteFile(filePath, data, 0644); err != nil {
+			return fmt.Errorf("failed to write %s: %w", name, err)
+		}
+		if verbose {
+			fmt.Fprintf(os.Stderr, "Generated %s\n", filePath)
+		}
+	}
+
+	return nil
 }

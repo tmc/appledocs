@@ -65,6 +65,7 @@ var templateFuncs = template.FuncMap{
 	"prepareInitMethods":          prepareInitMethods,
 	"initMethodToConstructorName": initMethodToConstructorName,
 	"classHasInit":                classHasInit,
+	"shouldExcludeTestExample":    shouldExcludeTestExample,
 	"sortMethodsByName":           sortMethodsByName,
 	"wrapObjCReturn":              wrapObjCReturn,
 	"isEssentialSelector":         isEssentialSelector,
