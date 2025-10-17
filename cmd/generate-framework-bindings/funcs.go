@@ -63,10 +63,13 @@ var templateFuncs = template.FuncMap{
 	"prepareClassMethods":         prepareClassMethods,
 	"prepareInstanceMethods":      prepareInstanceMethods,
 	"prepareInitMethods":          prepareInitMethods,
-	"initMethodToConstructorName": initMethodToConstructorName,
-	"classHasInit":                classHasInit,
-	"shouldExcludeTestExample":    shouldExcludeTestExample,
+	"initMethodToConstructorName":       initMethodToConstructorName,
+	"prepareInitMethodsWithClassName":   prepareInitMethodsWithClassName,
+	"classHasInit":                      classHasInit,
+	"shouldExcludeTestExample":          shouldExcludeTestExample,
 	"sortMethodsByName":           sortMethodsByName,
+	"generateTestValue":           generateTestValue,
+	"canGenerateTestValue":        canGenerateTestValue,
 	"wrapObjCReturn":              wrapObjCReturn,
 	"isEssentialSelector":         isEssentialSelector,
 	"convertDocURL":               convertDocURL,
@@ -78,6 +81,9 @@ var templateFuncs = template.FuncMap{
 
 	// Import merging
 	"mergeImports": mergeImports,
+
+	// Type resolution
+	"resolveType": resolveType,
 }
 
 // FunctionData represents data for function template rendering.
@@ -402,19 +408,20 @@ func classToStructName(className string) string {
 }
 
 // classToVarName converts an Objective-C class name to a Go variable name for the class.
-// Strips prefix and appends 'Class'.
+// Strips prefix and returns lowercase with 'Class' suffix to make it private.
 // Examples:
 //
-//	NSButton -> ButtonClass
-//	NSView -> ViewClass
-//	CGContext -> ContextClass
+//	NSButton -> buttonClass
+//	NSView -> viewClass
+//	CGContext -> contextClass
 func classToVarName(className string) string {
 	if className == "" {
 		return ""
 	}
 
 	name := stripObjCPrefix(className)
-	return name + "Class"
+	// Make it lowercase to be private (internal to the package)
+	return strings.ToLower(name[:1]) + name[1:] + "Class"
 }
 
 // stripObjCPrefix removes common Objective-C prefixes and invalid identifier characters from a class name
@@ -891,26 +898,76 @@ func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMeth
 	return result
 }
 
-// prepareInitMethods filters methods to return only init methods (for constructor generation), deduplicated by selector.
-// When multiple methods have the same selector, the first one is kept.
+// prepareInitMethods filters methods to return only init methods (for constructor generation), deduplicated by constructor name.
+// Includes both:
+//  - Instance methods with selectors starting with "init" (traditional init methods)
+//  - Class methods marked as initializers in documentation (factory methods like buttonWithTitle:target:action:)
+// When multiple methods would generate the same constructor name (e.g., initWithContentsOfURL: and arrayWithContentsOfURL:),
+// the instance method is preferred.
 func prepareInitMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 	result := make([]*occ2go.ParsedMethod, 0)
-	seen := make(map[string]bool)
+	seen := make(map[string]*occ2go.ParsedMethod)
 
+	// First pass: collect all potential init methods with their constructor names
 	for _, m := range methods {
-		if !m.IsClassMethod && strings.HasPrefix(m.Selector, "init") && !seen[m.Selector] {
-			result = append(result, m)
-			seen[m.Selector] = true
+		isInit := false
+
+		// Traditional instance init methods
+		if !m.IsClassMethod && strings.HasPrefix(m.Selector, "init") {
+			isInit = true
+		}
+
+		// Class factory methods marked as initializers in docs (e.g., buttonWithTitle:target:action:)
+		if m.IsClassMethod && m.IsInitializer {
+			isInit = true
+		}
+
+		if isInit {
+			// We don't have the className here, so we'll use a simple dedup strategy:
+			// Prefer instance methods over class methods with similar signatures
+			key := m.Selector
+			existing, exists := seen[key]
+
+			if !exists {
+				seen[key] = m
+			} else {
+				// If we have both an instance and class method, prefer instance
+				// Instance methods take precedence because they're the "real" initializers
+				if !m.IsClassMethod && existing.IsClassMethod {
+					seen[key] = m
+				}
+			}
+		}
+	}
+
+	// Second pass: deduplicate by actual constructor name
+	constructorNames := make(map[string]bool)
+	for _, m := range methods {
+		if seenMethod, exists := seen[m.Selector]; exists && seenMethod == m {
+			// Generate constructor name (we need className, but we don't have it here)
+			// So we'll do a simpler check: deduplicate by parameter signature
+			paramSig := fmt.Sprintf("%d", len(m.Parameters))
+			for _, p := range m.Parameters {
+				paramSig += ":" + p.Type
+			}
+			constructorKey := m.Selector + paramSig
+
+			if !constructorNames[constructorKey] {
+				result = append(result, m)
+				constructorNames[constructorKey] = true
+			}
 		}
 	}
 	return result
 }
 
 // initMethodToConstructorName converts an init method selector to a constructor function name.
+// Handles both traditional init methods and class factory methods.
 // Examples:
-//   "init" -> "New"
-//   "initWithFrame:" -> "NewWithFrame"
-//   "initWithContentRect:styleMask:backing:defer:" -> "NewWithContentRectStyleMaskBackingDefer"
+//   "init" -> "NewButton"
+//   "initWithFrame:" -> "NewButtonWithFrame"
+//   "buttonWithTitle:target:action:" -> "NewButtonWithTitleTargetAction"
+//   "checkboxWithTitle:target:action:" -> "NewCheckboxWithTitleTargetAction"
 func initMethodToConstructorName(className, selector string) string {
 	structName := classToStructName(className)
 
@@ -919,20 +976,62 @@ func initMethodToConstructorName(className, selector string) string {
 		return "New" + structName
 	}
 
-	// Strip "init" prefix
+	// Check if this is a traditional init method (starts with "init")
 	if strings.HasPrefix(selector, "init") {
+		// Strip "init" prefix
 		selector = strings.TrimPrefix(selector, "init")
+
+		// Convert selector to Go name (handles colons, capitalization)
+		goName := occ2go.SelectorToGoName("init" + selector)
+
+		// Replace "Init" prefix with "New{ClassName}"
+		if strings.HasPrefix(goName, "Init") {
+			return "New" + structName + strings.TrimPrefix(goName, "Init")
+		}
+
+		return "New" + structName + goName
 	}
 
-	// Convert selector to Go name (handles colons, capitalization)
-	goName := occ2go.SelectorToGoName("init" + selector)
+	// This is a class factory method (e.g., buttonWithTitle:target:action:)
+	// Convert the entire selector to Go name
+	goName := occ2go.SelectorToGoName(selector)
 
-	// Replace "Init" prefix with "New{ClassName}"
-	if strings.HasPrefix(goName, "Init") {
-		return "New" + structName + strings.TrimPrefix(goName, "Init")
+	// Return "New" + GoName (e.g., "NewButtonWithTitleTargetAction")
+	return "New" + goName
+}
+
+// prepareInitMethodsWithClassName properly deduplicates init methods by their generated constructor names.
+// This fixes cases where both instance and class factory methods would generate the same constructor name
+// (e.g., initWithContentsOfURL: and arrayWithContentsOfURL: both map to NewArrayWithContentsOfURL).
+// Instance methods are preferred over class factory methods when deduplicating.
+func prepareInitMethodsWithClassName(className string, methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
+	// First get all potential init methods
+	initMethods := prepareInitMethods(methods)
+
+	// Deduplicate by constructor name
+	seen := make(map[string]*occ2go.ParsedMethod)
+	for _, m := range initMethods {
+		constructorName := initMethodToConstructorName(className, m.Selector)
+
+		existing, exists := seen[constructorName]
+		if !exists {
+			seen[constructorName] = m
+		} else {
+			// If we have both an instance and class method mapping to the same name,
+			// prefer the instance method
+			if !m.IsClassMethod && existing.IsClassMethod {
+				seen[constructorName] = m
+			}
+		}
 	}
 
-	return "New" + structName + goName
+	// Convert map back to slice
+	result := make([]*occ2go.ParsedMethod, 0, len(seen))
+	for _, m := range seen {
+		result = append(result, m)
+	}
+
+	return result
 }
 
 // sortMethodsByName sorts methods by name for consistent output
@@ -1178,13 +1277,164 @@ func convertDocURL(url string) string {
 	return "https://developer.apple.com/" + parts[1]
 }
 
-// classHasInit checks if a class has any init methods (with selector "init").
+// classHasInit checks if a class has any init methods (including factory initializers).
 // This is used to determine if a test file should be generated.
+// Returns true if the class has:
+//  - Any instance init method (selector starting with "init")
+//  - Any class method marked as an initializer in docs (IsInitializer = true)
 func classHasInit(methods []*occ2go.ParsedMethod) bool {
 	for _, m := range methods {
-		if !m.IsClassMethod && m.Selector == "init" {
+		// Instance init methods
+		if !m.IsClassMethod && strings.HasPrefix(m.Selector, "init") {
+			return true
+		}
+		// Class factory methods marked as initializers
+		if m.IsClassMethod && m.IsInitializer {
 			return true
 		}
 	}
 	return false
+}
+
+// generateTestValue generates an example test value for a given Go type.
+// Returns the Go code as a string that can be used in test examples.
+// Handles cross-framework dependencies properly.
+// The packageName parameter is used to properly qualify package-local types in test files.
+func generateTestValue(goType, framework, paramName string) string {
+	// Handle primitive types
+	switch goType {
+	case "string":
+		return fmt.Sprintf(`"%s"`, paramName)
+	case "int", "int8", "int16", "int32", "int64":
+		return "0"
+	case "uint", "uint8", "uint16", "uint32", "uint64":
+		return "0"
+	case "float32", "float64":
+		return "0.0"
+	case "bool":
+		return "false"
+	case "objc.ID":
+		return "0"
+	case "objc.SEL":
+		return "0"
+	case "objc.Class":
+		return "0"
+	case "unsafe.Pointer":
+		return "nil"
+	}
+
+	// Handle framework-specific types
+	// Foundation types
+	if strings.HasPrefix(goType, "foundation.") {
+		typeName := strings.TrimPrefix(goType, "foundation.")
+		switch typeName {
+		case "Rect":
+			return "foundation.Rect{}"
+		case "Size":
+			return "foundation.Size{}"
+		case "Point":
+			return "foundation.Point{}"
+		case "Range":
+			return "foundation.Range{}"
+		default:
+			// Other foundation types - try to use zero value or constructor
+			return fmt.Sprintf("%s{}", goType)
+		}
+	}
+
+	// Handle package-local types (no dot) - these need to be qualified with packageName in test files
+	if !strings.Contains(goType, ".") {
+		// Could be an enum or a struct from the same package
+		// Try zero value
+		// We return the unqualified type name; the template will add the package prefix
+		return fmt.Sprintf("%s(0)", goType)
+	}
+
+	// Default: try zero value for the type
+	return fmt.Sprintf("%s{}", goType)
+}
+
+// canGenerateTestValue checks if we can generate a reasonable test value for the given type.
+// Returns true if generateTestValue will produce a usable value.
+func canGenerateTestValue(goType string) bool {
+	// We can generate test values for most primitive types and some common types
+	switch goType {
+	case "string", "int", "int8", "int16", "int32", "int64",
+		"uint", "uint8", "uint16", "uint32", "uint64",
+		"float32", "float64", "bool",
+		"objc.ID", "objc.SEL", "objc.Class":
+		return true
+	}
+
+	// We can handle Foundation geometry types
+	if strings.HasPrefix(goType, "foundation.") {
+		typeName := strings.TrimPrefix(goType, "foundation.")
+		switch typeName {
+		case "Rect", "Size", "Point", "Range":
+			return true
+		}
+	}
+
+	// We can handle package-local types (enums and structs)
+	if !strings.Contains(goType, ".") {
+		return true
+	}
+
+	// We can handle unsafe.Pointer
+	if goType == "unsafe.Pointer" {
+		return true
+	}
+
+	// For other types, we don't know how to create test values
+	return false
+}
+
+// resolveType resolves a type name to its fully qualified name, handling cross-framework dependencies.
+// Takes the current framework context and a type name (e.g., "MutableAttributedString") and returns
+// either the unqualified name (if it's in the same framework) or a qualified name (e.g., "foundation.MutableAttributedString").
+// This helper is used in templates to properly reference types that may come from other frameworks.
+//
+// Examples:
+//   resolveType("AppKit", "Button") -> "Button" (same framework)
+//   resolveType("AppKit", "MutableAttributedString") -> "foundation.MutableAttributedString" (cross-framework)
+//   resolveType("Foundation", "Array") -> "Array" (same framework)
+func resolveType(framework, typeName string) string {
+	if typeName == "" {
+		return ""
+	}
+
+	// Common Foundation base classes that AppKit classes inherit from
+	foundationTypes := map[string]bool{
+		"MutableAttributedString": true,
+		"AttributedString":        true,
+		"Array":                   true,
+		"MutableArray":            true,
+		"Dictionary":              true,
+		"MutableDictionary":       true,
+		"Set":                     true,
+		"MutableSet":              true,
+		"String":                  true,
+		"MutableString":           true,
+		"Data":                    true,
+		"MutableData":             true,
+		"Date":                    true,
+		"URL":                     true,
+		"URLRequest":              true,
+		"MutableURLRequest":       true,
+		"Value":                   true,
+		"Number":                  true,
+	}
+
+	// If we're in Foundation framework, all types are local
+	if framework == "Foundation" {
+		return typeName
+	}
+
+	// If this is a known Foundation type and we're not in Foundation, qualify it
+	if foundationTypes[typeName] {
+		return "foundation." + typeName
+	}
+
+	// Default: assume it's in the current framework
+	return typeName
 }

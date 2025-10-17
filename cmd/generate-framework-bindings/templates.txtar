@@ -279,139 +279,12 @@ import (
 {{$className := .Name -}}
 {{$structName := classToStructName .Name -}}
 {{$varName := classToVarName .Name -}}
-{{$classReceiver := receiverName $structName true -}}
-{{$instReceiver := receiverName $structName false -}}
-
-// The class instance for the [{{$structName}}] class.
-var {{$varName}} objc.Class
-
-func init() {
-	{{$varName}} = objc.GetClass("{{.Name}}")
-}
-
-{{if .Abstract -}}
-// {{commentLine .Abstract}} [Full Topic]
-{{end -}}
-{{if .DocURL -}}
-//
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end -}}
-type {{$structName}} struct {
-	objc.ID
-}
-
-func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
-	return {{$structName}}{
-		ID: objc.ID(ptr),
-	}
-}
-
-{{if .HasInitMethods -}}
-// Alloc allocates a new instance without initialization.
-func ({{$classReceiver}} {{$structName}}) Alloc() {{$structName}} {
-	ret := objc.ID({{$varName}}).Send(objc.RegisterName("alloc"))
-	return {{$structName}}{ret}
-}
-
-// Init initializes the instance.
-func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
-	ret := {{$instReceiver}}.ID.Send(objc.RegisterName("init"))
-	return {{$structName}}{ret}
-}
-
-{{- range prepareInitMethods .Methods}}
-{{- $constructorName := initMethodToConstructorName $className .Selector}}
-{{- $paramNames := formatMethodParamNames .}}
-
-{{- if .Abstract}}
-// {{commentLine .Abstract}} [Full Topic]
-{{end -}}
-{{- if .DocURL}}
-//
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end -}}
-func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
-	instance := {{$structName}}{}.Alloc()
-	{{- if eq .Selector "init"}}
-	instance = instance.Init()
-	{{- else}}
-	sel := objc.RegisterName("{{.Selector}}")
-	ret := instance.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	instance = {{$structName}}{ret}
-	{{- end}}
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
-}
-{{- end}}
-
-{{end -}}
-{{- range prepareClassMethods .Methods}}
-{{- $paramNames := formatMethodParamNames .}}
-
-{{- if .Abstract}}
-// {{commentLine .Abstract}} [Full Topic]
-{{end -}}
-{{- if .DocURL}}
-//
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end -}}
-func ({{$classReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $.Framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $.Framework}}{{end}} {
-	sel := objc.RegisterName("{{.Selector}}")
-	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	ret := objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	return {{wrapObjCReturn (mapObjCTypeToGo .ReturnType $.Framework)}}
-	{{- else}}
-	objc.ID({{$varName}}).Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	{{- end}}
-}
-{{- end}}
-
-{{- range prepareInstanceMethods .Methods}}
-{{- $paramNames := formatMethodParamNames .}}
-{{- $goType := mapObjCTypeToGo .ReturnType $.Framework}}
-
-{{- if .Abstract}}
-// {{commentLine .Abstract}} [Full Topic]
-{{end -}}
-{{- if .DocURL}}
-//
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end -}}
-func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $.Framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}} {
-	sel := objc.RegisterName("{{.Selector}}")
-	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	ret := {{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	return {{wrapObjCReturn $goType}}
-	{{- else}}
-	{{$instReceiver}}.ID.Send(sel{{if $paramNames}}, {{$paramNames}}{{end}})
-	{{- end}}
-}
-{{- end}}
-
-{{end -}}
-
--- class.gen.go --
-// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
-
-package {{.PackageName}}
-
-import (
-	"unsafe"
-
-	"{{.OutputModule}}/objc"
-)
-
-{{with .Class -}}
-{{$framework := $.Framework -}}
-{{$className := .Name -}}
-{{$structName := classToStructName .Name -}}
-{{$varName := classToVarName .Name -}}
 {{$classTypeName := print "_" $structName "Class" -}}
 {{$classReceiver := receiverName $structName true -}}
 {{$instReceiver := receiverName $structName false -}}
 
 // The class instance for the [{{$structName}}] class.
-var {{$structName}}Class = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
+var {{$varName}} = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
 
 type {{$classTypeName}} struct {
 	class objc.Class
@@ -424,15 +297,61 @@ type {{$classTypeName}} struct {
 //
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
+{{if and (eq $.Framework "ObjectiveC") (eq .Name "NSObject") -}}
 type {{$structName}} struct {
 	objc.ID
 }
 
+// {{$structName}}From constructs a [{{$structName}}] from an unsafe.Pointer.
+{{if .Abstract -}}
+//
+// {{commentLine .Abstract}}
+{{end -}}
 func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
-	return {{$structName}}{
-		ID: objc.ID(ptr),
-	}
+	return {{$structName}}{objc.ID(ptr)}
 }
+{{else -}}
+{{- $superStructName := ""}}
+{{- $superIsNSObject := false}}
+{{- $isSelfReferential := false}}
+{{- $superResolved := ""}}
+{{- if .SuperClass}}
+{{- $superStructName = classToStructName .SuperClass}}
+{{- $superResolved = resolveType $.Framework $superStructName}}
+{{- if or (eq .SuperClass "NSObject") (eq $superStructName "Object")}}
+{{- $superIsNSObject = true}}
+{{- end}}
+{{- if eq $superStructName $structName}}
+{{- $isSelfReferential = true}}
+{{- end}}
+{{- end}}
+type {{$structName}} struct {
+	{{- if and .SuperClass (not $superIsNSObject) (not $isSelfReferential)}}
+	{{$superResolved}}
+	{{- else if eq $.Framework "ObjectiveC"}}
+	Object
+	{{- else}}
+	objectivec.Object
+	{{- end}}
+}
+
+// {{$structName}}From constructs a [{{$structName}}] from an unsafe.Pointer.
+{{if .Abstract -}}
+//
+// {{commentLine .Abstract}}
+{{end -}}
+func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
+	{{- if and .SuperClass (not $superIsNSObject) (not $isSelfReferential)}}
+	return {{$structName}}{
+		{{$superStructName}}: {{$superResolved}}From(ptr),
+	}
+	{{- else if eq $.Framework "ObjectiveC"}}
+	return {{$structName}}{Object{objc.ID(ptr)}}
+	{{- else}}
+	return {{$structName}}{objectivec.Object{objc.ID(ptr)}}
+	{{- end}}
+}
+{{end -}}
 
 {{if .HasInitMethods -}}
 // Alloc allocates a new instance without initialization.
@@ -462,10 +381,10 @@ func ({{$instReceiver}} {{$structName}}) Autorelease() {{$structName}} {
 
 // New{{$structName}} creates a new {{$structName}} instance.
 func New{{$structName}}() {{$structName}} {
-	return {{$structName}}Class.New()
+	return {{$varName}}.New()
 }
 
-{{- range prepareInitMethods .Methods}}
+{{- range prepareInitMethodsWithClassName $className .Methods}}
 {{- if ne .Selector "init"}}
 {{- $constructorName := initMethodToConstructorName $className .Selector}}
 {{- $paramNames := formatMethodParamNames .}}
@@ -478,10 +397,238 @@ func New{{$structName}}() {{$structName}} {
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
-	instance := {{$structName}}Class.Alloc()
+	{{- if .IsClassMethod}}
+	rv := objc.Send[{{$structName}}](objc.ID({{$varName}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv.Autorelease()
+	return rv
+	{{- else}}
+	instance := {{$varName}}.Alloc()
 	rv := objc.Send[{{$structName}}](instance.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	rv.Autorelease()
 	return rv
+	{{- end}}
+}
+{{- end}}
+{{- end}}
+
+{{end -}}
+{{- range prepareClassMethods .Methods}}
+{{- if not (isEssentialSelector .Selector)}}
+{{- $paramNames := formatMethodParamNames .}}
+{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+
+{{- if .Abstract}}
+// {{commentLine .Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}} {
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	return rv
+	{{- else}}
+	objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- end}}
+}
+{{- end}}
+{{- end}}
+
+{{- range prepareInstanceMethods .Methods}}
+{{- if not (isEssentialSelector .Selector)}}
+{{- $paramNames := formatMethodParamNames .}}
+{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+{{- $isInitMethod := hasPrefix .Selector "init"}}
+
+{{- if .Abstract}}
+// {{commentLine .Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
+	{{- if $isInitMethod}}
+	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	return rv
+	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	rv := objc.Send[{{$goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	return rv
+	{{- else}}
+	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- end}}
+}
+{{- end}}
+{{- end}}
+
+{{end -}}
+
+-- class.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+import (
+	"unsafe"
+
+	"{{.OutputModule}}/objc"
+{{- $needsObjectiveC := false}}
+{{- $needsFoundation := false}}
+{{- $structName := classToStructName .Class.Name}}
+{{- if and (ne $.Framework "ObjectiveC") .Class.SuperClass}}
+{{- $superStructName := classToStructName .Class.SuperClass}}
+{{- $superResolved := resolveType $.Framework $superStructName}}
+{{- $isSelfReferential := eq $superStructName $structName}}
+{{- if hasPrefix $superResolved "foundation."}}
+{{- $needsFoundation = true}}
+{{- else if or (eq .Class.SuperClass "NSObject") (eq $superStructName "Object") $isSelfReferential}}
+{{- $needsObjectiveC = true}}
+{{- end}}
+{{- else if ne $.Framework "ObjectiveC"}}
+{{- $needsObjectiveC = true}}
+{{- end}}
+{{- if $needsObjectiveC}}
+	"{{.OutputModule}}/objectivec"
+{{- end}}
+{{- if $needsFoundation}}
+	"{{.OutputModule}}/foundation"
+{{- end}}
+)
+
+{{with .Class -}}
+{{$framework := $.Framework -}}
+{{$className := .Name -}}
+{{$structName := classToStructName .Name -}}
+{{$varName := classToVarName .Name -}}
+{{$classTypeName := print "_" $structName "Class" -}}
+{{$classReceiver := receiverName $structName true -}}
+{{$instReceiver := receiverName $structName false -}}
+
+// The class instance for the [{{$structName}}] class.
+var {{$varName}} = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
+
+type {{$classTypeName}} struct {
+	class objc.Class
+}
+
+{{if .Abstract -}}
+// {{commentLine .Abstract}} [Full Topic]
+{{end -}}
+{{if .DocURL -}}
+//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+{{if and (eq $.Framework "ObjectiveC") (eq .Name "NSObject") -}}
+type {{$structName}} struct {
+	objc.ID
+}
+
+// {{$structName}}From constructs a [{{$structName}}] from an unsafe.Pointer.
+{{if .Abstract -}}
+//
+// {{commentLine .Abstract}}
+{{end -}}
+func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
+	return {{$structName}}{objc.ID(ptr)}
+}
+{{else -}}
+{{- $superStructName := ""}}
+{{- $superIsNSObject := false}}
+{{- $isSelfReferential := false}}
+{{- $superResolved := ""}}
+{{- if .SuperClass}}
+{{- $superStructName = classToStructName .SuperClass}}
+{{- $superResolved = resolveType $.Framework $superStructName}}
+{{- if or (eq .SuperClass "NSObject") (eq $superStructName "Object")}}
+{{- $superIsNSObject = true}}
+{{- end}}
+{{- if eq $superStructName $structName}}
+{{- $isSelfReferential = true}}
+{{- end}}
+{{- end}}
+type {{$structName}} struct {
+	{{- if and .SuperClass (not $superIsNSObject) (not $isSelfReferential)}}
+	{{$superResolved}}
+	{{- else if eq $.Framework "ObjectiveC"}}
+	Object
+	{{- else}}
+	objectivec.Object
+	{{- end}}
+}
+
+// {{$structName}}From constructs a [{{$structName}}] from an unsafe.Pointer.
+{{if .Abstract -}}
+//
+// {{commentLine .Abstract}}
+{{end -}}
+func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
+	{{- if and .SuperClass (not $superIsNSObject) (not $isSelfReferential)}}
+	return {{$structName}}{
+		{{$superStructName}}: {{$superResolved}}From(ptr),
+	}
+	{{- else if eq $.Framework "ObjectiveC"}}
+	return {{$structName}}{Object{objc.ID(ptr)}}
+	{{- else}}
+	return {{$structName}}{objectivec.Object{objc.ID(ptr)}}
+	{{- end}}
+}
+{{end -}}
+
+{{if .HasInitMethods -}}
+// Alloc allocates a new instance without initialization.
+func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
+	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func ({{$classReceiver}} {{$classTypeName}}) New() {{$structName}} {
+	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func ({{$instReceiver}} {{$structName}}) Init() {{$structName}} {
+	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func ({{$instReceiver}} {{$structName}}) Autorelease() {{$structName}} {
+	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// New{{$structName}} creates a new {{$structName}} instance.
+func New{{$structName}}() {{$structName}} {
+	return {{$varName}}.New()
+}
+
+{{- range prepareInitMethodsWithClassName $className .Methods}}
+{{- if ne .Selector "init"}}
+{{- $constructorName := initMethodToConstructorName $className .Selector}}
+{{- $paramNames := formatMethodParamNames .}}
+
+{{- if .Abstract}}
+// {{commentLine .Abstract}} [Full Topic]
+{{end -}}
+{{- if .DocURL}}
+//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
+	{{- if .IsClassMethod}}
+	rv := objc.Send[{{$structName}}](objc.ID({{$varName}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv.Autorelease()
+	return rv
+	{{- else}}
+	instance := {{$varName}}.Alloc()
+	rv := objc.Send[{{$structName}}](instance.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv.Autorelease()
+	return rv
+	{{- end}}
 }
 {{- end}}
 {{- end}}
@@ -545,25 +692,60 @@ package {{.PackageName}}_test
 
 import (
 	"{{.OutputModule}}/{{.PackageName}}"
+{{- $needsFoundation := false}}
+{{- range prepareInitMethodsWithClassName .Class.Name .Class.Methods}}
+{{- range .Parameters}}
+{{- $goType := mapObjCTypeToGo .Type $.Framework}}
+{{- if hasPrefix $goType "foundation."}}
+{{- $needsFoundation = true}}
+{{- end}}
+{{- end}}
+{{- end}}
+{{- if $needsFoundation}}
+	"{{.OutputModule}}/foundation"
+{{- end}}
 )
 
 {{with .Class -}}
 {{$structName := classToStructName .Name -}}
 {{$packageName := $.PackageName -}}
 {{$className := .Name -}}
+{{$framework := $.Framework -}}
 {{if .HasInitMethods -}}
-{{- range prepareInitMethods .Methods}}
-{{- if eq .Selector "init"}}
+{{- range prepareInitMethodsWithClassName $className .Methods}}
+{{- $constructorName := initMethodToConstructorName $className .Selector}}
+{{- $canGenerateAllParams := true}}
+{{- range .Parameters}}
+{{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- if not (canGenerateTestValue $goType)}}
+{{- $canGenerateAllParams = false}}
+{{- end}}
+{{- end}}
 
-// ExampleNew{{$structName}} demonstrates how to create a {{$structName}} instance.
+{{- if $canGenerateAllParams}}
+// Example{{$constructorName}} demonstrates how to create a {{$structName}} instance{{if ne .Selector "init"}} using {{$constructorName}}{{end}}.
 {{if .Abstract -}}
 // {{.Abstract}}
 {{end -}}
-func ExampleNew{{$structName}}() {
-	_ = {{$packageName}}.New{{$structName}}()
+func Example{{$constructorName}}() {
+	{{- if eq (len .Parameters) 0}}
+	_ = {{$packageName}}.{{$constructorName}}()
+	{{- else}}
+	_ = {{$packageName}}.{{$constructorName}}(
+		{{- range $i, $p := .Parameters}}
+		{{- $goType := mapObjCTypeToGo $p.Type $framework}}
+		{{- $testValue := generateTestValue $goType $framework $p.Name}}
+		{{- if and (not (hasPrefix $goType "foundation.")) (not (hasPrefix $goType "objc.")) (not (hasPrefix $goType "unsafe.")) (ne $goType "string") (ne $goType "int") (ne $goType "uint") (ne $goType "bool") (ne $goType "float32") (ne $goType "float64") (ne $goType "int64") (ne $goType "uint64")}}
+		{{$packageName}}.{{$testValue}}, // {{$p.Name}} {{$goType}}
+		{{- else}}
+		{{$testValue}}, // {{$p.Name}} {{$goType}}
+		{{- end}}
+		{{- end}}
+	)
+	{{- end}}
 	// Output:
 }
-{{end -}}
+{{- end}}
 {{end -}}
 {{end -}}
 {{end -}}
@@ -732,7 +914,7 @@ func TestMain(m *testing.M) {
 	os.Exit(m.Run())
 }
 
--- objc/sel.go --
+-- objc/objc.go --
 // Package objc provides cached Objective-C runtime helpers.
 //
 // This package wraps purego/objc to provide selector caching for better performance.
@@ -776,7 +958,7 @@ func GetClass(name string) Class {
 	return purego.GetClass(name)
 }
 
--- objc/sel_bench_test.go --
+-- objc/objc_test.go --
 package objc
 
 import (
