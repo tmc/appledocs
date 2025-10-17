@@ -142,15 +142,21 @@ type CGAffineTransform struct {
 	Ty CGFloat
 }
 
+// Common type aliases
+type Range = CGPoint  // NSRange
+type Size = CGSize    // NSSize
+type Point = CGPoint  // NSPoint
+type Rect = CGRect    // NSRect
+
 -- functions.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
 package {{.PackageName}}
 
 import (
-	{{if .WithRefMethods}}"unsafe"
+	"unsafe"
 
-	{{end}}"github.com/ebitengine/purego"
+	"github.com/ebitengine/purego"
 )
 
 // {{.Framework}} Functions ({{.Count}} total)

@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for AppKit. DO NOT EDIT.
 
 package appkit
@@ -9,21 +10,56 @@ import (
 )
 
 // The class instance for the [SearchToolbarItem] class.
-var SearchToolbarItemClass objc.Class
+var SearchToolbarItemClass _SearchToolbarItemClass
 
 func init() {
-	SearchToolbarItemClass = objc.GetClass("NSSearchToolbarItem")
+	SearchToolbarItemClass = _SearchToolbarItemClass{objc.GetClass("NSSearchToolbarItem")}
+}
+
+type _SearchToolbarItemClass struct {
+	objc.Class
+}
+
+// An interface definition for the [SearchToolbarItem] class.
+type ISearchToolbarItem interface {
+	ID() objc.ID
 }
 
 type SearchToolbarItem struct {
-	objc.ID
+	id objc.ID
 }
 
 func SearchToolbarItemFrom(ptr unsafe.Pointer) SearchToolbarItem {
 	return SearchToolbarItem{
-		ID: objc.ID(ptr),
+		id: objc.ID(ptr),
 	}
 }
 
+// ID returns the underlying objc.ID.
+func (s_ SearchToolbarItem) ID() objc.ID {
+	return s_.id
+}
 
+// Alloc allocates a new instance without initialization.
+func (sc _SearchToolbarItemClass) Alloc() SearchToolbarItem {
+	rv := objc.Send[SearchToolbarItem](objc.ID(sc.Class), selAlloc)
+	return rv
+}
 
+// New creates and returns a new initialized instance.
+func (sc _SearchToolbarItemClass) New() SearchToolbarItem {
+	rv := objc.Send[SearchToolbarItem](objc.ID(sc.Class), selNew)
+	objc.Send[objc.ID](rv.ID(), selAutorelease)
+	return rv
+}
+
+// NewSearchToolbarItem creates and returns a new initialized instance.
+func NewSearchToolbarItem() SearchToolbarItem {
+	return SearchToolbarItemClass.New()
+}
+
+// Init initializes the instance.
+func (s_ SearchToolbarItem) Init() SearchToolbarItem {
+	rv := objc.Send[SearchToolbarItem](s_.ID(), selInit)
+	return rv
+}

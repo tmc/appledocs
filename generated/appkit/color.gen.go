@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for AppKit. DO NOT EDIT.
 
 package appkit
@@ -9,30 +10,65 @@ import (
 )
 
 // The class instance for the [Color] class.
-var ColorClass objc.Class
+var ColorClass _ColorClass
 
 func init() {
-	ColorClass = objc.GetClass("NSColor")
+	ColorClass = _ColorClass{objc.GetClass("NSColor")}
+}
+
+type _ColorClass struct {
+	objc.Class
+}
+
+// An interface definition for the [Color] class.
+type IColor interface {
+	ID() objc.ID
+	ColorUsingColorSpaceName(name unsafe.Pointer) unsafe.Pointer
 }
 
 type Color struct {
-	objc.ID
+	id objc.ID
 }
 
 func ColorFrom(ptr unsafe.Pointer) Color {
 	return Color{
-		ID: objc.ID(ptr),
+		id: objc.ID(ptr),
 	}
 }
 
+// ID returns the underlying objc.ID.
+func (c_ Color) ID() objc.ID {
+	return c_.id
+}
 
+// Alloc allocates a new instance without initialization.
+func (cc _ColorClass) Alloc() Color {
+	rv := objc.Send[Color](objc.ID(cc.Class), selAlloc)
+	return rv
+}
+
+// New creates and returns a new initialized instance.
+func (cc _ColorClass) New() Color {
+	rv := objc.Send[Color](objc.ID(cc.Class), selNew)
+	objc.Send[objc.ID](rv.ID(), selAutorelease)
+	return rv
+}
+
+// NewColor creates and returns a new initialized instance.
+func NewColor() Color {
+	return ColorClass.New()
+}
+
+// Init initializes the instance.
+func (c_ Color) Init() Color {
+	rv := objc.Send[Color](c_.ID(), selInit)
+	return rv
+}
 // Creates a new color object whose color is the same as the receiver’s, except that the new color object is in the specified color space. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpaceName(_:)
 func (c_ Color) ColorUsingColorSpaceName(name unsafe.Pointer) unsafe.Pointer {
-	sel := objc.RegisterName("colorUsingColorSpaceName:")
-	ret := c_.ID.Send(sel, name)
-	return unsafe.Pointer(ret)
+	rv := objc.Send[unsafe.Pointer](c_.ID(), objc.RegisterName("colorUsingColorSpaceName:"), name)
+	return rv
 }
-

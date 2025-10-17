@@ -786,31 +786,28 @@ func generateDoc(w io.Writer, framework, packageName, inputDir string, functions
 
 // generateTypes generates framework-specific type definitions
 func generateTypes(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, withRefMethods bool, variant string) error {
-	if framework == "CoreGraphics" {
-		refTypes := extractRefTypes(functions, "CG")
-		data := struct {
-			Framework      string
-			PackageName    string
-			RefTypes       []string
-			WithRefMethods bool
-		}{framework, packageName, refTypes, withRefMethods}
+	refTypes := extractRefTypes(functions, getFrameworkPrefix(framework))
+	data := struct {
+		Framework      string
+		PackageName    string
+		RefTypes       []string
+		WithRefMethods bool
+	}{framework, packageName, refTypes, withRefMethods}
 
-		// Load template with variant support
-		templateContent, err := getTemplateVariant("types.gen.go", variant)
-		if err != nil {
-			return err
-		}
-		tmpl, err := template.New("types.gen.go").Funcs(templateFuncs).Parse(templateContent)
-		if err != nil {
-			return err
-		}
-		return tmpl.Execute(w, data)
+	// Load template with variant support
+	templateContent, err := getTemplateVariant("types.gen.go", variant)
+	if err != nil {
+		// Fallback: write empty types file if template not found
+		fmt.Fprintf(w, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
+		fmt.Fprintf(w, "package %s\n", packageName)
+		return nil
 	}
 
-	// Empty types file for other frameworks
-	fmt.Fprintf(w, "// Code generated from Apple documentation for %s. DO NOT EDIT.\n\n", framework)
-	fmt.Fprintf(w, "package %s\n", packageName)
-	return nil
+	tmpl, err := template.New("types.gen.go").Funcs(templateFuncs).Parse(templateContent)
+	if err != nil {
+		return err
+	}
+	return tmpl.Execute(w, data)
 }
 
 // generateFunctions generates function bindings

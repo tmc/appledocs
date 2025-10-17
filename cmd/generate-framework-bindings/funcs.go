@@ -56,6 +56,9 @@ var templateFuncs = template.FuncMap{
 	"stripNSPrefix":            stripNSPrefix,
 	"needsFoundationImport":    needsFoundationImport,
 	"needsQuartzCoreImport":    needsQuartzCoreImport,
+	"needsCustomImports":       needsCustomImports,
+	"getRequiredImports":       getRequiredImports,
+	"sortedImportPaths":        sortedImportPaths,
 	"prepareClassMethods":         prepareClassMethods,
 	"prepareInstanceMethods":      prepareInstanceMethods,
 	"prepareInitMethods":          prepareInitMethods,
@@ -67,6 +70,9 @@ var templateFuncs = template.FuncMap{
 	"propertyToGoName":         propertyToGoName,
 	"contains":                 sliceContainsString,
 	"capitalize":               capitalizeFirst,
+
+	// Import merging
+	"mergeImports": mergeImports,
 }
 
 // FunctionData represents data for function template rendering.
@@ -998,4 +1004,88 @@ func capitalizeFirst(s string) string {
 		return ""
 	}
 	return strings.ToUpper(s[:1]) + s[1:]
+}
+
+// needsCustomImports checks if any methods use types that require custom imports
+func needsCustomImports(methods []*occ2go.ParsedMethod, framework string) bool {
+	return getRequiredImports(methods, framework) != nil
+}
+
+// getRequiredImports returns a map of import paths needed for methods.
+// For example: {"github.com/progrium/darwinkit/macos/foundation": true}
+func getRequiredImports(methods []*occ2go.ParsedMethod, framework string) map[string]bool {
+	imports := make(map[string]bool)
+
+	// Check all methods for types that need custom imports
+	for _, m := range methods {
+		// Check return type
+		if m.ReturnType != "" {
+			if importPath := getTypeImportPath(m.ReturnType, framework); importPath != "" {
+				imports[importPath] = true
+			}
+		}
+
+		// Check parameters
+		for _, p := range m.Parameters {
+			if importPath := getTypeImportPath(p.Type, framework); importPath != "" {
+				imports[importPath] = true
+			}
+		}
+	}
+
+	if len(imports) == 0 {
+		return nil
+	}
+	return imports
+}
+
+// sortedImportPaths returns a sorted slice of import paths for template iteration.
+// This makes it easy for templates to range over imports in a consistent order.
+func sortedImportPaths(imports map[string]bool) []string {
+	if imports == nil || len(imports) == 0 {
+		return []string{}
+	}
+
+	// Convert map keys to slice
+	paths := make([]string, 0, len(imports))
+	for path := range imports {
+		paths = append(paths, path)
+	}
+
+	// Simple sort by string value for consistency
+	for i := 0; i < len(paths)-1; i++ {
+		for j := i + 1; j < len(paths); j++ {
+			if paths[i] > paths[j] {
+				paths[i], paths[j] = paths[j], paths[i]
+			}
+		}
+	}
+
+	return paths
+}
+
+// getClassRequiredImports returns a sorted slice of all required imports for a class (including both methods and properties).
+// This is a convenience function for templates to get all imports at once.
+func getClassRequiredImports(class interface{}, framework string) []string {
+	// This is a bit of a hack, but we need to work with the parsed class data
+	// For now, we return an empty slice - this would need proper type handling
+	return []string{}
+}
+
+// mergeImports merges two import maps into a single deduplicated map.
+// Useful for combining imports from class methods and instance methods.
+func mergeImports(map1, map2 map[string]bool) map[string]bool {
+	result := make(map[string]bool)
+
+	// Add all imports from map1
+	for path := range map1 {
+		result[path] = true
+	}
+
+	// Add all imports from map2
+	for path := range map2 {
+		result[path] = true
+	}
+
+	return result
 }

@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for AppKit. DO NOT EDIT.
 
 package appkit
@@ -9,21 +10,56 @@ import (
 )
 
 // The class instance for the [TableViewRowAction] class.
-var TableViewRowActionClass objc.Class
+var TableViewRowActionClass _TableViewRowActionClass
 
 func init() {
-	TableViewRowActionClass = objc.GetClass("NSTableViewRowAction")
+	TableViewRowActionClass = _TableViewRowActionClass{objc.GetClass("NSTableViewRowAction")}
+}
+
+type _TableViewRowActionClass struct {
+	objc.Class
+}
+
+// An interface definition for the [TableViewRowAction] class.
+type ITableViewRowAction interface {
+	ID() objc.ID
 }
 
 type TableViewRowAction struct {
-	objc.ID
+	id objc.ID
 }
 
 func TableViewRowActionFrom(ptr unsafe.Pointer) TableViewRowAction {
 	return TableViewRowAction{
-		ID: objc.ID(ptr),
+		id: objc.ID(ptr),
 	}
 }
 
+// ID returns the underlying objc.ID.
+func (t_ TableViewRowAction) ID() objc.ID {
+	return t_.id
+}
 
+// Alloc allocates a new instance without initialization.
+func (tc _TableViewRowActionClass) Alloc() TableViewRowAction {
+	rv := objc.Send[TableViewRowAction](objc.ID(tc.Class), selAlloc)
+	return rv
+}
 
+// New creates and returns a new initialized instance.
+func (tc _TableViewRowActionClass) New() TableViewRowAction {
+	rv := objc.Send[TableViewRowAction](objc.ID(tc.Class), selNew)
+	objc.Send[objc.ID](rv.ID(), selAutorelease)
+	return rv
+}
+
+// NewTableViewRowAction creates and returns a new initialized instance.
+func NewTableViewRowAction() TableViewRowAction {
+	return TableViewRowActionClass.New()
+}
+
+// Init initializes the instance.
+func (t_ TableViewRowAction) Init() TableViewRowAction {
+	rv := objc.Send[TableViewRowAction](t_.ID(), selInit)
+	return rv
+}

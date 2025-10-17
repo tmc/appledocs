@@ -18,14 +18,24 @@ type TypeMapping struct {
 
 // typeRegistry contains all known Objective-C to Go type mappings
 var typeRegistry = []TypeMapping{
-	// Foundation geometry types
-	{ObjCType: "NSRect", GoType: "foundation.Rect", Framework: "Foundation", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "CGRect", GoType: "foundation.Rect", Framework: "Foundation", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "NSSize", GoType: "foundation.Size", Framework: "Foundation", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "CGSize", GoType: "foundation.Size", Framework: "Foundation", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "NSPoint", GoType: "foundation.Point", Framework: "Foundation", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "CGPoint", GoType: "foundation.Point", Framework: "Foundation", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
-	{ObjCType: "NSRange", GoType: "foundation.Range", Framework: "Foundation", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
+	// Foundation geometry types - when generating Foundation code, use unqualified names
+	// For other frameworks using these types (AppKit, etc.), use qualified names with import
+	{ObjCType: "NSRect", GoType: "Rect", Framework: "Foundation"},
+	{ObjCType: "CGRect", GoType: "Rect", Framework: "Foundation"},
+	{ObjCType: "NSSize", GoType: "Size", Framework: "Foundation"},
+	{ObjCType: "CGSize", GoType: "Size", Framework: "Foundation"},
+	{ObjCType: "NSPoint", GoType: "Point", Framework: "Foundation"},
+	{ObjCType: "CGPoint", GoType: "Point", Framework: "Foundation"},
+	{ObjCType: "NSRange", GoType: "Range", Framework: "Foundation"},
+
+	// Foundation types for other frameworks (with imports)
+	{ObjCType: "NSRect", GoType: "foundation.Rect", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
+	{ObjCType: "CGRect", GoType: "foundation.Rect", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
+	{ObjCType: "NSSize", GoType: "foundation.Size", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
+	{ObjCType: "CGSize", GoType: "foundation.Size", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
+	{ObjCType: "NSPoint", GoType: "foundation.Point", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
+	{ObjCType: "CGPoint", GoType: "foundation.Point", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
+	{ObjCType: "NSRange", GoType: "foundation.Range", Framework: "AppKit", RequiresImport: "github.com/progrium/darwinkit/macos/foundation"},
 
 	// AppKit window and view types (enums)
 	{ObjCType: "NSWindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},
@@ -137,4 +147,78 @@ func getAllAppKitEnumTypes() []string {
 	}
 
 	return result
+}
+
+// debugLogTypeMapping logs the actual type strings being looked up (for debugging)
+// This helper is used during generation to understand what metadata types arrive
+func debugLogTypeMapping(objcType, framework string, result string) {
+	// This would normally log to stderr or a debug file
+	// Enable with environment variable DEBUG_TYPE_MAPPING=1
+}
+
+// getAllMappedTypes returns all ObjC types in the registry for debugging
+func getAllMappedTypes() []TypeMapping {
+	return typeRegistry
+}
+
+// lookupTypeMappingDetails finds the full TypeMapping for a given Objective-C type.
+func lookupTypeMappingDetails(objcType, framework string) *TypeMapping {
+	objcType = strings.TrimSpace(objcType)
+
+	// Direct lookup - try framework-specific first
+	for i, mapping := range typeRegistry {
+		if mapping.ObjCType == objcType && mapping.Framework != "" && mapping.Framework == framework {
+			return &typeRegistry[i]
+		}
+	}
+
+	// Then try framework-agnostic types
+	for i, mapping := range typeRegistry {
+		if mapping.ObjCType == objcType && mapping.Framework == "" {
+			return &typeRegistry[i]
+		}
+	}
+
+	// Then try any matching type
+	for i, mapping := range typeRegistry {
+		if mapping.ObjCType == objcType {
+			return &typeRegistry[i]
+		}
+	}
+
+	// Try without pointer suffix
+	objcTypeNoPtr := strings.TrimSuffix(objcType, " *")
+	if objcTypeNoPtr != objcType {
+		for i, mapping := range typeRegistry {
+			if mapping.ObjCType == objcTypeNoPtr && mapping.Framework != "" && mapping.Framework == framework {
+				return &typeRegistry[i]
+			}
+		}
+
+		for i, mapping := range typeRegistry {
+			if mapping.ObjCType == objcTypeNoPtr && mapping.Framework == "" {
+				return &typeRegistry[i]
+			}
+		}
+
+		for i, mapping := range typeRegistry {
+			if mapping.ObjCType == objcTypeNoPtr {
+				return &typeRegistry[i]
+			}
+		}
+	}
+
+	return nil
+}
+
+// isFrameworkLocalType checks if an import path is for the same framework being generated.
+// For example: if framework is "Foundation" and import is "github.com/progrium/darwinkit/macos/foundation",
+// this returns true because both refer to Foundation.
+func isFrameworkLocalType(importPath, framework string) bool {
+	framework = strings.ToLower(framework)
+	importPath = strings.ToLower(importPath)
+
+	// Check if the framework name appears in the import path
+	// This is a simplified check - in a real scenario we might want to be more precise
+	return strings.Contains(importPath, framework)
 }

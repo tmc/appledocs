@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for AppKit. DO NOT EDIT.
 
 package appkit
@@ -9,86 +10,156 @@ import (
 )
 
 // The class instance for the [OpenGLView] class.
-var OpenGLViewClass objc.Class
+var OpenGLViewClass _OpenGLViewClass
 
 func init() {
-	OpenGLViewClass = objc.GetClass("NSOpenGLView")
+	OpenGLViewClass = _OpenGLViewClass{objc.GetClass("NSOpenGLView")}
+}
+
+type _OpenGLViewClass struct {
+	objc.Class
+}
+
+// An interface definition for the [OpenGLView] class.
+type IOpenGLView interface {
+	ID() objc.ID
+	ClearGLContext()
+	PrepareOpenGL()
+	Reshape()
+	Update()
 }
 
 type OpenGLView struct {
-	objc.ID
+	id objc.ID
 }
 
 func OpenGLViewFrom(ptr unsafe.Pointer) OpenGLView {
 	return OpenGLView{
-		ID: objc.ID(ptr),
+		id: objc.ID(ptr),
 	}
 }
 
+// ID returns the underlying objc.ID.
+func (o_ OpenGLView) ID() objc.ID {
+	return o_.id
+}
+
 // Alloc allocates a new instance without initialization.
-func (oc OpenGLView) Alloc() OpenGLView {
-	ret := objc.ID(OpenGLViewClass).Send(objc.RegisterName("alloc"))
-	return OpenGLView{ret}
+func (oc _OpenGLViewClass) Alloc() OpenGLView {
+	rv := objc.Send[OpenGLView](objc.ID(oc.Class), selAlloc)
+	return rv
+}
+
+// New creates and returns a new initialized instance.
+func (oc _OpenGLViewClass) New() OpenGLView {
+	rv := objc.Send[OpenGLView](objc.ID(oc.Class), selNew)
+	objc.Send[objc.ID](rv.ID(), selAutorelease)
+	return rv
+}
+
+// NewOpenGLView creates and returns a new initialized instance.
+func NewOpenGLView() OpenGLView {
+	return OpenGLViewClass.New()
 }
 
 // Init initializes the instance.
 func (o_ OpenGLView) Init() OpenGLView {
-	ret := o_.ID.Send(objc.RegisterName("init"))
-	return OpenGLView{ret}
+	rv := objc.Send[OpenGLView](o_.ID(), selInit)
+	return rv
 }
-// Returns an   object initialized with the specified frame rectangle and pixel format. [Full Topic]
-
-//
-// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
-func NewOpenGLViewWithFramePixelFormat(frameRect unsafe.Pointer, format unsafe.Pointer) OpenGLView {
-	instance := OpenGLView{}.Alloc()
-	sel := objc.RegisterName("initWithFrame:pixelFormat:")
-	ret := instance.ID.Send(sel, frameRect, format)
-	instance = OpenGLView{ret}
-	instance.ID = instance.ID.Send(objc.RegisterName("autorelease"))
-	return instance
-}
-
-
 // Returns a default   object. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/defaultPixelFormat()
-func (oc OpenGLView) DefaultPixelFormat() unsafe.Pointer {
-	sel := objc.RegisterName("defaultPixelFormat")
-	ret := objc.ID(OpenGLViewClass).Send(sel)
-	return unsafe.Pointer(ret)
+func (oc _OpenGLViewClass) DefaultPixelFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.Class), objc.RegisterName("defaultPixelFormat"))
+	return rv
 }
 // Releases the   object associated with the view. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/clearGLContext()
 func (o_ OpenGLView) ClearGLContext() {
-	sel := objc.RegisterName("clearGLContext")
-	o_.ID.Send(sel)
+	objc.Send[objc.ID](o_.ID(), objc.RegisterName("clearGLContext"))
 }
 // Used by subclasses to initialize OpenGL state. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/prepareOpenGL()
 func (o_ OpenGLView) PrepareOpenGL() {
-	sel := objc.RegisterName("prepareOpenGL")
-	o_.ID.Send(sel)
+	objc.Send[objc.ID](o_.ID(), objc.RegisterName("prepareOpenGL"))
 }
 // Called by Cocoa when the view’s visible rectangle or bounds change. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/reshape()
 func (o_ OpenGLView) Reshape() {
-	sel := objc.RegisterName("reshape")
-	o_.ID.Send(sel)
+	objc.Send[objc.ID](o_.ID(), objc.RegisterName("reshape"))
 }
 // Called by Cocoa when the view’s window moves or when the view itself moves or is resized. [Full Topic]
 
 //
 // [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/update()
 func (o_ OpenGLView) Update() {
-	sel := objc.RegisterName("update")
-	o_.ID.Send(sel)
+	objc.Send[objc.ID](o_.ID(), objc.RegisterName("update"))
 }
+// The   object associated with the receiver. [Full Topic]
 
+//
+// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/openGLContext
+func (o_ OpenGLView) OpenGLContext() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID(), objc.RegisterName("openGLContext"))
+	return rv
+}
+// SetOpenGLContext sets the value of the openGLContext property. [Full Topic]
+
+//
+// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/openGLContext
+func (o_ OpenGLView) SetOpenGLContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID(), objc.RegisterName("setOpenGLContext:"), value)
+}
+// The   object associated with the receiver. [Full Topic]
+
+//
+// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/pixelFormat
+func (o_ OpenGLView) PixelFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID(), objc.RegisterName("pixelFormat"))
+	return rv
+}
+// SetPixelFormat sets the value of the pixelFormat property. [Full Topic]
+
+//
+// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/pixelFormat
+func (o_ OpenGLView) SetPixelFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID(), objc.RegisterName("setPixelFormat:"), value)
+}
+// A Boolean value indicating whether the view wants an OpenGL backing surface with a resolution greater than 1 pixel per point. [Full Topic]
+
+//
+// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/wantsBestResolutionOpenGLSurface
+func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
+	rv := objc.Send[bool](o_.ID(), objc.RegisterName("wantsBestResolutionOpenGLSurface"))
+	return rv
+}
+// SetWantsBestResolutionOpenGLSurface sets the value of the wantsBestResolutionOpenGLSurface property. [Full Topic]
+
+//
+// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/wantsBestResolutionOpenGLSurface
+func (o_ OpenGLView) SetWantsBestResolutionOpenGLSurface(value bool) {
+	objc.Send[objc.ID](o_.ID(), objc.RegisterName("setWantsBestResolutionOpenGLSurface:"), value)
+}
+// Enables extended dynamic range values on the screen. [Full Topic]
+
+//
+// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/wantsExtendedDynamicRangeOpenGLSurface
+func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
+	rv := objc.Send[bool](o_.ID(), objc.RegisterName("wantsExtendedDynamicRangeOpenGLSurface"))
+	return rv
+}
+// SetWantsExtendedDynamicRangeOpenGLSurface sets the value of the wantsExtendedDynamicRangeOpenGLSurface property. [Full Topic]
+
+//
+// [Full Topic]: doc://com.apple.appkit/documentation/AppKit/NSOpenGLView/wantsExtendedDynamicRangeOpenGLSurface
+func (o_ OpenGLView) SetWantsExtendedDynamicRangeOpenGLSurface(value bool) {
+	objc.Send[objc.ID](o_.ID(), objc.RegisterName("setWantsExtendedDynamicRangeOpenGLSurface:"), value)
+}

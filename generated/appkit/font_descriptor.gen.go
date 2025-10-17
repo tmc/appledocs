@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for AppKit. DO NOT EDIT.
 
 package appkit
@@ -9,21 +10,56 @@ import (
 )
 
 // The class instance for the [FontDescriptor] class.
-var FontDescriptorClass objc.Class
+var FontDescriptorClass _FontDescriptorClass
 
 func init() {
-	FontDescriptorClass = objc.GetClass("NSFontDescriptor")
+	FontDescriptorClass = _FontDescriptorClass{objc.GetClass("NSFontDescriptor")}
+}
+
+type _FontDescriptorClass struct {
+	objc.Class
+}
+
+// An interface definition for the [FontDescriptor] class.
+type IFontDescriptor interface {
+	ID() objc.ID
 }
 
 type FontDescriptor struct {
-	objc.ID
+	id objc.ID
 }
 
 func FontDescriptorFrom(ptr unsafe.Pointer) FontDescriptor {
 	return FontDescriptor{
-		ID: objc.ID(ptr),
+		id: objc.ID(ptr),
 	}
 }
 
+// ID returns the underlying objc.ID.
+func (f_ FontDescriptor) ID() objc.ID {
+	return f_.id
+}
 
+// Alloc allocates a new instance without initialization.
+func (fc _FontDescriptorClass) Alloc() FontDescriptor {
+	rv := objc.Send[FontDescriptor](objc.ID(fc.Class), selAlloc)
+	return rv
+}
 
+// New creates and returns a new initialized instance.
+func (fc _FontDescriptorClass) New() FontDescriptor {
+	rv := objc.Send[FontDescriptor](objc.ID(fc.Class), selNew)
+	objc.Send[objc.ID](rv.ID(), selAutorelease)
+	return rv
+}
+
+// NewFontDescriptor creates and returns a new initialized instance.
+func NewFontDescriptor() FontDescriptor {
+	return FontDescriptorClass.New()
+}
+
+// Init initializes the instance.
+func (f_ FontDescriptor) Init() FontDescriptor {
+	rv := objc.Send[FontDescriptor](f_.ID(), selInit)
+	return rv
+}

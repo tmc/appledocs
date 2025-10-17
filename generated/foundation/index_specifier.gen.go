@@ -1,0 +1,29 @@
+// Code generated from Apple documentation for Foundation. DO NOT EDIT.
+
+package foundation
+
+import (
+	"unsafe"
+
+	"github.com/ebitengine/purego/objc"
+)
+
+// The class instance for the [IndexSpecifier] class.
+var IndexSpecifierClass objc.Class
+
+func init() {
+	IndexSpecifierClass = objc.GetClass("NSIndexSpecifier")
+}
+
+type IndexSpecifier struct {
+	objc.ID
+}
+
+func IndexSpecifierFrom(ptr unsafe.Pointer) IndexSpecifier {
+	return IndexSpecifier{
+		ID: objc.ID(ptr),
+	}
+}
+
+
+

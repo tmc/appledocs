@@ -18,7 +18,9 @@
 {{- $framework := .Framework}}
 {{- range .Classes}}
 #-- {{classFileName .Name}} --
-{{/* Pass class as . and framework via define/template context */}}
+{{/* Compute required imports for this class - check class methods and instance methods separately */}}
+{{- $classImports := getRequiredImports (prepareClassMethods .Methods) $framework }}
+{{- $instImports := getRequiredImports (prepareInstanceMethods .Methods) $framework }}
 // Code generated from Apple documentation for {{$framework}}. DO NOT EDIT.
 
 package {{$.PackageName}}
@@ -27,6 +29,10 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego/objc"
+{{- $allImports := mergeImports $classImports $instImports }}
+{{- range sortedImportPaths $allImports }}
+	"{{.}}"
+{{- end}}
 )
 
 // The class instance for the [{{classToStructName .Name}}] class.
@@ -427,3 +433,37 @@ var (
 	selInit        = objc.RegisterName("init")
 	selAutorelease = objc.RegisterName("autorelease")
 )
+
+// Common CoreGraphics struct types
+type CGFloat = float64
+
+type CGPoint struct {
+	X CGFloat
+	Y CGFloat
+}
+
+type CGSize struct {
+	Width  CGFloat
+	Height CGFloat
+}
+
+type CGRect struct {
+	Origin CGPoint
+	Size   CGSize
+}
+
+type CGAffineTransform struct {
+	A  CGFloat
+	B  CGFloat
+	C  CGFloat
+	D  CGFloat
+	Tx CGFloat
+	Ty CGFloat
+}
+
+// Aliases for common use - NSRange, NSPoint, NSSize, NSRect
+type Range = CGPoint  // For NSRange - structured as {location, length}
+type Point = CGPoint
+type Size = CGSize
+type Rect = CGRect
+

@@ -2,6 +2,15 @@
 
 package appkit
 
+import "github.com/ebitengine/purego/objc"
+
+// Common selectors cached for performance
+var (
+	selAlloc       = objc.RegisterName("alloc")
+	selNew         = objc.RegisterName("new")
+	selInit        = objc.RegisterName("init")
+	selAutorelease = objc.RegisterName("autorelease")
+)
 
 // Common CoreGraphics struct types
 type CGFloat = float64
@@ -29,5 +38,11 @@ type CGAffineTransform struct {
 	Tx CGFloat
 	Ty CGFloat
 }
+
+// Aliases for common use - NSRange, NSPoint, NSSize, NSRect
+type Range = CGPoint  // For NSRange - structured as {location, length}
+type Point = CGPoint
+type Size = CGSize
+type Rect = CGRect
 
 
