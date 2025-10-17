@@ -78,7 +78,11 @@ package {{.PackageName}}
 package {{.PackageName}}
 
 // frameworkPath is the system path to the framework binary.
+{{if eq .Framework "ObjectiveC" -}}
+const frameworkPath = "/usr/lib/libobjc.dylib"
+{{else -}}
 const frameworkPath = "/System/Library/Frameworks/{{.Framework}}.framework/{{.Framework}}"
+{{end -}}
 
 -- types.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
