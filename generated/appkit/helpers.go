@@ -291,3 +291,14 @@ func (c Control) SetAlignment(alignment int) {
 func (t TextField) SetDrawsBackground(draws bool) {
 	objc.Send[objc.ID](t.ID, objc.RegisterName("setDrawsBackground:"), draws)
 }
+
+// SetBackgroundColor sets the text field's background color.
+func (t TextField) SetBackgroundColor(color Color) {
+	objc.Send[objc.ID](t.ID, objc.RegisterName("setBackgroundColor:"), color.ID)
+}
+
+// BackgroundColor returns the text field's background color.
+func (t TextField) BackgroundColor() Color {
+	colorID := objc.Send[objc.ID](t.ID, objc.RegisterName("backgroundColor"))
+	return ColorFrom(unsafe.Pointer(colorID))
+}

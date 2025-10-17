@@ -197,6 +197,22 @@ func ExampleTextField_SetDrawsBackground() {
 	// Use SetDrawsBackground(false) to make background transparent
 }
 
+// ExampleTextField_SetBackgroundColor demonstrates setting background color.
+func ExampleTextField_SetBackgroundColor() {
+	// Note: This demonstrates the API. In a real application:
+	//
+	// textField := appkit.NewTextField()
+	// color := appkit.ColorClass.WhiteColor()
+	// textField.SetBackgroundColor(color)
+
+	fmt.Println("TextField background color can be set")
+	fmt.Println("Use SetBackgroundColor() with an NSColor")
+
+	// Output:
+	// TextField background color can be set
+	// Use SetBackgroundColor() with an NSColor
+}
+
 // ExampleRunApp demonstrates how to use RunApp to create a simple macOS application.
 // This example shows the minimal code needed to create and display a window.
 //
