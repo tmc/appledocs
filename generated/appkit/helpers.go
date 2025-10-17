@@ -234,3 +234,60 @@ func (b Button) SetTitleString(title string) {
 	nsStr := objc.ID(strClass).Send(objc.RegisterName("stringWithUTF8String:"), title)
 	objc.Send[objc.ID](b.ID, objc.RegisterName("setTitle:"), nsStr)
 }
+
+// Control convenience methods (inherited by Button, TextField, etc.)
+
+// TextAlignment constants for SetAlignment.
+const (
+	TextAlignmentLeft      = 0
+	TextAlignmentCenter    = 1
+	TextAlignmentRight     = 2
+	TextAlignmentJustified = 3
+	TextAlignmentNatural   = 4
+)
+
+// SetStringValue sets the control's string value.
+func (c Control) SetStringValue(value string) {
+	strClass := objc.GetClass("NSString")
+	nsStr := objc.ID(strClass).Send(objc.RegisterName("stringWithUTF8String:"), value)
+	objc.Send[objc.ID](c.ID, objc.RegisterName("setStringValue:"), nsStr)
+}
+
+// StringValue returns the control's string value as a Go string.
+func (c Control) StringValue() string {
+	nsStr := objc.Send[objc.ID](c.ID, objc.RegisterName("stringValue"))
+	if nsStr == 0 {
+		return ""
+	}
+	cStr := objc.Send[*byte](nsStr, objc.RegisterName("UTF8String"))
+	if cStr == nil {
+		return ""
+	}
+	length := 0
+	for ptr := cStr; *ptr != 0; ptr = (*byte)(unsafe.Add(unsafe.Pointer(ptr), 1)) {
+		length++
+	}
+	return string(unsafe.Slice(cStr, length))
+}
+
+// SetEditable sets whether the control is editable.
+func (c Control) SetEditable(editable bool) {
+	objc.Send[objc.ID](c.ID, objc.RegisterName("setEditable:"), editable)
+}
+
+// SetBordered sets whether the control has a border.
+func (c Control) SetBordered(bordered bool) {
+	objc.Send[objc.ID](c.ID, objc.RegisterName("setBordered:"), bordered)
+}
+
+// SetAlignment sets the text alignment.
+func (c Control) SetAlignment(alignment int) {
+	objc.Send[objc.ID](c.ID, objc.RegisterName("setAlignment:"), alignment)
+}
+
+// TextField convenience methods
+
+// SetDrawsBackground sets whether the text field draws its background.
+func (t TextField) SetDrawsBackground(draws bool) {
+	objc.Send[objc.ID](t.ID, objc.RegisterName("setDrawsBackground:"), draws)
+}

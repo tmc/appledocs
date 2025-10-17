@@ -116,6 +116,87 @@ func ExampleButton_SetButtonType() {
 	// Available styles: Rounded, RegularSquare, Circular, HelpButton, etc.
 }
 
+// ExampleControl_SetStringValue demonstrates setting a control's string value.
+func ExampleControl_SetStringValue() {
+	control := appkit.NewControl()
+
+	// Set the control's string value
+	control.SetStringValue("Hello, Control!")
+
+	fmt.Println("Control string value set")
+
+	// Output:
+	// Control string value set
+}
+
+// ExampleControl_SetEditable demonstrates making a control editable or read-only.
+func ExampleControl_SetEditable() {
+	control := appkit.NewControl()
+
+	// Make the control read-only
+	control.SetEditable(false)
+
+	fmt.Println("Control set to read-only")
+
+	// Output:
+	// Control set to read-only
+}
+
+// ExampleControl_SetBordered demonstrates setting whether a control has a border.
+func ExampleControl_SetBordered() {
+	control := appkit.NewControl()
+
+	// Remove the border
+	control.SetBordered(false)
+
+	fmt.Println("Control border removed")
+
+	// Output:
+	// Control border removed
+}
+
+// ExampleControl_SetAlignment demonstrates setting text alignment in a control.
+func ExampleControl_SetAlignment() {
+	control := appkit.NewControl()
+
+	// Center-align the text
+	control.SetAlignment(appkit.TextAlignmentCenter)
+
+	fmt.Println("Text alignment set to center")
+	fmt.Println("Available alignments:")
+	fmt.Println("- TextAlignmentLeft: Left-aligned")
+	fmt.Println("- TextAlignmentCenter: Center-aligned")
+	fmt.Println("- TextAlignmentRight: Right-aligned")
+	fmt.Println("- TextAlignmentJustified: Justified")
+	fmt.Println("- TextAlignmentNatural: Natural (system default)")
+
+	// Output:
+	// Text alignment set to center
+	// Available alignments:
+	// - TextAlignmentLeft: Left-aligned
+	// - TextAlignmentCenter: Center-aligned
+	// - TextAlignmentRight: Right-aligned
+	// - TextAlignmentJustified: Justified
+	// - TextAlignmentNatural: Natural (system default)
+}
+
+// ExampleTextField_SetDrawsBackground demonstrates controlling background drawing.
+func ExampleTextField_SetDrawsBackground() {
+	// Note: This demonstrates the API but we can't actually create a TextField
+	// in this example because TextField constructors aren't generated yet.
+	// In a real application, you would create a TextField and use it like:
+	//
+	// textField := appkit.NewTextField()
+	// textField.SetDrawsBackground(false)
+
+	fmt.Println("TextField background control is available")
+	fmt.Println("Use SetDrawsBackground(false) to make background transparent")
+
+	// Output:
+	// TextField background control is available
+	// Use SetDrawsBackground(false) to make background transparent
+}
+
 // ExampleRunApp demonstrates how to use RunApp to create a simple macOS application.
 // This example shows the minimal code needed to create and display a window.
 //
