@@ -477,7 +477,7 @@ func main() {
 
 	// Create output directory
 	packageName := strings.ToLower(*framework)
-	outDir := *outputDir
+	outDir := filepath.Join(*outputDir, packageName)
 	if !*txtarOutput {
 		if err := os.MkdirAll(outDir, 0755); err != nil {
 			fmt.Fprintf(os.Stderr, "Error: failed to create output directory: %v\n", err)
