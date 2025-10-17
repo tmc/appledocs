@@ -59,57 +59,33 @@ func (s_ String) Autorelease() String {
 func NewString() String {
 	return stringClass.New()
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(format string, validFormatSpecifiers string, locale objc.ID, argList unsafe.Pointer, error unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:"), format, validFormatSpecifiers, locale, argList, error)
-	rv.Autorelease()
-	return rv
-}
-// Initializes the receiver, a newly allocated object, by reading data from the file named by . [Full Topic]
+// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:)
-func NewStringWithContentsOfFile(path string) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithFormat:locale:
+func NewStringWithFormatLocale(format string, locale objc.ID) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:"), format, locale)
 	rv.Autorelease()
 	return rv
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:deallocator:)
-func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer, deallocator unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:deallocator:"), bytes, len, encoding, deallocator)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:deallocator:)
-func NewStringWithCharactersNoCopyLengthDeallocator(chars unsafe.Pointer, len uint, deallocator unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:deallocator:"), chars, len, deallocator)
-	rv.Autorelease()
-	return rv
-}
-// Returns an object initialized using the characters in a given C array, interpreted according to a given encoding. [Full Topic]
+// Returns an object initialized by copying the characters from a given C array of UTF8-encoded bytes. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:encoding:)-20f9h
-func NewStringWithCStringEncoding(nullTerminatedCString unsafe.Pointer, encoding unsafe.Pointer) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(UTF8String:)-vg2b
+func NewStringWithUTF8String(nullTerminatedCString unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:encoding:"), nullTerminatedCString, encoding)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithUTF8String:"), nullTerminatedCString)
 	rv.Autorelease()
 	return rv
 }
-// Returns an object initialized by reading data from the file at a given path using a given encoding. [Full Topic]
+// Returns an initialized object containing a given number of bytes from a given buffer of bytes interpreted in a given encoding. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:encoding:)
-func NewStringWithContentsOfFileEncodingError(path string, enc unsafe.Pointer, error unsafe.Pointer) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytes:length:encoding:)
+func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:encoding:error:"), path, enc, error)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytes:length:encoding:"), bytes, len, encoding)
 	rv.Autorelease()
 	return rv
 }
@@ -123,33 +99,37 @@ func NewStringWithFormatLocaleArguments(format string, locale objc.ID, argList u
 	rv.Autorelease()
 	return rv
 }
-// Returns an initialized object that contains a given number of characters from a given C array of UTF-16 code units. [Full Topic]
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(characters:length:)
-func NewStringWithCharactersLength(characters unsafe.Pointer, length uint) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:arguments:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format string, validFormatSpecifiers string, argList unsafe.Pointer, error unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharacters:length:"), characters, length)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:arguments:error:"), format, validFormatSpecifiers, argList, error)
 	rv.Autorelease()
 	return rv
 }
-// Initializes the receiver, a newly allocated object, by reading data from the location named by a given URL. [Full Topic]
+// Returns an initialized object that contains a given number of bytes from a given buffer of bytes interpreted in a given encoding, and optionally frees the buffer. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:)
-func NewStringWithContentsOfURL(url unsafe.Pointer) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:freeWhenDone:)
+func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer, freeBuffer bool) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:freeWhenDone:"), bytes, len, encoding, freeBuffer)
 	rv.Autorelease()
 	return rv
 }
-// Returns an object initialized by reading data from a given URL and returns by reference the encoding used to interpret the data. [Full Topic]
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:usedEncoding:)-2c72d
-func NewStringWithContentsOfURLUsedEncodingError(url unsafe.Pointer, enc unsafe.Pointer, error unsafe.Pointer) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(format string, validFormatSpecifiers string, locale objc.ID, argList unsafe.Pointer, error unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:usedEncoding:error:"), url, enc, error)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:"), format, validFormatSpecifiers, locale, argList, error)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersError(format string, validFormatSpecifiers string, error unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error)
 	rv.Autorelease()
 	return rv
 }
@@ -164,10 +144,10 @@ func NewStringWithDataEncoding(data unsafe.Pointer, encoding unsafe.Pointer) Str
 	return rv
 }
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersError(format string, validFormatSpecifiers string, error unsafe.Pointer) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format string, validFormatSpecifiers string, locale objc.ID, error unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), format, validFormatSpecifiers, locale, error)
 	rv.Autorelease()
 	return rv
 }
@@ -181,89 +161,23 @@ func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters unsafe.Pointer, 
 	rv.Autorelease()
 	return rv
 }
-// Returns an object initialized by copying the characters from a given C array of UTF8-encoded bytes. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(UTF8String:)-vg2b
-func NewStringWithUTF8String(nullTerminatedCString unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithUTF8String:"), nullTerminatedCString)
-	rv.Autorelease()
-	return rv
-}
-// Returns an object initialized by reading data from the file at a given path and returns by reference the encoding used to interpret the characters. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:usedEncoding:)
-func NewStringWithContentsOfFileUsedEncodingError(path string, enc unsafe.Pointer, error unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:usedEncoding:error:"), path, enc, error)
-	rv.Autorelease()
-	return rv
-}
-// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted without any localization. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(format:arguments:)
-func NewStringWithFormatArguments(format string, argList unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:arguments:"), format, argList)
-	rv.Autorelease()
-	return rv
-}
-// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithFormat:locale:
-func NewStringWithFormatLocale(format string, locale objc.ID) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:"), format, locale)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format string, validFormatSpecifiers string, locale objc.ID, error unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), format, validFormatSpecifiers, locale, error)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(coder:)
-func NewStringWithCoder(coder unsafe.Pointer) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
 // Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CStringNoCopy:length:freeWhenDone:)
-func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint, freeBuffer bool) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:length:)
+func NewStringWithCStringLength(bytes unsafe.Pointer, length uint) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCStringNoCopy:length:freeWhenDone:"), bytes, length, freeBuffer)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:length:"), bytes, length)
 	rv.Autorelease()
 	return rv
 }
-// Returns an initialized object containing a given number of bytes from a given buffer of bytes interpreted in a given encoding. [Full Topic]
+// Initializes the receiver, a newly allocated object, by reading data from the file named by . [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytes:length:encoding:)
-func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:)
+func NewStringWithContentsOfFile(path string) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytes:length:encoding:"), bytes, len, encoding)
-	rv.Autorelease()
-	return rv
-}
-// Returns an initialized object that contains a given number of bytes from a given buffer of bytes interpreted in a given encoding, and optionally frees the buffer. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:freeWhenDone:)
-func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer, freeBuffer bool) String {
-	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:freeWhenDone:"), bytes, len, encoding, freeBuffer)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
 	rv.Autorelease()
 	return rv
 }
@@ -300,10 +214,84 @@ func NewStringWithCString(bytes unsafe.Pointer) String {
 // Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:length:)
-func NewStringWithCStringLength(bytes unsafe.Pointer, length uint) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CStringNoCopy:length:freeWhenDone:)
+func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint, freeBuffer bool) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:length:"), bytes, length)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCStringNoCopy:length:freeWhenDone:"), bytes, length, freeBuffer)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:deallocator:)
+func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len uint, encoding unsafe.Pointer, deallocator unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:deallocator:"), bytes, len, encoding, deallocator)
+	rv.Autorelease()
+	return rv
+}
+// Returns an initialized object that contains a given number of characters from a given C array of UTF-16 code units. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(characters:length:)
+func NewStringWithCharactersLength(characters unsafe.Pointer, length uint) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharacters:length:"), characters, length)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:deallocator:)
+func NewStringWithCharactersNoCopyLengthDeallocator(chars unsafe.Pointer, len uint, deallocator unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:deallocator:"), chars, len, deallocator)
+	rv.Autorelease()
+	return rv
+}
+// Returns an object initialized by reading data from the file at a given path using a given encoding. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:encoding:)
+func NewStringWithContentsOfFileEncodingError(path string, enc unsafe.Pointer, error unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:encoding:error:"), path, enc, error)
+	rv.Autorelease()
+	return rv
+}
+// Returns an object initialized by reading data from the file at a given path and returns by reference the encoding used to interpret the characters. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:usedEncoding:)
+func NewStringWithContentsOfFileUsedEncodingError(path string, enc unsafe.Pointer, error unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:usedEncoding:error:"), path, enc, error)
+	rv.Autorelease()
+	return rv
+}
+// Initializes the receiver, a newly allocated object, by reading data from the location named by a given URL. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:)
+func NewStringWithContentsOfURL(url unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+// Returns an object initialized using the characters in a given C array, interpreted according to a given encoding. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:encoding:)-20f9h
+func NewStringWithCStringEncoding(nullTerminatedCString unsafe.Pointer, encoding unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:encoding:"), nullTerminatedCString, encoding)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(coder:)
+func NewStringWithCoder(coder unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -317,11 +305,23 @@ func NewStringWithContentsOfURLEncodingError(url unsafe.Pointer, enc unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
+// Returns an object initialized by reading data from a given URL and returns by reference the encoding used to interpret the data. [Full Topic]
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:arguments:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format string, validFormatSpecifiers string, argList unsafe.Pointer, error unsafe.Pointer) String {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:usedEncoding:)-2c72d
+func NewStringWithContentsOfURLUsedEncodingError(url unsafe.Pointer, enc unsafe.Pointer, error unsafe.Pointer) String {
 	instance := stringClass.Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:arguments:error:"), format, validFormatSpecifiers, argList, error)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:usedEncoding:error:"), url, enc, error)
+	rv.Autorelease()
+	return rv
+}
+// Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted without any localization. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(format:arguments:)
+func NewStringWithFormatArguments(format string, argList unsafe.Pointer) String {
+	instance := stringClass.Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:arguments:"), format, argList)
 	rv.Autorelease()
 	return rv
 }

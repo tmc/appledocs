@@ -7,15 +7,6 @@ import (
 )
 
 
-// ExampleNewWindowWithContentViewController demonstrates how to create a Window instance using NewWindowWithContentViewController.
-// Creates a titled window that contains the specified content view controller.
-func ExampleNewWindowWithContentViewController() {
-	_ = appkit.NewWindowWithContentViewController(
-		nil, // contentViewController unsafe.Pointer
-	)
-	// Output:
-}
-
 // ExampleNewWindowWithWindowRef demonstrates how to create a Window instance using NewWindowWithWindowRef.
 // Returns a Cocoa window created from a Carbon window.
 func ExampleNewWindowWithWindowRef() {
@@ -46,6 +37,15 @@ func ExampleNewWindowWithContentRectStyleMaskBackingDeferScreen() {
 		appkit.BackingStoreType(0), // backingStoreType BackingStoreType
 		false, // flag bool
 		nil, // screen unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewWindowWithContentViewController demonstrates how to create a Window instance using NewWindowWithContentViewController.
+// Creates a titled window that contains the specified content view controller.
+func ExampleNewWindowWithContentViewController() {
+	_ = appkit.NewWindowWithContentViewController(
+		nil, // contentViewController unsafe.Pointer
 	)
 	// Output:
 }

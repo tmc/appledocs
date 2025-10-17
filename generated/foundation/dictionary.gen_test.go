@@ -7,19 +7,28 @@ import (
 )
 
 
+// ExampleNewDictionaryWithContentsOfURL demonstrates how to create a Dictionary instance using NewDictionaryWithContentsOfURL.
+// Initializes a newly allocated dictionary using the keys and values found at a given URL.
+func ExampleNewDictionaryWithContentsOfURL() {
+	_ = foundation.NewDictionaryWithContentsOfURL(
+		nil, // url unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewDictionaryWithObjectsAndKeys demonstrates how to create a Dictionary instance using NewDictionaryWithObjectsAndKeys.
+// Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys.
+func ExampleNewDictionaryWithObjectsAndKeys() {
+	_ = foundation.NewDictionaryWithObjectsAndKeys(
+		0, // firstObject objc.ID
+	)
+	// Output:
+}
+
 // ExampleNewDictionary demonstrates how to create a Dictionary instance.
 // Initializes a newly allocated dictionary.
 func ExampleNewDictionary() {
 	_ = foundation.NewDictionary()
-	// Output:
-}
-
-// ExampleNewDictionaryWithCoder demonstrates how to create a Dictionary instance using NewDictionaryWithCoder.
-// Creates a dictionary initialized from data in the provided unarchiver.
-func ExampleNewDictionaryWithCoder() {
-	_ = foundation.NewDictionaryWithCoder(
-		nil, // coder unsafe.Pointer
-	)
 	// Output:
 }
 
@@ -32,11 +41,12 @@ func ExampleNewDictionaryWithContentsOfFile() {
 	// Output:
 }
 
-// ExampleNewDictionaryWithContentsOfURL demonstrates how to create a Dictionary instance using NewDictionaryWithContentsOfURL.
+// ExampleNewDictionaryWithContentsOfURLError demonstrates how to create a Dictionary instance using NewDictionaryWithContentsOfURLError.
 // Initializes a newly allocated dictionary using the keys and values found at a given URL.
-func ExampleNewDictionaryWithContentsOfURL() {
-	_ = foundation.NewDictionaryWithContentsOfURL(
+func ExampleNewDictionaryWithContentsOfURLError() {
+	_ = foundation.NewDictionaryWithContentsOfURLError(
 		nil, // url unsafe.Pointer
+		nil, // error unsafe.Pointer
 	)
 	// Output:
 }
@@ -60,32 +70,22 @@ func ExampleNewDictionaryWithDictionaryCopyItems() {
 	// Output:
 }
 
-// ExampleNewDictionaryWithObjectsForKeys demonstrates how to create a Dictionary instance using NewDictionaryWithObjectsForKeys.
-// Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects.
-func ExampleNewDictionaryWithObjectsForKeys() {
-	_ = foundation.NewDictionaryWithObjectsForKeys(
-		nil, // objects unsafe.Pointer
-		nil, // keys unsafe.Pointer
-	)
-	// Output:
-}
-
-// ExampleNewDictionaryWithContentsOfURLError demonstrates how to create a Dictionary instance using NewDictionaryWithContentsOfURLError.
-// Initializes a newly allocated dictionary using the keys and values found at a given URL.
-func ExampleNewDictionaryWithContentsOfURLError() {
-	_ = foundation.NewDictionaryWithContentsOfURLError(
-		nil, // url unsafe.Pointer
-		nil, // error unsafe.Pointer
-	)
-	// Output:
-}
-
 // ExampleNewDictionaryWithObjectForKey demonstrates how to create a Dictionary instance using NewDictionaryWithObjectForKey.
 // Creates a dictionary containing a given key and value.
 func ExampleNewDictionaryWithObjectForKey() {
 	_ = foundation.NewDictionaryWithObjectForKey(
 		nil, // object unsafe.Pointer
 		nil, // key unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewDictionaryWithObjectsForKeys demonstrates how to create a Dictionary instance using NewDictionaryWithObjectsForKeys.
+// Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects.
+func ExampleNewDictionaryWithObjectsForKeys() {
+	_ = foundation.NewDictionaryWithObjectsForKeys(
+		nil, // objects unsafe.Pointer
+		nil, // keys unsafe.Pointer
 	)
 	// Output:
 }
@@ -101,11 +101,11 @@ func ExampleNewDictionaryWithObjectsForKeysCount() {
 	// Output:
 }
 
-// ExampleNewDictionaryWithObjectsAndKeys demonstrates how to create a Dictionary instance using NewDictionaryWithObjectsAndKeys.
-// Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys.
-func ExampleNewDictionaryWithObjectsAndKeys() {
-	_ = foundation.NewDictionaryWithObjectsAndKeys(
-		0, // firstObject objc.ID
+// ExampleNewDictionaryWithCoder demonstrates how to create a Dictionary instance using NewDictionaryWithCoder.
+// Creates a dictionary initialized from data in the provided unarchiver.
+func ExampleNewDictionaryWithCoder() {
+	_ = foundation.NewDictionaryWithCoder(
+		nil, // coder unsafe.Pointer
 	)
 	// Output:
 }

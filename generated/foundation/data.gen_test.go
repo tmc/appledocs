@@ -7,56 +7,6 @@ import (
 )
 
 
-// ExampleNewDataWithBytesNoCopyLengthDeallocator demonstrates how to create a Data instance using NewDataWithBytesNoCopyLengthDeallocator.
-// Initializes a data object filled with a given number of bytes of data from a given buffer, with a custom deallocator block.
-func ExampleNewDataWithBytesNoCopyLengthDeallocator() {
-	_ = foundation.NewDataWithBytesNoCopyLengthDeallocator(
-		nil, // bytes unsafe.Pointer
-		0, // length uint
-		nil, // deallocator unsafe.Pointer
-	)
-	// Output:
-}
-
-// ExampleNewDataWithContentsOfURL demonstrates how to create a Data instance using NewDataWithContentsOfURL.
-// Creates a data object from the data at the specified file URL, or returns   if the system can’t create one.
-func ExampleNewDataWithContentsOfURL() {
-	_ = foundation.NewDataWithContentsOfURL(
-		nil, // url unsafe.Pointer
-	)
-	// Output:
-}
-
-// ExampleNewDataWithContentsOfURLOptionsError demonstrates how to create a Data instance using NewDataWithContentsOfURLOptionsError.
-// Creates a data object from the data at the provided file URL using specific reading options.
-func ExampleNewDataWithContentsOfURLOptionsError() {
-	_ = foundation.NewDataWithContentsOfURLOptionsError(
-		nil, // url unsafe.Pointer
-		nil, // readOptionsMask unsafe.Pointer
-		nil, // errorPtr unsafe.Pointer
-	)
-	// Output:
-}
-
-// ExampleNewDataWithData demonstrates how to create a Data instance using NewDataWithData.
-// Initializes a data object with the contents of another data object.
-func ExampleNewDataWithData() {
-	_ = foundation.NewDataWithData(
-		nil, // data unsafe.Pointer
-	)
-	// Output:
-}
-
-// ExampleNewDataWithBase64EncodedDataOptions demonstrates how to create a Data instance using NewDataWithBase64EncodedDataOptions.
-// Initializes a data object with the given Base64 encoded data.
-func ExampleNewDataWithBase64EncodedDataOptions() {
-	_ = foundation.NewDataWithBase64EncodedDataOptions(
-		nil, // base64Data unsafe.Pointer
-		nil, // options unsafe.Pointer
-	)
-	// Output:
-}
-
 // ExampleNewDataWithBase64EncodedStringOptions demonstrates how to create a Data instance using NewDataWithBase64EncodedStringOptions.
 // Initializes a data object with the given Base64 encoded string.
 func ExampleNewDataWithBase64EncodedStringOptions() {
@@ -106,6 +56,57 @@ func ExampleNewDataWithContentsOfFile() {
 	// Output:
 }
 
+// ExampleNewDataWithContentsOfURL demonstrates how to create a Data instance using NewDataWithContentsOfURL.
+// Creates a data object from the data at the specified file URL, or returns   if the system can’t create one.
+func ExampleNewDataWithContentsOfURL() {
+	_ = foundation.NewDataWithContentsOfURL(
+		nil, // url unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewDataWithContentsOfURLOptionsError demonstrates how to create a Data instance using NewDataWithContentsOfURLOptionsError.
+// Creates a data object from the data at the provided file URL using specific reading options.
+func ExampleNewDataWithContentsOfURLOptionsError() {
+	_ = foundation.NewDataWithContentsOfURLOptionsError(
+		nil, // url unsafe.Pointer
+		nil, // readOptionsMask unsafe.Pointer
+		nil, // errorPtr unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewDataWithBase64EncodedDataOptions demonstrates how to create a Data instance using NewDataWithBase64EncodedDataOptions.
+// Initializes a data object with the given Base64 encoded data.
+func ExampleNewDataWithBase64EncodedDataOptions() {
+	_ = foundation.NewDataWithBase64EncodedDataOptions(
+		nil, // base64Data unsafe.Pointer
+		nil, // options unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewDataWithBytesLength demonstrates how to create a Data instance using NewDataWithBytesLength.
+// Initializes a data object filled with a given number of bytes copied from a given buffer.
+func ExampleNewDataWithBytesLength() {
+	_ = foundation.NewDataWithBytesLength(
+		nil, // bytes unsafe.Pointer
+		0, // length uint
+	)
+	// Output:
+}
+
+// ExampleNewDataWithBytesNoCopyLengthDeallocator demonstrates how to create a Data instance using NewDataWithBytesNoCopyLengthDeallocator.
+// Initializes a data object filled with a given number of bytes of data from a given buffer, with a custom deallocator block.
+func ExampleNewDataWithBytesNoCopyLengthDeallocator() {
+	_ = foundation.NewDataWithBytesNoCopyLengthDeallocator(
+		nil, // bytes unsafe.Pointer
+		0, // length uint
+		nil, // deallocator unsafe.Pointer
+	)
+	// Output:
+}
+
 // ExampleNewDataWithContentsOfFileOptionsError demonstrates how to create a Data instance using NewDataWithContentsOfFileOptionsError.
 // Initializes a data object with the content of the file at a given path.
 func ExampleNewDataWithContentsOfFileOptionsError() {
@@ -126,12 +127,11 @@ func ExampleNewDataWithContentsOfMappedFile() {
 	// Output:
 }
 
-// ExampleNewDataWithBytesLength demonstrates how to create a Data instance using NewDataWithBytesLength.
-// Initializes a data object filled with a given number of bytes copied from a given buffer.
-func ExampleNewDataWithBytesLength() {
-	_ = foundation.NewDataWithBytesLength(
-		nil, // bytes unsafe.Pointer
-		0, // length uint
+// ExampleNewDataWithData demonstrates how to create a Data instance using NewDataWithData.
+// Initializes a data object with the contents of another data object.
+func ExampleNewDataWithData() {
+	_ = foundation.NewDataWithData(
+		nil, // data unsafe.Pointer
 	)
 	// Output:
 }

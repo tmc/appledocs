@@ -7,24 +7,6 @@ import (
 )
 
 
-// ExampleNewPredicateFromMetadataQueryString demonstrates how to create a Predicate instance using NewPredicateFromMetadataQueryString.
-// Creates a predicate with a metadata query string.
-func ExampleNewPredicateFromMetadataQueryString() {
-	_ = foundation.NewPredicateFromMetadataQueryString(
-		"queryString", // queryString string
-	)
-	// Output:
-}
-
-// ExampleNewPredicateWithValue demonstrates how to create a Predicate instance using NewPredicateWithValue.
-// Creates and returns a predicate that always evaluates to a specified Boolean value.
-func ExampleNewPredicateWithValue() {
-	_ = foundation.NewPredicateWithValue(
-		false, // value bool
-	)
-	// Output:
-}
-
 // ExampleNewPredicateWithBlock demonstrates how to create a Predicate instance using NewPredicateWithBlock.
 // Creates a predicate that evaluates using a specified block object and bindings dictionary.
 func ExampleNewPredicateWithBlock() {
@@ -50,6 +32,24 @@ func ExampleNewPredicateWithFormatArguments() {
 	_ = foundation.NewPredicateWithFormatArguments(
 		"predicateFormat", // predicateFormat string
 		nil, // argList unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewPredicateFromMetadataQueryString demonstrates how to create a Predicate instance using NewPredicateFromMetadataQueryString.
+// Creates a predicate with a metadata query string.
+func ExampleNewPredicateFromMetadataQueryString() {
+	_ = foundation.NewPredicateFromMetadataQueryString(
+		"queryString", // queryString string
+	)
+	// Output:
+}
+
+// ExampleNewPredicateWithValue demonstrates how to create a Predicate instance using NewPredicateWithValue.
+// Creates and returns a predicate that always evaluates to a specified Boolean value.
+func ExampleNewPredicateWithValue() {
+	_ = foundation.NewPredicateWithValue(
+		false, // value bool
 	)
 	// Output:
 }

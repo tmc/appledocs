@@ -7,6 +7,12 @@ import (
 )
 
 
+// ExampleNewCell demonstrates how to create a Cell instance.
+func ExampleNewCell() {
+	_ = appkit.NewCell()
+	// Output:
+}
+
 // ExampleNewCellWithCoder demonstrates how to create a Cell instance using NewCellWithCoder.
 func ExampleNewCellWithCoder() {
 	_ = appkit.NewCellWithCoder(
@@ -30,12 +36,6 @@ func ExampleNewCellTextCell() {
 	_ = appkit.NewCellTextCell(
 		"string", // string string
 	)
-	// Output:
-}
-
-// ExampleNewCell demonstrates how to create a Cell instance.
-func ExampleNewCell() {
-	_ = appkit.NewCell()
 	// Output:
 }
 

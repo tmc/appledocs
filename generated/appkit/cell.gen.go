@@ -59,16 +59,6 @@ func (c_ Cell) Autorelease() Cell {
 func NewCell() Cell {
 	return cellClass.New()
 }
-// Returns an NSCell object initialized with the specified string and set to have the cell’s default menu. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
-func NewCellTextCell(string string) Cell {
-	instance := cellClass.Alloc()
-	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), string)
-	rv.Autorelease()
-	return rv
-}
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
 func NewCellWithCoder(coder unsafe.Pointer) Cell {
@@ -84,6 +74,16 @@ func NewCellWithCoder(coder unsafe.Pointer) Cell {
 func NewCellImageCell(image unsafe.Pointer) Cell {
 	instance := cellClass.Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initImageCell:"), image)
+	rv.Autorelease()
+	return rv
+}
+// Returns an NSCell object initialized with the specified string and set to have the cell’s default menu. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
+func NewCellTextCell(string string) Cell {
+	instance := cellClass.Alloc()
+	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), string)
 	rv.Autorelease()
 	return rv
 }

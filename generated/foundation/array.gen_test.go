@@ -7,18 +7,12 @@ import (
 )
 
 
-// ExampleNewArray demonstrates how to create a Array instance.
-// Initializes a newly allocated array.
-func ExampleNewArray() {
-	_ = foundation.NewArray()
-	// Output:
-}
-
-// ExampleNewArrayWithArray demonstrates how to create a Array instance using NewArrayWithArray.
-// Initializes a newly allocated array by placing in it the objects contained in a given array.
-func ExampleNewArrayWithArray() {
-	_ = foundation.NewArrayWithArray(
+// ExampleNewArrayWithArrayCopyItems demonstrates how to create a Array instance using NewArrayWithArrayCopyItems.
+// Initializes a newly allocated array using   as the source of data objects for the array.
+func ExampleNewArrayWithArrayCopyItems() {
+	_ = foundation.NewArrayWithArrayCopyItems(
 		nil, // array unsafe.Pointer
+		false, // flag bool
 	)
 	// Output:
 }
@@ -31,29 +25,11 @@ func ExampleNewArrayWithCoder() {
 	// Output:
 }
 
-// ExampleNewArrayWithContentsOfFile demonstrates how to create a Array instance using NewArrayWithContentsOfFile.
-// Initializes a newly allocated array with the contents of the file specified by a given path.
-func ExampleNewArrayWithContentsOfFile() {
-	_ = foundation.NewArrayWithContentsOfFile(
-		"path", // path string
-	)
-	// Output:
-}
-
 // ExampleNewArrayWithContentsOfURL demonstrates how to create a Array instance using NewArrayWithContentsOfURL.
 // Initializes a newly allocated array with the contents of the location specified by a given URL.
 func ExampleNewArrayWithContentsOfURL() {
 	_ = foundation.NewArrayWithContentsOfURL(
 		nil, // url unsafe.Pointer
-	)
-	// Output:
-}
-
-// ExampleNewArrayWithContentsOfURLError demonstrates how to create a Array instance using NewArrayWithContentsOfURLError.
-func ExampleNewArrayWithContentsOfURLError() {
-	_ = foundation.NewArrayWithContentsOfURLError(
-		nil, // url unsafe.Pointer
-		nil, // error unsafe.Pointer
 	)
 	// Output:
 }
@@ -77,21 +53,45 @@ func ExampleNewArrayWithObjectsCount() {
 	// Output:
 }
 
-// ExampleNewArrayWithArrayCopyItems demonstrates how to create a Array instance using NewArrayWithArrayCopyItems.
-// Initializes a newly allocated array using   as the source of data objects for the array.
-func ExampleNewArrayWithArrayCopyItems() {
-	_ = foundation.NewArrayWithArrayCopyItems(
-		nil, // array unsafe.Pointer
-		false, // flag bool
-	)
-	// Output:
-}
-
 // ExampleNewArrayWithObjects demonstrates how to create a Array instance using NewArrayWithObjects.
 // Initializes a newly allocated array by placing in it the objects in the argument list.
 func ExampleNewArrayWithObjects() {
 	_ = foundation.NewArrayWithObjects(
 		nil, // firstObj unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewArray demonstrates how to create a Array instance.
+// Initializes a newly allocated array.
+func ExampleNewArray() {
+	_ = foundation.NewArray()
+	// Output:
+}
+
+// ExampleNewArrayWithContentsOfFile demonstrates how to create a Array instance using NewArrayWithContentsOfFile.
+// Initializes a newly allocated array with the contents of the file specified by a given path.
+func ExampleNewArrayWithContentsOfFile() {
+	_ = foundation.NewArrayWithContentsOfFile(
+		"path", // path string
+	)
+	// Output:
+}
+
+// ExampleNewArrayWithContentsOfURLError demonstrates how to create a Array instance using NewArrayWithContentsOfURLError.
+func ExampleNewArrayWithContentsOfURLError() {
+	_ = foundation.NewArrayWithContentsOfURLError(
+		nil, // url unsafe.Pointer
+		nil, // error unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewArrayWithArray demonstrates how to create a Array instance using NewArrayWithArray.
+// Initializes a newly allocated array by placing in it the objects contained in a given array.
+func ExampleNewArrayWithArray() {
+	_ = foundation.NewArrayWithArray(
+		nil, // array unsafe.Pointer
 	)
 	// Output:
 }

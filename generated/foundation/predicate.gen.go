@@ -59,15 +59,6 @@ func (p_ Predicate) Autorelease() Predicate {
 func NewPredicate() Predicate {
 	return predicateClass.New()
 }
-// Creates a predicate by substituting the values in an argument list into a format string and parsing the result. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
-func NewPredicateWithFormatArguments(predicateFormat string, argList unsafe.Pointer) Predicate {
-	rv := objc.Send[Predicate](objc.ID(predicateClass.class), objc.Sel("predicateWithFormat:arguments:"), predicateFormat, argList)
-	rv.Autorelease()
-	return rv
-}
 // Creates a predicate with a metadata query string. [Full Topic]
 
 //
@@ -101,6 +92,15 @@ func NewPredicateWithBlock(block unsafe.Pointer) Predicate {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
 func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments unsafe.Pointer) Predicate {
 	rv := objc.Send[Predicate](objc.ID(predicateClass.class), objc.Sel("predicateWithFormat:argumentArray:"), predicateFormat, arguments)
+	rv.Autorelease()
+	return rv
+}
+// Creates a predicate by substituting the values in an argument list into a format string and parsing the result. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
+func NewPredicateWithFormatArguments(predicateFormat string, argList unsafe.Pointer) Predicate {
+	rv := objc.Send[Predicate](objc.ID(predicateClass.class), objc.Sel("predicateWithFormat:arguments:"), predicateFormat, argList)
 	rv.Autorelease()
 	return rv
 }
