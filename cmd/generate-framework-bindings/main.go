@@ -292,11 +292,12 @@ func main() {
 
 	// Handle objc runtime generation
 	if *generateObjcRuntime {
-		if err := generateObjcRuntimePackage(*outputDir); err != nil {
+		objcDir := filepath.Join(*outputDir, "objc")
+		if err := generateObjcRuntimePackage(objcDir); err != nil {
 			fmt.Fprintf(os.Stderr, "Error: failed to generate objc runtime: %v\n", err)
 			os.Exit(1)
 		}
-		fmt.Printf("Generated objc runtime package in %s\n", *outputDir)
+		fmt.Printf("Generated objc runtime package in %s\n", objcDir)
 		return
 	}
 
