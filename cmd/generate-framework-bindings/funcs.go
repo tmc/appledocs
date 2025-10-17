@@ -1124,8 +1124,7 @@ func commentLine(s string) string {
 }
 
 // isEssentialSelector checks if a selector is one of the essential methods
-// we generate manually (alloc, new, init, autorelease, etc.) for classes with init methods,
-// or would conflict with embedded fields (like "class" which conflicts with the Class field).
+// we generate manually (alloc, new, init, autorelease, etc.) for classes with init methods.
 // These should be skipped when generating methods from Apple's documentation to avoid duplicates.
 func isEssentialSelector(selector string) bool {
 	essentialSelectors := []string{
@@ -1138,7 +1137,6 @@ func isEssentialSelector(selector string) bool {
 		"copyWithZone:",
 		"mutableCopy",
 		"mutableCopyWithZone:",
-		"class",  // Conflicts with embedded objc.Class field
 	}
 
 	for _, essential := range essentialSelectors {

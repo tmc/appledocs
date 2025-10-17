@@ -410,7 +410,7 @@ import (
 var {{$structName}}Class = {{$classTypeName}}{objc.GetClass("{{.Name}}")}
 
 type {{$classTypeName}} struct {
-	objc.Class
+	class objc.Class
 }
 
 {{if .Abstract -}}
@@ -433,13 +433,13 @@ func {{$structName}}From(ptr unsafe.Pointer) {{$structName}} {
 {{if .HasInitMethods -}}
 // Alloc allocates a new instance without initialization.
 func ({{$classReceiver}} {{$classTypeName}}) Alloc() {{$structName}} {
-	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.Class), objc.Sel("alloc"))
+	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("alloc"))
 	return rv
 }
 
 // New creates and returns a new instance with a +1 retain count.
 func ({{$classReceiver}} {{$classTypeName}}) New() {{$structName}} {
-	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.Class), objc.Sel("new"))
+	rv := objc.Send[{{$structName}}](objc.ID({{$classReceiver}}.class), objc.Sel("new"))
 	rv.Autorelease()
 	return rv
 }
@@ -497,10 +497,10 @@ func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $framework}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.Class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
 	{{- else}}
-	objc.Send[objc.ID](objc.ID({{$classReceiver}}.Class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
 }
 {{- end}}
