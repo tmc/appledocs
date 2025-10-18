@@ -99,6 +99,41 @@ func RunApp(setup func(app Application)) {
 
 // Window convenience methods
 
+// NewWindowWithFrame creates a window with the specified frame rectangle and style.
+// This is a convenience wrapper that avoids exposing unsafe.Pointer.
+func NewWindowWithFrame(x, y, width, height float64, styleMask WindowStyleMask) Window {
+	// Create NSRect structure
+	type NSPoint struct{ X, Y float64 }
+	type NSSize struct{ Width, Height float64 }
+	type NSRect struct {
+		Origin NSPoint
+		Size   NSSize
+	}
+	rect := NSRect{
+		Origin: NSPoint{X: x, Y: y},
+		Size:   NSSize{Width: width, Height: height},
+	}
+	return NewWindowWithContentRectStyleMaskBackingDefer(
+		unsafe.Pointer(&rect),
+		styleMask,
+		2, // Buffered
+		false,
+	)
+}
+
+// WindowStyleMask values for window style.
+const (
+	WindowStyleMaskBorderless     WindowStyleMask = 0
+	WindowStyleMaskTitled         WindowStyleMask = 1 << 0
+	WindowStyleMaskClosable       WindowStyleMask = 1 << 1
+	WindowStyleMaskMiniaturizable WindowStyleMask = 1 << 2
+	WindowStyleMaskResizable      WindowStyleMask = 1 << 3
+	WindowStyleMaskTexturedBackground WindowStyleMask = 1 << 8
+	WindowStyleMaskUnifiedTitleAndToolbar WindowStyleMask = 1 << 12
+	WindowStyleMaskFullScreen     WindowStyleMask = 1 << 14
+	WindowStyleMaskFullSizeContentView WindowStyleMask = 1 << 15
+)
+
 // SetTitle sets the window's title string.
 func (w Window) SetTitle(title string) {
 	strClass := objc.GetClass("NSString")
@@ -322,6 +357,27 @@ func (c Control) SetAlignment(alignment int) {
 
 // TextField convenience methods
 
+// NewTextFieldWithFrame creates a text field with the specified frame rectangle.
+func NewTextFieldWithFrame(x, y, width, height float64) TextField {
+	type NSPoint struct{ X, Y float64 }
+	type NSSize struct{ Width, Height float64 }
+	type NSRect struct {
+		Origin NSPoint
+		Size   NSSize
+	}
+	rect := NSRect{
+		Origin: NSPoint{X: x, Y: y},
+		Size:   NSSize{Width: width, Height: height},
+	}
+	textFieldClass := objc.GetClass("NSTextField")
+	field := TextFieldFrom(unsafe.Pointer(
+		objc.ID(textFieldClass).Send(objc.RegisterName("alloc")).Send(
+			objc.RegisterName("initWithFrame:"),
+			rect,
+		)))
+	return field
+}
+
 // SetDrawsBackground sets whether the text field draws its background.
 func (t TextField) SetDrawsBackground(draws bool) {
 	objc.Send[objc.ID](t.ID, objc.RegisterName("setDrawsBackground:"), draws)
@@ -336,4 +392,25 @@ func (t TextField) SetBackgroundColor(color Color) {
 func (t TextField) BackgroundColor() Color {
 	colorID := objc.Send[objc.ID](t.ID, objc.RegisterName("backgroundColor"))
 	return ColorFrom(unsafe.Pointer(colorID))
+}
+
+// NewButtonWithFrame creates a button with the specified frame rectangle.
+func NewButtonWithFrame(x, y, width, height float64) Button {
+	type NSPoint struct{ X, Y float64 }
+	type NSSize struct{ Width, Height float64 }
+	type NSRect struct {
+		Origin NSPoint
+		Size   NSSize
+	}
+	rect := NSRect{
+		Origin: NSPoint{X: x, Y: y},
+		Size:   NSSize{Width: width, Height: height},
+	}
+	buttonClass := objc.GetClass("NSButton")
+	button := ButtonFrom(unsafe.Pointer(
+		objc.ID(buttonClass).Send(objc.RegisterName("alloc")).Send(
+			objc.RegisterName("initWithFrame:"),
+			rect,
+		)))
+	return button
 }

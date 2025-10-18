@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"os"
 	"runtime"
-	"unsafe"
 
 	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
@@ -56,7 +55,7 @@ func createButtonHandler() objc.ID {
 		buttonClicked := func(self objc.ID, _cmd objc.SEL, sender objc.ID) {
 			clickCount++
 			fmt.Printf("Button clicked! Count: %d\n", clickCount)
-			counterLabel.ID.Send(objc.RegisterName("setStringValue:"), nsString(fmt.Sprintf("Clicks: %d", clickCount)))
+			counterLabel.SetStringValue(fmt.Sprintf("Clicks: %d", clickCount))
 		}
 		class, _ = objc.RegisterClass(className, superClass, nil, nil, []objc.MethodDef{
 			{Cmd: objc.RegisterName("buttonClicked:"), Fn: buttonClicked},
@@ -76,56 +75,41 @@ func main() {
 
 	fmt.Println("=== Hello World (Generated Bindings) ===\n")
 
-	// Get NSApplication shared instance (using generated ApplicationFrom)
-	appClass := objc.GetClass("NSApplication")
-	app := appkit.ApplicationFrom(unsafe.Pointer(objc.ID(appClass).Send(objc.RegisterName("sharedApplication"))))
-	app.ID.Send(objc.RegisterName("setActivationPolicy:"), 0) // Regular app
+	// Get NSApplication shared instance
+	app := appkit.SharedApplication()
+	app.SetActivationPolicy(appkit.ActivationPolicyRegular)
 
-	// Create window using generated constructor
-	window := appkit.NewWindowWithContentRectStyleMaskBackingDefer(
-		unsafe.Pointer(&NSRect{Origin: NSPoint{100, 100}, Size: NSSize{400, 300}}),
-		1|2|8, // Titled, Closable, Resizable
-		2,     // Buffered
-		false,
-	)
-	window.ID.Send(objc.RegisterName("setTitle:"), nsString("Hello from Generated Bindings!"))
+	// Create window
+	window := appkit.NewWindowWithFrame(100, 100, 400, 300,
+		appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable|appkit.WindowStyleMaskResizable)
+	window.SetTitle("Hello from Generated Bindings!")
 
-	// Get content view (using generated ViewFrom)
-	contentView := appkit.ViewFrom(unsafe.Pointer(window.ID.Send(objc.RegisterName("contentView"))))
+	// Get content view
+	contentView := window.ContentView()
 
 	// Create and configure label
-	textFieldClass := objc.GetClass("NSTextField")
-	label := appkit.TextFieldFrom(unsafe.Pointer(
-		objc.ID(textFieldClass).Send(objc.RegisterName("alloc")).Send(
-			objc.RegisterName("initWithFrame:"),
-			NSRect{Origin: NSPoint{50, 200}, Size: NSSize{300, 50}},
-		)))
-	label.ID.Send(objc.RegisterName("setStringValue:"), nsString("Using generated bindings!"))
-	label.ID.Send(objc.RegisterName("setEditable:"), false)
-	label.ID.Send(objc.RegisterName("setBordered:"), false)
-	label.ID.Send(objc.RegisterName("setDrawsBackground:"), false)
-	contentView.AddSubview(unsafe.Pointer(label.ID))
+	label := appkit.NewTextFieldWithFrame(50, 200, 300, 50)
+	label.SetStringValue("Using generated bindings!")
+	label.SetEditable(false)
+	label.SetBordered(false)
+	label.SetDrawsBackground(false)
+	contentView.AddSubviewTyped(label)
 
 	// Create and configure counter label
-	counterLabel = appkit.TextFieldFrom(unsafe.Pointer(
-		objc.ID(textFieldClass).Send(objc.RegisterName("alloc")).Send(
-			objc.RegisterName("initWithFrame:"),
-			NSRect{Origin: NSPoint{50, 80}, Size: NSSize{300, 30}},
-		)))
-	// counterLabel.ID.Send(objc.RegisterName("setStringValue:"), nsString("Clicks: 0"))
+	counterLabel = appkit.NewTextFieldWithFrame(50, 80, 300, 30)
 	counterLabel.SetStringValue("Clicks: 0")
-	counterLabel.ID.Send(objc.RegisterName("setEditable:"), false)
-	counterLabel.ID.Send(objc.RegisterName("setBordered:"), false)
-	counterLabel.ID.Send(objc.RegisterName("setDrawsBackground:"), false)
-	counterLabel.ID.Send(objc.RegisterName("setAlignment:"), 2) // Center
-	contentView.AddSubview(unsafe.Pointer(counterLabel.ID))
+	counterLabel.SetEditable(false)
+	counterLabel.SetBordered(false)
+	counterLabel.SetDrawsBackground(false)
+	counterLabel.SetAlignment(appkit.TextAlignmentCenter)
+	contentView.AddSubviewTyped(counterLabel)
 
 	// Create button using generated constructor
 	button := appkit.NewButtonWithTitleTargetAction("Click Me!", createButtonHandler(), objc.RegisterName("buttonClicked:"))
-	button.ID.Send(objc.RegisterName("setFrame:"), NSRect{Origin: NSPoint{150, 130}, Size: NSSize{100, 40}})
-	button.ID.Send(objc.RegisterName("setButtonType:"), 0) // Momentary
-	button.ID.Send(objc.RegisterName("setBezelStyle:"), 1) // Rounded
-	contentView.AddSubview(unsafe.Pointer(button.ID))
+	button.SetFrameRect(150, 130, 100, 40)
+	button.SetButtonType(appkit.ButtonTypeMomentaryLight)
+	button.SetBezelStyle(appkit.BezelStyleRounded)
+	contentView.AddSubviewTyped(button)
 
 	// Show window using generated method
 	window.MakeKeyAndOrderFront(0)
@@ -133,14 +117,15 @@ func main() {
 	fmt.Println("✅ Using generated bindings:")
 	fmt.Println("   - Types: Window, Button, TextField, View, Application")
 	fmt.Println("   - Constructors: NewWindowWithContentRectStyleMaskBackingDefer, NewButtonWithTitleTargetAction")
-	fmt.Println("   - Methods: MakeKeyAndOrderFront, AddSubview")
+	fmt.Println("   - Methods: MakeKeyAndOrderFront, AddSubviewTyped (type-safe!), SetStringValue")
 	fmt.Println("   - Conversions: ApplicationFrom, TextFieldFrom, ViewFrom")
+	fmt.Println("   - Interfaces: IView, IButton, ITextField for type safety")
 	fmt.Println("\n   Click the button! Press Cmd+Q to quit.\n")
 
 	// Finish launching and run
-	app.ID.Send(objc.RegisterName("finishLaunching"))
-	app.ID.Send(objc.RegisterName("activateIgnoringOtherApps:"), true)
-	app.ID.Send(objc.RegisterName("run"))
+	app.FinishLaunching()
+	app.ActivateIgnoringOtherApps(true)
+	app.Run()
 }
 
 // runE2ETest runs automated end-to-end tests without user interaction.
@@ -148,65 +133,46 @@ func runE2ETest() {
 	fmt.Println("=== E2E Test Mode (Generated Bindings) ===\n")
 
 	// Get NSApplication shared instance
-	appClass := objc.GetClass("NSApplication")
-	app := appkit.ApplicationFrom(unsafe.Pointer(objc.ID(appClass).Send(objc.RegisterName("sharedApplication"))))
-	app.ID.Send(objc.RegisterName("setActivationPolicy:"), 1) // Accessory app (no dock icon in tests)
+	app := appkit.SharedApplication()
+	app.SetActivationPolicy(appkit.ActivationPolicyAccessory) // No dock icon in tests
 
 	// Create window
-	window := appkit.NewWindowWithContentRectStyleMaskBackingDefer(
-		unsafe.Pointer(&NSRect{Origin: NSPoint{100, 100}, Size: NSSize{400, 300}}),
-		1|2|8, // Titled, Closable, Resizable
-		2,     // Buffered
-		false,
-	)
-	window.ID.Send(objc.RegisterName("setTitle:"), nsString("E2E Test Window"))
+	window := appkit.NewWindowWithFrame(100, 100, 400, 300,
+		appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable|appkit.WindowStyleMaskResizable)
+	window.SetTitle("E2E Test Window")
 	fmt.Println("✓ Created window with title")
 
 	// Get content view
-	contentView := appkit.ViewFrom(unsafe.Pointer(window.ID.Send(objc.RegisterName("contentView"))))
+	contentView := window.ContentView()
 	fmt.Println("✓ Got content view")
 
 	// Create and configure label
-	textFieldClass := objc.GetClass("NSTextField")
-	label := appkit.TextFieldFrom(unsafe.Pointer(
-		objc.ID(textFieldClass).Send(objc.RegisterName("alloc")).Send(
-			objc.RegisterName("initWithFrame:"),
-			NSRect{Origin: NSPoint{50, 200}, Size: NSSize{300, 50}},
-		)))
-	label.ID.Send(objc.RegisterName("setStringValue:"), nsString("Test Label"))
-	label.ID.Send(objc.RegisterName("setEditable:"), false)
-	label.ID.Send(objc.RegisterName("setBordered:"), false)
-	contentView.AddSubview(unsafe.Pointer(label.ID))
+	label := appkit.NewTextFieldWithFrame(50, 200, 300, 50)
+	label.SetStringValue("Test Label")
+	label.SetEditable(false)
+	label.SetBordered(false)
+	contentView.AddSubviewTyped(label)
 	fmt.Println("✓ Created and configured label")
 
 	// Create counter label
-	counterLabel = appkit.TextFieldFrom(unsafe.Pointer(
-		objc.ID(textFieldClass).Send(objc.RegisterName("alloc")).Send(
-			objc.RegisterName("initWithFrame:"),
-			NSRect{Origin: NSPoint{50, 80}, Size: NSSize{300, 30}},
-		)))
-	counterLabel.ID.Send(objc.RegisterName("setStringValue:"), nsString("Clicks: 0"))
-	counterLabel.ID.Send(objc.RegisterName("setEditable:"), false)
-	counterLabel.ID.Send(objc.RegisterName("setBordered:"), false)
-	counterLabel.ID.Send(objc.RegisterName("setAlignment:"), 2) // Center
-	contentView.AddSubview(unsafe.Pointer(counterLabel.ID))
+	counterLabel = appkit.NewTextFieldWithFrame(50, 80, 300, 30)
+	counterLabel.SetStringValue("Clicks: 0")
+	counterLabel.SetEditable(false)
+	counterLabel.SetBordered(false)
+	counterLabel.SetAlignment(appkit.TextAlignmentCenter)
+	contentView.AddSubviewTyped(counterLabel)
 	fmt.Println("✓ Created counter label")
 
-	// Create button using simpler approach
-	buttonClass := objc.GetClass("NSButton")
-	button := appkit.ButtonFrom(unsafe.Pointer(
-		objc.ID(buttonClass).Send(objc.RegisterName("alloc")).Send(
-			objc.RegisterName("initWithFrame:"),
-			NSRect{Origin: NSPoint{150, 130}, Size: NSSize{100, 40}},
-		)))
-	button.ID.Send(objc.RegisterName("setTitle:"), nsString("Test Button"))
-	button.ID.Send(objc.RegisterName("setButtonType:"), 0) // Momentary
-	button.ID.Send(objc.RegisterName("setBezelStyle:"), 1) // Rounded
+	// Create button
+	button := appkit.NewButtonWithFrame(150, 130, 100, 40)
+	button.SetTitleString("Test Button")
+	button.SetButtonType(appkit.ButtonTypeMomentaryLight)
+	button.SetBezelStyle(appkit.BezelStyleRounded)
 
 	handler := createButtonHandler()
-	button.ID.Send(objc.RegisterName("setTarget:"), handler)
-	button.ID.Send(objc.RegisterName("setAction:"), objc.RegisterName("buttonClicked:"))
-	contentView.AddSubview(unsafe.Pointer(button.ID))
+	button.SetTarget(handler)
+	button.SetAction(objc.RegisterName("buttonClicked:"))
+	contentView.AddSubviewTyped(button)
 	fmt.Println("✓ Created button with target/action")
 
 	// Verify button is valid
