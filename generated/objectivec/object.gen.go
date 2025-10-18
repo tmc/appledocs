@@ -17,7 +17,7 @@ type _ObjectClass struct {
 
 // An interface definition for the [Object] class.
 type IObject interface {
-	objc.ID
+	objc.IObject
 	URLResourceDataDidBecomeAvailable(sender unsafe.Pointer, newBytes unsafe.Pointer)
 	URLResourceDidFailLoadingWithReason(sender unsafe.Pointer, reason string)
 	URLResourceDidCancelLoading(sender unsafe.Pointer)
@@ -49,7 +49,6 @@ type IObject interface {
 	AuthorizationViewDidHide(view unsafe.Pointer)
 	AuthorizationViewReleasedAuthorization(view unsafe.Pointer)
 	AuthorizationViewShouldDeauthorize(view unsafe.Pointer) bool
-	AwakeAfterUsingCoder(coder unsafe.Pointer) objc.ID
 	AwakeFromNib()
 	BeginPreviewPanelControl(panel unsafe.Pointer)
 	BrowserAccessibilityAttributedValueInRange(range_ unsafe.Pointer) unsafe.Pointer
@@ -84,7 +83,6 @@ type IObject interface {
 	DidCommandBySelectorClient(aSelector objc.SEL, sender objc.ID) bool
 	DiscardEditing()
 	DoesContain(object objc.ID) bool
-	DoesNotRecognizeSelector(aSelector objc.SEL)
 	DraggedImageBeganAt(image unsafe.Pointer, screenPoint unsafe.Pointer)
 	DraggedImageEndedAtDeposited(image unsafe.Pointer, screenPoint unsafe.Pointer, flag bool)
 	DraggedImageEndedAtOperation(image unsafe.Pointer, screenPoint unsafe.Pointer, operation unsafe.Pointer)
@@ -110,8 +108,6 @@ type IObject interface {
 	FileTransferServicesRetrieveFolderListingCompleteErrorListing(inServices unsafe.Pointer, inError unsafe.Pointer, inListing unsafe.Pointer)
 	FileTransferServicesSendFileCompleteError(inServices unsafe.Pointer, inError unsafe.Pointer)
 	FileTransferServicesSendFileProgressTransferProgress(inServices unsafe.Pointer, inProgressDescription unsafe.Pointer)
-	ForwardInvocation(anInvocation unsafe.Pointer)
-	ForwardingTargetForSelector(aSelector objc.SEL) objc.ID
 	GetL2CAPChannelRef() unsafe.Pointer
 	GetOpenGLBufferContextPixelFormat(contextOut unsafe.Pointer, pixelFormatOut unsafe.Pointer)
 	GetPixelBufferPixelFormat(pixelFormatOut unsafe.Pointer)
@@ -147,7 +143,6 @@ type IObject interface {
 	IsNotEqualTo(object objc.ID) bool
 	LayerShouldInheritContentsScaleFromWindow(layer unsafe.Pointer, newScale float64, window unsafe.Pointer) bool
 	MethodForSelector(aSelector objc.SEL) unsafe.Pointer
-	MethodSignatureForSelector(aSelector objc.SEL) unsafe.Pointer
 	NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key string, contentsValue objc.ID, properties unsafe.Pointer) objc.ID
 	NumberOfGroupsInImageBrowser(aBrowser unsafe.Pointer) uint
 	NumberOfItemsInImageBrowser(aBrowser unsafe.Pointer) uint
@@ -160,13 +155,8 @@ type IObject interface {
 	PanelShouldShowFilename(sender objc.ID, filename string) bool
 	PasteboardProvideDataForType(sender unsafe.Pointer, type_ unsafe.Pointer)
 	PasteboardChangedOwner(sender unsafe.Pointer)
-	PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr unsafe.Pointer, arg objc.ID, wait bool)
 	PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr unsafe.Pointer, arg objc.ID, wait bool, array unsafe.Pointer)
-	PerformSelectorWithObjectAfterDelay(aSelector objc.SEL, anArgument objc.ID, delay TimeInterval)
-	PerformSelectorWithObjectAfterDelayInModes(aSelector objc.SEL, anArgument objc.ID, delay TimeInterval, modes unsafe.Pointer)
 	PerformActionForPersonIdentifier(person unsafe.Pointer, identifier string)
-	PerformSelectorInBackgroundWithObject(aSelector objc.SEL, arg objc.ID)
-	PerformSelectorOnMainThreadWithObjectWaitUntilDone(aSelector objc.SEL, arg objc.ID, wait bool)
 	PerformSelectorOnMainThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, arg objc.ID, wait bool, array unsafe.Pointer)
 	PrepareForInterfaceBuilder()
 	ProvideImageToMTLTextureCommandBufferOriginxOriginyWidthHeightUserInfo(texture unsafe.Pointer, commandBuffer unsafe.Pointer, originx uintptr, originy uintptr, width uintptr, height uintptr, info objc.ID)
@@ -180,7 +170,6 @@ type IObject interface {
 	RegisterIncomingDataListenerRefCon(listener unsafe.Pointer, refCon unsafe.Pointer) unsafe.Pointer
 	RenderIntoOpenGLBufferOnScreenForTime(buffer unsafe.Pointer, screenInOut unsafe.Pointer, timeStamp unsafe.Pointer) bool
 	RenderIntoPixelBufferForTime(buffer unsafe.Pointer, timeStamp unsafe.Pointer) bool
-	ReplacementObjectForCoder(coder unsafe.Pointer) objc.ID
 	ReplacementObjectForKeyedArchiver(archiver unsafe.Pointer) objc.ID
 	ReplacementObjectForArchiver(archiver unsafe.Pointer) objc.ID
 	SaveOptionsShouldShowUTType(saveOptions unsafe.Pointer, utType string) bool
@@ -198,9 +187,6 @@ type IObject interface {
 	SessionDriverDidFinishSession(sender unsafe.Pointer)
 	SessionDriverWillCancelSession(sender unsafe.Pointer)
 	SetSharedObservers(sharedObservers unsafe.Pointer)
-	SetValueForKey(value objc.ID, key string)
-	SetValueForKeyPath(value objc.ID, keyPath string)
-	SetValuesForKeysWithDictionary(keyedValues unsafe.Pointer)
 	SetupPanelDetermineBestDeviceOfAOrB(aPanel unsafe.Pointer, deviceA unsafe.Pointer, device unsafe.Pointer) unsafe.Pointer
 	SetupPanelDeviceContainsSuitableMediaPromptString(aPanel unsafe.Pointer, device unsafe.Pointer, prompt string) bool
 	SetupPanelDeviceCouldBeTarget(aPanel unsafe.Pointer, device unsafe.Pointer) bool
@@ -212,8 +198,6 @@ type IObject interface {
 	ValidModesForFontPanel(fontPanel unsafe.Pointer) unsafe.Pointer
 	ValidateMenuItem(menuItem unsafe.Pointer) bool
 	ValidateToolbarItem(item unsafe.Pointer) bool
-	ValueForKey(key string) objc.ID
-	ValueForKeyPath(keyPath string) objc.ID
 	ViewStringForToolTipPointUserData(view unsafe.Pointer, tag unsafe.Pointer, point unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer
 	WorkflowControllerDidError(controller unsafe.Pointer, error unsafe.Pointer)
 	WorkflowControllerDidRunAction(controller unsafe.Pointer, action unsafe.Pointer)

@@ -7,19 +7,20 @@ import (
 )
 
 
-// ExampleNewDictionary demonstrates how to create a Dictionary instance.
-// Initializes a newly allocated dictionary.
-func ExampleNewDictionary() {
-	_ = foundation.NewDictionary()
+// ExampleNewDictionaryWithCoder demonstrates how to create a Dictionary instance using NewDictionaryWithCoder.
+// Creates a dictionary initialized from data in the provided unarchiver.
+func ExampleNewDictionaryWithCoder() {
+	_ = foundation.NewDictionaryWithCoder(
+		nil, // coder unsafe.Pointer
+	)
 	// Output:
 }
 
-// ExampleNewDictionaryWithObjectForKey demonstrates how to create a Dictionary instance using NewDictionaryWithObjectForKey.
-// Creates a dictionary containing a given key and value.
-func ExampleNewDictionaryWithObjectForKey() {
-	_ = foundation.NewDictionaryWithObjectForKey(
-		nil, // object unsafe.Pointer
-		nil, // key unsafe.Pointer
+// ExampleNewDictionaryWithDictionary demonstrates how to create a Dictionary instance using NewDictionaryWithDictionary.
+// Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary.
+func ExampleNewDictionaryWithDictionary() {
+	_ = foundation.NewDictionaryWithDictionary(
+		nil, // otherDictionary unsafe.Pointer
 	)
 	// Output:
 }
@@ -34,12 +35,19 @@ func ExampleNewDictionaryWithObjectsForKeys() {
 	// Output:
 }
 
-// ExampleNewDictionaryWithCoder demonstrates how to create a Dictionary instance using NewDictionaryWithCoder.
-// Creates a dictionary initialized from data in the provided unarchiver.
-func ExampleNewDictionaryWithCoder() {
-	_ = foundation.NewDictionaryWithCoder(
-		nil, // coder unsafe.Pointer
+// ExampleNewDictionaryWithObjectsAndKeys demonstrates how to create a Dictionary instance using NewDictionaryWithObjectsAndKeys.
+// Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys.
+func ExampleNewDictionaryWithObjectsAndKeys() {
+	_ = foundation.NewDictionaryWithObjectsAndKeys(
+		0, // firstObject objc.ID
 	)
+	// Output:
+}
+
+// ExampleNewDictionary demonstrates how to create a Dictionary instance.
+// Initializes a newly allocated dictionary.
+func ExampleNewDictionary() {
+	_ = foundation.NewDictionary()
 	// Output:
 }
 
@@ -71,21 +79,22 @@ func ExampleNewDictionaryWithContentsOfURLError() {
 	// Output:
 }
 
-// ExampleNewDictionaryWithDictionary demonstrates how to create a Dictionary instance using NewDictionaryWithDictionary.
-// Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary.
-func ExampleNewDictionaryWithDictionary() {
-	_ = foundation.NewDictionaryWithDictionary(
-		nil, // otherDictionary unsafe.Pointer
-	)
-	// Output:
-}
-
 // ExampleNewDictionaryWithDictionaryCopyItems demonstrates how to create a Dictionary instance using NewDictionaryWithDictionaryCopyItems.
 // Initializes a newly allocated dictionary using the objects contained in another given dictionary.
 func ExampleNewDictionaryWithDictionaryCopyItems() {
 	_ = foundation.NewDictionaryWithDictionaryCopyItems(
 		nil, // otherDictionary unsafe.Pointer
 		false, // flag bool
+	)
+	// Output:
+}
+
+// ExampleNewDictionaryWithObjectForKey demonstrates how to create a Dictionary instance using NewDictionaryWithObjectForKey.
+// Creates a dictionary containing a given key and value.
+func ExampleNewDictionaryWithObjectForKey() {
+	_ = foundation.NewDictionaryWithObjectForKey(
+		nil, // object unsafe.Pointer
+		nil, // key unsafe.Pointer
 	)
 	// Output:
 }
@@ -97,15 +106,6 @@ func ExampleNewDictionaryWithObjectsForKeysCount() {
 		nil, // objects unsafe.Pointer
 		nil, // keys unsafe.Pointer
 		0, // cnt uint
-	)
-	// Output:
-}
-
-// ExampleNewDictionaryWithObjectsAndKeys demonstrates how to create a Dictionary instance using NewDictionaryWithObjectsAndKeys.
-// Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys.
-func ExampleNewDictionaryWithObjectsAndKeys() {
-	_ = foundation.NewDictionaryWithObjectsAndKeys(
-		0, // firstObject objc.ID
 	)
 	// Output:
 }

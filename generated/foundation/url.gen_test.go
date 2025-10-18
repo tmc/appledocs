@@ -7,34 +7,20 @@ import (
 )
 
 
-// ExampleNewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError demonstrates how to create a URL instance using NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError.
-// Initializes a newly created NSURL that points to a location specified by resolving bookmark data.
-func ExampleNewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError() {
-	_ = foundation.NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(
-		nil, // bookmarkData unsafe.Pointer
-		nil, // options unsafe.Pointer
-		nil, // relativeURL unsafe.Pointer
-		nil, // isStale unsafe.Pointer
-		nil, // error unsafe.Pointer
-	)
-	// Output:
-}
-
-// ExampleNewURLWithString demonstrates how to create a URL instance using NewURLWithString.
-// Initializes an NSURL object with a provided URL string.
-func ExampleNewURLWithString() {
-	_ = foundation.NewURLWithString(
+// ExampleNewURLWithStringRelativeToURL demonstrates how to create a URL instance using NewURLWithStringRelativeToURL.
+// Initializes an NSURL object with a base URL and a relative string.
+func ExampleNewURLWithStringRelativeToURL() {
+	_ = foundation.NewURLWithStringRelativeToURL(
 		"URLString", // URLString string
+		nil, // baseURL unsafe.Pointer
 	)
 	// Output:
 }
 
-// ExampleNewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL demonstrates how to create a URL instance using NewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL.
-// Initializes a URL object with a C string representing a local file system path.
-func ExampleNewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL() {
-	_ = foundation.NewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(
-		nil, // path unsafe.Pointer
-		false, // isDir bool
+// ExampleNewURLWithDataRepresentationRelativeToURL demonstrates how to create a URL instance using NewURLWithDataRepresentationRelativeToURL.
+func ExampleNewURLWithDataRepresentationRelativeToURL() {
+	_ = foundation.NewURLWithDataRepresentationRelativeToURL(
+		nil, // data unsafe.Pointer
 		nil, // baseURL unsafe.Pointer
 	)
 	// Output:
@@ -50,11 +36,32 @@ func ExampleNewURLFileURLWithPathIsDirectory() {
 	// Output:
 }
 
+// ExampleNewURLFileURLWithPathIsDirectoryRelativeToURL demonstrates how to create a URL instance using NewURLFileURLWithPathIsDirectoryRelativeToURL.
+func ExampleNewURLFileURLWithPathIsDirectoryRelativeToURL() {
+	_ = foundation.NewURLFileURLWithPathIsDirectoryRelativeToURL(
+		"path", // path string
+		false, // isDir bool
+		nil, // baseURL unsafe.Pointer
+	)
+	// Output:
+}
+
 // ExampleNewURLFromPasteboard demonstrates how to create a URL instance using NewURLFromPasteboard.
 // Reads an NSURL object off of the specified pasteboard.
 func ExampleNewURLFromPasteboard() {
 	_ = foundation.NewURLFromPasteboard(
 		nil, // pasteBoard unsafe.Pointer
+	)
+	// Output:
+}
+
+// ExampleNewURLByResolvingAliasFileAtURLOptionsError demonstrates how to create a URL instance using NewURLByResolvingAliasFileAtURLOptionsError.
+// Returns a new URL made by resolving the alias file at  .
+func ExampleNewURLByResolvingAliasFileAtURLOptionsError() {
+	_ = foundation.NewURLByResolvingAliasFileAtURLOptionsError(
+		nil, // url unsafe.Pointer
+		nil, // options unsafe.Pointer
+		nil, // error unsafe.Pointer
 	)
 	// Output:
 }
@@ -70,22 +77,21 @@ func ExampleNewURLWithSchemeHostPath() {
 	// Output:
 }
 
+// ExampleNewURLWithString demonstrates how to create a URL instance using NewURLWithString.
+// Initializes an NSURL object with a provided URL string.
+func ExampleNewURLWithString() {
+	_ = foundation.NewURLWithString(
+		"URLString", // URLString string
+	)
+	// Output:
+}
+
 // ExampleNewURLWithStringEncodingInvalidCharacters demonstrates how to create a URL instance using NewURLWithStringEncodingInvalidCharacters.
 // Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 func ExampleNewURLWithStringEncodingInvalidCharacters() {
 	_ = foundation.NewURLWithStringEncodingInvalidCharacters(
 		"URLString", // URLString string
 		false, // encodingInvalidCharacters bool
-	)
-	// Output:
-}
-
-// ExampleNewURLWithStringRelativeToURL demonstrates how to create a URL instance using NewURLWithStringRelativeToURL.
-// Initializes an NSURL object with a base URL and a relative string.
-func ExampleNewURLWithStringRelativeToURL() {
-	_ = foundation.NewURLWithStringRelativeToURL(
-		"URLString", // URLString string
-		nil, // baseURL unsafe.Pointer
 	)
 	// Output:
 }
@@ -99,10 +105,12 @@ func ExampleNewURLAbsoluteURLWithDataRepresentationRelativeToURL() {
 	// Output:
 }
 
-// ExampleNewURLWithDataRepresentationRelativeToURL demonstrates how to create a URL instance using NewURLWithDataRepresentationRelativeToURL.
-func ExampleNewURLWithDataRepresentationRelativeToURL() {
-	_ = foundation.NewURLWithDataRepresentationRelativeToURL(
-		nil, // data unsafe.Pointer
+// ExampleNewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL demonstrates how to create a URL instance using NewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL.
+// Initializes a URL object with a C string representing a local file system path.
+func ExampleNewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL() {
+	_ = foundation.NewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(
+		nil, // path unsafe.Pointer
+		false, // isDir bool
 		nil, // baseURL unsafe.Pointer
 	)
 	// Output:
@@ -117,16 +125,6 @@ func ExampleNewURLFileURLWithPath() {
 	// Output:
 }
 
-// ExampleNewURLFileURLWithPathIsDirectoryRelativeToURL demonstrates how to create a URL instance using NewURLFileURLWithPathIsDirectoryRelativeToURL.
-func ExampleNewURLFileURLWithPathIsDirectoryRelativeToURL() {
-	_ = foundation.NewURLFileURLWithPathIsDirectoryRelativeToURL(
-		"path", // path string
-		false, // isDir bool
-		nil, // baseURL unsafe.Pointer
-	)
-	// Output:
-}
-
 // ExampleNewURLFileURLWithPathRelativeToURL demonstrates how to create a URL instance using NewURLFileURLWithPathRelativeToURL.
 func ExampleNewURLFileURLWithPathRelativeToURL() {
 	_ = foundation.NewURLFileURLWithPathRelativeToURL(
@@ -136,12 +134,14 @@ func ExampleNewURLFileURLWithPathRelativeToURL() {
 	// Output:
 }
 
-// ExampleNewURLByResolvingAliasFileAtURLOptionsError demonstrates how to create a URL instance using NewURLByResolvingAliasFileAtURLOptionsError.
-// Returns a new URL made by resolving the alias file at  .
-func ExampleNewURLByResolvingAliasFileAtURLOptionsError() {
-	_ = foundation.NewURLByResolvingAliasFileAtURLOptionsError(
-		nil, // url unsafe.Pointer
+// ExampleNewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError demonstrates how to create a URL instance using NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError.
+// Initializes a newly created NSURL that points to a location specified by resolving bookmark data.
+func ExampleNewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError() {
+	_ = foundation.NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(
+		nil, // bookmarkData unsafe.Pointer
 		nil, // options unsafe.Pointer
+		nil, // relativeURL unsafe.Pointer
+		nil, // isStale unsafe.Pointer
 		nil, // error unsafe.Pointer
 	)
 	// Output:

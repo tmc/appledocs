@@ -93,77 +93,12 @@ func (u_ URL) Autorelease() URL {
 func NewURL() URL {
 	return uRLClass.New()
 }
-// Initializes a newly created NSURL referencing the local file or directory at . [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:)
-func NewURLFileURLWithPathIsDirectory(path string, isDir bool) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:"), path, isDir)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:relativeTo:)
-func NewURLFileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, baseURL unsafe.Pointer) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:relativeToURL:"), path, isDir, baseURL)
-	rv.Autorelease()
-	return rv
-}
 // Reads an NSURL object off of the specified pasteboard. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
 func NewURLFromPasteboard(pasteBoard unsafe.Pointer) URL {
 	rv := objc.Send[URL](objc.ID(uRLClass.class), objc.Sel("URLFromPasteboard:"), pasteBoard)
-	rv.Autorelease()
-	return rv
-}
-// Initializes an NSURL object with a provided URL string. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:)
-func NewURLWithString(URLString string) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:"), URLString)
-	rv.Autorelease()
-	return rv
-}
-// Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:encodingInvalidCharacters:)
-func NewURLWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), URLString, encodingInvalidCharacters)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a newly created NSURL referencing the local file or directory at . [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:)
-func NewURLFileURLWithPath(path string) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:"), path)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
-func NewURLFileURLWithPathRelativeToURL(path string, baseURL unsafe.Pointer) URL {
-	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:relativeToURL:"), path, baseURL)
-	rv.Autorelease()
-	return rv
-}
-// Returns a new URL made by resolving the alias file at . [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
-func NewURLByResolvingAliasFileAtURLOptionsError(url unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) URL {
-	rv := objc.Send[URL](objc.ID(uRLClass.class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error)
 	rv.Autorelease()
 	return rv
 }
@@ -187,13 +122,13 @@ func NewURLWithSchemeHostPath(scheme string, host string, path string) URL {
 	rv.Autorelease()
 	return rv
 }
-// Initializes an NSURL object with a base URL and a relative string. [Full Topic]
+// Initializes an NSURL object with a provided URL string. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:relativeTo:)
-func NewURLWithStringRelativeToURL(URLString string, baseURL unsafe.Pointer) URL {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:)
+func NewURLWithString(URLString string) URL {
 	instance := uRLClass.Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:relativeToURL:"), URLString, baseURL)
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:"), URLString)
 	rv.Autorelease()
 	return rv
 }
@@ -213,6 +148,53 @@ func NewURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsa
 	rv.Autorelease()
 	return rv
 }
+// Initializes a newly created NSURL referencing the local file or directory at . [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:)
+func NewURLFileURLWithPath(path string) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:"), path)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:relativeTo:)
+func NewURLFileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, baseURL unsafe.Pointer) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:relativeToURL:"), path, isDir, baseURL)
+	rv.Autorelease()
+	return rv
+}
+// Returns a new URL made by resolving the alias file at . [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
+func NewURLByResolvingAliasFileAtURLOptionsError(url unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) URL {
+	rv := objc.Send[URL](objc.ID(uRLClass.class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error)
+	rv.Autorelease()
+	return rv
+}
+// Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:encodingInvalidCharacters:)
+func NewURLWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), URLString, encodingInvalidCharacters)
+	rv.Autorelease()
+	return rv
+}
+// Initializes an NSURL object with a base URL and a relative string. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:relativeTo:)
+func NewURLWithStringRelativeToURL(URLString string, baseURL unsafe.Pointer) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:relativeToURL:"), URLString, baseURL)
+	rv.Autorelease()
+	return rv
+}
 // Initializes a URL object with a C string representing a local file system path. [Full Topic]
 
 //
@@ -220,6 +202,24 @@ func NewURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsa
 func NewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(path unsafe.Pointer, isDir bool, baseURL unsafe.Pointer) URL {
 	instance := uRLClass.Alloc()
 	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithFileSystemRepresentation:isDirectory:relativeToURL:"), path, isDir, baseURL)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a newly created NSURL referencing the local file or directory at . [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:)
+func NewURLFileURLWithPathIsDirectory(path string, isDir bool) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:"), path, isDir)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
+func NewURLFileURLWithPathRelativeToURL(path string, baseURL unsafe.Pointer) URL {
+	instance := uRLClass.Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:relativeToURL:"), path, baseURL)
 	rv.Autorelease()
 	return rv
 }

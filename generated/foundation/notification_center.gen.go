@@ -21,9 +21,6 @@ type INotificationCenter interface {
 	objectivec.IObject
 	AddObserverSelectorNameObject(observer objc.ID, aSelector objc.SEL, aName unsafe.Pointer, anObject objc.ID)
 	AddObserverForNameObjectQueueUsingBlock(name unsafe.Pointer, obj objc.ID, queue unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer
-	PostNotification(notification unsafe.Pointer)
-	PostNotificationNameObject(aName unsafe.Pointer, anObject objc.ID)
-	PostNotificationNameObjectUserInfo(aName unsafe.Pointer, anObject objc.ID, aUserInfo unsafe.Pointer)
 	RemoveObserver(observer objc.ID)
 	RemoveObserverNameObject(observer objc.ID, aName unsafe.Pointer, anObject objc.ID)
 }

@@ -7,24 +7,6 @@ import (
 )
 
 
-// ExampleNewPredicateWithValue demonstrates how to create a Predicate instance using NewPredicateWithValue.
-// Creates and returns a predicate that always evaluates to a specified Boolean value.
-func ExampleNewPredicateWithValue() {
-	_ = foundation.NewPredicateWithValue(
-		false, // value bool
-	)
-	// Output:
-}
-
-// ExampleNewPredicateWithBlock demonstrates how to create a Predicate instance using NewPredicateWithBlock.
-// Creates a predicate that evaluates using a specified block object and bindings dictionary.
-func ExampleNewPredicateWithBlock() {
-	_ = foundation.NewPredicateWithBlock(
-		nil, // block unsafe.Pointer
-	)
-	// Output:
-}
-
 // ExampleNewPredicateWithFormatArgumentArray demonstrates how to create a Predicate instance using NewPredicateWithFormatArgumentArray.
 // Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
 func ExampleNewPredicateWithFormatArgumentArray() {
@@ -50,6 +32,24 @@ func ExampleNewPredicateWithFormatArguments() {
 func ExampleNewPredicateFromMetadataQueryString() {
 	_ = foundation.NewPredicateFromMetadataQueryString(
 		"queryString", // queryString string
+	)
+	// Output:
+}
+
+// ExampleNewPredicateWithValue demonstrates how to create a Predicate instance using NewPredicateWithValue.
+// Creates and returns a predicate that always evaluates to a specified Boolean value.
+func ExampleNewPredicateWithValue() {
+	_ = foundation.NewPredicateWithValue(
+		false, // value bool
+	)
+	// Output:
+}
+
+// ExampleNewPredicateWithBlock demonstrates how to create a Predicate instance using NewPredicateWithBlock.
+// Creates a predicate that evaluates using a specified block object and bindings dictionary.
+func ExampleNewPredicateWithBlock() {
+	_ = foundation.NewPredicateWithBlock(
+		nil, // block unsafe.Pointer
 	)
 	// Output:
 }

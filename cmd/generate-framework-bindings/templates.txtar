@@ -294,23 +294,28 @@ type {{$classTypeName}} struct {
 type I{{$structName}} interface {
 	{{- if and .SuperClass (ne .SuperClass "NSObject")}}
 	{{- $superStructName := classToStructName .SuperClass}}
+	{{- $isSelfReferential := eq $superStructName $structName}}
+	{{- if $isSelfReferential}}
+	objectivec.IObject
+	{{- else}}
 	{{- $superResolved := resolveType $.Framework $superStructName}}
 	{{- if hasPrefix $superResolved "foundation."}}
-	I{{trimPrefix $superResolved "foundation."}}
+	foundation.I{{trimPrefix $superResolved "foundation."}}
 	{{- else if hasPrefix $superResolved "objectivec."}}
-	I{{trimPrefix $superResolved "objectivec."}}
+	objectivec.I{{trimPrefix $superResolved "objectivec."}}
 	{{- else}}
 	I{{$superStructName}}
 	{{- end}}
+	{{- end}}
 	{{- else if and (eq $.Framework "ObjectiveC") (eq .Name "NSObject")}}
-	objc.ID
+	objc.IObject
 	{{- else if eq $.Framework "ObjectiveC"}}
 	IObject
 	{{- else}}
 	objectivec.IObject
 	{{- end}}
 	{{- range prepareInstanceMethods .Methods}}
-	{{- if not (isEssentialSelector .Selector)}}
+	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector))}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
 	{{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
@@ -544,23 +549,28 @@ type {{$classTypeName}} struct {
 type I{{$structName}} interface {
 	{{- if and .SuperClass (ne .SuperClass "NSObject")}}
 	{{- $superStructName := classToStructName .SuperClass}}
+	{{- $isSelfReferential := eq $superStructName $structName}}
+	{{- if $isSelfReferential}}
+	objectivec.IObject
+	{{- else}}
 	{{- $superResolved := resolveType $.Framework $superStructName}}
 	{{- if hasPrefix $superResolved "foundation."}}
-	I{{trimPrefix $superResolved "foundation."}}
+	foundation.I{{trimPrefix $superResolved "foundation."}}
 	{{- else if hasPrefix $superResolved "objectivec."}}
-	I{{trimPrefix $superResolved "objectivec."}}
+	objectivec.I{{trimPrefix $superResolved "objectivec."}}
 	{{- else}}
 	I{{$superStructName}}
 	{{- end}}
+	{{- end}}
 	{{- else if and (eq $.Framework "ObjectiveC") (eq .Name "NSObject")}}
-	objc.ID
+	objc.IObject
 	{{- else if eq $.Framework "ObjectiveC"}}
 	IObject
 	{{- else}}
 	objectivec.IObject
 	{{- end}}
 	{{- range prepareInstanceMethods .Methods}}
-	{{- if not (isEssentialSelector .Selector)}}
+	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector))}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
 	{{.Name}}({{formatMethodParams . $framework}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
