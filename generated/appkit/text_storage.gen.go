@@ -18,7 +18,7 @@ type _TextStorageClass struct {
 
 // An interface definition for the [TextStorage] class.
 type ITextStorage interface {
-	IMutableAttributedString
+	foundation.IMutableAttributedString
 }
 
 // The fundamental storage mechanism of TextKit that contains the text managed by the system. [Full Topic]

@@ -202,6 +202,16 @@ func (w_ Window) Autorelease() Window {
 func NewWindow() Window {
 	return windowClass.New()
 }
+// Initializes the window with the specified values. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
+func NewWindowWithContentRectStyleMaskBackingDefer(contentRect unsafe.Pointer, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
+	instance := windowClass.Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
+	rv.Autorelease()
+	return rv
+}
 // Initializes an allocated window with the specified values. [Full Topic]
 
 //
@@ -228,16 +238,6 @@ func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Wi
 func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
 	instance := windowClass.Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
-	rv.Autorelease()
-	return rv
-}
-// Initializes the window with the specified values. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
-func NewWindowWithContentRectStyleMaskBackingDefer(contentRect unsafe.Pointer, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
-	instance := windowClass.Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
 	rv.Autorelease()
 	return rv
 }

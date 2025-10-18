@@ -18,7 +18,7 @@ type _OpenGLLayerClass struct {
 
 // An interface definition for the [OpenGLLayer] class.
 type IOpenGLLayer interface {
-	IOpenGLLayer
+	objectivec.IObject
 }
 
 // A subclass of that is suitable for rendering OpenGL into layers. [Full Topic]
