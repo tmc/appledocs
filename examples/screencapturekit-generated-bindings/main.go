@@ -72,6 +72,112 @@ func init() {
 	}
 }
 
+// waitForScreenRecordingPermission waits for Screen Recording permission to be granted
+// It retries the ScreenCaptureKit API call with exponential backoff and user feedback
+func waitForScreenRecordingPermission() (shareableContent objc.ID, displayCount, windowCount int, err error) {
+	maxAttempts := 10
+	baseDelay := 500 * time.Millisecond
+
+	shareableContentClass := objc.GetClass("SCShareableContent")
+	if shareableContentClass == 0 {
+		return 0, 0, 0, fmt.Errorf("SCShareableContent class not found (requires macOS 12.3+)")
+	}
+
+	sel := objc.RegisterName("getShareableContentWithCompletionHandler:")
+
+	for attempt := 1; attempt <= maxAttempts; attempt++ {
+		done := make(chan bool, 1)
+		var content objc.ID
+		var displays, windows int
+		var lastError string
+
+		// Create completion handler block
+		completionBlock := objc.NewBlock(
+			func(block objc.Block, c objc.ID, e objc.ID) {
+				defer func() { done <- true }()
+
+				if e != 0 {
+					desc := e.Send(objc.RegisterName("localizedDescription"))
+					if desc != 0 {
+						lastError = objc.Send[string](desc, objc.RegisterName("UTF8String"))
+					}
+					return
+				}
+
+				if c == 0 {
+					lastError = "No content returned"
+					return
+				}
+
+				content = c
+				content.Send(objc.RegisterName("retain"))
+
+				// Get displays array
+				d := c.Send(objc.RegisterName("displays"))
+				if d != 0 {
+					displays = int(d.Send(objc.RegisterName("count")))
+				}
+
+				// Get windows array
+				w := c.Send(objc.RegisterName("windows"))
+				if w != 0 {
+					windows = int(w.Send(objc.RegisterName("count")))
+				}
+			},
+		)
+
+		// Call async method
+		objc.ID(shareableContentClass).Send(sel, completionBlock)
+
+		// Wait for completion with timeout
+		select {
+		case <-done:
+		case <-time.After(5 * time.Second):
+			lastError = "Timeout waiting for shareable content"
+		}
+
+		completionBlock.Release()
+
+		// Check if we succeeded
+		if content != 0 && displays > 0 {
+			return content, displays, windows, nil
+		}
+
+		// First attempt - show user instructions
+		if attempt == 1 && lastError != "" {
+			fmt.Fprintf(os.Stderr, "\n⚠️  Waiting for Screen Recording permission...\n")
+			fmt.Fprintf(os.Stderr, "   Please grant permission in System Settings → Privacy & Security → Screen Recording\n")
+			inBundle := os.Getenv("MACGO_IN_BUNDLE") == "1"
+			if !inBundle {
+				fmt.Fprintf(os.Stderr, "   The permission dialog should appear automatically.\n")
+			}
+			fmt.Fprintf(os.Stderr, "   Look for: ScreenCaptureKit-Example.app\n")
+			fmt.Fprintf(os.Stderr, "\n")
+		}
+
+		// Show waiting indicator
+		dots := ""
+		for i := 0; i < attempt%4; i++ {
+			dots += "."
+		}
+		remaining := maxAttempts - attempt
+		fmt.Fprintf(os.Stderr, "\r   Waiting%s (%d/%d attempts remaining)   ",
+			dots, remaining, maxAttempts)
+
+		// Exponential backoff with jitter
+		delay := time.Duration(float64(baseDelay) * (1 + float64(attempt)*0.5))
+		if delay > 5*time.Second {
+			delay = 5 * time.Second
+		}
+		time.Sleep(delay)
+	}
+
+	fmt.Fprintf(os.Stderr, "\n\n❌ Screen Recording permission not granted after %d attempts\n", maxAttempts)
+	fmt.Fprintf(os.Stderr, "   Please check System Settings → Privacy & Security → Screen Recording\n")
+	fmt.Fprintf(os.Stderr, "   Then rerun this example.\n\n")
+	return 0, 0, 0, fmt.Errorf("screen recording permission not available")
+}
+
 func main() {
 	flag.Parse()
 
@@ -88,9 +194,7 @@ func main() {
 	fmt.Println("=== ScreenCaptureKit Example (Generated Bindings) ===")
 
 	// ScreenCaptureKit requires screen recording permission
-	// This will trigger a permission prompt if not already granted
 	fmt.Println("\n⚠️  This example requires Screen Recording permission.")
-	fmt.Println("    You may see a permission prompt - please grant it.")
 	fmt.Println()
 
 	// Get shareable content (displays and windows)
@@ -105,85 +209,36 @@ func main() {
 	}
 
 	fmt.Println("✓ Found SCShareableContent class")
+	fmt.Println("⏳ Requesting shareable content with retry logic...")
 
-	// Use a channel to wait for async completion
-	done := make(chan bool, 1)
-	var shareableContent objc.ID
-	var displayCount int
-	var windowCount int
-
-	// Create completion handler block
-	completionBlock := objc.NewBlock(
-		func(block objc.Block, content objc.ID, error objc.ID) {
-			defer func() { done <- true }()
-
-			if error != 0 {
-				fmt.Println("✗ Error getting shareable content")
-				desc := error.Send(objc.RegisterName("localizedDescription"))
-				if desc != 0 {
-					// Get UTF8 string from NSString
-					descStr := objc.Send[string](desc, objc.RegisterName("UTF8String"))
-					fmt.Printf("   Error: %s\n", descStr)
-				}
-				return
-			}
-
-			if content == 0 {
-				fmt.Println("✗ No content returned")
-				return
-			}
-
-			shareableContent = content
-			shareableContent.Send(objc.RegisterName("retain"))
-
-			// Get displays array
-			displays := content.Send(objc.RegisterName("displays"))
-			if displays != 0 {
-				displayCount = int(displays.Send(objc.RegisterName("count")))
-				fmt.Printf("✓ Found %d display(s)\n", displayCount)
-
-				// Print display info
-				for i := 0; i < displayCount; i++ {
-					display := displays.Send(objc.RegisterName("objectAtIndex:"), i)
-					if display != 0 {
-						displayID := display.Send(objc.RegisterName("displayID"))
-						width := display.Send(objc.RegisterName("width"))
-						height := display.Send(objc.RegisterName("height"))
-						fmt.Printf("   Display %d: ID=%d, %dx%d\n", i, displayID, width, height)
-					}
-				}
-			}
-
-			// Get windows array
-			windows := content.Send(objc.RegisterName("windows"))
-			if windows != 0 {
-				windowCount = int(windows.Send(objc.RegisterName("count")))
-				fmt.Printf("✓ Found %d window(s)\n", windowCount)
-			}
-		},
-	)
-	defer completionBlock.Release()
-
-	fmt.Println("⏳ Requesting shareable content asynchronously...")
-
-	// Call class method: [SCShareableContent getShareableContentWithCompletionHandler:]
-	sel := objc.RegisterName("getShareableContentWithCompletionHandler:")
-	objc.ID(shareableContentClass).Send(sel, completionBlock)
-
-	// Wait for completion (with timeout)
-	select {
-	case <-done:
-		fmt.Println("✓ Shareable content request completed")
-	case <-time.After(5 * time.Second):
-		fmt.Println("✗ Timeout waiting for shareable content")
-		os.Exit(1)
-	}
-
-	if shareableContent == 0 {
-		fmt.Println("✗ Failed to get shareable content")
+	// Wait for permission with retries
+	shareableContent, displayCount, windowCount, err := waitForScreenRecordingPermission()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to get shareable content: %v\n", err)
 		os.Exit(1)
 	}
 	defer shareableContent.Send(objc.RegisterName("release"))
+
+	fmt.Fprintf(os.Stderr, "\r   ✓ Permission granted!                                        \n\n")
+	fmt.Printf("✓ Found %d display(s)\n", displayCount)
+
+	// Print detailed display info
+	displays := shareableContent.Send(objc.RegisterName("displays"))
+	if displays != 0 {
+		for i := 0; i < displayCount; i++ {
+			display := displays.Send(objc.RegisterName("objectAtIndex:"), i)
+			if display != 0 {
+				displayID := display.Send(objc.RegisterName("displayID"))
+				width := display.Send(objc.RegisterName("width"))
+				height := display.Send(objc.RegisterName("height"))
+				fmt.Printf("   Display %d: ID=%d, %dx%d\n", i, displayID, width, height)
+			}
+		}
+	}
+
+	if windowCount > 0 {
+		fmt.Printf("✓ Found %d window(s)\n", windowCount)
+	}
 
 	if displayCount == 0 {
 		fmt.Println("⚠️  No displays found")
