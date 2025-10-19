@@ -349,6 +349,10 @@ func main() {
 func recordScreen(display objc.ID, duration time.Duration) error {
 	fmt.Println("⏺  Setting up SCStream...")
 
+	// Get display width and height
+	width := int(display.Send(objc.RegisterName("width")))
+	height := int(display.Send(objc.RegisterName("height")))
+
 	// Create SCStreamConfiguration
 	configClass := objc.GetClass("SCStreamConfiguration")
 	if configClass == 0 {
@@ -359,17 +363,11 @@ func recordScreen(display objc.ID, duration time.Duration) error {
 	defer config.Send(objc.RegisterName("release"))
 
 	// Configure stream settings
-	// Set pixel format to BGRA (recommended for screen capture)
 	config.Send(objc.RegisterName("setPixelFormat:"), uint32(0x42475241)) // 'BGRA'
-
-	// Set queue depth
 	config.Send(objc.RegisterName("setQueueDepth:"), 5)
-
-	// Get display width and height for configuration
-	width := int(display.Send(objc.RegisterName("width")))
-	height := int(display.Send(objc.RegisterName("height")))
 	config.Send(objc.RegisterName("setWidth:"), width)
 	config.Send(objc.RegisterName("setHeight:"), height)
+	config.Send(objc.RegisterName("setShowsCursor:"), true)
 
 	// Create content filter for the display
 	filterClass := objc.GetClass("SCContentFilter")
@@ -393,77 +391,167 @@ func recordScreen(display objc.ID, duration time.Duration) error {
 		return fmt.Errorf("SCStream class not found")
 	}
 
-	// Create a simple output handler
+	// Create delegate instance
 	frameCount := 0
-	streamOutput := &streamOutputHandler{
-		frameCount: &frameCount,
+	delegate, err := createStreamOutputDelegate(&frameCount)
+	if err != nil {
+		return fmt.Errorf("failed to create delegate: %w", err)
+	}
+	defer delegate.Send(objc.RegisterName("release"))
+
+	fmt.Println("✓ Created SCStreamOutput delegate using objc.RegisterClass!")
+	fmt.Println()
+
+	// Create SCStream with filter and config
+	initStreamSel := objc.RegisterName("initWithFilter:configuration:delegate:")
+	stream := objc.ID(streamClass).Send(objc.RegisterName("alloc"))
+	stream = stream.Send(initStreamSel, filter, config, objc.ID(0)) // nil delegate for now
+	if stream == 0 {
+		return fmt.Errorf("failed to create SCStream")
+	}
+	defer stream.Send(objc.RegisterName("release"))
+
+	// Create dispatch queue for stream output
+	queueClass := objc.GetClass("OS_dispatch_queue")
+	if queueClass == 0 {
+		// Try to create queue using dispatch_queue_create
+		return fmt.Errorf("dispatch queue not available - need to use dispatch_queue_create")
 	}
 
-	// Full SCStream recording requires implementing SCStreamOutput delegate
-	//
-	// The challenge: SCStreamOutput is an Objective-C *protocol* that needs:
-	// 1. A custom Objective-C class that implements the protocol
-	// 2. The method: stream:didOutputSampleBuffer:ofType:
-	// 3. Runtime class creation using objc_allocateClassPair, class_addMethod, etc.
-	//
-	// This is beyond what objc.NewBlock() can handle - blocks are for completion handlers,
-	// not for protocol conformance.
-	//
-	// See examples/sc_stream_record.m for a working Objective-C implementation that:
-	// - Creates a delegate class implementing <SCStreamOutput>
-	// - Receives CMSampleBuffer objects at ~40-50 FPS
-	// - Extracts CVPixelBuffer from sample buffers
-	// - Converts to CGImage using CIContext
-	// - Saves frames as PNG files
-	//
-	// To implement this in Go, we would need:
-	// 1. objc.AllocateClassPair() to create a new Objective-C class
-	// 2. objc.Class_AddProtocol() to add SCStreamOutput protocol
-	// 3. objc.Class_AddMethod() to add the delegate method
-	// 4. A way to bridge Go callbacks to Objective-C IMP (method implementation)
-	//
-	// This requires lower-level runtime manipulation that purego doesn't yet support.
-	// See: https://github.com/ebitengine/purego/issues
+	// Add stream output with our delegate
+	addOutputSel := objc.RegisterName("addStreamOutput:type:sampleHandlerQueue:error:")
 
-	fmt.Println("⚠️  Note: Full SCStream recording requires SCStreamOutput delegate implementation")
-	fmt.Println("   This requires Objective-C protocol conformance via runtime class creation")
-	fmt.Println("   Current purego/objc doesn't support this pattern yet")
-	fmt.Println()
-	fmt.Println("📚 Reference implementations:")
-	fmt.Println("   - examples/sc_stream_record.m (working Objective-C)")
-	fmt.Println("   - Receives frames at ~40-50 FPS")
-	fmt.Println("   - Saves every 30th frame as PNG")
-	fmt.Println()
-	fmt.Println("🔧 API setup demonstrated:")
-	fmt.Printf("   - SCStreamConfiguration: %dx%d, BGRA, queue depth 5\n", width, height)
-	fmt.Println("   - SCContentFilter: full display capture")
-	fmt.Println("   - Ready for delegate attachment")
-	fmt.Println()
-
-	// Simulate what would happen
-	fmt.Printf("⏺  Simulating recording for %v\n", duration)
-	fmt.Println("   (No actual frames captured - delegate not implemented)")
-	ticker := time.NewTicker(500 * time.Millisecond)
-	defer ticker.Stop()
-
-	start := time.Now()
-	for time.Since(start) < duration {
-		<-ticker.C
-		fmt.Print(".")
+	// For now, use nil queue (main queue)
+	var errorPtr objc.ID
+	success := stream.Send(addOutputSel, delegate, 0, objc.ID(0), &errorPtr)
+	if success == 0 || errorPtr != 0 {
+		if errorPtr != 0 {
+			desc := errorPtr.Send(objc.RegisterName("localizedDescription"))
+			if desc != 0 {
+				errMsg := objc.Send[string](desc, objc.RegisterName("UTF8String"))
+				return fmt.Errorf("failed to add stream output: %s", errMsg)
+			}
+		}
+		return fmt.Errorf("failed to add stream output")
 	}
+
+	fmt.Println("✓ Added delegate to SCStream")
 	fmt.Println()
 
-	fmt.Printf("\n📊 With a working delegate, you would receive:\n")
-	fmt.Printf("   - Frames: ~%d (at 40 FPS for %v)\n", int(duration.Seconds()*40), duration)
-	fmt.Printf("   - Resolution: %dx%d\n", width, height)
-	fmt.Printf("   - Format: BGRA CVPixelBuffer in CMSampleBuffer\n")
-	fmt.Printf("   - Output: PNG frames, H.264 video, etc.\n")
+	// Start capture
+	fmt.Println("⏺  Starting capture...")
+	startDone := make(chan error, 1)
+	startBlock := objc.NewBlock(func(block objc.Block, err objc.ID) {
+		if err != 0 {
+			desc := err.Send(objc.RegisterName("localizedDescription"))
+			if desc != 0 {
+				errMsg := objc.Send[string](desc, objc.RegisterName("UTF8String"))
+				startDone <- fmt.Errorf("%s", errMsg)
+				return
+			}
+		}
+		startDone <- nil
+	})
+	defer startBlock.Release()
 
-	_ = streamOutput
+	stream.Send(objc.RegisterName("startCaptureWithCompletionHandler:"), startBlock)
+
+	if err := <-startDone; err != nil {
+		return fmt.Errorf("failed to start capture: %w", err)
+	}
+
+	fmt.Printf("✓ Capture started! Recording for %v...\n", duration)
+	fmt.Println("   (Frames will be logged every 30 frames)")
+	fmt.Println()
+
+	// Record for the specified duration
+	time.Sleep(duration)
+
+	// Stop capture
+	fmt.Println("\n⏹  Stopping capture...")
+	stopDone := make(chan error, 1)
+	stopBlock := objc.NewBlock(func(block objc.Block, err objc.ID) {
+		if err != 0 {
+			desc := err.Send(objc.RegisterName("localizedDescription"))
+			if desc != 0 {
+				errMsg := objc.Send[string](desc, objc.RegisterName("UTF8String"))
+				stopDone <- fmt.Errorf("%s", errMsg)
+				return
+			}
+		}
+		stopDone <- nil
+	})
+	defer stopBlock.Release()
+
+	stream.Send(objc.RegisterName("stopCaptureWithCompletionHandler:"), stopBlock)
+
+	if err := <-stopDone; err != nil {
+		return fmt.Errorf("failed to stop capture: %w", err)
+	}
+
+	fmt.Printf("\n✓ Capture stopped!\n")
+	fmt.Printf("   Total frames received: %d\n", frameCount)
+	fps := float64(frameCount) / duration.Seconds()
+	fmt.Printf("   Frame rate: %.1f FPS\n", fps)
+	fmt.Printf("   Resolution: %dx%d\n", width, height)
 
 	return nil
 }
 
 type streamOutputHandler struct {
 	frameCount *int
+}
+
+// createStreamOutputDelegate creates a custom Objective-C class that implements SCStreamOutput protocol
+func createStreamOutputDelegate(frameCount *int) (objc.ID, error) {
+	// Get NSObject as our superclass
+	nsObjectClass := objc.GetClass("NSObject")
+	if nsObjectClass == 0 {
+		return 0, fmt.Errorf("NSObject class not found")
+	}
+
+	// Note: SCStreamOutput protocol may not be formally registered at runtime,
+	// but Objective-C uses duck typing - as long as we implement the right methods,
+	// the class will work as a delegate. We don't need to declare protocol conformance.
+
+	// Create the delegate method
+	// Signature: - (void)stream:(SCStream *)stream didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer ofType:(SCStreamOutputType)type
+	streamDidOutputSampleBuffer := func(self objc.ID, cmd objc.SEL, stream objc.ID, sampleBuffer uintptr, outputType int) {
+		// Only process screen output
+		if outputType != 0 { // SCStreamOutputTypeScreen = 0
+			return
+		}
+
+		*frameCount++
+		if *frameCount%30 == 0 {
+			fmt.Printf("\r   📹 Received frame %d", *frameCount)
+		}
+
+		// TODO: Extract CVPixelBuffer and save as PNG
+		// This requires CoreMedia and CoreVideo bindings
+	}
+
+	// Register the class without protocol (duck typing will make it work)
+	className := fmt.Sprintf("GoStreamOutputDelegate_%d", time.Now().UnixNano())
+	delegateClass, err := objc.RegisterClass(
+		className,
+		nsObjectClass,
+		nil, // no protocols - duck typing will handle it
+		nil, // no ivars
+		[]objc.MethodDef{
+			{
+				Cmd: objc.RegisterName("stream:didOutputSampleBuffer:ofType:"),
+				Fn:  streamDidOutputSampleBuffer,
+			},
+		},
+	)
+	if err != nil {
+		return 0, fmt.Errorf("failed to register delegate class: %w", err)
+	}
+
+	// Create an instance
+	delegate := objc.ID(delegateClass).Send(objc.RegisterName("alloc"))
+	delegate = delegate.Send(objc.RegisterName("init"))
+
+	return delegate, nil
 }
