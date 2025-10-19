@@ -119,16 +119,9 @@ func waitForScreenRecordingPermission() (content screencapturekit.SCShareableCon
 				// Retain to prevent deallocation
 				c.Send(objc.RegisterName("retain"))
 
-				// Use generated property accessors (returns unsafe.Pointer for NSArray)
-				d := objc.ID(shareableContent.Displays())
-				if d != 0 {
-					displays = int(d.Send(objc.RegisterName("count")))
-				}
-
-				w := objc.ID(shareableContent.Windows())
-				if w != 0 {
-					windows = int(w.Send(objc.RegisterName("count")))
-				}
+				// Use generated property accessors with helper functions
+				displays = nsArrayCount(shareableContent.Displays())
+				windows = nsArrayCount(shareableContent.Windows())
 			},
 		)
 
