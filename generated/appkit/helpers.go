@@ -120,9 +120,14 @@ func NewWindowWithFrame(x, y, width, height float64, styleMask WindowStyleMask) 
 		Size:   NSSize{Width: width, Height: height},
 	}
 
-	// Use the generated constructor which now properly initializes windowClass via lazy loading
-	return NewWindowWithContentRectStyleMaskBackingDefer(
-		unsafe.Pointer(&rect), styleMask, BackingStoreBuffered, false)
+	// CRITICAL FIX: Pass rect by value, not by pointer!
+	// Objective-C expects structs passed by value in method signatures.
+	// The generated code uses unsafe.Pointer but we must dereference the struct.
+	windowClass := objc.GetClass("NSWindow")
+	instance := objc.ID(windowClass).Send(objc.Sel("alloc"))
+	window := objc.Send[Window](instance, objc.Sel("initWithContentRect:styleMask:backing:defer:"),
+		rect, styleMask, BackingStoreBuffered, false)
+	return window
 }
 
 // WindowStyleMask values for window style.
