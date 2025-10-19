@@ -37,6 +37,12 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGPoint", GoType: "unsafe.Pointer", Framework: "AppKit"},
 	{ObjCType: "NSRange", GoType: "unsafe.Pointer", Framework: "AppKit"},
 
+	// Geometry types for CoreImage - also as unsafe.Pointer (no coregraphics imports)
+	{ObjCType: "CGRect", GoType: "unsafe.Pointer", Framework: "CoreImage"},
+	{ObjCType: "CGSize", GoType: "unsafe.Pointer", Framework: "CoreImage"},
+	{ObjCType: "CGPoint", GoType: "unsafe.Pointer", Framework: "CoreImage"},
+	{ObjCType: "CGAffineTransform", GoType: "unsafe.Pointer", Framework: "CoreImage"},
+
 	// AppKit window and view types (enums)
 	{ObjCType: "NSWindowStyleMask", GoType: "WindowStyleMask", Framework: "AppKit"},
 	{ObjCType: "NSBackingStoreType", GoType: "BackingStoreType", Framework: "AppKit"},

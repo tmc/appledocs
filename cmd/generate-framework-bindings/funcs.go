@@ -1188,25 +1188,27 @@ func prepareInitMethodsWithClassName(className string, methods []*occ2go.ParsedM
 }
 
 // classDependsOnCoreGraphics returns true if any method in the class uses CoreGraphics types
+// that actually require the coregraphics import (i.e., not mapped to unsafe.Pointer).
 func classDependsOnCoreGraphics(methods []*occ2go.ParsedMethod, framework string) bool {
 	if framework == "CoreGraphics" {
 		return false
 	}
 
 	for _, m := range methods {
-		// Check return type
-		goType := occ2go.MapCTypeToGo(m.ReturnType, framework)
-		// Check for both prefixed (coregraphics.) and unprefixed (CG*) types
-		if strings.HasPrefix(goType, "coregraphics.") || strings.HasPrefix(goType, "CG") {
-			return true
+		// Check return type - use the same mapping logic as getRequiredImports
+		if m.ReturnType != "" && m.ReturnType != "void" {
+			goType := mapObjCTypeToGo(m.ReturnType, framework)
+			// Check if this actually needs coregraphics import (not unsafe.Pointer)
+			if strings.HasPrefix(goType, "coregraphics.") {
+				return true
+			}
 		}
 
-		// Check parameters
+		// Check parameters - use the same mapping logic as getRequiredImports
 		for _, p := range m.Parameters {
-			paramType := strings.TrimSpace(strings.TrimRight(p.Type, ",;)"))
-			goParamType := occ2go.MapCTypeToGo(paramType, framework)
-			// Check for both prefixed (coregraphics.) and unprefixed (CG*) types
-			if strings.HasPrefix(goParamType, "coregraphics.") || strings.HasPrefix(goParamType, "CG") {
+			goType := mapObjCTypeToGo(p.Type, framework)
+			// Check if this actually needs coregraphics import (not unsafe.Pointer)
+			if strings.HasPrefix(goType, "coregraphics.") {
 				return true
 			}
 		}
@@ -1309,22 +1311,28 @@ func needsCustomImports(methods []*occ2go.ParsedMethod, framework string) bool {
 }
 
 // getRequiredImports returns a map of import paths needed for methods.
-// For example: {"github.com/progrium/darwinkit/macos/foundation": true}
+// It maps Objective-C types to Go types first, then checks if those Go types need imports.
+// This prevents adding imports for types that get mapped to unsafe.Pointer or built-in types.
+// For example: {"github.com/tmc/appledocs/generated/coregraphics": true}
 func getRequiredImports(methods []*occ2go.ParsedMethod, framework string) map[string]bool {
 	imports := make(map[string]bool)
 
 	// Check all methods for types that need custom imports
 	for _, m := range methods {
-		// Check return type
-		if m.ReturnType != "" {
-			if importPath := getTypeImportPath(m.ReturnType, framework); importPath != "" {
+		// Check return type - map to Go first, then check if it needs an import
+		if m.ReturnType != "" && m.ReturnType != "void" {
+			goType := mapObjCTypeToGo(m.ReturnType, framework)
+			// Check if this Go type needs an import (e.g., coregraphics.CGAffineTransform)
+			if importPath := getGoTypeImportPath(goType); importPath != "" {
 				imports[importPath] = true
 			}
 		}
 
-		// Check parameters
+		// Check parameters - map to Go first, then check if they need imports
 		for _, p := range m.Parameters {
-			if importPath := getTypeImportPath(p.Type, framework); importPath != "" {
+			goType := mapObjCTypeToGo(p.Type, framework)
+			// Check if this Go type needs an import
+			if importPath := getGoTypeImportPath(goType); importPath != "" {
 				imports[importPath] = true
 			}
 		}
@@ -1334,6 +1342,45 @@ func getRequiredImports(methods []*occ2go.ParsedMethod, framework string) map[st
 		return nil
 	}
 	return imports
+}
+
+// getGoTypeImportPath takes a Go type string (after mapping from Objective-C) and returns
+// the import path if it requires one, or empty string if it doesn't.
+// Examples:
+//   "coregraphics.CGAffineTransform" -> "github.com/tmc/appledocs/generated/coregraphics"
+//   "foundation.Rect" -> "github.com/tmc/appledocs/generated/foundation"
+//   "unsafe.Pointer" -> ""
+//   "int" -> ""
+//   "bool" -> ""
+func getGoTypeImportPath(goType string) string {
+	// Built-in types and types from std library don't need custom imports
+	if goType == "" || goType == "unsafe.Pointer" {
+		return ""
+	}
+
+	// Check for framework-prefixed types (e.g., "coregraphics.CGAffineTransform")
+	if strings.Contains(goType, ".") {
+		parts := strings.SplitN(goType, ".", 2)
+		if len(parts) == 2 {
+			packageName := parts[0]
+			// Map package names to import paths
+			switch packageName {
+			case "coregraphics":
+				return "github.com/tmc/appledocs/generated/coregraphics"
+			case "foundation":
+				return "github.com/tmc/appledocs/generated/foundation"
+			case "quartzcore":
+				return "github.com/tmc/appledocs/generated/quartzcore"
+			case "appkit":
+				return "github.com/tmc/appledocs/generated/appkit"
+			case "objc":
+				// objc is already imported by default in the template
+				return ""
+			}
+		}
+	}
+
+	return ""
 }
 
 // sortedImportPaths returns a sorted slice of import paths for template iteration.
