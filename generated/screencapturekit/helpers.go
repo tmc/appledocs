@@ -48,11 +48,19 @@ func NewSCStreamOutputDelegate(handler SCStreamOutputHandler) objc.ID {
 		handler.StreamDidOutputSampleBuffer(streamObj, sampleBuffer, outputType)
 	}
 
-	// Register the class with the SCStreamOutput protocol
+	// Register the class with the SCStreamOutput protocol (if available)
+	// Note: SCStreamOutput protocol may not be available at runtime via objc.GetProtocol(),
+	// but Objective-C uses duck typing - as long as we implement the right methods,
+	// the class will work as a delegate even without formal protocol conformance.
+	var protocols []*objc.Protocol
+	if SCStreamOutputProtocol != nil {
+		protocols = []*objc.Protocol{SCStreamOutputProtocol}
+	}
+
 	class, err := objc.RegisterClass(
 		className,
 		objc.GetClass("NSObject"),
-		[]*objc.Protocol{SCStreamOutputProtocol}, // Use generated protocol reference
+		protocols, // May be nil - duck typing will handle it
 		nil,
 		[]objc.MethodDef{
 			{
