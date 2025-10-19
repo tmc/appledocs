@@ -24,8 +24,11 @@ import (
 
 	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/coreimage"
+	_ "github.com/tmc/appledocs/generated/coremedia" // Generated bindings available
 	"github.com/tmc/appledocs/generated/foundation"
+	_ "github.com/tmc/appledocs/generated/imageio" // Generated bindings available
 	"github.com/tmc/appledocs/generated/screencapturekit"
 	"github.com/tmc/macgo"
 )
@@ -38,10 +41,10 @@ var (
 	saveFrames = flag.Bool("save", false, "save frames as PNG files")
 )
 
-// C function declarations for frameworks not yet with generated bindings
+// C function declarations for frameworks with incomplete bindings
+// Note: These functions are C APIs not documented in Apple's JSON docs
 var (
 	CMSampleBufferGetImageBuffer    func(uintptr) uintptr
-	CGImageRelease                  func(uintptr)
 	CGImageDestinationCreateWithURL func(uintptr, uintptr, int, uintptr) uintptr
 	CGImageDestinationAddImage      func(uintptr, uintptr, uintptr)
 	CGImageDestinationFinalize      func(uintptr) bool
@@ -81,21 +84,16 @@ func init() {
 	}
 
 	// Load CoreMedia framework for CMSampleBufferGetImageBuffer
-	// TODO: Generate CoreMedia bindings
+	// Note: Generated CoreMedia bindings available, but CMSampleBufferGetImageBuffer is a C function
+	// not in Apple's documentation, so we still need manual registration
 	coreMedia, err := purego.Dlopen("/System/Library/Frameworks/CoreMedia.framework/CoreMedia", purego.RTLD_NOW|purego.RTLD_GLOBAL)
 	if err == nil {
 		purego.RegisterLibFunc(&CMSampleBufferGetImageBuffer, coreMedia, "CMSampleBufferGetImageBuffer")
 	}
 
-	// Load CoreGraphics for CGImageRelease
-	// TODO: Most CoreGraphics calls now use generated bindings, but CGImageRelease still needed
-	coreGraphics, err := purego.Dlopen("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics", purego.RTLD_NOW|purego.RTLD_GLOBAL)
-	if err == nil {
-		purego.RegisterLibFunc(&CGImageRelease, coreGraphics, "CGImageRelease")
-	}
-
 	// Load ImageIO framework for PNG saving
-	// TODO: Generate ImageIO bindings
+	// Note: Generated ImageIO bindings available, but CGImageDestination C functions
+	// are not in Apple's documentation, so we still need manual registration
 	imageIO, err := purego.Dlopen("/System/Library/Frameworks/ImageIO.framework/ImageIO", purego.RTLD_NOW|purego.RTLD_GLOBAL)
 	if err == nil {
 		purego.RegisterLibFunc(&CGImageDestinationCreateWithURL, imageIO, "CGImageDestinationCreateWithURL")
@@ -699,7 +697,8 @@ func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStr
 		fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create CGImage\n")
 		return
 	}
-	defer CGImageRelease(uintptr(cgImage))
+	// Use generated CoreGraphics binding for CGImageRelease
+	defer coregraphics.CGImageRelease(coregraphics.CGImageRef(cgImage))
 
 	// Create file URL for PNG using Foundation bindings
 	filename := filepath.Join(h.outputDir, fmt.Sprintf("frame_%04d.png", h.frameCount))
