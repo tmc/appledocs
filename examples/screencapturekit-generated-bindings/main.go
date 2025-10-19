@@ -41,14 +41,7 @@ var (
 	saveFrames = flag.Bool("save", false, "save frames as PNG files")
 )
 
-// C function declarations for CGImageDestination creation/finalization
-// Note: CGImageDestinationCreateWithURL and Finalize are C functions without
-// individual documentation pages, so they're not in generated bindings.
-// CGImageDestinationAddImage IS in generated imageio bindings.
-var (
-	CGImageDestinationCreateWithURL func(uintptr, uintptr, int, uintptr) uintptr
-	CGImageDestinationFinalize      func(uintptr) bool
-)
+// Note: All CGImageDestination functions are now in generated ImageIO bindings!
 
 func init() {
 	runtime.LockOSThread()
@@ -83,15 +76,8 @@ func init() {
 		_ = err
 	}
 
-	// Load ImageIO framework for PNG saving
-	// Note: Generated ImageIO bindings include CGImageDestinationAddImage.
-	// CreateWithURL and Finalize are C functions without Swift equivalents,
-	// so they need manual registration.
-	imageIO, err := purego.Dlopen("/System/Library/Frameworks/ImageIO.framework/ImageIO", purego.RTLD_NOW|purego.RTLD_GLOBAL)
-	if err == nil {
-		purego.RegisterLibFunc(&CGImageDestinationCreateWithURL, imageIO, "CGImageDestinationCreateWithURL")
-		purego.RegisterLibFunc(&CGImageDestinationFinalize, imageIO, "CGImageDestinationFinalize")
-	}
+	// Note: ImageIO framework is loaded automatically by generated bindings
+	// All CGImageDestination functions are available via imageio package
 }
 
 // waitForScreenRecordingPermission waits for Screen Recording permission to be granted
@@ -704,13 +690,14 @@ func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStr
 	utTypePNG := objc.ID(utTypePNGClass).Send(png)
 	identifier := utTypePNG.Send(objc.RegisterName("identifier"))
 
-	// Create CGImageDestination
-	if CGImageDestinationCreateWithURL == nil {
-		return
-	}
-
-	destination := CGImageDestinationCreateWithURL(uintptr(fileURL.ID), uintptr(identifier), 1, 0)
-	if destination == 0 {
+	// Create CGImageDestination using generated ImageIO binding
+	destination := imageio.CGImageDestinationCreateWithURL(
+		unsafe.Pointer(fileURL.ID),
+		unsafe.Pointer(identifier),
+		1, // count
+		nil, // options
+	)
+	if destination == nil {
 		fmt.Fprintf(os.Stderr, "\n⚠️  Failed to create image destination\n")
 		return
 	}
@@ -720,14 +707,12 @@ func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStr
 	}()
 
 	// Add image to destination using generated ImageIO binding
-	imageio.CGImageDestinationAddImage(unsafe.Pointer(destination), imageio.CGImageRef(cgImage), nil)
+	imageio.CGImageDestinationAddImage(destination, imageio.CGImageRef(cgImage), nil)
 
-	// Finalize (write to disk)
-	if CGImageDestinationFinalize != nil {
-		if CGImageDestinationFinalize(destination) {
-			fmt.Printf("\n   💾 Saved frame to: %s\n", filename)
-		} else {
-			fmt.Fprintf(os.Stderr, "\n⚠️  Failed to finalize image\n")
-		}
+	// Finalize (write to disk) using generated ImageIO binding
+	if imageio.CGImageDestinationFinalize(destination) {
+		fmt.Printf("\n   💾 Saved frame to: %s\n", filename)
+	} else {
+		fmt.Fprintf(os.Stderr, "\n⚠️  Failed to finalize image\n")
 	}
 }
