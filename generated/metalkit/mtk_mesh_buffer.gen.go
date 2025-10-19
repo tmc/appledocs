@@ -16,6 +16,12 @@ type _MTKMeshBufferClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MTKMeshBuffer] class.
+type IMTKMeshBuffer interface {
+	objectivec.IObject
+	Zone()
+}
+
 // A buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer
@@ -30,6 +36,36 @@ type MTKMeshBuffer struct {
 func MTKMeshBufferFrom(ptr unsafe.Pointer) MTKMeshBuffer {
 	return MTKMeshBuffer{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MTKMeshBufferClass) Alloc() MTKMeshBuffer {
+	rv := objc.Send[MTKMeshBuffer](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MTKMeshBufferClass) New() MTKMeshBuffer {
+	rv := objc.Send[MTKMeshBuffer](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MTKMeshBuffer) Init() MTKMeshBuffer {
+	rv := objc.Send[MTKMeshBuffer](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MTKMeshBuffer) Autorelease() MTKMeshBuffer {
+	rv := objc.Send[MTKMeshBuffer](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMTKMeshBuffer creates a new MTKMeshBuffer instance.
+func NewMTKMeshBuffer() MTKMeshBuffer {
+	return mTKMeshBufferClass.New()
+}
+
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer/zone()

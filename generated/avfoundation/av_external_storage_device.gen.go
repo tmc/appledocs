@@ -16,6 +16,11 @@ type _AVExternalStorageDeviceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVExternalStorageDevice] class.
+type IAVExternalStorageDevice interface {
+	objectivec.IObject
+}
+
 // Represents a physical external storage device that stores media assets. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVExternalStorageDevice
@@ -30,6 +35,36 @@ type AVExternalStorageDevice struct {
 func AVExternalStorageDeviceFrom(ptr unsafe.Pointer) AVExternalStorageDevice {
 	return AVExternalStorageDevice{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVExternalStorageDeviceClass) Alloc() AVExternalStorageDevice {
+	rv := objc.Send[AVExternalStorageDevice](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVExternalStorageDeviceClass) New() AVExternalStorageDevice {
+	rv := objc.Send[AVExternalStorageDevice](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVExternalStorageDevice) Init() AVExternalStorageDevice {
+	rv := objc.Send[AVExternalStorageDevice](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVExternalStorageDevice) Autorelease() AVExternalStorageDevice {
+	rv := objc.Send[AVExternalStorageDevice](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVExternalStorageDevice creates a new AVExternalStorageDevice instance.
+func NewAVExternalStorageDevice() AVExternalStorageDevice {
+	return aVExternalStorageDeviceClass.New()
+}
+
 
 
 

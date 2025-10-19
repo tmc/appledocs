@@ -1,0 +1,79 @@
+// Code generated from Apple documentation for NetworkExtension. DO NOT EDIT.
+
+package networkextension
+
+import (
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [NETunnelProvider] class.
+var nETunnelProviderClass = _NETunnelProviderClass{objc.GetClass("NETunnelProvider")}
+
+type _NETunnelProviderClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [NETunnelProvider] class.
+type INETunnelProvider interface {
+	INEProvider
+	SetTunnelNetworkSettingsCompletionHandler(tunnelNetworkSettings unsafe.Pointer, completionHandler unsafe.Pointer)
+}
+
+// An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider
+
+type NETunnelProvider struct {
+	NEProvider
+}
+
+// NETunnelProviderFrom constructs a [NETunnelProvider] from an unsafe.Pointer.
+//
+// An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider.
+func NETunnelProviderFrom(ptr unsafe.Pointer) NETunnelProvider {
+	return NETunnelProvider{
+		NEProvider: NEProviderFrom(ptr),
+	}
+}
+// Alloc allocates a new instance without initialization.
+func (nc _NETunnelProviderClass) Alloc() NETunnelProvider {
+	rv := objc.Send[NETunnelProvider](objc.ID(nc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (nc _NETunnelProviderClass) New() NETunnelProvider {
+	rv := objc.Send[NETunnelProvider](objc.ID(nc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (n_ NETunnelProvider) Init() NETunnelProvider {
+	rv := objc.Send[NETunnelProvider](n_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (n_ NETunnelProvider) Autorelease() NETunnelProvider {
+	rv := objc.Send[NETunnelProvider](n_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewNETunnelProvider creates a new NETunnelProvider instance.
+func NewNETunnelProvider() NETunnelProvider {
+	return nETunnelProviderClass.New()
+}
+
+
+// Specify the network settings for the current tunneling session. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/setTunnelNetworkSettings(_:completionHandler:)
+func (n_ NETunnelProvider) SetTunnelNetworkSettingsCompletionHandler(tunnelNetworkSettings unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelNetworkSettings:completionHandler:"), tunnelNetworkSettings, completionHandler)
+}
+
+

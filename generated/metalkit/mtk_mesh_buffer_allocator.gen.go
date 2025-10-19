@@ -16,6 +16,11 @@ type _MTKMeshBufferAllocatorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MTKMeshBufferAllocator] class.
+type IMTKMeshBufferAllocator interface {
+	objectivec.IObject
+}
+
 // An interface for allocating a MetalKit buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBufferAllocator
@@ -59,6 +64,8 @@ func (m_ MTKMeshBufferAllocator) Autorelease() MTKMeshBufferAllocator {
 func NewMTKMeshBufferAllocator() MTKMeshBufferAllocator {
 	return mTKMeshBufferAllocatorClass.New()
 }
+
+
 // Initializes a new allocator object. [Full Topic]
 
 //

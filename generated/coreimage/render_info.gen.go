@@ -16,6 +16,11 @@ type _RenderInfoClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RenderInfo] class.
+type IRenderInfo interface {
+	objectivec.IObject
+}
+
 // An encapsulation of a render task’s timing, passes, and pixels processed. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo
@@ -30,6 +35,36 @@ type RenderInfo struct {
 func RenderInfoFrom(ptr unsafe.Pointer) RenderInfo {
 	return RenderInfo{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _RenderInfoClass) Alloc() RenderInfo {
+	rv := objc.Send[RenderInfo](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _RenderInfoClass) New() RenderInfo {
+	rv := objc.Send[RenderInfo](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ RenderInfo) Init() RenderInfo {
+	rv := objc.Send[RenderInfo](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ RenderInfo) Autorelease() RenderInfo {
+	rv := objc.Send[RenderInfo](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRenderInfo creates a new RenderInfo instance.
+func NewRenderInfo() RenderInfo {
+	return renderInfoClass.New()
+}
+
 
 
 

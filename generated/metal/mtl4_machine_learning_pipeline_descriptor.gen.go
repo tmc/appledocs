@@ -15,6 +15,11 @@ type _MTL4MachineLearningPipelineDescriptorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MTL4MachineLearningPipelineDescriptor] class.
+type IMTL4MachineLearningPipelineDescriptor interface {
+	IMTL4PipelineDescriptor
+}
+
 // Description for a machine learning pipeline state. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MachineLearningPipelineDescriptor
@@ -31,6 +36,36 @@ func MTL4MachineLearningPipelineDescriptorFrom(ptr unsafe.Pointer) MTL4MachineLe
 		MTL4PipelineDescriptor: MTL4PipelineDescriptorFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MTL4MachineLearningPipelineDescriptorClass) Alloc() MTL4MachineLearningPipelineDescriptor {
+	rv := objc.Send[MTL4MachineLearningPipelineDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MTL4MachineLearningPipelineDescriptorClass) New() MTL4MachineLearningPipelineDescriptor {
+	rv := objc.Send[MTL4MachineLearningPipelineDescriptor](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MTL4MachineLearningPipelineDescriptor) Init() MTL4MachineLearningPipelineDescriptor {
+	rv := objc.Send[MTL4MachineLearningPipelineDescriptor](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MTL4MachineLearningPipelineDescriptor) Autorelease() MTL4MachineLearningPipelineDescriptor {
+	rv := objc.Send[MTL4MachineLearningPipelineDescriptor](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMTL4MachineLearningPipelineDescriptor creates a new MTL4MachineLearningPipelineDescriptor instance.
+func NewMTL4MachineLearningPipelineDescriptor() MTL4MachineLearningPipelineDescriptor {
+	return mTL4MachineLearningPipelineDescriptorClass.New()
+}
+
 
 
 

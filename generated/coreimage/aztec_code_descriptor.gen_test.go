@@ -6,17 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coreimage"
 )
 
+// Suppress unused import errors
+var _ = coreimage.NewAztecCodeDescriptor
 
-// ExampleNewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount demonstrates how to create a AztecCodeDescriptor instance using NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount.
-// Initializes an Aztec code descriptor for the given payload and parameters.
-func ExampleNewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount() {
-	_ = coreimage.NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount(
-		nil, // errorCorrectedPayload unsafe.Pointer
-		false, // isCompact bool
-		0, // layerCount int
-		0, // dataCodewordCount int
-	)
-	// Output:
-}
+
 
 

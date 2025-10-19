@@ -15,6 +15,11 @@ type _QRCodeDescriptorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [QRCodeDescriptor] class.
+type IQRCodeDescriptor interface {
+	IBarcodeDescriptor
+}
+
 // A concrete subclass of the Core Image Barcode Descriptor that represents a square QR code symbol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor
@@ -60,6 +65,8 @@ func (q_ QRCodeDescriptor) Autorelease() QRCodeDescriptor {
 func NewQRCodeDescriptor() QRCodeDescriptor {
 	return qRCodeDescriptorClass.New()
 }
+
+
 // Initializes a QR code descriptor for the given payload and parameters. [Full Topic]
 
 //

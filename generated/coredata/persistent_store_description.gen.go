@@ -16,6 +16,13 @@ type _PersistentStoreDescriptionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersistentStoreDescription] class.
+type IPersistentStoreDescription interface {
+	objectivec.IObject
+	SetOptionForKey(option unsafe.Pointer, key string)
+	SetValueForPragmaNamed(value unsafe.Pointer, name string)
+}
+
 // A description object used to create and load a persistent store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription
@@ -59,6 +66,8 @@ func (p_ PersistentStoreDescription) Autorelease() PersistentStoreDescription {
 func NewPersistentStoreDescription() PersistentStoreDescription {
 	return persistentStoreDescriptionClass.New()
 }
+
+
 // Initializes the receiver with a URL for the store. [Full Topic]
 
 //

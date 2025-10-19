@@ -15,6 +15,13 @@ type _MTKViewClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MTKView] class.
+type IMTKView interface {
+	IView
+	Draw()
+	ReleaseDrawables()
+}
+
 // A specialized view that creates, configures, and displays Metal objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView
@@ -60,16 +67,8 @@ func (m_ MTKView) Autorelease() MTKView {
 func NewMTKView() MTKView {
 	return mTKViewClass.New()
 }
-// Initializes a view from data in a given unarchiver. [Full Topic]
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(coder:)
-func NewMTKViewWithCoder(coder unsafe.Pointer) MTKView {
-	instance := mTKViewClass.Alloc()
-	rv := objc.Send[MTKView](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
+
 // Initializes a view with the specified frame rectangle and Metal device. [Full Topic]
 
 //
@@ -77,6 +76,16 @@ func NewMTKViewWithCoder(coder unsafe.Pointer) MTKView {
 func NewMTKViewWithFrameDevice(frameRect unsafe.Pointer, device unsafe.Pointer) MTKView {
 	instance := mTKViewClass.Alloc()
 	rv := objc.Send[MTKView](instance.ID, objc.Sel("initWithFrame:device:"), frameRect, device)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a view from data in a given unarchiver. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(coder:)
+func NewMTKViewWithCoder(coder unsafe.Pointer) MTKView {
+	instance := mTKViewClass.Alloc()
+	rv := objc.Send[MTKView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

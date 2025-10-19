@@ -16,6 +16,13 @@ type _ManagedObjectModelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ManagedObjectModel] class.
+type IManagedObjectModel interface {
+	objectivec.IObject
+	IsConfigurationCompatibleWithStoreMetadata(configuration string, metadata unsafe.Pointer) bool
+	SetFetchRequestTemplateForName(fetchRequestTemplate unsafe.Pointer, name string)
+}
+
 // A programmatic representation of the file describing your objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel
@@ -30,6 +37,36 @@ type ManagedObjectModel struct {
 func ManagedObjectModelFrom(ptr unsafe.Pointer) ManagedObjectModel {
 	return ManagedObjectModel{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _ManagedObjectModelClass) Alloc() ManagedObjectModel {
+	rv := objc.Send[ManagedObjectModel](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _ManagedObjectModelClass) New() ManagedObjectModel {
+	rv := objc.Send[ManagedObjectModel](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ ManagedObjectModel) Init() ManagedObjectModel {
+	rv := objc.Send[ManagedObjectModel](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ ManagedObjectModel) Autorelease() ManagedObjectModel {
+	rv := objc.Send[ManagedObjectModel](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewManagedObjectModel creates a new ManagedObjectModel instance.
+func NewManagedObjectModel() ManagedObjectModel {
+	return managedObjectModelClass.New()
+}
+
 
 // Returns a Boolean value that indicates whether a given configuration in the model is compatible with given metadata from a persistent store. [Full Topic]
 

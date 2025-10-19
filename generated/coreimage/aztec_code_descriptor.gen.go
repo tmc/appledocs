@@ -15,6 +15,11 @@ type _AztecCodeDescriptorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AztecCodeDescriptor] class.
+type IAztecCodeDescriptor interface {
+	IBarcodeDescriptor
+}
+
 // A concrete subclass the Core Image Barcode Descriptor that represents an Aztec code symbol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor
@@ -60,6 +65,8 @@ func (a_ AztecCodeDescriptor) Autorelease() AztecCodeDescriptor {
 func NewAztecCodeDescriptor() AztecCodeDescriptor {
 	return aztecCodeDescriptorClass.New()
 }
+
+
 // Initializes an Aztec code descriptor for the given payload and parameters. [Full Topic]
 
 //

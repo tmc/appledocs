@@ -16,6 +16,13 @@ type _AVPlayerItemClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVPlayerItem] class.
+type IAVPlayerItem interface {
+	objectivec.IObject
+	CurrentTime() unsafe.Pointer
+	RequestPlaybackRestrictionsAuthorization(completion unsafe.Pointer)
+}
+
 // An object that models the timing and presentation state of an asset during playback. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem
@@ -30,6 +37,36 @@ type AVPlayerItem struct {
 func AVPlayerItemFrom(ptr unsafe.Pointer) AVPlayerItem {
 	return AVPlayerItem{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVPlayerItemClass) Alloc() AVPlayerItem {
+	rv := objc.Send[AVPlayerItem](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVPlayerItemClass) New() AVPlayerItem {
+	rv := objc.Send[AVPlayerItem](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVPlayerItem) Init() AVPlayerItem {
+	rv := objc.Send[AVPlayerItem](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVPlayerItem) Autorelease() AVPlayerItem {
+	rv := objc.Send[AVPlayerItem](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVPlayerItem creates a new AVPlayerItem instance.
+func NewAVPlayerItem() AVPlayerItem {
+	return aVPlayerItemClass.New()
+}
+
 
 // Returns the current time of the item. [Full Topic]
 

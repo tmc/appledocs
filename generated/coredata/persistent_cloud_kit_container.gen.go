@@ -15,6 +15,29 @@ type _PersistentCloudKitContainerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersistentCloudKitContainer] class.
+type IPersistentCloudKitContainer interface {
+	IPersistentContainer
+	AcceptShareInvitations()
+	FetchParticipants()
+	PersistUpdatedShare()
+	Share()
+	AcceptShareInvitationsFromMetadataIntoPersistentStoreCompletion(metadata unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer)
+	CanDeleteRecordForManagedObjectWithID(objectID unsafe.Pointer) bool
+	CanModifyManagedObjectsInStore(store unsafe.Pointer) bool
+	CanUpdateRecordForManagedObjectWithID(objectID unsafe.Pointer) bool
+	FetchParticipantsMatchingLookupInfosIntoPersistentStoreCompletion(lookupInfos unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer)
+	FetchSharesInPersistentStoreError(persistentStore unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	FetchSharesMatchingObjectIDsError(objectIDs unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	PersistUpdatedShareInPersistentStoreCompletion(share unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer)
+	PurgeObjectsAndRecordsInZoneWithIDInPersistentStoreCompletion(zoneID unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer)
+	RecordForManagedObjectID(managedObjectID unsafe.Pointer) unsafe.Pointer
+	RecordIDForManagedObjectID(managedObjectID unsafe.Pointer) unsafe.Pointer
+	RecordIDsForManagedObjectIDs(managedObjectIDs unsafe.Pointer) unsafe.Pointer
+	RecordsForManagedObjectIDs(managedObjectIDs unsafe.Pointer) unsafe.Pointer
+	ShareManagedObjectsToShareCompletion(managedObjects unsafe.Pointer, share unsafe.Pointer, completion unsafe.Pointer)
+}
+
 // A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer
@@ -60,6 +83,8 @@ func (p_ PersistentCloudKitContainer) Autorelease() PersistentCloudKitContainer 
 func NewPersistentCloudKitContainer() PersistentCloudKitContainer {
 	return persistentCloudKitContainerClass.New()
 }
+
+
 // Creates the CloudKit schema for all stores in the container that manage a CloudKit database. [Full Topic]
 
 //

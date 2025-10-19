@@ -15,6 +15,12 @@ type _AVCaptureVideoDataOutputClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVCaptureVideoDataOutput] class.
+type IAVCaptureVideoDataOutput interface {
+	IAVCaptureOutput
+	SetSampleBufferDelegateQueue(sampleBufferDelegate unsafe.Pointer, sampleBufferCallbackQueue unsafe.Pointer)
+}
+
 // A capture output that records video and provides access to video frames for processing. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput
@@ -31,6 +37,36 @@ func AVCaptureVideoDataOutputFrom(ptr unsafe.Pointer) AVCaptureVideoDataOutput {
 		AVCaptureOutput: AVCaptureOutputFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVCaptureVideoDataOutputClass) Alloc() AVCaptureVideoDataOutput {
+	rv := objc.Send[AVCaptureVideoDataOutput](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVCaptureVideoDataOutputClass) New() AVCaptureVideoDataOutput {
+	rv := objc.Send[AVCaptureVideoDataOutput](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVCaptureVideoDataOutput) Init() AVCaptureVideoDataOutput {
+	rv := objc.Send[AVCaptureVideoDataOutput](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVCaptureVideoDataOutput) Autorelease() AVCaptureVideoDataOutput {
+	rv := objc.Send[AVCaptureVideoDataOutput](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVCaptureVideoDataOutput creates a new AVCaptureVideoDataOutput instance.
+func NewAVCaptureVideoDataOutput() AVCaptureVideoDataOutput {
+	return aVCaptureVideoDataOutputClass.New()
+}
+
 
 // Sets the sample buffer delegate and the queue for invoking callbacks. [Full Topic]
 

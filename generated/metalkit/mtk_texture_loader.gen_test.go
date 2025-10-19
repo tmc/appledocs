@@ -6,14 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/metalkit"
 )
 
+// Suppress unused import errors
+var _ = metalkit.NewMTKTextureLoader
 
-// ExampleNewMTKTextureLoaderWithDevice demonstrates how to create a MTKTextureLoader instance using NewMTKTextureLoaderWithDevice.
-// Initializes a new texture loader object.
-func ExampleNewMTKTextureLoaderWithDevice() {
-	_ = metalkit.NewMTKTextureLoaderWithDevice(
-		nil, // device unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

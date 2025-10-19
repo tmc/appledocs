@@ -15,6 +15,11 @@ type _BatchInsertRequestClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BatchInsertRequest] class.
+type IBatchInsertRequest interface {
+	IPersistentStoreRequest
+}
+
 // A request to insert a batch of data in a persistent store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest
@@ -60,6 +65,18 @@ func (b_ BatchInsertRequest) Autorelease() BatchInsertRequest {
 func NewBatchInsertRequest() BatchInsertRequest {
 	return batchInsertRequestClass.New()
 }
+
+
+// Creates a batch-insertion request for a managed entity, and specifies a closure that inserts data into the entity. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entity:managedObjectHandler:)
+func NewBatchInsertRequestWithEntityManagedObjectHandler(entity unsafe.Pointer, handler unsafe.Pointer) BatchInsertRequest {
+	instance := batchInsertRequestClass.Alloc()
+	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntity:managedObjectHandler:"), entity, handler)
+	rv.Autorelease()
+	return rv
+}
 // Creates a batch-insertion request for a named managed entity, and specifies a closure that provides data dictionaries for insertion. [Full Topic]
 
 //
@@ -77,16 +94,6 @@ func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName string, han
 func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName string, handler unsafe.Pointer) BatchInsertRequest {
 	instance := batchInsertRequestClass.Alloc()
 	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:managedObjectHandler:"), entityName, handler)
-	rv.Autorelease()
-	return rv
-}
-// Creates a batch-insertion request for a managed entity, and specifies a closure that inserts data into the entity. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entity:managedObjectHandler:)
-func NewBatchInsertRequestWithEntityManagedObjectHandler(entity unsafe.Pointer, handler unsafe.Pointer) BatchInsertRequest {
-	instance := batchInsertRequestClass.Alloc()
-	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntity:managedObjectHandler:"), entity, handler)
 	rv.Autorelease()
 	return rv
 }

@@ -1,0 +1,70 @@
+// Code generated from Apple documentation for OSLog. DO NOT EDIT.
+
+package oslog
+
+import (
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+// The class instance for the [OSLogEntry] class.
+var oSLogEntryClass = _OSLogEntryClass{objc.GetClass("OSLogEntry")}
+
+type _OSLogEntryClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [OSLogEntry] class.
+type IOSLogEntry interface {
+	objectivec.IObject
+}
+
+// A single entry from the unified logging system. [Full Topic]
+//
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry
+
+type OSLogEntry struct {
+	objectivec.Object
+}
+
+// OSLogEntryFrom constructs a [OSLogEntry] from an unsafe.Pointer.
+//
+// A single entry from the unified logging system.
+func OSLogEntryFrom(ptr unsafe.Pointer) OSLogEntry {
+	return OSLogEntry{objectivec.Object{objc.ID(ptr)}}
+}
+// Alloc allocates a new instance without initialization.
+func (oc _OSLogEntryClass) Alloc() OSLogEntry {
+	rv := objc.Send[OSLogEntry](objc.ID(oc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (oc _OSLogEntryClass) New() OSLogEntry {
+	rv := objc.Send[OSLogEntry](objc.ID(oc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (o_ OSLogEntry) Init() OSLogEntry {
+	rv := objc.Send[OSLogEntry](o_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (o_ OSLogEntry) Autorelease() OSLogEntry {
+	rv := objc.Send[OSLogEntry](o_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewOSLogEntry creates a new OSLogEntry instance.
+func NewOSLogEntry() OSLogEntry {
+	return oSLogEntryClass.New()
+}
+
+
+
+

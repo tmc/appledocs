@@ -15,6 +15,11 @@ type _PersistentCloudKitContainerEventRequestClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersistentCloudKitContainerEventRequest] class.
+type IPersistentCloudKitContainerEventRequest interface {
+	IPersistentStoreRequest
+}
+
 // A request to fetch setup, import, or export events in a persistent CloudKit container. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest
@@ -31,6 +36,36 @@ func PersistentCloudKitContainerEventRequestFrom(ptr unsafe.Pointer) PersistentC
 		PersistentStoreRequest: PersistentStoreRequestFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PersistentCloudKitContainerEventRequestClass) Alloc() PersistentCloudKitContainerEventRequest {
+	rv := objc.Send[PersistentCloudKitContainerEventRequest](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PersistentCloudKitContainerEventRequestClass) New() PersistentCloudKitContainerEventRequest {
+	rv := objc.Send[PersistentCloudKitContainerEventRequest](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PersistentCloudKitContainerEventRequest) Init() PersistentCloudKitContainerEventRequest {
+	rv := objc.Send[PersistentCloudKitContainerEventRequest](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PersistentCloudKitContainerEventRequest) Autorelease() PersistentCloudKitContainerEventRequest {
+	rv := objc.Send[PersistentCloudKitContainerEventRequest](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPersistentCloudKitContainerEventRequest creates a new PersistentCloudKitContainerEventRequest instance.
+func NewPersistentCloudKitContainerEventRequest() PersistentCloudKitContainerEventRequest {
+	return persistentCloudKitContainerEventRequestClass.New()
+}
+
 
 // Creates a fetch request for events that occur after a specified event from a persistent CloudKit container. [Full Topic]
 

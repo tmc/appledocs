@@ -16,6 +16,11 @@ type _MTKSubmeshClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MTKSubmesh] class.
+type IMTKSubmesh interface {
+	objectivec.IObject
+}
+
 // A container for the index data of a Model I/O submesh, suitable for use in a Metal app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh
@@ -30,6 +35,36 @@ type MTKSubmesh struct {
 func MTKSubmeshFrom(ptr unsafe.Pointer) MTKSubmesh {
 	return MTKSubmesh{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MTKSubmeshClass) Alloc() MTKSubmesh {
+	rv := objc.Send[MTKSubmesh](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MTKSubmeshClass) New() MTKSubmesh {
+	rv := objc.Send[MTKSubmesh](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MTKSubmesh) Init() MTKSubmesh {
+	rv := objc.Send[MTKSubmesh](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MTKSubmesh) Autorelease() MTKSubmesh {
+	rv := objc.Send[MTKSubmesh](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMTKSubmesh creates a new MTKSubmesh instance.
+func NewMTKSubmesh() MTKSubmesh {
+	return mTKSubmeshClass.New()
+}
+
 
 
 

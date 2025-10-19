@@ -16,6 +16,11 @@ type _hasTrackingFrameCountClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [hasTrackingFrameCount] class.
+type IhasTrackingFrameCount interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasTrackingFrameCount-c.ivar
 
@@ -27,6 +32,36 @@ type hasTrackingFrameCount struct {
 func hasTrackingFrameCountFrom(ptr unsafe.Pointer) hasTrackingFrameCount {
 	return hasTrackingFrameCount{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (hc _hasTrackingFrameCountClass) Alloc() hasTrackingFrameCount {
+	rv := objc.Send[hasTrackingFrameCount](objc.ID(hc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (hc _hasTrackingFrameCountClass) New() hasTrackingFrameCount {
+	rv := objc.Send[hasTrackingFrameCount](objc.ID(hc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (h_ hasTrackingFrameCount) Init() hasTrackingFrameCount {
+	rv := objc.Send[hasTrackingFrameCount](h_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (h_ hasTrackingFrameCount) Autorelease() hasTrackingFrameCount {
+	rv := objc.Send[hasTrackingFrameCount](h_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewhasTrackingFrameCount creates a new hasTrackingFrameCount instance.
+func NewhasTrackingFrameCount() hasTrackingFrameCount {
+	return hasTrackingFrameCountClass.New()
+}
+
 
 
 

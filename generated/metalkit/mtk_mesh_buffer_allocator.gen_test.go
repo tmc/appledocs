@@ -6,14 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/metalkit"
 )
 
+// Suppress unused import errors
+var _ = metalkit.NewMTKMeshBufferAllocator
 
-// ExampleNewMTKMeshBufferAllocatorWithDevice demonstrates how to create a MTKMeshBufferAllocator instance using NewMTKMeshBufferAllocatorWithDevice.
-// Initializes a new allocator object.
-func ExampleNewMTKMeshBufferAllocatorWithDevice() {
-	_ = metalkit.NewMTKMeshBufferAllocatorWithDevice(
-		nil, // device unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

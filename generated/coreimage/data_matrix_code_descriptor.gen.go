@@ -15,6 +15,11 @@ type _DataMatrixCodeDescriptorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DataMatrixCodeDescriptor] class.
+type IDataMatrixCodeDescriptor interface {
+	IBarcodeDescriptor
+}
+
 // A concrete subclass the Core Image Barcode Descriptor that represents an Data Matrix code symbol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor
@@ -60,6 +65,8 @@ func (d_ DataMatrixCodeDescriptor) Autorelease() DataMatrixCodeDescriptor {
 func NewDataMatrixCodeDescriptor() DataMatrixCodeDescriptor {
 	return dataMatrixCodeDescriptorClass.New()
 }
+
+
 // Initializes a Data Matrix code descriptor for the given payload and parameters. [Full Topic]
 
 //

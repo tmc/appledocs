@@ -16,6 +16,12 @@ type _EntityMigrationPolicyClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [EntityMigrationPolicy] class.
+type IEntityMigrationPolicy interface {
+	objectivec.IObject
+	CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool
+}
+
 // A policy instance that customizes the migration process for an entity mapping. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy
@@ -30,6 +36,36 @@ type EntityMigrationPolicy struct {
 func EntityMigrationPolicyFrom(ptr unsafe.Pointer) EntityMigrationPolicy {
 	return EntityMigrationPolicy{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ec _EntityMigrationPolicyClass) Alloc() EntityMigrationPolicy {
+	rv := objc.Send[EntityMigrationPolicy](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _EntityMigrationPolicyClass) New() EntityMigrationPolicy {
+	rv := objc.Send[EntityMigrationPolicy](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (e_ EntityMigrationPolicy) Init() EntityMigrationPolicy {
+	rv := objc.Send[EntityMigrationPolicy](e_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ EntityMigrationPolicy) Autorelease() EntityMigrationPolicy {
+	rv := objc.Send[EntityMigrationPolicy](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewEntityMigrationPolicy creates a new EntityMigrationPolicy instance.
+func NewEntityMigrationPolicy() EntityMigrationPolicy {
+	return entityMigrationPolicyClass.New()
+}
+
 
 // Creates the destination instance(s) for a given source instance. [Full Topic]
 

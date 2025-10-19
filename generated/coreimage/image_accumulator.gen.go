@@ -16,6 +16,15 @@ type _ImageAccumulatorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ImageAccumulator] class.
+type IImageAccumulator interface {
+	objectivec.IObject
+	Clear()
+	Image() unsafe.Pointer
+	SetImage(image unsafe.Pointer)
+	SetImageDirtyRect(image unsafe.Pointer, dirtyRect unsafe.Pointer)
+}
+
 // An object that manages feedback-based image processing for tasks such as painting or fluid simulation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator
@@ -59,6 +68,8 @@ func (i_ ImageAccumulator) Autorelease() ImageAccumulator {
 func NewImageAccumulator() ImageAccumulator {
 	return imageAccumulatorClass.New()
 }
+
+
 // Initializes an image accumulator with the specified extent and pixel format. [Full Topic]
 
 //

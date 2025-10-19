@@ -16,6 +16,13 @@ type _KernelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Kernel] class.
+type IKernel interface {
+	objectivec.IObject
+	ApplyWithExtentRoiCallbackArguments(extent unsafe.Pointer, callback unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
+	SetROISelector(method objc.SEL)
+}
+
 // A GPU-based image-processing routine used to create custom Core Image filters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel
@@ -59,15 +66,8 @@ func (k_ Kernel) Autorelease() Kernel {
 func NewKernel() Kernel {
 	return kernelClass.New()
 }
-// Creates a single kernel object. [Full Topic]
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
-func NewKernelWithString(string string) Kernel {
-	rv := objc.Send[Kernel](objc.ID(kernelClass.class), objc.Sel("kernelWithString:"), string)
-	rv.Autorelease()
-	return rv
-}
+
 // Creates a single kernel object using a Metal Shading Language (MSL) kernel function. [Full Topic]
 
 //
@@ -83,6 +83,15 @@ func NewKernelWithFunctionNameFromMetalLibraryDataError(name string, data unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:outputPixelFormat:)
 func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name string, data unsafe.Pointer, format unsafe.Pointer, error unsafe.Pointer) Kernel {
 	rv := objc.Send[Kernel](objc.ID(kernelClass.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), name, data, format, error)
+	rv.Autorelease()
+	return rv
+}
+// Creates a single kernel object. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
+func NewKernelWithString(string string) Kernel {
+	rv := objc.Send[Kernel](objc.ID(kernelClass.class), objc.Sel("kernelWithString:"), string)
 	rv.Autorelease()
 	return rv
 }

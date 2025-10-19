@@ -16,6 +16,11 @@ type _CoreDataCoreSpotlightDelegateClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CoreDataCoreSpotlightDelegate] class.
+type ICoreDataCoreSpotlightDelegate interface {
+	objectivec.IObject
+}
+
 // A set of methods that enable integration with Core Spotlight. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate
@@ -30,6 +35,36 @@ type CoreDataCoreSpotlightDelegate struct {
 func CoreDataCoreSpotlightDelegateFrom(ptr unsafe.Pointer) CoreDataCoreSpotlightDelegate {
 	return CoreDataCoreSpotlightDelegate{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CoreDataCoreSpotlightDelegateClass) Alloc() CoreDataCoreSpotlightDelegate {
+	rv := objc.Send[CoreDataCoreSpotlightDelegate](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CoreDataCoreSpotlightDelegateClass) New() CoreDataCoreSpotlightDelegate {
+	rv := objc.Send[CoreDataCoreSpotlightDelegate](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CoreDataCoreSpotlightDelegate) Init() CoreDataCoreSpotlightDelegate {
+	rv := objc.Send[CoreDataCoreSpotlightDelegate](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CoreDataCoreSpotlightDelegate) Autorelease() CoreDataCoreSpotlightDelegate {
+	rv := objc.Send[CoreDataCoreSpotlightDelegate](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCoreDataCoreSpotlightDelegate creates a new CoreDataCoreSpotlightDelegate instance.
+func NewCoreDataCoreSpotlightDelegate() CoreDataCoreSpotlightDelegate {
+	return coreDataCoreSpotlightDelegateClass.New()
+}
+
 
 
 

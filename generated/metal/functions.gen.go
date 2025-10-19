@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // Metal Functions (2 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -23,7 +24,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_MTLCopyAllDevices, lib, "MTLCopyAllDevices")
 	tryRegister(&_MTLCreateSystemDefaultDevice, lib, "MTLCreateSystemDefaultDevice")
 }
@@ -39,6 +39,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // Returns an array of all the Metal device instances in the system. [Full Topic]

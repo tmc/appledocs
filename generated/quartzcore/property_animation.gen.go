@@ -15,6 +15,11 @@ type _PropertyAnimationClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PropertyAnimation] class.
+type IPropertyAnimation interface {
+	IAnimation
+}
+
 // An abstract subclass for creating animations that manipulate the value of layer properties. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation
@@ -60,6 +65,8 @@ func (p_ PropertyAnimation) Autorelease() PropertyAnimation {
 func NewPropertyAnimation() PropertyAnimation {
 	return propertyAnimationClass.New()
 }
+
+
 // Creates and returns an instance for the specified key path. [Full Topic]
 
 //
@@ -79,4 +86,5 @@ func (pc _PropertyAnimationClass) AnimationWithKeyPath(path string) unsafe.Point
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("animationWithKeyPath:"), path)
 	return rv
 }
+
 

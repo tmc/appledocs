@@ -16,6 +16,33 @@ type _AVCaptureSessionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVCaptureSession] class.
+type IAVCaptureSession interface {
+	objectivec.IObject
+	AddConnection(connection unsafe.Pointer)
+	AddControl(control unsafe.Pointer)
+	AddInput(input unsafe.Pointer)
+	AddInputWithNoConnections(input unsafe.Pointer)
+	AddOutput(output unsafe.Pointer)
+	AddOutputWithNoConnections(output unsafe.Pointer)
+	BeginConfiguration()
+	CanAddConnection(connection unsafe.Pointer) bool
+	CanAddControl(control unsafe.Pointer) bool
+	CanAddInput(input unsafe.Pointer) bool
+	CanAddOutput(output unsafe.Pointer) bool
+	CanSetSessionPreset(preset unsafe.Pointer) bool
+	CommitConfiguration()
+	RemoveConnection(connection unsafe.Pointer)
+	RemoveControl(control unsafe.Pointer)
+	RemoveInput(input unsafe.Pointer)
+	RemoveOutput(output unsafe.Pointer)
+	RunDeferredStartWhenNeeded()
+	SetControlsDelegateQueue(controlsDelegate unsafe.Pointer, controlsDelegateCallbackQueue unsafe.Pointer)
+	SetDeferredStartDelegateDeferredStartDelegateCallbackQueue(deferredStartDelegate unsafe.Pointer, deferredStartDelegateCallbackQueue unsafe.Pointer)
+	StartRunning()
+	StopRunning()
+}
+
 // An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession
@@ -30,6 +57,36 @@ type AVCaptureSession struct {
 func AVCaptureSessionFrom(ptr unsafe.Pointer) AVCaptureSession {
 	return AVCaptureSession{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVCaptureSessionClass) Alloc() AVCaptureSession {
+	rv := objc.Send[AVCaptureSession](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVCaptureSessionClass) New() AVCaptureSession {
+	rv := objc.Send[AVCaptureSession](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVCaptureSession) Init() AVCaptureSession {
+	rv := objc.Send[AVCaptureSession](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVCaptureSession) Autorelease() AVCaptureSession {
+	rv := objc.Send[AVCaptureSession](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVCaptureSession creates a new AVCaptureSession instance.
+func NewAVCaptureSession() AVCaptureSession {
+	return aVCaptureSessionClass.New()
+}
+
 
 // Adds a connection to the capture session. [Full Topic]
 

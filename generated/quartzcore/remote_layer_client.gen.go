@@ -16,6 +16,11 @@ type _RemoteLayerClientClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RemoteLayerClient] class.
+type IRemoteLayerClient interface {
+	objectivec.IObject
+}
+
 // A legacy class for cross-process rendering. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient
@@ -59,6 +64,8 @@ func (r_ RemoteLayerClient) Autorelease() RemoteLayerClient {
 func NewRemoteLayerClient() RemoteLayerClient {
 	return remoteLayerClientClass.New()
 }
+
+
 // Creates a layer client from a server port. [Full Topic]
 
 //

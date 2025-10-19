@@ -15,6 +15,11 @@ type _AVURLAssetClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVURLAsset] class.
+type IAVURLAsset interface {
+	IAVAsset
+}
+
 // An asset that represents media at a local or remote URL. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset
@@ -31,6 +36,36 @@ func AVURLAssetFrom(ptr unsafe.Pointer) AVURLAsset {
 		AVAsset: AVAssetFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVURLAssetClass) Alloc() AVURLAsset {
+	rv := objc.Send[AVURLAsset](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVURLAssetClass) New() AVURLAsset {
+	rv := objc.Send[AVURLAsset](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVURLAsset) Init() AVURLAsset {
+	rv := objc.Send[AVURLAsset](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVURLAsset) Autorelease() AVURLAsset {
+	rv := objc.Send[AVURLAsset](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVURLAsset creates a new AVURLAsset instance.
+func NewAVURLAsset() AVURLAsset {
+	return aVURLAssetClass.New()
+}
+
 
 
 

@@ -16,6 +16,14 @@ type _PersistentContainerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersistentContainer] class.
+type IPersistentContainer interface {
+	objectivec.IObject
+	LoadPersistentStoresWithCompletionHandler(block unsafe.Pointer)
+	NewBackgroundContext() unsafe.Pointer
+	PerformBackgroundTask(block unsafe.Pointer)
+}
+
 // A container that encapsulates the Core Data stack in your app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer
@@ -59,6 +67,8 @@ func (p_ PersistentContainer) Autorelease() PersistentContainer {
 func NewPersistentContainer() PersistentContainer {
 	return persistentContainerClass.New()
 }
+
+
 // Creates a container with the specified name. [Full Topic]
 
 //

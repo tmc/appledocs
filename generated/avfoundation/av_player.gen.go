@@ -16,6 +16,30 @@ type _AVPlayerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVPlayer] class.
+type IAVPlayer interface {
+	objectivec.IObject
+	AddBoundaryTimeObserverForTimesQueueUsingBlock(times unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	CancelPendingPrerolls()
+	CurrentTime() unsafe.Pointer
+	MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristic unsafe.Pointer) unsafe.Pointer
+	Pause()
+	Play()
+	PlayImmediatelyAtRate(rate float32)
+	PrerollAtRateCompletionHandler(rate float32, completionHandler unsafe.Pointer)
+	RemoveTimeObserver(observer objc.ID)
+	ReplaceCurrentItemWithPlayerItem(item unsafe.Pointer)
+	SeekToTime(time unsafe.Pointer)
+	SeekToDate(date unsafe.Pointer)
+	SeekToTimeCompletionHandler(time unsafe.Pointer, completionHandler unsafe.Pointer)
+	SeekToDateCompletionHandler(date unsafe.Pointer, completionHandler unsafe.Pointer)
+	SeekToTimeToleranceBeforeToleranceAfter(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer)
+	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer)
+	SetMediaSelectionCriteriaForMediaCharacteristic(criteria unsafe.Pointer, mediaCharacteristic unsafe.Pointer)
+	SetRateTimeAtHostTime(rate float32, itemTime unsafe.Pointer, hostClockTime unsafe.Pointer)
+}
+
 // An object that provides the interface to control the player’s transport behavior. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer
@@ -59,6 +83,8 @@ func (a_ AVPlayer) Autorelease() AVPlayer {
 func NewAVPlayer() AVPlayer {
 	return aVPlayerClass.New()
 }
+
+
 // Creates a new player to play the specified player item. [Full Topic]
 
 //

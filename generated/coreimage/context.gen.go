@@ -16,6 +16,52 @@ type _ContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Context] class.
+type IContext interface {
+	objectivec.IObject
+	CalculateHDRStatsForCGImage(cgimage unsafe.Pointer) unsafe.Pointer
+	CalculateHDRStatsForIOSurface(surface unsafe.Pointer)
+	CalculateHDRStatsForCVPixelBuffer(buffer unsafe.Pointer)
+	CalculateHDRStatsForImage(image unsafe.Pointer) unsafe.Pointer
+	ClearCaches()
+	CreateCGImageFromRect(image unsafe.Pointer, fromRect unsafe.Pointer) unsafe.Pointer
+	CreateCGImageFromRectFormatColorSpace(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer) unsafe.Pointer
+	CreateCGImageFromRectFormatColorSpaceDeferred(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, deferred bool) unsafe.Pointer
+	CreateCGImageFromRectFormatColorSpaceDeferredCalculateHDRStats(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, deferred bool, calculateHDRStats bool) unsafe.Pointer
+	CreateCGLayerWithSizeInfo(size unsafe.Pointer, info unsafe.Pointer) unsafe.Pointer
+	DepthBlurEffectFilterForImageDisparityImagePortraitEffectsMatteHairSemanticSegmentationGlassesMatteGainMapOrientationOptions(image unsafe.Pointer, disparityImage unsafe.Pointer, portraitEffectsMatte unsafe.Pointer, hairSemanticSegmentation unsafe.Pointer, glassesMatte unsafe.Pointer, gainMap unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	DepthBlurEffectFilterForImageDisparityImagePortraitEffectsMatteHairSemanticSegmentationOrientationOptions(image unsafe.Pointer, disparityImage unsafe.Pointer, portraitEffectsMatte unsafe.Pointer, hairSemanticSegmentation unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	DepthBlurEffectFilterForImageDisparityImagePortraitEffectsMatteOrientationOptions(image unsafe.Pointer, disparityImage unsafe.Pointer, portraitEffectsMatte unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	DepthBlurEffectFilterForImageDataOptions(data unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	DepthBlurEffectFilterForImageURLOptions(url unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	DrawImageAtPointFromRect(image unsafe.Pointer, atPoint unsafe.Pointer, fromRect unsafe.Pointer)
+	DrawImageInRectFromRect(image unsafe.Pointer, inRect unsafe.Pointer, fromRect unsafe.Pointer)
+	HEIF10RepresentationOfImageColorSpaceOptionsError(image unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer
+	HEIFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	InputImageMaximumSize() unsafe.Pointer
+	JPEGRepresentationOfImageColorSpaceOptions(image unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	OpenEXRRepresentationOfImageOptionsError(image unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer
+	OutputImageMaximumSize() unsafe.Pointer
+	PNGRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	PrepareRenderFromRectToDestinationAtPointError(image unsafe.Pointer, fromRect unsafe.Pointer, destination unsafe.Pointer, atPoint unsafe.Pointer, error unsafe.Pointer) bool
+	ReclaimResources()
+	RenderToCVPixelBuffer(image unsafe.Pointer, buffer unsafe.Pointer)
+	RenderToCVPixelBufferBoundsColorSpace(image unsafe.Pointer, buffer unsafe.Pointer, bounds unsafe.Pointer, colorSpace unsafe.Pointer)
+	RenderToIOSurfaceBoundsColorSpace(image unsafe.Pointer, surface unsafe.Pointer, bounds unsafe.Pointer, colorSpace unsafe.Pointer)
+	RenderToMTLTextureCommandBufferBoundsColorSpace(image unsafe.Pointer, texture unsafe.Pointer, commandBuffer unsafe.Pointer, bounds unsafe.Pointer, colorSpace unsafe.Pointer)
+	RenderToBitmapRowBytesBoundsFormatColorSpace(image unsafe.Pointer, data unsafe.Pointer, rowBytes unsafe.Pointer, bounds unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer)
+	StartTaskToClearError(destination unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	StartTaskToRenderFromRectToDestinationAtPointError(image unsafe.Pointer, fromRect unsafe.Pointer, destination unsafe.Pointer, atPoint unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	StartTaskToRenderToDestinationError(image unsafe.Pointer, destination unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	TIFFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteJPEGRepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteOpenEXRRepresentationOfImageToURLOptionsError(image unsafe.Pointer, url unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+}
+
 // The Core Image context class provides an evaluation context for Core Image processing with Metal, OpenGL, or OpenCL. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext
@@ -59,10 +105,32 @@ func (c_ Context) Autorelease() Context {
 func NewContext() Context {
 	return contextClass.New()
 }
+
+
+// Creates a Core Image context from an EAGL context. [Full Topic]
+
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlCommandQueue:)
-func NewContextWithMTLCommandQueue(commandQueue unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithMTLCommandQueue:"), commandQueue)
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:)
+func NewContextWithEAGLContext(eaglContext unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithEAGLContext:"), eaglContext)
+	rv.Autorelease()
+	return rv
+}
+// Creates a Core Image context from an EAGL context using the specified options. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:options:)
+func NewContextWithEAGLContextOptions(eaglContext unsafe.Pointer, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithEAGLContext:options:"), eaglContext, options)
+	rv.Autorelease()
+	return rv
+}
+// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:)
+func NewContextForOfflineGPUAtIndex(index unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextForOfflineGPUAtIndex:"), index)
 	rv.Autorelease()
 	return rv
 }
@@ -82,58 +150,12 @@ func NewContextWithMTLDevice(device unsafe.Pointer) Context {
 	rv.Autorelease()
 	return rv
 }
-// Initializes a context without a specific rendering destination, using the specified options. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(options:)
-func NewContextWithOptions(options unsafe.Pointer) Context {
-	instance := contextClass.Alloc()
-	rv := objc.Send[Context](instance.ID, objc.Sel("initWithOptions:"), options)
-	rv.Autorelease()
-	return rv
-}
-// Creates a Core Image context from an EAGL context. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:)
-func NewContextWithEAGLContext(eaglContext unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithEAGLContext:"), eaglContext)
-	rv.Autorelease()
-	return rv
-}
-// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:)
-func NewContextForOfflineGPUAtIndex(index unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextForOfflineGPUAtIndex:"), index)
-	rv.Autorelease()
-	return rv
-}
-// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display, with the specified options. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:colorSpace:options:sharedContext:)
-func NewContextForOfflineGPUAtIndexColorSpaceOptionsSharedContext(index unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, sharedContext unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextForOfflineGPUAtIndex:colorSpace:options:sharedContext:"), index, colorSpace, options, sharedContext)
-	rv.Autorelease()
-	return rv
-}
 // Creates a Core Image context using the specified Metal device and options. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlDevice:options:)
 func NewContextWithMTLDeviceOptions(device unsafe.Pointer, options unsafe.Pointer) Context {
 	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithMTLDevice:options:"), device, options)
-	rv.Autorelease()
-	return rv
-}
-// Creates a Core Image context from a Quartz context, using the specified options. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cgContext:options:)
-func NewContextWithCGContextOptions(cgctx unsafe.Pointer, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithCGContext:options:"), cgctx, options)
 	rv.Autorelease()
 	return rv
 }
@@ -146,12 +168,38 @@ func NewContextWithCGLContextPixelFormatColorSpaceOptions(cglctx unsafe.Pointer,
 	rv.Autorelease()
 	return rv
 }
-// Creates a Core Image context from an EAGL context using the specified options. [Full Topic]
+// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display, with the specified options. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:options:)
-func NewContextWithEAGLContextOptions(eaglContext unsafe.Pointer, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithEAGLContext:options:"), eaglContext, options)
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:colorSpace:options:sharedContext:)
+func NewContextForOfflineGPUAtIndexColorSpaceOptionsSharedContext(index unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, sharedContext unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextForOfflineGPUAtIndex:colorSpace:options:sharedContext:"), index, colorSpace, options, sharedContext)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(mtlCommandQueue:)
+func NewContextWithMTLCommandQueue(commandQueue unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithMTLCommandQueue:"), commandQueue)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a context without a specific rendering destination, using the specified options. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(options:)
+func NewContextWithOptions(options unsafe.Pointer) Context {
+	instance := contextClass.Alloc()
+	rv := objc.Send[Context](instance.ID, objc.Sel("initWithOptions:"), options)
+	rv.Autorelease()
+	return rv
+}
+// Creates a Core Image context from a Quartz context, using the specified options. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cgContext:options:)
+func NewContextWithCGContextOptions(cgctx unsafe.Pointer, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithCGContext:options:"), cgctx, options)
 	rv.Autorelease()
 	return rv
 }

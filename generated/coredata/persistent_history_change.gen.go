@@ -16,6 +16,11 @@ type _PersistentHistoryChangeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersistentHistoryChange] class.
+type IPersistentHistoryChange interface {
+	objectivec.IObject
+}
+
 // A change representing the insertion, update, or deletion of a managed object in the persistent store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange
@@ -30,6 +35,36 @@ type PersistentHistoryChange struct {
 func PersistentHistoryChangeFrom(ptr unsafe.Pointer) PersistentHistoryChange {
 	return PersistentHistoryChange{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PersistentHistoryChangeClass) Alloc() PersistentHistoryChange {
+	rv := objc.Send[PersistentHistoryChange](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PersistentHistoryChangeClass) New() PersistentHistoryChange {
+	rv := objc.Send[PersistentHistoryChange](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PersistentHistoryChange) Init() PersistentHistoryChange {
+	rv := objc.Send[PersistentHistoryChange](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PersistentHistoryChange) Autorelease() PersistentHistoryChange {
+	rv := objc.Send[PersistentHistoryChange](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPersistentHistoryChange creates a new PersistentHistoryChange instance.
+func NewPersistentHistoryChange() PersistentHistoryChange {
+	return persistentHistoryChangeClass.New()
+}
+
 
 
 

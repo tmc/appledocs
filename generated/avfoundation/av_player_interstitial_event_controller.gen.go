@@ -15,6 +15,11 @@ type _AVPlayerInterstitialEventControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVPlayerInterstitialEventController] class.
+type IAVPlayerInterstitialEventController interface {
+	IAVPlayerInterstitialEventMonitor
+}
+
 // An object that schedules interstitial events for items played by the primary player. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventController
@@ -31,6 +36,36 @@ func AVPlayerInterstitialEventControllerFrom(ptr unsafe.Pointer) AVPlayerInterst
 		AVPlayerInterstitialEventMonitor: AVPlayerInterstitialEventMonitorFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVPlayerInterstitialEventControllerClass) Alloc() AVPlayerInterstitialEventController {
+	rv := objc.Send[AVPlayerInterstitialEventController](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVPlayerInterstitialEventControllerClass) New() AVPlayerInterstitialEventController {
+	rv := objc.Send[AVPlayerInterstitialEventController](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVPlayerInterstitialEventController) Init() AVPlayerInterstitialEventController {
+	rv := objc.Send[AVPlayerInterstitialEventController](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVPlayerInterstitialEventController) Autorelease() AVPlayerInterstitialEventController {
+	rv := objc.Send[AVPlayerInterstitialEventController](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVPlayerInterstitialEventController creates a new AVPlayerInterstitialEventController instance.
+func NewAVPlayerInterstitialEventController() AVPlayerInterstitialEventController {
+	return aVPlayerInterstitialEventControllerClass.New()
+}
+
 
 
 

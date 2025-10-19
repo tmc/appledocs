@@ -6,6 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coreimage"
 )
 
+// Suppress unused import errors
+var _ = coreimage.NewBlendKernel
+
 
 // ExampleNewKernelWithString demonstrates how to create a BlendKernel instance using NewKernelWithString.
 // Creates a custom blend kernel from a program string.

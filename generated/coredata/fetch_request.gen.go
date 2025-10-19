@@ -15,6 +15,12 @@ type _FetchRequestClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FetchRequest] class.
+type IFetchRequest interface {
+	IPersistentStoreRequest
+	Execute(error unsafe.Pointer) unsafe.Pointer
+}
+
 // A description of search criteria used to retrieve data from a persistent store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest
@@ -60,6 +66,8 @@ func (f_ FetchRequest) Autorelease() FetchRequest {
 func NewFetchRequest() FetchRequest {
 	return fetchRequestClass.New()
 }
+
+
 // Initializes a fetch request configured with a given entity name. [Full Topic]
 
 //

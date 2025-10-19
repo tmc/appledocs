@@ -15,6 +15,12 @@ type _WarpKernelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [WarpKernel] class.
+type IWarpKernel interface {
+	IKernel
+	ApplyWithExtentRoiCallbackInputImageArguments(extent unsafe.Pointer, callback unsafe.Pointer, image unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
+}
+
 // A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel
@@ -60,6 +66,8 @@ func (w_ WarpKernel) Autorelease() WarpKernel {
 func NewWarpKernel() WarpKernel {
 	return warpKernelClass.New()
 }
+
+
 // Creates a warp kernel object from the specified kernel source code. [Full Topic]
 
 //

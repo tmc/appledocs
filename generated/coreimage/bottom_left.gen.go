@@ -16,6 +16,11 @@ type _bottomLeftClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [bottomLeft] class.
+type IbottomLeft interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomLeft-c.ivar
 
@@ -27,6 +32,36 @@ type bottomLeft struct {
 func bottomLeftFrom(ptr unsafe.Pointer) bottomLeft {
 	return bottomLeft{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _bottomLeftClass) Alloc() bottomLeft {
+	rv := objc.Send[bottomLeft](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _bottomLeftClass) New() bottomLeft {
+	rv := objc.Send[bottomLeft](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ bottomLeft) Init() bottomLeft {
+	rv := objc.Send[bottomLeft](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ bottomLeft) Autorelease() bottomLeft {
+	rv := objc.Send[bottomLeft](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewbottomLeft creates a new bottomLeft instance.
+func NewbottomLeft() bottomLeft {
+	return bottomLeftClass.New()
+}
+
 
 
 

@@ -16,6 +16,12 @@ type _AVAssetExportSessionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVAssetExportSession] class.
+type IAVAssetExportSession interface {
+	objectivec.IObject
+	ExportAsynchronouslyWithCompletionHandler(handler unsafe.Pointer)
+}
+
 // An object that exports assets in a format that you specify using an export preset. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession
@@ -30,6 +36,36 @@ type AVAssetExportSession struct {
 func AVAssetExportSessionFrom(ptr unsafe.Pointer) AVAssetExportSession {
 	return AVAssetExportSession{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVAssetExportSessionClass) Alloc() AVAssetExportSession {
+	rv := objc.Send[AVAssetExportSession](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVAssetExportSessionClass) New() AVAssetExportSession {
+	rv := objc.Send[AVAssetExportSession](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVAssetExportSession) Init() AVAssetExportSession {
+	rv := objc.Send[AVAssetExportSession](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVAssetExportSession) Autorelease() AVAssetExportSession {
+	rv := objc.Send[AVAssetExportSession](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVAssetExportSession creates a new AVAssetExportSession instance.
+func NewAVAssetExportSession() AVAssetExportSession {
+	return aVAssetExportSessionClass.New()
+}
+
 
 // Returns all available export preset names. [Full Topic]
 

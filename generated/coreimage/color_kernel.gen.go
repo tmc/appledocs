@@ -15,6 +15,12 @@ type _ColorKernelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ColorKernel] class.
+type IColorKernel interface {
+	IKernel
+	ApplyWithExtentArguments(extent unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
+}
+
 // A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel
@@ -60,6 +66,8 @@ func (c_ ColorKernel) Autorelease() ColorKernel {
 func NewColorKernel() ColorKernel {
 	return colorKernelClass.New()
 }
+
+
 // Creates a color kernel object from the specified kernel source code. [Full Topic]
 
 //

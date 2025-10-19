@@ -16,6 +16,19 @@ type _FilterGeneratorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FilterGenerator] class.
+type IFilterGenerator interface {
+	objectivec.IObject
+	ConnectObjectWithKeyToObjectWithKey(sourceObject objc.ID, sourceKey string, targetObject objc.ID, targetKey string)
+	DisconnectObjectWithKeyToObjectWithKey(sourceObject objc.ID, sourceKey string, targetObject objc.ID, targetKey string)
+	ExportKeyFromObjectWithName(key string, targetObject objc.ID, exportedKeyName string)
+	Filter() unsafe.Pointer
+	RegisterFilterName(name string)
+	RemoveExportedKey(exportedKeyName string)
+	SetAttributesForExportedKey(attributes unsafe.Pointer, key string)
+	WriteToURLAtomically(aURL unsafe.Pointer, flag bool) bool
+}
+
 // An object that creates and configures chains of individual image filters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator
@@ -59,6 +72,8 @@ func (f_ FilterGenerator) Autorelease() FilterGenerator {
 func NewFilterGenerator() FilterGenerator {
 	return filterGeneratorClass.New()
 }
+
+
 // Initializes a filter generator object with the contents of a filter generator file. [Full Topic]
 
 //

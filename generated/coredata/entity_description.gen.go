@@ -16,6 +16,11 @@ type _EntityDescriptionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [EntityDescription] class.
+type IEntityDescription interface {
+	objectivec.IObject
+}
+
 // A description of a Core Data entity. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription
@@ -30,6 +35,36 @@ type EntityDescription struct {
 func EntityDescriptionFrom(ptr unsafe.Pointer) EntityDescription {
 	return EntityDescription{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ec _EntityDescriptionClass) Alloc() EntityDescription {
+	rv := objc.Send[EntityDescription](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _EntityDescriptionClass) New() EntityDescription {
+	rv := objc.Send[EntityDescription](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (e_ EntityDescription) Init() EntityDescription {
+	rv := objc.Send[EntityDescription](e_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ EntityDescription) Autorelease() EntityDescription {
+	rv := objc.Send[EntityDescription](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewEntityDescription creates a new EntityDescription instance.
+func NewEntityDescription() EntityDescription {
+	return entityDescriptionClass.New()
+}
+
 
 
 

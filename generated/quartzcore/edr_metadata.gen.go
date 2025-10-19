@@ -16,6 +16,11 @@ type _EDRMetadataClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [EDRMetadata] class.
+type IEDRMetadata interface {
+	objectivec.IObject
+}
+
 // Metadata describing how extended dynamic range (EDR) values should be tone mapped. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata
@@ -30,6 +35,36 @@ type EDRMetadata struct {
 func EDRMetadataFrom(ptr unsafe.Pointer) EDRMetadata {
 	return EDRMetadata{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ec _EDRMetadataClass) Alloc() EDRMetadata {
+	rv := objc.Send[EDRMetadata](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _EDRMetadataClass) New() EDRMetadata {
+	rv := objc.Send[EDRMetadata](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (e_ EDRMetadata) Init() EDRMetadata {
+	rv := objc.Send[EDRMetadata](e_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ EDRMetadata) Autorelease() EDRMetadata {
+	rv := objc.Send[EDRMetadata](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewEDRMetadata creates a new EDRMetadata instance.
+func NewEDRMetadata() EDRMetadata {
+	return eDRMetadataClass.New()
+}
+
 
 
 

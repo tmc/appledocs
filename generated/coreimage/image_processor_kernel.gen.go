@@ -16,6 +16,11 @@ type _ImageProcessorKernelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ImageProcessorKernel] class.
+type IImageProcessorKernel interface {
+	objectivec.IObject
+}
+
 // The abstract class you extend to create custom image processors that can integrate with Core Image workflows. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel
@@ -30,6 +35,36 @@ type ImageProcessorKernel struct {
 func ImageProcessorKernelFrom(ptr unsafe.Pointer) ImageProcessorKernel {
 	return ImageProcessorKernel{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _ImageProcessorKernelClass) Alloc() ImageProcessorKernel {
+	rv := objc.Send[ImageProcessorKernel](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _ImageProcessorKernelClass) New() ImageProcessorKernel {
+	rv := objc.Send[ImageProcessorKernel](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ ImageProcessorKernel) Init() ImageProcessorKernel {
+	rv := objc.Send[ImageProcessorKernel](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ ImageProcessorKernel) Autorelease() ImageProcessorKernel {
+	rv := objc.Send[ImageProcessorKernel](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewImageProcessorKernel creates a new ImageProcessorKernel instance.
+func NewImageProcessorKernel() ImageProcessorKernel {
+	return imageProcessorKernelClass.New()
+}
+
 
 // Call this method on your Core Image Processor Kernel subclass to create a new image of the specified extent. [Full Topic]
 

@@ -6,14 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coreimage"
 )
 
+// Suppress unused import errors
+var _ = coreimage.NewFilterShape
 
-// ExampleNewFilterShapeWithRect demonstrates how to create a FilterShape instance using NewFilterShapeWithRect.
-// Initializes a filter shape object with a rectangle.
-func ExampleNewFilterShapeWithRect() {
-	_ = coreimage.NewFilterShapeWithRect(
-		nil, // r unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

@@ -16,6 +16,11 @@ type _PersistentStoreResultClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersistentStoreResult] class.
+type IPersistentStoreResult interface {
+	objectivec.IObject
+}
+
 // The abstract base class for results returned from a persistent store coordinator. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreResult
@@ -30,6 +35,36 @@ type PersistentStoreResult struct {
 func PersistentStoreResultFrom(ptr unsafe.Pointer) PersistentStoreResult {
 	return PersistentStoreResult{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PersistentStoreResultClass) Alloc() PersistentStoreResult {
+	rv := objc.Send[PersistentStoreResult](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PersistentStoreResultClass) New() PersistentStoreResult {
+	rv := objc.Send[PersistentStoreResult](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PersistentStoreResult) Init() PersistentStoreResult {
+	rv := objc.Send[PersistentStoreResult](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PersistentStoreResult) Autorelease() PersistentStoreResult {
+	rv := objc.Send[PersistentStoreResult](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPersistentStoreResult creates a new PersistentStoreResult instance.
+func NewPersistentStoreResult() PersistentStoreResult {
+	return persistentStoreResultClass.New()
+}
+
 
 
 

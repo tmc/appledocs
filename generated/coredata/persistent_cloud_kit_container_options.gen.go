@@ -16,6 +16,11 @@ type _PersistentCloudKitContainerOptionsClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersistentCloudKitContainerOptions] class.
+type IPersistentCloudKitContainerOptions interface {
+	objectivec.IObject
+}
+
 // An object that customizes how a store description aligns with a CloudKit database. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions
@@ -59,6 +64,8 @@ func (p_ PersistentCloudKitContainerOptions) Autorelease() PersistentCloudKitCon
 func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions {
 	return persistentCloudKitContainerOptionsClass.New()
 }
+
+
 // Initializes container options using the given CloudKit container identifier. [Full Topic]
 
 //

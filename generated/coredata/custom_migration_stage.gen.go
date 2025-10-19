@@ -15,6 +15,11 @@ type _CustomMigrationStageClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [CustomMigrationStage] class.
+type ICustomMigrationStage interface {
+	IMigrationStage
+}
+
 // An object that enables you to participate in the migration between two versions of the same model. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage
@@ -60,6 +65,8 @@ func (c_ CustomMigrationStage) Autorelease() CustomMigrationStage {
 func NewCustomMigrationStage() CustomMigrationStage {
 	return customMigrationStageClass.New()
 }
+
+
 // Creates a custom migration stage with the specified source and destination model references. [Full Topic]
 
 //

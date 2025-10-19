@@ -15,6 +15,13 @@ type _BlendKernelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BlendKernel] class.
+type IBlendKernel interface {
+	IColorKernel
+	ApplyWithForegroundBackground(foreground unsafe.Pointer, background unsafe.Pointer) unsafe.Pointer
+	ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace unsafe.Pointer) unsafe.Pointer
+}
+
 // A GPU-based image-processing routine that is optimized for blending two images. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel
@@ -60,6 +67,8 @@ func (b_ BlendKernel) Autorelease() BlendKernel {
 func NewBlendKernel() BlendKernel {
 	return blendKernelClass.New()
 }
+
+
 // Creates a custom blend kernel from a program string. [Full Topic]
 
 //

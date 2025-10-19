@@ -16,6 +16,17 @@ type _FilterShapeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FilterShape] class.
+type IFilterShape interface {
+	objectivec.IObject
+	InsetByXY(dx int, dy int) unsafe.Pointer
+	IntersectWithRect(r unsafe.Pointer) unsafe.Pointer
+	IntersectWith(s2 unsafe.Pointer) unsafe.Pointer
+	TransformByInterior(m coregraphics.AffineTransform, flag bool) unsafe.Pointer
+	UnionWith(s2 unsafe.Pointer) unsafe.Pointer
+	UnionWithRect(r unsafe.Pointer) unsafe.Pointer
+}
+
 // A description of the bounding shape of a filter and the domain of definition for a filter operation. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape
@@ -59,6 +70,8 @@ func (f_ FilterShape) Autorelease() FilterShape {
 func NewFilterShape() FilterShape {
 	return filterShapeClass.New()
 }
+
+
 // Initializes a filter shape object with a rectangle. [Full Topic]
 
 //

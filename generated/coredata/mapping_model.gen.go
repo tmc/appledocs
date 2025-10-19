@@ -16,6 +16,11 @@ type _MappingModelClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MappingModel] class.
+type IMappingModel interface {
+	objectivec.IObject
+}
+
 // A model instance that specifies how to map a model from a source to a destination managed object model. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel
@@ -59,6 +64,8 @@ func (m_ MappingModel) Autorelease() MappingModel {
 func NewMappingModel() MappingModel {
 	return mappingModelClass.New()
 }
+
+
 // Returns the mapping model that will translate data from the source to the destination model. [Full Topic]
 
 //

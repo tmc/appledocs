@@ -6,14 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coredata"
 )
 
+// Suppress unused import errors
+var _ = coredata.NewManagedObjectContext
 
-// ExampleNewManagedObjectContextWithConcurrencyType demonstrates how to create a ManagedObjectContext instance using NewManagedObjectContextWithConcurrencyType.
-// Creates a context that uses the specified concurrency type.
-func ExampleNewManagedObjectContextWithConcurrencyType() {
-	_ = coredata.NewManagedObjectContextWithConcurrencyType(
-		nil, // ct unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

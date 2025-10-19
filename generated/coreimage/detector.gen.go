@@ -16,6 +16,13 @@ type _DetectorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Detector] class.
+type IDetector interface {
+	objectivec.IObject
+	FeaturesInImage(image unsafe.Pointer) unsafe.Pointer
+	FeaturesInImageOptions(image unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+}
+
 // An image processor that identifies notable features, such as faces and barcodes, in a still image or video. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector
@@ -59,6 +66,8 @@ func (d_ Detector) Autorelease() Detector {
 func NewDetector() Detector {
 	return detectorClass.New()
 }
+
+
 // Creates and returns a configured detector. [Full Topic]
 
 //

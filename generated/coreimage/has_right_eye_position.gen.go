@@ -16,6 +16,11 @@ type _hasRightEyePositionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [hasRightEyePosition] class.
+type IhasRightEyePosition interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasRightEyePosition-c.ivar
 
@@ -27,6 +32,36 @@ type hasRightEyePosition struct {
 func hasRightEyePositionFrom(ptr unsafe.Pointer) hasRightEyePosition {
 	return hasRightEyePosition{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (hc _hasRightEyePositionClass) Alloc() hasRightEyePosition {
+	rv := objc.Send[hasRightEyePosition](objc.ID(hc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (hc _hasRightEyePositionClass) New() hasRightEyePosition {
+	rv := objc.Send[hasRightEyePosition](objc.ID(hc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (h_ hasRightEyePosition) Init() hasRightEyePosition {
+	rv := objc.Send[hasRightEyePosition](h_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (h_ hasRightEyePosition) Autorelease() hasRightEyePosition {
+	rv := objc.Send[hasRightEyePosition](h_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewhasRightEyePosition creates a new hasRightEyePosition instance.
+func NewhasRightEyePosition() hasRightEyePosition {
+	return hasRightEyePositionClass.New()
+}
+
 
 
 

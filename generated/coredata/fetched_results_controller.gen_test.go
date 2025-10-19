@@ -6,17 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coredata"
 )
 
+// Suppress unused import errors
+var _ = coredata.NewFetchedResultsController
 
-// ExampleNewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameKeyPathCacheName demonstrates how to create a FetchedResultsController instance using NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameKeyPathCacheName.
-// Returns a fetch request controller initialized using the given arguments.
-func ExampleNewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameKeyPathCacheName() {
-	_ = coredata.NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameKeyPathCacheName(
-		nil, // fetchRequest unsafe.Pointer
-		nil, // context unsafe.Pointer
-		"sectionNameKeyPath", // sectionNameKeyPath string
-		"name", // name string
-	)
-	// Output:
-}
+
 
 

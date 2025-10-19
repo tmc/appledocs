@@ -16,6 +16,11 @@ type _ManagedObjectClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ManagedObject] class.
+type IManagedObject interface {
+	objectivec.IObject
+}
+
 // The base class that all Core Data model objects inherit from. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject
@@ -59,6 +64,8 @@ func (m_ ManagedObject) Autorelease() ManagedObject {
 func NewManagedObject() ManagedObject {
 	return managedObjectClass.New()
 }
+
+
 // Initializes a managed object from an entity description and inserts it into the specified managed object context. [Full Topic]
 
 //

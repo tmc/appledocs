@@ -16,6 +16,11 @@ type _PlugInClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PlugIn] class.
+type IPlugIn interface {
+	objectivec.IObject
+}
+
 // The mechanism for loading image units in macOS. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn
@@ -30,6 +35,36 @@ type PlugIn struct {
 func PlugInFrom(ptr unsafe.Pointer) PlugIn {
 	return PlugIn{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PlugInClass) Alloc() PlugIn {
+	rv := objc.Send[PlugIn](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PlugInClass) New() PlugIn {
+	rv := objc.Send[PlugIn](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PlugIn) Init() PlugIn {
+	rv := objc.Send[PlugIn](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PlugIn) Autorelease() PlugIn {
+	rv := objc.Send[PlugIn](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPlugIn creates a new PlugIn instance.
+func NewPlugIn() PlugIn {
+	return plugInClass.New()
+}
+
 
 // Loads filters from an image unit that have the appropriate executable status. [Full Topic]
 

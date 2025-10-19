@@ -16,6 +16,11 @@ type _ColorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Color] class.
+type IColor interface {
+	objectivec.IObject
+}
+
 // The Core Image class that defines a color object. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor
@@ -59,25 +64,8 @@ func (c_ Color) Autorelease() Color {
 func NewColor() Color {
 	return colorClass.New()
 }
-// Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space. [Full Topic]
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:colorSpace:)
-func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace unsafe.Pointer) Color {
-	instance := colorClass.Alloc()
-	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:colorSpace:"), red, green, blue, colorSpace)
-	rv.Autorelease()
-	return rv
-}
-// Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values. [Full Topic]
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
-func NewColorWithString(representation string) Color {
-	rv := objc.Send[Color](objc.ID(colorClass.class), objc.Sel("colorWithString:"), representation)
-	rv.Autorelease()
-	return rv
-}
 // Create a Core Image color object with a Core Graphics color object. [Full Topic]
 
 //
@@ -123,6 +111,25 @@ func NewColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alp
 func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace unsafe.Pointer) Color {
 	instance := colorClass.Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
+	rv.Autorelease()
+	return rv
+}
+// Initialize a Core Image color object with the specified red, green, and blue component values as measured in the specified color space. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:colorSpace:)
+func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace unsafe.Pointer) Color {
+	instance := colorClass.Alloc()
+	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:colorSpace:"), red, green, blue, colorSpace)
+	rv.Autorelease()
+	return rv
+}
+// Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
+func NewColorWithString(representation string) Color {
+	rv := objc.Send[Color](objc.ID(colorClass.class), objc.Sel("colorWithString:"), representation)
 	rv.Autorelease()
 	return rv
 }

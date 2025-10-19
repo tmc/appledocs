@@ -16,6 +16,11 @@ type _AVAssetReaderClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVAssetReader] class.
+type IAVAssetReader interface {
+	objectivec.IObject
+}
+
 // An object that reads media data from an asset. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader
@@ -30,6 +35,36 @@ type AVAssetReader struct {
 func AVAssetReaderFrom(ptr unsafe.Pointer) AVAssetReader {
 	return AVAssetReader{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVAssetReaderClass) Alloc() AVAssetReader {
+	rv := objc.Send[AVAssetReader](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVAssetReaderClass) New() AVAssetReader {
+	rv := objc.Send[AVAssetReader](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVAssetReader) Init() AVAssetReader {
+	rv := objc.Send[AVAssetReader](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVAssetReader) Autorelease() AVAssetReader {
+	rv := objc.Send[AVAssetReader](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVAssetReader creates a new AVAssetReader instance.
+func NewAVAssetReader() AVAssetReader {
+	return aVAssetReaderClass.New()
+}
+
 
 
 

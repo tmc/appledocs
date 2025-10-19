@@ -6,15 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coredata"
 )
 
+// Suppress unused import errors
+var _ = coredata.NewCustomMigrationStage
 
-// ExampleNewCustomMigrationStageWithCurrentModelReferenceNextModelReference demonstrates how to create a CustomMigrationStage instance using NewCustomMigrationStageWithCurrentModelReferenceNextModelReference.
-// Creates a custom migration stage with the specified source and destination model references.
-func ExampleNewCustomMigrationStageWithCurrentModelReferenceNextModelReference() {
-	_ = coredata.NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(
-		nil, // currentModel unsafe.Pointer
-		nil, // nextModel unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

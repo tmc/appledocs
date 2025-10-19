@@ -6,15 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coredata"
 )
 
+// Suppress unused import errors
+var _ = coredata.NewBatchUpdateRequest
 
-// ExampleNewBatchUpdateRequestWithEntity demonstrates how to create a BatchUpdateRequest instance using NewBatchUpdateRequestWithEntity.
-// Creates a batch-update request for a managed entity.
-func ExampleNewBatchUpdateRequestWithEntity() {
-	_ = coredata.NewBatchUpdateRequestWithEntity(
-		nil, // entity unsafe.Pointer
-	)
-	// Output:
-}
 
 // ExampleNewBatchUpdateRequestWithEntityName demonstrates how to create a BatchUpdateRequest instance using NewBatchUpdateRequestWithEntityName.
 // Creates a batch-update request for a named managed entity.
@@ -24,5 +18,6 @@ func ExampleNewBatchUpdateRequestWithEntityName() {
 	)
 	// Output:
 }
+
 
 

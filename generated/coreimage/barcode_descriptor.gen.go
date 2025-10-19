@@ -16,6 +16,11 @@ type _BarcodeDescriptorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BarcodeDescriptor] class.
+type IBarcodeDescriptor interface {
+	objectivec.IObject
+}
+
 // An abstract base class that represents a machine-readable code’s attributes. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBarcodeDescriptor
@@ -30,6 +35,36 @@ type BarcodeDescriptor struct {
 func BarcodeDescriptorFrom(ptr unsafe.Pointer) BarcodeDescriptor {
 	return BarcodeDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _BarcodeDescriptorClass) Alloc() BarcodeDescriptor {
+	rv := objc.Send[BarcodeDescriptor](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _BarcodeDescriptorClass) New() BarcodeDescriptor {
+	rv := objc.Send[BarcodeDescriptor](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ BarcodeDescriptor) Init() BarcodeDescriptor {
+	rv := objc.Send[BarcodeDescriptor](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ BarcodeDescriptor) Autorelease() BarcodeDescriptor {
+	rv := objc.Send[BarcodeDescriptor](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewBarcodeDescriptor creates a new BarcodeDescriptor instance.
+func NewBarcodeDescriptor() BarcodeDescriptor {
+	return barcodeDescriptorClass.New()
+}
+
 
 
 

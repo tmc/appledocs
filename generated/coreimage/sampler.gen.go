@@ -16,6 +16,11 @@ type _SamplerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Sampler] class.
+type ISampler interface {
+	objectivec.IObject
+}
+
 // An object that retrieves pixel samples for processing by a filter kernel. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler
@@ -59,6 +64,18 @@ func (s_ Sampler) Autorelease() Sampler {
 func NewSampler() Sampler {
 	return samplerClass.New()
 }
+
+
+// Initializes the sampler with an image object using options specified as key-value pairs. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/initWithImage:keysAndValues:
+func NewSamplerWithImageKeysAndValues(im unsafe.Pointer, key0 objc.ID) Sampler {
+	instance := samplerClass.Alloc()
+	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:keysAndValues:"), im, key0)
+	rv.Autorelease()
+	return rv
+}
 // Initializes a sampler with an image object. [Full Topic]
 
 //
@@ -76,16 +93,6 @@ func NewSamplerWithImage(im unsafe.Pointer) Sampler {
 func NewSamplerWithImageOptions(im unsafe.Pointer, dict unsafe.Pointer) Sampler {
 	instance := samplerClass.Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:options:"), im, dict)
-	rv.Autorelease()
-	return rv
-}
-// Initializes the sampler with an image object using options specified as key-value pairs. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/initWithImage:keysAndValues:
-func NewSamplerWithImageKeysAndValues(im unsafe.Pointer, key0 objc.ID) Sampler {
-	instance := samplerClass.Alloc()
-	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:keysAndValues:"), im, key0)
 	rv.Autorelease()
 	return rv
 }

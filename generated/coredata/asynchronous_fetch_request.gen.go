@@ -15,6 +15,11 @@ type _AsynchronousFetchRequestClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AsynchronousFetchRequest] class.
+type IAsynchronousFetchRequest interface {
+	IPersistentStoreRequest
+}
+
 // A fetch request that retrieves results asynchronously and supports progress notification. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest
@@ -60,6 +65,8 @@ func (a_ AsynchronousFetchRequest) Autorelease() AsynchronousFetchRequest {
 func NewAsynchronousFetchRequest() AsynchronousFetchRequest {
 	return asynchronousFetchRequestClass.New()
 }
+
+
 // Initializes a new asynchronous fetch request configured with the provided fetch request and completion block. [Full Topic]
 
 //

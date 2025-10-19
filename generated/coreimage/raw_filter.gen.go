@@ -15,6 +15,11 @@ type _RAWFilterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [RAWFilter] class.
+type IRAWFilter interface {
+	IFilter
+}
+
 // A filter subclass that produces an image by manipulating RAW image sensor data from a digital camera or scanner. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter
@@ -60,6 +65,8 @@ func (r_ RAWFilter) Autorelease() RAWFilter {
 func NewRAWFilter() RAWFilter {
 	return rAWFilterClass.New()
 }
+
+
 // Creates a RAW filter from the pixel buffer and its properties that you specify. [Full Topic]
 
 //

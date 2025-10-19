@@ -15,6 +15,11 @@ type _BatchUpdateRequestClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [BatchUpdateRequest] class.
+type IBatchUpdateRequest interface {
+	IPersistentStoreRequest
+}
+
 // A request to Core Data to do a batch update of data in a persistent store without loading any data into memory. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest
@@ -60,6 +65,8 @@ func (b_ BatchUpdateRequest) Autorelease() BatchUpdateRequest {
 func NewBatchUpdateRequest() BatchUpdateRequest {
 	return batchUpdateRequestClass.New()
 }
+
+
 // Creates a batch-update request for a managed entity. [Full Topic]
 
 //

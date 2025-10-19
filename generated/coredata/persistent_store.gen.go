@@ -16,6 +16,11 @@ type _PersistentStoreClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersistentStore] class.
+type IPersistentStore interface {
+	objectivec.IObject
+}
+
 // The abstract base class for all Core Data persistent stores. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore
@@ -59,6 +64,8 @@ func (p_ PersistentStore) Autorelease() PersistentStore {
 func NewPersistentStore() PersistentStore {
 	return persistentStoreClass.New()
 }
+
+
 // Returns a store initialized with the given arguments. [Full Topic]
 
 //

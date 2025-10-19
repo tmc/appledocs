@@ -16,6 +16,11 @@ type _faceAngleClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [faceAngle] class.
+type IfaceAngle interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/faceAngle-c.ivar
 
@@ -27,6 +32,36 @@ type faceAngle struct {
 func faceAngleFrom(ptr unsafe.Pointer) faceAngle {
 	return faceAngle{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _faceAngleClass) Alloc() faceAngle {
+	rv := objc.Send[faceAngle](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _faceAngleClass) New() faceAngle {
+	rv := objc.Send[faceAngle](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ faceAngle) Init() faceAngle {
+	rv := objc.Send[faceAngle](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ faceAngle) Autorelease() faceAngle {
+	rv := objc.Send[faceAngle](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewfaceAngle creates a new faceAngle instance.
+func NewfaceAngle() faceAngle {
+	return faceAngleClass.New()
+}
+
 
 
 

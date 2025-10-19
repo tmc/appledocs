@@ -15,6 +15,11 @@ type _TransformLayerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [TransformLayer] class.
+type ITransformLayer interface {
+	ILayer
+}
+
 // Objects used to create true 3D layer hierarchies, rather than the flattened hierarchy rendering model used by other layer types. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransformLayer
@@ -31,6 +36,36 @@ func TransformLayerFrom(ptr unsafe.Pointer) TransformLayer {
 		Layer: LayerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TransformLayerClass) Alloc() TransformLayer {
+	rv := objc.Send[TransformLayer](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TransformLayerClass) New() TransformLayer {
+	rv := objc.Send[TransformLayer](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TransformLayer) Init() TransformLayer {
+	rv := objc.Send[TransformLayer](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TransformLayer) Autorelease() TransformLayer {
+	rv := objc.Send[TransformLayer](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTransformLayer creates a new TransformLayer instance.
+func NewTransformLayer() TransformLayer {
+	return transformLayerClass.New()
+}
+
 
 
 

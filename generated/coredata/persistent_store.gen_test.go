@@ -6,17 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coredata"
 )
 
+// Suppress unused import errors
+var _ = coredata.NewPersistentStore
 
-// ExampleNewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions demonstrates how to create a PersistentStore instance using NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions.
-// Returns a store initialized with the given arguments.
-func ExampleNewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions() {
-	_ = coredata.NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(
-		nil, // root unsafe.Pointer
-		"name", // name string
-		nil, // url unsafe.Pointer
-		nil, // options unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

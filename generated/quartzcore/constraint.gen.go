@@ -16,6 +16,11 @@ type _ConstraintClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Constraint] class.
+type IConstraint interface {
+	objectivec.IObject
+}
+
 // A representation of a single layout constraint between two layers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint
@@ -30,6 +35,36 @@ type Constraint struct {
 func ConstraintFrom(ptr unsafe.Pointer) Constraint {
 	return Constraint{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ConstraintClass) Alloc() Constraint {
+	rv := objc.Send[Constraint](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ConstraintClass) New() Constraint {
+	rv := objc.Send[Constraint](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ Constraint) Init() Constraint {
+	rv := objc.Send[Constraint](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ Constraint) Autorelease() Constraint {
+	rv := objc.Send[Constraint](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewConstraint creates a new Constraint instance.
+func NewConstraint() Constraint {
+	return constraintClass.New()
+}
+
 
 
 

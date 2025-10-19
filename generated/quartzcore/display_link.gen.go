@@ -16,6 +16,12 @@ type _DisplayLinkClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [DisplayLink] class.
+type IDisplayLink interface {
+	objectivec.IObject
+	AddToRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer)
+}
+
 // A timer object that allows your app to synchronize its drawing to the refresh rate of the display. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink
@@ -30,6 +36,36 @@ type DisplayLink struct {
 func DisplayLinkFrom(ptr unsafe.Pointer) DisplayLink {
 	return DisplayLink{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DisplayLinkClass) Alloc() DisplayLink {
+	rv := objc.Send[DisplayLink](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DisplayLinkClass) New() DisplayLink {
+	rv := objc.Send[DisplayLink](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DisplayLink) Init() DisplayLink {
+	rv := objc.Send[DisplayLink](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DisplayLink) Autorelease() DisplayLink {
+	rv := objc.Send[DisplayLink](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDisplayLink creates a new DisplayLink instance.
+func NewDisplayLink() DisplayLink {
+	return displayLinkClass.New()
+}
+
 
 // Registers the display link with a run loop. [Full Topic]
 

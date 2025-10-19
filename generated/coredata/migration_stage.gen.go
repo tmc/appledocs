@@ -16,6 +16,11 @@ type _MigrationStageClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MigrationStage] class.
+type IMigrationStage interface {
+	objectivec.IObject
+}
+
 // An abstract base class for describing an individual stage of a migration. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage
@@ -30,6 +35,36 @@ type MigrationStage struct {
 func MigrationStageFrom(ptr unsafe.Pointer) MigrationStage {
 	return MigrationStage{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MigrationStageClass) Alloc() MigrationStage {
+	rv := objc.Send[MigrationStage](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MigrationStageClass) New() MigrationStage {
+	rv := objc.Send[MigrationStage](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MigrationStage) Init() MigrationStage {
+	rv := objc.Send[MigrationStage](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MigrationStage) Autorelease() MigrationStage {
+	rv := objc.Send[MigrationStage](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMigrationStage creates a new MigrationStage instance.
+func NewMigrationStage() MigrationStage {
+	return migrationStageClass.New()
+}
+
 
 
 

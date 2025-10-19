@@ -16,6 +16,20 @@ type _ManagedObjectContextClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ManagedObjectContext] class.
+type IManagedObjectContext interface {
+	objectivec.IObject
+	AssignObjectToPersistentStore(object objc.ID, store unsafe.Pointer)
+	MergeChangesFromContextDidSaveNotification(notification unsafe.Pointer)
+	PerformBlock(block unsafe.Pointer)
+	PerformBlockAndWait(block unsafe.Pointer)
+	ProcessPendingChanges()
+	RefreshAllObjects()
+	Reset()
+	Save(error unsafe.Pointer) bool
+	SetQueryGenerationFromTokenError(generation unsafe.Pointer, error unsafe.Pointer) bool
+}
+
 // An object space to manipulate and track changes to managed objects. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext
@@ -59,6 +73,8 @@ func (m_ ManagedObjectContext) Autorelease() ManagedObjectContext {
 func NewManagedObjectContext() ManagedObjectContext {
 	return managedObjectContextClass.New()
 }
+
+
 // Creates a context that uses the specified concurrency type. [Full Topic]
 
 //

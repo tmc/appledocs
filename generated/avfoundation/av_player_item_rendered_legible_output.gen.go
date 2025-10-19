@@ -15,6 +15,11 @@ type _AVPlayerItemRenderedLegibleOutputClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVPlayerItemRenderedLegibleOutput] class.
+type IAVPlayerItemRenderedLegibleOutput interface {
+	IAVPlayerItemOutput
+}
+
 // A player item output that vends media with a legible characteristic as rendered pixel buffers. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemRenderedLegibleOutput
@@ -31,6 +36,36 @@ func AVPlayerItemRenderedLegibleOutputFrom(ptr unsafe.Pointer) AVPlayerItemRende
 		AVPlayerItemOutput: AVPlayerItemOutputFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVPlayerItemRenderedLegibleOutputClass) Alloc() AVPlayerItemRenderedLegibleOutput {
+	rv := objc.Send[AVPlayerItemRenderedLegibleOutput](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVPlayerItemRenderedLegibleOutputClass) New() AVPlayerItemRenderedLegibleOutput {
+	rv := objc.Send[AVPlayerItemRenderedLegibleOutput](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVPlayerItemRenderedLegibleOutput) Init() AVPlayerItemRenderedLegibleOutput {
+	rv := objc.Send[AVPlayerItemRenderedLegibleOutput](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVPlayerItemRenderedLegibleOutput) Autorelease() AVPlayerItemRenderedLegibleOutput {
+	rv := objc.Send[AVPlayerItemRenderedLegibleOutput](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVPlayerItemRenderedLegibleOutput creates a new AVPlayerItemRenderedLegibleOutput instance.
+func NewAVPlayerItemRenderedLegibleOutput() AVPlayerItemRenderedLegibleOutput {
+	return aVPlayerItemRenderedLegibleOutputClass.New()
+}
+
 
 
 

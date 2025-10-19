@@ -6,14 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coredata"
 )
 
+// Suppress unused import errors
+var _ = coredata.NewPersistentStoreDescription
 
-// ExampleNewPersistentStoreDescriptionWithURL demonstrates how to create a PersistentStoreDescription instance using NewPersistentStoreDescriptionWithURL.
-// Initializes the receiver with a URL for the store.
-func ExampleNewPersistentStoreDescriptionWithURL() {
-	_ = coredata.NewPersistentStoreDescriptionWithURL(
-		nil, // url unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

@@ -6,6 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coreimage"
 )
 
+// Suppress unused import errors
+var _ = coreimage.NewColorKernel
+
 
 // ExampleNewKernelWithString demonstrates how to create a ColorKernel instance using NewKernelWithString.
 // Creates a color kernel object from the specified kernel source code.

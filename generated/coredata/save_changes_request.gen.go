@@ -15,6 +15,11 @@ type _SaveChangesRequestClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [SaveChangesRequest] class.
+type ISaveChangesRequest interface {
+	IPersistentStoreRequest
+}
+
 // An encapsulation of a collection of changes to be made by an object store in response to a save operation on a managed object context. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest
@@ -31,6 +36,36 @@ func SaveChangesRequestFrom(ptr unsafe.Pointer) SaveChangesRequest {
 		PersistentStoreRequest: PersistentStoreRequestFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SaveChangesRequestClass) Alloc() SaveChangesRequest {
+	rv := objc.Send[SaveChangesRequest](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SaveChangesRequestClass) New() SaveChangesRequest {
+	rv := objc.Send[SaveChangesRequest](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SaveChangesRequest) Init() SaveChangesRequest {
+	rv := objc.Send[SaveChangesRequest](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SaveChangesRequest) Autorelease() SaveChangesRequest {
+	rv := objc.Send[SaveChangesRequest](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSaveChangesRequest creates a new SaveChangesRequest instance.
+func NewSaveChangesRequest() SaveChangesRequest {
+	return saveChangesRequestClass.New()
+}
+
 
 
 

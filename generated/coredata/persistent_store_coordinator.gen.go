@@ -16,6 +16,19 @@ type _PersistentStoreCoordinatorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PersistentStoreCoordinator] class.
+type IPersistentStoreCoordinator interface {
+	objectivec.IObject
+	AddPersistentStoreWithTypeConfigurationURLOptionsError(storeType string, configuration string, storeURL unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	CurrentPersistentHistoryTokenFromStores(stores unsafe.Pointer) unsafe.Pointer
+	FinishDeferredLightweightMigration(error unsafe.Pointer) bool
+	ImportStoreWithIdentifierFromExternalRecordsDirectoryToURLOptionsWithTypeError(storeIdentifier string, externalRecordsURL unsafe.Pointer, destinationURL unsafe.Pointer, options unsafe.Pointer, storeType string, error unsafe.Pointer) unsafe.Pointer
+	ManagedObjectIDForURIRepresentation(url unsafe.Pointer) unsafe.Pointer
+	ManagedObjectIDFromUTF8StringLength(utf8string unsafe.Pointer, len uint) unsafe.Pointer
+	SetMetadataForPersistentStore(metadata unsafe.Pointer, store unsafe.Pointer)
+	URLForPersistentStore(store unsafe.Pointer) unsafe.Pointer
+}
+
 // An object that enables an app’s contexts and the underlying persistent stores to work together. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator
@@ -59,6 +72,8 @@ func (p_ PersistentStoreCoordinator) Autorelease() PersistentStoreCoordinator {
 func NewPersistentStoreCoordinator() PersistentStoreCoordinator {
 	return persistentStoreCoordinatorClass.New()
 }
+
+
 // Creates a persistent store coordinator with the specified managed object model. [Full Topic]
 
 //

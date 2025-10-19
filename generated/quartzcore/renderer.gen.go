@@ -16,6 +16,12 @@ type _RendererClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Renderer] class.
+type IRenderer interface {
+	objectivec.IObject
+	Render()
+}
+
 // A layer that allows an application to render a layer tree into a Core OpenGL context. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer
@@ -30,6 +36,36 @@ type Renderer struct {
 func RendererFrom(ptr unsafe.Pointer) Renderer {
 	return Renderer{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _RendererClass) Alloc() Renderer {
+	rv := objc.Send[Renderer](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _RendererClass) New() Renderer {
+	rv := objc.Send[Renderer](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ Renderer) Init() Renderer {
+	rv := objc.Send[Renderer](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ Renderer) Autorelease() Renderer {
+	rv := objc.Send[Renderer](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRenderer creates a new Renderer instance.
+func NewRenderer() Renderer {
+	return rendererClass.New()
+}
+
 
 // Render the update region of the current frame to the target context. [Full Topic]
 

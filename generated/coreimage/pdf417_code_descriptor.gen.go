@@ -15,6 +15,11 @@ type _PDF417CodeDescriptorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [PDF417CodeDescriptor] class.
+type IPDF417CodeDescriptor interface {
+	IBarcodeDescriptor
+}
+
 // A concrete subclass of Core Image Barcode Descriptor that represents a PDF417 symbol. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor
@@ -60,6 +65,8 @@ func (p_ PDF417CodeDescriptor) Autorelease() PDF417CodeDescriptor {
 func NewPDF417CodeDescriptor() PDF417CodeDescriptor {
 	return pDF417CodeDescriptorClass.New()
 }
+
+
 // Initializes an PDF417 code descriptor for the given payload and parameters. [Full Topic]
 
 //

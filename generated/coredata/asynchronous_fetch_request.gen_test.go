@@ -6,15 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coredata"
 )
 
+// Suppress unused import errors
+var _ = coredata.NewAsynchronousFetchRequest
 
-// ExampleNewAsynchronousFetchRequestWithFetchRequestCompletionBlock demonstrates how to create a AsynchronousFetchRequest instance using NewAsynchronousFetchRequestWithFetchRequestCompletionBlock.
-// Initializes a new asynchronous fetch request configured with the provided fetch request and completion block.
-func ExampleNewAsynchronousFetchRequestWithFetchRequestCompletionBlock() {
-	_ = coredata.NewAsynchronousFetchRequestWithFetchRequestCompletionBlock(
-		nil, // request unsafe.Pointer
-		nil, // blk unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

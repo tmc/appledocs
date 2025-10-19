@@ -16,6 +16,11 @@ type _symbolDescriptorClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [symbolDescriptor] class.
+type IsymbolDescriptor interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/symbolDescriptor-c.ivar
 
@@ -27,6 +32,36 @@ type symbolDescriptor struct {
 func symbolDescriptorFrom(ptr unsafe.Pointer) symbolDescriptor {
 	return symbolDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _symbolDescriptorClass) Alloc() symbolDescriptor {
+	rv := objc.Send[symbolDescriptor](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _symbolDescriptorClass) New() symbolDescriptor {
+	rv := objc.Send[symbolDescriptor](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ symbolDescriptor) Init() symbolDescriptor {
+	rv := objc.Send[symbolDescriptor](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ symbolDescriptor) Autorelease() symbolDescriptor {
+	rv := objc.Send[symbolDescriptor](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewsymbolDescriptor creates a new symbolDescriptor instance.
+func NewsymbolDescriptor() symbolDescriptor {
+	return symbolDescriptorClass.New()
+}
+
 
 
 

@@ -6,6 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coredata"
 )
 
+// Suppress unused import errors
+var _ = coredata.NewPersistentContainer
+
 
 // ExampleNewPersistentContainerWithName demonstrates how to create a PersistentContainer instance using NewPersistentContainerWithName.
 // Creates a container with the specified name.

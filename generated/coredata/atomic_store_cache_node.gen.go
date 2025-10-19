@@ -16,6 +16,11 @@ type _AtomicStoreCacheNodeClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AtomicStoreCacheNode] class.
+type IAtomicStoreCacheNode interface {
+	objectivec.IObject
+}
+
 // A concrete class that you use to represent basic nodes in a Core Data atomic store. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode
@@ -30,6 +35,36 @@ type AtomicStoreCacheNode struct {
 func AtomicStoreCacheNodeFrom(ptr unsafe.Pointer) AtomicStoreCacheNode {
 	return AtomicStoreCacheNode{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AtomicStoreCacheNodeClass) Alloc() AtomicStoreCacheNode {
+	rv := objc.Send[AtomicStoreCacheNode](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AtomicStoreCacheNodeClass) New() AtomicStoreCacheNode {
+	rv := objc.Send[AtomicStoreCacheNode](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AtomicStoreCacheNode) Init() AtomicStoreCacheNode {
+	rv := objc.Send[AtomicStoreCacheNode](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AtomicStoreCacheNode) Autorelease() AtomicStoreCacheNode {
+	rv := objc.Send[AtomicStoreCacheNode](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAtomicStoreCacheNode creates a new AtomicStoreCacheNode instance.
+func NewAtomicStoreCacheNode() AtomicStoreCacheNode {
+	return atomicStoreCacheNodeClass.New()
+}
+
 
 // Returns the value for a given key. [Full Topic]
 

@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // QuartzCore Functions (3 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -24,7 +25,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_CACurrentMediaTime, lib, "CACurrentMediaTime")
 	tryRegister(&_CAFrameRateRangeIsEqualToRange, lib, "CAFrameRateRangeIsEqualToRange")
 	tryRegister(&_CATransform3DMakeScale, lib, "CATransform3DMakeScale")
@@ -41,6 +41,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // Returns the current absolute time, in seconds. [Full Topic]

@@ -15,6 +15,11 @@ type _AVCaptureDeviceInputClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVCaptureDeviceInput] class.
+type IAVCaptureDeviceInput interface {
+	IAVCaptureInput
+}
+
 // An object that provides media input from a capture device to a capture session. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput
@@ -31,6 +36,36 @@ func AVCaptureDeviceInputFrom(ptr unsafe.Pointer) AVCaptureDeviceInput {
 		AVCaptureInput: AVCaptureInputFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVCaptureDeviceInputClass) Alloc() AVCaptureDeviceInput {
+	rv := objc.Send[AVCaptureDeviceInput](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVCaptureDeviceInputClass) New() AVCaptureDeviceInput {
+	rv := objc.Send[AVCaptureDeviceInput](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVCaptureDeviceInput) Init() AVCaptureDeviceInput {
+	rv := objc.Send[AVCaptureDeviceInput](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVCaptureDeviceInput) Autorelease() AVCaptureDeviceInput {
+	rv := objc.Send[AVCaptureDeviceInput](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVCaptureDeviceInput creates a new AVCaptureDeviceInput instance.
+func NewAVCaptureDeviceInput() AVCaptureDeviceInput {
+	return aVCaptureDeviceInputClass.New()
+}
+
 
 
 

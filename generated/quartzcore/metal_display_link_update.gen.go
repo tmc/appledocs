@@ -16,6 +16,11 @@ type _MetalDisplayLinkUpdateClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MetalDisplayLinkUpdate] class.
+type IMetalDisplayLinkUpdate interface {
+	objectivec.IObject
+}
+
 // Stores information about a single update from a Metal display link instance. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update
@@ -30,6 +35,36 @@ type MetalDisplayLinkUpdate struct {
 func MetalDisplayLinkUpdateFrom(ptr unsafe.Pointer) MetalDisplayLinkUpdate {
 	return MetalDisplayLinkUpdate{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MetalDisplayLinkUpdateClass) Alloc() MetalDisplayLinkUpdate {
+	rv := objc.Send[MetalDisplayLinkUpdate](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MetalDisplayLinkUpdateClass) New() MetalDisplayLinkUpdate {
+	rv := objc.Send[MetalDisplayLinkUpdate](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MetalDisplayLinkUpdate) Init() MetalDisplayLinkUpdate {
+	rv := objc.Send[MetalDisplayLinkUpdate](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MetalDisplayLinkUpdate) Autorelease() MetalDisplayLinkUpdate {
+	rv := objc.Send[MetalDisplayLinkUpdate](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMetalDisplayLinkUpdate creates a new MetalDisplayLinkUpdate instance.
+func NewMetalDisplayLinkUpdate() MetalDisplayLinkUpdate {
+	return metalDisplayLinkUpdateClass.New()
+}
+
 
 
 

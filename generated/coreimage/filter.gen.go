@@ -16,6 +16,15 @@ type _FilterClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [Filter] class.
+type IFilter interface {
+	objectivec.IObject
+	ApplyArgumentsOptions(k unsafe.Pointer, args unsafe.Pointer, dict unsafe.Pointer) unsafe.Pointer
+	Apply(k unsafe.Pointer) unsafe.Pointer
+	SetDefaults()
+	ViewForUIConfigurationExcludedKeys(inUIConfiguration unsafe.Pointer, inKeys unsafe.Pointer) unsafe.Pointer
+}
+
 // An image processor that produces an image by manipulating one or more input images or by generating new image data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class
@@ -59,6 +68,26 @@ func (f_ Filter) Autorelease() Filter {
 func NewFilter() Filter {
 	return filterClass.New()
 }
+
+
+// Creates a filter from a Core Video pixel buffer. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(CVPixelBuffer:properties:options:)
+func NewFilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties unsafe.Pointer, options unsafe.Pointer) Filter {
+	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
+	rv.Autorelease()
+	return rv
+}
+// Creates a filter that allows the processing of RAW images. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageData:options:)
+func NewFilterWithImageDataOptions(data unsafe.Pointer, options unsafe.Pointer) Filter {
+	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithImageData:options:"), data, options)
+	rv.Autorelease()
+	return rv
+}
 // Creates a filter that allows the processing of RAW images. [Full Topic]
 
 //
@@ -83,24 +112,6 @@ func NewFilterWithName(name string) Filter {
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
 func NewFilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
 	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithName:withInputParameters:"), name, params)
-	rv.Autorelease()
-	return rv
-}
-// Creates a filter from a Core Video pixel buffer. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(CVPixelBuffer:properties:options:)
-func NewFilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties unsafe.Pointer, options unsafe.Pointer) Filter {
-	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
-	rv.Autorelease()
-	return rv
-}
-// Creates a filter that allows the processing of RAW images. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageData:options:)
-func NewFilterWithImageDataOptions(data unsafe.Pointer, options unsafe.Pointer) Filter {
-	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithImageData:options:"), data, options)
 	rv.Autorelease()
 	return rv
 }

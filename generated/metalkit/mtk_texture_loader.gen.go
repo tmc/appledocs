@@ -16,6 +16,27 @@ type _MTKTextureLoaderClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MTKTextureLoader] class.
+type IMTKTextureLoader interface {
+	objectivec.IObject
+	NewTextureWithContentsOfURLOptionsError(URL unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	NewTextureWithContentsOfURLOptionsCompletionHandler(URL unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTextureWithCGImageOptionsError(cgImage unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	NewTextureWithCGImageOptionsCompletionHandler(cgImage unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTextureWithDataOptionsError(data unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	NewTextureWithDataOptionsCompletionHandler(data unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTextureWithNameScaleFactorBundleOptionsError(name string, scaleFactor float64, bundle unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	NewTextureWithNameScaleFactorBundleOptionsCompletionHandler(name string, scaleFactor float64, bundle unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTextureWithNameScaleFactorDisplayGamutBundleOptionsError(name string, scaleFactor float64, displayGamut unsafe.Pointer, bundle unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	NewTextureWithNameScaleFactorDisplayGamutBundleOptionsCompletionHandler(name string, scaleFactor float64, displayGamut unsafe.Pointer, bundle unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTextureWithMDLTextureOptionsError(texture unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	NewTextureWithMDLTextureOptionsCompletionHandler(texture unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTexturesWithContentsOfURLsOptionsCompletionHandler(URLs unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTexturesWithContentsOfURLsOptionsError(URLs unsafe.Pointer, options unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
+	NewTexturesWithNamesScaleFactorBundleOptionsCompletionHandler(names unsafe.Pointer, scaleFactor float64, bundle unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTexturesWithNamesScaleFactorDisplayGamutBundleOptionsCompletionHandler(names unsafe.Pointer, scaleFactor float64, displayGamut unsafe.Pointer, bundle unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
+}
+
 // An object that creates textures from existing data in common image formats. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKTextureLoader
@@ -59,6 +80,8 @@ func (m_ MTKTextureLoader) Autorelease() MTKTextureLoader {
 func NewMTKTextureLoader() MTKTextureLoader {
 	return mTKTextureLoaderClass.New()
 }
+
+
 // Initializes a new texture loader object. [Full Topic]
 
 //

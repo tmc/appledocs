@@ -16,6 +16,11 @@ type _MediaTimingFunctionClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MediaTimingFunction] class.
+type IMediaTimingFunction interface {
+	objectivec.IObject
+}
+
 // A function that defines the pacing of an animation as a timing curve. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction
@@ -59,6 +64,8 @@ func (m_ MediaTimingFunction) Autorelease() MediaTimingFunction {
 func NewMediaTimingFunction() MediaTimingFunction {
 	return mediaTimingFunctionClass.New()
 }
+
+
 // Returns an initialized timing function modeled as a cubic Bézier curve using the specified control points. [Full Topic]
 
 //

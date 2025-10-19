@@ -6,6 +6,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AVAssetDownloadTask] class.
@@ -15,12 +16,17 @@ type _AVAssetDownloadTaskClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVAssetDownloadTask] class.
+type IAVAssetDownloadTask interface {
+	foundation.IURLSessionTask
+}
+
 // A session used to download HTTP Live Streaming assets. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask
 
 type AVAssetDownloadTask struct {
-	URLSessionTask
+	foundation.URLSessionTask
 }
 
 // AVAssetDownloadTaskFrom constructs a [AVAssetDownloadTask] from an unsafe.Pointer.
@@ -28,9 +34,39 @@ type AVAssetDownloadTask struct {
 // A session used to download HTTP Live Streaming assets.
 func AVAssetDownloadTaskFrom(ptr unsafe.Pointer) AVAssetDownloadTask {
 	return AVAssetDownloadTask{
-		URLSessionTask: URLSessionTaskFrom(ptr),
+		URLSessionTask: foundation.URLSessionTaskFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVAssetDownloadTaskClass) Alloc() AVAssetDownloadTask {
+	rv := objc.Send[AVAssetDownloadTask](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVAssetDownloadTaskClass) New() AVAssetDownloadTask {
+	rv := objc.Send[AVAssetDownloadTask](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVAssetDownloadTask) Init() AVAssetDownloadTask {
+	rv := objc.Send[AVAssetDownloadTask](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVAssetDownloadTask) Autorelease() AVAssetDownloadTask {
+	rv := objc.Send[AVAssetDownloadTask](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVAssetDownloadTask creates a new AVAssetDownloadTask instance.
+func NewAVAssetDownloadTask() AVAssetDownloadTask {
+	return aVAssetDownloadTaskClass.New()
+}
+
 
 
 

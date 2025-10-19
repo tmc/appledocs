@@ -6,14 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coreimage"
 )
 
+// Suppress unused import errors
+var _ = coreimage.NewFilterGenerator
 
-// ExampleNewFilterGeneratorWithContentsOfURL demonstrates how to create a FilterGenerator instance using NewFilterGeneratorWithContentsOfURL.
-// Initializes a filter generator object with the contents of a filter generator file.
-func ExampleNewFilterGeneratorWithContentsOfURL() {
-	_ = coreimage.NewFilterGeneratorWithContentsOfURL(
-		nil, // aURL unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

@@ -16,6 +16,11 @@ type _MTKMeshClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MTKMesh] class.
+type IMTKMesh interface {
+	objectivec.IObject
+}
+
 // A container for the vertex data of a Model I/O mesh, suitable for use in a Metal app. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh
@@ -59,6 +64,8 @@ func (m_ MTKMesh) Autorelease() MTKMesh {
 func NewMTKMesh() MTKMesh {
 	return mTKMeshClass.New()
 }
+
+
 // Initializes a MetalKit mesh and its submeshes from a Model I/O mesh. [Full Topic]
 
 //

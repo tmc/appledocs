@@ -16,6 +16,11 @@ type _AVContentKeySpecifierClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVContentKeySpecifier] class.
+type IAVContentKeySpecifier interface {
+	objectivec.IObject
+}
+
 // An object that uniquely identifies a content key. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKeySpecifier
@@ -30,6 +35,36 @@ type AVContentKeySpecifier struct {
 func AVContentKeySpecifierFrom(ptr unsafe.Pointer) AVContentKeySpecifier {
 	return AVContentKeySpecifier{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVContentKeySpecifierClass) Alloc() AVContentKeySpecifier {
+	rv := objc.Send[AVContentKeySpecifier](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVContentKeySpecifierClass) New() AVContentKeySpecifier {
+	rv := objc.Send[AVContentKeySpecifier](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVContentKeySpecifier) Init() AVContentKeySpecifier {
+	rv := objc.Send[AVContentKeySpecifier](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVContentKeySpecifier) Autorelease() AVContentKeySpecifier {
+	rv := objc.Send[AVContentKeySpecifier](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVContentKeySpecifier creates a new AVContentKeySpecifier instance.
+func NewAVContentKeySpecifier() AVContentKeySpecifier {
+	return aVContentKeySpecifierClass.New()
+}
+
 
 
 

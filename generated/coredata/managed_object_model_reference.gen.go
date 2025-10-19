@@ -16,6 +16,11 @@ type _ManagedObjectModelReferenceClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [ManagedObjectModelReference] class.
+type IManagedObjectModelReference interface {
+	objectivec.IObject
+}
+
 // An object that describes a specific version of an object model. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModelReference
@@ -30,6 +35,36 @@ type ManagedObjectModelReference struct {
 func ManagedObjectModelReferenceFrom(ptr unsafe.Pointer) ManagedObjectModelReference {
 	return ManagedObjectModelReference{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _ManagedObjectModelReferenceClass) Alloc() ManagedObjectModelReference {
+	rv := objc.Send[ManagedObjectModelReference](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _ManagedObjectModelReferenceClass) New() ManagedObjectModelReference {
+	rv := objc.Send[ManagedObjectModelReference](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ ManagedObjectModelReference) Init() ManagedObjectModelReference {
+	rv := objc.Send[ManagedObjectModelReference](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ ManagedObjectModelReference) Autorelease() ManagedObjectModelReference {
+	rv := objc.Send[ManagedObjectModelReference](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewManagedObjectModelReference creates a new ManagedObjectModelReference instance.
+func NewManagedObjectModelReference() ManagedObjectModelReference {
+	return managedObjectModelReferenceClass.New()
+}
+
 
 
 

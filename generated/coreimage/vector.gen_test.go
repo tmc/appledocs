@@ -6,6 +6,11 @@ import (
 	"github.com/tmc/appledocs/generated/coreimage"
 )
 
+// Suppress unused import errors
+var _ = coreimage.NewVector
+
+
+
 
 // ExampleNewVectorWithXYZW demonstrates how to create a Vector instance using NewVectorWithXYZW.
 // Initialize a Core Image vector object with four values.
@@ -20,34 +25,6 @@ func ExampleNewVectorWithXYZW() {
 }
 
 
-// ExampleNewVectorWithValuesCount demonstrates how to create a Vector instance using NewVectorWithValuesCount.
-// Initialize a Core Image vector object with the specified the values.
-func ExampleNewVectorWithValuesCount() {
-	_ = coreimage.NewVectorWithValuesCount(
-		nil, // values unsafe.Pointer
-		coreimage.uintptr(0), // count uintptr
-	)
-	// Output:
-}
-
-// ExampleNewVectorWithCGPoint demonstrates how to create a Vector instance using NewVectorWithCGPoint.
-// Initialize a Core Image vector object with two values provided by a   structure.
-func ExampleNewVectorWithCGPoint() {
-	_ = coreimage.NewVectorWithCGPoint(
-		nil, // p unsafe.Pointer
-	)
-	// Output:
-}
-
-// ExampleNewVectorWithCGRect demonstrates how to create a Vector instance using NewVectorWithCGRect.
-// Initialize a Core Image vector object with four values provided by a   structure.
-func ExampleNewVectorWithCGRect() {
-	_ = coreimage.NewVectorWithCGRect(
-		nil, // r unsafe.Pointer
-	)
-	// Output:
-}
-
 // ExampleNewVectorWithString demonstrates how to create a Vector instance using NewVectorWithString.
 // Initialize a Core Image vector object with values provided in a string representation.
 func ExampleNewVectorWithString() {
@@ -56,6 +33,7 @@ func ExampleNewVectorWithString() {
 	)
 	// Output:
 }
+
 
 // ExampleNewVectorWithX demonstrates how to create a Vector instance using NewVectorWithX.
 // Initialize a Core Image vector object with one value.

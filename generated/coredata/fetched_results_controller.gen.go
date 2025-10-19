@@ -16,6 +16,16 @@ type _FetchedResultsControllerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [FetchedResultsController] class.
+type IFetchedResultsController interface {
+	objectivec.IObject
+	IndexPathForObject(object unsafe.Pointer) unsafe.Pointer
+	ObjectAtIndexPath(indexPath unsafe.Pointer) unsafe.Pointer
+	PerformFetch(error unsafe.Pointer) bool
+	SectionForSectionIndexTitleAtIndex(title string, sectionIndex int) int
+	SectionIndexTitleForSectionName(sectionName string) unsafe.Pointer
+}
+
 // A controller that you use to manage the results of a Core Data fetch request and to display data to the user. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController
@@ -59,6 +69,8 @@ func (f_ FetchedResultsController) Autorelease() FetchedResultsController {
 func NewFetchedResultsController() FetchedResultsController {
 	return fetchedResultsControllerClass.New()
 }
+
+
 // Returns a fetch request controller initialized using the given arguments. [Full Topic]
 
 //

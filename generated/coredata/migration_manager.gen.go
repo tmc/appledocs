@@ -16,6 +16,12 @@ type _MigrationManagerClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [MigrationManager] class.
+type IMigrationManager interface {
+	objectivec.IObject
+	DestinationEntityForEntityMapping(mEntity unsafe.Pointer) unsafe.Pointer
+}
+
 // A migration manager instance that performs a migration of data from one persistent store to another using a given mapping model. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager
@@ -30,6 +36,36 @@ type MigrationManager struct {
 func MigrationManagerFrom(ptr unsafe.Pointer) MigrationManager {
 	return MigrationManager{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MigrationManagerClass) Alloc() MigrationManager {
+	rv := objc.Send[MigrationManager](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MigrationManagerClass) New() MigrationManager {
+	rv := objc.Send[MigrationManager](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MigrationManager) Init() MigrationManager {
+	rv := objc.Send[MigrationManager](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MigrationManager) Autorelease() MigrationManager {
+	rv := objc.Send[MigrationManager](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMigrationManager creates a new MigrationManager instance.
+func NewMigrationManager() MigrationManager {
+	return migrationManagerClass.New()
+}
+
 
 // Returns the entity description for the destination entity of a given entity mapping. [Full Topic]
 

@@ -6,6 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coredata"
 )
 
+// Suppress unused import errors
+var _ = coredata.NewFetchRequest
+
 
 // ExampleNewFetchRequest demonstrates how to create a FetchRequest instance.
 // Creates a new fetch request.

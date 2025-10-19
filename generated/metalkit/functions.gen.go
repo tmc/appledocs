@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // MetalKit Functions (6 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -27,7 +28,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_MTKMetalVertexDescriptorFromModelIO, lib, "MTKMetalVertexDescriptorFromModelIO")
 	tryRegister(&_MTKMetalVertexDescriptorFromModelIOWithError, lib, "MTKMetalVertexDescriptorFromModelIOWithError")
 	tryRegister(&_MTKMetalVertexFormatFromModelIO, lib, "MTKMetalVertexFormatFromModelIO")
@@ -47,6 +47,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // Returns a partially converted Metal vertex descriptor. [Full Topic]

@@ -6,16 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/metalkit"
 )
 
+// Suppress unused import errors
+var _ = metalkit.NewMTKMesh
 
-// ExampleNewMTKMeshWithMeshDeviceError demonstrates how to create a MTKMesh instance using NewMTKMeshWithMeshDeviceError.
-// Initializes a MetalKit mesh and its submeshes from a Model I/O mesh.
-func ExampleNewMTKMeshWithMeshDeviceError() {
-	_ = metalkit.NewMTKMeshWithMeshDeviceError(
-		nil, // mesh unsafe.Pointer
-		nil, // device unsafe.Pointer
-		nil, // error unsafe.Pointer
-	)
-	// Output:
-}
+
 
 

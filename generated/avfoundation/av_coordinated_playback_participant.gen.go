@@ -16,6 +16,11 @@ type _AVCoordinatedPlaybackParticipantClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [AVCoordinatedPlaybackParticipant] class.
+type IAVCoordinatedPlaybackParticipant interface {
+	objectivec.IObject
+}
+
 // An object that represents a participant in a coordinated playback session. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCoordinatedPlaybackParticipant
@@ -30,6 +35,36 @@ type AVCoordinatedPlaybackParticipant struct {
 func AVCoordinatedPlaybackParticipantFrom(ptr unsafe.Pointer) AVCoordinatedPlaybackParticipant {
 	return AVCoordinatedPlaybackParticipant{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AVCoordinatedPlaybackParticipantClass) Alloc() AVCoordinatedPlaybackParticipant {
+	rv := objc.Send[AVCoordinatedPlaybackParticipant](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AVCoordinatedPlaybackParticipantClass) New() AVCoordinatedPlaybackParticipant {
+	rv := objc.Send[AVCoordinatedPlaybackParticipant](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AVCoordinatedPlaybackParticipant) Init() AVCoordinatedPlaybackParticipant {
+	rv := objc.Send[AVCoordinatedPlaybackParticipant](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AVCoordinatedPlaybackParticipant) Autorelease() AVCoordinatedPlaybackParticipant {
+	rv := objc.Send[AVCoordinatedPlaybackParticipant](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAVCoordinatedPlaybackParticipant creates a new AVCoordinatedPlaybackParticipant instance.
+func NewAVCoordinatedPlaybackParticipant() AVCoordinatedPlaybackParticipant {
+	return aVCoordinatedPlaybackParticipantClass.New()
+}
+
 
 
 

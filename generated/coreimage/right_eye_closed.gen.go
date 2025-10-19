@@ -16,6 +16,11 @@ type _rightEyeClosedClass struct {
 	class objc.Class
 }
 
+// An interface definition for the [rightEyeClosed] class.
+type IrightEyeClosed interface {
+	objectivec.IObject
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/rightEyeClosed-c.ivar
 
@@ -27,6 +32,36 @@ type rightEyeClosed struct {
 func rightEyeClosedFrom(ptr unsafe.Pointer) rightEyeClosed {
 	return rightEyeClosed{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _rightEyeClosedClass) Alloc() rightEyeClosed {
+	rv := objc.Send[rightEyeClosed](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _rightEyeClosedClass) New() rightEyeClosed {
+	rv := objc.Send[rightEyeClosed](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ rightEyeClosed) Init() rightEyeClosed {
+	rv := objc.Send[rightEyeClosed](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ rightEyeClosed) Autorelease() rightEyeClosed {
+	rv := objc.Send[rightEyeClosed](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewrightEyeClosed creates a new rightEyeClosed instance.
+func NewrightEyeClosed() rightEyeClosed {
+	return rightEyeClosedClass.New()
+}
+
 
 
 

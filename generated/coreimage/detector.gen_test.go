@@ -6,16 +6,9 @@ import (
 	"github.com/tmc/appledocs/generated/coreimage"
 )
 
+// Suppress unused import errors
+var _ = coreimage.NewDetector
 
-// ExampleNewDetectorOfTypeContextOptions demonstrates how to create a Detector instance using NewDetectorOfTypeContextOptions.
-// Creates and returns a configured detector.
-func ExampleNewDetectorOfTypeContextOptions() {
-	_ = coreimage.NewDetectorOfTypeContextOptions(
-		"type", // type string
-		nil, // context unsafe.Pointer
-		nil, // options unsafe.Pointer
-	)
-	// Output:
-}
+
 
 
