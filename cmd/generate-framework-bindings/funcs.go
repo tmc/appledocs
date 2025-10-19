@@ -91,6 +91,9 @@ var templateFuncs = template.FuncMap{
 
 	// Cross-framework dependency detection
 	"classDependsOnCoreGraphics": classDependsOnCoreGraphics,
+
+	// Method name disambiguation
+	"methodGoName": methodGoName,
 }
 
 // FunctionData represents data for function template rendering.
@@ -689,6 +692,48 @@ func selectorToGoName(selector string) string {
 	return occ2go.SelectorToGoName(selector)
 }
 
+// disambiguateMethodName generates a unique Go method name for an Objective-C method
+// by appending parameter labels from the selector. This matches Swift's approach.
+// Examples:
+//   imageByInsertingIntermediate -> ImageByInsertingIntermediate (no params, no change)
+//   imageByInsertingIntermediate: -> ImageByInsertingIntermediateWithCache (1 param named "cache")
+//   setTitle:forState: -> SetTitleForState (already unique from selector parts)
+func disambiguateMethodName(method *occ2go.ParsedMethod) string {
+	selector := method.Selector
+
+	// If there are no parameters, just use the standard conversion
+	if len(method.Parameters) == 0 {
+		return selectorToGoName(selector)
+	}
+
+	// Split selector by colons to get parameter labels
+	parts := strings.Split(selector, ":")
+
+	// If selector doesn't end with colon, the last part is not a parameter label
+	if !strings.HasSuffix(selector, ":") {
+		parts = parts[:len(parts)-1]
+	}
+
+	// If we have parameter labels, build the disambiguated name
+	// For single-parameter methods, append "With" + capitalized parameter name
+	if len(parts) == 1 && len(method.Parameters) == 1 {
+		baseName := selectorToGoName(parts[0])
+		// Get the parameter name from the method parameters
+		paramName := method.Parameters[0].Name
+		if paramName == "" {
+			// Fallback: use the selector part
+			paramName = parts[0]
+		}
+		// Capitalize parameter name
+		paramName = strings.ToUpper(paramName[:1]) + paramName[1:]
+		return baseName + "With" + paramName
+	}
+
+	// For multi-parameter methods, the selector already contains the labels
+	// Just use the standard conversion which will include all parts
+	return selectorToGoName(selector)
+}
+
 // mapObjCTypeToGo maps Objective-C types to Go types for darwinkit style.
 // Examples:
 //   NSString * -> string
@@ -873,38 +918,122 @@ func needsQuartzCoreImport(methods []*occ2go.ParsedMethod) bool {
 	return false
 }
 
-// prepareClassMethods filters methods to return only class methods, deduplicated by selector.
-// When multiple methods have the same selector, the first one is kept.
+// prepareClassMethods filters methods to return only class methods, deduplicated by Go method name.
+// When multiple methods would generate the same Go method name (e.g., foo and foo:),
+// the methods are disambiguated by appending parameter labels and the Name field is updated.
 func prepareClassMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 	result := make([]*occ2go.ParsedMethod, 0)
-	seen := make(map[string]bool)
+	seenSelectors := make(map[string]bool)
 
+	// First pass: collect all class methods
+	var classMethods []*occ2go.ParsedMethod
 	for _, m := range methods {
-		if m.IsClassMethod && !seen[m.Selector] {
-			result = append(result, m)
-			seen[m.Selector] = true
+		if m.IsClassMethod && !seenSelectors[m.Selector] {
+			classMethods = append(classMethods, m)
+			seenSelectors[m.Selector] = true
 		}
 	}
+
+	// Second pass: detect Go method name collisions and disambiguate
+	goNameCounts := make(map[string]int)
+
+	// Count how many methods map to each Go name
+	for _, m := range classMethods {
+		goName := selectorToGoName(m.Selector)
+		goNameCounts[goName]++
+	}
+
+	// Third pass: build result with disambiguation, updating .Name as needed
+	seenGoNames := make(map[string]bool)
+	for _, m := range classMethods {
+		goName := selectorToGoName(m.Selector)
+
+		// If this Go name has duplicates, disambiguate using parameter labels
+		if goNameCounts[goName] > 1 {
+			// Create a copy of the method and update its Name field
+			methodCopy := *m
+			methodCopy.Name = disambiguateMethodName(m)
+			goName = methodCopy.Name
+
+			// Skip if we've already seen this exact Go name (shouldn't happen after disambiguation)
+			if seenGoNames[goName] {
+				continue
+			}
+
+			result = append(result, &methodCopy)
+			seenGoNames[goName] = true
+		} else {
+			// No collision, use original method
+			if seenGoNames[goName] {
+				continue
+			}
+			result = append(result, m)
+			seenGoNames[goName] = true
+		}
+	}
+
 	return result
 }
 
 // prepareInstanceMethods filters methods to return only instance methods,
-// excluding ALL init methods (which are converted to constructors), deduplicated by selector.
-// When multiple methods have the same selector, the first one is kept.
+// excluding ALL init methods (which are converted to constructors), deduplicated by Go method name.
+// When multiple methods would generate the same Go method name (e.g., foo and foo:),
+// the methods are disambiguated by appending parameter labels and the Name field is updated.
 func prepareInstanceMethods(methods []*occ2go.ParsedMethod) []*occ2go.ParsedMethod {
 	result := make([]*occ2go.ParsedMethod, 0)
-	seen := make(map[string]bool)
+	seenSelectors := make(map[string]bool)
 
+	// First pass: collect all instance methods (excluding init)
+	var instanceMethods []*occ2go.ParsedMethod
 	for _, m := range methods {
-		if !m.IsClassMethod && !seen[m.Selector] {
+		if !m.IsClassMethod && !seenSelectors[m.Selector] {
 			// Skip ALL init methods - they're converted to package-level constructors
 			if strings.HasPrefix(m.Selector, "init") {
 				continue
 			}
-			result = append(result, m)
-			seen[m.Selector] = true
+			instanceMethods = append(instanceMethods, m)
+			seenSelectors[m.Selector] = true
 		}
 	}
+
+	// Second pass: detect Go method name collisions and disambiguate
+	goNameCounts := make(map[string]int)
+
+	// Count how many methods map to each Go name
+	for _, m := range instanceMethods {
+		goName := selectorToGoName(m.Selector)
+		goNameCounts[goName]++
+	}
+
+	// Third pass: build result with disambiguation, updating .Name as needed
+	seenGoNames := make(map[string]bool)
+	for _, m := range instanceMethods {
+		goName := selectorToGoName(m.Selector)
+
+		// If this Go name has duplicates, disambiguate using parameter labels
+		if goNameCounts[goName] > 1 {
+			// Create a copy of the method and update its Name field
+			methodCopy := *m
+			methodCopy.Name = disambiguateMethodName(m)
+			goName = methodCopy.Name
+
+			// Skip if we've already seen this exact Go name (shouldn't happen after disambiguation)
+			if seenGoNames[goName] {
+				continue
+			}
+
+			result = append(result, &methodCopy)
+			seenGoNames[goName] = true
+		} else {
+			// No collision, use original method
+			if seenGoNames[goName] {
+				continue
+			}
+			result = append(result, m)
+			seenGoNames[goName] = true
+		}
+	}
+
 	return result
 }
 
@@ -1585,6 +1714,35 @@ func resolveType(framework, typeName string) string {
 
 	// Default: assume it's in the current framework
 	return typeName
+}
+
+// methodGoName generates the Go method name for a given Objective-C method.
+// This function handles disambiguation when multiple Objective-C methods would map
+// to the same Go name (e.g., foo and foo:). It takes a method and the list of all
+// methods in the same category (instance or class) to detect collisions.
+//
+// Examples:
+//   imageByInsertingIntermediate -> ImageByInsertingIntermediate (no collision)
+//   imageByInsertingIntermediate: (when there's also imageByInsertingIntermediate) -> ImageByInsertingIntermediateWithCache
+func methodGoName(method *occ2go.ParsedMethod, allMethods []*occ2go.ParsedMethod) string {
+	// Generate the standard Go name
+	goName := selectorToGoName(method.Selector)
+
+	// Count how many methods map to the same Go name
+	count := 0
+	for _, m := range allMethods {
+		if selectorToGoName(m.Selector) == goName {
+			count++
+		}
+	}
+
+	// If there's only one method with this name, no disambiguation needed
+	if count == 1 {
+		return goName
+	}
+
+	// Multiple methods map to the same Go name - disambiguate
+	return disambiguateMethodName(method)
 }
 
 // isInheritedFromNSObject checks if a selector is likely inherited from NSObject.
