@@ -185,17 +185,24 @@ type EventModifierFlags int
 
 package {{.PackageName}}
 
+{{if gt (len .Functions) 0 -}}
 import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
 )
+{{else -}}
+import (
+	"github.com/ebitengine/purego"
+)
+{{end}}
 
 // {{.Framework}} Functions ({{.Count}} total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
+{{if gt (len .Functions) 0 -}}
 var (
 {{- range .Functions}}
 {{- $params := prepareParams .Parameters $.Framework}}
@@ -209,9 +216,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-{{if eq (len .Functions) 0}}
-	_ = lib // Suppress unused variable warning when no functions are registered
-{{end}}
 {{- range .Functions}}
 	tryRegister(&_{{.Name}}, lib, "{{.Name}}")
 {{- end}}
@@ -228,6 +232,16 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+{{else -}}
+func init() {
+	// Framework has no exported C functions, only classes/protocols
+	lib, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
+	if err != nil {
+		panic(err)
+	}
+	_ = lib // Suppress unused variable warning
+}
+{{end}}
 
 {{range .Functions -}}
 {{- $docData := prepareFunctionDocData . $.Framework}}

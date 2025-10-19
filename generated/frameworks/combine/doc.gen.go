@@ -7,7 +7,7 @@
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Combine without requiring cgo.
 //
-// [Full Topic]: doc://com.apple.Combine/documentation/Combine
+// [Full Topic]: https://developer.apple.com/documentation/Combine
 package combine
 
 // frameworkPath is the system path to the framework binary.
