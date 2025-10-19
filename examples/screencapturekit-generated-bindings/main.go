@@ -28,7 +28,7 @@ import (
 	"github.com/tmc/appledocs/generated/coreimage"
 	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
-	_ "github.com/tmc/appledocs/generated/imageio" // Generated bindings available
+	"github.com/tmc/appledocs/generated/imageio"
 	"github.com/tmc/appledocs/generated/screencapturekit"
 	"github.com/tmc/macgo"
 )
@@ -41,11 +41,12 @@ var (
 	saveFrames = flag.Bool("save", false, "save frames as PNG files")
 )
 
-// C function declarations for frameworks with incomplete bindings
-// Note: These functions are C APIs not available in individual documentation pages
+// C function declarations for CGImageDestination creation/finalization
+// Note: CGImageDestinationCreateWithURL and Finalize are C functions without
+// individual documentation pages, so they're not in generated bindings.
+// CGImageDestinationAddImage IS in generated imageio bindings.
 var (
 	CGImageDestinationCreateWithURL func(uintptr, uintptr, int, uintptr) uintptr
-	CGImageDestinationAddImage      func(uintptr, uintptr, uintptr)
 	CGImageDestinationFinalize      func(uintptr) bool
 )
 
@@ -83,12 +84,12 @@ func init() {
 	}
 
 	// Load ImageIO framework for PNG saving
-	// Note: Generated ImageIO bindings available, but CGImageDestination C functions
-	// are not in Apple's documentation, so we still need manual registration
+	// Note: Generated ImageIO bindings include CGImageDestinationAddImage.
+	// CreateWithURL and Finalize are C functions without Swift equivalents,
+	// so they need manual registration.
 	imageIO, err := purego.Dlopen("/System/Library/Frameworks/ImageIO.framework/ImageIO", purego.RTLD_NOW|purego.RTLD_GLOBAL)
 	if err == nil {
 		purego.RegisterLibFunc(&CGImageDestinationCreateWithURL, imageIO, "CGImageDestinationCreateWithURL")
-		purego.RegisterLibFunc(&CGImageDestinationAddImage, imageIO, "CGImageDestinationAddImage")
 		purego.RegisterLibFunc(&CGImageDestinationFinalize, imageIO, "CGImageDestinationFinalize")
 	}
 }
@@ -655,7 +656,7 @@ func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStr
 	}
 
 	// Get pixel buffer from sample buffer using generated CoreMedia binding
-	pixelBuffer := coremedia.CMSampleBufferGetImageBuffer(coremedia.CMSampleBufferRef(sampleBuffer))
+	pixelBuffer := coremedia.CMSampleBufferGetImageBuffer(unsafe.Pointer(sampleBuffer))
 	if pixelBuffer == nil {
 		fmt.Fprintf(os.Stderr, "\n⚠️  No pixel buffer in sample\n")
 		return
@@ -718,10 +719,8 @@ func (h *FrameHandler) StreamDidOutputSampleBuffer(stream screencapturekit.SCStr
 		objc.ID(destination).Send(objc.RegisterName("release"))
 	}()
 
-	// Add image to destination
-	if CGImageDestinationAddImage != nil {
-		CGImageDestinationAddImage(destination, uintptr(cgImage), 0)
-	}
+	// Add image to destination using generated ImageIO binding
+	imageio.CGImageDestinationAddImage(unsafe.Pointer(destination), imageio.CGImageRef(cgImage), nil)
 
 	// Finalize (write to disk)
 	if CGImageDestinationFinalize != nil {
