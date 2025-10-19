@@ -108,6 +108,112 @@ func (g *Generator) prepare() {
 	}
 }
 
+// SortClassesByDependency sorts classes topologically so parent classes come before children.
+// This ensures that when a class extends another class in the same framework, the parent
+// is generated first.
+func (g *Generator) SortClassesByDependency() {
+	if len(g.Classes) == 0 {
+		return
+	}
+
+	// Build a map of class names for quick lookup
+	classMap := make(map[string]*occ2go.ParsedClass)
+	for _, cls := range g.Classes {
+		classMap[cls.Name] = cls
+	}
+
+	// Track visit state: 0 = unvisited, 1 = visiting, 2 = visited
+	visited := make(map[string]int)
+	sorted := make([]*occ2go.ParsedClass, 0, len(g.Classes))
+
+	// Depth-first search for topological sort
+	var visit func(className string) bool
+	visit = func(className string) bool {
+		if visited[className] == 2 {
+			return true // Already processed
+		}
+		if visited[className] == 1 {
+			// Cycle detected - shouldn't happen with proper inheritance, but handle gracefully
+			return false
+		}
+
+		cls, exists := classMap[className]
+		if !exists {
+			// Class not in this framework (e.g., NSObject, or from another framework)
+			return true
+		}
+
+		visited[className] = 1 // Mark as visiting
+
+		// Visit parent first if it exists in this framework
+		if cls.SuperClass != "" && cls.SuperClass != "NSObject" {
+			if !visit(cls.SuperClass) {
+				return false // Cycle detected
+			}
+		}
+
+		visited[className] = 2 // Mark as visited
+		sorted = append(sorted, cls)
+		return true
+	}
+
+	// Visit all classes
+	for _, cls := range g.Classes {
+		if visited[cls.Name] == 0 {
+			visit(cls.Name)
+		}
+	}
+
+	// Update the classes with the sorted order
+	g.Classes = sorted
+}
+
+// GenerateMissingParentStubs creates stub class definitions for parent classes
+// that are referenced but not defined in the current framework.
+// This handles cases where documentation doesn't include abstract base classes.
+func (g *Generator) GenerateMissingParentStubs() []*occ2go.ParsedClass {
+	if len(g.Classes) == 0 {
+		return nil
+	}
+
+	// Build a map of existing classes
+	existing := make(map[string]bool)
+	for _, cls := range g.Classes {
+		existing[cls.Name] = true
+	}
+
+	// Find all referenced parent classes that don't exist
+	missing := make(map[string]bool)
+	for _, cls := range g.Classes {
+		if cls.SuperClass != "" && cls.SuperClass != "NSObject" {
+			if !existing[cls.SuperClass] {
+				// Check if it's a cross-framework type
+				resolvedType := resolveType(g.Framework, classToStructName(cls.SuperClass))
+				// Only create stub if it's not from another framework
+				if !strings.Contains(resolvedType, ".") {
+					missing[cls.SuperClass] = true
+				}
+			}
+		}
+	}
+
+	// Generate stub classes
+	stubs := make([]*occ2go.ParsedClass, 0, len(missing))
+	for className := range missing {
+		stub := &occ2go.ParsedClass{
+			Name:       className,
+			SuperClass: "NSObject",
+			Methods:    []*occ2go.ParsedMethod{},
+			Properties: []*occ2go.ParsedProperty{},
+			Comment:    fmt.Sprintf("Auto-generated stub for missing parent class %s", className),
+			Abstract:   fmt.Sprintf("A parent class referenced by other %s classes.", g.Framework),
+		}
+		stubs = append(stubs, stub)
+	}
+
+	return stubs
+}
+
 // Helper methods for templates
 
 // FunctionCount returns the number of functions
@@ -512,6 +618,12 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 	gen.Classes = classes
 	gen.Protocols = protocols
 	gen.prepare()
+
+	// Generate stubs for missing parent classes
+	stubs := gen.GenerateMissingParentStubs()
+	if len(stubs) > 0 {
+		gen.Classes = append(stubs, gen.Classes...)
+	}
 
 	// Try to use the module template if it exists
 	if _, err := getTemplateVariant("module", variant); err == nil {
