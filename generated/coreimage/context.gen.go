@@ -7,6 +7,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Context] class.
@@ -19,16 +20,16 @@ type _ContextClass struct {
 // An interface definition for the [Context] class.
 type IContext interface {
 	objectivec.IObject
-	CalculateHDRStatsForCGImage(cgimage unsafe.Pointer) unsafe.Pointer
+	CalculateHDRStatsForCGImage(cgimage coregraphics.CGImageRef) coregraphics.CGImageRef
 	CalculateHDRStatsForIOSurface(surface unsafe.Pointer)
 	CalculateHDRStatsForCVPixelBuffer(buffer unsafe.Pointer)
 	CalculateHDRStatsForImage(image unsafe.Pointer) unsafe.Pointer
 	ClearCaches()
-	CreateCGImageFromRect(image unsafe.Pointer, fromRect unsafe.Pointer) unsafe.Pointer
-	CreateCGImageFromRectFormatColorSpace(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer) unsafe.Pointer
-	CreateCGImageFromRectFormatColorSpaceDeferred(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, deferred bool) unsafe.Pointer
-	CreateCGImageFromRectFormatColorSpaceDeferredCalculateHDRStats(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, deferred bool, calculateHDRStats bool) unsafe.Pointer
-	CreateCGLayerWithSizeInfo(size unsafe.Pointer, info unsafe.Pointer) unsafe.Pointer
+	CreateCGImageFromRect(image unsafe.Pointer, fromRect unsafe.Pointer) coregraphics.CGImageRef
+	CreateCGImageFromRectFormatColorSpace(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) coregraphics.CGImageRef
+	CreateCGImageFromRectFormatColorSpaceDeferred(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, deferred bool) coregraphics.CGImageRef
+	CreateCGImageFromRectFormatColorSpaceDeferredCalculateHDRStats(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, deferred bool, calculateHDRStats bool) coregraphics.CGImageRef
+	CreateCGLayerWithSizeInfo(size unsafe.Pointer, info unsafe.Pointer) coregraphics.CGLayerRef
 	DepthBlurEffectFilterForImageDisparityImagePortraitEffectsMatteHairSemanticSegmentationGlassesMatteGainMapOrientationOptions(image unsafe.Pointer, disparityImage unsafe.Pointer, portraitEffectsMatte unsafe.Pointer, hairSemanticSegmentation unsafe.Pointer, glassesMatte unsafe.Pointer, gainMap unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
 	DepthBlurEffectFilterForImageDisparityImagePortraitEffectsMatteHairSemanticSegmentationOrientationOptions(image unsafe.Pointer, disparityImage unsafe.Pointer, portraitEffectsMatte unsafe.Pointer, hairSemanticSegmentation unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
 	DepthBlurEffectFilterForImageDisparityImagePortraitEffectsMatteOrientationOptions(image unsafe.Pointer, disparityImage unsafe.Pointer, portraitEffectsMatte unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
@@ -36,30 +37,30 @@ type IContext interface {
 	DepthBlurEffectFilterForImageURLOptions(url unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
 	DrawImageAtPointFromRect(image unsafe.Pointer, atPoint unsafe.Pointer, fromRect unsafe.Pointer)
 	DrawImageInRectFromRect(image unsafe.Pointer, inRect unsafe.Pointer, fromRect unsafe.Pointer)
-	HEIF10RepresentationOfImageColorSpaceOptionsError(image unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer
-	HEIFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	HEIF10RepresentationOfImageColorSpaceOptionsError(image unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer
+	HEIFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) unsafe.Pointer
 	InputImageMaximumSize() unsafe.Pointer
-	JPEGRepresentationOfImageColorSpaceOptions(image unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	JPEGRepresentationOfImageColorSpaceOptions(image unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) unsafe.Pointer
 	OpenEXRRepresentationOfImageOptionsError(image unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer
 	OutputImageMaximumSize() unsafe.Pointer
-	PNGRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	PNGRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) unsafe.Pointer
 	PrepareRenderFromRectToDestinationAtPointError(image unsafe.Pointer, fromRect unsafe.Pointer, destination unsafe.Pointer, atPoint unsafe.Pointer, error unsafe.Pointer) bool
 	ReclaimResources()
 	RenderToCVPixelBuffer(image unsafe.Pointer, buffer unsafe.Pointer)
-	RenderToCVPixelBufferBoundsColorSpace(image unsafe.Pointer, buffer unsafe.Pointer, bounds unsafe.Pointer, colorSpace unsafe.Pointer)
-	RenderToIOSurfaceBoundsColorSpace(image unsafe.Pointer, surface unsafe.Pointer, bounds unsafe.Pointer, colorSpace unsafe.Pointer)
-	RenderToMTLTextureCommandBufferBoundsColorSpace(image unsafe.Pointer, texture unsafe.Pointer, commandBuffer unsafe.Pointer, bounds unsafe.Pointer, colorSpace unsafe.Pointer)
-	RenderToBitmapRowBytesBoundsFormatColorSpace(image unsafe.Pointer, data unsafe.Pointer, rowBytes unsafe.Pointer, bounds unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer)
+	RenderToCVPixelBufferBoundsColorSpace(image unsafe.Pointer, buffer unsafe.Pointer, bounds unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef)
+	RenderToIOSurfaceBoundsColorSpace(image unsafe.Pointer, surface unsafe.Pointer, bounds unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef)
+	RenderToMTLTextureCommandBufferBoundsColorSpace(image unsafe.Pointer, texture unsafe.Pointer, commandBuffer unsafe.Pointer, bounds unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef)
+	RenderToBitmapRowBytesBoundsFormatColorSpace(image unsafe.Pointer, data unsafe.Pointer, rowBytes unsafe.Pointer, bounds unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef)
 	StartTaskToClearError(destination unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
 	StartTaskToRenderFromRectToDestinationAtPointError(image unsafe.Pointer, fromRect unsafe.Pointer, destination unsafe.Pointer, atPoint unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
 	StartTaskToRenderToDestinationError(image unsafe.Pointer, destination unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer
-	TIFFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
-	WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
-	WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
-	WriteJPEGRepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	TIFFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) unsafe.Pointer
+	WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteJPEGRepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
 	WriteOpenEXRRepresentationOfImageToURLOptionsError(image unsafe.Pointer, url unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
-	WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
-	WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
 }
 
 // The Core Image context class provides an evaluation context for Core Image processing with Metal, OpenGL, or OpenCL. [Full Topic]
@@ -107,15 +108,6 @@ func NewContext() Context {
 }
 
 
-// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display, with the specified options. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:colorSpace:options:sharedContext:)
-func NewContextForOfflineGPUAtIndexColorSpaceOptionsSharedContext(index unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, sharedContext unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextForOfflineGPUAtIndex:colorSpace:options:sharedContext:"), index, colorSpace, options, sharedContext)
-	rv.Autorelease()
-	return rv
-}
 // Creates a Core Image context using the specified Metal device and options. [Full Topic]
 
 //
@@ -135,12 +127,30 @@ func NewContextWithOptions(options unsafe.Pointer) Context {
 	rv.Autorelease()
 	return rv
 }
-// Creates a Core Image context from an EAGL context using the specified options. [Full Topic]
+// Creates a Core Image context from a CGL context, using the specified options, color space, and pixel format object. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:options:)
-func NewContextWithEAGLContextOptions(eaglContext unsafe.Pointer, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithEAGLContext:options:"), eaglContext, options)
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cglContext:pixelFormat:colorSpace:options:)
+func NewContextWithCGLContextPixelFormatColorSpaceOptions(cglctx unsafe.Pointer, pixelFormat unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithCGLContext:pixelFormat:colorSpace:options:"), cglctx, pixelFormat, colorSpace, options)
+	rv.Autorelease()
+	return rv
+}
+// Creates a Core Image context from an EAGL context. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:)
+func NewContextWithEAGLContext(eaglContext unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithEAGLContext:"), eaglContext)
+	rv.Autorelease()
+	return rv
+}
+// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:)
+func NewContextForOfflineGPUAtIndex(index unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextForOfflineGPUAtIndex:"), index)
 	rv.Autorelease()
 	return rv
 }
@@ -171,35 +181,26 @@ func NewContextWithMTLDevice(device unsafe.Pointer) Context {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cgContext:options:)
-func NewContextWithCGContextOptions(cgctx unsafe.Pointer, options unsafe.Pointer) Context {
+func NewContextWithCGContextOptions(cgctx coregraphics.CGContextRef, options unsafe.Pointer) Context {
 	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithCGContext:options:"), cgctx, options)
 	rv.Autorelease()
 	return rv
 }
-// Creates a Core Image context from a CGL context, using the specified options, color space, and pixel format object. [Full Topic]
+// Creates a Core Image context from an EAGL context using the specified options. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cglContext:pixelFormat:colorSpace:options:)
-func NewContextWithCGLContextPixelFormatColorSpaceOptions(cglctx unsafe.Pointer, pixelFormat unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithCGLContext:pixelFormat:colorSpace:options:"), cglctx, pixelFormat, colorSpace, options)
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:options:)
+func NewContextWithEAGLContextOptions(eaglContext unsafe.Pointer, options unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithEAGLContext:options:"), eaglContext, options)
 	rv.Autorelease()
 	return rv
 }
-// Creates a Core Image context from an EAGL context. [Full Topic]
+// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display, with the specified options. [Full Topic]
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(eaglContext:)
-func NewContextWithEAGLContext(eaglContext unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextWithEAGLContext:"), eaglContext)
-	rv.Autorelease()
-	return rv
-}
-// Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:)
-func NewContextForOfflineGPUAtIndex(index unsafe.Pointer) Context {
-	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextForOfflineGPUAtIndex:"), index)
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:colorSpace:options:sharedContext:)
+func NewContextForOfflineGPUAtIndexColorSpaceOptionsSharedContext(index unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, sharedContext unsafe.Pointer) Context {
+	rv := objc.Send[Context](objc.ID(contextClass.class), objc.Sel("contextForOfflineGPUAtIndex:colorSpace:options:sharedContext:"), index, colorSpace, options, sharedContext)
 	rv.Autorelease()
 	return rv
 }
@@ -233,7 +234,7 @@ func (cc _ContextClass) ContextWithOptions(options unsafe.Pointer) unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cgContext:options:)
-func (cc _ContextClass) ContextWithCGContextOptions(cgctx unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (cc _ContextClass) ContextWithCGContextOptions(cgctx coregraphics.CGContextRef, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("contextWithCGContext:options:"), cgctx, options)
 	return rv
 }
@@ -241,7 +242,7 @@ func (cc _ContextClass) ContextWithCGContextOptions(cgctx unsafe.Pointer, option
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(cglContext:pixelFormat:colorSpace:options:)
-func (cc _ContextClass) ContextWithCGLContextPixelFormatColorSpaceOptions(cglctx unsafe.Pointer, pixelFormat unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (cc _ContextClass) ContextWithCGLContextPixelFormatColorSpaceOptions(cglctx unsafe.Pointer, pixelFormat unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("contextWithCGLContext:pixelFormat:colorSpace:options:"), cglctx, pixelFormat, colorSpace, options)
 	return rv
 }
@@ -273,7 +274,7 @@ func (cc _ContextClass) ContextForOfflineGPUAtIndex(index unsafe.Pointer) unsafe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/init(forOfflineGPUAtIndex:colorSpace:options:sharedContext:)
-func (cc _ContextClass) ContextForOfflineGPUAtIndexColorSpaceOptionsSharedContext(index unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, sharedContext unsafe.Pointer) unsafe.Pointer {
+func (cc _ContextClass) ContextForOfflineGPUAtIndexColorSpaceOptionsSharedContext(index unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, sharedContext unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("contextForOfflineGPUAtIndex:colorSpace:options:sharedContext:"), index, colorSpace, options, sharedContext)
 	return rv
 }
@@ -317,8 +318,8 @@ func (cc _ContextClass) OfflineGPUCount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/calculateHDRStats(for:)-3ia7r
-func (c_ Context) CalculateHDRStatsForCGImage(cgimage unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("calculateHDRStatsForCGImage:"), cgimage)
+func (c_ Context) CalculateHDRStatsForCGImage(cgimage coregraphics.CGImageRef) coregraphics.CGImageRef {
+	rv := objc.Send[coregraphics.CGImageRef](c_.ID, objc.Sel("calculateHDRStatsForCGImage:"), cgimage)
 	return rv
 }
 // Given an IOSurface, use the receiving Core Image context to calculate its HDR statistics (content headroom and content average light level) and then update the surface’s attachments to store the values. [Full Topic]
@@ -354,40 +355,40 @@ func (c_ Context) ClearCaches() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/createCGImage(_:from:)
-func (c_ Context) CreateCGImageFromRect(image unsafe.Pointer, fromRect unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("createCGImage:fromRect:"), image, fromRect)
+func (c_ Context) CreateCGImageFromRect(image unsafe.Pointer, fromRect unsafe.Pointer) coregraphics.CGImageRef {
+	rv := objc.Send[coregraphics.CGImageRef](c_.ID, objc.Sel("createCGImage:fromRect:"), image, fromRect)
 	return rv
 }
 // Creates a Core Graphics image from a region of a Core Image image instance with an option for controlling the pixel format and color space of the . [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/createCGImage(_:from:format:colorSpace:)
-func (c_ Context) CreateCGImageFromRectFormatColorSpace(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("createCGImage:fromRect:format:colorSpace:"), image, fromRect, format, colorSpace)
+func (c_ Context) CreateCGImageFromRectFormatColorSpace(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) coregraphics.CGImageRef {
+	rv := objc.Send[coregraphics.CGImageRef](c_.ID, objc.Sel("createCGImage:fromRect:format:colorSpace:"), image, fromRect, format, colorSpace)
 	return rv
 }
 // Creates a Core Graphics image from a region of a Core Image image instance with an option for controlling when the image is rendered. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/createCGImage(_:from:format:colorSpace:deferred:)
-func (c_ Context) CreateCGImageFromRectFormatColorSpaceDeferred(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, deferred bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("createCGImage:fromRect:format:colorSpace:deferred:"), image, fromRect, format, colorSpace, deferred)
+func (c_ Context) CreateCGImageFromRectFormatColorSpaceDeferred(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, deferred bool) coregraphics.CGImageRef {
+	rv := objc.Send[coregraphics.CGImageRef](c_.ID, objc.Sel("createCGImage:fromRect:format:colorSpace:deferred:"), image, fromRect, format, colorSpace, deferred)
 	return rv
 }
 // Creates a Core Graphics image from a region of a Core Image image instance with an option for calculating HDR statistics. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/createCGImage(_:from:format:colorSpace:deferred:calculateHDRStats:)
-func (c_ Context) CreateCGImageFromRectFormatColorSpaceDeferredCalculateHDRStats(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, deferred bool, calculateHDRStats bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("createCGImage:fromRect:format:colorSpace:deferred:calculateHDRStats:"), image, fromRect, format, colorSpace, deferred, calculateHDRStats)
+func (c_ Context) CreateCGImageFromRectFormatColorSpaceDeferredCalculateHDRStats(image unsafe.Pointer, fromRect unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, deferred bool, calculateHDRStats bool) coregraphics.CGImageRef {
+	rv := objc.Send[coregraphics.CGImageRef](c_.ID, objc.Sel("createCGImage:fromRect:format:colorSpace:deferred:calculateHDRStats:"), image, fromRect, format, colorSpace, deferred, calculateHDRStats)
 	return rv
 }
 // Creates a CGLayer object from the provided parameters. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/createCGLayer(with:info:)
-func (c_ Context) CreateCGLayerWithSizeInfo(size unsafe.Pointer, info unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("createCGLayerWithSize:info:"), size, info)
+func (c_ Context) CreateCGLayerWithSizeInfo(size unsafe.Pointer, info unsafe.Pointer) coregraphics.CGLayerRef {
+	rv := objc.Send[coregraphics.CGLayerRef](c_.ID, objc.Sel("createCGLayerWithSize:info:"), size, info)
 	return rv
 }
 //
@@ -438,7 +439,7 @@ func (c_ Context) DrawImageInRectFromRect(image unsafe.Pointer, inRect unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/heif10Representation(of:colorSpace:options:)
-func (c_ Context) HEIF10RepresentationOfImageColorSpaceOptionsError(image unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer {
+func (c_ Context) HEIF10RepresentationOfImageColorSpaceOptionsError(image unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("HEIF10RepresentationOfImage:colorSpace:options:error:"), image, colorSpace, options, errorPtr)
 	return rv
 }
@@ -446,7 +447,7 @@ func (c_ Context) HEIF10RepresentationOfImageColorSpaceOptionsError(image unsafe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/heifRepresentation(of:format:colorSpace:options:)
-func (c_ Context) HEIFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (c_ Context) HEIFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("HEIFRepresentationOfImage:format:colorSpace:options:"), image, format, colorSpace, options)
 	return rv
 }
@@ -462,7 +463,7 @@ func (c_ Context) InputImageMaximumSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/jpegRepresentation(of:colorSpace:options:)
-func (c_ Context) JPEGRepresentationOfImageColorSpaceOptions(image unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (c_ Context) JPEGRepresentationOfImageColorSpaceOptions(image unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("JPEGRepresentationOfImage:colorSpace:options:"), image, colorSpace, options)
 	return rv
 }
@@ -486,7 +487,7 @@ func (c_ Context) OutputImageMaximumSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/pngRepresentation(of:format:colorSpace:options:)
-func (c_ Context) PNGRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (c_ Context) PNGRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("PNGRepresentationOfImage:format:colorSpace:options:"), image, format, colorSpace, options)
 	return rv
 }
@@ -516,28 +517,28 @@ func (c_ Context) RenderToCVPixelBuffer(image unsafe.Pointer, buffer unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/render(_:to:bounds:colorSpace:)-2k8l2
-func (c_ Context) RenderToCVPixelBufferBoundsColorSpace(image unsafe.Pointer, buffer unsafe.Pointer, bounds unsafe.Pointer, colorSpace unsafe.Pointer) {
+func (c_ Context) RenderToCVPixelBufferBoundsColorSpace(image unsafe.Pointer, buffer unsafe.Pointer, bounds unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("render:toCVPixelBuffer:bounds:colorSpace:"), image, buffer, bounds, colorSpace)
 }
 // Renders a region of an image into an IOSurface object. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/render(_:to:bounds:colorSpace:)-54b9l
-func (c_ Context) RenderToIOSurfaceBoundsColorSpace(image unsafe.Pointer, surface unsafe.Pointer, bounds unsafe.Pointer, colorSpace unsafe.Pointer) {
+func (c_ Context) RenderToIOSurfaceBoundsColorSpace(image unsafe.Pointer, surface unsafe.Pointer, bounds unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("render:toIOSurface:bounds:colorSpace:"), image, surface, bounds, colorSpace)
 }
 // Renders a region of an image to a Metal texture. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/render(_:to:commandBuffer:bounds:colorSpace:)
-func (c_ Context) RenderToMTLTextureCommandBufferBoundsColorSpace(image unsafe.Pointer, texture unsafe.Pointer, commandBuffer unsafe.Pointer, bounds unsafe.Pointer, colorSpace unsafe.Pointer) {
+func (c_ Context) RenderToMTLTextureCommandBufferBoundsColorSpace(image unsafe.Pointer, texture unsafe.Pointer, commandBuffer unsafe.Pointer, bounds unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("render:toMTLTexture:commandBuffer:bounds:colorSpace:"), image, texture, commandBuffer, bounds, colorSpace)
 }
 // Renders to the given bitmap. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/render(_:toBitmap:rowBytes:bounds:format:colorSpace:)
-func (c_ Context) RenderToBitmapRowBytesBoundsFormatColorSpace(image unsafe.Pointer, data unsafe.Pointer, rowBytes unsafe.Pointer, bounds unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer) {
+func (c_ Context) RenderToBitmapRowBytesBoundsFormatColorSpace(image unsafe.Pointer, data unsafe.Pointer, rowBytes unsafe.Pointer, bounds unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("render:toBitmap:rowBytes:bounds:format:colorSpace:"), image, data, rowBytes, bounds, format, colorSpace)
 }
 // Fills the entire destination with black or clear depending on its . [Full Topic]
@@ -568,7 +569,7 @@ func (c_ Context) StartTaskToRenderToDestinationError(image unsafe.Pointer, dest
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/tiffRepresentation(of:format:colorSpace:options:)
-func (c_ Context) TIFFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (c_ Context) TIFFRepresentationOfImageFormatColorSpaceOptions(image unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("TIFFRepresentationOfImage:format:colorSpace:options:"), image, format, colorSpace, options)
 	return rv
 }
@@ -576,7 +577,7 @@ func (c_ Context) TIFFRepresentationOfImageFormatColorSpaceOptions(image unsafe.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writeHEIF10Representation(of:to:colorSpace:options:)
-func (c_ Context) WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeHEIF10RepresentationOfImage:toURL:colorSpace:options:error:"), image, url, colorSpace, options, errorPtr)
 	return rv
 }
@@ -584,7 +585,7 @@ func (c_ Context) WriteHEIF10RepresentationOfImageToURLColorSpaceOptionsError(im
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writeHEIFRepresentation(of:to:format:colorSpace:options:)
-func (c_ Context) WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeHEIFRepresentationOfImage:toURL:format:colorSpace:options:error:"), image, url, format, colorSpace, options, errorPtr)
 	return rv
 }
@@ -592,7 +593,7 @@ func (c_ Context) WriteHEIFRepresentationOfImageToURLFormatColorSpaceOptionsErro
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writeJPEGRepresentation(of:to:colorSpace:options:)
-func (c_ Context) WriteJPEGRepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WriteJPEGRepresentationOfImageToURLColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeJPEGRepresentationOfImage:toURL:colorSpace:options:error:"), image, url, colorSpace, options, errorPtr)
 	return rv
 }
@@ -608,7 +609,7 @@ func (c_ Context) WriteOpenEXRRepresentationOfImageToURLOptionsError(image unsaf
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writePNGRepresentation(of:to:format:colorSpace:options:)
-func (c_ Context) WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writePNGRepresentationOfImage:toURL:format:colorSpace:options:error:"), image, url, format, colorSpace, options, errorPtr)
 	return rv
 }
@@ -616,7 +617,7 @@ func (c_ Context) WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/writeTIFFRepresentation(of:to:format:colorSpace:options:)
-func (c_ Context) WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
+func (c_ Context) WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsError(image unsafe.Pointer, url unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("writeTIFFRepresentationOfImage:toURL:format:colorSpace:options:error:"), image, url, format, colorSpace, options, errorPtr)
 	return rv
 }

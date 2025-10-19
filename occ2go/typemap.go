@@ -8,22 +8,27 @@ import (
 func MapCTypeToGo(cType, framework string) string {
 	cType = strings.TrimSpace(cType)
 
-	// Framework-specific types
-	if framework == "CoreGraphics" {
-		switch {
-		case strings.HasPrefix(cType, "CG") && strings.HasSuffix(cType, "Ref"):
-			return cType // Already a Go type
-		case cType == "CGFloat":
-			return "CGFloat"
-		case cType == "CGPoint":
-			return "CGPoint"
-		case cType == "CGSize":
-			return "CGSize"
-		case cType == "CGRect":
-			return "CGRect"
-		case cType == "CGAffineTransform":
-			return "CGAffineTransform"
-		}
+	// CoreGraphics types (framework-agnostic - these types are used across frameworks)
+	switch {
+	// Special case: CGImageSourceRef and CGImageDestinationRef are from ImageIO framework, not CoreGraphics
+	// Map to unsafe.Pointer until ImageIO framework is generated
+	case cType == "CGImageSourceRef", cType == "CGImageDestinationRef":
+		return "unsafe.Pointer"
+	case strings.HasPrefix(cType, "CG") && strings.HasSuffix(cType, "Ref"):
+		// CG*Ref types are opaque pointers - return as-is for qualification by resolveType
+		return cType
+	case cType == "CGFloat":
+		return "CGFloat"
+	case cType == "CGPoint":
+		return "CGPoint"
+	case cType == "CGSize":
+		return "CGSize"
+	case cType == "CGRect":
+		return "CGRect"
+	case cType == "CGVector":
+		return "CGVector"
+	case cType == "CGAffineTransform":
+		return "CGAffineTransform"
 	}
 
 	// Common C types

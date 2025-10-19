@@ -755,6 +755,9 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "unsafe.Pointer"
 	}
 
+	// Resolve cross-framework types (e.g., CGAffineTransform -> coregraphics.CGAffineTransform)
+	goType = resolveType(framework, goType)
+
 	return goType
 }
 
@@ -1064,7 +1067,8 @@ func classDependsOnCoreGraphics(methods []*occ2go.ParsedMethod, framework string
 	for _, m := range methods {
 		// Check return type
 		goType := occ2go.MapCTypeToGo(m.ReturnType, framework)
-		if strings.HasPrefix(goType, "coregraphics.") {
+		// Check for both prefixed (coregraphics.) and unprefixed (CG*) types
+		if strings.HasPrefix(goType, "coregraphics.") || strings.HasPrefix(goType, "CG") {
 			return true
 		}
 
@@ -1072,7 +1076,8 @@ func classDependsOnCoreGraphics(methods []*occ2go.ParsedMethod, framework string
 		for _, p := range m.Parameters {
 			paramType := strings.TrimSpace(strings.TrimRight(p.Type, ",;)"))
 			goParamType := occ2go.MapCTypeToGo(paramType, framework)
-			if strings.HasPrefix(goParamType, "coregraphics.") {
+			// Check for both prefixed (coregraphics.) and unprefixed (CG*) types
+			if strings.HasPrefix(goParamType, "coregraphics.") || strings.HasPrefix(goParamType, "CG") {
 				return true
 			}
 		}
@@ -1513,6 +1518,49 @@ func resolveType(framework, typeName string) string {
 		"MediaTiming":    true, // CAMediaTiming protocol
 		"Transaction":    true, // CATransaction
 		"TransformLayer": true, // CATransformLayer
+	}
+
+	// CoreGraphics types used by other frameworks
+	coreGraphicsTypes := map[string]bool{
+		// Struct types
+		"CGAffineTransform": true,
+		"CGPoint":           true,
+		"CGSize":            true,
+		"CGRect":            true,
+		"CGVector":          true,
+		"CGFloat":           true,
+		// Opaque ref types
+		"CGColorRef":         true,
+		"CGColorSpaceRef":    true,
+		"CGContextRef":       true,
+		"CGImageRef":         true,
+		"CGImageSourceRef":   true,
+		"CGImageDestinationRef": true,
+		"CGPathRef":          true,
+		"CGLayerRef":         true,
+		"CGFontRef":          true,
+		"CGDataProviderRef":  true,
+		"CGDataConsumerRef":  true,
+		"CGFunctionRef":      true,
+		"CGShadingRef":       true,
+		"CGGradientRef":      true,
+		"CGPatternRef":       true,
+		"CGPDFDocumentRef":   true,
+		"CGPDFPageRef":       true,
+	}
+
+	// If we're in CoreGraphics framework, all types are local
+	if framework == "CoreGraphics" {
+		return typeName
+	}
+
+	// If this is a known CoreGraphics type and we're not in CoreGraphics, qualify it
+	if coreGraphicsTypes[typeName] {
+		// Make sure the type has the CG prefix for proper type reference
+		if !strings.HasPrefix(typeName, "CG") {
+			return "coregraphics.CG" + typeName
+		}
+		return "coregraphics." + typeName
 	}
 
 	// If we're in QuartzCore framework, all types are local

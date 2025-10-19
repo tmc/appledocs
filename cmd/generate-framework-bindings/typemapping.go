@@ -53,7 +53,8 @@ var typeRegistry = []TypeMapping{
 
 	// CoreGraphics types
 	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreGraphics"},
-	{ObjCType: "CGAffineTransform", GoType: "coregraphics.AffineTransform", Framework: "CoreGraphics", RequiresImport: "github.com/progrium/darwinkit/macos/coregraphics"},
+	// Note: CGAffineTransform is now handled by occ2go.MapCTypeToGo and resolveType
+	// Removed incorrect mapping that was stripping the "CG" prefix
 
 	// Foundation edge enum - unqualified within Foundation
 	{ObjCType: "NSRectEdge", GoType: "RectEdge", Framework: "Foundation"},

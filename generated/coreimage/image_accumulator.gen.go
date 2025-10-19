@@ -7,6 +7,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ImageAccumulator] class.
@@ -84,7 +85,7 @@ func NewImageAccumulatorWithExtentFormat(extent unsafe.Pointer, format unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:colorSpace:)
-func NewImageAccumulatorWithExtentFormatColorSpace(extent unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer) ImageAccumulator {
+func NewImageAccumulatorWithExtentFormatColorSpace(extent unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) ImageAccumulator {
 	instance := imageAccumulatorClass.Alloc()
 	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:colorSpace:"), extent, format, colorSpace)
 	rv.Autorelease()
@@ -104,7 +105,7 @@ func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormat(extent unsafe.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/imageAccumulatorWithExtent:format:colorSpace:
-func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormatColorSpace(extent unsafe.Pointer, format unsafe.Pointer, colorSpace unsafe.Pointer) unsafe.Pointer {
+func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormatColorSpace(extent unsafe.Pointer, format unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageAccumulatorWithExtent:format:colorSpace:"), extent, format, colorSpace)
 	return rv
 }

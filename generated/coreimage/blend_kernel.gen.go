@@ -6,6 +6,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [BlendKernel] class.
@@ -19,7 +20,7 @@ type _BlendKernelClass struct {
 type IBlendKernel interface {
 	IColorKernel
 	ApplyWithForegroundBackground(foreground unsafe.Pointer, background unsafe.Pointer) unsafe.Pointer
-	ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace unsafe.Pointer) unsafe.Pointer
+	ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer
 }
 
 // A GPU-based image-processing routine that is optimized for blending two images. [Full Topic]
@@ -98,7 +99,7 @@ func (b_ BlendKernel) ApplyWithForegroundBackground(foreground unsafe.Pointer, b
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/apply(foreground:background:colorSpace:)
-func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace unsafe.Pointer) unsafe.Pointer {
+func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("applyWithForeground:background:colorSpace:"), foreground, background, colorSpace)
 	return rv
 }

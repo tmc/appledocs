@@ -7,6 +7,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Filter] class.
@@ -70,6 +71,15 @@ func NewFilter() Filter {
 }
 
 
+// Creates a object for a specific kind of filter and initializes the input values. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
+func NewFilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
+	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithName:withInputParameters:"), name, params)
+	rv.Autorelease()
+	return rv
+}
 // Creates a filter from a Core Video pixel buffer. [Full Topic]
 
 //
@@ -103,15 +113,6 @@ func NewFilterWithImageURLOptions(url unsafe.Pointer, options unsafe.Pointer) Fi
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:)
 func NewFilterWithName(name string) Filter {
 	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithName:"), name)
-	rv.Autorelease()
-	return rv
-}
-// Creates a object for a specific kind of filter and initializes the input values. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
-func NewFilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
-	rv := objc.Send[Filter](objc.ID(filterClass.class), objc.Sel("filterWithName:withInputParameters:"), name, params)
 	rv.Autorelease()
 	return rv
 }

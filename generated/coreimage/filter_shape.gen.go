@@ -5,9 +5,9 @@ package coreimage
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [FilterShape] class.
@@ -23,7 +23,7 @@ type IFilterShape interface {
 	InsetByXY(dx int, dy int) unsafe.Pointer
 	IntersectWithRect(r unsafe.Pointer) unsafe.Pointer
 	IntersectWith(s2 unsafe.Pointer) unsafe.Pointer
-	TransformByInterior(m coregraphics.AffineTransform, flag bool) unsafe.Pointer
+	TransformByInterior(m coregraphics.CGAffineTransform, flag bool) unsafe.Pointer
 	UnionWith(s2 unsafe.Pointer) unsafe.Pointer
 	UnionWithRect(r unsafe.Pointer) unsafe.Pointer
 }
@@ -121,7 +121,7 @@ func (f_ FilterShape) IntersectWith(s2 unsafe.Pointer) unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/transform(by:interior:)
-func (f_ FilterShape) TransformByInterior(m coregraphics.AffineTransform, flag bool) unsafe.Pointer {
+func (f_ FilterShape) TransformByInterior(m coregraphics.CGAffineTransform, flag bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("transformBy:interior:"), m, flag)
 	return rv
 }
