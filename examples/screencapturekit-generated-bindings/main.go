@@ -101,11 +101,8 @@ func waitForScreenRecordingPermission() (content screencapturekit.ShareableConte
 			func(block objc.Block, c objc.ID, e objc.ID) {
 				defer func() { done <- true }()
 
-				if e != 0 {
-					desc := e.Send(objc.RegisterName("localizedDescription"))
-					if desc != 0 {
-						lastError = objc.Send[string](desc, objc.RegisterName("UTF8String"))
-					}
+				if err := nsErrorToGo(e); err != nil {
+					lastError = err.Error()
 					return
 				}
 
@@ -119,7 +116,7 @@ func waitForScreenRecordingPermission() (content screencapturekit.ShareableConte
 				// Retain to prevent deallocation
 				c.Send(objc.RegisterName("retain"))
 
-				// Use generated property accessors with helper functions
+				// Use generated property accessors
 				displays = len(shareableContent.Displays())
 				windows = len(shareableContent.Windows())
 			},
@@ -349,10 +346,7 @@ func recordScreen(display screencapturekit.Display, duration time.Duration) erro
 	config.ID.Send(objc.RegisterName("setShowsCursor:"), true)
 
 	// Create content filter using generated constructor
-	// Need empty NSArray for excluding/excepting parameters
-	arrayClass := objc.GetClass("NSArray")
-	emptyArray := objc.ID(arrayClass).Send(objc.RegisterName("array"))
-
+	emptyArray := emptyNSArray()
 	filter := screencapturekit.NewContentFilterWithDisplayExcludingApplicationsExceptingWindows(
 		unsafe.Pointer(display.ID),
 		unsafe.Pointer(emptyArray),
@@ -445,12 +439,8 @@ func recordScreen(display screencapturekit.Display, duration time.Duration) erro
 	var errorPtr objc.ID
 	success := streamID.Send(addOutputSel, delegate, 0, objc.ID(0), &errorPtr)
 	if success == 0 || errorPtr != 0 {
-		if errorPtr != 0 {
-			desc := errorPtr.Send(objc.RegisterName("localizedDescription"))
-			if desc != 0 {
-				errMsg := objc.Send[string](desc, objc.RegisterName("UTF8String"))
-				return fmt.Errorf("failed to add stream output: %s", errMsg)
-			}
+		if err := nsErrorToGo(errorPtr); err != nil {
+			return fmt.Errorf("failed to add stream output: %w", err)
 		}
 		return fmt.Errorf("failed to add stream output")
 	}
@@ -460,25 +450,13 @@ func recordScreen(display screencapturekit.Display, duration time.Duration) erro
 
 	// Start capture
 	fmt.Println("⏺  Starting capture...")
-	startDone := make(chan error, 1)
-	startBlock := objc.NewBlock(func(block objc.Block, err objc.ID) {
-		if err != 0 {
-			desc := err.Send(objc.RegisterName("localizedDescription"))
-			if desc != 0 {
-				errMsg := objc.Send[string](desc, objc.RegisterName("UTF8String"))
-				startDone <- fmt.Errorf("%s", errMsg)
-				return
-			}
-		}
-		startDone <- nil
-	})
+	startBlock, startDone := newCompletionHandler()
 	defer startBlock.Release()
 
-	// Use generated method
 	stream.StartCaptureWithCompletionHandler(unsafe.Pointer(startBlock))
 
-	if err := <-startDone; err != nil {
-		return fmt.Errorf("failed to start capture: %w", err)
+	if err := awaitCompletion(startDone, "failed to start capture"); err != nil {
+		return err
 	}
 
 	fmt.Printf("✓ Capture started! Recording for %v...\n", duration)
@@ -490,26 +468,14 @@ func recordScreen(display screencapturekit.Display, duration time.Duration) erro
 
 	// Stop capture
 	fmt.Println("\n⏹  Stopping capture...")
-	stopDone := make(chan error, 1)
-	stopBlock := objc.NewBlock(func(block objc.Block, err objc.ID) {
-		if err != 0 {
-			desc := err.Send(objc.RegisterName("localizedDescription"))
-			if desc != 0 {
-				errMsg := objc.Send[string](desc, objc.RegisterName("UTF8String"))
-				stopDone <- fmt.Errorf("%s", errMsg)
-				return
-			}
-		}
-		stopDone <- nil
-	})
+	stopBlock, stopDone := newCompletionHandler()
 	defer stopBlock.Release()
 
-	// Methods exist; using manual objc.Send for flexibility:
-	//   stream.StopCaptureWithCompletionHandler(stopBlock)
+	// StopCaptureWithCompletionHandler not yet generated
 	streamID.Send(objc.RegisterName("stopCaptureWithCompletionHandler:"), stopBlock)
 
-	if err := <-stopDone; err != nil {
-		return fmt.Errorf("failed to stop capture: %w", err)
+	if err := awaitCompletion(stopDone, "failed to stop capture"); err != nil {
+		return err
 	}
 
 	fmt.Printf("\n✓ Capture stopped!\n")
