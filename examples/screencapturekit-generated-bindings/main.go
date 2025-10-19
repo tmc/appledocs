@@ -228,7 +228,7 @@ func main() {
 		fmt.Printf("   Display %d: ID=%v, %dx%d\n", i, id, width, height)
 	}
 
-	// Print window information
+	// Print window information using generated property accessors
 	fmt.Printf("\n✓ Found %d window(s)\n", windowCount)
 	if windowCount > 0 {
 		windows := shareableContent.Windows()
@@ -240,22 +240,15 @@ func main() {
 			fmt.Println("   (showing all):")
 		}
 		for _, window := range windows[:maxToShow] {
-			// Property accessors not yet generated for SCWindow
-			id := window.ID.Send(objc.RegisterName("windowID"))
-			titleObj := window.ID.Send(objc.RegisterName("title"))
-			titleStr := nsStringToGo(titleObj)
-			if titleStr == "" {
-				titleStr = "(no title)"
+			// Use generated property accessors
+			id := window.WindowID()
+			title := window.Title()
+			if title == "" {
+				title = "(no title)"
 			}
-
-			appObj := window.ID.Send(objc.RegisterName("owningApplication"))
-			appNameStr := ""
-			if appObj != 0 {
-				appNameObj := appObj.Send(objc.RegisterName("applicationName"))
-				appNameStr = nsStringToGo(appNameObj)
-			}
-
-			fmt.Printf("   - Window %d: %s (app: %s)\n", id, titleStr, appNameStr)
+			app := window.OwningApplication()
+			appName := nsStringPtrToGo(app.ApplicationName())
+			fmt.Printf("   - Window %d: %s (app: %s)\n", id, title, appName)
 		}
 	}
 
@@ -344,53 +337,30 @@ func recordScreen(display screencapturekit.Display, duration time.Duration) erro
 	height := int(display.ID.Send(objc.RegisterName("height")))
 
 	// Create SCStreamConfiguration
-	configClass := objc.GetClass("SCStreamConfiguration")
-	if configClass == 0 {
-		return fmt.Errorf("SCStreamConfiguration class not found")
-	}
-	config := objc.ID(configClass).Send(objc.RegisterName("alloc"))
-	config = config.Send(objc.RegisterName("init"))
-	defer config.Send(objc.RegisterName("release"))
+	// Create stream configuration using generated constructor
+	config := screencapturekit.NewStreamConfiguration()
+	defer config.ID.Send(objc.RegisterName("release"))
 
-	// Configure stream settings
-	config.Send(objc.RegisterName("setPixelFormat:"), uint32(0x42475241)) // 'BGRA'
-	config.Send(objc.RegisterName("setQueueDepth:"), 5)
-	config.Send(objc.RegisterName("setWidth:"), width)
-	config.Send(objc.RegisterName("setHeight:"), height)
-	config.Send(objc.RegisterName("setShowsCursor:"), true)
+	// Configure stream settings (only SetQueueDepth is generated, others still manual)
+	config.SetQueueDepth(5)
+	config.ID.Send(objc.RegisterName("setPixelFormat:"), uint32(0x42475241)) // 'BGRA'
+	config.ID.Send(objc.RegisterName("setWidth:"), width)
+	config.ID.Send(objc.RegisterName("setHeight:"), height)
+	config.ID.Send(objc.RegisterName("setShowsCursor:"), true)
 
-	// Create content filter for the display
-	// Using manual approach for init methods (generated constructors exist but require proper NSArray creation)
-	//   emptyApps := []screencapturekit.RunningApplication{}
-	//   emptyWindows := []screencapturekit.Window{}
-	//   filter := screencapturekit.NewContentFilterWithDisplayExcludingApplicationsExceptingWindows(
-	//       display, emptyApps, emptyWindows)
-
-	filterClass := objc.GetClass("SCContentFilter")
-	if filterClass == 0 {
-		return fmt.Errorf("SCContentFilter class not found")
-	}
-
-	// Create empty arrays for excluding/excepting
+	// Create content filter using generated constructor
+	// Need empty NSArray for excluding/excepting parameters
 	arrayClass := objc.GetClass("NSArray")
 	emptyArray := objc.ID(arrayClass).Send(objc.RegisterName("array"))
 
-	// initWithDisplay:excludingApplications:exceptingWindows:
-	initSel := objc.RegisterName("initWithDisplay:excludingApplications:exceptingWindows:")
-	filterID := objc.ID(filterClass).Send(objc.RegisterName("alloc"))
-	filterID = filterID.Send(initSel, display.ID, emptyArray, emptyArray)
-	defer filterID.Send(objc.RegisterName("release"))
+	filter := screencapturekit.NewContentFilterWithDisplayExcludingApplicationsExceptingWindows(
+		unsafe.Pointer(display.ID),
+		unsafe.Pointer(emptyArray),
+		unsafe.Pointer(emptyArray),
+	)
+	defer filter.ID.Send(objc.RegisterName("release"))
 
-	// Convert to typed ContentFilter (generated type wrapper)
-	_ = screencapturekit.ContentFilterFrom(unsafe.Pointer(filterID))
-
-	// Create SCStream
-	streamClass := objc.GetClass("SCStream")
-	if streamClass == 0 {
-		return fmt.Errorf("SCStream class not found")
-	}
-
-	// Create delegate using helper API
+	// Create delegate handler
 	handler := &FrameHandler{
 		shouldSave: *saveFrames,
 	}
@@ -440,21 +410,22 @@ func recordScreen(display screencapturekit.Display, duration time.Duration) erro
 	}
 	fmt.Println()
 
-	// Create SCStream with filter and config
-	// Using manual approach (generated constructors exist but we need precise control over delegate timing)
-	//   stream := screencapturekit.NewStreamWithFilterConfigurationDelegate(
-	//       filter, config, nil)
+	// Create SCStream with filter and config (manual init for now)
+	streamClass := objc.GetClass("SCStream")
+	if streamClass == 0 {
+		return fmt.Errorf("SCStream class not found")
+	}
 
 	initStreamSel := objc.RegisterName("initWithFilter:configuration:delegate:")
 	streamID := objc.ID(streamClass).Send(objc.RegisterName("alloc"))
-	streamID = streamID.Send(initStreamSel, filterID, config, objc.ID(0)) // nil delegate for now
+	streamID = streamID.Send(initStreamSel, filter.ID, config.ID, objc.ID(0)) // nil delegate for now
 	if streamID == 0 {
 		return fmt.Errorf("failed to create SCStream")
 	}
 	defer streamID.Send(objc.RegisterName("release"))
 
-	// Convert to typed Stream (generated type wrapper)
-	_ = screencapturekit.StreamFrom(unsafe.Pointer(streamID))
+	// Convert to typed Stream
+	stream := screencapturekit.StreamFrom(unsafe.Pointer(streamID))
 
 	// Create dispatch queue for stream output
 	queueClass := objc.GetClass("OS_dispatch_queue")
@@ -503,9 +474,8 @@ func recordScreen(display screencapturekit.Display, duration time.Duration) erro
 	})
 	defer startBlock.Release()
 
-	// Methods exist; using manual objc.Send for flexibility:
-	//   stream.StartCaptureWithCompletionHandler(startBlock)
-	streamID.Send(objc.RegisterName("startCaptureWithCompletionHandler:"), startBlock)
+	// Use generated method
+	stream.StartCaptureWithCompletionHandler(unsafe.Pointer(startBlock))
 
 	if err := <-startDone; err != nil {
 		return fmt.Errorf("failed to start capture: %w", err)
