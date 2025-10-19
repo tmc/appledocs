@@ -38,6 +38,36 @@ func VisualEffectViewFrom(ptr unsafe.Pointer) VisualEffectView {
 		View: ViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (vc _VisualEffectViewClass) Alloc() VisualEffectView {
+	rv := objc.Send[VisualEffectView](objc.ID(vc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (vc _VisualEffectViewClass) New() VisualEffectView {
+	rv := objc.Send[VisualEffectView](objc.ID(vc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (v_ VisualEffectView) Init() VisualEffectView {
+	rv := objc.Send[VisualEffectView](v_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (v_ VisualEffectView) Autorelease() VisualEffectView {
+	rv := objc.Send[VisualEffectView](v_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewVisualEffectView creates a new VisualEffectView instance.
+func NewVisualEffectView() VisualEffectView {
+	return visualEffectViewClass.New()
+}
+
 
 // Notifies the view that it moved to a new window. [Full Topic]
 

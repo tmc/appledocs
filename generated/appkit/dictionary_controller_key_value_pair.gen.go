@@ -35,6 +35,36 @@ type DictionaryControllerKeyValuePair struct {
 func DictionaryControllerKeyValuePairFrom(ptr unsafe.Pointer) DictionaryControllerKeyValuePair {
 	return DictionaryControllerKeyValuePair{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DictionaryControllerKeyValuePairClass) Alloc() DictionaryControllerKeyValuePair {
+	rv := objc.Send[DictionaryControllerKeyValuePair](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DictionaryControllerKeyValuePairClass) New() DictionaryControllerKeyValuePair {
+	rv := objc.Send[DictionaryControllerKeyValuePair](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DictionaryControllerKeyValuePair) Init() DictionaryControllerKeyValuePair {
+	rv := objc.Send[DictionaryControllerKeyValuePair](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DictionaryControllerKeyValuePair) Autorelease() DictionaryControllerKeyValuePair {
+	rv := objc.Send[DictionaryControllerKeyValuePair](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDictionaryControllerKeyValuePair creates a new DictionaryControllerKeyValuePair instance.
+func NewDictionaryControllerKeyValuePair() DictionaryControllerKeyValuePair {
+	return dictionaryControllerKeyValuePairClass.New()
+}
+
 
 
 

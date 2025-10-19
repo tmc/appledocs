@@ -127,6 +127,8 @@ func (r_ Responder) Autorelease() Responder {
 func NewResponder() Responder {
 	return responderClass.New()
 }
+
+
 // Creates a new responder object with data in an unarchiver. [Full Topic]
 
 //
@@ -144,7 +146,7 @@ func NewResponderWithCoder(coder unsafe.Pointer) Responder {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/allowedClasses(forRestorableStateKeyPath:)
 func (rc _ResponderClass) AllowedClassesForRestorableStateKeyPath(keyPath string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("allowedClassesForRestorableStateKeyPath:"), keyPath)
+	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("allowedClassesForRestorableStateKeyPath:"), objc.String(keyPath))
 	return rv
 }
 // Notifies the receiver that it’s about to become first responder in its . [Full Topic]
@@ -369,7 +371,7 @@ func (r_ Responder) PerformKeyEquivalent(event unsafe.Pointer) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/performMnemonic:
 func (r_ Responder) PerformMnemonic(string string) bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("performMnemonic:"), string)
+	rv := objc.Send[bool](r_.ID, objc.Sel("performMnemonic:"), objc.String(string))
 	return rv
 }
 // Performs all find oriented actions. [Full Topic]

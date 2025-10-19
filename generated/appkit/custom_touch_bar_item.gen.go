@@ -36,6 +36,36 @@ func CustomTouchBarItemFrom(ptr unsafe.Pointer) CustomTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CustomTouchBarItemClass) Alloc() CustomTouchBarItem {
+	rv := objc.Send[CustomTouchBarItem](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CustomTouchBarItemClass) New() CustomTouchBarItem {
+	rv := objc.Send[CustomTouchBarItem](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CustomTouchBarItem) Init() CustomTouchBarItem {
+	rv := objc.Send[CustomTouchBarItem](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CustomTouchBarItem) Autorelease() CustomTouchBarItem {
+	rv := objc.Send[CustomTouchBarItem](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCustomTouchBarItem creates a new CustomTouchBarItem instance.
+func NewCustomTouchBarItem() CustomTouchBarItem {
+	return customTouchBarItemClass.New()
+}
+
 
 
 

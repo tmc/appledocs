@@ -35,6 +35,36 @@ type ScrubberLayoutAttributes struct {
 func ScrubberLayoutAttributesFrom(ptr unsafe.Pointer) ScrubberLayoutAttributes {
 	return ScrubberLayoutAttributes{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScrubberLayoutAttributesClass) Alloc() ScrubberLayoutAttributes {
+	rv := objc.Send[ScrubberLayoutAttributes](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScrubberLayoutAttributesClass) New() ScrubberLayoutAttributes {
+	rv := objc.Send[ScrubberLayoutAttributes](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScrubberLayoutAttributes) Init() ScrubberLayoutAttributes {
+	rv := objc.Send[ScrubberLayoutAttributes](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScrubberLayoutAttributes) Autorelease() ScrubberLayoutAttributes {
+	rv := objc.Send[ScrubberLayoutAttributes](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScrubberLayoutAttributes creates a new ScrubberLayoutAttributes instance.
+func NewScrubberLayoutAttributes() ScrubberLayoutAttributes {
+	return scrubberLayoutAttributesClass.New()
+}
+
 
 
 

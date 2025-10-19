@@ -35,6 +35,36 @@ type BezierPath struct {
 func BezierPathFrom(ptr unsafe.Pointer) BezierPath {
 	return BezierPath{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _BezierPathClass) Alloc() BezierPath {
+	rv := objc.Send[BezierPath](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _BezierPathClass) New() BezierPath {
+	rv := objc.Send[BezierPath](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ BezierPath) Init() BezierPath {
+	rv := objc.Send[BezierPath](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ BezierPath) Autorelease() BezierPath {
+	rv := objc.Send[BezierPath](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewBezierPath creates a new BezierPath instance.
+func NewBezierPath() BezierPath {
+	return bezierPathClass.New()
+}
+
 
 
 

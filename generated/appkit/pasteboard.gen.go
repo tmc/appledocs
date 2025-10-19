@@ -36,13 +36,43 @@ type Pasteboard struct {
 func PasteboardFrom(ptr unsafe.Pointer) Pasteboard {
 	return Pasteboard{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PasteboardClass) Alloc() Pasteboard {
+	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PasteboardClass) New() Pasteboard {
+	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ Pasteboard) Init() Pasteboard {
+	rv := objc.Send[Pasteboard](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ Pasteboard) Autorelease() Pasteboard {
+	rv := objc.Send[Pasteboard](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPasteboard creates a new Pasteboard instance.
+func NewPasteboard() Pasteboard {
+	return pasteboardClass.New()
+}
+
 
 // Sets the given string as the representation for the specified type for the first item on the receiver. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/setString(_:forType:)
 func (p_ Pasteboard) SetStringForType(string string, dataType unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("setString:forType:"), string, dataType)
+	rv := objc.Send[bool](p_.ID, objc.Sel("setString:forType:"), objc.String(string), dataType)
 	return rv
 }
 

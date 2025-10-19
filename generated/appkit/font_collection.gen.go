@@ -35,6 +35,36 @@ type FontCollection struct {
 func FontCollectionFrom(ptr unsafe.Pointer) FontCollection {
 	return FontCollection{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FontCollectionClass) Alloc() FontCollection {
+	rv := objc.Send[FontCollection](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FontCollectionClass) New() FontCollection {
+	rv := objc.Send[FontCollection](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FontCollection) Init() FontCollection {
+	rv := objc.Send[FontCollection](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FontCollection) Autorelease() FontCollection {
+	rv := objc.Send[FontCollection](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFontCollection creates a new FontCollection instance.
+func NewFontCollection() FontCollection {
+	return fontCollectionClass.New()
+}
+
 
 
 

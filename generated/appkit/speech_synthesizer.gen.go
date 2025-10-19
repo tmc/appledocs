@@ -35,6 +35,36 @@ type SpeechSynthesizer struct {
 func SpeechSynthesizerFrom(ptr unsafe.Pointer) SpeechSynthesizer {
 	return SpeechSynthesizer{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SpeechSynthesizerClass) Alloc() SpeechSynthesizer {
+	rv := objc.Send[SpeechSynthesizer](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SpeechSynthesizerClass) New() SpeechSynthesizer {
+	rv := objc.Send[SpeechSynthesizer](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SpeechSynthesizer) Init() SpeechSynthesizer {
+	rv := objc.Send[SpeechSynthesizer](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SpeechSynthesizer) Autorelease() SpeechSynthesizer {
+	rv := objc.Send[SpeechSynthesizer](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSpeechSynthesizer creates a new SpeechSynthesizer instance.
+func NewSpeechSynthesizer() SpeechSynthesizer {
+	return speechSynthesizerClass.New()
+}
+
 
 
 

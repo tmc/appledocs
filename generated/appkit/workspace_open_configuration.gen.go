@@ -35,6 +35,36 @@ type WorkspaceOpenConfiguration struct {
 func WorkspaceOpenConfigurationFrom(ptr unsafe.Pointer) WorkspaceOpenConfiguration {
 	return WorkspaceOpenConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (wc _WorkspaceOpenConfigurationClass) Alloc() WorkspaceOpenConfiguration {
+	rv := objc.Send[WorkspaceOpenConfiguration](objc.ID(wc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (wc _WorkspaceOpenConfigurationClass) New() WorkspaceOpenConfiguration {
+	rv := objc.Send[WorkspaceOpenConfiguration](objc.ID(wc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (w_ WorkspaceOpenConfiguration) Init() WorkspaceOpenConfiguration {
+	rv := objc.Send[WorkspaceOpenConfiguration](w_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (w_ WorkspaceOpenConfiguration) Autorelease() WorkspaceOpenConfiguration {
+	rv := objc.Send[WorkspaceOpenConfiguration](w_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewWorkspaceOpenConfiguration creates a new WorkspaceOpenConfiguration instance.
+func NewWorkspaceOpenConfiguration() WorkspaceOpenConfiguration {
+	return workspaceOpenConfigurationClass.New()
+}
+
 
 
 

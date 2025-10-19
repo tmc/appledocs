@@ -35,6 +35,36 @@ type PrintOperation struct {
 func PrintOperationFrom(ptr unsafe.Pointer) PrintOperation {
 	return PrintOperation{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PrintOperationClass) Alloc() PrintOperation {
+	rv := objc.Send[PrintOperation](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PrintOperationClass) New() PrintOperation {
+	rv := objc.Send[PrintOperation](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PrintOperation) Init() PrintOperation {
+	rv := objc.Send[PrintOperation](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PrintOperation) Autorelease() PrintOperation {
+	rv := objc.Send[PrintOperation](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPrintOperation creates a new PrintOperation instance.
+func NewPrintOperation() PrintOperation {
+	return printOperationClass.New()
+}
+
 
 
 

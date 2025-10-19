@@ -69,6 +69,8 @@ func (o_ OpenGLView) Autorelease() OpenGLView {
 func NewOpenGLView() OpenGLView {
 	return openGLViewClass.New()
 }
+
+
 // Returns an object initialized with the specified frame rectangle and pixel format. [Full Topic]
 
 //

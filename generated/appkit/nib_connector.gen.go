@@ -35,6 +35,36 @@ type NibConnector struct {
 func NibConnectorFrom(ptr unsafe.Pointer) NibConnector {
 	return NibConnector{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (nc _NibConnectorClass) Alloc() NibConnector {
+	rv := objc.Send[NibConnector](objc.ID(nc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (nc _NibConnectorClass) New() NibConnector {
+	rv := objc.Send[NibConnector](objc.ID(nc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (n_ NibConnector) Init() NibConnector {
+	rv := objc.Send[NibConnector](n_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (n_ NibConnector) Autorelease() NibConnector {
+	rv := objc.Send[NibConnector](n_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewNibConnector creates a new NibConnector instance.
+func NewNibConnector() NibConnector {
+	return nibConnectorClass.New()
+}
+
 
 
 

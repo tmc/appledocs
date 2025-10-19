@@ -36,6 +36,36 @@ func RotationGestureRecognizerFrom(ptr unsafe.Pointer) RotationGestureRecognizer
 		GestureRecognizer: GestureRecognizerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _RotationGestureRecognizerClass) Alloc() RotationGestureRecognizer {
+	rv := objc.Send[RotationGestureRecognizer](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _RotationGestureRecognizerClass) New() RotationGestureRecognizer {
+	rv := objc.Send[RotationGestureRecognizer](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ RotationGestureRecognizer) Init() RotationGestureRecognizer {
+	rv := objc.Send[RotationGestureRecognizer](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ RotationGestureRecognizer) Autorelease() RotationGestureRecognizer {
+	rv := objc.Send[RotationGestureRecognizer](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRotationGestureRecognizer creates a new RotationGestureRecognizer instance.
+func NewRotationGestureRecognizer() RotationGestureRecognizer {
+	return rotationGestureRecognizerClass.New()
+}
+
 
 
 

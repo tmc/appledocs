@@ -35,6 +35,36 @@ type Appearance struct {
 func AppearanceFrom(ptr unsafe.Pointer) Appearance {
 	return Appearance{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AppearanceClass) Alloc() Appearance {
+	rv := objc.Send[Appearance](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AppearanceClass) New() Appearance {
+	rv := objc.Send[Appearance](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ Appearance) Init() Appearance {
+	rv := objc.Send[Appearance](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ Appearance) Autorelease() Appearance {
+	rv := objc.Send[Appearance](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAppearance creates a new Appearance instance.
+func NewAppearance() Appearance {
+	return appearanceClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type ColorSpace struct {
 func ColorSpaceFrom(ptr unsafe.Pointer) ColorSpace {
 	return ColorSpace{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ColorSpaceClass) Alloc() ColorSpace {
+	rv := objc.Send[ColorSpace](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ColorSpaceClass) New() ColorSpace {
+	rv := objc.Send[ColorSpace](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ ColorSpace) Init() ColorSpace {
+	rv := objc.Send[ColorSpace](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ ColorSpace) Autorelease() ColorSpace {
+	rv := objc.Send[ColorSpace](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewColorSpace creates a new ColorSpace instance.
+func NewColorSpace() ColorSpace {
+	return colorSpaceClass.New()
+}
+
 
 
 

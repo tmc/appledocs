@@ -96,19 +96,21 @@ func (t_ Text) Autorelease() Text {
 func NewText() Text {
 	return textClass.New()
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
-func NewTextWithCoder(coder unsafe.Pointer) Text {
-	instance := textClass.Alloc()
-	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
+
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(frame:)
 func NewTextWithFrame(frameRect unsafe.Pointer) Text {
 	instance := textClass.Alloc()
 	rv := objc.Send[Text](instance.ID, objc.Sel("initWithFrame:"), frameRect)
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
+func NewTextWithCoder(coder unsafe.Pointer) Text {
+	instance := textClass.Alloc()
+	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -210,7 +212,7 @@ func (t_ Text) PasteRuler(sender objc.ID) {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/readRTFD(fromFile:)
 func (t_ Text) ReadRTFDFromFile(path string) bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("readRTFDFromFile:"), path)
+	rv := objc.Send[bool](t_.ID, objc.Sel("readRTFDFromFile:"), objc.String(path))
 	return rv
 }
 // Replaces the characters in the given range with those in the given string. [Full Topic]
@@ -218,7 +220,7 @@ func (t_ Text) ReadRTFDFromFile(path string) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/replaceCharacters(in:with:)
 func (t_ Text) ReplaceCharactersInRangeWithString(range_ unsafe.Pointer, string string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, string)
+	objc.Send[objc.ID](t_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, objc.String(string))
 }
 // Replaces the characters in the given range with RTF text interpreted from the given RTF data. [Full Topic]
 
@@ -332,7 +334,7 @@ func (t_ Text) Unscript(sender objc.ID) {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/writeRTFD(toFile:atomically:)
 func (t_ Text) WriteRTFDToFileAtomically(path string, flag bool) bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("writeRTFDToFile:atomically:"), path, flag)
+	rv := objc.Send[bool](t_.ID, objc.Sel("writeRTFDToFile:atomically:"), objc.String(path), flag)
 	return rv
 }
 

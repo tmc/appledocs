@@ -35,6 +35,36 @@ type FilePromiseProvider struct {
 func FilePromiseProviderFrom(ptr unsafe.Pointer) FilePromiseProvider {
 	return FilePromiseProvider{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FilePromiseProviderClass) Alloc() FilePromiseProvider {
+	rv := objc.Send[FilePromiseProvider](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FilePromiseProviderClass) New() FilePromiseProvider {
+	rv := objc.Send[FilePromiseProvider](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FilePromiseProvider) Init() FilePromiseProvider {
+	rv := objc.Send[FilePromiseProvider](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FilePromiseProvider) Autorelease() FilePromiseProvider {
+	rv := objc.Send[FilePromiseProvider](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFilePromiseProvider creates a new FilePromiseProvider instance.
+func NewFilePromiseProvider() FilePromiseProvider {
+	return filePromiseProviderClass.New()
+}
+
 
 
 

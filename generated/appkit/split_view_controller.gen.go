@@ -36,6 +36,36 @@ func SplitViewControllerFrom(ptr unsafe.Pointer) SplitViewController {
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SplitViewControllerClass) Alloc() SplitViewController {
+	rv := objc.Send[SplitViewController](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SplitViewControllerClass) New() SplitViewController {
+	rv := objc.Send[SplitViewController](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SplitViewController) Init() SplitViewController {
+	rv := objc.Send[SplitViewController](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SplitViewController) Autorelease() SplitViewController {
+	rv := objc.Send[SplitViewController](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSplitViewController creates a new SplitViewController instance.
+func NewSplitViewController() SplitViewController {
+	return splitViewControllerClass.New()
+}
+
 
 
 

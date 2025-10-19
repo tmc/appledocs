@@ -72,6 +72,16 @@ func (r_ RulerView) Autorelease() RulerView {
 func NewRulerView() RulerView {
 	return rulerViewClass.New()
 }
+
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
+func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
+	instance := rulerViewClass.Alloc()
+	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
 // Initializes a newly allocated NSRulerView to have ( or ) within . [Full Topic]
 
 //
@@ -82,14 +92,6 @@ func NewRulerViewWithScrollViewOrientation(scrollView unsafe.Pointer, orientatio
 	rv.Autorelease()
 	return rv
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
-func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
-	instance := rulerViewClass.Alloc()
-	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
 
 
 // Registers a new unit of measurement with the NSRulerView class, making it available to all instances of NSRulerView. [Full Topic]
@@ -97,7 +99,7 @@ func NewRulerViewWithCoder(coder unsafe.Pointer) RulerView {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/registerUnit(withName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)
 func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(unitName unsafe.Pointer, abbreviation string, conversionFactor float64, stepUpCycle unsafe.Pointer, stepDownCycle unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:"), unitName, abbreviation, conversionFactor, stepUpCycle, stepDownCycle)
+	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:"), unitName, objc.String(abbreviation), conversionFactor, stepUpCycle, stepDownCycle)
 }
 // Adds to the receiver, without consulting the client view for approval. [Full Topic]
 

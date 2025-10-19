@@ -49,6 +49,36 @@ func SplitViewFrom(ptr unsafe.Pointer) SplitView {
 		View: ViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SplitViewClass) Alloc() SplitView {
+	rv := objc.Send[SplitView](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SplitViewClass) New() SplitView {
+	rv := objc.Send[SplitView](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SplitView) Init() SplitView {
+	rv := objc.Send[SplitView](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SplitView) Autorelease() SplitView {
+	rv := objc.Send[SplitView](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSplitView creates a new SplitView instance.
+func NewSplitView() SplitView {
+	return splitViewClass.New()
+}
+
 
 // Adds a view as an arranged split pane. [Full Topic]
 

@@ -40,6 +40,36 @@ type ScrubberLayout struct {
 func ScrubberLayoutFrom(ptr unsafe.Pointer) ScrubberLayout {
 	return ScrubberLayout{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScrubberLayoutClass) Alloc() ScrubberLayout {
+	rv := objc.Send[ScrubberLayout](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScrubberLayoutClass) New() ScrubberLayout {
+	rv := objc.Send[ScrubberLayout](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScrubberLayout) Init() ScrubberLayout {
+	rv := objc.Send[ScrubberLayout](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScrubberLayout) Autorelease() ScrubberLayout {
+	rv := objc.Send[ScrubberLayout](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScrubberLayout creates a new ScrubberLayout instance.
+func NewScrubberLayout() ScrubberLayout {
+	return scrubberLayoutClass.New()
+}
+
 
 // Signals that the layout has been invalidated, and that the scrubber control should perform a new layout pass. [Full Topic]
 

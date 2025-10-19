@@ -36,6 +36,36 @@ func ComboBoxFrom(ptr unsafe.Pointer) ComboBox {
 		TextField: TextFieldFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ComboBoxClass) Alloc() ComboBox {
+	rv := objc.Send[ComboBox](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ComboBoxClass) New() ComboBox {
+	rv := objc.Send[ComboBox](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ ComboBox) Init() ComboBox {
+	rv := objc.Send[ComboBox](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ ComboBox) Autorelease() ComboBox {
+	rv := objc.Send[ComboBox](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewComboBox creates a new ComboBox instance.
+func NewComboBox() ComboBox {
+	return comboBoxClass.New()
+}
+
 
 
 

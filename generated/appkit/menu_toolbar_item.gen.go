@@ -36,6 +36,36 @@ func MenuToolbarItemFrom(ptr unsafe.Pointer) MenuToolbarItem {
 		ToolbarItem: ToolbarItemFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MenuToolbarItemClass) Alloc() MenuToolbarItem {
+	rv := objc.Send[MenuToolbarItem](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MenuToolbarItemClass) New() MenuToolbarItem {
+	rv := objc.Send[MenuToolbarItem](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MenuToolbarItem) Init() MenuToolbarItem {
+	rv := objc.Send[MenuToolbarItem](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MenuToolbarItem) Autorelease() MenuToolbarItem {
+	rv := objc.Send[MenuToolbarItem](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMenuToolbarItem creates a new MenuToolbarItem instance.
+func NewMenuToolbarItem() MenuToolbarItem {
+	return menuToolbarItemClass.New()
+}
+
 
 
 

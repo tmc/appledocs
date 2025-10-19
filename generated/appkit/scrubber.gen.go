@@ -76,6 +76,8 @@ func (s_ Scrubber) Autorelease() Scrubber {
 func NewScrubber() Scrubber {
 	return scrubberClass.New()
 }
+
+
 // Initializes and returns a newly allocated scrubber object from a storyboard or nib file. [Full Topic]
 
 //

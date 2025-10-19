@@ -36,6 +36,36 @@ func PathCellFrom(ptr unsafe.Pointer) PathCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PathCellClass) Alloc() PathCell {
+	rv := objc.Send[PathCell](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PathCellClass) New() PathCell {
+	rv := objc.Send[PathCell](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PathCell) Init() PathCell {
+	rv := objc.Send[PathCell](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PathCell) Autorelease() PathCell {
+	rv := objc.Send[PathCell](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPathCell creates a new PathCell instance.
+func NewPathCell() PathCell {
+	return pathCellClass.New()
+}
+
 
 
 

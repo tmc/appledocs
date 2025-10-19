@@ -65,6 +65,8 @@ func (t_ TouchBar) Autorelease() TouchBar {
 func NewTouchBar() TouchBar {
 	return touchBarClass.New()
 }
+
+
 // Creates a Touch Bar object from a coder object provided by a storyboard or NIB file. [Full Topic]
 
 //

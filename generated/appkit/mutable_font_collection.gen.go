@@ -36,6 +36,36 @@ func MutableFontCollectionFrom(ptr unsafe.Pointer) MutableFontCollection {
 		FontCollection: FontCollectionFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MutableFontCollectionClass) Alloc() MutableFontCollection {
+	rv := objc.Send[MutableFontCollection](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MutableFontCollectionClass) New() MutableFontCollection {
+	rv := objc.Send[MutableFontCollection](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MutableFontCollection) Init() MutableFontCollection {
+	rv := objc.Send[MutableFontCollection](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MutableFontCollection) Autorelease() MutableFontCollection {
+	rv := objc.Send[MutableFontCollection](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMutableFontCollection creates a new MutableFontCollection instance.
+func NewMutableFontCollection() MutableFontCollection {
+	return mutableFontCollectionClass.New()
+}
+
 
 
 

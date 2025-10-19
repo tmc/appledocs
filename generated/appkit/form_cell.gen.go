@@ -36,6 +36,36 @@ func FormCellFrom(ptr unsafe.Pointer) FormCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FormCellClass) Alloc() FormCell {
+	rv := objc.Send[FormCell](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FormCellClass) New() FormCell {
+	rv := objc.Send[FormCell](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FormCell) Init() FormCell {
+	rv := objc.Send[FormCell](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FormCell) Autorelease() FormCell {
+	rv := objc.Send[FormCell](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFormCell creates a new FormCell instance.
+func NewFormCell() FormCell {
+	return formCellClass.New()
+}
+
 
 
 

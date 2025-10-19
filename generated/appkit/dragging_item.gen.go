@@ -35,6 +35,36 @@ type DraggingItem struct {
 func DraggingItemFrom(ptr unsafe.Pointer) DraggingItem {
 	return DraggingItem{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DraggingItemClass) Alloc() DraggingItem {
+	rv := objc.Send[DraggingItem](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DraggingItemClass) New() DraggingItem {
+	rv := objc.Send[DraggingItem](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DraggingItem) Init() DraggingItem {
+	rv := objc.Send[DraggingItem](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DraggingItem) Autorelease() DraggingItem {
+	rv := objc.Send[DraggingItem](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDraggingItem creates a new DraggingItem instance.
+func NewDraggingItem() DraggingItem {
+	return draggingItemClass.New()
+}
+
 
 
 

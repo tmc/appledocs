@@ -35,6 +35,36 @@ type MenuItem struct {
 func MenuItemFrom(ptr unsafe.Pointer) MenuItem {
 	return MenuItem{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MenuItemClass) Alloc() MenuItem {
+	rv := objc.Send[MenuItem](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MenuItemClass) New() MenuItem {
+	rv := objc.Send[MenuItem](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MenuItem) Init() MenuItem {
+	rv := objc.Send[MenuItem](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MenuItem) Autorelease() MenuItem {
+	rv := objc.Send[MenuItem](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMenuItem creates a new MenuItem instance.
+func NewMenuItem() MenuItem {
+	return menuItemClass.New()
+}
+
 
 
 

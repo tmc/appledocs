@@ -36,6 +36,36 @@ func ImageViewFrom(ptr unsafe.Pointer) ImageView {
 		Control: ControlFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _ImageViewClass) Alloc() ImageView {
+	rv := objc.Send[ImageView](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _ImageViewClass) New() ImageView {
+	rv := objc.Send[ImageView](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ ImageView) Init() ImageView {
+	rv := objc.Send[ImageView](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ ImageView) Autorelease() ImageView {
+	rv := objc.Send[ImageView](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewImageView creates a new ImageView instance.
+func NewImageView() ImageView {
+	return imageViewClass.New()
+}
+
 
 
 

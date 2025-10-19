@@ -36,6 +36,36 @@ func LayoutDimensionFrom(ptr unsafe.Pointer) LayoutDimension {
 		LayoutAnchor: LayoutAnchorFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (lc _LayoutDimensionClass) Alloc() LayoutDimension {
+	rv := objc.Send[LayoutDimension](objc.ID(lc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (lc _LayoutDimensionClass) New() LayoutDimension {
+	rv := objc.Send[LayoutDimension](objc.ID(lc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (l_ LayoutDimension) Init() LayoutDimension {
+	rv := objc.Send[LayoutDimension](l_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (l_ LayoutDimension) Autorelease() LayoutDimension {
+	rv := objc.Send[LayoutDimension](l_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewLayoutDimension creates a new LayoutDimension instance.
+func NewLayoutDimension() LayoutDimension {
+	return layoutDimensionClass.New()
+}
+
 
 
 

@@ -247,6 +247,8 @@ func (v_ View) Autorelease() View {
 func NewView() View {
 	return viewClass.New()
 }
+
+
 // Initializes a view using from data in the specified coder object. [Full Topic]
 
 //
@@ -775,7 +777,7 @@ func (v_ View) DisplayLinkWithTargetSelector(target objc.ID, selector objc.SEL) 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/dragFile(_:from:slideBack:event:)
 func (v_ View) DragFileFromRectSlideBackEvent(filename string, rect unsafe.Pointer, flag bool, event unsafe.Pointer) bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("dragFile:fromRect:slideBack:event:"), filename, rect, flag, event)
+	rv := objc.Send[bool](v_.ID, objc.Sel("dragFile:fromRect:slideBack:event:"), objc.String(filename), rect, flag, event)
 	return rv
 }
 // Initiates a dragging operation from the view, allowing the user to drag arbitrary data with a specified icon into any application that has window or view objects that accept dragged data. [Full Topic]
@@ -1027,7 +1029,7 @@ func (v_ View) PerformKeyEquivalent(event unsafe.Pointer) bool {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/performMnemonic:
 func (v_ View) PerformMnemonic(string string) bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("performMnemonic:"), string)
+	rv := objc.Send[bool](v_.ID, objc.Sel("performMnemonic:"), objc.String(string))
 	return rv
 }
 // Prepares the overdraw region for drawing. [Full Topic]

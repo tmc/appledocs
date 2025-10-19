@@ -111,14 +111,8 @@ func (c_ Cell) Autorelease() Cell {
 func NewCell() Cell {
 	return cellClass.New()
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
-func NewCellWithCoder(coder unsafe.Pointer) Cell {
-	instance := cellClass.Alloc()
-	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
+
+
 // Returns an object initialized with the specified image and set to have the cell’s default menu. [Full Topic]
 
 //
@@ -135,7 +129,15 @@ func NewCellImageCell(image unsafe.Pointer) Cell {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
 func NewCellTextCell(string string) Cell {
 	instance := cellClass.Alloc()
-	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), string)
+	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string))
+	rv.Autorelease()
+	return rv
+}
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
+func NewCellWithCoder(coder unsafe.Pointer) Cell {
+	instance := cellClass.Alloc()
+	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -313,7 +315,7 @@ func (c_ Cell) ImageRectForBounds(rect unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isEntryAcceptable:
 func (c_ Cell) IsEntryAcceptable(string string) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isEntryAcceptable:"), string)
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEntryAcceptable:"), objc.String(string))
 	return rv
 }
 // Returns the menu associated with the cell and related to the specified event and frame. [Full Topic]
@@ -409,7 +411,7 @@ func (c_ Cell) SetNextState() {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setTitleWithMnemonic:
 func (c_ Cell) SetTitleWithMnemonic(stringWithAmpersand string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleWithMnemonic:"), stringWithAmpersand)
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleWithMnemonic:"), objc.String(stringWithAmpersand))
 }
 // Configures the textual and background attributes of the receiver’s field editor. [Full Topic]
 

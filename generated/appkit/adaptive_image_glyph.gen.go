@@ -35,6 +35,36 @@ type AdaptiveImageGlyph struct {
 func AdaptiveImageGlyphFrom(ptr unsafe.Pointer) AdaptiveImageGlyph {
 	return AdaptiveImageGlyph{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AdaptiveImageGlyphClass) Alloc() AdaptiveImageGlyph {
+	rv := objc.Send[AdaptiveImageGlyph](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AdaptiveImageGlyphClass) New() AdaptiveImageGlyph {
+	rv := objc.Send[AdaptiveImageGlyph](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AdaptiveImageGlyph) Init() AdaptiveImageGlyph {
+	rv := objc.Send[AdaptiveImageGlyph](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AdaptiveImageGlyph) Autorelease() AdaptiveImageGlyph {
+	rv := objc.Send[AdaptiveImageGlyph](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAdaptiveImageGlyph creates a new AdaptiveImageGlyph instance.
+func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
+	return adaptiveImageGlyphClass.New()
+}
+
 
 
 

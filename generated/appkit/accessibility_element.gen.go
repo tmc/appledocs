@@ -37,13 +37,43 @@ type AccessibilityElement struct {
 func AccessibilityElementFrom(ptr unsafe.Pointer) AccessibilityElement {
 	return AccessibilityElement{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AccessibilityElementClass) Alloc() AccessibilityElement {
+	rv := objc.Send[AccessibilityElement](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AccessibilityElementClass) New() AccessibilityElement {
+	rv := objc.Send[AccessibilityElement](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ AccessibilityElement) Init() AccessibilityElement {
+	rv := objc.Send[AccessibilityElement](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ AccessibilityElement) Autorelease() AccessibilityElement {
+	rv := objc.Send[AccessibilityElement](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAccessibilityElement creates a new AccessibilityElement instance.
+func NewAccessibilityElement() AccessibilityElement {
+	return accessibilityElementClass.New()
+}
+
 
 // Instantiates and configures a new accessibility element. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/element(withRole:frame:label:parent:)
 func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParent(role unsafe.Pointer, frame unsafe.Pointer, label string, parent objc.ID) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("accessibilityElementWithRole:frame:label:parent:"), role, frame, label, parent)
+	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("accessibilityElementWithRole:frame:label:parent:"), role, frame, objc.String(label), parent)
 	return rv
 }
 // Adds a child to the accessibility element in the accessibility hierarchy. [Full Topic]

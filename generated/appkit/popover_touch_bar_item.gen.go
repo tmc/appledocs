@@ -36,6 +36,36 @@ func PopoverTouchBarItemFrom(ptr unsafe.Pointer) PopoverTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PopoverTouchBarItemClass) Alloc() PopoverTouchBarItem {
+	rv := objc.Send[PopoverTouchBarItem](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PopoverTouchBarItemClass) New() PopoverTouchBarItem {
+	rv := objc.Send[PopoverTouchBarItem](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PopoverTouchBarItem) Init() PopoverTouchBarItem {
+	rv := objc.Send[PopoverTouchBarItem](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PopoverTouchBarItem) Autorelease() PopoverTouchBarItem {
+	rv := objc.Send[PopoverTouchBarItem](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPopoverTouchBarItem creates a new PopoverTouchBarItem instance.
+func NewPopoverTouchBarItem() PopoverTouchBarItem {
+	return popoverTouchBarItemClass.New()
+}
+
 
 
 

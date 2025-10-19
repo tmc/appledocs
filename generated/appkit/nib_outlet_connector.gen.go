@@ -36,6 +36,36 @@ func NibOutletConnectorFrom(ptr unsafe.Pointer) NibOutletConnector {
 		NibConnector: NibConnectorFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (nc _NibOutletConnectorClass) Alloc() NibOutletConnector {
+	rv := objc.Send[NibOutletConnector](objc.ID(nc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (nc _NibOutletConnectorClass) New() NibOutletConnector {
+	rv := objc.Send[NibOutletConnector](objc.ID(nc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (n_ NibOutletConnector) Init() NibOutletConnector {
+	rv := objc.Send[NibOutletConnector](n_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (n_ NibOutletConnector) Autorelease() NibOutletConnector {
+	rv := objc.Send[NibOutletConnector](n_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewNibOutletConnector creates a new NibOutletConnector instance.
+func NewNibOutletConnector() NibOutletConnector {
+	return nibOutletConnectorClass.New()
+}
+
 
 
 

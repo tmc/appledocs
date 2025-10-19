@@ -32,6 +32,36 @@ type ViewLayoutRegion struct {
 func ViewLayoutRegionFrom(ptr unsafe.Pointer) ViewLayoutRegion {
 	return ViewLayoutRegion{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (vc _ViewLayoutRegionClass) Alloc() ViewLayoutRegion {
+	rv := objc.Send[ViewLayoutRegion](objc.ID(vc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (vc _ViewLayoutRegionClass) New() ViewLayoutRegion {
+	rv := objc.Send[ViewLayoutRegion](objc.ID(vc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (v_ ViewLayoutRegion) Init() ViewLayoutRegion {
+	rv := objc.Send[ViewLayoutRegion](v_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (v_ ViewLayoutRegion) Autorelease() ViewLayoutRegion {
+	rv := objc.Send[ViewLayoutRegion](v_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewViewLayoutRegion creates a new ViewLayoutRegion instance.
+func NewViewLayoutRegion() ViewLayoutRegion {
+	return viewLayoutRegionClass.New()
+}
+
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion/marginsLayoutRegionWithCornerAdaptation:

@@ -37,6 +37,36 @@ type Screen struct {
 func ScreenFrom(ptr unsafe.Pointer) Screen {
 	return Screen{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScreenClass) Alloc() Screen {
+	rv := objc.Send[Screen](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScreenClass) New() Screen {
+	rv := objc.Send[Screen](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ Screen) Init() Screen {
+	rv := objc.Send[Screen](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ Screen) Autorelease() Screen {
+	rv := objc.Send[Screen](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScreen creates a new Screen instance.
+func NewScreen() Screen {
+	return screenClass.New()
+}
+
 
 // A Boolean value indicating whether the color space of the screen is capable of representing the specified display gamut. [Full Topic]
 

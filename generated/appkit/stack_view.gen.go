@@ -81,6 +81,8 @@ func (s_ StackView) Autorelease() StackView {
 func NewStackView() StackView {
 	return stackViewClass.New()
 }
+
+
 // Creates and returns a stack view with a specified array of views. [Full Topic]
 
 //

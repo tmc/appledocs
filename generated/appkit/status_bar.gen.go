@@ -35,6 +35,36 @@ type StatusBar struct {
 func StatusBarFrom(ptr unsafe.Pointer) StatusBar {
 	return StatusBar{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _StatusBarClass) Alloc() StatusBar {
+	rv := objc.Send[StatusBar](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _StatusBarClass) New() StatusBar {
+	rv := objc.Send[StatusBar](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ StatusBar) Init() StatusBar {
+	rv := objc.Send[StatusBar](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ StatusBar) Autorelease() StatusBar {
+	rv := objc.Send[StatusBar](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewStatusBar creates a new StatusBar instance.
+func NewStatusBar() StatusBar {
+	return statusBarClass.New()
+}
+
 
 
 

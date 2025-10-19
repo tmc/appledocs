@@ -36,6 +36,36 @@ func UserDefaultsControllerFrom(ptr unsafe.Pointer) UserDefaultsController {
 		Controller: ControllerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (uc _UserDefaultsControllerClass) Alloc() UserDefaultsController {
+	rv := objc.Send[UserDefaultsController](objc.ID(uc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (uc _UserDefaultsControllerClass) New() UserDefaultsController {
+	rv := objc.Send[UserDefaultsController](objc.ID(uc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (u_ UserDefaultsController) Init() UserDefaultsController {
+	rv := objc.Send[UserDefaultsController](u_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (u_ UserDefaultsController) Autorelease() UserDefaultsController {
+	rv := objc.Send[UserDefaultsController](u_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewUserDefaultsController creates a new UserDefaultsController instance.
+func NewUserDefaultsController() UserDefaultsController {
+	return userDefaultsControllerClass.New()
+}
+
 
 
 

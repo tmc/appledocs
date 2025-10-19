@@ -35,6 +35,36 @@ type Sound struct {
 func SoundFrom(ptr unsafe.Pointer) Sound {
 	return Sound{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SoundClass) Alloc() Sound {
+	rv := objc.Send[Sound](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SoundClass) New() Sound {
+	rv := objc.Send[Sound](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ Sound) Init() Sound {
+	rv := objc.Send[Sound](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ Sound) Autorelease() Sound {
+	rv := objc.Send[Sound](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSound creates a new Sound instance.
+func NewSound() Sound {
+	return soundClass.New()
+}
+
 
 
 

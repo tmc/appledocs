@@ -35,6 +35,36 @@ type Controller struct {
 func ControllerFrom(ptr unsafe.Pointer) Controller {
 	return Controller{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ControllerClass) Alloc() Controller {
+	rv := objc.Send[Controller](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ControllerClass) New() Controller {
+	rv := objc.Send[Controller](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ Controller) Init() Controller {
+	rv := objc.Send[Controller](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ Controller) Autorelease() Controller {
+	rv := objc.Send[Controller](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewController creates a new Controller instance.
+func NewController() Controller {
+	return controllerClass.New()
+}
+
 
 
 

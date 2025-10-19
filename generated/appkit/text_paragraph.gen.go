@@ -36,6 +36,36 @@ func TextParagraphFrom(ptr unsafe.Pointer) TextParagraph {
 		TextElement: TextElementFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextParagraphClass) Alloc() TextParagraph {
+	rv := objc.Send[TextParagraph](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextParagraphClass) New() TextParagraph {
+	rv := objc.Send[TextParagraph](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextParagraph) Init() TextParagraph {
+	rv := objc.Send[TextParagraph](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextParagraph) Autorelease() TextParagraph {
+	rv := objc.Send[TextParagraph](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextParagraph creates a new TextParagraph instance.
+func NewTextParagraph() TextParagraph {
+	return textParagraphClass.New()
+}
+
 
 
 

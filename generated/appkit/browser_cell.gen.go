@@ -36,6 +36,36 @@ func BrowserCellFrom(ptr unsafe.Pointer) BrowserCell {
 		Cell: CellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _BrowserCellClass) Alloc() BrowserCell {
+	rv := objc.Send[BrowserCell](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _BrowserCellClass) New() BrowserCell {
+	rv := objc.Send[BrowserCell](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ BrowserCell) Init() BrowserCell {
+	rv := objc.Send[BrowserCell](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ BrowserCell) Autorelease() BrowserCell {
+	rv := objc.Send[BrowserCell](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewBrowserCell creates a new BrowserCell instance.
+func NewBrowserCell() BrowserCell {
+	return browserCellClass.New()
+}
+
 
 
 

@@ -36,6 +36,36 @@ func MagnificationGestureRecognizerFrom(ptr unsafe.Pointer) MagnificationGesture
 		GestureRecognizer: GestureRecognizerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MagnificationGestureRecognizerClass) Alloc() MagnificationGestureRecognizer {
+	rv := objc.Send[MagnificationGestureRecognizer](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MagnificationGestureRecognizerClass) New() MagnificationGestureRecognizer {
+	rv := objc.Send[MagnificationGestureRecognizer](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MagnificationGestureRecognizer) Init() MagnificationGestureRecognizer {
+	rv := objc.Send[MagnificationGestureRecognizer](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MagnificationGestureRecognizer) Autorelease() MagnificationGestureRecognizer {
+	rv := objc.Send[MagnificationGestureRecognizer](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMagnificationGestureRecognizer creates a new MagnificationGestureRecognizer instance.
+func NewMagnificationGestureRecognizer() MagnificationGestureRecognizer {
+	return magnificationGestureRecognizerClass.New()
+}
+
 
 
 

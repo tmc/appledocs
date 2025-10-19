@@ -35,6 +35,36 @@ type TextSelectionNavigation struct {
 func TextSelectionNavigationFrom(ptr unsafe.Pointer) TextSelectionNavigation {
 	return TextSelectionNavigation{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextSelectionNavigationClass) Alloc() TextSelectionNavigation {
+	rv := objc.Send[TextSelectionNavigation](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextSelectionNavigationClass) New() TextSelectionNavigation {
+	rv := objc.Send[TextSelectionNavigation](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextSelectionNavigation) Init() TextSelectionNavigation {
+	rv := objc.Send[TextSelectionNavigation](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextSelectionNavigation) Autorelease() TextSelectionNavigation {
+	rv := objc.Send[TextSelectionNavigation](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextSelectionNavigation creates a new TextSelectionNavigation instance.
+func NewTextSelectionNavigation() TextSelectionNavigation {
+	return textSelectionNavigationClass.New()
+}
+
 
 
 

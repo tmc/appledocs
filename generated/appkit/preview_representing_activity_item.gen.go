@@ -35,6 +35,36 @@ type PreviewRepresentingActivityItem struct {
 func PreviewRepresentingActivityItemFrom(ptr unsafe.Pointer) PreviewRepresentingActivityItem {
 	return PreviewRepresentingActivityItem{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PreviewRepresentingActivityItemClass) Alloc() PreviewRepresentingActivityItem {
+	rv := objc.Send[PreviewRepresentingActivityItem](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PreviewRepresentingActivityItemClass) New() PreviewRepresentingActivityItem {
+	rv := objc.Send[PreviewRepresentingActivityItem](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PreviewRepresentingActivityItem) Init() PreviewRepresentingActivityItem {
+	rv := objc.Send[PreviewRepresentingActivityItem](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PreviewRepresentingActivityItem) Autorelease() PreviewRepresentingActivityItem {
+	rv := objc.Send[PreviewRepresentingActivityItem](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPreviewRepresentingActivityItem creates a new PreviewRepresentingActivityItem instance.
+func NewPreviewRepresentingActivityItem() PreviewRepresentingActivityItem {
+	return previewRepresentingActivityItemClass.New()
+}
+
 
 
 

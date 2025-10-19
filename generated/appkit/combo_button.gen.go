@@ -36,6 +36,36 @@ func ComboButtonFrom(ptr unsafe.Pointer) ComboButton {
 		Control: ControlFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ComboButtonClass) Alloc() ComboButton {
+	rv := objc.Send[ComboButton](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ComboButtonClass) New() ComboButton {
+	rv := objc.Send[ComboButton](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ ComboButton) Init() ComboButton {
+	rv := objc.Send[ComboButton](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ ComboButton) Autorelease() ComboButton {
+	rv := objc.Send[ComboButton](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewComboButton creates a new ComboButton instance.
+func NewComboButton() ComboButton {
+	return comboButtonClass.New()
+}
+
 
 
 

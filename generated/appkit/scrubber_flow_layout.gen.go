@@ -36,6 +36,36 @@ func ScrubberFlowLayoutFrom(ptr unsafe.Pointer) ScrubberFlowLayout {
 		ScrubberLayout: ScrubberLayoutFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScrubberFlowLayoutClass) Alloc() ScrubberFlowLayout {
+	rv := objc.Send[ScrubberFlowLayout](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScrubberFlowLayoutClass) New() ScrubberFlowLayout {
+	rv := objc.Send[ScrubberFlowLayout](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScrubberFlowLayout) Init() ScrubberFlowLayout {
+	rv := objc.Send[ScrubberFlowLayout](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScrubberFlowLayout) Autorelease() ScrubberFlowLayout {
+	rv := objc.Send[ScrubberFlowLayout](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScrubberFlowLayout creates a new ScrubberFlowLayout instance.
+func NewScrubberFlowLayout() ScrubberFlowLayout {
+	return scrubberFlowLayoutClass.New()
+}
+
 
 
 

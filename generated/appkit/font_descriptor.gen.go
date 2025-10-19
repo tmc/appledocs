@@ -35,6 +35,36 @@ type FontDescriptor struct {
 func FontDescriptorFrom(ptr unsafe.Pointer) FontDescriptor {
 	return FontDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FontDescriptorClass) Alloc() FontDescriptor {
+	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FontDescriptorClass) New() FontDescriptor {
+	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FontDescriptor) Init() FontDescriptor {
+	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FontDescriptor) Autorelease() FontDescriptor {
+	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFontDescriptor creates a new FontDescriptor instance.
+func NewFontDescriptor() FontDescriptor {
+	return fontDescriptorClass.New()
+}
+
 
 
 

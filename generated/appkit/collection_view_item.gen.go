@@ -36,6 +36,36 @@ func CollectionViewItemFrom(ptr unsafe.Pointer) CollectionViewItem {
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CollectionViewItemClass) Alloc() CollectionViewItem {
+	rv := objc.Send[CollectionViewItem](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CollectionViewItemClass) New() CollectionViewItem {
+	rv := objc.Send[CollectionViewItem](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CollectionViewItem) Init() CollectionViewItem {
+	rv := objc.Send[CollectionViewItem](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CollectionViewItem) Autorelease() CollectionViewItem {
+	rv := objc.Send[CollectionViewItem](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCollectionViewItem creates a new CollectionViewItem instance.
+func NewCollectionViewItem() CollectionViewItem {
+	return collectionViewItemClass.New()
+}
+
 
 
 

@@ -6,6 +6,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [ViewAnimation] class.
@@ -17,7 +18,7 @@ type _ViewAnimationClass struct {
 
 // An interface definition for the [ViewAnimation] class.
 type IViewAnimation interface {
-	IAnimation
+	quartzcore.IAnimation
 }
 
 // An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects. [Full Topic]
@@ -25,7 +26,7 @@ type IViewAnimation interface {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewAnimation
 
 type ViewAnimation struct {
-	Animation
+	quartzcore.Animation
 }
 
 // ViewAnimationFrom constructs a [ViewAnimation] from an unsafe.Pointer.
@@ -33,9 +34,39 @@ type ViewAnimation struct {
 // An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects.
 func ViewAnimationFrom(ptr unsafe.Pointer) ViewAnimation {
 	return ViewAnimation{
-		Animation: AnimationFrom(ptr),
+		Animation: quartzcore.AnimationFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (vc _ViewAnimationClass) Alloc() ViewAnimation {
+	rv := objc.Send[ViewAnimation](objc.ID(vc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (vc _ViewAnimationClass) New() ViewAnimation {
+	rv := objc.Send[ViewAnimation](objc.ID(vc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (v_ ViewAnimation) Init() ViewAnimation {
+	rv := objc.Send[ViewAnimation](v_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (v_ ViewAnimation) Autorelease() ViewAnimation {
+	rv := objc.Send[ViewAnimation](v_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewViewAnimation creates a new ViewAnimation instance.
+func NewViewAnimation() ViewAnimation {
+	return viewAnimationClass.New()
+}
+
 
 
 

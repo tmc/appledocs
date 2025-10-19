@@ -36,6 +36,36 @@ func TabViewControllerFrom(ptr unsafe.Pointer) TabViewController {
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TabViewControllerClass) Alloc() TabViewController {
+	rv := objc.Send[TabViewController](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TabViewControllerClass) New() TabViewController {
+	rv := objc.Send[TabViewController](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TabViewController) Init() TabViewController {
+	rv := objc.Send[TabViewController](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TabViewController) Autorelease() TabViewController {
+	rv := objc.Send[TabViewController](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTabViewController creates a new TabViewController instance.
+func NewTabViewController() TabViewController {
+	return tabViewControllerClass.New()
+}
+
 
 
 

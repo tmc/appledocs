@@ -35,6 +35,36 @@ type TextLayoutManager struct {
 func TextLayoutManagerFrom(ptr unsafe.Pointer) TextLayoutManager {
 	return TextLayoutManager{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextLayoutManagerClass) Alloc() TextLayoutManager {
+	rv := objc.Send[TextLayoutManager](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextLayoutManagerClass) New() TextLayoutManager {
+	rv := objc.Send[TextLayoutManager](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextLayoutManager) Init() TextLayoutManager {
+	rv := objc.Send[TextLayoutManager](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextLayoutManager) Autorelease() TextLayoutManager {
+	rv := objc.Send[TextLayoutManager](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextLayoutManager creates a new TextLayoutManager instance.
+func NewTextLayoutManager() TextLayoutManager {
+	return textLayoutManagerClass.New()
+}
+
 
 
 

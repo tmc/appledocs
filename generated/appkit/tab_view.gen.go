@@ -51,6 +51,36 @@ func TabViewFrom(ptr unsafe.Pointer) TabView {
 		View: ViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TabViewClass) Alloc() TabView {
+	rv := objc.Send[TabView](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TabViewClass) New() TabView {
+	rv := objc.Send[TabView](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TabView) Init() TabView {
+	rv := objc.Send[TabView](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TabView) Autorelease() TabView {
+	rv := objc.Send[TabView](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTabView creates a new TabView instance.
+func NewTabView() TabView {
+	return tabViewClass.New()
+}
+
 
 // Adds the specified tab item. [Full Topic]
 

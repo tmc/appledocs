@@ -70,6 +70,8 @@ func (t_ Toolbar) Autorelease() Toolbar {
 func NewToolbar() Toolbar {
 	return toolbarClass.New()
 }
+
+
 // Creates a newly allocated toolbar with the specified identifier. [Full Topic]
 
 //

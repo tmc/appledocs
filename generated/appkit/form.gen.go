@@ -36,6 +36,36 @@ func FormFrom(ptr unsafe.Pointer) Form {
 		Matrix: MatrixFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FormClass) Alloc() Form {
+	rv := objc.Send[Form](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FormClass) New() Form {
+	rv := objc.Send[Form](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ Form) Init() Form {
+	rv := objc.Send[Form](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ Form) Autorelease() Form {
+	rv := objc.Send[Form](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewForm creates a new Form instance.
+func NewForm() Form {
+	return formClass.New()
+}
+
 
 
 

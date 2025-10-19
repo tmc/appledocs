@@ -77,12 +77,23 @@ package {{.PackageName}}
 {{end -}}
 package {{.PackageName}}
 
+import (
+	"github.com/ebitengine/purego"
+)
+
 // frameworkPath is the system path to the framework binary.
 {{if eq .Framework "ObjectiveC" -}}
 const frameworkPath = "/usr/lib/libobjc.dylib"
 {{else -}}
 const frameworkPath = "/System/Library/Frameworks/{{.Framework}}.framework/{{.Framework}}"
-{{end -}}
+{{end}}
+
+func init() {
+	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
+	if err != nil {
+		panic(err)
+	}
+}
 
 -- types.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.

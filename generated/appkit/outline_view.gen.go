@@ -36,6 +36,36 @@ func OutlineViewFrom(ptr unsafe.Pointer) OutlineView {
 		TableView: TableViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (oc _OutlineViewClass) Alloc() OutlineView {
+	rv := objc.Send[OutlineView](objc.ID(oc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (oc _OutlineViewClass) New() OutlineView {
+	rv := objc.Send[OutlineView](objc.ID(oc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (o_ OutlineView) Init() OutlineView {
+	rv := objc.Send[OutlineView](o_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (o_ OutlineView) Autorelease() OutlineView {
+	rv := objc.Send[OutlineView](o_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewOutlineView creates a new OutlineView instance.
+func NewOutlineView() OutlineView {
+	return outlineViewClass.New()
+}
+
 
 
 

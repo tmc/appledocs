@@ -35,6 +35,36 @@ type GraphicsContext struct {
 func GraphicsContextFrom(ptr unsafe.Pointer) GraphicsContext {
 	return GraphicsContext{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (gc _GraphicsContextClass) Alloc() GraphicsContext {
+	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (gc _GraphicsContextClass) New() GraphicsContext {
+	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ GraphicsContext) Init() GraphicsContext {
+	rv := objc.Send[GraphicsContext](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ GraphicsContext) Autorelease() GraphicsContext {
+	rv := objc.Send[GraphicsContext](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGraphicsContext creates a new GraphicsContext instance.
+func NewGraphicsContext() GraphicsContext {
+	return graphicsContextClass.New()
+}
+
 
 
 

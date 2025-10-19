@@ -36,6 +36,36 @@ type Image struct {
 func ImageFrom(ptr unsafe.Pointer) Image {
 	return Image{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _ImageClass) Alloc() Image {
+	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _ImageClass) New() Image {
+	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ Image) Init() Image {
+	rv := objc.Send[Image](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ Image) Autorelease() Image {
+	rv := objc.Send[Image](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewImage creates a new Image instance.
+func NewImage() Image {
+	return imageClass.New()
+}
+
 
 // Returns the best representation for the device with the specified characteristics. [Full Topic]
 

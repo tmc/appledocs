@@ -36,6 +36,36 @@ func EPSImageRepFrom(ptr unsafe.Pointer) EPSImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ec _EPSImageRepClass) Alloc() EPSImageRep {
+	rv := objc.Send[EPSImageRep](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _EPSImageRepClass) New() EPSImageRep {
+	rv := objc.Send[EPSImageRep](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (e_ EPSImageRep) Init() EPSImageRep {
+	rv := objc.Send[EPSImageRep](e_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ EPSImageRep) Autorelease() EPSImageRep {
+	rv := objc.Send[EPSImageRep](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewEPSImageRep creates a new EPSImageRep instance.
+func NewEPSImageRep() EPSImageRep {
+	return ePSImageRepClass.New()
+}
+
 
 
 

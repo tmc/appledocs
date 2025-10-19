@@ -36,6 +36,36 @@ type Color struct {
 func ColorFrom(ptr unsafe.Pointer) Color {
 	return Color{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ColorClass) Alloc() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ColorClass) New() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ Color) Init() Color {
+	rv := objc.Send[Color](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ Color) Autorelease() Color {
+	rv := objc.Send[Color](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewColor creates a new Color instance.
+func NewColor() Color {
+	return colorClass.New()
+}
+
 
 // Creates a new color object whose color is the same as the receiver’s, except that the new color object is in the specified color space. [Full Topic]
 

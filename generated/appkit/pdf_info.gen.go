@@ -35,6 +35,36 @@ type PDFInfo struct {
 func PDFInfoFrom(ptr unsafe.Pointer) PDFInfo {
 	return PDFInfo{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PDFInfoClass) Alloc() PDFInfo {
+	rv := objc.Send[PDFInfo](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PDFInfoClass) New() PDFInfo {
+	rv := objc.Send[PDFInfo](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PDFInfo) Init() PDFInfo {
+	rv := objc.Send[PDFInfo](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PDFInfo) Autorelease() PDFInfo {
+	rv := objc.Send[PDFInfo](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPDFInfo creates a new PDFInfo instance.
+func NewPDFInfo() PDFInfo {
+	return pDFInfoClass.New()
+}
+
 
 
 

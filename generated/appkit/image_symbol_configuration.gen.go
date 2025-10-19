@@ -35,6 +35,36 @@ type ImageSymbolConfiguration struct {
 func ImageSymbolConfigurationFrom(ptr unsafe.Pointer) ImageSymbolConfiguration {
 	return ImageSymbolConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _ImageSymbolConfigurationClass) Alloc() ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _ImageSymbolConfigurationClass) New() ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ ImageSymbolConfiguration) Init() ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ ImageSymbolConfiguration) Autorelease() ImageSymbolConfiguration {
+	rv := objc.Send[ImageSymbolConfiguration](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewImageSymbolConfiguration creates a new ImageSymbolConfiguration instance.
+func NewImageSymbolConfiguration() ImageSymbolConfiguration {
+	return imageSymbolConfigurationClass.New()
+}
+
 
 
 

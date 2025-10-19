@@ -36,6 +36,36 @@ func MenuItemCellFrom(ptr unsafe.Pointer) MenuItemCell {
 		ButtonCell: ButtonCellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MenuItemCellClass) Alloc() MenuItemCell {
+	rv := objc.Send[MenuItemCell](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MenuItemCellClass) New() MenuItemCell {
+	rv := objc.Send[MenuItemCell](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MenuItemCell) Init() MenuItemCell {
+	rv := objc.Send[MenuItemCell](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MenuItemCell) Autorelease() MenuItemCell {
+	rv := objc.Send[MenuItemCell](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMenuItemCell creates a new MenuItemCell instance.
+func NewMenuItemCell() MenuItemCell {
+	return menuItemCellClass.New()
+}
+
 
 
 

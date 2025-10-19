@@ -36,6 +36,36 @@ func PredicateEditorFrom(ptr unsafe.Pointer) PredicateEditor {
 		RuleEditor: RuleEditorFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PredicateEditorClass) Alloc() PredicateEditor {
+	rv := objc.Send[PredicateEditor](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PredicateEditorClass) New() PredicateEditor {
+	rv := objc.Send[PredicateEditor](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PredicateEditor) Init() PredicateEditor {
+	rv := objc.Send[PredicateEditor](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PredicateEditor) Autorelease() PredicateEditor {
+	rv := objc.Send[PredicateEditor](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPredicateEditor creates a new PredicateEditor instance.
+func NewPredicateEditor() PredicateEditor {
+	return predicateEditorClass.New()
+}
+
 
 
 

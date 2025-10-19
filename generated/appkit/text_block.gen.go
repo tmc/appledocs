@@ -35,6 +35,36 @@ type TextBlock struct {
 func TextBlockFrom(ptr unsafe.Pointer) TextBlock {
 	return TextBlock{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextBlockClass) Alloc() TextBlock {
+	rv := objc.Send[TextBlock](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextBlockClass) New() TextBlock {
+	rv := objc.Send[TextBlock](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextBlock) Init() TextBlock {
+	rv := objc.Send[TextBlock](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextBlock) Autorelease() TextBlock {
+	rv := objc.Send[TextBlock](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextBlock creates a new TextBlock instance.
+func NewTextBlock() TextBlock {
+	return textBlockClass.New()
+}
+
 
 
 

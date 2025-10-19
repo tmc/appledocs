@@ -36,6 +36,36 @@ func CIImageRepFrom(ptr unsafe.Pointer) CIImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _CIImageRepClass) Alloc() CIImageRep {
+	rv := objc.Send[CIImageRep](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _CIImageRepClass) New() CIImageRep {
+	rv := objc.Send[CIImageRep](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ CIImageRep) Init() CIImageRep {
+	rv := objc.Send[CIImageRep](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ CIImageRep) Autorelease() CIImageRep {
+	rv := objc.Send[CIImageRep](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCIImageRep creates a new CIImageRep instance.
+func NewCIImageRep() CIImageRep {
+	return cIImageRepClass.New()
+}
+
 
 
 

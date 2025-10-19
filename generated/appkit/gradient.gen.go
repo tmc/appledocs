@@ -35,6 +35,36 @@ type Gradient struct {
 func GradientFrom(ptr unsafe.Pointer) Gradient {
 	return Gradient{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (gc _GradientClass) Alloc() Gradient {
+	rv := objc.Send[Gradient](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (gc _GradientClass) New() Gradient {
+	rv := objc.Send[Gradient](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ Gradient) Init() Gradient {
+	rv := objc.Send[Gradient](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ Gradient) Autorelease() Gradient {
+	rv := objc.Send[Gradient](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGradient creates a new Gradient instance.
+func NewGradient() Gradient {
+	return gradientClass.New()
+}
+
 
 
 

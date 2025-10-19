@@ -32,6 +32,36 @@ type InputServer struct {
 func InputServerFrom(ptr unsafe.Pointer) InputServer {
 	return InputServer{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _InputServerClass) Alloc() InputServer {
+	rv := objc.Send[InputServer](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _InputServerClass) New() InputServer {
+	rv := objc.Send[InputServer](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ InputServer) Init() InputServer {
+	rv := objc.Send[InputServer](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ InputServer) Autorelease() InputServer {
+	rv := objc.Send[InputServer](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewInputServer creates a new InputServer instance.
+func NewInputServer() InputServer {
+	return inputServerClass.New()
+}
+
 
 
 

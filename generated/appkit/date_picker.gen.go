@@ -36,6 +36,36 @@ func DatePickerFrom(ptr unsafe.Pointer) DatePicker {
 		Control: ControlFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DatePickerClass) Alloc() DatePicker {
+	rv := objc.Send[DatePicker](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DatePickerClass) New() DatePicker {
+	rv := objc.Send[DatePicker](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DatePicker) Init() DatePicker {
+	rv := objc.Send[DatePicker](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DatePicker) Autorelease() DatePicker {
+	rv := objc.Send[DatePicker](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDatePicker creates a new DatePicker instance.
+func NewDatePicker() DatePicker {
+	return datePickerClass.New()
+}
+
 
 
 

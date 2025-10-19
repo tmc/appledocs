@@ -36,6 +36,36 @@ func ColorPickerTouchBarItemFrom(ptr unsafe.Pointer) ColorPickerTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ColorPickerTouchBarItemClass) Alloc() ColorPickerTouchBarItem {
+	rv := objc.Send[ColorPickerTouchBarItem](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ColorPickerTouchBarItemClass) New() ColorPickerTouchBarItem {
+	rv := objc.Send[ColorPickerTouchBarItem](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ ColorPickerTouchBarItem) Init() ColorPickerTouchBarItem {
+	rv := objc.Send[ColorPickerTouchBarItem](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ ColorPickerTouchBarItem) Autorelease() ColorPickerTouchBarItem {
+	rv := objc.Send[ColorPickerTouchBarItem](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewColorPickerTouchBarItem creates a new ColorPickerTouchBarItem instance.
+func NewColorPickerTouchBarItem() ColorPickerTouchBarItem {
+	return colorPickerTouchBarItemClass.New()
+}
+
 
 
 

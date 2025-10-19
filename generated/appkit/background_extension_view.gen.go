@@ -36,6 +36,36 @@ func BackgroundExtensionViewFrom(ptr unsafe.Pointer) BackgroundExtensionView {
 		View: ViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _BackgroundExtensionViewClass) Alloc() BackgroundExtensionView {
+	rv := objc.Send[BackgroundExtensionView](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _BackgroundExtensionViewClass) New() BackgroundExtensionView {
+	rv := objc.Send[BackgroundExtensionView](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ BackgroundExtensionView) Init() BackgroundExtensionView {
+	rv := objc.Send[BackgroundExtensionView](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ BackgroundExtensionView) Autorelease() BackgroundExtensionView {
+	rv := objc.Send[BackgroundExtensionView](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewBackgroundExtensionView creates a new BackgroundExtensionView instance.
+func NewBackgroundExtensionView() BackgroundExtensionView {
+	return backgroundExtensionViewClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type TouchBarItem struct {
 func TouchBarItemFrom(ptr unsafe.Pointer) TouchBarItem {
 	return TouchBarItem{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TouchBarItemClass) Alloc() TouchBarItem {
+	rv := objc.Send[TouchBarItem](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TouchBarItemClass) New() TouchBarItem {
+	rv := objc.Send[TouchBarItem](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TouchBarItem) Init() TouchBarItem {
+	rv := objc.Send[TouchBarItem](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TouchBarItem) Autorelease() TouchBarItem {
+	rv := objc.Send[TouchBarItem](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTouchBarItem creates a new TouchBarItem instance.
+func NewTouchBarItem() TouchBarItem {
+	return touchBarItemClass.New()
+}
+
 
 
 

@@ -36,6 +36,36 @@ func OpenPanelFrom(ptr unsafe.Pointer) OpenPanel {
 		SavePanel: SavePanelFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (oc _OpenPanelClass) Alloc() OpenPanel {
+	rv := objc.Send[OpenPanel](objc.ID(oc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (oc _OpenPanelClass) New() OpenPanel {
+	rv := objc.Send[OpenPanel](objc.ID(oc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (o_ OpenPanel) Init() OpenPanel {
+	rv := objc.Send[OpenPanel](o_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (o_ OpenPanel) Autorelease() OpenPanel {
+	rv := objc.Send[OpenPanel](o_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewOpenPanel creates a new OpenPanel instance.
+func NewOpenPanel() OpenPanel {
+	return openPanelClass.New()
+}
+
 
 
 

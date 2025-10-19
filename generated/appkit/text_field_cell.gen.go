@@ -36,6 +36,36 @@ func TextFieldCellFrom(ptr unsafe.Pointer) TextFieldCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextFieldCellClass) Alloc() TextFieldCell {
+	rv := objc.Send[TextFieldCell](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextFieldCellClass) New() TextFieldCell {
+	rv := objc.Send[TextFieldCell](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextFieldCell) Init() TextFieldCell {
+	rv := objc.Send[TextFieldCell](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextFieldCell) Autorelease() TextFieldCell {
+	rv := objc.Send[TextFieldCell](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextFieldCell creates a new TextFieldCell instance.
+func NewTextFieldCell() TextFieldCell {
+	return textFieldCellClass.New()
+}
+
 
 
 

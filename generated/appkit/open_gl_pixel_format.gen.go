@@ -35,6 +35,36 @@ type OpenGLPixelFormat struct {
 func OpenGLPixelFormatFrom(ptr unsafe.Pointer) OpenGLPixelFormat {
 	return OpenGLPixelFormat{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (oc _OpenGLPixelFormatClass) Alloc() OpenGLPixelFormat {
+	rv := objc.Send[OpenGLPixelFormat](objc.ID(oc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (oc _OpenGLPixelFormatClass) New() OpenGLPixelFormat {
+	rv := objc.Send[OpenGLPixelFormat](objc.ID(oc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (o_ OpenGLPixelFormat) Init() OpenGLPixelFormat {
+	rv := objc.Send[OpenGLPixelFormat](o_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (o_ OpenGLPixelFormat) Autorelease() OpenGLPixelFormat {
+	rv := objc.Send[OpenGLPixelFormat](o_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewOpenGLPixelFormat creates a new OpenGLPixelFormat instance.
+func NewOpenGLPixelFormat() OpenGLPixelFormat {
+	return openGLPixelFormatClass.New()
+}
+
 
 
 

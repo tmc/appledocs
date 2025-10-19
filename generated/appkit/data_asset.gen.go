@@ -35,6 +35,36 @@ type DataAsset struct {
 func DataAssetFrom(ptr unsafe.Pointer) DataAsset {
 	return DataAsset{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DataAssetClass) Alloc() DataAsset {
+	rv := objc.Send[DataAsset](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DataAssetClass) New() DataAsset {
+	rv := objc.Send[DataAsset](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DataAsset) Init() DataAsset {
+	rv := objc.Send[DataAsset](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DataAsset) Autorelease() DataAsset {
+	rv := objc.Send[DataAsset](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDataAsset creates a new DataAsset instance.
+func NewDataAsset() DataAsset {
+	return dataAssetClass.New()
+}
+
 
 
 

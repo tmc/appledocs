@@ -36,6 +36,36 @@ func ImageCellFrom(ptr unsafe.Pointer) ImageCell {
 		Cell: CellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _ImageCellClass) Alloc() ImageCell {
+	rv := objc.Send[ImageCell](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _ImageCellClass) New() ImageCell {
+	rv := objc.Send[ImageCell](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ ImageCell) Init() ImageCell {
+	rv := objc.Send[ImageCell](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ ImageCell) Autorelease() ImageCell {
+	rv := objc.Send[ImageCell](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewImageCell creates a new ImageCell instance.
+func NewImageCell() ImageCell {
+	return imageCellClass.New()
+}
+
 
 
 

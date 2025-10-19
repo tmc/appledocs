@@ -36,6 +36,36 @@ func ScrubberProportionalLayoutFrom(ptr unsafe.Pointer) ScrubberProportionalLayo
 		ScrubberLayout: ScrubberLayoutFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScrubberProportionalLayoutClass) Alloc() ScrubberProportionalLayout {
+	rv := objc.Send[ScrubberProportionalLayout](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScrubberProportionalLayoutClass) New() ScrubberProportionalLayout {
+	rv := objc.Send[ScrubberProportionalLayout](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScrubberProportionalLayout) Init() ScrubberProportionalLayout {
+	rv := objc.Send[ScrubberProportionalLayout](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScrubberProportionalLayout) Autorelease() ScrubberProportionalLayout {
+	rv := objc.Send[ScrubberProportionalLayout](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScrubberProportionalLayout creates a new ScrubberProportionalLayout instance.
+func NewScrubberProportionalLayout() ScrubberProportionalLayout {
+	return scrubberProportionalLayoutClass.New()
+}
+
 
 
 

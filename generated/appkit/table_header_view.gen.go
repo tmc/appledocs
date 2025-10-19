@@ -38,6 +38,36 @@ func TableHeaderViewFrom(ptr unsafe.Pointer) TableHeaderView {
 		View: ViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TableHeaderViewClass) Alloc() TableHeaderView {
+	rv := objc.Send[TableHeaderView](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TableHeaderViewClass) New() TableHeaderView {
+	rv := objc.Send[TableHeaderView](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TableHeaderView) Init() TableHeaderView {
+	rv := objc.Send[TableHeaderView](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TableHeaderView) Autorelease() TableHeaderView {
+	rv := objc.Send[TableHeaderView](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTableHeaderView creates a new TableHeaderView instance.
+func NewTableHeaderView() TableHeaderView {
+	return tableHeaderViewClass.New()
+}
+
 
 // Returns the index of the column whose header lies under in the receiver, or –1 if no such column is found. [Full Topic]
 

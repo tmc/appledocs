@@ -73,6 +73,8 @@ func (v_ ViewController) Autorelease() ViewController {
 func NewViewController() ViewController {
 	return viewControllerClass.New()
 }
+
+
 // Returns a view controller object initialized to the nib file in the specified bundle. [Full Topic]
 
 //

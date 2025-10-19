@@ -41,6 +41,36 @@ func TableRowViewFrom(ptr unsafe.Pointer) TableRowView {
 		View: ViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TableRowViewClass) Alloc() TableRowView {
+	rv := objc.Send[TableRowView](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TableRowViewClass) New() TableRowView {
+	rv := objc.Send[TableRowView](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TableRowView) Init() TableRowView {
+	rv := objc.Send[TableRowView](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TableRowView) Autorelease() TableRowView {
+	rv := objc.Send[TableRowView](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTableRowView creates a new TableRowView instance.
+func NewTableRowView() TableRowView {
+	return tableRowViewClass.New()
+}
+
 
 // Draws the background of the row in the rectangle. [Full Topic]
 

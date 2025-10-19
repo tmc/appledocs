@@ -35,6 +35,36 @@ type WritingToolsCoordinatorContext struct {
 func WritingToolsCoordinatorContextFrom(ptr unsafe.Pointer) WritingToolsCoordinatorContext {
 	return WritingToolsCoordinatorContext{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (wc _WritingToolsCoordinatorContextClass) Alloc() WritingToolsCoordinatorContext {
+	rv := objc.Send[WritingToolsCoordinatorContext](objc.ID(wc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (wc _WritingToolsCoordinatorContextClass) New() WritingToolsCoordinatorContext {
+	rv := objc.Send[WritingToolsCoordinatorContext](objc.ID(wc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (w_ WritingToolsCoordinatorContext) Init() WritingToolsCoordinatorContext {
+	rv := objc.Send[WritingToolsCoordinatorContext](w_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (w_ WritingToolsCoordinatorContext) Autorelease() WritingToolsCoordinatorContext {
+	rv := objc.Send[WritingToolsCoordinatorContext](w_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewWritingToolsCoordinatorContext creates a new WritingToolsCoordinatorContext instance.
+func NewWritingToolsCoordinatorContext() WritingToolsCoordinatorContext {
+	return writingToolsCoordinatorContextClass.New()
+}
+
 
 
 

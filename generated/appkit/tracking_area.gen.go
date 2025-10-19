@@ -35,6 +35,36 @@ type TrackingArea struct {
 func TrackingAreaFrom(ptr unsafe.Pointer) TrackingArea {
 	return TrackingArea{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TrackingAreaClass) Alloc() TrackingArea {
+	rv := objc.Send[TrackingArea](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TrackingAreaClass) New() TrackingArea {
+	rv := objc.Send[TrackingArea](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TrackingArea) Init() TrackingArea {
+	rv := objc.Send[TrackingArea](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TrackingArea) Autorelease() TrackingArea {
+	rv := objc.Send[TrackingArea](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTrackingArea creates a new TrackingArea instance.
+func NewTrackingArea() TrackingArea {
+	return trackingAreaClass.New()
+}
+
 
 
 

@@ -36,6 +36,36 @@ func PickerTouchBarItemFrom(ptr unsafe.Pointer) PickerTouchBarItem {
 		TouchBarItem: TouchBarItemFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PickerTouchBarItemClass) Alloc() PickerTouchBarItem {
+	rv := objc.Send[PickerTouchBarItem](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PickerTouchBarItemClass) New() PickerTouchBarItem {
+	rv := objc.Send[PickerTouchBarItem](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PickerTouchBarItem) Init() PickerTouchBarItem {
+	rv := objc.Send[PickerTouchBarItem](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PickerTouchBarItem) Autorelease() PickerTouchBarItem {
+	rv := objc.Send[PickerTouchBarItem](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPickerTouchBarItem creates a new PickerTouchBarItem instance.
+func NewPickerTouchBarItem() PickerTouchBarItem {
+	return pickerTouchBarItemClass.New()
+}
+
 
 
 

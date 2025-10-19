@@ -36,6 +36,36 @@ func LayoutXAxisAnchorFrom(ptr unsafe.Pointer) LayoutXAxisAnchor {
 		LayoutAnchor: LayoutAnchorFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (lc _LayoutXAxisAnchorClass) Alloc() LayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](objc.ID(lc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (lc _LayoutXAxisAnchorClass) New() LayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](objc.ID(lc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (l_ LayoutXAxisAnchor) Init() LayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](l_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (l_ LayoutXAxisAnchor) Autorelease() LayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](l_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewLayoutXAxisAnchor creates a new LayoutXAxisAnchor instance.
+func NewLayoutXAxisAnchor() LayoutXAxisAnchor {
+	return layoutXAxisAnchorClass.New()
+}
+
 
 
 

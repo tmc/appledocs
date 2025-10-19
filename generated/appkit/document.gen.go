@@ -37,13 +37,43 @@ type Document struct {
 func DocumentFrom(ptr unsafe.Pointer) Document {
 	return Document{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DocumentClass) Alloc() Document {
+	rv := objc.Send[Document](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DocumentClass) New() Document {
+	rv := objc.Send[Document](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ Document) Init() Document {
+	rv := objc.Send[Document](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ Document) Autorelease() Document {
+	rv := objc.Send[Document](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDocument creates a new Document instance.
+func NewDocument() Document {
+	return documentClass.New()
+}
+
 
 // Returns the classes that support secure coding. [Full Topic]
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/allowedClasses(forRestorableStateKeyPath:)
 func (dc _DocumentClass) AllowedClassesForRestorableStateKeyPath(keyPath string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("allowedClassesForRestorableStateKeyPath:"), keyPath)
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("allowedClassesForRestorableStateKeyPath:"), objc.String(keyPath))
 	return rv
 }
 // Saves the interface-related state of the document. [Full Topic]

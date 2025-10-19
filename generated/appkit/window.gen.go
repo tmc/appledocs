@@ -202,16 +202,8 @@ func (w_ Window) Autorelease() Window {
 func NewWindow() Window {
 	return windowClass.New()
 }
-// Initializes the window with the specified values. [Full Topic]
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
-func NewWindowWithContentRectStyleMaskBackingDefer(contentRect unsafe.Pointer, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
-	instance := windowClass.Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
-	rv.Autorelease()
-	return rv
-}
+
 // Initializes an allocated window with the specified values. [Full Topic]
 
 //
@@ -238,6 +230,16 @@ func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Wi
 func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
 	instance := windowClass.Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
+	rv.Autorelease()
+	return rv
+}
+// Initializes the window with the specified values. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
+func NewWindowWithContentRectStyleMaskBackingDefer(contentRect unsafe.Pointer, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
+	instance := windowClass.Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
 	rv.Autorelease()
 	return rv
 }
@@ -279,7 +281,7 @@ func (wc _WindowClass) MenuChanged(menu unsafe.Pointer) {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minFrameWidth(withTitle:styleMask:)
 func (wc _WindowClass) MinFrameWidthWithTitleStyleMask(title string, style WindowStyleMask) float64 {
-	rv := objc.Send[float64](objc.ID(wc.class), objc.Sel("minFrameWidthWithTitle:styleMask:"), title, style)
+	rv := objc.Send[float64](objc.ID(wc.class), objc.Sel("minFrameWidthWithTitle:styleMask:"), objc.String(title), style)
 	return rv
 }
 // Removes the frame data stored under a given name from the application’s user defaults. [Full Topic]
@@ -971,7 +973,7 @@ func (w_ Window) RequestSharingOfWindowCompletionHandler(window unsafe.Pointer, 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/requestSharingOfWindow(usingPreview:title:completionHandler:)
 func (w_ Window) RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image unsafe.Pointer, title string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("requestSharingOfWindowUsingPreview:title:completionHandler:"), image, title, completionHandler)
+	objc.Send[objc.ID](w_.ID, objc.Sel("requestSharingOfWindowUsingPreview:title:completionHandler:"), image, objc.String(title), completionHandler)
 }
 // Clears the window’s cursor rectangles and the cursor rectangles of the objects in its view hierarchy. [Full Topic]
 
@@ -1184,7 +1186,7 @@ func (w_ Window) SetIsZoomed(flag bool) {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setTitleWithRepresentedFilename(_:)
 func (w_ Window) SetTitleWithRepresentedFilename(filename string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitleWithRepresentedFilename:"), filename)
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitleWithRepresentedFilename:"), objc.String(filename))
 }
 // Returns the window button of a given window button kind in the window’s view hierarchy. [Full Topic]
 

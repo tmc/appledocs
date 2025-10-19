@@ -35,6 +35,36 @@ type GridCell struct {
 func GridCellFrom(ptr unsafe.Pointer) GridCell {
 	return GridCell{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (gc _GridCellClass) Alloc() GridCell {
+	rv := objc.Send[GridCell](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (gc _GridCellClass) New() GridCell {
+	rv := objc.Send[GridCell](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ GridCell) Init() GridCell {
+	rv := objc.Send[GridCell](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ GridCell) Autorelease() GridCell {
+	rv := objc.Send[GridCell](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGridCell creates a new GridCell instance.
+func NewGridCell() GridCell {
+	return gridCellClass.New()
+}
+
 
 
 

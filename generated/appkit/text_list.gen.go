@@ -35,6 +35,36 @@ type TextList struct {
 func TextListFrom(ptr unsafe.Pointer) TextList {
 	return TextList{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextListClass) Alloc() TextList {
+	rv := objc.Send[TextList](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextListClass) New() TextList {
+	rv := objc.Send[TextList](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextList) Init() TextList {
+	rv := objc.Send[TextList](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextList) Autorelease() TextList {
+	rv := objc.Send[TextList](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextList creates a new TextList instance.
+func NewTextList() TextList {
+	return textListClass.New()
+}
+
 
 
 

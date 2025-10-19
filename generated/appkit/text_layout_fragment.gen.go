@@ -35,6 +35,36 @@ type TextLayoutFragment struct {
 func TextLayoutFragmentFrom(ptr unsafe.Pointer) TextLayoutFragment {
 	return TextLayoutFragment{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextLayoutFragmentClass) Alloc() TextLayoutFragment {
+	rv := objc.Send[TextLayoutFragment](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextLayoutFragmentClass) New() TextLayoutFragment {
+	rv := objc.Send[TextLayoutFragment](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextLayoutFragment) Init() TextLayoutFragment {
+	rv := objc.Send[TextLayoutFragment](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextLayoutFragment) Autorelease() TextLayoutFragment {
+	rv := objc.Send[TextLayoutFragment](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextLayoutFragment creates a new TextLayoutFragment instance.
+func NewTextLayoutFragment() TextLayoutFragment {
+	return textLayoutFragmentClass.New()
+}
+
 
 
 

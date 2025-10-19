@@ -35,6 +35,36 @@ type SharingService struct {
 func SharingServiceFrom(ptr unsafe.Pointer) SharingService {
 	return SharingService{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SharingServiceClass) Alloc() SharingService {
+	rv := objc.Send[SharingService](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SharingServiceClass) New() SharingService {
+	rv := objc.Send[SharingService](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SharingService) Init() SharingService {
+	rv := objc.Send[SharingService](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SharingService) Autorelease() SharingService {
+	rv := objc.Send[SharingService](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSharingService creates a new SharingService instance.
+func NewSharingService() SharingService {
+	return sharingServiceClass.New()
+}
+
 
 // Returns a list of sharing services which could share all the provided items together. [Full Topic]
 

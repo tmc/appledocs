@@ -36,6 +36,36 @@ func StepperFrom(ptr unsafe.Pointer) Stepper {
 		Control: ControlFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _StepperClass) Alloc() Stepper {
+	rv := objc.Send[Stepper](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _StepperClass) New() Stepper {
+	rv := objc.Send[Stepper](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ Stepper) Init() Stepper {
+	rv := objc.Send[Stepper](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ Stepper) Autorelease() Stepper {
+	rv := objc.Send[Stepper](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewStepper creates a new Stepper instance.
+func NewStepper() Stepper {
+	return stepperClass.New()
+}
+
 
 
 

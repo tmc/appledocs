@@ -38,6 +38,36 @@ type Workspace struct {
 func WorkspaceFrom(ptr unsafe.Pointer) Workspace {
 	return Workspace{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (wc _WorkspaceClass) Alloc() Workspace {
+	rv := objc.Send[Workspace](objc.ID(wc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (wc _WorkspaceClass) New() Workspace {
+	rv := objc.Send[Workspace](objc.ID(wc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (w_ Workspace) Init() Workspace {
+	rv := objc.Send[Workspace](w_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (w_ Workspace) Autorelease() Workspace {
+	rv := objc.Send[Workspace](w_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewWorkspace creates a new Workspace instance.
+func NewWorkspace() Workspace {
+	return workspaceClass.New()
+}
+
 
 // Launches the app at the specified URL. [Full Topic]
 

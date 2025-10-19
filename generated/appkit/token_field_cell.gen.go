@@ -36,6 +36,36 @@ func TokenFieldCellFrom(ptr unsafe.Pointer) TokenFieldCell {
 		TextFieldCell: TextFieldCellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TokenFieldCellClass) Alloc() TokenFieldCell {
+	rv := objc.Send[TokenFieldCell](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TokenFieldCellClass) New() TokenFieldCell {
+	rv := objc.Send[TokenFieldCell](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TokenFieldCell) Init() TokenFieldCell {
+	rv := objc.Send[TokenFieldCell](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TokenFieldCell) Autorelease() TokenFieldCell {
+	rv := objc.Send[TokenFieldCell](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTokenFieldCell creates a new TokenFieldCell instance.
+func NewTokenFieldCell() TokenFieldCell {
+	return tokenFieldCellClass.New()
+}
+
 
 
 

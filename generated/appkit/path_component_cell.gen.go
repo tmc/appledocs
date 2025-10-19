@@ -36,6 +36,36 @@ func PathComponentCellFrom(ptr unsafe.Pointer) PathComponentCell {
 		TextFieldCell: TextFieldCellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PathComponentCellClass) Alloc() PathComponentCell {
+	rv := objc.Send[PathComponentCell](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PathComponentCellClass) New() PathComponentCell {
+	rv := objc.Send[PathComponentCell](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PathComponentCell) Init() PathComponentCell {
+	rv := objc.Send[PathComponentCell](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PathComponentCell) Autorelease() PathComponentCell {
+	rv := objc.Send[PathComponentCell](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPathComponentCell creates a new PathComponentCell instance.
+func NewPathComponentCell() PathComponentCell {
+	return pathComponentCellClass.New()
+}
+
 
 
 

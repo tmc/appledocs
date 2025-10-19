@@ -35,6 +35,36 @@ type StringDrawingContext struct {
 func StringDrawingContextFrom(ptr unsafe.Pointer) StringDrawingContext {
 	return StringDrawingContext{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _StringDrawingContextClass) Alloc() StringDrawingContext {
+	rv := objc.Send[StringDrawingContext](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _StringDrawingContextClass) New() StringDrawingContext {
+	rv := objc.Send[StringDrawingContext](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ StringDrawingContext) Init() StringDrawingContext {
+	rv := objc.Send[StringDrawingContext](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ StringDrawingContext) Autorelease() StringDrawingContext {
+	rv := objc.Send[StringDrawingContext](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewStringDrawingContext creates a new StringDrawingContext instance.
+func NewStringDrawingContext() StringDrawingContext {
+	return stringDrawingContextClass.New()
+}
+
 
 
 

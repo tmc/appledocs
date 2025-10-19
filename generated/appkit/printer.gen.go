@@ -35,6 +35,36 @@ type Printer struct {
 func PrinterFrom(ptr unsafe.Pointer) Printer {
 	return Printer{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PrinterClass) Alloc() Printer {
+	rv := objc.Send[Printer](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PrinterClass) New() Printer {
+	rv := objc.Send[Printer](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ Printer) Init() Printer {
+	rv := objc.Send[Printer](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ Printer) Autorelease() Printer {
+	rv := objc.Send[Printer](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPrinter creates a new Printer instance.
+func NewPrinter() Printer {
+	return printerClass.New()
+}
+
 
 
 

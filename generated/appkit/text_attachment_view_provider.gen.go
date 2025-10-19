@@ -35,6 +35,36 @@ type TextAttachmentViewProvider struct {
 func TextAttachmentViewProviderFrom(ptr unsafe.Pointer) TextAttachmentViewProvider {
 	return TextAttachmentViewProvider{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextAttachmentViewProviderClass) Alloc() TextAttachmentViewProvider {
+	rv := objc.Send[TextAttachmentViewProvider](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextAttachmentViewProviderClass) New() TextAttachmentViewProvider {
+	rv := objc.Send[TextAttachmentViewProvider](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextAttachmentViewProvider) Init() TextAttachmentViewProvider {
+	rv := objc.Send[TextAttachmentViewProvider](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextAttachmentViewProvider) Autorelease() TextAttachmentViewProvider {
+	rv := objc.Send[TextAttachmentViewProvider](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextAttachmentViewProvider creates a new TextAttachmentViewProvider instance.
+func NewTextAttachmentViewProvider() TextAttachmentViewProvider {
+	return textAttachmentViewProviderClass.New()
+}
+
 
 
 

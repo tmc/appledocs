@@ -36,6 +36,36 @@ func SegmentedControlFrom(ptr unsafe.Pointer) SegmentedControl {
 		Control: ControlFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SegmentedControlClass) Alloc() SegmentedControl {
+	rv := objc.Send[SegmentedControl](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SegmentedControlClass) New() SegmentedControl {
+	rv := objc.Send[SegmentedControl](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SegmentedControl) Init() SegmentedControl {
+	rv := objc.Send[SegmentedControl](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SegmentedControl) Autorelease() SegmentedControl {
+	rv := objc.Send[SegmentedControl](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSegmentedControl creates a new SegmentedControl instance.
+func NewSegmentedControl() SegmentedControl {
+	return segmentedControlClass.New()
+}
+
 
 
 

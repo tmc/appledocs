@@ -36,6 +36,36 @@ func StepperCellFrom(ptr unsafe.Pointer) StepperCell {
 		ActionCell: ActionCellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _StepperCellClass) Alloc() StepperCell {
+	rv := objc.Send[StepperCell](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _StepperCellClass) New() StepperCell {
+	rv := objc.Send[StepperCell](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ StepperCell) Init() StepperCell {
+	rv := objc.Send[StepperCell](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ StepperCell) Autorelease() StepperCell {
+	rv := objc.Send[StepperCell](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewStepperCell creates a new StepperCell instance.
+func NewStepperCell() StepperCell {
+	return stepperCellClass.New()
+}
+
 
 
 

@@ -36,6 +36,36 @@ func ToolbarItemGroupFrom(ptr unsafe.Pointer) ToolbarItemGroup {
 		ToolbarItem: ToolbarItemFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _ToolbarItemGroupClass) Alloc() ToolbarItemGroup {
+	rv := objc.Send[ToolbarItemGroup](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _ToolbarItemGroupClass) New() ToolbarItemGroup {
+	rv := objc.Send[ToolbarItemGroup](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ ToolbarItemGroup) Init() ToolbarItemGroup {
+	rv := objc.Send[ToolbarItemGroup](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ ToolbarItemGroup) Autorelease() ToolbarItemGroup {
+	rv := objc.Send[ToolbarItemGroup](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewToolbarItemGroup creates a new ToolbarItemGroup instance.
+func NewToolbarItemGroup() ToolbarItemGroup {
+	return toolbarItemGroupClass.New()
+}
+
 
 
 

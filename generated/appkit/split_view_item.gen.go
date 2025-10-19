@@ -64,9 +64,11 @@ func (s_ SplitViewItem) Autorelease() SplitViewItem {
 func NewSplitViewItem() SplitViewItem {
 	return splitViewItemClass.New()
 }
+
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/init(inspectorWithViewController:)
-func NewInspectorWithViewController(viewController unsafe.Pointer) SplitViewItem {
+func NewSplitViewItemInspectorWithViewController(viewController unsafe.Pointer) SplitViewItem {
 	rv := objc.Send[SplitViewItem](objc.ID(splitViewItemClass.class), objc.Sel("inspectorWithViewController:"), viewController)
 	rv.Autorelease()
 	return rv

@@ -35,6 +35,36 @@ type OpenGLContext struct {
 func OpenGLContextFrom(ptr unsafe.Pointer) OpenGLContext {
 	return OpenGLContext{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (oc _OpenGLContextClass) Alloc() OpenGLContext {
+	rv := objc.Send[OpenGLContext](objc.ID(oc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (oc _OpenGLContextClass) New() OpenGLContext {
+	rv := objc.Send[OpenGLContext](objc.ID(oc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (o_ OpenGLContext) Init() OpenGLContext {
+	rv := objc.Send[OpenGLContext](o_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (o_ OpenGLContext) Autorelease() OpenGLContext {
+	rv := objc.Send[OpenGLContext](o_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewOpenGLContext creates a new OpenGLContext instance.
+func NewOpenGLContext() OpenGLContext {
+	return openGLContextClass.New()
+}
+
 
 
 

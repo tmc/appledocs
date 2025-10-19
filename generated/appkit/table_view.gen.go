@@ -38,6 +38,36 @@ func TableViewFrom(ptr unsafe.Pointer) TableView {
 		Control: ControlFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TableViewClass) Alloc() TableView {
+	rv := objc.Send[TableView](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TableViewClass) New() TableView {
+	rv := objc.Send[TableView](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TableView) Init() TableView {
+	rv := objc.Send[TableView](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TableView) Autorelease() TableView {
+	rv := objc.Send[TableView](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTableView creates a new TableView instance.
+func NewTableView() TableView {
+	return tableViewClass.New()
+}
+
 
 // Returns the rectangle containing the row at the specified index. [Full Topic]
 

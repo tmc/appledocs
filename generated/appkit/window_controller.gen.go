@@ -36,6 +36,36 @@ func WindowControllerFrom(ptr unsafe.Pointer) WindowController {
 		Responder: ResponderFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (wc _WindowControllerClass) Alloc() WindowController {
+	rv := objc.Send[WindowController](objc.ID(wc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (wc _WindowControllerClass) New() WindowController {
+	rv := objc.Send[WindowController](objc.ID(wc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (w_ WindowController) Init() WindowController {
+	rv := objc.Send[WindowController](w_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (w_ WindowController) Autorelease() WindowController {
+	rv := objc.Send[WindowController](w_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewWindowController creates a new WindowController instance.
+func NewWindowController() WindowController {
+	return windowControllerClass.New()
+}
+
 
 
 

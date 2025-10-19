@@ -35,6 +35,36 @@ type WritingToolsCoordinatorAnimationParameters struct {
 func WritingToolsCoordinatorAnimationParametersFrom(ptr unsafe.Pointer) WritingToolsCoordinatorAnimationParameters {
 	return WritingToolsCoordinatorAnimationParameters{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (wc _WritingToolsCoordinatorAnimationParametersClass) Alloc() WritingToolsCoordinatorAnimationParameters {
+	rv := objc.Send[WritingToolsCoordinatorAnimationParameters](objc.ID(wc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (wc _WritingToolsCoordinatorAnimationParametersClass) New() WritingToolsCoordinatorAnimationParameters {
+	rv := objc.Send[WritingToolsCoordinatorAnimationParameters](objc.ID(wc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (w_ WritingToolsCoordinatorAnimationParameters) Init() WritingToolsCoordinatorAnimationParameters {
+	rv := objc.Send[WritingToolsCoordinatorAnimationParameters](w_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (w_ WritingToolsCoordinatorAnimationParameters) Autorelease() WritingToolsCoordinatorAnimationParameters {
+	rv := objc.Send[WritingToolsCoordinatorAnimationParameters](w_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewWritingToolsCoordinatorAnimationParameters creates a new WritingToolsCoordinatorAnimationParameters instance.
+func NewWritingToolsCoordinatorAnimationParameters() WritingToolsCoordinatorAnimationParameters {
+	return writingToolsCoordinatorAnimationParametersClass.New()
+}
+
 
 
 

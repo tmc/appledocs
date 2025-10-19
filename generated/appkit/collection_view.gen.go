@@ -76,6 +76,36 @@ func CollectionViewFrom(ptr unsafe.Pointer) CollectionView {
 		View: ViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CollectionViewClass) Alloc() CollectionView {
+	rv := objc.Send[CollectionView](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CollectionViewClass) New() CollectionView {
+	rv := objc.Send[CollectionView](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CollectionView) Init() CollectionView {
+	rv := objc.Send[CollectionView](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CollectionView) Autorelease() CollectionView {
+	rv := objc.Send[CollectionView](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCollectionView creates a new CollectionView instance.
+func NewCollectionView() CollectionView {
+	return collectionViewClass.New()
+}
+
 
 // Deletes the items at the specified index paths. [Full Topic]
 

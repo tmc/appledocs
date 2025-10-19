@@ -35,6 +35,36 @@ type PrintPanel struct {
 func PrintPanelFrom(ptr unsafe.Pointer) PrintPanel {
 	return PrintPanel{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PrintPanelClass) Alloc() PrintPanel {
+	rv := objc.Send[PrintPanel](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PrintPanelClass) New() PrintPanel {
+	rv := objc.Send[PrintPanel](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PrintPanel) Init() PrintPanel {
+	rv := objc.Send[PrintPanel](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PrintPanel) Autorelease() PrintPanel {
+	rv := objc.Send[PrintPanel](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPrintPanel creates a new PrintPanel instance.
+func NewPrintPanel() PrintPanel {
+	return printPanelClass.New()
+}
+
 
 
 

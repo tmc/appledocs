@@ -36,6 +36,36 @@ func DrawerFrom(ptr unsafe.Pointer) Drawer {
 		Responder: ResponderFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DrawerClass) Alloc() Drawer {
+	rv := objc.Send[Drawer](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DrawerClass) New() Drawer {
+	rv := objc.Send[Drawer](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ Drawer) Init() Drawer {
+	rv := objc.Send[Drawer](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ Drawer) Autorelease() Drawer {
+	rv := objc.Send[Drawer](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDrawer creates a new Drawer instance.
+func NewDrawer() Drawer {
+	return drawerClass.New()
+}
+
 
 
 

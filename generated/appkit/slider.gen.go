@@ -37,6 +37,36 @@ func SliderFrom(ptr unsafe.Pointer) Slider {
 		Control: ControlFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SliderClass) Alloc() Slider {
+	rv := objc.Send[Slider](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SliderClass) New() Slider {
+	rv := objc.Send[Slider](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ Slider) Init() Slider {
+	rv := objc.Send[Slider](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ Slider) Autorelease() Slider {
+	rv := objc.Send[Slider](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSlider creates a new Slider instance.
+func NewSlider() Slider {
+	return sliderClass.New()
+}
+
 
 // Sets the font used to draw the slider’s title. [Full Topic]
 

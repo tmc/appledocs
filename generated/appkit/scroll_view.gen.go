@@ -72,6 +72,8 @@ func (s_ ScrollView) Autorelease() ScrollView {
 func NewScrollView() ScrollView {
 	return scrollViewClass.New()
 }
+
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(coder:)
 func NewScrollViewWithCoder(coder unsafe.Pointer) ScrollView {

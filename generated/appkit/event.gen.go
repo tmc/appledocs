@@ -35,6 +35,36 @@ type Event struct {
 func EventFrom(ptr unsafe.Pointer) Event {
 	return Event{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ec _EventClass) Alloc() Event {
+	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ec _EventClass) New() Event {
+	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (e_ Event) Init() Event {
+	rv := objc.Send[Event](e_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (e_ Event) Autorelease() Event {
+	rv := objc.Send[Event](e_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewEvent creates a new Event instance.
+func NewEvent() Event {
+	return eventClass.New()
+}
+
 
 
 

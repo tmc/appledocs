@@ -36,6 +36,36 @@ func ColorPanelFrom(ptr unsafe.Pointer) ColorPanel {
 		Panel: PanelFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ColorPanelClass) Alloc() ColorPanel {
+	rv := objc.Send[ColorPanel](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ColorPanelClass) New() ColorPanel {
+	rv := objc.Send[ColorPanel](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ ColorPanel) Init() ColorPanel {
+	rv := objc.Send[ColorPanel](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ ColorPanel) Autorelease() ColorPanel {
+	rv := objc.Send[ColorPanel](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewColorPanel creates a new ColorPanel instance.
+func NewColorPanel() ColorPanel {
+	return colorPanelClass.New()
+}
+
 
 
 

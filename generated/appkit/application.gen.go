@@ -51,6 +51,36 @@ func ApplicationFrom(ptr unsafe.Pointer) Application {
 		Responder: ResponderFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _ApplicationClass) Alloc() Application {
+	rv := objc.Send[Application](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _ApplicationClass) New() Application {
+	rv := objc.Send[Application](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ Application) Init() Application {
+	rv := objc.Send[Application](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ Application) Autorelease() Application {
+	rv := objc.Send[Application](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewApplication creates a new Application instance.
+func NewApplication() Application {
+	return applicationClass.New()
+}
+
 
 // Sets up a modal session with the given window and returns a pointer to the structure representing the session. [Full Topic]
 

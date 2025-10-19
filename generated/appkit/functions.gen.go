@@ -8,6 +8,7 @@ import (
 	"github.com/ebitengine/purego"
 )
 
+
 // AppKit Functions (53 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -74,7 +75,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-
 	tryRegister(&_NSAccessibilityActionDescription, lib, "NSAccessibilityActionDescription")
 	tryRegister(&_NSAccessibilityRoleDescriptionForUIElement, lib, "NSAccessibilityRoleDescriptionForUIElement")
 	tryRegister(&_NSAccessibilityPostNotification, lib, "NSAccessibilityPostNotification")
@@ -141,6 +141,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	}()
 	purego.RegisterLibFunc(fn, lib, name)
 }
+
 
 
 // Returns a standard description for an action. [Full Topic]

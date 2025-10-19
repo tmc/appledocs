@@ -86,6 +86,8 @@ func (c_ Control) Autorelease() Control {
 func NewControl() Control {
 	return controlClass.New()
 }
+
+
 // Initializes a control with data in an unarchiver. [Full Topic]
 
 //

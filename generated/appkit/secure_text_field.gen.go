@@ -36,6 +36,36 @@ func SecureTextFieldFrom(ptr unsafe.Pointer) SecureTextField {
 		TextField: TextFieldFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SecureTextFieldClass) Alloc() SecureTextField {
+	rv := objc.Send[SecureTextField](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SecureTextFieldClass) New() SecureTextField {
+	rv := objc.Send[SecureTextField](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SecureTextField) Init() SecureTextField {
+	rv := objc.Send[SecureTextField](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SecureTextField) Autorelease() SecureTextField {
+	rv := objc.Send[SecureTextField](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSecureTextField creates a new SecureTextField instance.
+func NewSecureTextField() SecureTextField {
+	return secureTextFieldClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type ScrubberSelectionStyle struct {
 func ScrubberSelectionStyleFrom(ptr unsafe.Pointer) ScrubberSelectionStyle {
 	return ScrubberSelectionStyle{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScrubberSelectionStyleClass) Alloc() ScrubberSelectionStyle {
+	rv := objc.Send[ScrubberSelectionStyle](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScrubberSelectionStyleClass) New() ScrubberSelectionStyle {
+	rv := objc.Send[ScrubberSelectionStyle](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScrubberSelectionStyle) Init() ScrubberSelectionStyle {
+	rv := objc.Send[ScrubberSelectionStyle](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScrubberSelectionStyle) Autorelease() ScrubberSelectionStyle {
+	rv := objc.Send[ScrubberSelectionStyle](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScrubberSelectionStyle creates a new ScrubberSelectionStyle instance.
+func NewScrubberSelectionStyle() ScrubberSelectionStyle {
+	return scrubberSelectionStyleClass.New()
+}
+
 
 
 

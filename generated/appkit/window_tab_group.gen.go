@@ -38,6 +38,36 @@ type WindowTabGroup struct {
 func WindowTabGroupFrom(ptr unsafe.Pointer) WindowTabGroup {
 	return WindowTabGroup{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (wc _WindowTabGroupClass) Alloc() WindowTabGroup {
+	rv := objc.Send[WindowTabGroup](objc.ID(wc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (wc _WindowTabGroupClass) New() WindowTabGroup {
+	rv := objc.Send[WindowTabGroup](objc.ID(wc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (w_ WindowTabGroup) Init() WindowTabGroup {
+	rv := objc.Send[WindowTabGroup](w_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (w_ WindowTabGroup) Autorelease() WindowTabGroup {
+	rv := objc.Send[WindowTabGroup](w_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewWindowTabGroup creates a new WindowTabGroup instance.
+func NewWindowTabGroup() WindowTabGroup {
+	return windowTabGroupClass.New()
+}
+
 
 // Adds a window to the tab group. [Full Topic]
 

@@ -35,6 +35,36 @@ type TextContentManager struct {
 func TextContentManagerFrom(ptr unsafe.Pointer) TextContentManager {
 	return TextContentManager{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextContentManagerClass) Alloc() TextContentManager {
+	rv := objc.Send[TextContentManager](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextContentManagerClass) New() TextContentManager {
+	rv := objc.Send[TextContentManager](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextContentManager) Init() TextContentManager {
+	rv := objc.Send[TextContentManager](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextContentManager) Autorelease() TextContentManager {
+	rv := objc.Send[TextContentManager](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextContentManager creates a new TextContentManager instance.
+func NewTextContentManager() TextContentManager {
+	return textContentManagerClass.New()
+}
+
 
 
 

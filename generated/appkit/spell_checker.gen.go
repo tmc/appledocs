@@ -36,11 +36,41 @@ type SpellChecker struct {
 func SpellCheckerFrom(ptr unsafe.Pointer) SpellChecker {
 	return SpellChecker{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SpellCheckerClass) Alloc() SpellChecker {
+	rv := objc.Send[SpellChecker](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SpellCheckerClass) New() SpellChecker {
+	rv := objc.Send[SpellChecker](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SpellChecker) Init() SpellChecker {
+	rv := objc.Send[SpellChecker](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SpellChecker) Autorelease() SpellChecker {
+	rv := objc.Send[SpellChecker](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSpellChecker creates a new SpellChecker instance.
+func NewSpellChecker() SpellChecker {
+	return spellCheckerClass.New()
+}
+
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/requestCandidates(forSelectedRange:in:types:options:inSpellDocumentWithTag:completionHandler:)
 func (s_ SpellChecker) RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange unsafe.Pointer, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int {
-	rv := objc.Send[int](s_.ID, objc.Sel("requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:"), selectedRange, stringToCheck, checkingTypes, options, tag, completionHandler)
+	rv := objc.Send[int](s_.ID, objc.Sel("requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:"), selectedRange, objc.String(stringToCheck), checkingTypes, options, tag, completionHandler)
 	return rv
 }
 

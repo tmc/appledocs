@@ -36,6 +36,36 @@ func PopUpButtonFrom(ptr unsafe.Pointer) PopUpButton {
 		Button: ButtonFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PopUpButtonClass) Alloc() PopUpButton {
+	rv := objc.Send[PopUpButton](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PopUpButtonClass) New() PopUpButton {
+	rv := objc.Send[PopUpButton](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PopUpButton) Init() PopUpButton {
+	rv := objc.Send[PopUpButton](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PopUpButton) Autorelease() PopUpButton {
+	rv := objc.Send[PopUpButton](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPopUpButton creates a new PopUpButton instance.
+func NewPopUpButton() PopUpButton {
+	return popUpButtonClass.New()
+}
+
 
 
 

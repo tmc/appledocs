@@ -35,6 +35,36 @@ type TreeNode struct {
 func TreeNodeFrom(ptr unsafe.Pointer) TreeNode {
 	return TreeNode{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TreeNodeClass) Alloc() TreeNode {
+	rv := objc.Send[TreeNode](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TreeNodeClass) New() TreeNode {
+	rv := objc.Send[TreeNode](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TreeNode) Init() TreeNode {
+	rv := objc.Send[TreeNode](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TreeNode) Autorelease() TreeNode {
+	rv := objc.Send[TreeNode](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTreeNode creates a new TreeNode instance.
+func NewTreeNode() TreeNode {
+	return treeNodeClass.New()
+}
+
 
 
 

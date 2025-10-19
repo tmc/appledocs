@@ -35,6 +35,36 @@ type TableColumn struct {
 func TableColumnFrom(ptr unsafe.Pointer) TableColumn {
 	return TableColumn{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TableColumnClass) Alloc() TableColumn {
+	rv := objc.Send[TableColumn](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TableColumnClass) New() TableColumn {
+	rv := objc.Send[TableColumn](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TableColumn) Init() TableColumn {
+	rv := objc.Send[TableColumn](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TableColumn) Autorelease() TableColumn {
+	rv := objc.Send[TableColumn](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTableColumn creates a new TableColumn instance.
+func NewTableColumn() TableColumn {
+	return tableColumnClass.New()
+}
+
 
 
 

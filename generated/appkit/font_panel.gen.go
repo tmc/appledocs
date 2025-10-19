@@ -36,6 +36,36 @@ func FontPanelFrom(ptr unsafe.Pointer) FontPanel {
 		Panel: PanelFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (fc _FontPanelClass) Alloc() FontPanel {
+	rv := objc.Send[FontPanel](objc.ID(fc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (fc _FontPanelClass) New() FontPanel {
+	rv := objc.Send[FontPanel](objc.ID(fc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (f_ FontPanel) Init() FontPanel {
+	rv := objc.Send[FontPanel](f_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (f_ FontPanel) Autorelease() FontPanel {
+	rv := objc.Send[FontPanel](f_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewFontPanel creates a new FontPanel instance.
+func NewFontPanel() FontPanel {
+	return fontPanelClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type ColorList struct {
 func ColorListFrom(ptr unsafe.Pointer) ColorList {
 	return ColorList{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ColorListClass) Alloc() ColorList {
+	rv := objc.Send[ColorList](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ColorListClass) New() ColorList {
+	rv := objc.Send[ColorList](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ ColorList) Init() ColorList {
+	rv := objc.Send[ColorList](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ ColorList) Autorelease() ColorList {
+	rv := objc.Send[ColorList](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewColorList creates a new ColorList instance.
+func NewColorList() ColorList {
+	return colorListClass.New()
+}
+
 
 
 

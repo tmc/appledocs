@@ -35,6 +35,36 @@ type RulerMarker struct {
 func RulerMarkerFrom(ptr unsafe.Pointer) RulerMarker {
 	return RulerMarker{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (rc _RulerMarkerClass) Alloc() RulerMarker {
+	rv := objc.Send[RulerMarker](objc.ID(rc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (rc _RulerMarkerClass) New() RulerMarker {
+	rv := objc.Send[RulerMarker](objc.ID(rc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (r_ RulerMarker) Init() RulerMarker {
+	rv := objc.Send[RulerMarker](r_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (r_ RulerMarker) Autorelease() RulerMarker {
+	rv := objc.Send[RulerMarker](r_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewRulerMarker creates a new RulerMarker instance.
+func NewRulerMarker() RulerMarker {
+	return rulerMarkerClass.New()
+}
+
 
 
 

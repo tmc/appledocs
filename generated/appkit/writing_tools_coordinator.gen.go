@@ -37,6 +37,36 @@ type WritingToolsCoordinator struct {
 func WritingToolsCoordinatorFrom(ptr unsafe.Pointer) WritingToolsCoordinator {
 	return WritingToolsCoordinator{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (wc _WritingToolsCoordinatorClass) Alloc() WritingToolsCoordinator {
+	rv := objc.Send[WritingToolsCoordinator](objc.ID(wc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (wc _WritingToolsCoordinatorClass) New() WritingToolsCoordinator {
+	rv := objc.Send[WritingToolsCoordinator](objc.ID(wc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (w_ WritingToolsCoordinator) Init() WritingToolsCoordinator {
+	rv := objc.Send[WritingToolsCoordinator](w_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (w_ WritingToolsCoordinator) Autorelease() WritingToolsCoordinator {
+	rv := objc.Send[WritingToolsCoordinator](w_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewWritingToolsCoordinator creates a new WritingToolsCoordinator instance.
+func NewWritingToolsCoordinator() WritingToolsCoordinator {
+	return writingToolsCoordinatorClass.New()
+}
+
 
 // Informs the coordinator that a change occurred to the view or its text that requires a layout update. [Full Topic]
 

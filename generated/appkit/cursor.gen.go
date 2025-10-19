@@ -35,6 +35,36 @@ type Cursor struct {
 func CursorFrom(ptr unsafe.Pointer) Cursor {
 	return Cursor{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CursorClass) Alloc() Cursor {
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CursorClass) New() Cursor {
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ Cursor) Init() Cursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ Cursor) Autorelease() Cursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCursor creates a new Cursor instance.
+func NewCursor() Cursor {
+	return cursorClass.New()
+}
+
 
 
 

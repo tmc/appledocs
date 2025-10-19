@@ -36,6 +36,36 @@ type Touch struct {
 func TouchFrom(ptr unsafe.Pointer) Touch {
 	return Touch{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TouchClass) Alloc() Touch {
+	rv := objc.Send[Touch](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TouchClass) New() Touch {
+	rv := objc.Send[Touch](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ Touch) Init() Touch {
+	rv := objc.Send[Touch](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ Touch) Autorelease() Touch {
+	rv := objc.Send[Touch](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTouch creates a new Touch instance.
+func NewTouch() Touch {
+	return touchClass.New()
+}
+
 
 // Indicates the previous location of the touch in the view’s coordinates. [Full Topic]
 

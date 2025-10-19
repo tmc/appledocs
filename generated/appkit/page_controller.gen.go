@@ -36,6 +36,36 @@ func PageControllerFrom(ptr unsafe.Pointer) PageController {
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PageControllerClass) Alloc() PageController {
+	rv := objc.Send[PageController](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PageControllerClass) New() PageController {
+	rv := objc.Send[PageController](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PageController) Init() PageController {
+	rv := objc.Send[PageController](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PageController) Autorelease() PageController {
+	rv := objc.Send[PageController](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPageController creates a new PageController instance.
+func NewPageController() PageController {
+	return pageControllerClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type TextSelection struct {
 func TextSelectionFrom(ptr unsafe.Pointer) TextSelection {
 	return TextSelection{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextSelectionClass) Alloc() TextSelection {
+	rv := objc.Send[TextSelection](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextSelectionClass) New() TextSelection {
+	rv := objc.Send[TextSelection](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextSelection) Init() TextSelection {
+	rv := objc.Send[TextSelection](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextSelection) Autorelease() TextSelection {
+	rv := objc.Send[TextSelection](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextSelection creates a new TextSelection instance.
+func NewTextSelection() TextSelection {
+	return textSelectionClass.New()
+}
+
 
 
 

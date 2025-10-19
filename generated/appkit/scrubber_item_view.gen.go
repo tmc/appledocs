@@ -36,6 +36,36 @@ func ScrubberItemViewFrom(ptr unsafe.Pointer) ScrubberItemView {
 		ScrubberArrangedView: ScrubberArrangedViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _ScrubberItemViewClass) Alloc() ScrubberItemView {
+	rv := objc.Send[ScrubberItemView](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _ScrubberItemViewClass) New() ScrubberItemView {
+	rv := objc.Send[ScrubberItemView](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ ScrubberItemView) Init() ScrubberItemView {
+	rv := objc.Send[ScrubberItemView](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ ScrubberItemView) Autorelease() ScrubberItemView {
+	rv := objc.Send[ScrubberItemView](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewScrubberItemView creates a new ScrubberItemView instance.
+func NewScrubberItemView() ScrubberItemView {
+	return scrubberItemViewClass.New()
+}
+
 
 
 

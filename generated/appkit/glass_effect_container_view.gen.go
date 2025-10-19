@@ -36,6 +36,36 @@ func GlassEffectContainerViewFrom(ptr unsafe.Pointer) GlassEffectContainerView {
 		View: ViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (gc _GlassEffectContainerViewClass) Alloc() GlassEffectContainerView {
+	rv := objc.Send[GlassEffectContainerView](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (gc _GlassEffectContainerViewClass) New() GlassEffectContainerView {
+	rv := objc.Send[GlassEffectContainerView](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ GlassEffectContainerView) Init() GlassEffectContainerView {
+	rv := objc.Send[GlassEffectContainerView](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ GlassEffectContainerView) Autorelease() GlassEffectContainerView {
+	rv := objc.Send[GlassEffectContainerView](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGlassEffectContainerView creates a new GlassEffectContainerView instance.
+func NewGlassEffectContainerView() GlassEffectContainerView {
+	return glassEffectContainerViewClass.New()
+}
+
 
 
 

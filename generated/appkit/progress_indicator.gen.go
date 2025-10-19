@@ -43,6 +43,36 @@ func ProgressIndicatorFrom(ptr unsafe.Pointer) ProgressIndicator {
 		View: ViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _ProgressIndicatorClass) Alloc() ProgressIndicator {
+	rv := objc.Send[ProgressIndicator](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _ProgressIndicatorClass) New() ProgressIndicator {
+	rv := objc.Send[ProgressIndicator](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ ProgressIndicator) Init() ProgressIndicator {
+	rv := objc.Send[ProgressIndicator](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ ProgressIndicator) Autorelease() ProgressIndicator {
+	rv := objc.Send[ProgressIndicator](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewProgressIndicator creates a new ProgressIndicator instance.
+func NewProgressIndicator() ProgressIndicator {
+	return progressIndicatorClass.New()
+}
+
 
 // This action method advances the progress animation of an indeterminate progress animator by one step. [Full Topic]
 

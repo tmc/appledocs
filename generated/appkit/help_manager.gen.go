@@ -42,6 +42,36 @@ type HelpManager struct {
 func HelpManagerFrom(ptr unsafe.Pointer) HelpManager {
 	return HelpManager{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (hc _HelpManagerClass) Alloc() HelpManager {
+	rv := objc.Send[HelpManager](objc.ID(hc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (hc _HelpManagerClass) New() HelpManager {
+	rv := objc.Send[HelpManager](objc.ID(hc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (h_ HelpManager) Init() HelpManager {
+	rv := objc.Send[HelpManager](h_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (h_ HelpManager) Autorelease() HelpManager {
+	rv := objc.Send[HelpManager](h_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewHelpManager creates a new HelpManager instance.
+func NewHelpManager() HelpManager {
+	return helpManagerClass.New()
+}
+
 
 // Returns context-sensitive help for an object. [Full Topic]
 
@@ -56,7 +86,7 @@ func (h_ HelpManager) ContextHelpForObject(object objc.ID) unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/find(_:inBook:)
 func (h_ HelpManager) FindStringInBook(query string, book unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("findString:inBook:"), query, book)
+	objc.Send[objc.ID](h_.ID, objc.Sel("findString:inBook:"), objc.String(query), book)
 }
 // Finds and displays the text at the given anchor location in the given book. [Full Topic]
 

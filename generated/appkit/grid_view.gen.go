@@ -80,6 +80,8 @@ func (g_ GridView) Autorelease() GridView {
 func NewGridView() GridView {
 	return gridViewClass.New()
 }
+
+
 // Creates a newly allocated grid view object with the specified frame rectangle. [Full Topic]
 
 //

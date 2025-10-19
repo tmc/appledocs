@@ -35,6 +35,36 @@ type ColorPicker struct {
 func ColorPickerFrom(ptr unsafe.Pointer) ColorPicker {
 	return ColorPicker{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ColorPickerClass) Alloc() ColorPicker {
+	rv := objc.Send[ColorPicker](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ColorPickerClass) New() ColorPicker {
+	rv := objc.Send[ColorPicker](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ ColorPicker) Init() ColorPicker {
+	rv := objc.Send[ColorPicker](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ ColorPicker) Autorelease() ColorPicker {
+	rv := objc.Send[ColorPicker](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewColorPicker creates a new ColorPicker instance.
+func NewColorPicker() ColorPicker {
+	return colorPickerClass.New()
+}
+
 
 
 

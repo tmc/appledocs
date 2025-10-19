@@ -36,6 +36,36 @@ func TextTableFrom(ptr unsafe.Pointer) TextTable {
 		TextBlock: TextBlockFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextTableClass) Alloc() TextTable {
+	rv := objc.Send[TextTable](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextTableClass) New() TextTable {
+	rv := objc.Send[TextTable](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextTable) Init() TextTable {
+	rv := objc.Send[TextTable](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextTable) Autorelease() TextTable {
+	rv := objc.Send[TextTable](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextTable creates a new TextTable instance.
+func NewTextTable() TextTable {
+	return textTableClass.New()
+}
+
 
 
 

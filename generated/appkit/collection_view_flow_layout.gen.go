@@ -36,6 +36,36 @@ func CollectionViewFlowLayoutFrom(ptr unsafe.Pointer) CollectionViewFlowLayout {
 		CollectionViewLayout: CollectionViewLayoutFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CollectionViewFlowLayoutClass) Alloc() CollectionViewFlowLayout {
+	rv := objc.Send[CollectionViewFlowLayout](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CollectionViewFlowLayoutClass) New() CollectionViewFlowLayout {
+	rv := objc.Send[CollectionViewFlowLayout](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CollectionViewFlowLayout) Init() CollectionViewFlowLayout {
+	rv := objc.Send[CollectionViewFlowLayout](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CollectionViewFlowLayout) Autorelease() CollectionViewFlowLayout {
+	rv := objc.Send[CollectionViewFlowLayout](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCollectionViewFlowLayout creates a new CollectionViewFlowLayout instance.
+func NewCollectionViewFlowLayout() CollectionViewFlowLayout {
+	return collectionViewFlowLayoutClass.New()
+}
+
 
 
 

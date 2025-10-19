@@ -36,6 +36,36 @@ func TextContentStorageFrom(ptr unsafe.Pointer) TextContentStorage {
 		TextContentManager: TextContentManagerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextContentStorageClass) Alloc() TextContentStorage {
+	rv := objc.Send[TextContentStorage](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextContentStorageClass) New() TextContentStorage {
+	rv := objc.Send[TextContentStorage](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextContentStorage) Init() TextContentStorage {
+	rv := objc.Send[TextContentStorage](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextContentStorage) Autorelease() TextContentStorage {
+	rv := objc.Send[TextContentStorage](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextContentStorage creates a new TextContentStorage instance.
+func NewTextContentStorage() TextContentStorage {
+	return textContentStorageClass.New()
+}
+
 
 
 

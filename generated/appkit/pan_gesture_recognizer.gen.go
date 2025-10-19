@@ -36,6 +36,36 @@ func PanGestureRecognizerFrom(ptr unsafe.Pointer) PanGestureRecognizer {
 		GestureRecognizer: GestureRecognizerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PanGestureRecognizerClass) Alloc() PanGestureRecognizer {
+	rv := objc.Send[PanGestureRecognizer](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PanGestureRecognizerClass) New() PanGestureRecognizer {
+	rv := objc.Send[PanGestureRecognizer](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PanGestureRecognizer) Init() PanGestureRecognizer {
+	rv := objc.Send[PanGestureRecognizer](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PanGestureRecognizer) Autorelease() PanGestureRecognizer {
+	rv := objc.Send[PanGestureRecognizer](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPanGestureRecognizer creates a new PanGestureRecognizer instance.
+func NewPanGestureRecognizer() PanGestureRecognizer {
+	return panGestureRecognizerClass.New()
+}
+
 
 
 

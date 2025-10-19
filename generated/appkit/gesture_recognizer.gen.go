@@ -40,6 +40,36 @@ type GestureRecognizer struct {
 func GestureRecognizerFrom(ptr unsafe.Pointer) GestureRecognizer {
 	return GestureRecognizer{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (gc _GestureRecognizerClass) Alloc() GestureRecognizer {
+	rv := objc.Send[GestureRecognizer](objc.ID(gc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (gc _GestureRecognizerClass) New() GestureRecognizer {
+	rv := objc.Send[GestureRecognizer](objc.ID(gc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (g_ GestureRecognizer) Init() GestureRecognizer {
+	rv := objc.Send[GestureRecognizer](g_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (g_ GestureRecognizer) Autorelease() GestureRecognizer {
+	rv := objc.Send[GestureRecognizer](g_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewGestureRecognizer creates a new GestureRecognizer instance.
+func NewGestureRecognizer() GestureRecognizer {
+	return gestureRecognizerClass.New()
+}
+
 
 // Returns the point computed as the location of the gesture. [Full Topic]
 

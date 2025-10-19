@@ -35,6 +35,36 @@ type ColorSampler struct {
 func ColorSamplerFrom(ptr unsafe.Pointer) ColorSampler {
 	return ColorSampler{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _ColorSamplerClass) Alloc() ColorSampler {
+	rv := objc.Send[ColorSampler](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _ColorSamplerClass) New() ColorSampler {
+	rv := objc.Send[ColorSampler](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ ColorSampler) Init() ColorSampler {
+	rv := objc.Send[ColorSampler](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ ColorSampler) Autorelease() ColorSampler {
+	rv := objc.Send[ColorSampler](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewColorSampler creates a new ColorSampler instance.
+func NewColorSampler() ColorSampler {
+	return colorSamplerClass.New()
+}
+
 
 
 

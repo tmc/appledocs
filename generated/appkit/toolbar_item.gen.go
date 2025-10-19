@@ -35,6 +35,36 @@ type ToolbarItem struct {
 func ToolbarItemFrom(ptr unsafe.Pointer) ToolbarItem {
 	return ToolbarItem{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _ToolbarItemClass) Alloc() ToolbarItem {
+	rv := objc.Send[ToolbarItem](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _ToolbarItemClass) New() ToolbarItem {
+	rv := objc.Send[ToolbarItem](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ ToolbarItem) Init() ToolbarItem {
+	rv := objc.Send[ToolbarItem](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ ToolbarItem) Autorelease() ToolbarItem {
+	rv := objc.Send[ToolbarItem](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewToolbarItem creates a new ToolbarItem instance.
+func NewToolbarItem() ToolbarItem {
+	return toolbarItemClass.New()
+}
+
 
 
 

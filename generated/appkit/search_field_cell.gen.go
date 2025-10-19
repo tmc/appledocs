@@ -36,6 +36,36 @@ func SearchFieldCellFrom(ptr unsafe.Pointer) SearchFieldCell {
 		TextFieldCell: TextFieldCellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _SearchFieldCellClass) Alloc() SearchFieldCell {
+	rv := objc.Send[SearchFieldCell](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _SearchFieldCellClass) New() SearchFieldCell {
+	rv := objc.Send[SearchFieldCell](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ SearchFieldCell) Init() SearchFieldCell {
+	rv := objc.Send[SearchFieldCell](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ SearchFieldCell) Autorelease() SearchFieldCell {
+	rv := objc.Send[SearchFieldCell](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSearchFieldCell creates a new SearchFieldCell instance.
+func NewSearchFieldCell() SearchFieldCell {
+	return searchFieldCellClass.New()
+}
+
 
 
 

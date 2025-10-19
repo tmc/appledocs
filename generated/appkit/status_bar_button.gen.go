@@ -36,6 +36,36 @@ func StatusBarButtonFrom(ptr unsafe.Pointer) StatusBarButton {
 		Button: ButtonFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _StatusBarButtonClass) Alloc() StatusBarButton {
+	rv := objc.Send[StatusBarButton](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _StatusBarButtonClass) New() StatusBarButton {
+	rv := objc.Send[StatusBarButton](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ StatusBarButton) Init() StatusBarButton {
+	rv := objc.Send[StatusBarButton](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ StatusBarButton) Autorelease() StatusBarButton {
+	rv := objc.Send[StatusBarButton](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewStatusBarButton creates a new StatusBarButton instance.
+func NewStatusBarButton() StatusBarButton {
+	return statusBarButtonClass.New()
+}
+
 
 
 

@@ -36,6 +36,36 @@ type Alert struct {
 func AlertFrom(ptr unsafe.Pointer) Alert {
 	return Alert{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ac _AlertClass) Alloc() Alert {
+	rv := objc.Send[Alert](objc.ID(ac.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ac _AlertClass) New() Alert {
+	rv := objc.Send[Alert](objc.ID(ac.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (a_ Alert) Init() Alert {
+	rv := objc.Send[Alert](a_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (a_ Alert) Autorelease() Alert {
+	rv := objc.Send[Alert](a_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewAlert creates a new Alert instance.
+func NewAlert() Alert {
+	return alertClass.New()
+}
+
 
 // Runs the alert modally as a sheet attached to the specified window. [Full Topic]
 

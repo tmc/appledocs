@@ -35,6 +35,36 @@ type HapticFeedbackManager struct {
 func HapticFeedbackManagerFrom(ptr unsafe.Pointer) HapticFeedbackManager {
 	return HapticFeedbackManager{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (hc _HapticFeedbackManagerClass) Alloc() HapticFeedbackManager {
+	rv := objc.Send[HapticFeedbackManager](objc.ID(hc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (hc _HapticFeedbackManagerClass) New() HapticFeedbackManager {
+	rv := objc.Send[HapticFeedbackManager](objc.ID(hc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (h_ HapticFeedbackManager) Init() HapticFeedbackManager {
+	rv := objc.Send[HapticFeedbackManager](h_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (h_ HapticFeedbackManager) Autorelease() HapticFeedbackManager {
+	rv := objc.Send[HapticFeedbackManager](h_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewHapticFeedbackManager creates a new HapticFeedbackManager instance.
+func NewHapticFeedbackManager() HapticFeedbackManager {
+	return hapticFeedbackManagerClass.New()
+}
+
 
 
 

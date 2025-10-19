@@ -36,6 +36,36 @@ func PopUpButtonCellFrom(ptr unsafe.Pointer) PopUpButtonCell {
 		MenuItemCell: MenuItemCellFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PopUpButtonCellClass) Alloc() PopUpButtonCell {
+	rv := objc.Send[PopUpButtonCell](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PopUpButtonCellClass) New() PopUpButtonCell {
+	rv := objc.Send[PopUpButtonCell](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PopUpButtonCell) Init() PopUpButtonCell {
+	rv := objc.Send[PopUpButtonCell](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PopUpButtonCell) Autorelease() PopUpButtonCell {
+	rv := objc.Send[PopUpButtonCell](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPopUpButtonCell creates a new PopUpButtonCell instance.
+func NewPopUpButtonCell() PopUpButtonCell {
+	return popUpButtonCellClass.New()
+}
+
 
 
 

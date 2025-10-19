@@ -35,6 +35,36 @@ type TextContainer struct {
 func TextContainerFrom(ptr unsafe.Pointer) TextContainer {
 	return TextContainer{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextContainerClass) Alloc() TextContainer {
+	rv := objc.Send[TextContainer](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextContainerClass) New() TextContainer {
+	rv := objc.Send[TextContainer](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextContainer) Init() TextContainer {
+	rv := objc.Send[TextContainer](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextContainer) Autorelease() TextContainer {
+	rv := objc.Send[TextContainer](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextContainer creates a new TextContainer instance.
+func NewTextContainer() TextContainer {
+	return textContainerClass.New()
+}
+
 
 
 

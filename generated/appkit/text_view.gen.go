@@ -36,6 +36,36 @@ func TextViewFrom(ptr unsafe.Pointer) TextView {
 		Text: TextFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextViewClass) Alloc() TextView {
+	rv := objc.Send[TextView](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextViewClass) New() TextView {
+	rv := objc.Send[TextView](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextView) Init() TextView {
+	rv := objc.Send[TextView](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextView) Autorelease() TextView {
+	rv := objc.Send[TextView](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextView creates a new TextView instance.
+func NewTextView() TextView {
+	return textViewClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type TextLineFragment struct {
 func TextLineFragmentFrom(ptr unsafe.Pointer) TextLineFragment {
 	return TextLineFragment{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextLineFragmentClass) Alloc() TextLineFragment {
+	rv := objc.Send[TextLineFragment](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextLineFragmentClass) New() TextLineFragment {
+	rv := objc.Send[TextLineFragment](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextLineFragment) Init() TextLineFragment {
+	rv := objc.Send[TextLineFragment](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextLineFragment) Autorelease() TextLineFragment {
+	rv := objc.Send[TextLineFragment](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextLineFragment creates a new TextLineFragment instance.
+func NewTextLineFragment() TextLineFragment {
+	return textLineFragmentClass.New()
+}
+
 
 
 

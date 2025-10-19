@@ -35,6 +35,36 @@ type ImageRep struct {
 func ImageRepFrom(ptr unsafe.Pointer) ImageRep {
 	return ImageRep{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (ic _ImageRepClass) Alloc() ImageRep {
+	rv := objc.Send[ImageRep](objc.ID(ic.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (ic _ImageRepClass) New() ImageRep {
+	rv := objc.Send[ImageRep](objc.ID(ic.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (i_ ImageRep) Init() ImageRep {
+	rv := objc.Send[ImageRep](i_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (i_ ImageRep) Autorelease() ImageRep {
+	rv := objc.Send[ImageRep](i_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewImageRep creates a new ImageRep instance.
+func NewImageRep() ImageRep {
+	return imageRepClass.New()
+}
+
 
 
 

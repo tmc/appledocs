@@ -36,6 +36,36 @@ func ObjectControllerFrom(ptr unsafe.Pointer) ObjectController {
 		Controller: ControllerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (oc _ObjectControllerClass) Alloc() ObjectController {
+	rv := objc.Send[ObjectController](objc.ID(oc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (oc _ObjectControllerClass) New() ObjectController {
+	rv := objc.Send[ObjectController](objc.ID(oc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (o_ ObjectController) Init() ObjectController {
+	rv := objc.Send[ObjectController](o_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (o_ ObjectController) Autorelease() ObjectController {
+	rv := objc.Send[ObjectController](o_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewObjectController creates a new ObjectController instance.
+func NewObjectController() ObjectController {
+	return objectControllerClass.New()
+}
+
 
 
 

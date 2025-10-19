@@ -39,6 +39,36 @@ func BoxFrom(ptr unsafe.Pointer) Box {
 		View: ViewFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (bc _BoxClass) Alloc() Box {
+	rv := objc.Send[Box](objc.ID(bc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (bc _BoxClass) New() Box {
+	rv := objc.Send[Box](objc.ID(bc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (b_ Box) Init() Box {
+	rv := objc.Send[Box](b_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (b_ Box) Autorelease() Box {
+	rv := objc.Send[Box](b_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewBox creates a new Box instance.
+func NewBox() Box {
+	return boxClass.New()
+}
+
 
 // Places the receiver so its content view lies on the specified frame. [Full Topic]
 
@@ -52,7 +82,7 @@ func (b_ Box) SetFrameFromContentFrame(contentFrame unsafe.Pointer) {
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/setTitleWithMnemonic:
 func (b_ Box) SetTitleWithMnemonic(stringWithAmpersand string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTitleWithMnemonic:"), stringWithAmpersand)
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTitleWithMnemonic:"), objc.String(stringWithAmpersand))
 }
 // Resizes and moves the receiver’s content view so it just encloses its subviews. [Full Topic]
 

@@ -36,6 +36,36 @@ func MutableParagraphStyleFrom(ptr unsafe.Pointer) MutableParagraphStyle {
 		ParagraphStyle: ParagraphStyleFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MutableParagraphStyleClass) Alloc() MutableParagraphStyle {
+	rv := objc.Send[MutableParagraphStyle](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MutableParagraphStyleClass) New() MutableParagraphStyle {
+	rv := objc.Send[MutableParagraphStyle](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ MutableParagraphStyle) Init() MutableParagraphStyle {
+	rv := objc.Send[MutableParagraphStyle](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ MutableParagraphStyle) Autorelease() MutableParagraphStyle {
+	rv := objc.Send[MutableParagraphStyle](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMutableParagraphStyle creates a new MutableParagraphStyle instance.
+func NewMutableParagraphStyle() MutableParagraphStyle {
+	return mutableParagraphStyleClass.New()
+}
+
 
 
 

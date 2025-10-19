@@ -35,6 +35,36 @@ type DockTile struct {
 func DockTileFrom(ptr unsafe.Pointer) DockTile {
 	return DockTile{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (dc _DockTileClass) Alloc() DockTile {
+	rv := objc.Send[DockTile](objc.ID(dc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (dc _DockTileClass) New() DockTile {
+	rv := objc.Send[DockTile](objc.ID(dc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (d_ DockTile) Init() DockTile {
+	rv := objc.Send[DockTile](d_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (d_ DockTile) Autorelease() DockTile {
+	rv := objc.Send[DockTile](d_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewDockTile creates a new DockTile instance.
+func NewDockTile() DockTile {
+	return dockTileClass.New()
+}
+
 
 
 

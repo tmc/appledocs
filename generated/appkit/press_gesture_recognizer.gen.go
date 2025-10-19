@@ -36,6 +36,36 @@ func PressGestureRecognizerFrom(ptr unsafe.Pointer) PressGestureRecognizer {
 		GestureRecognizer: GestureRecognizerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (pc _PressGestureRecognizerClass) Alloc() PressGestureRecognizer {
+	rv := objc.Send[PressGestureRecognizer](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (pc _PressGestureRecognizerClass) New() PressGestureRecognizer {
+	rv := objc.Send[PressGestureRecognizer](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PressGestureRecognizer) Init() PressGestureRecognizer {
+	rv := objc.Send[PressGestureRecognizer](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PressGestureRecognizer) Autorelease() PressGestureRecognizer {
+	rv := objc.Send[PressGestureRecognizer](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPressGestureRecognizer creates a new PressGestureRecognizer instance.
+func NewPressGestureRecognizer() PressGestureRecognizer {
+	return pressGestureRecognizerClass.New()
+}
+
 
 
 

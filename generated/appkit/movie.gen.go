@@ -32,6 +32,36 @@ type Movie struct {
 func MovieFrom(ptr unsafe.Pointer) Movie {
 	return Movie{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (mc _MovieClass) Alloc() Movie {
+	rv := objc.Send[Movie](objc.ID(mc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (mc _MovieClass) New() Movie {
+	rv := objc.Send[Movie](objc.ID(mc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (m_ Movie) Init() Movie {
+	rv := objc.Send[Movie](m_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (m_ Movie) Autorelease() Movie {
+	rv := objc.Send[Movie](m_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewMovie creates a new Movie instance.
+func NewMovie() Movie {
+	return movieClass.New()
+}
+
 
 
 

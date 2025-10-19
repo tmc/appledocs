@@ -36,6 +36,36 @@ func Switch_From(ptr unsafe.Pointer) Switch_ {
 		Control: ControlFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (sc _Switch_Class) Alloc() Switch_ {
+	rv := objc.Send[Switch_](objc.ID(sc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (sc _Switch_Class) New() Switch_ {
+	rv := objc.Send[Switch_](objc.ID(sc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (s_ Switch_) Init() Switch_ {
+	rv := objc.Send[Switch_](s_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (s_ Switch_) Autorelease() Switch_ {
+	rv := objc.Send[Switch_](s_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewSwitch_ creates a new Switch_ instance.
+func NewSwitch_() Switch_ {
+	return switch_Class.New()
+}
+
 
 
 

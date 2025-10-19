@@ -36,6 +36,36 @@ func TitlebarAccessoryViewControllerFrom(ptr unsafe.Pointer) TitlebarAccessoryVi
 		ViewController: ViewControllerFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TitlebarAccessoryViewControllerClass) Alloc() TitlebarAccessoryViewController {
+	rv := objc.Send[TitlebarAccessoryViewController](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TitlebarAccessoryViewControllerClass) New() TitlebarAccessoryViewController {
+	rv := objc.Send[TitlebarAccessoryViewController](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TitlebarAccessoryViewController) Init() TitlebarAccessoryViewController {
+	rv := objc.Send[TitlebarAccessoryViewController](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TitlebarAccessoryViewController) Autorelease() TitlebarAccessoryViewController {
+	rv := objc.Send[TitlebarAccessoryViewController](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTitlebarAccessoryViewController creates a new TitlebarAccessoryViewController instance.
+func NewTitlebarAccessoryViewController() TitlebarAccessoryViewController {
+	return titlebarAccessoryViewControllerClass.New()
+}
+
 
 
 

@@ -35,6 +35,36 @@ type TextViewportLayoutController struct {
 func TextViewportLayoutControllerFrom(ptr unsafe.Pointer) TextViewportLayoutController {
 	return TextViewportLayoutController{objectivec.Object{objc.ID(ptr)}}
 }
+// Alloc allocates a new instance without initialization.
+func (tc _TextViewportLayoutControllerClass) Alloc() TextViewportLayoutController {
+	rv := objc.Send[TextViewportLayoutController](objc.ID(tc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (tc _TextViewportLayoutControllerClass) New() TextViewportLayoutController {
+	rv := objc.Send[TextViewportLayoutController](objc.ID(tc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (t_ TextViewportLayoutController) Init() TextViewportLayoutController {
+	rv := objc.Send[TextViewportLayoutController](t_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (t_ TextViewportLayoutController) Autorelease() TextViewportLayoutController {
+	rv := objc.Send[TextViewportLayoutController](t_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewTextViewportLayoutController creates a new TextViewportLayoutController instance.
+func NewTextViewportLayoutController() TextViewportLayoutController {
+	return textViewportLayoutControllerClass.New()
+}
+
 
 
 

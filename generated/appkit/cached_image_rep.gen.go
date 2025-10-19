@@ -36,6 +36,36 @@ func CachedImageRepFrom(ptr unsafe.Pointer) CachedImageRep {
 		ImageRep: ImageRepFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (cc _CachedImageRepClass) Alloc() CachedImageRep {
+	rv := objc.Send[CachedImageRep](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (cc _CachedImageRepClass) New() CachedImageRep {
+	rv := objc.Send[CachedImageRep](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CachedImageRep) Init() CachedImageRep {
+	rv := objc.Send[CachedImageRep](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CachedImageRep) Autorelease() CachedImageRep {
+	rv := objc.Send[CachedImageRep](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCachedImageRep creates a new CachedImageRep instance.
+func NewCachedImageRep() CachedImageRep {
+	return cachedImageRepClass.New()
+}
+
 
 
 

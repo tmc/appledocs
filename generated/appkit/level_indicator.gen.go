@@ -36,6 +36,36 @@ func LevelIndicatorFrom(ptr unsafe.Pointer) LevelIndicator {
 		Control: ControlFrom(ptr),
 	}
 }
+// Alloc allocates a new instance without initialization.
+func (lc _LevelIndicatorClass) Alloc() LevelIndicator {
+	rv := objc.Send[LevelIndicator](objc.ID(lc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new instance with a +1 retain count.
+func (lc _LevelIndicatorClass) New() LevelIndicator {
+	rv := objc.Send[LevelIndicator](objc.ID(lc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (l_ LevelIndicator) Init() LevelIndicator {
+	rv := objc.Send[LevelIndicator](l_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (l_ LevelIndicator) Autorelease() LevelIndicator {
+	rv := objc.Send[LevelIndicator](l_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewLevelIndicator creates a new LevelIndicator instance.
+func NewLevelIndicator() LevelIndicator {
+	return levelIndicatorClass.New()
+}
+
 
 
 
