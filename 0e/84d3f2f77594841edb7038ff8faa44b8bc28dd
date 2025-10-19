@@ -1,0 +1,22 @@
+Actual purpose: Add type-safe delegate helper API for ScreenCaptureKit
+
+This commit adds:
+1. SCStreamOutputHandler interface for type-safe delegate callbacks
+2. NewSCStreamOutputDelegate() helper function
+3. NewSimpleSCStreamOutputDelegate() for function-based delegates
+4. screencapture-delegate-demo example showing the API
+5. Documentation in CLAUDE.md and example README
+
+Benefits:
+- Type-safe parameters (SCStream instead of objc.ID)
+- No manual selector name construction
+- Eliminates class registration boilerplate
+- More idiomatic Go code
+- Fully backward compatible with objc.RegisterClass
+
+Created by Claude Code (claude-sonnet-4-5-20250929)
+Model: Sonnet 4.5
+TTY: not a tty
+PID: 63405
+Session ID: w0t0p3:F7D72EE3-2066-4DBD-A955-6BE64D706EC8
+Date: 2025-10-19T09:44:14-07:00
