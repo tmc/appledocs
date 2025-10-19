@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"unsafe"
 
 	"github.com/ebitengine/purego/objc"
 	"github.com/tmc/appledocs/generated/appkit"
@@ -53,6 +54,7 @@ func createButtonHandler() objc.ID {
 }
 
 func main() {
+	runtime.LockOSThread()
 	flag.Parse()
 
 	if *e2eMode {
@@ -62,55 +64,152 @@ func main() {
 
 	fmt.Println("=== Hello World (Generated Bindings) ===")
 
-	// Use RunApp helper to handle application lifecycle
-	appkit.RunApp(func(app appkit.Application) {
-		// Create window
-		window := appkit.NewWindowWithFrame(100, 100, 400, 300,
-			appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable|appkit.WindowStyleMaskResizable)
-		// SetTitle accepts Go strings directly (automatic conversion to NSString)
-		window.SetTitle("Hello from Generated Bindings!")
+	// Initialize the application (matching darwinkit structure exactly)
+	app := appkit.SharedApplication()
+	app.SetActivationPolicy(appkit.ActivationPolicyRegular)
 
-		// Get content view
-		contentView := window.ContentView()
+	// CRITICAL: Disable automatic window restoration entirely
+	// State restoration was attempting to restore windows with invalid HUD style mask (0x2000)
+	// which caused canBecomeKeyWindow to return NO, making windows invisible.
+	fmt.Println("Disabling automatic window restoration...")
 
-		// Create and configure label
-		label := appkit.NewTextFieldWithFrame(50, 200, 300, 50)
-		// SetStringValue also accepts Go strings directly
-		label.SetStringValue("Using generated bindings!")
-		label.SetEditable(false)
-		label.SetBordered(false)
-		label.SetDrawsBackground(false)
-		contentView.AddSubviewTyped(label)
+	// Method 1: Disable relaunch-on-login (also disables state restoration)
+	app.ID.Send(objc.RegisterName("disableRelaunchOnLogin"))
 
-		// Create and configure counter label
-		counterLabel = appkit.NewTextFieldWithFrame(50, 80, 300, 30)
-		counterLabel.SetStringValue("Clicks: 0")
-		counterLabel.SetEditable(false)
-		counterLabel.SetBordered(false)
-		counterLabel.SetDrawsBackground(false)
-		counterLabel.SetAlignment(appkit.TextAlignmentCenter)
-		contentView.AddSubviewTyped(counterLabel)
+	// Method 2: Create NSApplicationDelegate with state restoration disabled
+	fmt.Println("Creating NSApplicationDelegate to prevent state restoration...")
 
-		// Create button using generated constructor with automatic string conversion
-		button := appkit.NewButtonWithTitleTargetAction("Click Me!", createButtonHandler(), objc.RegisterName("buttonClicked:"))
-		button.SetFrameRect(150, 130, 100, 40)
-		button.SetButtonType(appkit.ButtonTypeMomentaryLight)
-		button.SetBezelStyle(appkit.BezelStyleRounded)
-		contentView.AddSubviewTyped(button)
+	delegateClass, err := objc.RegisterClass(
+		"AppDelegate",
+		objc.GetClass("NSObject"),
+		nil, // ivars
+		nil, // properties
+		[]objc.MethodDef{
+			{
+				// Modern macOS 12+ method
+				Cmd: objc.RegisterName("applicationSupportsSecureRestorableState:"),
+				Fn: func(self objc.ID, _cmd objc.SEL, app objc.ID) bool {
+					fmt.Println("DEBUG: applicationSupportsSecureRestorableState: called, returning NO")
+					return false // Disable secure state restoration
+				},
+			},
+			{
+				// Legacy method for older macOS versions
+				Cmd: objc.RegisterName("application:shouldRestoreApplicationState:"),
+				Fn: func(self objc.ID, _cmd objc.SEL, app objc.ID, coder objc.ID) bool {
+					fmt.Println("DEBUG: application:shouldRestoreApplicationState: called, returning NO")
+					return false // Never restore application state
+				},
+			},
+			{
+				// Additional method to prevent window restoration
+				Cmd: objc.RegisterName("applicationShouldAutomaticallyRestoreWindows:"),
+				Fn: func(self objc.ID, _cmd objc.SEL, app objc.ID) bool {
+					fmt.Println("DEBUG: applicationShouldAutomaticallyRestoreWindows: called, returning NO")
+					return false // Prevent automatic window restoration
+				},
+			},
+		},
+	)
+	if err != nil {
+		fmt.Printf("ERROR: Failed to register delegate class: %v\n", err)
+		os.Exit(1)
+	}
 
-		// Show window using generated method
-		window.MakeKeyAndOrderFront(0)
+	delegate := objc.ID(delegateClass).Send(objc.RegisterName("alloc")).Send(objc.RegisterName("init"))
+	app.ID.Send(objc.RegisterName("setDelegate:"), delegate)
+	fmt.Println("✓ NSApplicationDelegate registered and set")
 
-		fmt.Println("✅ Using generated bindings with automatic string conversion:")
-		fmt.Println("   - Types: Window, Button, TextField, View, Application")
-		fmt.Println("   - Constructors: NewWindowWithFrame, NewButtonWithTitleTargetAction")
-		fmt.Println("   - Methods: SetTitle, SetStringValue (Go strings → NSString automatically!)")
-		fmt.Println("   - Type safety: AddSubviewTyped accepts IView interface")
-		fmt.Println("   - Helper: RunApp for application lifecycle management")
-		fmt.Println()
-		fmt.Println("   No manual string conversion needed - pass Go strings directly!")
-		fmt.Println("   Click the button! Press Cmd+Q to quit.")
-	})
+	fmt.Println("✓ Starting AppKit application...")
+
+	// Create window - use direct alloc/init to avoid premature autorelease
+	type NSPoint struct{ X, Y float64 }
+	type NSSize struct{ Width, Height float64 }
+	type NSRect struct {
+		Origin NSPoint
+		Size   NSSize
+	}
+	rect := NSRect{
+		Origin: NSPoint{X: 100, Y: 100},
+		Size:   NSSize{Width: 400, Height: 300},
+	}
+
+	windowClass := objc.GetClass("NSWindow")
+	windowID := objc.ID(windowClass).Send(objc.RegisterName("alloc"))
+	styleMask := appkit.WindowStyleMaskTitled | appkit.WindowStyleMaskClosable | appkit.WindowStyleMaskResizable
+	fmt.Printf("DEBUG: styleMask = 0x%x (Titled=0x%x, Closable=0x%x, Resizable=0x%x)\n",
+		styleMask, appkit.WindowStyleMaskTitled, appkit.WindowStyleMaskClosable, appkit.WindowStyleMaskResizable)
+	windowID = windowID.Send(objc.RegisterName("initWithContentRect:styleMask:backing:defer:"),
+		unsafe.Pointer(&rect), styleMask, appkit.BackingStoreBuffered, false)
+	window := appkit.WindowFrom(unsafe.Pointer(windowID))
+
+	fmt.Printf("DEBUG: Window ID = %v (should be non-zero)\n", windowID)
+
+	// SetTitle accepts Go strings directly (automatic conversion to NSString)
+	window.SetTitle("Hello from Generated Bindings!")
+
+	// Get content view
+	contentView := window.ContentView()
+
+	// Create and configure label
+	label := appkit.NewTextFieldWithFrame(50, 200, 300, 50)
+	// SetStringValue also accepts Go strings directly
+	label.SetStringValue("Using generated bindings!")
+	label.SetEditable(false)
+	label.SetBordered(false)
+	label.SetDrawsBackground(false)
+	contentView.AddSubviewTyped(label)
+
+	// Create and configure counter label
+	counterLabel = appkit.NewTextFieldWithFrame(50, 80, 300, 30)
+	counterLabel.SetStringValue("Clicks: 0")
+	counterLabel.SetEditable(false)
+	counterLabel.SetBordered(false)
+	counterLabel.SetDrawsBackground(false)
+	counterLabel.SetAlignment(appkit.TextAlignmentCenter)
+	contentView.AddSubviewTyped(counterLabel)
+
+	// Create button using generated constructor with automatic string conversion
+	button := appkit.NewButtonWithTitleTargetAction("Click Me!", createButtonHandler(), objc.RegisterName("buttonClicked:"))
+	button.SetFrameRect(150, 130, 100, 40)
+	button.SetButtonType(appkit.ButtonTypeMomentaryLight)
+	button.SetBezelStyle(appkit.BezelStyleRounded)
+	contentView.AddSubviewTyped(button)
+
+	// Retain window to prevent premature deallocation (critical for purego!)
+	window.ID.Send(objc.RegisterName("retain"))
+
+	// Center window on screen for better visibility
+	window.ID.Send(objc.RegisterName("center"))
+
+	// CRITICAL: Activate app BEFORE showing window (order matters!)
+	app.ActivateIgnoringOtherApps(true)
+
+	// Show window using generated method - pass window.ID as sender
+	window.MakeKeyAndOrderFront(window.ID)
+
+	// Force window to front regardless of other windows
+	window.ID.Send(objc.RegisterName("orderFrontRegardless"))
+
+	// Check if window is visible
+	isVisible := window.ID.Send(objc.RegisterName("isVisible"))
+	canBecomeKey := window.ID.Send(objc.RegisterName("canBecomeKeyWindow"))
+	isKeyWindow := window.ID.Send(objc.RegisterName("isKeyWindow"))
+	fmt.Printf("DEBUG: Window visibility - isVisible: %v, canBecomeKey: %v, isKeyWindow: %v\n",
+		isVisible != 0, canBecomeKey != 0, isKeyWindow != 0)
+
+	fmt.Println("✓ Window created and displayed")
+	fmt.Println("✅ Using generated bindings with automatic string conversion:")
+	fmt.Println("   - Types: Window, Button, TextField, View, Application")
+	fmt.Println("   - Constructors: NewWindowWithFrame, NewButtonWithTitleTargetAction")
+	fmt.Println("   - Methods: SetTitle, SetStringValue (Go strings → NSString automatically!)")
+	fmt.Println("   - Type safety: AddSubviewTyped accepts IView interface")
+	fmt.Println()
+	fmt.Println("   No manual string conversion needed - pass Go strings directly!")
+	fmt.Println("   Click the button! Press Cmd+Q to quit.")
+
+	// Run the application
+	app.Run()
 }
 
 // runE2ETest runs automated end-to-end tests without user interaction.
