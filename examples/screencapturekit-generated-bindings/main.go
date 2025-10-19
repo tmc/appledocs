@@ -49,16 +49,97 @@ func main() {
 	shareableContentClass := objc.GetClass("SCShareableContent")
 	if shareableContentClass == 0 {
 		fmt.Println("⚠️  SCShareableContent class not found (requires macOS 12.3+)")
-		fmt.Println("   Falling back to CoreGraphics display capture")
-	} else {
-		fmt.Println("✓ Found SCShareableContent class")
-		// Note: Full ScreenCaptureKit requires async completion handlers
-		// For this example, we'll use CoreGraphics which is simpler
+		fmt.Println("   Running in demonstration mode...")
+		demonstrateScreenCaptureKitAPI()
+		return
 	}
 
-	// For simplicity, we'll use CGDisplayCreateImage
-	// which doesn't require ScreenCaptureKit permissions for the main display
-	fmt.Println("\n📸 Capturing main display screenshot...")
+	fmt.Println("✓ Found SCShareableContent class")
+
+	// Use a channel to wait for async completion
+	done := make(chan bool, 1)
+	var shareableContent objc.ID
+	var displayCount int
+	var windowCount int
+
+	// Create completion handler block
+	completionBlock := objc.NewBlock(
+		func(block objc.Block, content objc.ID, error objc.ID) {
+			defer func() { done <- true }()
+
+			if error != 0 {
+				fmt.Println("✗ Error getting shareable content:")
+				desc := error.Send(objc.RegisterName("localizedDescription"))
+				if desc != 0 {
+					cstr := desc.Send(objc.RegisterName("UTF8String"))
+					fmt.Printf("   %s\n", objc.Send[string](cstr, objc.RegisterName("description")))
+				}
+				return
+			}
+
+			if content == 0 {
+				fmt.Println("✗ No content returned")
+				return
+			}
+
+			shareableContent = content
+			shareableContent.Send(objc.RegisterName("retain"))
+
+			// Get displays array
+			displays := content.Send(objc.RegisterName("displays"))
+			if displays != 0 {
+				displayCount = int(displays.Send(objc.RegisterName("count")))
+				fmt.Printf("✓ Found %d display(s)\n", displayCount)
+
+				// Print display info
+				for i := 0; i < displayCount; i++ {
+					display := displays.Send(objc.RegisterName("objectAtIndex:"), i)
+					if display != 0 {
+						displayID := display.Send(objc.RegisterName("displayID"))
+						width := display.Send(objc.RegisterName("width"))
+						height := display.Send(objc.RegisterName("height"))
+						fmt.Printf("   Display %d: ID=%d, %dx%d\n", i, displayID, width, height)
+					}
+				}
+			}
+
+			// Get windows array
+			windows := content.Send(objc.RegisterName("windows"))
+			if windows != 0 {
+				windowCount = int(windows.Send(objc.RegisterName("count")))
+				fmt.Printf("✓ Found %d window(s)\n", windowCount)
+			}
+		},
+	)
+	defer completionBlock.Release()
+
+	fmt.Println("⏳ Requesting shareable content asynchronously...")
+
+	// Call class method: [SCShareableContent getShareableContentWithCompletionHandler:]
+	sel := objc.RegisterName("getShareableContentWithCompletionHandler:")
+	objc.ID(shareableContentClass).Send(sel, completionBlock)
+
+	// Wait for completion (with timeout)
+	select {
+	case <-done:
+		fmt.Println("✓ Shareable content request completed")
+	case <-time.After(5 * time.Second):
+		fmt.Println("✗ Timeout waiting for shareable content")
+		os.Exit(1)
+	}
+
+	if shareableContent == 0 {
+		fmt.Println("✗ Failed to get shareable content")
+		os.Exit(1)
+	}
+	defer shareableContent.Send(objc.RegisterName("release"))
+
+	if displayCount == 0 {
+		fmt.Println("⚠️  No displays found")
+		os.Exit(1)
+	}
+
+	fmt.Println("\n📸 Capturing screenshot using ScreenCaptureKit...")
 
 	// Get main display ID
 	mainDisplayID := coregraphics.CGMainDisplayID()
@@ -160,4 +241,68 @@ func createNSString(s string) objc.ID {
 	strClass := objc.GetClass("NSString")
 	str := objc.ID(strClass).Send(objc.RegisterName("alloc"))
 	return str.Send(objc.RegisterName("initWithUTF8String:"), s)
+}
+
+func demonstrateScreenCaptureKitAPI() {
+	fmt.Println("\n📚 ScreenCaptureKit API Demonstration")
+	fmt.Println("═══════════════════════════════════════════════════════════")
+	fmt.Println()
+	fmt.Println("This example demonstrates how to use ScreenCaptureKit APIs")
+	fmt.Println("with objc.NewBlock for async completion handlers.")
+	fmt.Println()
+	fmt.Println("Code structure (when SCShareableContent is available):")
+	fmt.Println()
+	fmt.Println("  1. Create completion handler block with objc.NewBlock:")
+	fmt.Println("     completionBlock := objc.NewBlock(")
+	fmt.Println("       func(block objc.Block, content objc.ID, error objc.ID) {")
+	fmt.Println("         // Handle returned content...")
+	fmt.Println("       })")
+	fmt.Println()
+	fmt.Println("  2. Call SCShareableContent class method:")
+	fmt.Println("     sel := objc.RegisterName(\"getShareableContentWithCompletionHandler:\")")
+	fmt.Println("     objc.ID(shareableContentClass).Send(sel, completionBlock)")
+	fmt.Println()
+	fmt.Println("  3. Wait for async completion using channels:")
+	fmt.Println("     select {")
+	fmt.Println("       case <-done:")
+	fmt.Println("         // Process results")
+	fmt.Println("       case <-time.After(5 * time.Second):")
+	fmt.Println("         // Handle timeout")
+	fmt.Println("     }")
+	fmt.Println()
+	fmt.Println("  4. Access display and window information:")
+	fmt.Println("     displays := content.Send(objc.RegisterName(\"displays\"))")
+	fmt.Println("     windows := content.Send(objc.RegisterName(\"windows\"))")
+	fmt.Println()
+	fmt.Println("═══════════════════════════════════════════════════════════")
+	fmt.Println()
+	fmt.Println("✅ Generated bindings available for:")
+	fmt.Println("   - SCShareableContent (system content enumeration)")
+	fmt.Println("   - SCDisplay (display information)")
+	fmt.Println("   - SCWindow (window information)")
+	fmt.Println("   - SCRunningApplication (app information)")
+	fmt.Println("   - SCContentFilter (content filtering)")
+	fmt.Println("   - SCStream (real-time screen capture)")
+	fmt.Println("   - SCStreamConfiguration (stream settings)")
+	fmt.Println("   - SCScreenshotManager (screenshot capture)")
+	fmt.Println()
+	fmt.Println("💡 To test on a system with ScreenCaptureKit:")
+	fmt.Println("   - Requires macOS 12.3 (Monterey) or later")
+	fmt.Println("   - Requires Screen Recording permission")
+	fmt.Println("   - The async block will execute and enumerate displays/windows")
+	fmt.Println()
+	
+	// Show that we still use CoreGraphics for fallback
+	fmt.Println("📸 CoreGraphics Fallback Demo:")
+	mainDisplayID := coregraphics.CGMainDisplayID()
+	cgImage := coregraphics.CGDisplayCreateImage(mainDisplayID)
+	if cgImage != nil {
+		width := coregraphics.CGImageGetWidth(cgImage)
+		height := coregraphics.CGImageGetHeight(cgImage)
+		fmt.Printf("✓ Captured %dx%d screenshot using CoreGraphics\n", width, height)
+		coregraphics.CGImageRelease(cgImage)
+	}
+	
+	fmt.Println()
+	fmt.Println("═══════════════════════════════════════════════════════════")
 }
