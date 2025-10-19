@@ -45,9 +45,8 @@ func createButtonHandler() objc.ID {
 			fmt.Printf("Button clicked! Count: %d\n", clickCount)
 			counterLabel.SetStringValue(fmt.Sprintf("Clicks: %d", clickCount))
 		}
-		class, _ = objc.RegisterClass(className, superClass, nil, nil, []objc.MethodDef{
-			{Cmd: objc.RegisterName("buttonClicked:"), Fn: buttonClicked},
-		})
+		class, _ = objc.RegisterClass(className, superClass, []*objc.Protocol{}, []objc.FieldDef{},
+			[]objc.MethodDef{{Cmd: objc.RegisterName("buttonClicked:"), Fn: buttonClicked}})
 	}
 	handler := objc.ID(class).Send(objc.RegisterName("alloc"))
 	return handler.Send(objc.RegisterName("init"))
