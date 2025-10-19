@@ -1588,6 +1588,17 @@ func generateTestValue(goType, framework, paramName string) string {
 		return "nil"
 	}
 
+	// Handle AppKit/CoreGraphics geometry types
+	if goType == "CGRect" || goType == "Rect" {
+		return "CGRect{}"
+	}
+	if goType == "CGSize" || goType == "Size" {
+		return "CGSize{}"
+	}
+	if goType == "CGPoint" || goType == "Point" {
+		return "CGPoint{}"
+	}
+
 	// Handle framework-specific types
 	// Foundation types
 	if strings.HasPrefix(goType, "foundation.") {
