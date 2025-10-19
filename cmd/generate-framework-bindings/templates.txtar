@@ -432,10 +432,8 @@ func New{{$structName}}() {{$structName}} {
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{getConstructorBody . $structName $paramNames}}
 }
-
+{{end}}
 {{- end}}
-{{- end}}
-
 {{end -}}
 {{- range prepareClassMethods .Methods}}
 {{- if not (isEssentialSelector .Selector)}}
@@ -459,10 +457,8 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 	objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
 }
-
+{{end}}
 {{- end}}
-{{- end}}
-
 {{- range prepareInstanceMethods .Methods}}
 {{- if not (isEssentialSelector .Selector)}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
@@ -628,10 +624,8 @@ func New{{$structName}}() {{$structName}} {
 func {{$constructorName}}({{formatMethodParams . $framework}}) {{$structName}} {
 {{getConstructorBody . $structName $paramNames}}
 }
-
+{{end}}
 {{- end}}
-{{- end}}
-
 {{end -}}
 {{- range prepareClassMethods .Methods}}
 {{- if not (isEssentialSelector .Selector)}}
@@ -655,10 +649,8 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 	objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
 }
-
+{{end}}
 {{- end}}
-{{- end}}
-
 {{- range prepareInstanceMethods .Methods}}
 {{- if not (isEssentialSelector .Selector)}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
@@ -685,8 +677,7 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	{{- end}}
 }
-
-{{- end}}
+{{end}}
 {{- end}}
 {{end -}}
 
