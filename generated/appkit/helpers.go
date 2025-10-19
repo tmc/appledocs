@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"unsafe"
 
-	"github.com/ebitengine/purego/objc"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // Application lifecycle convenience methods
@@ -18,7 +18,7 @@ import (
 func SharedApplication() Application {
 	appClass := objc.GetClass("NSApplication")
 	return ApplicationFrom(unsafe.Pointer(
-		objc.ID(appClass).Send(objc.RegisterName("sharedApplication")),
+		objc.ID(appClass).Send(objc.Sel("sharedApplication")),
 	))
 }
 
@@ -32,30 +32,30 @@ const (
 // SetActivationPolicy sets the application's activation policy.
 // Use ActivationPolicyRegular for normal applications.
 func (a Application) SetActivationPolicy(policy int) bool {
-	return objc.Send[bool](a.ID, objc.RegisterName("setActivationPolicy:"), policy)
+	return objc.Send[bool](a.ID, objc.Sel("setActivationPolicy:"), policy)
 }
 
 // ActivateIgnoringOtherApps activates the application and brings it to the front.
 // If ignoreOtherApps is true, the application becomes active regardless of other apps.
 func (a Application) ActivateIgnoringOtherApps(ignoreOtherApps bool) {
-	objc.Send[objc.ID](a.ID, objc.RegisterName("activateIgnoringOtherApps:"), ignoreOtherApps)
+	objc.Send[objc.ID](a.ID, objc.Sel("activateIgnoringOtherApps:"), ignoreOtherApps)
 }
 
 // Run starts the main event loop. This blocks until the application terminates.
 func (a Application) Run() {
-	objc.Send[objc.ID](a.ID, objc.RegisterName("run"))
+	objc.Send[objc.ID](a.ID, objc.Sel("run"))
 }
 
 // Terminate terminates the application, closing all windows.
 // Sender is typically the object that initiated the termination (can be nil/0).
 func (a Application) Terminate(sender objc.ID) {
-	objc.Send[objc.ID](a.ID, objc.RegisterName("terminate:"), sender)
+	objc.Send[objc.ID](a.ID, objc.Sel("terminate:"), sender)
 }
 
 // FinishLaunching completes the application launch process.
 // This should be called before Run() if you're managing the app lifecycle manually.
 func (a Application) FinishLaunching() {
-	objc.Send[objc.ID](a.ID, objc.RegisterName("finishLaunching"))
+	objc.Send[objc.ID](a.ID, objc.Sel("finishLaunching"))
 }
 
 // RunApp is a convenience function that handles the boilerplate of setting up and running a macOS application.
@@ -89,8 +89,10 @@ func RunApp(setup func(app Application)) {
 	// Call setup function to let caller configure the app and create windows
 	setup(app)
 
-	// Finish launching and activate app
+	// Finish launching before activating
 	app.FinishLaunching()
+
+	// Activate app so windows appear in foreground
 	app.ActivateIgnoringOtherApps(true)
 
 	// Run event loop (this blocks until the app quits)
@@ -141,18 +143,16 @@ const (
 
 // SetTitle sets the window's title string.
 func (w Window) SetTitle(title string) {
-	strClass := objc.GetClass("NSString")
-	nsStr := objc.ID(strClass).Send(objc.RegisterName("stringWithUTF8String:"), title)
-	objc.Send[objc.ID](w.ID, objc.RegisterName("setTitle:"), nsStr)
+	objc.Send[objc.ID](w.ID, objc.Sel("setTitle:"), objc.String(title))
 }
 
 // Title returns the window's title string.
 func (w Window) Title() string {
-	nsStr := objc.Send[objc.ID](w.ID, objc.RegisterName("title"))
+	nsStr := objc.Send[objc.ID](w.ID, objc.Sel("title"))
 	if nsStr == 0 {
 		return ""
 	}
-	cStr := objc.Send[*byte](nsStr, objc.RegisterName("UTF8String"))
+	cStr := objc.Send[*byte](nsStr, objc.Sel("UTF8String"))
 	if cStr == nil {
 		return ""
 	}
@@ -165,18 +165,18 @@ func (w Window) Title() string {
 
 // SetDelegate sets the window's delegate.
 func (w Window) SetDelegate(delegate objc.ID) {
-	objc.Send[objc.ID](w.ID, objc.RegisterName("setDelegate:"), delegate)
+	objc.Send[objc.ID](w.ID, objc.Sel("setDelegate:"), delegate)
 }
 
 // ContentView returns the window's content view.
 func (w Window) ContentView() View {
-	view := objc.Send[objc.ID](w.ID, objc.RegisterName("contentView"))
+	view := objc.Send[objc.ID](w.ID, objc.Sel("contentView"))
 	return ViewFrom(unsafe.Pointer(view))
 }
 
 // SetContentView sets the window's content view.
 func (w Window) SetContentView(view View) {
-	objc.Send[objc.ID](w.ID, objc.RegisterName("setContentView:"), view.ID)
+	objc.Send[objc.ID](w.ID, objc.Sel("setContentView:"), view.ID)
 }
 
 // View hierarchy convenience methods
@@ -218,7 +218,7 @@ func (v View) AddSubviewPositionedRelativeToTyped(subview IView, place WindowOrd
 // ReplaceSubviewWithTyped replaces one subview with another.
 // This is a type-safe wrapper that accepts IView types.
 func (v View) ReplaceSubviewWithTyped(oldView IView, newView IView) {
-	objc.Send[objc.ID](v.ID, objc.RegisterName("replaceSubview:with:"),
+	objc.Send[objc.ID](v.ID, objc.Sel("replaceSubview:with:"),
 		oldView.GetID(), newView.GetID())
 }
 
@@ -235,7 +235,7 @@ func (v View) SetFrameRect(x, y, width, height float64) {
 		Origin: NSPoint{X: x, Y: y},
 		Size:   NSSize{Width: width, Height: height},
 	}
-	objc.Send[objc.ID](v.ID, objc.RegisterName("setFrame:"), frame)
+	objc.Send[objc.ID](v.ID, objc.Sel("setFrame:"), frame)
 }
 
 // Frame returns the view's frame rectangle as (x, y, width, height).
@@ -246,7 +246,7 @@ func (v View) Frame() (x, y, width, height float64) {
 		Origin NSPoint
 		Size   NSSize
 	}
-	frame := objc.Send[NSRect](v.ID, objc.RegisterName("frame"))
+	frame := objc.Send[NSRect](v.ID, objc.Sel("frame"))
 	return frame.Origin.X, frame.Origin.Y, frame.Size.Width, frame.Size.Height
 }
 
@@ -285,29 +285,27 @@ const (
 
 // SetButtonType sets the button's type.
 func (b Button) SetButtonType(buttonType int) {
-	objc.Send[objc.ID](b.ID, objc.RegisterName("setButtonType:"), buttonType)
+	objc.Send[objc.ID](b.ID, objc.Sel("setButtonType:"), buttonType)
 }
 
 // SetBezelStyle sets the button's bezel style.
 func (b Button) SetBezelStyle(bezelStyle int) {
-	objc.Send[objc.ID](b.ID, objc.RegisterName("setBezelStyle:"), bezelStyle)
+	objc.Send[objc.ID](b.ID, objc.Sel("setBezelStyle:"), bezelStyle)
 }
 
 // SetTarget sets the button's action target.
 func (b Button) SetTarget(target objc.ID) {
-	objc.Send[objc.ID](b.ID, objc.RegisterName("setTarget:"), target)
+	objc.Send[objc.ID](b.ID, objc.Sel("setTarget:"), target)
 }
 
 // SetAction sets the button's action selector.
 func (b Button) SetAction(action objc.SEL) {
-	objc.Send[objc.ID](b.ID, objc.RegisterName("setAction:"), action)
+	objc.Send[objc.ID](b.ID, objc.Sel("setAction:"), action)
 }
 
 // SetTitleString sets the button's title from a Go string.
 func (b Button) SetTitleString(title string) {
-	strClass := objc.GetClass("NSString")
-	nsStr := objc.ID(strClass).Send(objc.RegisterName("stringWithUTF8String:"), title)
-	objc.Send[objc.ID](b.ID, objc.RegisterName("setTitle:"), nsStr)
+	objc.Send[objc.ID](b.ID, objc.Sel("setTitle:"), objc.String(title))
 }
 
 // Control convenience methods (inherited by Button, TextField, etc.)
@@ -323,18 +321,16 @@ const (
 
 // SetStringValue sets the control's string value.
 func (c Control) SetStringValue(value string) {
-	strClass := objc.GetClass("NSString")
-	nsStr := objc.ID(strClass).Send(objc.RegisterName("stringWithUTF8String:"), value)
-	objc.Send[objc.ID](c.ID, objc.RegisterName("setStringValue:"), nsStr)
+	objc.Send[objc.ID](c.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
 // StringValue returns the control's string value as a Go string.
 func (c Control) StringValue() string {
-	nsStr := objc.Send[objc.ID](c.ID, objc.RegisterName("stringValue"))
+	nsStr := objc.Send[objc.ID](c.ID, objc.Sel("stringValue"))
 	if nsStr == 0 {
 		return ""
 	}
-	cStr := objc.Send[*byte](nsStr, objc.RegisterName("UTF8String"))
+	cStr := objc.Send[*byte](nsStr, objc.Sel("UTF8String"))
 	if cStr == nil {
 		return ""
 	}
@@ -347,17 +343,17 @@ func (c Control) StringValue() string {
 
 // SetEditable sets whether the control is editable.
 func (c Control) SetEditable(editable bool) {
-	objc.Send[objc.ID](c.ID, objc.RegisterName("setEditable:"), editable)
+	objc.Send[objc.ID](c.ID, objc.Sel("setEditable:"), editable)
 }
 
 // SetBordered sets whether the control has a border.
 func (c Control) SetBordered(bordered bool) {
-	objc.Send[objc.ID](c.ID, objc.RegisterName("setBordered:"), bordered)
+	objc.Send[objc.ID](c.ID, objc.Sel("setBordered:"), bordered)
 }
 
 // SetAlignment sets the text alignment.
 func (c Control) SetAlignment(alignment int) {
-	objc.Send[objc.ID](c.ID, objc.RegisterName("setAlignment:"), alignment)
+	objc.Send[objc.ID](c.ID, objc.Sel("setAlignment:"), alignment)
 }
 
 // TextField convenience methods
@@ -376,8 +372,8 @@ func NewTextFieldWithFrame(x, y, width, height float64) TextField {
 	}
 	textFieldClass := objc.GetClass("NSTextField")
 	field := TextFieldFrom(unsafe.Pointer(
-		objc.ID(textFieldClass).Send(objc.RegisterName("alloc")).Send(
-			objc.RegisterName("initWithFrame:"),
+		objc.ID(textFieldClass).Send(objc.Sel("alloc")).Send(
+			objc.Sel("initWithFrame:"),
 			rect,
 		)))
 	return field
@@ -385,17 +381,17 @@ func NewTextFieldWithFrame(x, y, width, height float64) TextField {
 
 // SetDrawsBackground sets whether the text field draws its background.
 func (t TextField) SetDrawsBackground(draws bool) {
-	objc.Send[objc.ID](t.ID, objc.RegisterName("setDrawsBackground:"), draws)
+	objc.Send[objc.ID](t.ID, objc.Sel("setDrawsBackground:"), draws)
 }
 
 // SetBackgroundColor sets the text field's background color.
 func (t TextField) SetBackgroundColor(color Color) {
-	objc.Send[objc.ID](t.ID, objc.RegisterName("setBackgroundColor:"), color.ID)
+	objc.Send[objc.ID](t.ID, objc.Sel("setBackgroundColor:"), color.ID)
 }
 
 // BackgroundColor returns the text field's background color.
 func (t TextField) BackgroundColor() Color {
-	colorID := objc.Send[objc.ID](t.ID, objc.RegisterName("backgroundColor"))
+	colorID := objc.Send[objc.ID](t.ID, objc.Sel("backgroundColor"))
 	return ColorFrom(unsafe.Pointer(colorID))
 }
 
@@ -413,8 +409,8 @@ func NewButtonWithFrame(x, y, width, height float64) Button {
 	}
 	buttonClass := objc.GetClass("NSButton")
 	button := ButtonFrom(unsafe.Pointer(
-		objc.ID(buttonClass).Send(objc.RegisterName("alloc")).Send(
-			objc.RegisterName("initWithFrame:"),
+		objc.ID(buttonClass).Send(objc.Sel("alloc")).Send(
+			objc.Sel("initWithFrame:"),
 			rect,
 		)))
 	return button

@@ -1,8 +1,10 @@
 // Hello World using only generated bindings (no darwinkit)
 //
 // Demonstrates using generated AppKit bindings with purego/objc.
-// Press Cmd+Q to quit.
+// The generated bindings automatically convert Go strings to NSString objects,
+// so you can pass Go strings directly to methods without manual conversion.
 //
+// Press Cmd+Q to quit.
 // Run with -e2e flag for automated end-to-end testing mode.
 package main
 
@@ -12,7 +14,6 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 )
@@ -23,24 +24,10 @@ var (
 
 func init() {
 	runtime.LockOSThread()
-	_, err := purego.Dlopen("/System/Library/Frameworks/AppKit.framework/AppKit", purego.RTLD_LAZY|purego.RTLD_GLOBAL)
-	if err != nil {
-		panic(err)
-	}
 }
 
-// Geometry types (would come from foundation package)
-type NSPoint struct{ X, Y float64 }
-type NSSize struct{ Width, Height float64 }
-type NSRect struct {
-	Origin NSPoint
-	Size   NSSize
-}
-
-// Helper to create NSString
-func nsString(s string) objc.ID {
-	return objc.ID(objc.GetClass("NSString")).Send(objc.RegisterName("stringWithUTF8String:"), s)
-}
+// Note: The generated bindings now handle Go string to NSString conversion automatically.
+// You can pass Go strings directly to methods that expect NSString* - no manual conversion needed!
 
 var (
 	clickCount   int
@@ -73,13 +60,14 @@ func main() {
 		return
 	}
 
-	fmt.Println("=== Hello World (Generated Bindings) ===\n")
+	fmt.Println("=== Hello World (Generated Bindings) ===")
 
 	// Use RunApp helper to handle application lifecycle
 	appkit.RunApp(func(app appkit.Application) {
 		// Create window
 		window := appkit.NewWindowWithFrame(100, 100, 400, 300,
 			appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable|appkit.WindowStyleMaskResizable)
+		// SetTitle accepts Go strings directly (automatic conversion to NSString)
 		window.SetTitle("Hello from Generated Bindings!")
 
 		// Get content view
@@ -87,6 +75,7 @@ func main() {
 
 		// Create and configure label
 		label := appkit.NewTextFieldWithFrame(50, 200, 300, 50)
+		// SetStringValue also accepts Go strings directly
 		label.SetStringValue("Using generated bindings!")
 		label.SetEditable(false)
 		label.SetBordered(false)
@@ -102,7 +91,7 @@ func main() {
 		counterLabel.SetAlignment(appkit.TextAlignmentCenter)
 		contentView.AddSubviewTyped(counterLabel)
 
-		// Create button using generated constructor
+		// Create button using generated constructor with automatic string conversion
 		button := appkit.NewButtonWithTitleTargetAction("Click Me!", createButtonHandler(), objc.RegisterName("buttonClicked:"))
 		button.SetFrameRect(150, 130, 100, 40)
 		button.SetButtonType(appkit.ButtonTypeMomentaryLight)
@@ -112,19 +101,21 @@ func main() {
 		// Show window using generated method
 		window.MakeKeyAndOrderFront(0)
 
-		fmt.Println("✅ Using generated bindings:")
+		fmt.Println("✅ Using generated bindings with automatic string conversion:")
 		fmt.Println("   - Types: Window, Button, TextField, View, Application")
 		fmt.Println("   - Constructors: NewWindowWithFrame, NewButtonWithTitleTargetAction")
-		fmt.Println("   - Methods: MakeKeyAndOrderFront, AddSubviewTyped (type-safe!), SetStringValue")
+		fmt.Println("   - Methods: SetTitle, SetStringValue (Go strings → NSString automatically!)")
+		fmt.Println("   - Type safety: AddSubviewTyped accepts IView interface")
 		fmt.Println("   - Helper: RunApp for application lifecycle management")
-		fmt.Println("   - Interfaces: IView, IButton, ITextField for type safety")
-		fmt.Println("\n   Click the button! Press Cmd+Q to quit.\n")
+		fmt.Println()
+		fmt.Println("   No manual string conversion needed - pass Go strings directly!")
+		fmt.Println("   Click the button! Press Cmd+Q to quit.")
 	})
 }
 
 // runE2ETest runs automated end-to-end tests without user interaction.
 func runE2ETest() {
-	fmt.Println("=== E2E Test Mode (Generated Bindings) ===\n")
+	fmt.Println("=== E2E Test Mode (Generated Bindings) ===")
 
 	// Get NSApplication shared instance
 	app := appkit.SharedApplication()
