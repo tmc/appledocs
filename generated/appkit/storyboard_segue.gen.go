@@ -32,7 +32,7 @@ type IStoryboardSegue interface {
 	objectivec.IObject
 }
 
-// A transition or containment relationship between two scenes in a storyboard. [Full Topic]
+// A transition or containment relationship between two scenes in a storyboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue
 type StoryboardSegue struct {

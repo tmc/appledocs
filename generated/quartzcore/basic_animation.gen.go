@@ -31,7 +31,7 @@ type IBasicAnimation interface {
 	IPropertyAnimation
 }
 
-// An object that provides basic, single-keyframe animation capabilities for a layer property. [Full Topic]
+// An object that provides basic, single-keyframe animation capabilities for a layer property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CABasicAnimation
 type BasicAnimation struct {

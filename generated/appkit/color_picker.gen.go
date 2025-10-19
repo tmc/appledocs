@@ -32,7 +32,7 @@ type IColorPicker interface {
 	objectivec.IObject
 }
 
-// An abstract superclass that implements the default color picking protocol. [Full Topic]
+// An abstract superclass that implements the default color picking protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker
 type ColorPicker struct {

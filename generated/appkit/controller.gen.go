@@ -32,7 +32,7 @@ type IController interface {
 	objectivec.IObject
 }
 
-// An abstract class that implements the and informal protocols required for controller classes. [Full Topic]
+// An abstract class that implements the and informal protocols required for controller classes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController
 type Controller struct {

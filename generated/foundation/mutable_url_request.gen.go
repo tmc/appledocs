@@ -31,7 +31,7 @@ type IMutableURLRequest interface {
 	IURLRequest
 }
 
-// A mutable URL load request that is independent of protocol or URL scheme. [Full Topic]
+// A mutable URL load request that is independent of protocol or URL scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest
 type MutableURLRequest struct {

@@ -31,7 +31,7 @@ type ISKLightNode interface {
 	ISKNode
 }
 
-// A node that lights surrounding nodes. [Full Topic]
+// A node that lights surrounding nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKLightNode
 type SKLightNode struct {

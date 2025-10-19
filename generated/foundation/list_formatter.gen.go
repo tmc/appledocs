@@ -31,7 +31,7 @@ type IListFormatter interface {
 	IFormatter
 }
 
-// An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction. [Full Topic]
+// An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter
 type ListFormatter struct {

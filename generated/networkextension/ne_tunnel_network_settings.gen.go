@@ -32,7 +32,7 @@ type INETunnelNetworkSettings interface {
 	objectivec.IObject
 }
 
-// The configuration for a tunnel provider’s virtual interface. [Full Topic]
+// The configuration for a tunnel provider’s virtual interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings
 type NETunnelNetworkSettings struct {

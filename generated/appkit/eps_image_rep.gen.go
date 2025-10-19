@@ -31,7 +31,7 @@ type IEPSImageRep interface {
 	IImageRep
 }
 
-// An object that can render an image from encapsulated PostScript (EPS) code. [Full Topic]
+// An object that can render an image from encapsulated PostScript (EPS) code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep
 type EPSImageRep struct {

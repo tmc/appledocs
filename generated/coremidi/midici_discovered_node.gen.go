@@ -32,7 +32,7 @@ type IMIDICIDiscoveredNode interface {
 	objectivec.IObject
 }
 
-// A discovered MIDI-CI node that represents a MIDI source and destination that respond to capability inquiries. [Full Topic]
+// A discovered MIDI-CI node that represents a MIDI source and destination that respond to capability inquiries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode
 type MIDICIDiscoveredNode struct {

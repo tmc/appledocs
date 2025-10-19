@@ -31,7 +31,7 @@ type IStepper interface {
 	IControl
 }
 
-// An interface with up and down arrow buttons for incrementing or decrementing a value. [Full Topic]
+// An interface with up and down arrow buttons for incrementing or decrementing a value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper
 type Stepper struct {

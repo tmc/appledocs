@@ -32,7 +32,7 @@ type IPropertyMapping interface {
 	objectivec.IObject
 }
 
-// A mapping instance that specifies in a model how to map from a property in a source entity to a property in a destination entity. [Full Topic]
+// A mapping instance that specifies in a model how to map from a property in a source entity to a property in a destination entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping
 type PropertyMapping struct {

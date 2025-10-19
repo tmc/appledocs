@@ -32,7 +32,7 @@ type IShadow interface {
 	objectivec.IObject
 }
 
-// An object you use to specify attributes to create and style a drop shadow during drawing operations. [Full Topic]
+// An object you use to specify attributes to create and style a drop shadow during drawing operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow
 type Shadow struct {

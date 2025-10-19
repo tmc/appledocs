@@ -32,7 +32,7 @@ type INEPacket interface {
 	objectivec.IObject
 }
 
-// A network packet and its associated properties. [Full Topic]
+// A network packet and its associated properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket
 type NEPacket struct {

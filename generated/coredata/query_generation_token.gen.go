@@ -32,7 +32,7 @@ type IQueryGenerationToken interface {
 	objectivec.IObject
 }
 
-// A token that indicates which generation of the persistent store is being accessed. [Full Topic]
+// A token that indicates which generation of the persistent store is being accessed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSQueryGenerationToken
 type QueryGenerationToken struct {

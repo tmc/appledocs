@@ -32,7 +32,7 @@ type ISplitViewItem interface {
 	objectivec.IObject
 }
 
-// An item in a split view controller. [Full Topic]
+// An item in a split view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem
 type SplitViewItem struct {
@@ -92,4 +92,5 @@ func (sc _SplitViewItemClass) InspectorWithViewController(viewController unsafe.
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("inspectorWithViewController:"), viewController)
 	return rv
 }
+
 

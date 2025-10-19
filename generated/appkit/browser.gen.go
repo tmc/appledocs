@@ -31,7 +31,7 @@ type IBrowser interface {
 	IControl
 }
 
-// An interface that displays a hierarchically organized list of data items that can be navigated and selected. [Full Topic]
+// An interface that displays a hierarchically organized list of data items that can be navigated and selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowser
 type Browser struct {

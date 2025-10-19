@@ -31,7 +31,7 @@ type IUnitElectricPotentialDifference interface {
 	IDimension
 }
 
-// A unit of measure for electric potential difference. [Full Topic]
+// A unit of measure for electric potential difference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference
 type UnitElectricPotentialDifference struct {

@@ -31,7 +31,7 @@ type IPressGestureRecognizer interface {
 	IGestureRecognizer
 }
 
-// A discrete gesture recognizer that tracks whether the user holds down a mouse button for a minimum amount of time before releasing it. [Full Topic]
+// A discrete gesture recognizer that tracks whether the user holds down a mouse button for a minimum amount of time before releasing it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressGestureRecognizer
 type PressGestureRecognizer struct {

@@ -32,7 +32,7 @@ type IXPCListenerEndpoint interface {
 	objectivec.IObject
 }
 
-// An object that names a specific XPC listener. [Full Topic]
+// An object that names a specific XPC listener.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListenerEndpoint
 type XPCListenerEndpoint struct {

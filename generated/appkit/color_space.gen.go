@@ -32,7 +32,7 @@ type IColorSpace interface {
 	objectivec.IObject
 }
 
-// An object that represents a custom color space. [Full Topic]
+// An object that represents a custom color space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace
 type ColorSpace struct {

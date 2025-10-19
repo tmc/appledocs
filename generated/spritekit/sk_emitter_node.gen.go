@@ -31,7 +31,7 @@ type ISKEmitterNode interface {
 	ISKNode
 }
 
-// A source of various particle effects. [Full Topic]
+// A source of various particle effects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKEmitterNode
 type SKEmitterNode struct {

@@ -32,7 +32,7 @@ type IAVAssetResourceLoader interface {
 	objectivec.IObject
 }
 
-// An object that mediates resource requests from a URL asset. [Full Topic]
+// An object that mediates resource requests from a URL asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader
 type AVAssetResourceLoader struct {

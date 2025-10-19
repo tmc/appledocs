@@ -32,7 +32,7 @@ type IMediaTimingFunction interface {
 	objectivec.IObject
 }
 
-// A function that defines the pacing of an animation as a timing curve. [Full Topic]
+// A function that defines the pacing of an animation as a timing curve.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction
 type MediaTimingFunction struct {
@@ -78,8 +78,7 @@ func NewMediaTimingFunction() MediaTimingFunction {
 }
 
 
-// Returns an initialized timing function modeled as a cubic Bézier curve using the specified control points. [Full Topic]
-
+// Returns an initialized timing function modeled as a cubic Bézier curve using the specified control points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(controlPoints:_:_:_:)
 func NewMediaTimingFunctionWithControlPoints(c1x float32, c1y float32, c2x float32, c2y float32) MediaTimingFunction {

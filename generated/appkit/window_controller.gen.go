@@ -31,7 +31,7 @@ type IWindowController interface {
 	IResponder
 }
 
-// A controller that manages a window, usually a window stored in a nib file. [Full Topic]
+// A controller that manages a window, usually a window stored in a nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController
 type WindowController struct {

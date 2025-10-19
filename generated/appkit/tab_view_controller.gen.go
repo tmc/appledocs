@@ -31,7 +31,7 @@ type ITabViewController interface {
 	IViewController
 }
 
-// A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time. [Full Topic]
+// A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController
 type TabViewController struct {

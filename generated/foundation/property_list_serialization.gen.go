@@ -32,7 +32,7 @@ type IPropertyListSerialization interface {
 	objectivec.IObject
 }
 
-// An object that converts between a property list and one of several serialized representations. [Full Topic]
+// An object that converts between a property list and one of several serialized representations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization
 type PropertyListSerialization struct {

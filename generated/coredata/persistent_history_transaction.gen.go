@@ -33,7 +33,7 @@ type IPersistentHistoryTransaction interface {
 	ObjectIDNotification() unsafe.Pointer
 }
 
-// A set of changes in the persistent history based on a context save or batch operation. [Full Topic]
+// A set of changes in the persistent history based on a context save or batch operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction
 type PersistentHistoryTransaction struct {
@@ -79,16 +79,14 @@ func NewPersistentHistoryTransaction() PersistentHistoryTransaction {
 }
 
 
-// Requests an entity description using the provided context for the managed object type affected by the transaction. [Full Topic]
-
+// Requests an entity description using the provided context for the managed object type affected by the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription(with:)
 func (pc _PersistentHistoryTransactionClass) EntityDescriptionWithContext(context unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("entityDescriptionWithContext:"), context)
 	return rv
 }
-// Obtains a notification for use in merging the transaction’s changes into a managed object context. [Full Topic]
-
+// Obtains a notification for use in merging the transaction’s changes into a managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/objectIDNotification()
 func (p_ PersistentHistoryTransaction) ObjectIDNotification() unsafe.Pointer {

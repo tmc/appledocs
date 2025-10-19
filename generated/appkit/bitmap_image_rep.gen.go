@@ -31,7 +31,7 @@ type IBitmapImageRep interface {
 	IImageRep
 }
 
-// An object that renders an image from bitmap data. [Full Topic]
+// An object that renders an image from bitmap data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep
 type BitmapImageRep struct {

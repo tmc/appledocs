@@ -34,7 +34,7 @@ type IAVPlayerItem interface {
 	RequestPlaybackRestrictionsAuthorization(completion unsafe.Pointer)
 }
 
-// An object that models the timing and presentation state of an asset during playback. [Full Topic]
+// An object that models the timing and presentation state of an asset during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem
 type AVPlayerItem struct {
@@ -80,16 +80,14 @@ func NewAVPlayerItem() AVPlayerItem {
 }
 
 
-// Returns the current time of the item. [Full Topic]
-
+// Returns the current time of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/currentTime()
 func (a_ AVPlayerItem) CurrentTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentTime"))
 	return rv
 }
-// Determines whether this item is subject to parental restrictions, and, if so, prompts the user to enter the restrictions passcode. [Full Topic]
-
+// Determines whether this item is subject to parental restrictions, and, if so, prompts the user to enter the restrictions passcode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/requestPlaybackRestrictionsAuthorization(_:)
 func (a_ AVPlayerItem) RequestPlaybackRestrictionsAuthorization(completion unsafe.Pointer) {

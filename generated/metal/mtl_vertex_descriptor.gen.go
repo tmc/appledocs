@@ -32,7 +32,7 @@ type IMTLVertexDescriptor interface {
 	objectivec.IObject
 }
 
-// An object that describes how to organize and map data to a vertex function. [Full Topic]
+// An object that describes how to organize and map data to a vertex function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor
 type MTLVertexDescriptor struct {

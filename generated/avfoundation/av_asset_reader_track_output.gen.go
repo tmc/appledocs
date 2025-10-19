@@ -31,7 +31,7 @@ type IAVAssetReaderTrackOutput interface {
 	IAVAssetReaderOutput
 }
 
-// An object that reads media data from a single track of an asset. [Full Topic]
+// An object that reads media data from a single track of an asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReaderTrackOutput
 type AVAssetReaderTrackOutput struct {

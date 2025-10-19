@@ -31,7 +31,7 @@ type IPathComponentCell interface {
 	ITextFieldCell
 }
 
-// A component of a path. [Full Topic]
+// A component of a path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathComponentCell
 type PathComponentCell struct {

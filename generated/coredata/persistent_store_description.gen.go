@@ -34,7 +34,7 @@ type IPersistentStoreDescription interface {
 	SetValueForPragmaNamed(value unsafe.Pointer, name string)
 }
 
-// A description object used to create and load a persistent store. [Full Topic]
+// A description object used to create and load a persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription
 type PersistentStoreDescription struct {
@@ -80,8 +80,7 @@ func NewPersistentStoreDescription() PersistentStoreDescription {
 }
 
 
-// Initializes the receiver with a URL for the store. [Full Topic]
-
+// Initializes the receiver with a URL for the store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/init(url:)
 func NewPersistentStoreDescriptionWithURL(url unsafe.Pointer) PersistentStoreDescription {
@@ -92,23 +91,20 @@ func NewPersistentStoreDescriptionWithURL(url unsafe.Pointer) PersistentStoreDes
 }
 
 
-// Initializes and returns a persistent store description with the given URL. [Full Topic]
-
+// Initializes and returns a persistent store description with the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/persistentStoreDescriptionWithURL:
 func (pc _PersistentStoreDescriptionClass) PersistentStoreDescriptionWithURL(URL unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentStoreDescriptionWithURL:"), URL)
 	return rv
 }
-// Sets an option on the store. [Full Topic]
-
+// Sets an option on the store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/setOption(_:forKey:)
 func (p_ PersistentStoreDescription) SetOptionForKey(option unsafe.Pointer, key string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOption:forKey:"), option, objc.String(key))
 }
-// Allows you to set pragmas for the SQLite store. [Full Topic]
-
+// Allows you to set pragmas for the SQLite store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/setValue(_:forPragmaNamed:)
 func (p_ PersistentStoreDescription) SetValueForPragmaNamed(value unsafe.Pointer, name string) {

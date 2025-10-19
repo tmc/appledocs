@@ -32,7 +32,7 @@ type IBarcodeDescriptor interface {
 	objectivec.IObject
 }
 
-// An abstract base class that represents a machine-readable code’s attributes. [Full Topic]
+// An abstract base class that represents a machine-readable code’s attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBarcodeDescriptor
 type BarcodeDescriptor struct {

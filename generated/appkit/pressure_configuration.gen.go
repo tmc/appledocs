@@ -32,7 +32,7 @@ type IPressureConfiguration interface {
 	objectivec.IObject
 }
 
-// An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events. [Full Topic]
+// An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration
 type PressureConfiguration struct {

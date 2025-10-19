@@ -32,7 +32,7 @@ type IFloor interface {
 	objectivec.IObject
 }
 
-// The floor of a building on which the user’s device is located. [Full Topic]
+// The floor of a building on which the user’s device is located.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLFloor
 type Floor struct {

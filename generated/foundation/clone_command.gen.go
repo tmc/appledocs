@@ -31,7 +31,7 @@ type ICloneCommand interface {
 	IScriptCommand
 }
 
-// A command that clones one or more scriptable objects. [Full Topic]
+// A command that clones one or more scriptable objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloneCommand
 type CloneCommand struct {

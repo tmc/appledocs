@@ -33,7 +33,7 @@ type ISharingServicePicker interface {
 	ShowRelativeToRectOfViewPreferredEdge(rect unsafe.Pointer, view unsafe.Pointer, preferredEdge int)
 }
 
-// A list of sharing services that the user can choose from. [Full Topic]
+// A list of sharing services that the user can choose from.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker
 type SharingServicePicker struct {
@@ -79,12 +79,12 @@ func NewSharingServicePicker() SharingServicePicker {
 }
 
 
-// Shows the picker interface and populates it with the relevant sharing services. [Full Topic]
-
+// Shows the picker interface and populates it with the relevant sharing services.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/show(relativeTo:of:preferredEdge:)
 func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect unsafe.Pointer, view unsafe.Pointer, preferredEdge int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), rect, view, preferredEdge)
 }
+
 
 

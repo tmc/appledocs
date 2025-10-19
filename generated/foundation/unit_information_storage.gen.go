@@ -31,7 +31,7 @@ type IUnitInformationStorage interface {
 	IDimension
 }
 
-// A unit of measure for quantities of information. [Full Topic]
+// A unit of measure for quantities of information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage
 type UnitInformationStorage struct {

@@ -31,7 +31,7 @@ type ILayoutXAxisAnchor interface {
 	ILayoutAnchor
 }
 
-// A factory class for creating horizontal layout constraint objects using a fluent API. [Full Topic]
+// A factory class for creating horizontal layout constraint objects using a fluent API.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor
 type LayoutXAxisAnchor struct {

@@ -31,7 +31,7 @@ type IDatePicker interface {
 	IControl
 }
 
-// A display of a calendar date with controls for editing the date value. [Full Topic]
+// A display of a calendar date with controls for editing the date value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker
 type DatePicker struct {

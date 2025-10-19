@@ -32,7 +32,7 @@ type IToolbarItem interface {
 	objectivec.IObject
 }
 
-// A single item that appears in a window’s toolbar. [Full Topic]
+// A single item that appears in a window’s toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem
 type ToolbarItem struct {

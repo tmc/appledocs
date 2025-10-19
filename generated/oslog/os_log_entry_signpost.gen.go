@@ -31,7 +31,7 @@ type IOSLogEntrySignpost interface {
 	IOSLogEntry
 }
 
-// An entry containing a signpost. [Full Topic]
+// An entry containing a signpost.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost
 type OSLogEntrySignpost struct {

@@ -31,7 +31,7 @@ type ISK3DNode interface {
 	ISKNode
 }
 
-// 3D SceneKit content drawn as a flattened sprite. [Full Topic]
+// 3D SceneKit content drawn as a flattened sprite.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SK3DNode
 type SK3DNode struct {

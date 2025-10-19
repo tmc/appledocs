@@ -31,7 +31,7 @@ type IDerivedAttributeDescription interface {
 	IAttributeDescription
 }
 
-// A description of an attribute that derives its value by performing a calculation on a related attribute. [Full Topic]
+// A description of an attribute that derives its value by performing a calculation on a related attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription
 type DerivedAttributeDescription struct {

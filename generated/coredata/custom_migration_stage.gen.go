@@ -31,7 +31,7 @@ type ICustomMigrationStage interface {
 	IMigrationStage
 }
 
-// An object that enables you to participate in the migration between two versions of the same model. [Full Topic]
+// An object that enables you to participate in the migration between two versions of the same model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage
 type CustomMigrationStage struct {
@@ -79,8 +79,7 @@ func NewCustomMigrationStage() CustomMigrationStage {
 }
 
 
-// Creates a custom migration stage with the specified source and destination model references. [Full Topic]
-
+// Creates a custom migration stage with the specified source and destination model references.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/initWithCurrentModelReference:nextModelReference:
 func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentModel unsafe.Pointer, nextModel unsafe.Pointer) CustomMigrationStage {

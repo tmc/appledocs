@@ -34,7 +34,7 @@ type IDetector interface {
 	FeaturesInImageOptions(image unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
 }
 
-// An image processor that identifies notable features, such as faces and barcodes, in a still image or video. [Full Topic]
+// An image processor that identifies notable features, such as faces and barcodes, in a still image or video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector
 type Detector struct {
@@ -80,8 +80,7 @@ func NewDetector() Detector {
 }
 
 
-// Creates and returns a configured detector. [Full Topic]
-
+// Creates and returns a configured detector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
 func NewDetectorOfTypeContextOptions(type_ string, context unsafe.Pointer, options unsafe.Pointer) Detector {
@@ -90,24 +89,21 @@ func NewDetectorOfTypeContextOptions(type_ string, context unsafe.Pointer, optio
 }
 
 
-// Creates and returns a configured detector. [Full Topic]
-
+// Creates and returns a configured detector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
 func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ string, context unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
 	return rv
 }
-// Searches for features in an image. [Full Topic]
-
+// Searches for features in an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/features(in:)
 func (d_ Detector) FeaturesInImage(image unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("featuresInImage:"), image)
 	return rv
 }
-// Searches for features in an image based on the specified image orientation. [Full Topic]
-
+// Searches for features in an image based on the specified image orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/features(in:options:)
 func (d_ Detector) FeaturesInImageOptions(image unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {

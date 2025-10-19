@@ -32,7 +32,7 @@ type ITableColumn interface {
 	objectivec.IObject
 }
 
-// The display characteristics and identifier for a column in a table view. [Full Topic]
+// The display characteristics and identifier for a column in a table view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn
 type TableColumn struct {

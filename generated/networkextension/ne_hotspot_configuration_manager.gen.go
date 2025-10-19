@@ -32,7 +32,7 @@ type INEHotspotConfigurationManager interface {
 	objectivec.IObject
 }
 
-// A manager that applies and removes hotspot configurations of Wi-Fi networks. [Full Topic]
+// A manager that applies and removes hotspot configurations of Wi-Fi networks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfigurationManager
 type NEHotspotConfigurationManager struct {

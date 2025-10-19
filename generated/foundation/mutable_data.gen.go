@@ -31,7 +31,7 @@ type IMutableData interface {
 	IData
 }
 
-// An object representing a dynamic byte buffer in memory. [Full Topic]
+// An object representing a dynamic byte buffer in memory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData
 type MutableData struct {

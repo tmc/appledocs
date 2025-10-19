@@ -31,7 +31,7 @@ type ITextFeature interface {
 	IFeature
 }
 
-// Information about a text that was detected in a still or video image. [Full Topic]
+// Information about a text that was detected in a still or video image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature
 type TextFeature struct {

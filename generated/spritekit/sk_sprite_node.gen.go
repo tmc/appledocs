@@ -31,7 +31,7 @@ type ISKSpriteNode interface {
 	ISKNode
 }
 
-// An image or solid color. [Full Topic]
+// An image or solid color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKSpriteNode
 type SKSpriteNode struct {

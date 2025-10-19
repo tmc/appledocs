@@ -32,7 +32,7 @@ type IGlyphInfo interface {
 	objectivec.IObject
 }
 
-// A glyph attribute in an attributed string. [Full Topic]
+// A glyph attribute in an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo
 type GlyphInfo struct {

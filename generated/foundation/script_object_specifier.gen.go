@@ -32,7 +32,7 @@ type IScriptObjectSpecifier interface {
 	objectivec.IObject
 }
 
-// An abstract class used to represent natural language expressions. [Full Topic]
+// An abstract class used to represent natural language expressions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier
 type ScriptObjectSpecifier struct {

@@ -31,7 +31,7 @@ type IUnitVolume interface {
 	IDimension
 }
 
-// A unit of measure for volume. [Full Topic]
+// A unit of measure for volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume
 type UnitVolume struct {

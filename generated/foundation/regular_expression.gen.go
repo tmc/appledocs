@@ -32,7 +32,7 @@ type IRegularExpression interface {
 	objectivec.IObject
 }
 
-// An immutable representation of a compiled regular expression that you apply to Unicode strings. [Full Topic]
+// An immutable representation of a compiled regular expression that you apply to Unicode strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression
 type RegularExpression struct {

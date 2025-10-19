@@ -31,7 +31,7 @@ type ICreateCommand interface {
 	IScriptCommand
 }
 
-// A command that creates a scriptable object. [Full Topic]
+// A command that creates a scriptable object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand
 type CreateCommand struct {

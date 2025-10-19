@@ -34,7 +34,7 @@ type IItemProvider interface {
 	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions unsafe.Pointer, visibility unsafe.Pointer, loadHandler unsafe.Pointer)
 }
 
-// An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension. [Full Topic]
+// An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider
 type ItemProvider struct {
@@ -80,16 +80,14 @@ func NewItemProvider() ItemProvider {
 }
 
 
-// Returns a Boolean value indicating whether an item provider can load objects of a specified class. [Full Topic]
-
+// Returns a Boolean value indicating whether an item provider can load objects of a specified class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/canLoadObject(ofClass:)-3eig9
 func (i_ ItemProvider) CanLoadObjectOfClass(aClass unsafe.Pointer) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("canLoadObjectOfClass:"), aClass)
 	return rv
 }
-// Registers a file-backed representation for an item, specifying file options, item visibility, and a load handler. [Full Topic]
-
+// Registers a file-backed representation for an item, specifying file options, item visibility, and a load handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:)
 func (i_ ItemProvider) RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions unsafe.Pointer, visibility unsafe.Pointer, loadHandler unsafe.Pointer) {

@@ -31,7 +31,7 @@ type IMutableParagraphStyle interface {
 	IParagraphStyle
 }
 
-// An object for changing the values of the subattributes in a paragraph style attribute. [Full Topic]
+// An object for changing the values of the subattributes in a paragraph style attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle
 type MutableParagraphStyle struct {

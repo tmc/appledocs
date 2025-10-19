@@ -32,7 +32,7 @@ type IRenderInfo interface {
 	objectivec.IObject
 }
 
-// An encapsulation of a render task’s timing, passes, and pixels processed. [Full Topic]
+// An encapsulation of a render task’s timing, passes, and pixels processed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo
 type RenderInfo struct {

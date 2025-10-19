@@ -31,7 +31,7 @@ type IScrubberTextItemView interface {
 	IScrubberItemView
 }
 
-// A concrete view subclass for displaying text for an item in a scrubber. [Full Topic]
+// A concrete view subclass for displaying text for an item in a scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView
 type ScrubberTextItemView struct {

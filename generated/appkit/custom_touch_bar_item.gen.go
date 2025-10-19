@@ -31,7 +31,7 @@ type ICustomTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that contains a responder of your choice, such as a view, a button, or a scrubber. [Full Topic]
+// A bar item that contains a responder of your choice, such as a view, a button, or a scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem
 type CustomTouchBarItem struct {

@@ -32,7 +32,7 @@ type IMapTable interface {
 	objectivec.IObject
 }
 
-// A collection similar to a dictionary, but with a broader range of available memory semantics. [Full Topic]
+// A collection similar to a dictionary, but with a broader range of available memory semantics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable
 type MapTable struct {

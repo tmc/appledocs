@@ -32,7 +32,7 @@ type ICursor interface {
 	objectivec.IObject
 }
 
-// A pointer (also called a cursor). [Full Topic]
+// A pointer (also called a cursor).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor
 type Cursor struct {

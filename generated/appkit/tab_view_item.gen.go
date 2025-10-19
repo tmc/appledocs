@@ -32,7 +32,7 @@ type ITabViewItem interface {
 	objectivec.IObject
 }
 
-// An item in a tab view. [Full Topic]
+// An item in a tab view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem
 type TabViewItem struct {

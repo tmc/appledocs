@@ -31,7 +31,7 @@ type IScrubberItemView interface {
 	IScrubberArrangedView
 }
 
-// An item at a specific index position in the scrubber. [Full Topic]
+// An item at a specific index position in the scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberItemView
 type ScrubberItemView struct {

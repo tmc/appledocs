@@ -32,7 +32,7 @@ type IAVCaptureSpatialAudioMetadataSampleGenerator interface {
 	objectivec.IObject
 }
 
-// An interface for generating a spatial audio timed metadata sample. [Full Topic]
+// An interface for generating a spatial audio timed metadata sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSpatialAudioMetadataSampleGenerator
 type AVCaptureSpatialAudioMetadataSampleGenerator struct {

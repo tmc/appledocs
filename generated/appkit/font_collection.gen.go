@@ -32,7 +32,7 @@ type IFontCollection interface {
 	objectivec.IObject
 }
 
-// A font collection, which is a group of font descriptors taken together as a single object. [Full Topic]
+// A font collection, which is a group of font descriptors taken together as a single object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontCollection
 type FontCollection struct {

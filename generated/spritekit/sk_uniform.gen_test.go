@@ -10,6 +10,15 @@ import (
 var _ = spritekit.NewSKUniform
 
 
+// ExampleNewSKUniformWithNameFloat demonstrates how to create a SKUniform instance using NewSKUniformWithNameFloat.
+// Initializes a new uniform object that holds a floating-point number.
+func ExampleNewSKUniformWithNameFloat() {
+	_ = spritekit.NewSKUniformWithNameFloat(
+		"name", // name string
+		0.0, // value float32
+	)
+	// Output:
+}
 
 
 
@@ -26,15 +35,6 @@ func ExampleNewSKUniformWithName() {
 	// Output:
 }
 
-// ExampleNewSKUniformWithNameFloat demonstrates how to create a SKUniform instance using NewSKUniformWithNameFloat.
-// Initializes a new uniform object that holds a floating-point number.
-func ExampleNewSKUniformWithNameFloat() {
-	_ = spritekit.NewSKUniformWithNameFloat(
-		"name", // name string
-		0.0, // value float32
-	)
-	// Output:
-}
 
 
 

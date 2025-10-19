@@ -32,7 +32,7 @@ type IError interface {
 	objectivec.IObject
 }
 
-// Information about an error condition including a domain, a domain-specific error code, and application-specific information. [Full Topic]
+// Information about an error condition including a domain, a domain-specific error code, and application-specific information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError
 type Error struct {
@@ -78,8 +78,7 @@ func NewError() Error {
 }
 
 
-// Returns an object initialized for a given domain and code with a given dictionary. [Full Topic]
-
+// Returns an object initialized for a given domain and code with a given dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/init(domain:code:userInfo:)
 func NewErrorWithDomainCodeUserInfo(domain unsafe.Pointer, code int, dict unsafe.Pointer) Error {
@@ -90,16 +89,14 @@ func NewErrorWithDomainCodeUserInfo(domain unsafe.Pointer, code int, dict unsafe
 }
 
 
-// Creates and initializes an object for a given domain and code with a given dictionary. [Full Topic]
-
+// Creates and initializes an object for a given domain and code with a given dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/errorWithDomain:code:userInfo:
 func (ec _ErrorClass) ErrorWithDomainCodeUserInfo(domain unsafe.Pointer, code int, dict unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("errorWithDomain:code:userInfo:"), domain, code, dict)
 	return rv
 }
-// Returns a properly formatted error object with a error code. [Full Topic]
-
+// Returns a properly formatted error object with a error code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForCollision(with:)
 func (ec _ErrorClass) FileProviderErrorForCollisionWithItem(existingItem unsafe.Pointer) unsafe.Pointer {
@@ -118,15 +115,13 @@ func (ec _ErrorClass) FileProviderErrorForRejectedDeletionOfItem(updatedVersion 
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForRejectedDeletionOfItem:"), updatedVersion)
 	return rv
 }
-// Specifies a block to call when the corresponding property is not present in the user info dictionary. [Full Topic]
-
+// Specifies a block to call when the corresponding property is not present in the user info dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/setUserInfoValueProvider(forDomain:provider:)
 func (ec _ErrorClass) SetUserInfoValueProviderForDomainProvider(errorDomain unsafe.Pointer, provider unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("setUserInfoValueProviderForDomain:provider:"), errorDomain, provider)
 }
-// Returns any user info provider specified for a given error domain. [Full Topic]
-
+// Returns any user info provider specified for a given error domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfoValueProvider(forDomain:)
 func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain unsafe.Pointer) {

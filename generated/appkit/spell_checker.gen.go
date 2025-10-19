@@ -33,7 +33,7 @@ type ISpellChecker interface {
 	RequestCandidatesForSelectedRangeInStringTypesOptionsInSpellDocumentWithTagCompletionHandler(selectedRange unsafe.Pointer, stringToCheck string, checkingTypes unsafe.Pointer, options unsafe.Pointer, tag int, completionHandler unsafe.Pointer) int
 }
 
-// An interface to the Cocoa spell-checking service. [Full Topic]
+// An interface to the Cocoa spell-checking service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker
 type SpellChecker struct {
@@ -85,5 +85,6 @@ func (s_ SpellChecker) RequestCandidatesForSelectedRangeInStringTypesOptionsInSp
 	rv := objc.Send[int](s_.ID, objc.Sel("requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:"), selectedRange, objc.String(stringToCheck), checkingTypes, options, tag, completionHandler)
 	return rv
 }
+
 
 

@@ -31,7 +31,7 @@ type ISKPhysicsJointLimit interface {
 	ISKPhysicsJoint
 }
 
-// A joint that imposes a maximum distance between two physics bodies, as if they were connected by a rope. [Full Topic]
+// A joint that imposes a maximum distance between two physics bodies, as if they were connected by a rope.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointLimit
 type SKPhysicsJointLimit struct {
@@ -79,8 +79,7 @@ func NewSKPhysicsJointLimit() SKPhysicsJointLimit {
 }
 
 
-// Creates a new limit joint. [Full Topic]
-
+// Creates a new limit joint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointLimit/joint(withBodyA:bodyB:anchorA:anchorB:)
 func (sc _SKPhysicsJointLimitClass) JointWithBodyABodyBAnchorAAnchorB(bodyA unsafe.Pointer, bodyB unsafe.Pointer, anchorA unsafe.Pointer, anchorB unsafe.Pointer) unsafe.Pointer {

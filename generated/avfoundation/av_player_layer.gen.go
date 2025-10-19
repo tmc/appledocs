@@ -32,7 +32,7 @@ type IAVPlayerLayer interface {
 	quartzcore.ILayer
 }
 
-// An object that presents the visual contents of a player object. [Full Topic]
+// An object that presents the visual contents of a player object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer
 type AVPlayerLayer struct {

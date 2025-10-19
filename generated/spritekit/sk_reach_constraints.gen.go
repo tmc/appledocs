@@ -32,7 +32,7 @@ type ISKReachConstraints interface {
 	objectivec.IObject
 }
 
-// A specification of the degree of freedom when solving inverse kinematics. [Full Topic]
+// A specification of the degree of freedom when solving inverse kinematics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKReachConstraints
 type SKReachConstraints struct {
@@ -78,8 +78,7 @@ func NewSKReachConstraints() SKReachConstraints {
 }
 
 
-// Initializes a new reach constraint object. [Full Topic]
-
+// Initializes a new reach constraint object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKReachConstraints/init(lowerAngleLimit:upperAngleLimit:)
 func NewSKReachConstraintsWithLowerAngleLimitUpperAngleLimit(lowerAngleLimit float64, upperAngleLimit float64) SKReachConstraints {

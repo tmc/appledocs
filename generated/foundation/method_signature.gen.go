@@ -32,7 +32,7 @@ type IMethodSignature interface {
 	objectivec.IObject
 }
 
-// A record of the type information for the return value and parameters of a method. [Full Topic]
+// A record of the type information for the return value and parameters of a method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMethodSignature
 type MethodSignature struct {

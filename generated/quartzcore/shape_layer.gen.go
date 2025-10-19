@@ -31,7 +31,7 @@ type IShapeLayer interface {
 	ILayer
 }
 
-// A layer that draws a cubic Bezier spline in its coordinate space. [Full Topic]
+// A layer that draws a cubic Bezier spline in its coordinate space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer
 type ShapeLayer struct {

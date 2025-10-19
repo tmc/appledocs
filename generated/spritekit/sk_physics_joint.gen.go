@@ -32,7 +32,7 @@ type ISKPhysicsJoint interface {
 	objectivec.IObject
 }
 
-// The abstract superclass for objects that connect physics bodies. [Full Topic]
+// The abstract superclass for objects that connect physics bodies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJoint
 type SKPhysicsJoint struct {

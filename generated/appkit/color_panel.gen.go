@@ -31,7 +31,7 @@ type IColorPanel interface {
 	IPanel
 }
 
-// A standard user interface for selecting color in an app. [Full Topic]
+// A standard user interface for selecting color in an app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel
 type ColorPanel struct {

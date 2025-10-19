@@ -31,7 +31,7 @@ type ITokenField interface {
 	ITextField
 }
 
-// A text field that converts text into visually distinct tokens. [Full Topic]
+// A text field that converts text into visually distinct tokens.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField
 type TokenField struct {

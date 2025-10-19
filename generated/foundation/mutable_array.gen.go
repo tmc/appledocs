@@ -32,7 +32,7 @@ type IMutableArray interface {
 	SortUsingDescriptors(sortDescriptors unsafe.Pointer)
 }
 
-// A dynamic ordered collection of objects. [Full Topic]
+// A dynamic ordered collection of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray
 type MutableArray struct {
@@ -80,8 +80,7 @@ func NewMutableArray() MutableArray {
 }
 
 
-// Sorts the receiver using a given array of sort descriptors. [Full Topic]
-
+// Sorts the receiver using a given array of sort descriptors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/sort(using:)-4eh07
 func (m_ MutableArray) SortUsingDescriptors(sortDescriptors unsafe.Pointer) {

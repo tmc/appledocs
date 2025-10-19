@@ -32,7 +32,7 @@ type ITextStorage interface {
 	foundation.IMutableAttributedString
 }
 
-// The fundamental storage mechanism of TextKit that contains the text managed by the system. [Full Topic]
+// The fundamental storage mechanism of TextKit that contains the text managed by the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage
 type TextStorage struct {

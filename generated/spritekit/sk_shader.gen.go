@@ -35,7 +35,7 @@ type ISKShader interface {
 	UniformNamed(name string) unsafe.Pointer
 }
 
-// An object that allows you to apply a custom fragment shader. [Full Topic]
+// An object that allows you to apply a custom fragment shader.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader
 type SKShader struct {
@@ -81,16 +81,14 @@ func NewSKShader() SKShader {
 }
 
 
-// Creates a new shader object by loading the source for a fragment shader from a file stored in the app’s bundle. [Full Topic]
-
+// Creates a new shader object by loading the source for a fragment shader from a file stored in the app’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader/init(fileNamed:)
 func NewSKShaderWithFileNamed(name string) SKShader {
 	rv := objc.Send[SKShader](objc.ID(getSKShaderClass().class), objc.Sel("shaderWithFileNamed:"), objc.String(name))
 	return rv
 }
-// Initializes a new shader object using the specified source code. [Full Topic]
-
+// Initializes a new shader object using the specified source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader/init(source:)
 func NewSKShaderWithSource(source string) SKShader {
@@ -99,8 +97,7 @@ func NewSKShaderWithSource(source string) SKShader {
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new shader object using the specified source and uniform data. [Full Topic]
-
+// Initializes a new shader object using the specified source and uniform data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader/init(source:uniforms:)
 func NewSKShaderWithSourceUniforms(source string, uniforms unsafe.Pointer) SKShader {
@@ -111,54 +108,47 @@ func NewSKShaderWithSourceUniforms(source string, uniforms unsafe.Pointer) SKSha
 }
 
 
-// Creates a new shader object by loading the source for a fragment shader from a file stored in the app’s bundle. [Full Topic]
-
+// Creates a new shader object by loading the source for a fragment shader from a file stored in the app’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader/init(fileNamed:)
 func (sc _SKShaderClass) ShaderWithFileNamed(name string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("shaderWithFileNamed:"), objc.String(name))
 	return rv
 }
-// Creates a new empty shader object. [Full Topic]
-
+// Creates a new empty shader object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader/shader
 func (sc _SKShaderClass) Shader() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("shader"))
 	return rv
 }
-// Creates a new shader object using the specified source code. [Full Topic]
-
+// Creates a new shader object using the specified source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader/shaderWithSource:
 func (sc _SKShaderClass) ShaderWithSource(source string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("shaderWithSource:"), objc.String(source))
 	return rv
 }
-// Creates a new shader object using the specified source and uniform data. [Full Topic]
-
+// Creates a new shader object using the specified source and uniform data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader/shaderWithSource:uniforms:
 func (sc _SKShaderClass) ShaderWithSourceUniforms(source string, uniforms unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("shaderWithSource:uniforms:"), objc.String(source), uniforms)
 	return rv
 }
-// Adds a uniform to the shader. [Full Topic]
-
+// Adds a uniform to the shader.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader/addUniform(_:)
 func (s_ SKShader) AddUniform(uniform unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addUniform:"), uniform)
 }
-// Removes a uniform from the shader. [Full Topic]
-
+// Removes a uniform from the shader.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader/removeUniformNamed(_:)
 func (s_ SKShader) RemoveUniformNamed(name string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeUniformNamed:"), objc.String(name))
 }
-// Returns the uniform object corresponding to a particular uniform variable. [Full Topic]
-
+// Returns the uniform object corresponding to a particular uniform variable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShader/uniformNamed(_:)
 func (s_ SKShader) UniformNamed(name string) unsafe.Pointer {

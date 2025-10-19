@@ -32,7 +32,7 @@ type IOSLogEntry interface {
 	objectivec.IObject
 }
 
-// A single entry from the unified logging system. [Full Topic]
+// A single entry from the unified logging system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry
 type OSLogEntry struct {

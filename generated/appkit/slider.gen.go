@@ -32,7 +32,7 @@ type ISlider interface {
 	SetTitleFont(fontObj unsafe.Pointer)
 }
 
-// A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value. [Full Topic]
+// A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider
 type Slider struct {
@@ -80,12 +80,12 @@ func NewSlider() Slider {
 }
 
 
-// Sets the font used to draw the slider’s title. [Full Topic]
-
+// Sets the font used to draw the slider’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/setTitleFont:
 func (s_ Slider) SetTitleFont(fontObj unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitleFont:"), fontObj)
 }
+
 
 

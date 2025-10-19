@@ -31,7 +31,7 @@ type IWhoseSpecifier interface {
 	IScriptObjectSpecifier
 }
 
-// A specifier that indicates every object in a collection matching a condition. [Full Topic]
+// A specifier that indicates every object in a collection matching a condition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier
 type WhoseSpecifier struct {

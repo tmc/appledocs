@@ -32,7 +32,7 @@ type INEHotspotConfiguration interface {
 	objectivec.IObject
 }
 
-// Configuration settings for a Wi-Fi network. [Full Topic]
+// Configuration settings for a Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration
 type NEHotspotConfiguration struct {

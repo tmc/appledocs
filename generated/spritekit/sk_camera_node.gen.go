@@ -31,7 +31,7 @@ type ISKCameraNode interface {
 	ISKNode
 }
 
-// A node that determines which parts of the scene are visible within a view. [Full Topic]
+// A node that determines which parts of the scene are visible within a view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKCameraNode
 type SKCameraNode struct {

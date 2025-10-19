@@ -32,7 +32,7 @@ type IManagedObject interface {
 	objectivec.IObject
 }
 
-// The base class that all Core Data model objects inherit from. [Full Topic]
+// The base class that all Core Data model objects inherit from.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject
 type ManagedObject struct {
@@ -78,8 +78,7 @@ func NewManagedObject() ManagedObject {
 }
 
 
-// Initializes a managed object from an entity description and inserts it into the specified managed object context. [Full Topic]
-
+// Initializes a managed object from an entity description and inserts it into the specified managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/init(entity:insertInto:)
 func NewManagedObjectWithEntityInsertIntoManagedObjectContext(entity unsafe.Pointer, context unsafe.Pointer) ManagedObject {

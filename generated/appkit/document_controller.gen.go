@@ -32,7 +32,7 @@ type IDocumentController interface {
 	objectivec.IObject
 }
 
-// An object that manages an app’s documents. [Full Topic]
+// An object that manages an app’s documents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController
 type DocumentController struct {

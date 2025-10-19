@@ -35,7 +35,7 @@ type IPersistentContainer interface {
 	PerformBackgroundTask(block unsafe.Pointer)
 }
 
-// A container that encapsulates the Core Data stack in your app. [Full Topic]
+// A container that encapsulates the Core Data stack in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer
 type PersistentContainer struct {
@@ -81,8 +81,7 @@ func NewPersistentContainer() PersistentContainer {
 }
 
 
-// Creates a container with the specified name. [Full Topic]
-
+// Creates a container with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:)
 func NewPersistentContainerWithName(name string) PersistentContainer {
@@ -93,23 +92,20 @@ func NewPersistentContainerWithName(name string) PersistentContainer {
 }
 
 
-// Loads the persistent stores. [Full Topic]
-
+// Loads the persistent stores.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/loadPersistentStores(completionHandler:)
 func (p_ PersistentContainer) LoadPersistentStoresWithCompletionHandler(block unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("loadPersistentStoresWithCompletionHandler:"), block)
 }
-// Returns a new managed object context that executes on a private queue. [Full Topic]
-
+// Returns a new managed object context that executes on a private queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/newBackgroundContext()
 func (p_ PersistentContainer) NewBackgroundContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("newBackgroundContext"))
 	return rv
 }
-// Executes a closure on a private queue using an ephemeral managed object context. [Full Topic]
-
+// Executes a closure on a private queue using an ephemeral managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/performBackgroundTask(_:)-39sch
 func (p_ PersistentContainer) PerformBackgroundTask(block unsafe.Pointer) {

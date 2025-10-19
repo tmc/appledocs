@@ -31,7 +31,7 @@ type IObjectController interface {
 	IController
 }
 
-// A controller that can manage an object’s properties referenced by key-value paths. [Full Topic]
+// A controller that can manage an object’s properties referenced by key-value paths.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController
 type ObjectController struct {

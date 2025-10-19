@@ -32,7 +32,7 @@ type IPersonNameComponentsFormatter interface {
 	PersonNameComponentsFromString(string string) unsafe.Pointer
 }
 
-// A formatter that provides localized representations of the components of a person’s name. [Full Topic]
+// A formatter that provides localized representations of the components of a person’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter
 type PersonNameComponentsFormatter struct {
@@ -80,8 +80,7 @@ func NewPersonNameComponentsFormatter() PersonNameComponentsFormatter {
 }
 
 
-// Returns a person name components object from a given string. [Full Topic]
-
+// Returns a person name components object from a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/personNameComponents(from:)
 func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string string) unsafe.Pointer {

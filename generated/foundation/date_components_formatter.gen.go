@@ -31,7 +31,7 @@ type IDateComponentsFormatter interface {
 	IFormatter
 }
 
-// A formatter that creates string representations of quantities of time. [Full Topic]
+// A formatter that creates string representations of quantities of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter
 type DateComponentsFormatter struct {

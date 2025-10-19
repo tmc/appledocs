@@ -31,7 +31,7 @@ type IUserDefaultsController interface {
 	IController
 }
 
-// A controller that accesses user preference information for your app from the user’s defaults database. [Full Topic]
+// A controller that accesses user preference information for your app from the user’s defaults database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserDefaultsController
 type UserDefaultsController struct {

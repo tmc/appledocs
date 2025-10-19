@@ -32,7 +32,7 @@ type IEnumerator interface {
 	objectivec.IObject
 }
 
-// An abstract class whose subclasses enumerate collections of objects, such as arrays and dictionaries. [Full Topic]
+// An abstract class whose subclasses enumerate collections of objects, such as arrays and dictionaries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerator
 type Enumerator struct {

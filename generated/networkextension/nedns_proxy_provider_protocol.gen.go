@@ -31,7 +31,7 @@ type INEDNSProxyProviderProtocol interface {
 	INEVPNProtocol
 }
 
-// Configuration parameters for a DNS proxy. [Full Topic]
+// Configuration parameters for a DNS proxy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSProxyProviderProtocol
 type NEDNSProxyProviderProtocol struct {

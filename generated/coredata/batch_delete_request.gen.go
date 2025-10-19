@@ -31,7 +31,7 @@ type IBatchDeleteRequest interface {
 	IPersistentStoreRequest
 }
 
-// A request that deletes objects in the SQLite persistent store without loading them into memory. [Full Topic]
+// A request that deletes objects in the SQLite persistent store without loading them into memory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest
 type BatchDeleteRequest struct {

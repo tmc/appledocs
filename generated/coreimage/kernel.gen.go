@@ -34,7 +34,7 @@ type IKernel interface {
 	SetROISelector(method objc.SEL)
 }
 
-// A GPU-based image-processing routine used to create custom Core Image filters. [Full Topic]
+// A GPU-based image-processing routine used to create custom Core Image filters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel
 type Kernel struct {
@@ -80,24 +80,21 @@ func NewKernel() Kernel {
 }
 
 
-// Creates a single kernel object using a Metal Shading Language (MSL) kernel function. [Full Topic]
-
+// Creates a single kernel object using a Metal Shading Language (MSL) kernel function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:)
 func NewKernelWithFunctionNameFromMetalLibraryDataError(name string, data unsafe.Pointer, error unsafe.Pointer) Kernel {
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:error:"), objc.String(name), data, error)
 	return rv
 }
-// Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format. [Full Topic]
-
+// Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:outputPixelFormat:)
 func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name string, data unsafe.Pointer, format unsafe.Pointer, error unsafe.Pointer) Kernel {
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), objc.String(name), data, format, error)
 	return rv
 }
-// Creates a single kernel object. [Full Topic]
-
+// Creates a single kernel object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
 func NewKernelWithString(string string) Kernel {
@@ -106,64 +103,56 @@ func NewKernelWithString(string string) Kernel {
 }
 
 
-// Creates a single kernel object using a Metal Shading Language (MSL) kernel function. [Full Topic]
-
+// Creates a single kernel object using a Metal Shading Language (MSL) kernel function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:)
 func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataError(name string, data unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:error:"), objc.String(name), data, error)
 	return rv
 }
-// Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format. [Full Topic]
-
+// Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:outputPixelFormat:)
 func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name string, data unsafe.Pointer, format unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), objc.String(name), data, format, error)
 	return rv
 }
-// Creates a single kernel object. [Full Topic]
-
+// Creates a single kernel object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(source:)
 func (kc _KernelClass) KernelWithString(string string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
-// Return an array of strings containing the names of all of the kernels contained in the Metal library. [Full Topic]
-
+// Return an array of strings containing the names of all of the kernels contained in the Metal library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/kernelNames(fromMetalLibraryData:)
 func (kc _KernelClass) KernelNamesFromMetalLibraryData(data unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelNamesFromMetalLibraryData:"), data)
 	return rv
 }
-// Load kernels from a Metal language string. [Full Topic]
-
+// Load kernels from a Metal language string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/kernels(withMetalString:)
 func (kc _KernelClass) KernelsWithMetalStringError(source string, error unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelsWithMetalString:error:"), objc.String(source), error)
 	return rv
 }
-// Creates and returns and array of objects. [Full Topic]
-
+// Creates and returns and array of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/makeKernels(source:)
 func (kc _KernelClass) KernelsWithString(string string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelsWithString:"), objc.String(string))
 	return rv
 }
-// Creates a new image using the kernel and specified arguments. [Full Topic]
-
+// Creates a new image using the kernel and specified arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/apply(extent:roiCallback:arguments:)
 func (k_ Kernel) ApplyWithExtentRoiCallbackArguments(extent unsafe.Pointer, callback unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("applyWithExtent:roiCallback:arguments:"), extent, callback, args)
 	return rv
 }
-// Sets the selector Core Image uses to query the region of interest for image processing with the kernel. [Full Topic]
-
+// Sets the selector Core Image uses to query the region of interest for image processing with the kernel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/setROISelector(_:)
 func (k_ Kernel) SetROISelector(method objc.SEL) {

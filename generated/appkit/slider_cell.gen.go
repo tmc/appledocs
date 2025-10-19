@@ -31,7 +31,7 @@ type ISliderCell interface {
 	IActionCell
 }
 
-// The appearance and behavior of an object. [Full Topic]
+// The appearance and behavior of an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell
 type SliderCell struct {

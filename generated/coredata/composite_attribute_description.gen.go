@@ -31,7 +31,7 @@ type ICompositeAttributeDescription interface {
 	IAttributeDescription
 }
 
-// A description of an attribute that derives its value by composing other attributes. [Full Topic]
+// A description of an attribute that derives its value by composing other attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription
 type CompositeAttributeDescription struct {

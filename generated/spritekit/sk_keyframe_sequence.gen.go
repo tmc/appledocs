@@ -42,7 +42,7 @@ type ISKKeyframeSequence interface {
 	SetKeyframeValueTimeForIndex(value objc.ID, time float64, index uint)
 }
 
-// An object that performs interpolation between values specified at different times (keyframes). [Full Topic]
+// An object that performs interpolation between values specified at different times (keyframes).
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence
 type SKKeyframeSequence struct {
@@ -88,8 +88,7 @@ func NewSKKeyframeSequence() SKKeyframeSequence {
 }
 
 
-// Initializes a new keyframe sequence. [Full Topic]
-
+// Initializes a new keyframe sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/init(capacity:)
 func NewSKKeyframeSequenceWithCapacity(numItems uint) SKKeyframeSequence {
@@ -106,8 +105,7 @@ func NewSKKeyframeSequenceWithCoder(aDecoder unsafe.Pointer) SKKeyframeSequence 
 	rv.Autorelease()
 	return rv
 }
-// Initializes a keyframe sequence with an initial set of values and times. [Full Topic]
-
+// Initializes a keyframe sequence with an initial set of values and times.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/init(keyframeValues:times:)
 func NewSKKeyframeSequenceWithKeyframeValuesTimes(values unsafe.Pointer, times unsafe.Pointer) SKKeyframeSequence {
@@ -118,75 +116,65 @@ func NewSKKeyframeSequenceWithKeyframeValuesTimes(values unsafe.Pointer, times u
 }
 
 
-// Adds a keyframe to the sequence. [Full Topic]
-
+// Adds a keyframe to the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/addKeyframeValue(_:time:)
 func (s_ SKKeyframeSequence) AddKeyframeValueTime(value objc.ID, time float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addKeyframeValue:time:"), value, time)
 }
-// The number of keyframes in the sequence. [Full Topic]
-
+// The number of keyframes in the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/count()
 func (s_ SKKeyframeSequence) Count() uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("count"))
 	return rv
 }
-// Gets the time for a keyframe in the sequence. [Full Topic]
-
+// Gets the time for a keyframe in the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/getKeyframeTime(for:)
 func (s_ SKKeyframeSequence) GetKeyframeTimeForIndex(index uint) float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("getKeyframeTimeForIndex:"), index)
 	return rv
 }
-// Gets the value for a keyframe in the sequence. [Full Topic]
-
+// Gets the value for a keyframe in the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/getKeyframeValue(for:)
 func (s_ SKKeyframeSequence) GetKeyframeValueForIndex(index uint) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("getKeyframeValueForIndex:"), index)
 	return rv
 }
-// Removes a keyframe from the sequence. [Full Topic]
-
+// Removes a keyframe from the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/removeKeyframe(at:)
 func (s_ SKKeyframeSequence) RemoveKeyframeAtIndex(index uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeKeyframeAtIndex:"), index)
 }
-// Removes the last value in the sequence. [Full Topic]
-
+// Removes the last value in the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/removeLastKeyframe()
 func (s_ SKKeyframeSequence) RemoveLastKeyframe() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeLastKeyframe"))
 }
-// Calculates the sample at a particular time. [Full Topic]
-
+// Calculates the sample at a particular time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/sample(atTime:)
 func (s_ SKKeyframeSequence) SampleAtTime(time float64) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("sampleAtTime:"), time)
 	return rv
 }
-// Changes the time for a specific keyframe. [Full Topic]
-
+// Changes the time for a specific keyframe.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/setKeyframeTime(_:for:)
 func (s_ SKKeyframeSequence) SetKeyframeTimeForIndex(time float64, index uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKeyframeTime:forIndex:"), time, index)
 }
-// Changes the value for a specific keyframe. [Full Topic]
-
+// Changes the value for a specific keyframe.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/setKeyframeValue(_:for:)
 func (s_ SKKeyframeSequence) SetKeyframeValueForIndex(value objc.ID, index uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKeyframeValue:forIndex:"), value, index)
 }
-// Replaces a keyframe in the sequence with a new keyframe. [Full Topic]
-
+// Replaces a keyframe in the sequence with a new keyframe.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKKeyframeSequence/setKeyframeValue(_:time:for:)
 func (s_ SKKeyframeSequence) SetKeyframeValueTimeForIndex(value objc.ID, time float64, index uint) {

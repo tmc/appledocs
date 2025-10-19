@@ -31,7 +31,7 @@ type IArrayController interface {
 	IObjectController
 }
 
-// A bindings-compatible controller that manages a collection of objects. [Full Topic]
+// A bindings-compatible controller that manages a collection of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController
 type ArrayController struct {

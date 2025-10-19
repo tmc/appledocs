@@ -31,7 +31,7 @@ type IBatchUpdateResult interface {
 	IPersistentStoreResult
 }
 
-// The result returned when executing a batch update request. [Full Topic]
+// The result returned when executing a batch update request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateResult
 type BatchUpdateResult struct {

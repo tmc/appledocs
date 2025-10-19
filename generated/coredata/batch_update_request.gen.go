@@ -31,7 +31,7 @@ type IBatchUpdateRequest interface {
 	IPersistentStoreRequest
 }
 
-// A request to Core Data to do a batch update of data in a persistent store without loading any data into memory. [Full Topic]
+// A request to Core Data to do a batch update of data in a persistent store without loading any data into memory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest
 type BatchUpdateRequest struct {
@@ -79,18 +79,7 @@ func NewBatchUpdateRequest() BatchUpdateRequest {
 }
 
 
-// Creates a batch-update request for a managed entity. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entity:)
-func NewBatchUpdateRequestWithEntity(entity unsafe.Pointer) BatchUpdateRequest {
-	instance := getBatchUpdateRequestClass().Alloc()
-	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntity:"), entity)
-	rv.Autorelease()
-	return rv
-}
-// Creates a batch-update request for a named managed entity. [Full Topic]
-
+// Creates a batch-update request for a named managed entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entityName:)
 func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
@@ -99,10 +88,18 @@ func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
 	rv.Autorelease()
 	return rv
 }
+// Creates a batch-update request for a managed entity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entity:)
+func NewBatchUpdateRequestWithEntity(entity unsafe.Pointer) BatchUpdateRequest {
+	instance := getBatchUpdateRequestClass().Alloc()
+	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntity:"), entity)
+	rv.Autorelease()
+	return rv
+}
 
 
-// Creates a batch-update request for a named managed entity. [Full Topic]
-
+// Creates a batch-update request for a named managed entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/batchUpdateRequestWithEntityName:
 func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName string) unsafe.Pointer {

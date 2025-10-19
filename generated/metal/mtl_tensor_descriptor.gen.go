@@ -32,7 +32,7 @@ type IMTLTensorDescriptor interface {
 	objectivec.IObject
 }
 
-// A configuration type for creating new tensor instances. [Full Topic]
+// A configuration type for creating new tensor instances.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor
 type MTLTensorDescriptor struct {

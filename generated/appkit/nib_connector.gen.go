@@ -32,7 +32,7 @@ type INibConnector interface {
 	objectivec.IObject
 }
 
-// A connection between two nibs. [Full Topic]
+// A connection between two nibs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector
 type NibConnector struct {

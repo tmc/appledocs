@@ -32,7 +32,7 @@ type INEVPNManager interface {
 	objectivec.IObject
 }
 
-// An object to create and manage a Personal VPN configuration. [Full Topic]
+// An object to create and manage a Personal VPN configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager
 type NEVPNManager struct {
@@ -78,8 +78,7 @@ func NewNEVPNManager() NEVPNManager {
 }
 
 
-// Access the single instance of . [Full Topic]
-
+// Access the single instance of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/shared()
 func (nc _NEVPNManagerClass) SharedManager() unsafe.Pointer {

@@ -31,7 +31,7 @@ type IImageView interface {
 	IControl
 }
 
-// A display of image data in a frame. [Full Topic]
+// A display of image data in a frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView
 type ImageView struct {

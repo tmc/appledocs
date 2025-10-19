@@ -32,7 +32,7 @@ type ITextLayoutManager interface {
 	objectivec.IObject
 }
 
-// The primary class that you use to manage text layout and presentation for custom text displays. [Full Topic]
+// The primary class that you use to manage text layout and presentation for custom text displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager
 type TextLayoutManager struct {

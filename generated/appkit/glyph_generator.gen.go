@@ -32,7 +32,7 @@ type IGlyphGenerator interface {
 	objectivec.IObject
 }
 
-// An object that performs the initial, nominal glyph generation phase in the layout process. [Full Topic]
+// An object that performs the initial, nominal glyph generation phase in the layout process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphGenerator
 type GlyphGenerator struct {

@@ -32,7 +32,7 @@ type IPersistentHistoryToken interface {
 	objectivec.IObject
 }
 
-// A bookmark for keeping track the most recent history that you’ve processed. [Full Topic]
+// A bookmark for keeping track the most recent history that you’ve processed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryToken
 type PersistentHistoryToken struct {

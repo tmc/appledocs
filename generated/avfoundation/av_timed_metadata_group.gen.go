@@ -31,7 +31,7 @@ type IAVTimedMetadataGroup interface {
 	IAVMetadataGroup
 }
 
-// A collection of metadata items that are valid for use during a specific time range. [Full Topic]
+// A collection of metadata items that are valid for use during a specific time range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup
 type AVTimedMetadataGroup struct {

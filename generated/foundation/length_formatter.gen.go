@@ -31,7 +31,7 @@ type ILengthFormatter interface {
 	IFormatter
 }
 
-// A formatter that provides localized descriptions of linear distances, such as length and height measurements. [Full Topic]
+// A formatter that provides localized descriptions of linear distances, such as length and height measurements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter
 type LengthFormatter struct {

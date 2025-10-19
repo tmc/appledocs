@@ -32,7 +32,7 @@ type ILocationSourceInformation interface {
 	objectivec.IObject
 }
 
-// Information about the source that provides a location. [Full Topic]
+// Information about the source that provides a location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationSourceInformation
 type LocationSourceInformation struct {

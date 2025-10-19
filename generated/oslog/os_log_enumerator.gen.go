@@ -32,7 +32,7 @@ type IOSLogEnumerator interface {
 	foundation.IEnumerator
 }
 
-// An enumerator that can access and list log entries. [Full Topic]
+// An enumerator that can access and list log entries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEnumerator
 type OSLogEnumerator struct {

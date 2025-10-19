@@ -31,7 +31,7 @@ type IRangeSpecifier interface {
 	IScriptObjectSpecifier
 }
 
-// A specifier for a range of objects in a container. [Full Topic]
+// A specifier for a range of objects in a container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier
 type RangeSpecifier struct {

@@ -31,7 +31,7 @@ type ITextAttachmentCell interface {
 	ICell
 }
 
-// An object that implements the functionality of the text attachment cell protocol. [Full Topic]
+// An object that implements the functionality of the text attachment cell protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentCell-swift.class
 type TextAttachmentCell struct {

@@ -32,7 +32,7 @@ type IRunningApplication interface {
 	objectivec.IObject
 }
 
-// An object that can manipulate and provide information for a single instance of an app. [Full Topic]
+// An object that can manipulate and provide information for a single instance of an app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication
 type RunningApplication struct {

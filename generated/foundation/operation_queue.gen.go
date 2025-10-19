@@ -33,7 +33,7 @@ type IOperationQueue interface {
 	CancelAllOperations()
 }
 
-// A queue that regulates the execution of operations. [Full Topic]
+// A queue that regulates the execution of operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue
 type OperationQueue struct {
@@ -79,8 +79,7 @@ func NewOperationQueue() OperationQueue {
 }
 
 
-// Cancels all queued and executing operations. [Full Topic]
-
+// Cancels all queued and executing operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/cancelAllOperations()
 func (o_ OperationQueue) CancelAllOperations() {

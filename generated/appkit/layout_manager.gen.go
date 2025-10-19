@@ -32,7 +32,7 @@ type ILayoutManager interface {
 	objectivec.IObject
 }
 
-// An object that coordinates the layout and display of text characters. [Full Topic]
+// An object that coordinates the layout and display of text characters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager
 type LayoutManager struct {

@@ -31,7 +31,7 @@ type IPDFImageRep interface {
 	IImageRep
 }
 
-// An object that can render an image from a PDF format data stream. [Full Topic]
+// An object that can render an image from a PDF format data stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep
 type PDFImageRep struct {

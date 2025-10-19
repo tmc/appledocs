@@ -32,7 +32,7 @@ type IHeading interface {
 	objectivec.IObject
 }
 
-// The orientation of the user’s device, relative to true or magnetic north. [Full Topic]
+// The orientation of the user’s device, relative to true or magnetic north.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading
 type Heading struct {

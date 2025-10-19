@@ -31,7 +31,7 @@ type ITextListElement interface {
 	ITextParagraph
 }
 
-// A class that represents a text list node. [Full Topic]
+// A class that represents a text list node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextListElement
 type TextListElement struct {

@@ -31,7 +31,7 @@ type IAsynchronousFetchRequest interface {
 	IPersistentStoreRequest
 }
 
-// A fetch request that retrieves results asynchronously and supports progress notification. [Full Topic]
+// A fetch request that retrieves results asynchronously and supports progress notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest
 type AsynchronousFetchRequest struct {
@@ -79,8 +79,7 @@ func NewAsynchronousFetchRequest() AsynchronousFetchRequest {
 }
 
 
-// Initializes a new asynchronous fetch request configured with the provided fetch request and completion block. [Full Topic]
-
+// Initializes a new asynchronous fetch request configured with the provided fetch request and completion block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/init(fetchRequest:completionBlock:)
 func NewAsynchronousFetchRequestWithFetchRequestCompletionBlock(request unsafe.Pointer, blk unsafe.Pointer) AsynchronousFetchRequest {

@@ -32,7 +32,7 @@ type IAVCaption interface {
 	objectivec.IObject
 }
 
-// An object that represents text to present over a time range. [Full Topic]
+// An object that represents text to present over a time range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaption
 type AVCaption struct {

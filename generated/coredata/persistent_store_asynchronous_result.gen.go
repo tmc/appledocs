@@ -32,7 +32,7 @@ type IPersistentStoreAsynchronousResult interface {
 	Cancel()
 }
 
-// A concrete class used to represent the results of an asynchronous request. [Full Topic]
+// A concrete class used to represent the results of an asynchronous request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult
 type PersistentStoreAsynchronousResult struct {
@@ -80,8 +80,7 @@ func NewPersistentStoreAsynchronousResult() PersistentStoreAsynchronousResult {
 }
 
 
-// Cancels the asynchronous fetch request. [Full Topic]
-
+// Cancels the asynchronous fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/cancel()
 func (p_ PersistentStoreAsynchronousResult) Cancel() {

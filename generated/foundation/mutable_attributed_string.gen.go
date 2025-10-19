@@ -32,7 +32,7 @@ type IMutableAttributedString interface {
 	AppendAttributedString(attrString unsafe.Pointer)
 }
 
-// A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text. [Full Topic]
+// A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString
 type MutableAttributedString struct {
@@ -80,8 +80,7 @@ func NewMutableAttributedString() MutableAttributedString {
 }
 
 
-// Adds the characters and attributes of a given attributed string to the end of the receiver. [Full Topic]
-
+// Adds the characters and attributes of a given attributed string to the end of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/append(_:)
 func (m_ MutableAttributedString) AppendAttributedString(attrString unsafe.Pointer) {

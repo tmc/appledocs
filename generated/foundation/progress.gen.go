@@ -34,7 +34,7 @@ type IProgress interface {
 	Cancel()
 }
 
-// An object that conveys ongoing progress to the user for a specified task. [Full Topic]
+// An object that conveys ongoing progress to the user for a specified task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress
 type Progress struct {
@@ -80,8 +80,7 @@ func NewProgress() Progress {
 }
 
 
-// Creates a new progress instance. [Full Topic]
-
+// Creates a new progress instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(parent:userInfo:)
 func NewProgressWithParentUserInfo(parentProgressOrNil unsafe.Pointer, userInfoOrNil unsafe.Pointer) Progress {
@@ -90,8 +89,7 @@ func NewProgressWithParentUserInfo(parentProgressOrNil unsafe.Pointer, userInfoO
 	rv.Autorelease()
 	return rv
 }
-// Creates and returns a progress instance. [Full Topic]
-
+// Creates and returns a progress instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
 func NewProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
@@ -100,23 +98,20 @@ func NewProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
 }
 
 
-// Creates and returns a progress instance. [Full Topic]
-
+// Creates and returns a progress instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
 func (pc _ProgressClass) ProgressWithTotalUnitCount(unitCount unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
 	return rv
 }
-// Sets the progress object as the current object of the current thread, and assigns the amount of work for the next suboperation progress object to perform. [Full Topic]
-
+// Sets the progress object as the current object of the current thread, and assigns the amount of work for the next suboperation progress object to perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/becomeCurrent(withPendingUnitCount:)
 func (p_ Progress) BecomeCurrentWithPendingUnitCount(unitCount unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("becomeCurrentWithPendingUnitCount:"), unitCount)
 }
-// Cancels progress tracking. [Full Topic]
-
+// Cancels progress tracking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/cancel()
 func (p_ Progress) Cancel() {

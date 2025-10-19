@@ -31,7 +31,7 @@ type IMenuToolbarItem interface {
 	IToolbarItem
 }
 
-// A control that presents a menu in a window’s toolbar. [Full Topic]
+// A control that presents a menu in a window’s toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem
 type MenuToolbarItem struct {

@@ -32,7 +32,7 @@ type IAccessibilityCustomAction interface {
 	objectivec.IObject
 }
 
-// A custom action to perform on an accessible object. [Full Topic]
+// A custom action to perform on an accessible object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction
 type AccessibilityCustomAction struct {

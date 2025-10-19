@@ -32,7 +32,7 @@ type IProxy interface {
 	objectivec.IObject
 }
 
-// An abstract superclass defining an API for objects that act as stand-ins for other objects or for objects that don’t exist yet. [Full Topic]
+// An abstract superclass defining an API for objects that act as stand-ins for other objects or for objects that don’t exist yet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy
 type Proxy struct {

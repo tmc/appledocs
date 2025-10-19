@@ -32,7 +32,7 @@ type IFontManager interface {
 	objectivec.IObject
 }
 
-// The center of activity for the font-conversion system. [Full Topic]
+// The center of activity for the font-conversion system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager
 type FontManager struct {

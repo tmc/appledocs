@@ -31,7 +31,7 @@ type INumberFormatter interface {
 	IFormatter
 }
 
-// A formatter that converts between numeric values and their textual representations. [Full Topic]
+// A formatter that converts between numeric values and their textual representations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter
 type NumberFormatter struct {

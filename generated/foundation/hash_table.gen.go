@@ -32,7 +32,7 @@ type IHashTable interface {
 	objectivec.IObject
 }
 
-// A collection similar to a set, but with broader range of available memory semantics. [Full Topic]
+// A collection similar to a set, but with broader range of available memory semantics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable
 type HashTable struct {

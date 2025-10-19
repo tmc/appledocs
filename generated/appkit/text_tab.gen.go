@@ -32,7 +32,7 @@ type ITextTab interface {
 	objectivec.IObject
 }
 
-// A tab in a paragraph. [Full Topic]
+// A tab in a paragraph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTab
 type TextTab struct {

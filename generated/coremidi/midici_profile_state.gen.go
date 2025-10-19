@@ -32,7 +32,7 @@ type IMIDICIProfileState interface {
 	objectivec.IObject
 }
 
-// An object that provides the enabled and disabled profiles for a MIDI channel or port on a device. [Full Topic]
+// An object that provides the enabled and disabled profiles for a MIDI channel or port on a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIProfileState
 type MIDICIProfileState struct {

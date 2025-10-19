@@ -32,7 +32,7 @@ type IFileSecurity interface {
 	objectivec.IObject
 }
 
-// A stub class that encapsulates security information about a file. [Full Topic]
+// A stub class that encapsulates security information about a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileSecurity
 type FileSecurity struct {

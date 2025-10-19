@@ -32,7 +32,7 @@ type IImageRep interface {
 	objectivec.IObject
 }
 
-// A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data. [Full Topic]
+// A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep
 type ImageRep struct {

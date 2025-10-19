@@ -32,7 +32,7 @@ type IPort interface {
 	objectivec.IObject
 }
 
-// An abstract class that represents a communication channel. [Full Topic]
+// An abstract class that represents a communication channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Port
 type Port struct {

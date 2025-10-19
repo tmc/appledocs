@@ -31,7 +31,7 @@ type INibControlConnector interface {
 	INibConnector
 }
 
-// A control connection between two Interface Builder objects. [Full Topic]
+// A control connection between two Interface Builder objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibControlConnector
 type NibControlConnector struct {

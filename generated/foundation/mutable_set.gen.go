@@ -31,7 +31,7 @@ type IMutableSet interface {
 	ISet
 }
 
-// A dynamic unordered collection of unique objects. [Full Topic]
+// A dynamic unordered collection of unique objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet
 type MutableSet struct {

@@ -31,7 +31,7 @@ type ITrackingSeparatorToolbarItem interface {
 	IToolbarItem
 }
 
-// A toolbar separator that aligns with the vertical split view in the same window. [Full Topic]
+// A toolbar separator that aligns with the vertical split view in the same window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem
 type TrackingSeparatorToolbarItem struct {

@@ -31,7 +31,7 @@ type IOutlineView interface {
 	ITableView
 }
 
-// A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed. [Full Topic]
+// A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView
 type OutlineView struct {

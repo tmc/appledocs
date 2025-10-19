@@ -31,7 +31,7 @@ type IAVCaptureDeviceInput interface {
 	IAVCaptureInput
 }
 
-// An object that provides media input from a capture device to a capture session. [Full Topic]
+// An object that provides media input from a capture device to a capture session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput
 type AVCaptureDeviceInput struct {

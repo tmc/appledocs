@@ -35,7 +35,7 @@ type ILocationUpdater interface {
 	Resume()
 }
 
-// An object that provides device location updates. [Full Topic]
+// An object that provides device location updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater
 type LocationUpdater struct {
@@ -81,38 +81,33 @@ func NewLocationUpdater() LocationUpdater {
 }
 
 
-// Creates a location updater with the configuration and queue that you specify. [Full Topic]
-
+// Creates a location updater with the configuration and queue that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/liveUpdaterWithConfiguration:queue:handler:
 func (lc _LocationUpdaterClass) LiveUpdaterWithConfigurationQueueHandler(configuration unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("liveUpdaterWithConfiguration:queue:handler:"), configuration, queue, handler)
 	return rv
 }
-// Creates a location updater on the queue you specify. [Full Topic]
-
+// Creates a location updater on the queue you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/liveUpdaterWithQueue:handler:
 func (lc _LocationUpdaterClass) LiveUpdaterWithQueueHandler(queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("liveUpdaterWithQueue:handler:"), queue, handler)
 	return rv
 }
-// Invalidates the updater. [Full Topic]
-
+// Invalidates the updater.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/invalidate
 func (l_ LocationUpdater) Invalidate() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("invalidate"))
 }
-// Pauses the updater. [Full Topic]
-
+// Pauses the updater.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/pause
 func (l_ LocationUpdater) Pause() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("pause"))
 }
-// Resumes the updater. [Full Topic]
-
+// Resumes the updater.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/resume
 func (l_ LocationUpdater) Resume() {

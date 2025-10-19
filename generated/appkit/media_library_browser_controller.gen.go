@@ -32,7 +32,7 @@ type IMediaLibraryBrowserController interface {
 	objectivec.IObject
 }
 
-// An object that configures and displays a Media Library Browser panel. [Full Topic]
+// An object that configures and displays a Media Library Browser panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController
 type MediaLibraryBrowserController struct {

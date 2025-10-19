@@ -32,7 +32,7 @@ type ITypesetter interface {
 	objectivec.IObject
 }
 
-// An abstract class that performs various type layout tasks. [Full Topic]
+// An abstract class that performs various type layout tasks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetter
 type Typesetter struct {

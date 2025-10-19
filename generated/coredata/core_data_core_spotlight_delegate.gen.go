@@ -32,7 +32,7 @@ type ICoreDataCoreSpotlightDelegate interface {
 	objectivec.IObject
 }
 
-// A set of methods that enable integration with Core Spotlight. [Full Topic]
+// A set of methods that enable integration with Core Spotlight.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCoreDataCoreSpotlightDelegate
 type CoreDataCoreSpotlightDelegate struct {

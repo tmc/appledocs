@@ -32,7 +32,7 @@ type IStatusItem interface {
 	objectivec.IObject
 }
 
-// An individual element displayed in the system menu bar. [Full Topic]
+// An individual element displayed in the system menu bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem
 type StatusItem struct {

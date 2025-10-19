@@ -31,7 +31,7 @@ type IFormCell interface {
 	IActionCell
 }
 
-// The class is used to implement text entry fields in a form. The left part of an object contains a title. The right part contains an editable text entry field. [Full Topic]
+// The class is used to implement text entry fields in a form. The left part of an object contains a title. The right part contains an editable text entry field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFormCell
 type FormCell struct {

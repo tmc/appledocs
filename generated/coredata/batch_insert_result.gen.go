@@ -31,7 +31,7 @@ type IBatchInsertResult interface {
 	IPersistentStoreResult
 }
 
-// The result that Core Data returns when executing a batch-insertion request. [Full Topic]
+// The result that Core Data returns when executing a batch-insertion request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertResult
 type BatchInsertResult struct {

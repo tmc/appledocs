@@ -31,7 +31,7 @@ type ITreeController interface {
 	IObjectController
 }
 
-// A bindings-compatible controller that manages a tree of objects. [Full Topic]
+// A bindings-compatible controller that manages a tree of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController
 type TreeController struct {

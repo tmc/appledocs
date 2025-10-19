@@ -31,7 +31,7 @@ type IQRCodeDescriptor interface {
 	IBarcodeDescriptor
 }
 
-// A concrete subclass of the Core Image Barcode Descriptor that represents a square QR code symbol. [Full Topic]
+// A concrete subclass of the Core Image Barcode Descriptor that represents a square QR code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor
 type QRCodeDescriptor struct {
@@ -79,8 +79,7 @@ func NewQRCodeDescriptor() QRCodeDescriptor {
 }
 
 
-// Initializes a QR code descriptor for the given payload and parameters. [Full Topic]
-
+// Initializes a QR code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/init(payload:symbolVersion:maskPattern:errorCorrectionLevel:)
 func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload unsafe.Pointer, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel unsafe.Pointer) QRCodeDescriptor {
@@ -91,8 +90,7 @@ func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(
 }
 
 
-// Creates a QR code descriptor for the given payload and parameters. [Full Topic]
-
+// Creates a QR code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:
 func (qc _QRCodeDescriptorClass) DescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload unsafe.Pointer, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel unsafe.Pointer) unsafe.Pointer {

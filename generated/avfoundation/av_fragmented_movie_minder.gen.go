@@ -31,7 +31,7 @@ type IAVFragmentedMovieMinder interface {
 	IAVFragmentedAssetMinder
 }
 
-// An object that checks whether a fragmented movie appends additional movie fragments. [Full Topic]
+// An object that checks whether a fragmented movie appends additional movie fragments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedMovieMinder
 type AVFragmentedMovieMinder struct {

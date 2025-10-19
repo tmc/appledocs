@@ -32,7 +32,7 @@ type ILayoutConstraint interface {
 	objectivec.IObject
 }
 
-// The relationship between two user interface objects that must be satisfied by the constraint-based layout system. [Full Topic]
+// The relationship between two user interface objects that must be satisfied by the constraint-based layout system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint
 type LayoutConstraint struct {

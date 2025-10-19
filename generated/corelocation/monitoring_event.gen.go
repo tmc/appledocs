@@ -32,7 +32,7 @@ type IMonitoringEvent interface {
 	objectivec.IObject
 }
 
-// The object that the framework passes to the monitor’s callback handler upon receiving an event. [Full Topic]
+// The object that the framework passes to the monitor’s callback handler upon receiving an event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent
 type MonitoringEvent struct {

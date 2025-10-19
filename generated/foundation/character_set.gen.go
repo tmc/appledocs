@@ -32,7 +32,7 @@ type ICharacterSet interface {
 	objectivec.IObject
 }
 
-// An object representing a fixed set of Unicode character values for use in search operations. [Full Topic]
+// An object representing a fixed set of Unicode character values for use in search operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet
 type CharacterSet struct {

@@ -31,7 +31,7 @@ type IUnitLength interface {
 	IDimension
 }
 
-// A unit of measure for length. [Full Topic]
+// A unit of measure for length.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength
 type UnitLength struct {

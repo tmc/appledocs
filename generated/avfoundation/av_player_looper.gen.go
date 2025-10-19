@@ -32,7 +32,7 @@ type IAVPlayerLooper interface {
 	objectivec.IObject
 }
 
-// An object that loops media content using a queue player. [Full Topic]
+// An object that loops media content using a queue player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLooper
 type AVPlayerLooper struct {

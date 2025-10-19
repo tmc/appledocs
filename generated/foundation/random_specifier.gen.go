@@ -31,7 +31,7 @@ type IRandomSpecifier interface {
 	IScriptObjectSpecifier
 }
 
-// A specifier for an arbitrary object in a collection or, if not a one-to-many relationship, the sole object. [Full Topic]
+// A specifier for an arbitrary object in a collection or, if not a one-to-many relationship, the sole object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRandomSpecifier
 type RandomSpecifier struct {

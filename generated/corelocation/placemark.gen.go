@@ -32,7 +32,7 @@ type IPlacemark interface {
 	objectivec.IObject
 }
 
-// A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information. [Full Topic]
+// A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark
 type Placemark struct {
@@ -84,8 +84,7 @@ func NewPlacemarkWithLocationNamePostalAddress(location unsafe.Pointer, name str
 	rv := objc.Send[Placemark](objc.ID(getPlacemarkClass().class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
 	return rv
 }
-// Initializes and returns a placemark object from another placemark object. [Full Topic]
-
+// Initializes and returns a placemark object from another placemark object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(placemark:)
 func NewPlacemarkWithPlacemark(placemark unsafe.Pointer) Placemark {

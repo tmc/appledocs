@@ -31,7 +31,7 @@ type ILightweightMigrationStage interface {
 	IMigrationStage
 }
 
-// An object that describes a series of models suitable for lightweight migration. [Full Topic]
+// An object that describes a series of models suitable for lightweight migration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSLightweightMigrationStage
 type LightweightMigrationStage struct {

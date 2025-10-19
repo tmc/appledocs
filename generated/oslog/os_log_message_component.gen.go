@@ -32,7 +32,7 @@ type IOSLogMessageComponent interface {
 	objectivec.IObject
 }
 
-// The message arguments for a particular entry. [Full Topic]
+// The message arguments for a particular entry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent
 type OSLogMessageComponent struct {

@@ -31,7 +31,7 @@ type IRelativeDateTimeFormatter interface {
 	IFormatter
 }
 
-// A formatter that creates locale-aware string representations of a relative date or time. [Full Topic]
+// A formatter that creates locale-aware string representations of a relative date or time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter
 type RelativeDateTimeFormatter struct {

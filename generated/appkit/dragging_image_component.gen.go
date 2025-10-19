@@ -32,7 +32,7 @@ type IDraggingImageComponent interface {
 	objectivec.IObject
 }
 
-// A single object in a dragging item. [Full Topic]
+// A single object in a dragging item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent
 type DraggingImageComponent struct {

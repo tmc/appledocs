@@ -32,7 +32,7 @@ type IScrollLayer interface {
 	ScrollToRect(r unsafe.Pointer)
 }
 
-// A layer that displays scrollable content larger than its own bounds. [Full Topic]
+// A layer that displays scrollable content larger than its own bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer
 type ScrollLayer struct {
@@ -80,8 +80,7 @@ func NewScrollLayer() ScrollLayer {
 }
 
 
-// Scroll the contents of the receiver to ensure that the rectangle is visible. [Full Topic]
-
+// Scroll the contents of the receiver to ensure that the rectangle is visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scroll(to:)-782vd
 func (s_ ScrollLayer) ScrollToRect(r unsafe.Pointer) {

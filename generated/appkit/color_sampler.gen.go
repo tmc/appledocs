@@ -32,7 +32,7 @@ type IColorSampler interface {
 	objectivec.IObject
 }
 
-// An object that displays the system’s color-sampling interface and returns the selected color to your app. [Full Topic]
+// An object that displays the system’s color-sampling interface and returns the selected color to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSampler
 type ColorSampler struct {

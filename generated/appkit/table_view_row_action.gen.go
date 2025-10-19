@@ -32,7 +32,7 @@ type ITableViewRowAction interface {
 	objectivec.IObject
 }
 
-// A single action to present when the user swipes horizontally on a table row. [Full Topic]
+// A single action to present when the user swipes horizontally on a table row.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction
 type TableViewRowAction struct {

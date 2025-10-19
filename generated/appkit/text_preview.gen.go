@@ -32,7 +32,7 @@ type ITextPreview interface {
 	objectivec.IObject
 }
 
-// A snapshot of the text in your view, which the system uses to create user-visible effects. [Full Topic]
+// A snapshot of the text in your view, which the system uses to create user-visible effects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextPreview
 type TextPreview struct {

@@ -32,7 +32,7 @@ type IGridCell interface {
 	objectivec.IObject
 }
 
-// An individual content area within a grid view, typically at the intersection of a row and a column. [Full Topic]
+// An individual content area within a grid view, typically at the intersection of a row and a column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridCell
 type GridCell struct {

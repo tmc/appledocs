@@ -32,7 +32,7 @@ type IWindowTab interface {
 	objectivec.IObject
 }
 
-// A tab associated with a window that is part of a tabbing group. [Full Topic]
+// A tab associated with a window that is part of a tabbing group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab
 type WindowTab struct {

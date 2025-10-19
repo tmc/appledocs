@@ -31,7 +31,7 @@ type IDirectoryEnumerator interface {
 	IEnumerator
 }
 
-// An object that enumerates the contents of a directory. [Full Topic]
+// An object that enumerates the contents of a directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator
 type DirectoryEnumerator struct {

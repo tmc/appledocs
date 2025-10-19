@@ -32,7 +32,7 @@ type IPersistentStoreResult interface {
 	objectivec.IObject
 }
 
-// The abstract base class for results returned from a persistent store coordinator. [Full Topic]
+// The abstract base class for results returned from a persistent store coordinator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreResult
 type PersistentStoreResult struct {

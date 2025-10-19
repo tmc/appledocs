@@ -31,7 +31,7 @@ type IImageCell interface {
 	ICell
 }
 
-// An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame. [Full Topic]
+// An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageCell
 type ImageCell struct {

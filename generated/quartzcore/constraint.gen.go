@@ -32,7 +32,7 @@ type IConstraint interface {
 	objectivec.IObject
 }
 
-// A representation of a single layout constraint between two layers. [Full Topic]
+// A representation of a single layout constraint between two layers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint
 type Constraint struct {

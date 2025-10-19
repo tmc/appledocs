@@ -32,7 +32,7 @@ type IScriptCoercionHandler interface {
 	objectivec.IObject
 }
 
-// A mechanism for converting one kind of scripting data to another. [Full Topic]
+// A mechanism for converting one kind of scripting data to another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCoercionHandler
 type ScriptCoercionHandler struct {

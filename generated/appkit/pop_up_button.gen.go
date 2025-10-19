@@ -31,7 +31,7 @@ type IPopUpButton interface {
 	IButton
 }
 
-// A control for selecting an item from a list. [Full Topic]
+// A control for selecting an item from a list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton
 type PopUpButton struct {

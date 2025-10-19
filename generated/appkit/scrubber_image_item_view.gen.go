@@ -31,7 +31,7 @@ type IScrubberImageItemView interface {
 	IScrubberItemView
 }
 
-// A concrete view subclass for displaying images in a scrubber items. [Full Topic]
+// A concrete view subclass for displaying images in a scrubber items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView
 type ScrubberImageItemView struct {

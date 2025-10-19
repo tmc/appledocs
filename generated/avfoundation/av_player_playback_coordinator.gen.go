@@ -31,7 +31,7 @@ type IAVPlayerPlaybackCoordinator interface {
 	IAVPlaybackCoordinator
 }
 
-// A playback coordinator subclass that coordinates the playback of player objects in a connected group. [Full Topic]
+// A playback coordinator subclass that coordinates the playback of player objects in a connected group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator
 type AVPlayerPlaybackCoordinator struct {

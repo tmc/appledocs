@@ -31,7 +31,7 @@ type IBrowserCell interface {
 	ICell
 }
 
-// The user interface of a browser. [Full Topic]
+// The user interface of a browser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell
 type BrowserCell struct {

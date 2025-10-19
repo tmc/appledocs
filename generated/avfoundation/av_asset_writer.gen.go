@@ -32,7 +32,7 @@ type IAVAssetWriter interface {
 	objectivec.IObject
 }
 
-// An object that writes media data to a container file. [Full Topic]
+// An object that writes media data to a container file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter
 type AVAssetWriter struct {

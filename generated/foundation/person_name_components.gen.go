@@ -32,7 +32,7 @@ type IPersonNameComponents interface {
 	objectivec.IObject
 }
 
-// An object that manages the separate parts of a person’s name to allow locale-aware formatting. [Full Topic]
+// An object that manages the separate parts of a person’s name to allow locale-aware formatting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents
 type PersonNameComponents struct {

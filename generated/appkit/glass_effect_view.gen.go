@@ -31,7 +31,7 @@ type IGlassEffectView interface {
 	IView
 }
 
-// A view that embeds its content view in a dynamic glass effect. [Full Topic]
+// A view that embeds its content view in a dynamic glass effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView
 type GlassEffectView struct {

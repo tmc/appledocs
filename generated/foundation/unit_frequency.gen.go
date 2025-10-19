@@ -31,7 +31,7 @@ type IUnitFrequency interface {
 	IDimension
 }
 
-// A unit of measure for frequency. [Full Topic]
+// A unit of measure for frequency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency
 type UnitFrequency struct {

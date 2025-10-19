@@ -31,7 +31,7 @@ type IQRCodeFeature interface {
 	IFeature
 }
 
-// Information about a Quick Response code detected in a still or video image. [Full Topic]
+// Information about a Quick Response code detected in a still or video image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature
 type QRCodeFeature struct {

@@ -32,7 +32,7 @@ type ILayoutAnchor interface {
 	objectivec.IObject
 }
 
-// A factory class for creating layout constraint objects using a fluent API. [Full Topic]
+// A factory class for creating layout constraint objects using a fluent API.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutAnchor
 type LayoutAnchor struct {

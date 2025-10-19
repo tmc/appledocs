@@ -32,7 +32,7 @@ type IURLResponse interface {
 	objectivec.IObject
 }
 
-// The metadata associated with the response to a URL load request, independent of protocol and URL scheme. [Full Topic]
+// The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse
 type URLResponse struct {

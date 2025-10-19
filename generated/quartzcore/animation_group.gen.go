@@ -31,7 +31,7 @@ type IAnimationGroup interface {
 	IAnimation
 }
 
-// An object that allows multiple animations to be grouped and run concurrently. [Full Topic]
+// An object that allows multiple animations to be grouped and run concurrently.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimationGroup
 type AnimationGroup struct {

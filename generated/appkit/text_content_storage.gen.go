@@ -31,7 +31,7 @@ type ITextContentStorage interface {
 	ITextContentManager
 }
 
-// A concrete object for managing your view’s text content and generating the text elements necessary for layout. [Full Topic]
+// A concrete object for managing your view’s text content and generating the text elements necessary for layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage
 type TextContentStorage struct {

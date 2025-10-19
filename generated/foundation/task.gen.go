@@ -34,7 +34,7 @@ type ITask interface {
 	Terminate()
 }
 
-// An object that represents a subprocess of the current process. [Full Topic]
+// An object that represents a subprocess of the current process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process
 type Task struct {
@@ -80,16 +80,14 @@ func NewTask() Task {
 }
 
 
-// Runs the process with the current environment. [Full Topic]
-
+// Runs the process with the current environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/run()
 func (t_ Task) LaunchAndReturnError(error unsafe.Pointer) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("launchAndReturnError:"), error)
 	return rv
 }
-// Sends a terminate signal to the receiver and all of its subtasks. [Full Topic]
-
+// Sends a terminate signal to the receiver and all of its subtasks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminate()
 func (t_ Task) Terminate() {

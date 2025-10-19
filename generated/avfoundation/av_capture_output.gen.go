@@ -32,7 +32,7 @@ type IAVCaptureOutput interface {
 	objectivec.IObject
 }
 
-// An abstract superclass for objects that provide media output destinations for a capture session. [Full Topic]
+// An abstract superclass for objects that provide media output destinations for a capture session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput
 type AVCaptureOutput struct {

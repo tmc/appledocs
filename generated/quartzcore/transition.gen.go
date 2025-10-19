@@ -31,7 +31,7 @@ type ITransition interface {
 	IAnimation
 }
 
-// An object that provides an animated transition between a layer’s states. [Full Topic]
+// An object that provides an animated transition between a layer’s states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition
 type Transition struct {

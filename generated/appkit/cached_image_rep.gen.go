@@ -31,7 +31,7 @@ type ICachedImageRep interface {
 	IImageRep
 }
 
-// An object that stores image data in a form that can be readily transferred to the screen. [Full Topic]
+// An object that stores image data in a form that can be readily transferred to the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCachedImageRep
 type CachedImageRep struct {

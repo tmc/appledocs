@@ -32,7 +32,7 @@ type IAVPortraitEffectsMatte interface {
 	objectivec.IObject
 }
 
-// An auxiliary image used to separate foreground from background with high resolution. [Full Topic]
+// An auxiliary image used to separate foreground from background with high resolution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPortraitEffectsMatte
 type AVPortraitEffectsMatte struct {

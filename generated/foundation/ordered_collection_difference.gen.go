@@ -32,7 +32,7 @@ type IOrderedCollectionDifference interface {
 	objectivec.IObject
 }
 
-// An object representing the difference between two ordered collections. [Full Topic]
+// An object representing the difference between two ordered collections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference
 type OrderedCollectionDifference struct {

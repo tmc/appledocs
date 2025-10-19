@@ -31,7 +31,7 @@ type INETransparentProxyProvider interface {
 	INEAppProxyProvider
 }
 
-// An object that implements the client side of a custom transparent network proxy solution. [Full Topic]
+// An object that implements the client side of a custom transparent network proxy solution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETransparentProxyProvider
 type NETransparentProxyProvider struct {

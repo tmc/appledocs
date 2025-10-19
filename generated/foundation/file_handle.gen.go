@@ -33,7 +33,7 @@ type IFileHandle interface {
 	CloseFile()
 }
 
-// An object-oriented wrapper for a file descriptor. [Full Topic]
+// An object-oriented wrapper for a file descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle
 type FileHandle struct {
@@ -79,8 +79,7 @@ func NewFileHandle() FileHandle {
 }
 
 
-// Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing. [Full Topic]
-
+// Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/closeFile()
 func (f_ FileHandle) CloseFile() {

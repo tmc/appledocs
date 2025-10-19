@@ -31,7 +31,7 @@ type IUnitSpeed interface {
 	IDimension
 }
 
-// A unit of measure for speed. [Full Topic]
+// A unit of measure for speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed
 type UnitSpeed struct {

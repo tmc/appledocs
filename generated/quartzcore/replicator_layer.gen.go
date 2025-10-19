@@ -31,7 +31,7 @@ type IReplicatorLayer interface {
 	ILayer
 }
 
-// A layer that creates a specified number of sublayer copies with varying geometric, temporal, and color transformations. [Full Topic]
+// A layer that creates a specified number of sublayer copies with varying geometric, temporal, and color transformations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer
 type ReplicatorLayer struct {

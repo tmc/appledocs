@@ -32,7 +32,7 @@ type IFontDescriptor interface {
 	objectivec.IObject
 }
 
-// A dictionary of attributes that describe a font. [Full Topic]
+// A dictionary of attributes that describe a font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor
 type FontDescriptor struct {

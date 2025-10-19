@@ -31,7 +31,7 @@ type IToolbarItemGroup interface {
 	IToolbarItem
 }
 
-// A group of subitems in a toolbar item. [Full Topic]
+// A group of subitems in a toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup
 type ToolbarItemGroup struct {

@@ -32,7 +32,7 @@ type ISound interface {
 	objectivec.IObject
 }
 
-// A simple interface for loading and playing audio files. [Full Topic]
+// A simple interface for loading and playing audio files.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSound
 type Sound struct {

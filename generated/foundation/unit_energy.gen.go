@@ -31,7 +31,7 @@ type IUnitEnergy interface {
 	IDimension
 }
 
-// A unit of measure for energy. [Full Topic]
+// A unit of measure for energy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy
 type UnitEnergy struct {

@@ -32,7 +32,7 @@ type INEFilterFlow interface {
 	objectivec.IObject
 }
 
-// The abstract base class for types that represent flows of network data. [Full Topic]
+// The abstract base class for types that represent flows of network data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterFlow
 type NEFilterFlow struct {

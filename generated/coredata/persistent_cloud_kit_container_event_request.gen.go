@@ -31,7 +31,7 @@ type IPersistentCloudKitContainerEventRequest interface {
 	IPersistentStoreRequest
 }
 
-// A request to fetch setup, import, or export events in a persistent CloudKit container. [Full Topic]
+// A request to fetch setup, import, or export events in a persistent CloudKit container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest
 type PersistentCloudKitContainerEventRequest struct {
@@ -79,32 +79,28 @@ func NewPersistentCloudKitContainerEventRequest() PersistentCloudKitContainerEve
 }
 
 
-// Creates a fetch request for events that occur after a specified event from a persistent CloudKit container. [Full Topic]
-
+// Creates a fetch request for events that occur after a specified event from a persistent CloudKit container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(after:)-3yfp
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterEvent(event unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsAfterEvent:"), event)
 	return rv
 }
-// Creates a fetch request for events after a specified date from a persistent CloudKit container. [Full Topic]
-
+// Creates a fetch request for events after a specified date from a persistent CloudKit container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(after:)-5izg7
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterDate(date unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsAfterDate:"), date)
 	return rv
 }
-// Creates a fetch request for events that match a specified fetch request from a persistent CloudKit container. [Full Topic]
-
+// Creates a fetch request for events that match a specified fetch request from a persistent CloudKit container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(matchingFetch:)
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsMatchingFetchRequest(fetchRequest unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsMatchingFetchRequest:"), fetchRequest)
 	return rv
 }
-// Creates a fetch request for all events in a persistent CloudKit container. [Full Topic]
-
+// Creates a fetch request for all events in a persistent CloudKit container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchForEvents()
 func (pc _PersistentCloudKitContainerEventRequestClass) FetchRequestForEvents() unsafe.Pointer {

@@ -31,7 +31,7 @@ type IUnitPower interface {
 	IDimension
 }
 
-// A unit of measure for power. [Full Topic]
+// A unit of measure for power.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower
 type UnitPower struct {

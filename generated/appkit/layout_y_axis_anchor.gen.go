@@ -31,7 +31,7 @@ type ILayoutYAxisAnchor interface {
 	ILayoutAnchor
 }
 
-// A factory class for creating vertical layout constraint objects using a fluent API. [Full Topic]
+// A factory class for creating vertical layout constraint objects using a fluent API.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutYAxisAnchor
 type LayoutYAxisAnchor struct {

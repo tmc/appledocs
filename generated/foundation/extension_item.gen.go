@@ -32,7 +32,7 @@ type IExtensionItem interface {
 	objectivec.IObject
 }
 
-// An immutable collection of values representing different aspects of an item for an extension to act upon. [Full Topic]
+// An immutable collection of values representing different aspects of an item for an extension to act upon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem
 type ExtensionItem struct {

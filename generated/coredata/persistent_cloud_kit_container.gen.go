@@ -49,7 +49,7 @@ type IPersistentCloudKitContainer interface {
 	ShareManagedObjectsToShareCompletion(managedObjects unsafe.Pointer, share unsafe.Pointer, completion unsafe.Pointer)
 }
 
-// A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database. [Full Topic]
+// A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer
 type PersistentCloudKitContainer struct {
@@ -97,8 +97,7 @@ func NewPersistentCloudKitContainer() PersistentCloudKitContainer {
 }
 
 
-// Creates the CloudKit schema for all stores in the container that manage a CloudKit database. [Full Topic]
-
+// Creates the CloudKit schema for all stores in the container that manage a CloudKit database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/initializeCloudKitSchema(options:)
 func NewPersistentCloudKitContainerializeCloudKitSchemaWithOptionsError(options unsafe.Pointer, error unsafe.Pointer) PersistentCloudKitContainer {
@@ -109,136 +108,118 @@ func NewPersistentCloudKitContainerializeCloudKitSchemaWithOptionsError(options 
 }
 
 
-// Accepts one or more invitations to participate in sharing using the specified metadata. [Full Topic]
-
+// Accepts one or more invitations to participate in sharing using the specified metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/3746828-acceptshareinvitations
 func (p_ PersistentCloudKitContainer) AcceptShareInvitations() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("acceptShareInvitations"))
 }
-// Fetches all participants that match the specified critieria. [Full Topic]
-
+// Fetches all participants that match the specified critieria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/3746829-fetchparticipants
 func (p_ PersistentCloudKitContainer) FetchParticipants() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("fetchParticipants"))
 }
-// Saves the share record and schedules it for export to iCloud. [Full Topic]
-
+// Saves the share record and schedules it for export to iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/3746832-persistupdatedshare
 func (p_ PersistentCloudKitContainer) PersistUpdatedShare() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("persistUpdatedShare"))
 }
-// Associates the specified managed objects with a new or existing share record. [Full Topic]
-
+// Associates the specified managed objects with a new or existing share record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/3746834-share
 func (p_ PersistentCloudKitContainer) Share() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("share"))
 }
-// Accepts one or more invitations to participate in sharing using the specified metadata. [Full Topic]
-
+// Accepts one or more invitations to participate in sharing using the specified metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/acceptShareInvitationsFromMetadata:intoPersistentStore:completion:
 func (p_ PersistentCloudKitContainer) AcceptShareInvitationsFromMetadataIntoPersistentStoreCompletion(metadata unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("acceptShareInvitationsFromMetadata:intoPersistentStore:completion:"), metadata, persistentStore, completion)
 }
-// Returns a Boolean value that indicates whether the user can delete the managed object’s underlying CloudKit record. [Full Topic]
-
+// Returns a Boolean value that indicates whether the user can delete the managed object’s underlying CloudKit record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/canDeleteRecord(forManagedObjectWith:)
 func (p_ PersistentCloudKitContainer) CanDeleteRecordForManagedObjectWithID(objectID unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canDeleteRecordForManagedObjectWithID:"), objectID)
 	return rv
 }
-// Returns a Boolean value that indicates whether the user can modify the specified persistent store. [Full Topic]
-
+// Returns a Boolean value that indicates whether the user can modify the specified persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/canModifyManagedObjects(in:)
 func (p_ PersistentCloudKitContainer) CanModifyManagedObjectsInStore(store unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canModifyManagedObjectsInStore:"), store)
 	return rv
 }
-// Returns a Boolean value that indicates whether the user can modify the managed object’s underlying CloudKit record. [Full Topic]
-
+// Returns a Boolean value that indicates whether the user can modify the managed object’s underlying CloudKit record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/canUpdateRecord(forManagedObjectWith:)
 func (p_ PersistentCloudKitContainer) CanUpdateRecordForManagedObjectWithID(objectID unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canUpdateRecordForManagedObjectWithID:"), objectID)
 	return rv
 }
-// Fetches all participants that match the specified critieria. [Full Topic]
-
+// Fetches all participants that match the specified critieria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:
 func (p_ PersistentCloudKitContainer) FetchParticipantsMatchingLookupInfosIntoPersistentStoreCompletion(lookupInfos unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:"), lookupInfos, persistentStore, completion)
 }
-// Returns an array that contains all share records in the specified persistent store. [Full Topic]
-
+// Returns an array that contains all share records in the specified persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesInPersistentStore:error:
 func (p_ PersistentCloudKitContainer) FetchSharesInPersistentStoreError(persistentStore unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchSharesInPersistentStore:error:"), persistentStore, error)
 	return rv
 }
-// Returns a dictionary that contains the share records that CloudKit associates with specified managed object IDs. [Full Topic]
-
+// Returns a dictionary that contains the share records that CloudKit associates with specified managed object IDs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesMatchingObjectIDs:error:
 func (p_ PersistentCloudKitContainer) FetchSharesMatchingObjectIDsError(objectIDs unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchSharesMatchingObjectIDs:error:"), objectIDs, error)
 	return rv
 }
-// Saves the share record and schedules it for export to iCloud. [Full Topic]
-
+// Saves the share record and schedules it for export to iCloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/persistUpdatedShare:inPersistentStore:completion:
 func (p_ PersistentCloudKitContainer) PersistUpdatedShareInPersistentStoreCompletion(share unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("persistUpdatedShare:inPersistentStore:completion:"), share, persistentStore, completion)
 }
-// Deletes all CloudKit records in the specified record zone, along with their corresponding managed objects. [Full Topic]
-
+// Deletes all CloudKit records in the specified record zone, along with their corresponding managed objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/purgeObjectsAndRecordsInZoneWithID:inPersistentStore:completion:
 func (p_ PersistentCloudKitContainer) PurgeObjectsAndRecordsInZoneWithIDInPersistentStoreCompletion(zoneID unsafe.Pointer, persistentStore unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("purgeObjectsAndRecordsInZoneWithID:inPersistentStore:completion:"), zoneID, persistentStore, completion)
 }
-// Returns the CloudKit record for the specified managed object ID. [Full Topic]
-
+// Returns the CloudKit record for the specified managed object ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/recordForManagedObjectID:
 func (p_ PersistentCloudKitContainer) RecordForManagedObjectID(managedObjectID unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("recordForManagedObjectID:"), managedObjectID)
 	return rv
 }
-// Returns the CloudKit record ID for the specified managed object ID. [Full Topic]
-
+// Returns the CloudKit record ID for the specified managed object ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/recordIDForManagedObjectID:
 func (p_ PersistentCloudKitContainer) RecordIDForManagedObjectID(managedObjectID unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("recordIDForManagedObjectID:"), managedObjectID)
 	return rv
 }
-// Returns a dictionary that contains the CloudKit record IDs for the specified managed object IDs. [Full Topic]
-
+// Returns a dictionary that contains the CloudKit record IDs for the specified managed object IDs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/recordIDsForManagedObjectIDs:
 func (p_ PersistentCloudKitContainer) RecordIDsForManagedObjectIDs(managedObjectIDs unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("recordIDsForManagedObjectIDs:"), managedObjectIDs)
 	return rv
 }
-// Returns a dictionary that contains the CloudKit records for the specified managed object IDs. [Full Topic]
-
+// Returns a dictionary that contains the CloudKit records for the specified managed object IDs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/recordsForManagedObjectIDs:
 func (p_ PersistentCloudKitContainer) RecordsForManagedObjectIDs(managedObjectIDs unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("recordsForManagedObjectIDs:"), managedObjectIDs)
 	return rv
 }
-// Associates the specified managed objects with a new or existing share record. [Full Topic]
-
+// Associates the specified managed objects with a new or existing share record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/shareManagedObjects:toShare:completion:
 func (p_ PersistentCloudKitContainer) ShareManagedObjectsToShareCompletion(managedObjects unsafe.Pointer, share unsafe.Pointer, completion unsafe.Pointer) {

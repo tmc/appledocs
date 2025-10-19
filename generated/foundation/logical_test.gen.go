@@ -31,7 +31,7 @@ type ILogicalTest interface {
 	IScriptWhoseTest
 }
 
-// The logical combination of one or more specifier tests. [Full Topic]
+// The logical combination of one or more specifier tests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest
 type LogicalTest struct {

@@ -36,7 +36,7 @@ type IMonitor interface {
 	RemoveConditionFromMonitoringWithIdentifier(identifier string)
 }
 
-// An object that monitors the conditions you add to it. [Full Topic]
+// An object that monitors the conditions you add to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz
 type Monitor struct {
@@ -82,37 +82,32 @@ func NewMonitor() Monitor {
 }
 
 
-// Creates a location monitor with the configuration and event handler you provide. [Full Topic]
-
+// Creates a location monitor with the configuration and event handler you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/requestMonitorWithConfiguration:completion:
 func (mc _MonitorClass) RequestMonitorWithConfigurationCompletion(config unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("requestMonitorWithConfiguration:completion:"), config, completionHandler)
 }
-// Adds a condition to monitor with the identifier you provide. [Full Topic]
-
+// Adds a condition to monitor with the identifier you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:
 func (m_ Monitor) AddConditionForMonitoringIdentifier(condition unsafe.Pointer, identifier string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:"), condition, objc.String(identifier))
 }
-// Adds a condition to monitor with the state and identifier you provide. [Full Topic]
-
+// Adds a condition to monitor with the state and identifier you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:assumedState:
 func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition unsafe.Pointer, identifier string, state unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:assumedState:"), condition, objc.String(identifier), state)
 }
-// Gets the monitoring record containing the condition and most recent monitoring event for the identifier you supply, if applicable. [Full Topic]
-
+// Gets the monitoring record containing the condition and most recent monitoring event for the identifier you supply, if applicable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/monitoringRecordForIdentifier:
 func (m_ Monitor) MonitoringRecordForIdentifier(identifier string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("monitoringRecordForIdentifier:"), objc.String(identifier))
 	return rv
 }
-// Removes the monitoring record with the identifier from monitoring. [Full Topic]
-
+// Removes the monitoring record with the identifier from monitoring.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/removeConditionFromMonitoringWithIdentifier:
 func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier string) {

@@ -32,7 +32,7 @@ type IURLProtectionSpace interface {
 	objectivec.IObject
 }
 
-// A server or an area on a server, commonly referred to as a realm, that requires authentication. [Full Topic]
+// A server or an area on a server, commonly referred to as a realm, that requires authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace
 type URLProtectionSpace struct {

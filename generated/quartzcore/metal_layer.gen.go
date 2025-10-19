@@ -31,7 +31,7 @@ type IMetalLayer interface {
 	ILayer
 }
 
-// A Core Animation layer that Metal can render into, typically displayed onscreen. [Full Topic]
+// A Core Animation layer that Metal can render into, typically displayed onscreen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer
 type MetalLayer struct {

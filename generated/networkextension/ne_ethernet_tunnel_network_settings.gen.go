@@ -31,7 +31,7 @@ type INEEthernetTunnelNetworkSettings interface {
 	INEPacketTunnelNetworkSettings
 }
 
-// The network settings for an ethernet-based VPN tunnel. [Full Topic]
+// The network settings for an ethernet-based VPN tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelNetworkSettings
 type NEEthernetTunnelNetworkSettings struct {

@@ -32,7 +32,7 @@ type ISKAttributeValue interface {
 	objectivec.IObject
 }
 
-// A container for dynamic shader data associated with a node. [Full Topic]
+// A container for dynamic shader data associated with a node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue
 type SKAttributeValue struct {
@@ -78,32 +78,28 @@ func NewSKAttributeValue() SKAttributeValue {
 }
 
 
-// Creates and initializes a new attribute value object that holds a floating point number. [Full Topic]
-
+// Creates and initializes a new attribute value object that holds a floating point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(float:)
 func NewSKAttributeValueWithFloat(value float32) SKAttributeValue {
 	rv := objc.Send[SKAttributeValue](objc.ID(getSKAttributeValueClass().class), objc.Sel("valueWithFloat:"), value)
 	return rv
 }
-// Creates and initializes a new attribute value object that holds a vector of two floating point numbers. [Full Topic]
-
+// Creates and initializes a new attribute value object that holds a vector of two floating point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(vectorFloat2:)
 func NewSKAttributeValueWithVectorFloat2(value unsafe.Pointer) SKAttributeValue {
 	rv := objc.Send[SKAttributeValue](objc.ID(getSKAttributeValueClass().class), objc.Sel("valueWithVectorFloat2:"), value)
 	return rv
 }
-// Creates and initializes a new attribute value object that holds a vector of three floating point numbers. [Full Topic]
-
+// Creates and initializes a new attribute value object that holds a vector of three floating point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(vectorFloat3:)
 func NewSKAttributeValueWithVectorFloat3(value unsafe.Pointer) SKAttributeValue {
 	rv := objc.Send[SKAttributeValue](objc.ID(getSKAttributeValueClass().class), objc.Sel("valueWithVectorFloat3:"), value)
 	return rv
 }
-// Creates and initializes a new attribute value object that holds a vector of four floating point numbers. [Full Topic]
-
+// Creates and initializes a new attribute value object that holds a vector of four floating point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(vectorFloat4:)
 func NewSKAttributeValueWithVectorFloat4(value unsafe.Pointer) SKAttributeValue {
@@ -112,32 +108,28 @@ func NewSKAttributeValueWithVectorFloat4(value unsafe.Pointer) SKAttributeValue 
 }
 
 
-// Creates and initializes a new attribute value object that holds a floating point number. [Full Topic]
-
+// Creates and initializes a new attribute value object that holds a floating point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(float:)
 func (sc _SKAttributeValueClass) ValueWithFloat(value float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("valueWithFloat:"), value)
 	return rv
 }
-// Creates and initializes a new attribute value object that holds a vector of two floating point numbers. [Full Topic]
-
+// Creates and initializes a new attribute value object that holds a vector of two floating point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(vectorFloat2:)
 func (sc _SKAttributeValueClass) ValueWithVectorFloat2(value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("valueWithVectorFloat2:"), value)
 	return rv
 }
-// Creates and initializes a new attribute value object that holds a vector of three floating point numbers. [Full Topic]
-
+// Creates and initializes a new attribute value object that holds a vector of three floating point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(vectorFloat3:)
 func (sc _SKAttributeValueClass) ValueWithVectorFloat3(value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("valueWithVectorFloat3:"), value)
 	return rv
 }
-// Creates and initializes a new attribute value object that holds a vector of four floating point numbers. [Full Topic]
-
+// Creates and initializes a new attribute value object that holds a vector of four floating point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttributeValue/init(vectorFloat4:)
 func (sc _SKAttributeValueClass) ValueWithVectorFloat4(value unsafe.Pointer) unsafe.Pointer {

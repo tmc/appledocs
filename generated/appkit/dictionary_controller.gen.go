@@ -31,7 +31,7 @@ type IDictionaryController interface {
 	IArrayController
 }
 
-// A bindings-compatible controller that manages the display and editing of a dictionary of key-value pairs. [Full Topic]
+// A bindings-compatible controller that manages the display and editing of a dictionary of key-value pairs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController
 type DictionaryController struct {

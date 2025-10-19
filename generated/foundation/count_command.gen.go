@@ -31,7 +31,7 @@ type ICountCommand interface {
 	IScriptCommand
 }
 
-// A command that counts the number of objects of a specified class in the specified object container. [Full Topic]
+// A command that counts the number of objects of a specified class in the specified object container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountCommand
 type CountCommand struct {

@@ -32,7 +32,7 @@ type IAVPlayerItemTrack interface {
 	objectivec.IObject
 }
 
-// An object that represents the presentation state of an asset track during playback. [Full Topic]
+// An object that represents the presentation state of an asset track during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack
 type AVPlayerItemTrack struct {

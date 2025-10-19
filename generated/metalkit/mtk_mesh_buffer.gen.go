@@ -33,7 +33,7 @@ type IMTKMeshBuffer interface {
 	Zone()
 }
 
-// A buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app. [Full Topic]
+// A buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer
 type MTKMeshBuffer struct {

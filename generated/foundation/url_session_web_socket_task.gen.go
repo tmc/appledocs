@@ -31,7 +31,7 @@ type IURLSessionWebSocketTask interface {
 	IURLSessionTask
 }
 
-// A URL session task that communicates over the WebSockets protocol standard. [Full Topic]
+// A URL session task that communicates over the WebSockets protocol standard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask
 type URLSessionWebSocketTask struct {

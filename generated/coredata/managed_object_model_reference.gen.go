@@ -32,7 +32,7 @@ type IManagedObjectModelReference interface {
 	objectivec.IObject
 }
 
-// An object that describes a specific version of an object model. [Full Topic]
+// An object that describes a specific version of an object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModelReference
 type ManagedObjectModelReference struct {

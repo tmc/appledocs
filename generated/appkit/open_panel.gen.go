@@ -31,7 +31,7 @@ type IOpenPanel interface {
 	ISavePanel
 }
 
-// A panel that prompts the user to select a file to open. [Full Topic]
+// A panel that prompts the user to select a file to open.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel
 type OpenPanel struct {

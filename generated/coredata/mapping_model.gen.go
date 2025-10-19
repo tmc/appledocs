@@ -32,7 +32,7 @@ type IMappingModel interface {
 	objectivec.IObject
 }
 
-// A model instance that specifies how to map a model from a source to a destination managed object model. [Full Topic]
+// A model instance that specifies how to map a model from a source to a destination managed object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel
 type MappingModel struct {
@@ -78,8 +78,7 @@ func NewMappingModel() MappingModel {
 }
 
 
-// Returns the mapping model that will translate data from the source to the destination model. [Full Topic]
-
+// Returns the mapping model that will translate data from the source to the destination model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
 func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles unsafe.Pointer, sourceModel unsafe.Pointer, destinationModel unsafe.Pointer) MappingModel {
@@ -88,16 +87,14 @@ func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles unsafe.Poi
 }
 
 
-// Returns a newly created mapping model that will migrate data from the source to the destination model. [Full Topic]
-
+// Returns a newly created mapping model that will migrate data from the source to the destination model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/inferredMappingModel(forSourceModel:destinationModel:)
 func (mc _MappingModelClass) InferredMappingModelForSourceModelDestinationModelError(sourceModel unsafe.Pointer, destinationModel unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("inferredMappingModelForSourceModel:destinationModel:error:"), sourceModel, destinationModel, error)
 	return rv
 }
-// Returns the mapping model that will translate data from the source to the destination model. [Full Topic]
-
+// Returns the mapping model that will translate data from the source to the destination model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
 func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationModel(bundles unsafe.Pointer, sourceModel unsafe.Pointer, destinationModel unsafe.Pointer) unsafe.Pointer {

@@ -32,7 +32,7 @@ type IStream interface {
 	objectivec.IObject
 }
 
-// An abstract class representing a stream. [Full Topic]
+// An abstract class representing a stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream
 type Stream struct {

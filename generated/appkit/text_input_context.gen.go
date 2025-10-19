@@ -32,7 +32,7 @@ type ITextInputContext interface {
 	objectivec.IObject
 }
 
-// An object that represents the Cocoa text input system. [Full Topic]
+// An object that represents the Cocoa text input system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext
 type TextInputContext struct {

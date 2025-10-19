@@ -33,7 +33,7 @@ type INEAppPushProvider interface {
 	StartWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
-// An object that creates and maintains a persistent network connection to a local push server. [Full Topic]
+// An object that creates and maintains a persistent network connection to a local push server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushProvider
 type NEAppPushProvider struct {
@@ -81,15 +81,13 @@ func NewNEAppPushProvider() NEAppPushProvider {
 }
 
 
-// Informs the manager about an incoming call. [Full Topic]
-
+// Informs the manager about an incoming call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushProvider/reportIncomingCall(userInfo:)
 func (n_ NEAppPushProvider) ReportIncomingCallWithUserInfo(userInfo unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("reportIncomingCallWithUserInfo:"), userInfo)
 }
-// Indicates that the framework has started the provider, and provides a completion handler for subclasses to signal their readiness. [Full Topic]
-
+// Indicates that the framework has started the provider, and provides a completion handler for subclasses to signal their readiness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushProvider/start(completionHandler:)
 func (n_ NEAppPushProvider) StartWithCompletionHandler(completionHandler unsafe.Pointer) {

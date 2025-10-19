@@ -32,7 +32,7 @@ type IUserNotificationCenter interface {
 	objectivec.IObject
 }
 
-// An object that delivers notifications from apps to the user. [Full Topic]
+// An object that delivers notifications from apps to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter
 type UserNotificationCenter struct {

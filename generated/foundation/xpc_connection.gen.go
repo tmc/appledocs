@@ -40,7 +40,7 @@ type IXPCConnection interface {
 	SynchronousRemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
 }
 
-// A bidirectional communication channel between two processes. [Full Topic]
+// A bidirectional communication channel between two processes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection
 type XPCConnection struct {
@@ -86,8 +86,7 @@ func NewXPCConnection() XPCConnection {
 }
 
 
-// Initializes an object to connect to an object in another process, identified by an object. [Full Topic]
-
+// Initializes an object to connect to an object in another process, identified by an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(listenerEndpoint:)
 func NewXPCConnectionWithListenerEndpoint(endpoint unsafe.Pointer) XPCConnection {
@@ -96,8 +95,7 @@ func NewXPCConnectionWithListenerEndpoint(endpoint unsafe.Pointer) XPCConnection
 	rv.Autorelease()
 	return rv
 }
-// Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a . [Full Topic]
-
+// Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
 func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Pointer) XPCConnection {
@@ -106,8 +104,7 @@ func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
-// Initializes an object to connect to an object in an XPC service, identified by a service name. [Full Topic]
-
+// Initializes an object to connect to an object in an XPC service, identified by a service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(serviceName:)
 func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
@@ -118,59 +115,51 @@ func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 }
 
 
-// Returns the current connection, in the context of a call to a method on your exported object. [Full Topic]
-
+// Returns the current connection, in the context of a call to a method on your exported object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/current()
 func (xc _XPCConnectionClass) CurrentConnection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(xc.class), objc.Sel("currentConnection"))
 	return rv
 }
-// Activates the connection. [Full Topic]
-
+// Activates the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/activate()
 func (x_ XPCConnection) Activate() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("activate"))
 }
-// Invalidates the connection. [Full Topic]
-
+// Invalidates the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/invalidate()
 func (x_ XPCConnection) Invalidate() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("invalidate"))
 }
-// Returns a proxy for the remote object (that is, the object exported from the other side of this connection) with the specified error handler. [Full Topic]
-
+// Returns a proxy for the remote object (that is, the object exported from the other side of this connection) with the specified error handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectProxyWithErrorHandler(_:)
 func (x_ XPCConnection) RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("remoteObjectProxyWithErrorHandler:"), handler)
 	return rv
 }
-// Starts or resumes handling of messages on a connection. [Full Topic]
-
+// Starts or resumes handling of messages on a connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/resume()
 func (x_ XPCConnection) Resume() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("resume"))
 }
-// Add a barrier block to execute on the connection. [Full Topic]
-
+// Add a barrier block to execute on the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/scheduleSendBarrierBlock(_:)
 func (x_ XPCConnection) ScheduleSendBarrierBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("scheduleSendBarrierBlock:"), block)
 }
-// Sets the code signing requirement for this connection. [Full Topic]
-
+// Sets the code signing requirement for this connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/setCodeSigningRequirement(_:)
 func (x_ XPCConnection) SetCodeSigningRequirement(requirement string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setCodeSigningRequirement:"), objc.String(requirement))
 }
-// Suspends the connection. [Full Topic]
-
+// Suspends the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/suspend()
 func (x_ XPCConnection) Suspend() {

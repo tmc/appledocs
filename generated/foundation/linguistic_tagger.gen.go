@@ -33,7 +33,7 @@ type ILinguisticTagger interface {
 	EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ unsafe.Pointer, tagScheme unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer)
 }
 
-// Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script. [Full Topic]
+// Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger
 type LinguisticTagger struct {
@@ -79,8 +79,7 @@ func NewLinguisticTagger() LinguisticTagger {
 }
 
 
-// Enumerates over a given range of the string and calls the specified block for each tag. [Full Topic]
-
+// Enumerates over a given range of the string and calls the specified block for each tag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/enumerateTags(in:scheme:options:using:)
 func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ unsafe.Pointer, tagScheme unsafe.Pointer, opts unsafe.Pointer, block unsafe.Pointer) {

@@ -32,7 +32,7 @@ type IAVMediaSelection interface {
 	objectivec.IObject
 }
 
-// An object that represents a complete rendition of media selection options on an asset. [Full Topic]
+// An object that represents a complete rendition of media selection options on an asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelection
 type AVMediaSelection struct {

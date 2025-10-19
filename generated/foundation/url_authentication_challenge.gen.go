@@ -32,7 +32,7 @@ type IURLAuthenticationChallenge interface {
 	objectivec.IObject
 }
 
-// A challenge from a server requiring authentication from the client. [Full Topic]
+// A challenge from a server requiring authentication from the client.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge
 type URLAuthenticationChallenge struct {

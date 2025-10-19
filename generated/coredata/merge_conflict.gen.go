@@ -32,7 +32,7 @@ type IMergeConflict interface {
 	objectivec.IObject
 }
 
-// An encapsulation of conflicts that occur during an attempt to save changes in a managed object context. [Full Topic]
+// An encapsulation of conflicts that occur during an attempt to save changes in a managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict
 type MergeConflict struct {

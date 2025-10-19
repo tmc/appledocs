@@ -36,7 +36,7 @@ type ILayer interface {
 	SetNeedsDisplay()
 }
 
-// An object that manages image-based content and allows you to perform animations on that content. [Full Topic]
+// An object that manages image-based content and allows you to perform animations on that content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer
 type Layer struct {
@@ -82,23 +82,20 @@ func NewLayer() Layer {
 }
 
 
-// Draws the layer’s content using the specified graphics context. [Full Topic]
-
+// Draws the layer’s content using the specified graphics context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/draw(in:)
 func (l_ Layer) DrawInContext(ctx coregraphics.CGContextRef) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("drawInContext:"), ctx)
 }
-// Returns the farthest descendant of the receiver in the layer hierarchy (including itself) that contains the specified point. [Full Topic]
-
+// Returns the farthest descendant of the receiver in the layer hierarchy (including itself) that contains the specified point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/hitTest(_:)
 func (l_ Layer) HitTest(p unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("hitTest:"), p)
 	return rv
 }
-// Marks the layer’s contents as needing to be updated. [Full Topic]
-
+// Marks the layer’s contents as needing to be updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/setNeedsDisplay()
 func (l_ Layer) SetNeedsDisplay() {

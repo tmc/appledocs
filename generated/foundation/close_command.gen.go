@@ -31,7 +31,7 @@ type ICloseCommand interface {
 	IScriptCommand
 }
 
-// A command that closes one or more scriptable objects. [Full Topic]
+// A command that closes one or more scriptable objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloseCommand
 type CloseCommand struct {

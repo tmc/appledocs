@@ -32,7 +32,7 @@ type IAVAssetDownloadTask interface {
 	foundation.IURLSessionTask
 }
 
-// A session used to download HTTP Live Streaming assets. [Full Topic]
+// A session used to download HTTP Live Streaming assets.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask
 type AVAssetDownloadTask struct {

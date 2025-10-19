@@ -32,7 +32,7 @@ type IFilePromiseProvider interface {
 	objectivec.IObject
 }
 
-// An object that provides a promise for the pasteboard. [Full Topic]
+// An object that provides a promise for the pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider
 type FilePromiseProvider struct {

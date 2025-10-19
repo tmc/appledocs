@@ -32,7 +32,7 @@ type IUserNotificationAction interface {
 	objectivec.IObject
 }
 
-// An action that the user can take in response to receiving a notification. [Full Topic]
+// An action that the user can take in response to receiving a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction
 type UserNotificationAction struct {

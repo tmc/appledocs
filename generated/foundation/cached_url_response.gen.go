@@ -32,7 +32,7 @@ type ICachedURLResponse interface {
 	objectivec.IObject
 }
 
-// A cached response to a URL request. [Full Topic]
+// A cached response to a URL request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse
 type CachedURLResponse struct {

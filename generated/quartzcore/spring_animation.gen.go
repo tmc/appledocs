@@ -31,7 +31,7 @@ type ISpringAnimation interface {
 	IBasicAnimation
 }
 
-// An animation that applies a spring-like force to a layer’s properties. [Full Topic]
+// An animation that applies a spring-like force to a layer’s properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation
 type SpringAnimation struct {

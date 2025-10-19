@@ -31,7 +31,7 @@ type INEFilterBrowserFlow interface {
 	INEFilterFlow
 }
 
-// A flow of network data, originating from a WebKit-based browser, that the filter examines. [Full Topic]
+// A flow of network data, originating from a WebKit-based browser, that the filter examines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterBrowserFlow
 type NEFilterBrowserFlow struct {

@@ -32,7 +32,7 @@ type INEVPNConnection interface {
 	objectivec.IObject
 }
 
-// An object to start and stop a Personal VPN connection and get its status. [Full Topic]
+// An object to start and stop a Personal VPN connection and get its status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection
 type NEVPNConnection struct {

@@ -31,7 +31,7 @@ type INameSpecifier interface {
 	IScriptObjectSpecifier
 }
 
-// A specifier for an object in a collection (or container) by name. [Full Topic]
+// A specifier for an object in a collection (or container) by name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier
 type NameSpecifier struct {

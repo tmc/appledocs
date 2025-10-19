@@ -31,7 +31,7 @@ type ISearchField interface {
 	ITextField
 }
 
-// A text field optimized for performing text-based searches. [Full Topic]
+// A text field optimized for performing text-based searches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField
 type SearchField struct {

@@ -32,7 +32,7 @@ type ITextSelection interface {
 	objectivec.IObject
 }
 
-// A class that represents a single logical selection context that corresponds to an insertion point. [Full Topic]
+// A class that represents a single logical selection context that corresponds to an insertion point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection
 type TextSelection struct {

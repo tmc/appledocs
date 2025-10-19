@@ -33,7 +33,7 @@ type IAlert interface {
 	BeginSheetModalForWindowCompletionHandler(sheetWindow unsafe.Pointer, handler unsafe.Pointer)
 }
 
-// A modal dialog or sheet attached to a document window. [Full Topic]
+// A modal dialog or sheet attached to a document window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert
 type Alert struct {
@@ -79,12 +79,12 @@ func NewAlert() Alert {
 }
 
 
-// Runs the alert modally as a sheet attached to the specified window. [Full Topic]
-
+// Runs the alert modally as a sheet attached to the specified window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/beginSheetModal(for:completionHandler:)
 func (a_ Alert) BeginSheetModalForWindowCompletionHandler(sheetWindow unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("beginSheetModalForWindow:completionHandler:"), sheetWindow, handler)
 }
+
 
 

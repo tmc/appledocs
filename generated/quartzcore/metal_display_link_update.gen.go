@@ -32,7 +32,7 @@ type IMetalDisplayLinkUpdate interface {
 	objectivec.IObject
 }
 
-// Stores information about a single update from a Metal display link instance. [Full Topic]
+// Stores information about a single update from a Metal display link instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update
 type MetalDisplayLinkUpdate struct {

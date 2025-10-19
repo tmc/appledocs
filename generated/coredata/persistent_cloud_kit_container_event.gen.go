@@ -32,7 +32,7 @@ type IPersistentCloudKitContainerEvent interface {
 	objectivec.IObject
 }
 
-// An object that represents activity in a persistent CloudKit container. [Full Topic]
+// An object that represents activity in a persistent CloudKit container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event
 type PersistentCloudKitContainerEvent struct {

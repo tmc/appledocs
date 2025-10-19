@@ -31,7 +31,7 @@ type IBatchInsertRequest interface {
 	IPersistentStoreRequest
 }
 
-// A request to insert a batch of data in a persistent store. [Full Topic]
+// A request to insert a batch of data in a persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest
 type BatchInsertRequest struct {
@@ -79,8 +79,7 @@ func NewBatchInsertRequest() BatchInsertRequest {
 }
 
 
-// Creates a batch-insertion request for a managed entity, and specifies a closure that inserts data into the entity. [Full Topic]
-
+// Creates a batch-insertion request for a managed entity, and specifies a closure that inserts data into the entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entity:managedObjectHandler:)
 func NewBatchInsertRequestWithEntityManagedObjectHandler(entity unsafe.Pointer, handler unsafe.Pointer) BatchInsertRequest {
@@ -89,8 +88,7 @@ func NewBatchInsertRequestWithEntityManagedObjectHandler(entity unsafe.Pointer, 
 	rv.Autorelease()
 	return rv
 }
-// Creates a batch-insertion request for a named managed entity, and specifies a closure that provides data dictionaries for insertion. [Full Topic]
-
+// Creates a batch-insertion request for a named managed entity, and specifies a closure that provides data dictionaries for insertion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entityName:dictionaryHandler:)
 func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName string, handler unsafe.Pointer) BatchInsertRequest {
@@ -99,8 +97,7 @@ func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName string, han
 	rv.Autorelease()
 	return rv
 }
-// Creates a batch-insertion request for a named managed entity, and specifies a closure that inserts data into the entity. [Full Topic]
-
+// Creates a batch-insertion request for a named managed entity, and specifies a closure that inserts data into the entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entityName:managedObjectHandler:)
 func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName string, handler unsafe.Pointer) BatchInsertRequest {
@@ -111,8 +108,7 @@ func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName string, 
 }
 
 
-// Creates a batch-insertion request for a named managed entity, and specifies a closure that provides data dictionaries for insertion. [Full Topic]
-
+// Creates a batch-insertion request for a named managed entity, and specifies a closure that provides data dictionaries for insertion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/batchInsertRequestWithEntityName:dictionaryHandler:
 func (bc _BatchInsertRequestClass) BatchInsertRequestWithEntityNameDictionaryHandler(entityName string, handler unsafe.Pointer) unsafe.Pointer {

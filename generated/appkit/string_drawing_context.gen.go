@@ -32,7 +32,7 @@ type IStringDrawingContext interface {
 	objectivec.IObject
 }
 
-// An object that manages metrics for drawing attributed strings. [Full Topic]
+// An object that manages metrics for drawing attributed strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext
 type StringDrawingContext struct {

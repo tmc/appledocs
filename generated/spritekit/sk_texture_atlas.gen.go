@@ -34,7 +34,7 @@ type ISKTextureAtlas interface {
 	TextureNamed(name string) unsafe.Pointer
 }
 
-// A collection of textures optimized for storage and drawing performance. [Full Topic]
+// A collection of textures optimized for storage and drawing performance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas
 type SKTextureAtlas struct {
@@ -80,16 +80,14 @@ func NewSKTextureAtlas() SKTextureAtlas {
 }
 
 
-// Creates a texture atlas from data stored in the app bundle. [Full Topic]
-
+// Creates a texture atlas from data stored in the app bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/init(named:)
 func NewSKTextureAtlasNamed(name string) SKTextureAtlas {
 	rv := objc.Send[SKTextureAtlas](objc.ID(getSKTextureAtlasClass().class), objc.Sel("atlasNamed:"), objc.String(name))
 	return rv
 }
-// Creates a texture atlas from a set of image files. [Full Topic]
-
+// Creates a texture atlas from a set of image files.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/init(dictionary:)
 func NewSKTextureAtlasWithDictionary(properties unsafe.Pointer) SKTextureAtlas {
@@ -98,45 +96,39 @@ func NewSKTextureAtlasWithDictionary(properties unsafe.Pointer) SKTextureAtlas {
 }
 
 
-// Creates a texture atlas from a set of image files. [Full Topic]
-
+// Creates a texture atlas from a set of image files.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/init(dictionary:)
 func (sc _SKTextureAtlasClass) AtlasWithDictionary(properties unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("atlasWithDictionary:"), properties)
 	return rv
 }
-// Creates a texture atlas from data stored in the app bundle. [Full Topic]
-
+// Creates a texture atlas from data stored in the app bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/init(named:)
 func (sc _SKTextureAtlasClass) AtlasNamed(name string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("atlasNamed:"), objc.String(name))
 	return rv
 }
-// Loads the textures of multiple atlas objects into memory, calling a completion handler after the task completes. [Full Topic]
-
+// Loads the textures of multiple atlas objects into memory, calling a completion handler after the task completes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/preloadTextureAtlases(_:withCompletionHandler:)
 func (sc _SKTextureAtlasClass) PreloadTextureAtlasesWithCompletionHandler(textureAtlases unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("preloadTextureAtlases:withCompletionHandler:"), textureAtlases, completionHandler)
 }
-// Loads the textures of multiple atlases into memory, calling a completion handler after the task completes. [Full Topic]
-
+// Loads the textures of multiple atlases into memory, calling a completion handler after the task completes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/preloadTextureAtlasesNamed(_:withCompletionHandler:)
 func (sc _SKTextureAtlasClass) PreloadTextureAtlasesNamedWithCompletionHandler(atlasNames unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("preloadTextureAtlasesNamed:withCompletionHandler:"), atlasNames, completionHandler)
 }
-// Loads an atlas object’s textures into memory, calling a completion handler after the task completes. [Full Topic]
-
+// Loads an atlas object’s textures into memory, calling a completion handler after the task completes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/preload(completionHandler:)
 func (s_ SKTextureAtlas) PreloadWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("preloadWithCompletionHandler:"), completionHandler)
 }
-// Creates a texture from data stored in the texture atlas. [Full Topic]
-
+// Creates a texture from data stored in the texture atlas.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)
 func (s_ SKTextureAtlas) TextureNamed(name string) unsafe.Pointer {

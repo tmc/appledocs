@@ -32,7 +32,7 @@ type IFileVersion interface {
 	objectivec.IObject
 }
 
-// A snapshot of a file at a specific point in time. [Full Topic]
+// A snapshot of a file at a specific point in time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion
 type FileVersion struct {

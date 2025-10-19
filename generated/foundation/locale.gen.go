@@ -32,7 +32,7 @@ type ILocale interface {
 	objectivec.IObject
 }
 
-// Information about linguistic, cultural, and technological conventions for use in formatting data for presentation. [Full Topic]
+// Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale
 type Locale struct {

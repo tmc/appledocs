@@ -31,7 +31,7 @@ type IUnitPressure interface {
 	IDimension
 }
 
-// A unit of measure for pressure. [Full Topic]
+// A unit of measure for pressure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure
 type UnitPressure struct {

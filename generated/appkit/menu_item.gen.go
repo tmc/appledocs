@@ -32,7 +32,7 @@ type IMenuItem interface {
 	objectivec.IObject
 }
 
-// A command item in an app menu. [Full Topic]
+// A command item in an app menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem
 type MenuItem struct {

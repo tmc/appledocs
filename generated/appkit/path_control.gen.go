@@ -31,7 +31,7 @@ type IPathControl interface {
 	IControl
 }
 
-// A display of a file system path or virtual path information. [Full Topic]
+// A display of a file system path or virtual path information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl
 type PathControl struct {

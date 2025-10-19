@@ -33,7 +33,7 @@ type ICoder interface {
 	DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
 }
 
-// An abstract class that serves as the basis for objects that enable archiving and distribution of other objects. [Full Topic]
+// An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder
 type Coder struct {
@@ -79,8 +79,7 @@ func NewCoder() Coder {
 }
 
 
-// Decodes an object for the key, restricted to the specified class. [Full Topic]
-
+// Decodes an object for the key, restricted to the specified class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeObjectOfClass:forKey:
 func (c_ Coder) DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID {

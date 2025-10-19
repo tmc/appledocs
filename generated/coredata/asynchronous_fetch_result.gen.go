@@ -31,7 +31,7 @@ type IAsynchronousFetchResult interface {
 	IPersistentStoreAsynchronousResult
 }
 
-// A fetch result object that encompasses the response from an executed asynchronous fetch request. [Full Topic]
+// A fetch result object that encompasses the response from an executed asynchronous fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult
 type AsynchronousFetchResult struct {

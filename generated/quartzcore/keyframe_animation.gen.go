@@ -31,7 +31,7 @@ type IKeyframeAnimation interface {
 	IPropertyAnimation
 }
 
-// An object that provides keyframe animation capabilities for a layer object. [Full Topic]
+// An object that provides keyframe animation capabilities for a layer object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation
 type KeyframeAnimation struct {

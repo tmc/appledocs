@@ -31,7 +31,7 @@ type ITransformLayer interface {
 	ILayer
 }
 
-// Objects used to create true 3D layer hierarchies, rather than the flattened hierarchy rendering model used by other layer types. [Full Topic]
+// Objects used to create true 3D layer hierarchies, rather than the flattened hierarchy rendering model used by other layer types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransformLayer
 type TransformLayer struct {

@@ -31,7 +31,7 @@ type IDatePickerCell interface {
 	IActionCell
 }
 
-// An object that controls the behavior of a date picker, or of a single date picker cell in a matrix. [Full Topic]
+// An object that controls the behavior of a date picker, or of a single date picker cell in a matrix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell
 type DatePickerCell struct {

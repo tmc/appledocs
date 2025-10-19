@@ -32,7 +32,7 @@ type IPasteboardItem interface {
 	objectivec.IObject
 }
 
-// An item on a pasteboard. [Full Topic]
+// An item on a pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem
 type PasteboardItem struct {

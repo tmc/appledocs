@@ -31,7 +31,7 @@ type IBatchDeleteResult interface {
 	IPersistentStoreResult
 }
 
-// An object that describes the result of a batch delete request. [Full Topic]
+// An object that describes the result of a batch delete request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteResult
 type BatchDeleteResult struct {

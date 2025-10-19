@@ -32,7 +32,7 @@ type IDateComponents interface {
 	objectivec.IObject
 }
 
-// An object that specifies a date or time in terms of units (such as year, month, day, hour, and minute) to be evaluated in a calendar system and time zone. [Full Topic]
+// An object that specifies a date or time in terms of units (such as year, month, day, hour, and minute) to be evaluated in a calendar system and time zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents
 type DateComponents struct {

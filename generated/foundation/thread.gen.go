@@ -32,7 +32,7 @@ type IThread interface {
 	objectivec.IObject
 }
 
-// A thread of execution. [Full Topic]
+// A thread of execution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread
 type Thread struct {

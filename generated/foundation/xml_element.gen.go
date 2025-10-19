@@ -31,7 +31,7 @@ type IXMLElement interface {
 	IXMLNode
 }
 
-// The element nodes in an XML tree structure. [Full Topic]
+// The element nodes in an XML tree structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement
 type XMLElement struct {

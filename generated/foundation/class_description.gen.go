@@ -32,7 +32,7 @@ type IClassDescription interface {
 	objectivec.IObject
 }
 
-// An abstract class that provides the interface for querying the relationships and properties of a class. [Full Topic]
+// An abstract class that provides the interface for querying the relationships and properties of a class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription
 type ClassDescription struct {

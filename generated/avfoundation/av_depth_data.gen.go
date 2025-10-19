@@ -32,7 +32,7 @@ type IAVDepthData interface {
 	objectivec.IObject
 }
 
-// A container for per-pixel distance or disparity information captured by compatible camera devices. [Full Topic]
+// A container for per-pixel distance or disparity information captured by compatible camera devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDepthData
 type AVDepthData struct {

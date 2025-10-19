@@ -31,7 +31,7 @@ type IAVCaptureAutoExposureBracketedStillImageSettings interface {
 	IAVCaptureBracketedStillImageSettings
 }
 
-// A configuration for defining bracketed photo captures in terms of bias relative to automatic exposure. [Full Topic]
+// A configuration for defining bracketed photo captures in terms of bias relative to automatic exposure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureAutoExposureBracketedStillImageSettings
 type AVCaptureAutoExposureBracketedStillImageSettings struct {

@@ -31,7 +31,7 @@ type IPanGestureRecognizer interface {
 	IGestureRecognizer
 }
 
-// A continuous gesture recognizer for panning gestures. [Full Topic]
+// A continuous gesture recognizer for panning gestures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer
 type PanGestureRecognizer struct {

@@ -33,7 +33,7 @@ type IEntityMigrationPolicy interface {
 	CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool
 }
 
-// A policy instance that customizes the migration process for an entity mapping. [Full Topic]
+// A policy instance that customizes the migration process for an entity mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy
 type EntityMigrationPolicy struct {
@@ -79,8 +79,7 @@ func NewEntityMigrationPolicy() EntityMigrationPolicy {
 }
 
 
-// Creates the destination instance(s) for a given source instance. [Full Topic]
-
+// Creates the destination instance(s) for a given source instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy/createDestinationInstances(forSource:in:manager:)
 func (e_ EntityMigrationPolicy) CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance unsafe.Pointer, mapping unsafe.Pointer, manager unsafe.Pointer, error unsafe.Pointer) bool {

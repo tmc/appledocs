@@ -32,7 +32,7 @@ type IUbiquitousKeyValueStore interface {
 	objectivec.IObject
 }
 
-// An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices. [Full Topic]
+// An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore
 type UbiquitousKeyValueStore struct {

@@ -32,7 +32,7 @@ type IEvent interface {
 	objectivec.IObject
 }
 
-// An object that contains information about an input action, such as a mouse click or a key press. [Full Topic]
+// An object that contains information about an input action, such as a mouse click or a key press.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent
 type Event struct {

@@ -31,7 +31,7 @@ type ISpecifierTest interface {
 	IScriptWhoseTest
 }
 
-// A comparison between an object specifier and a test object. [Full Topic]
+// A comparison between an object specifier and a test object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest
 type SpecifierTest struct {

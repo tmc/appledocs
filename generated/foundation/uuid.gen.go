@@ -32,7 +32,7 @@ type IUUID interface {
 	objectivec.IObject
 }
 
-// A universally unique value that can be used to identify types, interfaces, and other items. [Full Topic]
+// A universally unique value that can be used to identify types, interfaces, and other items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID
 type UUID struct {

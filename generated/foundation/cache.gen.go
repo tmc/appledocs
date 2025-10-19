@@ -32,7 +32,7 @@ type ICache interface {
 	objectivec.IObject
 }
 
-// A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low. [Full Topic]
+// A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache
 type Cache struct {

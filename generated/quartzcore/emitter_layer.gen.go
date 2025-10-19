@@ -31,7 +31,7 @@ type IEmitterLayer interface {
 	ILayer
 }
 
-// A layer that emits, animates, and renders a particle system. [Full Topic]
+// A layer that emits, animates, and renders a particle system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer
 type EmitterLayer struct {

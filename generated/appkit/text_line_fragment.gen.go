@@ -32,7 +32,7 @@ type ITextLineFragment interface {
 	objectivec.IObject
 }
 
-// A class that represents a line fragment as a single textual layout and rendering unit inside a text layout fragment. [Full Topic]
+// A class that represents a line fragment as a single textual layout and rendering unit inside a text layout fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment
 type TextLineFragment struct {

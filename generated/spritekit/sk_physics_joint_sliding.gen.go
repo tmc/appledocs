@@ -32,7 +32,7 @@ type ISKPhysicsJointSliding interface {
 	ISKPhysicsJoint
 }
 
-// A joint that allows two physics bodies to slide along an axis. [Full Topic]
+// A joint that allows two physics bodies to slide along an axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointSliding
 type SKPhysicsJointSliding struct {
@@ -80,8 +80,7 @@ func NewSKPhysicsJointSliding() SKPhysicsJointSliding {
 }
 
 
-// Creates a new sliding joint. [Full Topic]
-
+// Creates a new sliding joint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointSliding/joint(withBodyA:bodyB:anchor:axis:)
 func (sc _SKPhysicsJointSlidingClass) JointWithBodyABodyBAnchorAxis(bodyA unsafe.Pointer, bodyB unsafe.Pointer, anchor unsafe.Pointer, axis coregraphics.CGVector) unsafe.Pointer {

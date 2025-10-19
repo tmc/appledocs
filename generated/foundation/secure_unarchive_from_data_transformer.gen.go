@@ -31,7 +31,7 @@ type ISecureUnarchiveFromDataTransformer interface {
 	IValueTransformer
 }
 
-// A value transformer that converts data to and from classes that support secure coding. [Full Topic]
+// A value transformer that converts data to and from classes that support secure coding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSecureUnarchiveFromDataTransformer
 type SecureUnarchiveFromDataTransformer struct {

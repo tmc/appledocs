@@ -31,7 +31,7 @@ type IXMLDTD interface {
 	IXMLNode
 }
 
-// A representation of a Document Type Definition. [Full Topic]
+// A representation of a Document Type Definition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD
 type XMLDTD struct {

@@ -37,7 +37,7 @@ type IFetchedResultsController interface {
 	SectionIndexTitleForSectionName(sectionName string) unsafe.Pointer
 }
 
-// A controller that you use to manage the results of a Core Data fetch request and to display data to the user. [Full Topic]
+// A controller that you use to manage the results of a Core Data fetch request and to display data to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController
 type FetchedResultsController struct {
@@ -83,8 +83,7 @@ func NewFetchedResultsController() FetchedResultsController {
 }
 
 
-// Returns a fetch request controller initialized using the given arguments. [Full Topic]
-
+// Returns a fetch request controller initialized using the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/init(fetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)
 func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameKeyPathCacheName(fetchRequest unsafe.Pointer, context unsafe.Pointer, sectionNameKeyPath string, name string) FetchedResultsController {
@@ -95,47 +94,41 @@ func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameK
 }
 
 
-// Deletes the cached section information with the given name. [Full Topic]
-
+// Deletes the cached section information with the given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/deleteCache(withName:)
 func (fc _FetchedResultsControllerClass) DeleteCacheWithName(name string) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("deleteCacheWithName:"), objc.String(name))
 }
-// Returns the index path of a given object. [Full Topic]
-
+// Returns the index path of a given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/indexPath(forObject:)
 func (f_ FetchedResultsController) IndexPathForObject(object unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("indexPathForObject:"), object)
 	return rv
 }
-// Returns the object at the given index path in the fetch results. [Full Topic]
-
+// Returns the object at the given index path in the fetch results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/object(at:)
 func (f_ FetchedResultsController) ObjectAtIndexPath(indexPath unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("objectAtIndexPath:"), indexPath)
 	return rv
 }
-// Executes the controller’s fetch request. [Full Topic]
-
+// Executes the controller’s fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/performFetch()
 func (f_ FetchedResultsController) PerformFetch(error unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("performFetch:"), error)
 	return rv
 }
-// Returns the section number for a given section title and index in the section index. [Full Topic]
-
+// Returns the section number for a given section title and index in the section index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/section(forSectionIndexTitle:at:)
 func (f_ FetchedResultsController) SectionForSectionIndexTitleAtIndex(title string, sectionIndex int) int {
 	rv := objc.Send[int](f_.ID, objc.Sel("sectionForSectionIndexTitle:atIndex:"), objc.String(title), sectionIndex)
 	return rv
 }
-// Returns the corresponding section index entry for a given section name. [Full Topic]
-
+// Returns the corresponding section index entry for a given section name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sectionIndexTitle(forSectionName:)
 func (f_ FetchedResultsController) SectionIndexTitleForSectionName(sectionName string) unsafe.Pointer {

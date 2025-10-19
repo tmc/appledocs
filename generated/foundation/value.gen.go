@@ -32,7 +32,7 @@ type IValue interface {
 	objectivec.IObject
 }
 
-// A simple container for a single C or Objective-C data item. [Full Topic]
+// A simple container for a single C or Objective-C data item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue
 type Value struct {

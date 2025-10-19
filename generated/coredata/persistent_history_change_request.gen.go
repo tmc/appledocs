@@ -31,7 +31,7 @@ type IPersistentHistoryChangeRequest interface {
 	IPersistentStoreRequest
 }
 
-// A request to fetch or purge persistent history. [Full Topic]
+// A request to fetch or purge persistent history.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest
 type PersistentHistoryChangeRequest struct {
@@ -79,32 +79,28 @@ func NewPersistentHistoryChangeRequest() PersistentHistoryChangeRequest {
 }
 
 
-// Purges history older than that defined by a given token. [Full Topic]
-
+// Purges history older than that defined by a given token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/deleteHistory(before:)-5kghb
 func (pc _PersistentHistoryChangeRequestClass) DeleteHistoryBeforeToken(token unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("deleteHistoryBeforeToken:"), token)
 	return rv
 }
-// Retrieves the request history after a given token. [Full Topic]
-
+// Retrieves the request history after a given token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-3rmfm
 func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterToken(token unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterToken:"), token)
 	return rv
 }
-// Retrieves history since a given date. [Full Topic]
-
+// Retrieves history since a given date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-qi5b
 func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterDate:"), date)
 	return rv
 }
-// Retrieves history based on a fetch request. [Full Topic]
-
+// Retrieves history based on a fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(withFetch:)
 func (pc _PersistentHistoryChangeRequestClass) FetchHistoryWithFetchRequest(fetchRequest unsafe.Pointer) unsafe.Pointer {

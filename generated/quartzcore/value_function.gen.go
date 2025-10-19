@@ -32,7 +32,7 @@ type IValueFunction interface {
 	objectivec.IObject
 }
 
-// An object that provides a flexible method of defining animated transformations. [Full Topic]
+// An object that provides a flexible method of defining animated transformations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction
 type ValueFunction struct {

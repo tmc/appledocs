@@ -31,7 +31,7 @@ type IClickGestureRecognizer interface {
 	IGestureRecognizer
 }
 
-// A discrete gesture recognizer that tracks a specified number of mouse clicks. [Full Topic]
+// A discrete gesture recognizer that tracks a specified number of mouse clicks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClickGestureRecognizer
 type ClickGestureRecognizer struct {

@@ -32,7 +32,7 @@ type INotification interface {
 	objectivec.IObject
 }
 
-// A container for information broadcast through a notification center to all registered observers. [Full Topic]
+// A container for information broadcast through a notification center to all registered observers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification
 type Notification struct {
@@ -78,8 +78,7 @@ func NewNotification() Notification {
 }
 
 
-// Initializes a notification with the data from an unarchiver. [Full Topic]
-
+// Initializes a notification with the data from an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(coder:)
 func NewNotificationWithCoder(coder unsafe.Pointer) Notification {

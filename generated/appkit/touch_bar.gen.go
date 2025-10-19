@@ -33,7 +33,7 @@ type ITouchBar interface {
 	ItemForIdentifier(identifier unsafe.Pointer) unsafe.Pointer
 }
 
-// An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro. [Full Topic]
+// An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar
 type TouchBar struct {
@@ -79,8 +79,7 @@ func NewTouchBar() TouchBar {
 }
 
 
-// Creates a Touch Bar object from a coder object provided by a storyboard or NIB file. [Full Topic]
-
+// Creates a Touch Bar object from a coder object provided by a storyboard or NIB file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
 func NewTouchBarWithCoder(coder unsafe.Pointer) TouchBar {
@@ -91,12 +90,12 @@ func NewTouchBarWithCoder(coder unsafe.Pointer) TouchBar {
 }
 
 
-// Returns the Touch Bar item that corresponds to a given identifier. [Full Topic]
-
+// Returns the Touch Bar item that corresponds to a given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/item(forIdentifier:)
 func (t_ TouchBar) ItemForIdentifier(identifier unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("itemForIdentifier:"), identifier)
 	return rv
 }
+
 

@@ -31,7 +31,7 @@ type IUnitDispersion interface {
 	IDimension
 }
 
-// A unit of measure for specific quantities of dispersion. [Full Topic]
+// A unit of measure for specific quantities of dispersion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDispersion
 type UnitDispersion struct {

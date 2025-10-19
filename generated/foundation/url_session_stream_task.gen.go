@@ -32,7 +32,7 @@ type IURLSessionStreamTask interface {
 	WriteDataTimeoutCompletionHandler(data unsafe.Pointer, timeout TimeInterval, completionHandler unsafe.Pointer)
 }
 
-// A URL session task that is stream-based. [Full Topic]
+// A URL session task that is stream-based.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask
 type URLSessionStreamTask struct {
@@ -80,8 +80,7 @@ func NewURLSessionStreamTask() URLSessionStreamTask {
 }
 
 
-// Asynchronously writes the specified data to the stream, and calls a handler upon completion. [Full Topic]
-
+// Asynchronously writes the specified data to the stream, and calls a handler upon completion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/write(_:timeout:completionHandler:)
 func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data unsafe.Pointer, timeout TimeInterval, completionHandler unsafe.Pointer) {

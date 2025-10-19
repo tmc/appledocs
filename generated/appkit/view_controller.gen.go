@@ -39,7 +39,7 @@ type IViewController interface {
 	RemoveFromParentViewController()
 }
 
-// A controller that manages a view, typically loaded from a nib file. [Full Topic]
+// A controller that manages a view, typically loaded from a nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController
 type ViewController struct {
@@ -87,8 +87,7 @@ func NewViewController() ViewController {
 }
 
 
-// Returns a view controller object initialized to the nib file in the specified bundle. [Full Topic]
-
+// Returns a view controller object initialized to the nib file in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(nibName:bundle:)
 func NewViewControllerWithNibNameBundle(nibNameOrNil unsafe.Pointer, nibBundleOrNil unsafe.Pointer) ViewController {
@@ -99,56 +98,58 @@ func NewViewControllerWithNibNameBundle(nibNameOrNil unsafe.Pointer, nibBundleOr
 }
 
 
-// Dismisses a presented view controller, using the same animator that presented it. [Full Topic]
-
+// Dismisses a presented view controller, using the same animator that presented it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/dismiss(_:)-91my5
 func (v_ ViewController) DismissViewController(viewController unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("dismissViewController:"), viewController)
 }
-// Presents another view controller using a specified, custom animator for presentation and dismissal. [Full Topic]
 
+// Presents another view controller using a specified, custom animator for presentation and dismissal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:animator:)
 func (v_ ViewController) PresentViewControllerAnimator(viewController unsafe.Pointer, animator unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:animator:"), viewController, animator)
 }
-// Presents another view controller as a popover. [Full Topic]
 
+// Presents another view controller as a popover.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)
 func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController unsafe.Pointer, positioningRect unsafe.Pointer, positioningView unsafe.Pointer, preferredEdge int, behavior unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:"), viewController, positioningRect, positioningView, preferredEdge, behavior)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)
 func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController unsafe.Pointer, positioningRect unsafe.Pointer, positioningView unsafe.Pointer, preferredEdge int, behavior unsafe.Pointer, hasFullSizeContent bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:"), viewController, positioningRect, positioningView, preferredEdge, behavior, hasFullSizeContent)
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(inWidget:)
 func (v_ ViewController) PresentViewControllerInWidget(viewController unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewControllerInWidget:"), viewController)
 }
-// Presents another view controller as a modal window, also known as an alert. [Full Topic]
 
+// Presents another view controller as a modal window, also known as an alert.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/presentAsModalWindow(_:)
 func (v_ ViewController) PresentViewControllerAsModalWindow(viewController unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewControllerAsModalWindow:"), viewController)
 }
-// Presents another view controller as a sheet. [Full Topic]
 
+// Presents another view controller as a sheet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/presentAsSheet(_:)
 func (v_ ViewController) PresentViewControllerAsSheet(viewController unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewControllerAsSheet:"), viewController)
 }
-// Removes the called view controller from its parent view controller. [Full Topic]
 
+// Removes the called view controller from its parent view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/removeFromParent()
 func (v_ ViewController) RemoveFromParentViewController() {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeFromParentViewController"))
 }
+
 

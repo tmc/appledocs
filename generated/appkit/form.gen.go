@@ -31,7 +31,7 @@ type IForm interface {
 	IMatrix
 }
 
-// An object is a vertical matrix of objects to implement the fields. [Full Topic]
+// An object is a vertical matrix of objects to implement the fields.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSForm
 type Form struct {

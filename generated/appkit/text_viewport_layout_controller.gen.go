@@ -32,7 +32,7 @@ type ITextViewportLayoutController interface {
 	objectivec.IObject
 }
 
-// Manages the layout process inside the viewport interacting with its delegate. [Full Topic]
+// Manages the layout process inside the viewport interacting with its delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextViewportLayoutController
 type TextViewportLayoutController struct {

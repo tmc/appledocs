@@ -31,7 +31,7 @@ type ISearchFieldCell interface {
 	ITextFieldCell
 }
 
-// The programmatic interface for text fields that are used for text-based searches. [Full Topic]
+// The programmatic interface for text fields that are used for text-based searches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell
 type SearchFieldCell struct {

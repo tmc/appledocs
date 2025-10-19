@@ -32,7 +32,7 @@ type IAnimation interface {
 	objectivec.IObject
 }
 
-// The abstract superclass for animations in Core Animation. [Full Topic]
+// The abstract superclass for animations in Core Animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation
 type Animation struct {

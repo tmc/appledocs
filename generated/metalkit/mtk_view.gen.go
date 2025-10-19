@@ -33,7 +33,7 @@ type IMTKView interface {
 	ReleaseDrawables()
 }
 
-// A specialized view that creates, configures, and displays Metal objects. [Full Topic]
+// A specialized view that creates, configures, and displays Metal objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView
 type MTKView struct {
@@ -81,8 +81,7 @@ func NewMTKView() MTKView {
 }
 
 
-// Initializes a view from data in a given unarchiver. [Full Topic]
-
+// Initializes a view from data in a given unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(coder:)
 func NewMTKViewWithCoder(coder unsafe.Pointer) MTKView {
@@ -91,8 +90,7 @@ func NewMTKViewWithCoder(coder unsafe.Pointer) MTKView {
 	rv.Autorelease()
 	return rv
 }
-// Initializes a view with the specified frame rectangle and Metal device. [Full Topic]
-
+// Initializes a view with the specified frame rectangle and Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(frame:device:)
 func NewMTKViewWithFrameDevice(frameRect unsafe.Pointer, device unsafe.Pointer) MTKView {
@@ -103,15 +101,13 @@ func NewMTKViewWithFrameDevice(frameRect unsafe.Pointer, device unsafe.Pointer) 
 }
 
 
-// Redraws the view’s contents immediately. [Full Topic]
-
+// Redraws the view’s contents immediately.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/draw()
 func (m_ MTKView) Draw() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("draw"))
 }
-// Releases the and objects. [Full Topic]
-
+// Releases the and objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/releaseDrawables()
 func (m_ MTKView) ReleaseDrawables() {

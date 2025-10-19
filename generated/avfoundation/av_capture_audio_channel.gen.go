@@ -32,7 +32,7 @@ type IAVCaptureAudioChannel interface {
 	objectivec.IObject
 }
 
-// An object that monitors average and peak power levels for an audio channel in a capture connection. [Full Topic]
+// An object that monitors average and peak power levels for an audio channel in a capture connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureAudioChannel
 type AVCaptureAudioChannel struct {

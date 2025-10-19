@@ -32,7 +32,7 @@ type IScriptCommandDescription interface {
 	objectivec.IObject
 }
 
-// A script command that a macOS app supports. [Full Topic]
+// A script command that a macOS app supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription
 type ScriptCommandDescription struct {

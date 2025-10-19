@@ -32,7 +32,7 @@ type IAVExternalStorageDevice interface {
 	objectivec.IObject
 }
 
-// Represents a physical external storage device that stores media assets. [Full Topic]
+// Represents a physical external storage device that stores media assets.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVExternalStorageDevice
 type AVExternalStorageDevice struct {

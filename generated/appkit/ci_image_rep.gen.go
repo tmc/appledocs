@@ -31,7 +31,7 @@ type ICIImageRep interface {
 	IImageRep
 }
 
-// An object that can render an image from a Core Image object. [Full Topic]
+// An object that can render an image from a Core Image object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCIImageRep
 type CIImageRep struct {

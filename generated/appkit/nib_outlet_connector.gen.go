@@ -31,7 +31,7 @@ type INibOutletConnector interface {
 	INibConnector
 }
 
-// An outlet connection between Interface Builder objects. [Full Topic]
+// An outlet connection between Interface Builder objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibOutletConnector
 type NibOutletConnector struct {

@@ -32,7 +32,7 @@ type IPersistentStore interface {
 	objectivec.IObject
 }
 
-// The abstract base class for all Core Data persistent stores. [Full Topic]
+// The abstract base class for all Core Data persistent stores.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore
 type PersistentStore struct {
@@ -78,8 +78,7 @@ func NewPersistentStore() PersistentStore {
 }
 
 
-// Returns a store initialized with the given arguments. [Full Topic]
-
+// Returns a store initialized with the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/init(persistentStoreCoordinator:configurationName:at:options:)
 func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root unsafe.Pointer, name string, url unsafe.Pointer, options unsafe.Pointer) PersistentStore {

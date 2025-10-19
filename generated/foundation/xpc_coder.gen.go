@@ -31,7 +31,7 @@ type IXPCCoder interface {
 	ICoder
 }
 
-// A coder that encodes and decodes objects that your app sends over an XPC connection. [Full Topic]
+// A coder that encodes and decodes objects that your app sends over an XPC connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder
 type XPCCoder struct {

@@ -31,7 +31,7 @@ type IUnitElectricCurrent interface {
 	IDimension
 }
 
-// A unit of measure for electric current. [Full Topic]
+// A unit of measure for electric current.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent
 type UnitElectricCurrent struct {

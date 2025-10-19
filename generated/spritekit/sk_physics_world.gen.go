@@ -42,7 +42,7 @@ type ISKPhysicsWorld interface {
 	SampleFieldsAt(position unsafe.Pointer) unsafe.Pointer
 }
 
-// The driver of the physics engine in a scene; it exposes the ability for you to configure and query the physics system. [Full Topic]
+// The driver of the physics engine in a scene; it exposes the ability for you to configure and query the physics system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld
 type SKPhysicsWorld struct {
@@ -88,74 +88,64 @@ func NewSKPhysicsWorld() SKPhysicsWorld {
 }
 
 
-// Adds a joint to the physics world. [Full Topic]
-
+// Adds a joint to the physics world.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld/add(_:)
 func (s_ SKPhysicsWorld) AddJoint(joint unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addJoint:"), joint)
 }
-// Searches for the first physics body that intersects a ray. [Full Topic]
-
+// Searches for the first physics body that intersects a ray.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld/body(alongRayStart:end:)
 func (s_ SKPhysicsWorld) BodyAlongRayStartEnd(start unsafe.Pointer, end unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("bodyAlongRayStart:end:"), start, end)
 	return rv
 }
-// Searches for the first physics body that contains a point. [Full Topic]
-
+// Searches for the first physics body that contains a point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld/body(at:)
 func (s_ SKPhysicsWorld) BodyAtPoint(point unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("bodyAtPoint:"), point)
 	return rv
 }
-// Searches for the first physics body that intersects the specified rectangle. [Full Topic]
-
+// Searches for the first physics body that intersects the specified rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld/body(in:)
 func (s_ SKPhysicsWorld) BodyInRect(rect unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("bodyInRect:"), rect)
 	return rv
 }
-// Enumerates all the physics bodies in the scene that intersect a ray. [Full Topic]
-
+// Enumerates all the physics bodies in the scene that intersect a ray.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld/enumerateBodies(alongRayStart:end:using:)
 func (s_ SKPhysicsWorld) EnumerateBodiesAlongRayStartEndUsingBlock(start unsafe.Pointer, end unsafe.Pointer, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateBodiesAlongRayStart:end:usingBlock:"), start, end, block)
 }
-// Enumerates all the physics bodies in the scene that contain a point. [Full Topic]
-
+// Enumerates all the physics bodies in the scene that contain a point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld/enumerateBodies(at:using:)
 func (s_ SKPhysicsWorld) EnumerateBodiesAtPointUsingBlock(point unsafe.Pointer, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateBodiesAtPoint:usingBlock:"), point, block)
 }
-// Enumerates all the physics bodies in the scene that intersect the specified rectangle. [Full Topic]
-
+// Enumerates all the physics bodies in the scene that intersect the specified rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld/enumerateBodies(in:using:)
 func (s_ SKPhysicsWorld) EnumerateBodiesInRectUsingBlock(rect unsafe.Pointer, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateBodiesInRect:usingBlock:"), rect, block)
 }
-// Removes a specific joint from the physics world. [Full Topic]
-
+// Removes a specific joint from the physics world.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld/remove(_:)
 func (s_ SKPhysicsWorld) RemoveJoint(joint unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeJoint:"), joint)
 }
-// Removes all joints from the physics world. [Full Topic]
-
+// Removes all joints from the physics world.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld/removeAllJoints()
 func (s_ SKPhysicsWorld) RemoveAllJoints() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeAllJoints"))
 }
-// Samples all of the field nodes in the scene and returns the summation of their forces at that point. [Full Topic]
-
+// Samples all of the field nodes in the scene and returns the summation of their forces at that point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsWorld/sampleFields(at:)
 func (s_ SKPhysicsWorld) SampleFieldsAt(position unsafe.Pointer) unsafe.Pointer {

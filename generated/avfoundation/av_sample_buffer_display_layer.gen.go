@@ -32,7 +32,7 @@ type IAVSampleBufferDisplayLayer interface {
 	quartzcore.ILayer
 }
 
-// An object that displays compressed or uncompressed video frames. [Full Topic]
+// An object that displays compressed or uncompressed video frames.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferDisplayLayer
 type AVSampleBufferDisplayLayer struct {

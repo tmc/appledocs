@@ -32,7 +32,7 @@ type IMetadataItem interface {
 	objectivec.IObject
 }
 
-// The metadata associated with a file. [Full Topic]
+// The metadata associated with a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem
 type MetadataItem struct {

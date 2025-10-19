@@ -31,7 +31,7 @@ type IScrubberFlowLayout interface {
 	IScrubberLayout
 }
 
-// A concrete layout object that arranges items end-to-end in a linear strip. [Full Topic]
+// A concrete layout object that arranges items end-to-end in a linear strip.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout
 type ScrubberFlowLayout struct {

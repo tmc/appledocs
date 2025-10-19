@@ -33,7 +33,7 @@ type IBackgroundActivitySession interface {
 	Invalidate()
 }
 
-// An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events. [Full Topic]
+// An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y
 type BackgroundActivitySession struct {
@@ -79,8 +79,7 @@ func NewBackgroundActivitySession() BackgroundActivitySession {
 }
 
 
-// Creates a new background activity session. [Full Topic]
-
+// Creates a new background activity session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y/backgroundActivitySession
 func (bc _BackgroundActivitySessionClass) BackgroundActivitySession() unsafe.Pointer {
@@ -93,8 +92,7 @@ func (bc _BackgroundActivitySessionClass) BackgroundActivitySessionWithQueueHand
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("backgroundActivitySessionWithQueue:handler:"), queue, handler)
 	return rv
 }
-// Invalidates the background activity session. [Full Topic]
-
+// Invalidates the background activity session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y/invalidate
 func (b_ BackgroundActivitySession) Invalidate() {

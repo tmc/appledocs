@@ -31,7 +31,7 @@ type IPopoverTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns. [Full Topic]
+// A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem
 type PopoverTouchBarItem struct {

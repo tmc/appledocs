@@ -31,7 +31,7 @@ type ITokenFieldCell interface {
 	ITextFieldCell
 }
 
-// A text field cell subclass that enables tokenized editing of an array of objects. [Full Topic]
+// A text field cell subclass that enables tokenized editing of an array of objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell
 type TokenFieldCell struct {

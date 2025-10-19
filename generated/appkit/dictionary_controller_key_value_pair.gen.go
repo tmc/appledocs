@@ -32,7 +32,7 @@ type IDictionaryControllerKeyValuePair interface {
 	objectivec.IObject
 }
 
-// A set of methods implemented by arranged objects to give access to information about those objects. [Full Topic]
+// A set of methods implemented by arranged objects to give access to information about those objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryControllerKeyValuePair
 type DictionaryControllerKeyValuePair struct {

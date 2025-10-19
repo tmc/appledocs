@@ -31,7 +31,7 @@ type IAVCaptureMultiCamSession interface {
 	IAVCaptureSession
 }
 
-// A capture session that supports simultaneous capture from multiple inputs of the same media type. [Full Topic]
+// A capture session that supports simultaneous capture from multiple inputs of the same media type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMultiCamSession
 type AVCaptureMultiCamSession struct {

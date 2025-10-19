@@ -32,7 +32,7 @@ type INEAppRule interface {
 	objectivec.IObject
 }
 
-// The identity of an app whose traffic is to be routed through the tunnel. [Full Topic]
+// The identity of an app whose traffic is to be routed through the tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule
 type NEAppRule struct {

@@ -31,7 +31,7 @@ type ICollectionViewFlowLayout interface {
 	ICollectionViewLayout
 }
 
-// A layout that organizes items into a flexible and configurable arrangement. [Full Topic]
+// A layout that organizes items into a flexible and configurable arrangement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewFlowLayout
 type CollectionViewFlowLayout struct {

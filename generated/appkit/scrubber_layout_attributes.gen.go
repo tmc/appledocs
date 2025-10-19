@@ -32,7 +32,7 @@ type IScrubberLayoutAttributes interface {
 	objectivec.IObject
 }
 
-// The layout of a scrubber item. [Full Topic]
+// The layout of a scrubber item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberLayoutAttributes
 type ScrubberLayoutAttributes struct {

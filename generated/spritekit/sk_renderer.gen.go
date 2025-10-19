@@ -35,7 +35,7 @@ type ISKRenderer interface {
 	UpdateAtTime(currentTime TimeInterval)
 }
 
-// An object that renders a scene into a custom Metal rendering pipeline and drives the scene update cycle. [Full Topic]
+// An object that renders a scene into a custom Metal rendering pipeline and drives the scene update cycle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRenderer
 type SKRenderer struct {
@@ -81,8 +81,7 @@ func NewSKRenderer() SKRenderer {
 }
 
 
-// Initializes with a specific GPU to render into. [Full Topic]
-
+// Initializes with a specific GPU to render into.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRenderer/init(device:)
 func NewSKRendererWithDevice(device unsafe.Pointer) SKRenderer {
@@ -91,8 +90,7 @@ func NewSKRendererWithDevice(device unsafe.Pointer) SKRenderer {
 }
 
 
-// Initializes with a specific GPU to render into. [Full Topic]
-
+// Initializes with a specific GPU to render into.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRenderer/init(device:)
 func (sc _SKRendererClass) RendererWithDevice(device unsafe.Pointer) unsafe.Pointer {

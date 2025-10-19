@@ -32,7 +32,7 @@ type ILock interface {
 	objectivec.IObject
 }
 
-// An object that coordinates the operation of multiple threads of execution within the same application. [Full Topic]
+// An object that coordinates the operation of multiple threads of execution within the same application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock
 type Lock struct {

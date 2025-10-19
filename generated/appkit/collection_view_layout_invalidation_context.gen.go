@@ -32,7 +32,7 @@ type ICollectionViewLayoutInvalidationContext interface {
 	objectivec.IObject
 }
 
-// An object that identifies the portions of your layout that need to be updated. [Full Topic]
+// An object that identifies the portions of your layout that need to be updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext
 type CollectionViewLayoutInvalidationContext struct {

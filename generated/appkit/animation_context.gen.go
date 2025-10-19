@@ -32,7 +32,7 @@ type IAnimationContext interface {
 	objectivec.IObject
 }
 
-// An animation context, which contains information about environment and state. [Full Topic]
+// An animation context, which contains information about environment and state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext
 type AnimationContext struct {

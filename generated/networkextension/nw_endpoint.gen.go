@@ -32,7 +32,7 @@ type INWEndpoint interface {
 	objectivec.IObject
 }
 
-// An abstract base class, shared by or , that represents the source or destination of a network connection. [Full Topic]
+// An abstract base class, shared by or , that represents the source or destination of a network connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWEndpoint
 type NWEndpoint struct {

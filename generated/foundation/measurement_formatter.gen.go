@@ -31,7 +31,7 @@ type IMeasurementFormatter interface {
 	IFormatter
 }
 
-// A formatter that provides localized representations of units and measurements. [Full Topic]
+// A formatter that provides localized representations of units and measurements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter
 type MeasurementFormatter struct {

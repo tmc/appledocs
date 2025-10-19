@@ -31,7 +31,7 @@ type IAVCaptureFileOutput interface {
 	IAVCaptureOutput
 }
 
-// The abstract superclass for capture outputs that can record captured data to a file. [Full Topic]
+// The abstract superclass for capture outputs that can record captured data to a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFileOutput
 type AVCaptureFileOutput struct {

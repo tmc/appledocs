@@ -32,7 +32,7 @@ type IAVCaptureConnection interface {
 	objectivec.IObject
 }
 
-// An object that represents a connection from a capture input to a capture output. [Full Topic]
+// An object that represents a connection from a capture input to a capture output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureConnection
 type AVCaptureConnection struct {

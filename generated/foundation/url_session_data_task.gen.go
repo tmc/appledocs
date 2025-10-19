@@ -31,7 +31,7 @@ type IURLSessionDataTask interface {
 	IURLSessionTask
 }
 
-// A URL session task that returns downloaded data directly to the app in memory. [Full Topic]
+// A URL session task that returns downloaded data directly to the app in memory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDataTask
 type URLSessionDataTask struct {

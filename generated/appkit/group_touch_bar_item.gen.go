@@ -31,7 +31,7 @@ type IGroupTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a bar to contain other items. [Full Topic]
+// A bar item that provides a bar to contain other items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem
 type GroupTouchBarItem struct {

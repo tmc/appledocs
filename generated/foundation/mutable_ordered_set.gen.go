@@ -31,7 +31,7 @@ type IMutableOrderedSet interface {
 	IOrderedSet
 }
 
-// A dynamic, ordered collection of unique objects. [Full Topic]
+// A dynamic, ordered collection of unique objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet
 type MutableOrderedSet struct {

@@ -32,7 +32,7 @@ type IMIDICIProfile interface {
 	objectivec.IObject
 }
 
-// A mapping of MIDI messages to specific sounds and synthesis behaviors, such as General MIDI, a drawbar organ, and so on. [Full Topic]
+// A mapping of MIDI messages to specific sounds and synthesis behaviors, such as General MIDI, a drawbar organ, and so on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIProfile
 type MIDICIProfile struct {

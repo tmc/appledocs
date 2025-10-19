@@ -32,7 +32,7 @@ type INETunnelProvider interface {
 	SetTunnelNetworkSettingsCompletionHandler(tunnelNetworkSettings unsafe.Pointer, completionHandler unsafe.Pointer)
 }
 
-// An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider. [Full Topic]
+// An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider
 type NETunnelProvider struct {
@@ -80,8 +80,7 @@ func NewNETunnelProvider() NETunnelProvider {
 }
 
 
-// Specify the network settings for the current tunneling session. [Full Topic]
-
+// Specify the network settings for the current tunneling session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/setTunnelNetworkSettings(_:completionHandler:)
 func (n_ NETunnelProvider) SetTunnelNetworkSettingsCompletionHandler(tunnelNetworkSettings unsafe.Pointer, completionHandler unsafe.Pointer) {

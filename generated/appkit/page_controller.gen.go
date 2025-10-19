@@ -31,7 +31,7 @@ type IPageController interface {
 	IViewController
 }
 
-// An object that controls swipe navigation and animations between views or view content. [Full Topic]
+// An object that controls swipe navigation and animations between views or view content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController
 type PageController struct {

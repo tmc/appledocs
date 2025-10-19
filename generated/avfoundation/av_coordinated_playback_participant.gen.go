@@ -32,7 +32,7 @@ type IAVCoordinatedPlaybackParticipant interface {
 	objectivec.IObject
 }
 
-// An object that represents a participant in a coordinated playback session. [Full Topic]
+// An object that represents a participant in a coordinated playback session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCoordinatedPlaybackParticipant
 type AVCoordinatedPlaybackParticipant struct {

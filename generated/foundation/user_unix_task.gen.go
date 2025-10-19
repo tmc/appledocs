@@ -31,7 +31,7 @@ type IUserUnixTask interface {
 	IUserScriptTask
 }
 
-// An object that executes unix applications. [Full Topic]
+// An object that executes unix applications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask
 type UserUnixTask struct {

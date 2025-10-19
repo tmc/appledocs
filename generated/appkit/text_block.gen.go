@@ -32,7 +32,7 @@ type ITextBlock interface {
 	objectivec.IObject
 }
 
-// A block of text laid out in a subregion of the text container. [Full Topic]
+// A block of text laid out in a subregion of the text container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock
 type TextBlock struct {

@@ -11,7 +11,6 @@ var _ = foundation.NewXPCConnection
 
 
 
-
 // ExampleNewXPCConnectionWithServiceName demonstrates how to create a XPCConnection instance using NewXPCConnectionWithServiceName.
 // Initializes an   object to connect to an   object in an XPC service, identified by a service name.
 func ExampleNewXPCConnectionWithServiceName() {
@@ -20,5 +19,6 @@ func ExampleNewXPCConnectionWithServiceName() {
 	)
 	// Output:
 }
+
 
 

@@ -32,7 +32,7 @@ type IPrinter interface {
 	objectivec.IObject
 }
 
-// An object that describes a printer’s capabilities. [Full Topic]
+// An object that describes a printer’s capabilities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter
 type Printer struct {

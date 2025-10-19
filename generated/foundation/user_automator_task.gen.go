@@ -31,7 +31,7 @@ type IUserAutomatorTask interface {
 	IUserScriptTask
 }
 
-// An object that executes Automator workflows. [Full Topic]
+// An object that executes Automator workflows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask
 type UserAutomatorTask struct {

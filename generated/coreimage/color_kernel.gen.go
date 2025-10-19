@@ -32,7 +32,7 @@ type IColorKernel interface {
 	ApplyWithExtentArguments(extent unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
 }
 
-// A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters. [Full Topic]
+// A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel
 type ColorKernel struct {
@@ -80,8 +80,7 @@ func NewColorKernel() ColorKernel {
 }
 
 
-// Creates a color kernel object from the specified kernel source code. [Full Topic]
-
+// Creates a color kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
 func NewColorKernelWithString(string string) ColorKernel {
@@ -90,16 +89,14 @@ func NewColorKernelWithString(string string) ColorKernel {
 }
 
 
-// Creates a color kernel object from the specified kernel source code. [Full Topic]
-
+// Creates a color kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
 func (cc _ColorKernelClass) KernelWithString(string string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
-// Creates a new image using the kernel and specified arguments. [Full Topic]
-
+// Creates a new image using the kernel and specified arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/apply(extent:arguments:)
 func (c_ ColorKernel) ApplyWithExtentArguments(extent unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer {

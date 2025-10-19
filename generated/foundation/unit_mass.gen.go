@@ -31,7 +31,7 @@ type IUnitMass interface {
 	IDimension
 }
 
-// A unit of measure for mass. [Full Topic]
+// A unit of measure for mass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass
 type UnitMass struct {

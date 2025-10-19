@@ -32,7 +32,7 @@ type IAppearance interface {
 	objectivec.IObject
 }
 
-// An object that manages standard appearance attributes for UI elements in an app. [Full Topic]
+// An object that manages standard appearance attributes for UI elements in an app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance
 type Appearance struct {

@@ -32,7 +32,7 @@ type IDate interface {
 	objectivec.IObject
 }
 
-// A representation of a specific point in time, independent of any calendar or time zone. [Full Topic]
+// A representation of a specific point in time, independent of any calendar or time zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate
 type Date struct {

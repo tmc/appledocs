@@ -31,7 +31,7 @@ type IOSLogEntryBoundary interface {
 	IOSLogEntry
 }
 
-// The metadata that partitions sequences of other entries. [Full Topic]
+// The metadata that partitions sequences of other entries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntryBoundary
 type OSLogEntryBoundary struct {

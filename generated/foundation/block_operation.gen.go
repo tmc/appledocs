@@ -31,7 +31,7 @@ type IBlockOperation interface {
 	IOperation
 }
 
-// An operation that manages the concurrent execution of one or more blocks. [Full Topic]
+// An operation that manages the concurrent execution of one or more blocks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation
 type BlockOperation struct {

@@ -31,7 +31,7 @@ type IBackgroundExtensionView interface {
 	IView
 }
 
-// A view that extends content to fill its own bounds. [Full Topic]
+// A view that extends content to fill its own bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView
 type BackgroundExtensionView struct {

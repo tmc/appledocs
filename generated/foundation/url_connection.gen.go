@@ -32,7 +32,7 @@ type IURLConnection interface {
 	objectivec.IObject
 }
 
-// An object that enables you to start and stop URL requests. [Full Topic]
+// An object that enables you to start and stop URL requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection
 type URLConnection struct {

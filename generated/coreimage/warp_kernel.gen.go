@@ -32,7 +32,7 @@ type IWarpKernel interface {
 	ApplyWithExtentRoiCallbackInputImageArguments(extent unsafe.Pointer, callback unsafe.Pointer, image unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
 }
 
-// A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters. [Full Topic]
+// A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel
 type WarpKernel struct {
@@ -80,8 +80,7 @@ func NewWarpKernel() WarpKernel {
 }
 
 
-// Creates a warp kernel object from the specified kernel source code. [Full Topic]
-
+// Creates a warp kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
 func NewWarpKernelWithString(string string) WarpKernel {
@@ -90,16 +89,14 @@ func NewWarpKernelWithString(string string) WarpKernel {
 }
 
 
-// Creates a warp kernel object from the specified kernel source code. [Full Topic]
-
+// Creates a warp kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
 func (wc _WarpKernelClass) KernelWithString(string string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
-// Creates a new image using the kernel and the specified input image and arguments. [Full Topic]
-
+// Creates a new image using the kernel and the specified input image and arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/apply(extent:roiCallback:image:arguments:)
 func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent unsafe.Pointer, callback unsafe.Pointer, image unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer {

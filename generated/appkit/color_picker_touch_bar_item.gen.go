@@ -31,7 +31,7 @@ type IColorPickerTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a system-defined color picker. [Full Topic]
+// A bar item that provides a system-defined color picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem
 type ColorPickerTouchBarItem struct {

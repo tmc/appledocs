@@ -32,7 +32,7 @@ type IKeyedArchiver interface {
 	EncodeDoubleForKey(value float64, key string)
 }
 
-// An encoder that stores an object’s data to an archive referenced by keys. [Full Topic]
+// An encoder that stores an object’s data to an archive referenced by keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver
 type KeyedArchiver struct {
@@ -80,8 +80,7 @@ func NewKeyedArchiver() KeyedArchiver {
 }
 
 
-// Encodes a given value and associates it with a key. [Full Topic]
-
+// Encodes a given value and associates it with a key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-1mkfl
 func (k_ KeyedArchiver) EncodeDoubleForKey(value float64, key string) {

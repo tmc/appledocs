@@ -33,7 +33,7 @@ type IRenderer interface {
 	Render()
 }
 
-// A layer that allows an application to render a layer tree into a Core OpenGL context. [Full Topic]
+// A layer that allows an application to render a layer tree into a Core OpenGL context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer
 type Renderer struct {
@@ -79,8 +79,7 @@ func NewRenderer() Renderer {
 }
 
 
-// Render the update region of the current frame to the target context. [Full Topic]
-
+// Render the update region of the current frame to the target context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/render()
 func (r_ Renderer) Render() {

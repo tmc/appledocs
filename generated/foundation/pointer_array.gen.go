@@ -32,7 +32,7 @@ type IPointerArray interface {
 	objectivec.IObject
 }
 
-// A collection similar to an array, but with a broader range of available memory semantics. [Full Topic]
+// A collection similar to an array, but with a broader range of available memory semantics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray
 type PointerArray struct {

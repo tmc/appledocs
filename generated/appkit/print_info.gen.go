@@ -32,7 +32,7 @@ type IPrintInfo interface {
 	objectivec.IObject
 }
 
-// An object that stores information that’s used to generate printed output. [Full Topic]
+// An object that stores information that’s used to generate printed output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo
 type PrintInfo struct {

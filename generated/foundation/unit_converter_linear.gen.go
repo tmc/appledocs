@@ -31,7 +31,7 @@ type IUnitConverterLinear interface {
 	IUnitConverter
 }
 
-// A description of how to convert between units using a linear equation. [Full Topic]
+// A description of how to convert between units using a linear equation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear
 type UnitConverterLinear struct {

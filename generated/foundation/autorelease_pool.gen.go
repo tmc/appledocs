@@ -32,7 +32,7 @@ type IAutoreleasePool interface {
 	objectivec.IObject
 }
 
-// An object that supports Cocoa’s reference-counted memory management system. [Full Topic]
+// An object that supports Cocoa’s reference-counted memory management system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAutoreleasePool
 type AutoreleasePool struct {

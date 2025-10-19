@@ -31,7 +31,7 @@ type IUnitFuelEfficiency interface {
 	IDimension
 }
 
-// A unit of measure for fuel efficiency. [Full Topic]
+// A unit of measure for fuel efficiency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency
 type UnitFuelEfficiency struct {

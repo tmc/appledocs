@@ -31,7 +31,7 @@ type IStepperTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a stepper control for incrementing or decrementing a value. [Full Topic]
+// A bar item that provides a stepper control for incrementing or decrementing a value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem
 type StepperTouchBarItem struct {

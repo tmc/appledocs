@@ -32,7 +32,7 @@ type IPropertyDescription interface {
 	objectivec.IObject
 }
 
-// A description of a single property belonging to an entity. [Full Topic]
+// A description of a single property belonging to an entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription
 type PropertyDescription struct {

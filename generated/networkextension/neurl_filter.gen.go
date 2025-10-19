@@ -32,7 +32,7 @@ type INEURLFilter interface {
 	objectivec.IObject
 }
 
-// A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API. [Full Topic]
+// A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEURLFilter
 type NEURLFilter struct {

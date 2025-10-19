@@ -17,8 +17,6 @@ var _ = spritekit.NewSKPhysicsBody
 
 
 
-
-
 // ExampleNewSKPhysicsBodyWithCircleOfRadius demonstrates how to create a SKPhysicsBody instance using NewSKPhysicsBodyWithCircleOfRadius.
 // Creates a circular physics body centered on the owning node’s origin.
 func ExampleNewSKPhysicsBodyWithCircleOfRadius() {
@@ -27,6 +25,8 @@ func ExampleNewSKPhysicsBodyWithCircleOfRadius() {
 	)
 	// Output:
 }
+
+
 
 
 

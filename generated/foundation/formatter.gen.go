@@ -33,7 +33,7 @@ type IFormatter interface {
 	StringForObjectValue(obj objc.ID) unsafe.Pointer
 }
 
-// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values. [Full Topic]
+// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter
 type Formatter struct {
@@ -79,8 +79,7 @@ func NewFormatter() Formatter {
 }
 
 
-// The default implementation of this method raises an exception. [Full Topic]
-
+// The default implementation of this method raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/string(for:)
 func (f_ Formatter) StringForObjectValue(obj objc.ID) unsafe.Pointer {

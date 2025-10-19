@@ -31,7 +31,7 @@ type IMenuItemCell interface {
 	IButtonCell
 }
 
-// An object that handles the measurement and display of a single menu item in its encompassing frame. [Full Topic]
+// An object that handles the measurement and display of a single menu item in its encompassing frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell
 type MenuItemCell struct {

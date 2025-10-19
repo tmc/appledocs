@@ -31,7 +31,7 @@ type IDistributedNotificationCenter interface {
 	INotificationCenter
 }
 
-// A notification dispatch mechanism that enables the broadcast of notifications across task boundaries. [Full Topic]
+// A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter
 type DistributedNotificationCenter struct {

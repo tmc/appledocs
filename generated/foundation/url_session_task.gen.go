@@ -34,7 +34,7 @@ type IURLSessionTask interface {
 	Resume()
 }
 
-// A task, like downloading a specific resource, performed in a URL session. [Full Topic]
+// A task, like downloading a specific resource, performed in a URL session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask
 type URLSessionTask struct {
@@ -80,15 +80,13 @@ func NewURLSessionTask() URLSessionTask {
 }
 
 
-// Cancels the task. [Full Topic]
-
+// Cancels the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/cancel()
 func (u_ URLSessionTask) Cancel() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancel"))
 }
-// Resumes the task, if it is suspended. [Full Topic]
-
+// Resumes the task, if it is suspended.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/resume()
 func (u_ URLSessionTask) Resume() {

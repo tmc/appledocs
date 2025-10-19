@@ -32,7 +32,7 @@ type IBeacon interface {
 	objectivec.IObject
 }
 
-// Information about an observed iBeacon device and its relative distance to a person’s device. [Full Topic]
+// Information about an observed iBeacon device and its relative distance to a person’s device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon
 type Beacon struct {

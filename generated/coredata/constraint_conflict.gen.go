@@ -32,7 +32,7 @@ type IConstraintConflict interface {
 	objectivec.IObject
 }
 
-// An encapsulation of conflicts that occur during an attempt to save a managed object. [Full Topic]
+// An encapsulation of conflicts that occur during an attempt to save a managed object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict
 type ConstraintConflict struct {

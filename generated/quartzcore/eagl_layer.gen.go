@@ -31,7 +31,7 @@ type IEAGLLayer interface {
 	ILayer
 }
 
-// A layer that supports drawing OpenGL content in iOS and tvOS applications. [Full Topic]
+// A layer that supports drawing OpenGL content in iOS and tvOS applications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEAGLLayer
 type EAGLLayer struct {

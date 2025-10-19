@@ -33,7 +33,7 @@ type ITouch interface {
 	PreviousLocationInView(view unsafe.Pointer) unsafe.Pointer
 }
 
-// A snapshot of a particular touch at an instant in time. [Full Topic]
+// A snapshot of a particular touch at an instant in time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch
 type Touch struct {
@@ -79,13 +79,13 @@ func NewTouch() Touch {
 }
 
 
-// Indicates the previous location of the touch in the view’s coordinates. [Full Topic]
-
+// Indicates the previous location of the touch in the view’s coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/previousLocation(in:)
 func (t_ Touch) PreviousLocationInView(view unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("previousLocationInView:"), view)
 	return rv
 }
+
 
 

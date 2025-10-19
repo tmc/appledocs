@@ -31,7 +31,7 @@ type IRelationshipDescription interface {
 	IPropertyDescription
 }
 
-// A description of a relationship between two entities. [Full Topic]
+// A description of a relationship between two entities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription
 type RelationshipDescription struct {

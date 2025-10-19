@@ -31,7 +31,7 @@ type IFetchRequestExpression interface {
 	IExpression
 }
 
-// An expression that evaluates the result of a fetch request on a managed object context. [Full Topic]
+// An expression that evaluates the result of a fetch request on a managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression
 type FetchRequestExpression struct {
@@ -79,8 +79,7 @@ func NewFetchRequestExpression() FetchRequestExpression {
 }
 
 
-// Returns an expression which will evaluate to the result of executing a fetch request on a context. [Full Topic]
-
+// Returns an expression which will evaluate to the result of executing a fetch request on a context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/expression(forFetch:context:countOnly:)
 func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch unsafe.Pointer, context unsafe.Pointer, countFlag bool) unsafe.Pointer {

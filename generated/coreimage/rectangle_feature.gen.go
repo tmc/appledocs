@@ -31,7 +31,7 @@ type IRectangleFeature interface {
 	IFeature
 }
 
-// Information about a rectangular region detected in a still or video image. [Full Topic]
+// Information about a rectangular region detected in a still or video image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature
 type RectangleFeature struct {

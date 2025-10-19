@@ -31,7 +31,7 @@ type IUnitArea interface {
 	IDimension
 }
 
-// A unit of measure for area. [Full Topic]
+// A unit of measure for area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea
 type UnitArea struct {

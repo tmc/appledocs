@@ -31,7 +31,7 @@ type ICircularGeographicCondition interface {
 	ICondition
 }
 
-// A circular geographic condition that a center point and radius define. [Full Topic]
+// A circular geographic condition that a center point and radius define.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition
 type CircularGeographicCondition struct {
@@ -79,8 +79,7 @@ func NewCircularGeographicCondition() CircularGeographicCondition {
 }
 
 
-// Creates a new circular geographic condition with the center point and radius you provide. [Full Topic]
-
+// Creates a new circular geographic condition with the center point and radius you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/initWithCenter:radius:
 func NewCircularGeographicConditionWithCenterRadius(center unsafe.Pointer, radius unsafe.Pointer) CircularGeographicCondition {

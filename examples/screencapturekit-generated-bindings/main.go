@@ -1,15 +1,12 @@
 // ScreenCaptureKit example using only generated bindings
 //
 // This example demonstrates:
-// - Enumerating available displays and windows
-// - Capturing screenshots of displays
-// - Using SCShareableContent to get system content
-// - Using SCScreenshotManager for frame capture
-// - Using only generated bindings (no manual purego calls)
+// - Async SCShareableContent enumeration using objc.NewBlock()
+// - TCC permission handling with retry logic
+// - Display and window enumeration
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"runtime"
@@ -17,50 +14,32 @@ import (
 
 	"github.com/ebitengine/purego"
 	"github.com/ebitengine/purego/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/macgo"
-)
-
-var (
-	e2e         = flag.Bool("e2e", false, "run end-to-end test mode (non-interactive)")
-	testLoading = flag.Bool("test-loading", false, "test framework loading")
 )
 
 func init() {
 	runtime.LockOSThread()
 
-	// Skip macgo setup for test modes (E2E, framework loading test)
-	// These modes don't need TCC permissions or app bundle setup
-	skipMacgo := false
-	for _, arg := range os.Args[1:] {
-		if arg == "-e2e" || arg == "-test-loading" {
-			skipMacgo = true
-			break
-		}
+	// Use macgo to set up app bundle with proper entitlements
+	// This enables proper TCC permission requests for screen capture
+	cfg := &macgo.Config{
+		AppName:             "ScreenCaptureKit-Example",
+		BundleID:            "com.github.tmc.appledocs.screencapturekit-example",
+		Version:             "1.0.0",
+		Custom:              []string{
+			// Request screen capture entitlement
+			"com.apple.security.app-sandbox",
+			"com.apple.security.device.camera", // Sometimes needed for screen recording
+		},
+		AdHocSign:           true, // Use ad-hoc signing
+		ForceLaunchServices: true, // Use 'open' to trigger TCC prompts
+		Debug:               os.Getenv("MACGO_DEBUG") == "1",
 	}
 
-	if !skipMacgo {
-		// Use macgo to set up app bundle with proper entitlements
-		// This enables proper TCC permission requests for screen capture
-		cfg := &macgo.Config{
-			AppName:  "ScreenCaptureKit-Example",
-			BundleID: "com.github.tmc.appledocs.screencapturekit-example",
-			Version:  "1.0.0",
-			Custom: []string{
-				// Request screen capture entitlement
-				"com.apple.security.app-sandbox",
-				"com.apple.security.device.camera", // Sometimes needed for screen recording
-			},
-			AdHocSign:           true, // Use ad-hoc signing
-			ForceLaunchServices: true, // Use 'open' to trigger TCC prompts
-			Debug:               os.Getenv("MACGO_DEBUG") == "1",
-		}
-
-		// Start macgo - this will relaunch via app bundle if needed
-		if err := macgo.Start(cfg); err != nil {
-			fmt.Fprintf(os.Stderr, "macgo.Start failed: %v\n", err)
-			os.Exit(1)
-		}
+	// Start macgo - this will relaunch via app bundle if needed
+	if err := macgo.Start(cfg); err != nil {
+		fmt.Fprintf(os.Stderr, "macgo.Start failed: %v\n", err)
+		os.Exit(1)
 	}
 
 	// Explicitly load ScreenCaptureKit framework
@@ -179,22 +158,14 @@ func waitForScreenRecordingPermission() (shareableContent objc.ID, displayCount,
 }
 
 func main() {
-	flag.Parse()
-
-	if *testLoading {
-		testFrameworkLoading()
-		return
-	}
-
-	if *e2e {
-		runE2ETest()
-		return
-	}
-
-	fmt.Println("=== ScreenCaptureKit Example (Generated Bindings) ===")
+	fmt.Println("=== ScreenCaptureKit Async Enumeration Example ===")
+	fmt.Println()
+	fmt.Println("This example demonstrates async SCShareableContent enumeration")
+	fmt.Println("using objc.NewBlock() with proper TCC permission handling.")
+	fmt.Println()
 
 	// ScreenCaptureKit requires screen recording permission
-	fmt.Println("\n⚠️  This example requires Screen Recording permission.")
+	fmt.Println("⚠️  Requires Screen Recording permission")
 	fmt.Println()
 
 	// Get shareable content (displays and windows)
@@ -202,10 +173,8 @@ func main() {
 
 	shareableContentClass := objc.GetClass("SCShareableContent")
 	if shareableContentClass == 0 {
-		fmt.Println("⚠️  SCShareableContent class not found (requires macOS 12.3+)")
-		fmt.Println("   Running in demonstration mode...")
-		demonstrateScreenCaptureKitAPI()
-		return
+		fmt.Println("❌ SCShareableContent class not found (requires macOS 12.3+)")
+		os.Exit(1)
 	}
 
 	fmt.Println("✓ Found SCShareableContent class")
@@ -220,9 +189,11 @@ func main() {
 	defer shareableContent.Send(objc.RegisterName("release"))
 
 	fmt.Fprintf(os.Stderr, "\r   ✓ Permission granted!                                        \n\n")
+
+	// Print display information
+	fmt.Println("=== Results ===")
 	fmt.Printf("✓ Found %d display(s)\n", displayCount)
 
-	// Print detailed display info
 	displays := shareableContent.Send(objc.RegisterName("displays"))
 	if displays != 0 {
 		for i := 0; i < displayCount; i++ {
@@ -236,236 +207,80 @@ func main() {
 		}
 	}
 
+	// Print window information (first 5)
+	fmt.Printf("\n✓ Found %d window(s)\n", windowCount)
 	if windowCount > 0 {
-		fmt.Printf("✓ Found %d window(s)\n", windowCount)
+		windows := shareableContent.Send(objc.RegisterName("windows"))
+		if windows != 0 {
+			fmt.Println("   (showing first 5):")
+			maxToShow := windowCount
+			if maxToShow > 5 {
+				maxToShow = 5
+			}
+			for i := 0; i < maxToShow; i++ {
+				window := windows.Send(objc.RegisterName("objectAtIndex:"), i)
+				if window != 0 {
+					windowID := window.Send(objc.RegisterName("windowID"))
+
+					// Get title (may be nil)
+					title := window.Send(objc.RegisterName("title"))
+					titleStr := "(no title)"
+					if title != 0 {
+						titleStr = objc.Send[string](title, objc.RegisterName("UTF8String"))
+						if titleStr == "" {
+							titleStr = "(no title)"
+						}
+					}
+
+					// Get owning application
+					app := window.Send(objc.RegisterName("owningApplication"))
+					appName := ""
+					if app != 0 {
+						appNameObj := app.Send(objc.RegisterName("applicationName"))
+						if appNameObj != 0 {
+							appName = objc.Send[string](appNameObj, objc.RegisterName("UTF8String"))
+						}
+					}
+
+					fmt.Printf("   - Window %d: %s (app: %s)\n", windowID, titleStr, appName)
+				}
+			}
+		}
 	}
 
-	if displayCount == 0 {
-		fmt.Println("⚠️  No displays found")
-		os.Exit(1)
+	// Print applications
+	applications := shareableContent.Send(objc.RegisterName("applications"))
+	if applications != 0 {
+		appCount := int(applications.Send(objc.RegisterName("count")))
+		fmt.Printf("\n✓ Found %d running application(s)\n", appCount)
+		if appCount > 0 {
+			fmt.Println("   (showing first 5):")
+			maxToShow := appCount
+			if maxToShow > 5 {
+				maxToShow = 5
+			}
+			for i := 0; i < maxToShow; i++ {
+				app := applications.Send(objc.RegisterName("objectAtIndex:"), i)
+				if app != 0 {
+					appNameObj := app.Send(objc.RegisterName("applicationName"))
+					processID := app.Send(objc.RegisterName("processID"))
+					appName := ""
+					if appNameObj != 0 {
+						appName = objc.Send[string](appNameObj, objc.RegisterName("UTF8String"))
+					}
+					fmt.Printf("   - %s (pid: %d)\n", appName, processID)
+				}
+			}
+		}
 	}
 
-	fmt.Println("\n✅ Successfully demonstrated:")
+	fmt.Println()
+	fmt.Println("=== ✅ Async Enumeration Complete ===")
+	fmt.Println()
+	fmt.Println("Successfully demonstrated:")
 	fmt.Println("   ✓ Async SCShareableContent enumeration with objc.NewBlock()")
 	fmt.Println("   ✓ TCC permission handling with retry logic")
-	fmt.Println("   ✓ Display and window enumeration")
-	fmt.Println("\n💡 Note: SCScreenshotManager async API requires further investigation")
-	fmt.Println("   The completion handler with CGImageRef + NSError signature")
-	fmt.Println("   does not get called when using objc.NewBlock() from purego.")
-	fmt.Println("   See test_screenshot.m for working Objective-C example.")
-
-	fmt.Println("\n✅ ScreenCaptureKit example complete!")
-	fmt.Println("   ✓ Async enumeration working")
-	fmt.Println("   ✓ TCC permission handling working")
-	fmt.Println("\nRun with -e2e flag to test CoreGraphics fallback without TCC.")
-}
-
-func runE2ETest() {
-	fmt.Println("=== E2E Test Mode (ScreenCaptureKit Generated Bindings) ===")
-
-	// Check for ScreenCaptureKit framework
-	shareableContentClass := objc.GetClass("SCShareableContent")
-	if shareableContentClass == 0 {
-		fmt.Println("⚠️  SCShareableContent class not found (requires macOS 12.3+)")
-		fmt.Println("   Falling back to CoreGraphics display capture test")
-		time.Sleep(100 * time.Millisecond)
-	} else {
-		fmt.Println("✓ Found SCShareableContent class")
-		time.Sleep(100 * time.Millisecond)
-	}
-
-	// Check for SCScreenshotManager
-	screenshotManagerClass := objc.GetClass("SCScreenshotManager")
-	if screenshotManagerClass != 0 {
-		fmt.Println("✓ Found SCScreenshotManager class")
-		time.Sleep(100 * time.Millisecond)
-	}
-
-	// Test CoreGraphics display capture (works without ScreenCaptureKit)
-	mainDisplayID := coregraphics.CGMainDisplayID()
-	if mainDisplayID == nil {
-		fmt.Println("✗ FAIL: Failed to get main display ID")
-		os.Exit(1)
-	}
-	fmt.Printf("✓ Got main display ID: %v\n", mainDisplayID)
-	time.Sleep(100 * time.Millisecond)
-
-	// Capture display image
-	cgImage := coregraphics.CGDisplayCreateImage(mainDisplayID)
-	if cgImage == nil {
-		fmt.Println("✗ FAIL: Failed to capture display image")
-		os.Exit(1)
-	}
-	fmt.Println("✓ Captured display image")
-	time.Sleep(100 * time.Millisecond)
-
-	// Get image dimensions
-	width := coregraphics.CGImageGetWidth(cgImage)
-	height := coregraphics.CGImageGetHeight(cgImage)
-	if width == 0 || height == 0 {
-		fmt.Println("✗ FAIL: Invalid image dimensions")
-		os.Exit(1)
-	}
-	fmt.Printf("✓ Image dimensions: %d x %d\n", width, height)
-	time.Sleep(100 * time.Millisecond)
-
-	// Release image
-	coregraphics.CGImageRelease(cgImage)
-	fmt.Println("✓ Released CGImage")
-	time.Sleep(100 * time.Millisecond)
-
-	fmt.Println("\n=== E2E Test PASSED ===")
-	fmt.Println("   ✓ Used CoreGraphics display capture")
-	fmt.Println("   ✓ CGDisplayCreateImage, CGImageGetWidth/Height")
-	fmt.Println("   ✓ ScreenCaptureKit classes available (if macOS 12.3+)")
-	os.Exit(0)
-}
-
-func createNSString(s string) objc.ID {
-	strClass := objc.GetClass("NSString")
-	str := objc.ID(strClass).Send(objc.RegisterName("alloc"))
-	return str.Send(objc.RegisterName("initWithUTF8String:"), s)
-}
-
-func demonstrateScreenCaptureKitAPI() {
-	fmt.Println("\n📚 ScreenCaptureKit API Demonstration")
-	fmt.Println("═══════════════════════════════════════════════════════════")
+	fmt.Println("   ✓ Display, window, and application enumeration")
 	fmt.Println()
-	fmt.Println("This example demonstrates how to use ScreenCaptureKit APIs")
-	fmt.Println("with objc.NewBlock for async completion handlers.")
-	fmt.Println()
-	fmt.Println("Code structure (when SCShareableContent is available):")
-	fmt.Println()
-	fmt.Println("  1. Create completion handler block with objc.NewBlock:")
-	fmt.Println("     completionBlock := objc.NewBlock(")
-	fmt.Println("       func(block objc.Block, content objc.ID, error objc.ID) {")
-	fmt.Println("         // Handle returned content...")
-	fmt.Println("       })")
-	fmt.Println()
-	fmt.Println("  2. Call SCShareableContent class method:")
-	fmt.Println("     sel := objc.RegisterName(\"getShareableContentWithCompletionHandler:\")")
-	fmt.Println("     objc.ID(shareableContentClass).Send(sel, completionBlock)")
-	fmt.Println()
-	fmt.Println("  3. Wait for async completion using channels:")
-	fmt.Println("     select {")
-	fmt.Println("       case <-done:")
-	fmt.Println("         // Process results")
-	fmt.Println("       case <-time.After(5 * time.Second):")
-	fmt.Println("         // Handle timeout")
-	fmt.Println("     }")
-	fmt.Println()
-	fmt.Println("  4. Access display and window information:")
-	fmt.Println("     displays := content.Send(objc.RegisterName(\"displays\"))")
-	fmt.Println("     windows := content.Send(objc.RegisterName(\"windows\"))")
-	fmt.Println()
-	fmt.Println("═══════════════════════════════════════════════════════════")
-	fmt.Println()
-	fmt.Println("✅ Generated bindings available for:")
-	fmt.Println("   - SCShareableContent (system content enumeration)")
-	fmt.Println("   - SCDisplay (display information)")
-	fmt.Println("   - SCWindow (window information)")
-	fmt.Println("   - SCRunningApplication (app information)")
-	fmt.Println("   - SCContentFilter (content filtering)")
-	fmt.Println("   - SCStream (real-time screen capture)")
-	fmt.Println("   - SCStreamConfiguration (stream settings)")
-	fmt.Println("   - SCScreenshotManager (screenshot capture)")
-	fmt.Println()
-	fmt.Println("💡 To test on a system with ScreenCaptureKit:")
-	fmt.Println("   - Requires macOS 12.3 (Monterey) or later")
-	fmt.Println("   - Requires Screen Recording permission")
-	fmt.Println("   - The async block will execute and enumerate displays/windows")
-	fmt.Println()
-	
-	// Show that we still use CoreGraphics for fallback
-	fmt.Println("📸 CoreGraphics Fallback Demo:")
-	mainDisplayID := coregraphics.CGMainDisplayID()
-	cgImage := coregraphics.CGDisplayCreateImage(mainDisplayID)
-	if cgImage != nil {
-		width := coregraphics.CGImageGetWidth(cgImage)
-		height := coregraphics.CGImageGetHeight(cgImage)
-		fmt.Printf("✓ Captured %dx%d screenshot using CoreGraphics\n", width, height)
-		coregraphics.CGImageRelease(cgImage)
-	}
-	
-	fmt.Println()
-	fmt.Println("═══════════════════════════════════════════════════════════")
-}
-
-func testFrameworkLoading() {
-	fmt.Println("=== ScreenCaptureKit Framework Loading Test ===")
-	fmt.Println()
-
-	// Try to load ScreenCaptureKit framework explicitly
-	fmt.Println("1. Attempting to load ScreenCaptureKit.framework...")
-	handle, err := purego.Dlopen("/System/Library/Frameworks/ScreenCaptureKit.framework/ScreenCaptureKit", purego.RTLD_NOW|purego.RTLD_GLOBAL)
-	if err != nil {
-		fmt.Printf("   ✗ Failed to load framework: %v\n", err)
-		fmt.Println()
-
-		// Try without RTLD_GLOBAL
-		fmt.Println("2. Trying without RTLD_GLOBAL...")
-		handle, err = purego.Dlopen("/System/Library/Frameworks/ScreenCaptureKit.framework/ScreenCaptureKit", purego.RTLD_NOW)
-		if err != nil {
-			fmt.Printf("   ✗ Failed again: %v\n", err)
-			fmt.Println()
-		} else {
-			fmt.Printf("   ✓ Loaded framework (handle: %v)\n", handle)
-			fmt.Println()
-		}
-	} else {
-		fmt.Printf("   ✓ Loaded framework (handle: %v)\n", handle)
-		fmt.Println()
-	}
-
-	// Now check for SCShareableContent class
-	fmt.Println("3. Looking up SCShareableContent class...")
-	scClass := objc.GetClass("SCShareableContent")
-	if scClass == 0 {
-		fmt.Println("   ✗ SCShareableContent class NOT found")
-	} else {
-		fmt.Printf("   ✓ SCShareableContent class found: %v\n", scClass)
-	}
-	fmt.Println()
-
-	// Check for other ScreenCaptureKit classes
-	fmt.Println("4. Checking other ScreenCaptureKit classes...")
-	classes := []string{
-		"SCScreenshotManager",
-		"SCDisplay",
-		"SCWindow",
-		"SCRunningApplication",
-		"SCContentFilter",
-		"SCStream",
-		"SCStreamConfiguration",
-	}
-
-	for _, className := range classes {
-		cls := objc.GetClass(className)
-		if cls == 0 {
-			fmt.Printf("   ✗ %s NOT found\n", className)
-		} else {
-			fmt.Printf("   ✓ %s found: %v\n", className, cls)
-		}
-	}
-	fmt.Println()
-
-	// Try loading with versioned path
-	fmt.Println("5. Trying versioned framework path...")
-	handle2, err := purego.Dlopen("/System/Library/Frameworks/ScreenCaptureKit.framework/Versions/A/ScreenCaptureKit", purego.RTLD_NOW)
-	if err != nil {
-		fmt.Printf("   ✗ Failed: %v\n", err)
-	} else {
-		fmt.Printf("   ✓ Loaded versioned framework (handle: %v)\n", handle2)
-
-		// Check class again
-		scClass2 := objc.GetClass("SCShareableContent")
-		if scClass2 == 0 {
-			fmt.Println("   ✗ Still no SCShareableContent class")
-		} else {
-			fmt.Printf("   ✓ SCShareableContent found: %v\n", scClass2)
-		}
-	}
-	fmt.Println()
-
-	fmt.Println("=== Test Complete ===")
+	fmt.Println("Compare with Objective-C reference: sc_async_enum.m")
 }

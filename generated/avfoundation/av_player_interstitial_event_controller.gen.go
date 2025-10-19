@@ -31,7 +31,7 @@ type IAVPlayerInterstitialEventController interface {
 	IAVPlayerInterstitialEventMonitor
 }
 
-// An object that schedules interstitial events for items played by the primary player. [Full Topic]
+// An object that schedules interstitial events for items played by the primary player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventController
 type AVPlayerInterstitialEventController struct {

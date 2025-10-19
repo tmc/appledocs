@@ -44,7 +44,7 @@ type INetService interface {
 	TXTRecordData() unsafe.Pointer
 }
 
-// A network service that broadcasts its availability using multicast DNS. [Full Topic]
+// A network service that broadcasts its availability using multicast DNS.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService
 type NetService struct {
@@ -90,8 +90,7 @@ func NewNetService() NetService {
 }
 
 
-// Returns the receiver, initialized as a network service of a given type and sets the initial host information. [Full Topic]
-
+// Returns the receiver, initialized as a network service of a given type and sets the initial host information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:)
 func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) NetService {
@@ -100,8 +99,7 @@ func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) N
 	rv.Autorelease()
 	return rv
 }
-// Initializes the receiver for publishing a network service of type at the socket location specified by , , and . [Full Topic]
-
+// Initializes the receiver for publishing a network service of type at the socket location specified by , , and .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
 func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name string, port int) NetService {
@@ -112,103 +110,89 @@ func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name strin
 }
 
 
-// Returns an object representing a TXT record formed from a given dictionary. [Full Topic]
-
+// Returns an object representing a TXT record formed from a given dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/data(fromTXTRecord:)
 func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("dataFromTXTRecordDictionary:"), txtDictionary)
 	return rv
 }
-// Returns a dictionary representing a TXT record given as an object. [Full Topic]
-
+// Returns a dictionary representing a TXT record given as an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
 func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
 	return rv
 }
-// Creates a pair of input and output streams for the receiver and returns a Boolean value that indicates whether they were retrieved successfully. [Full Topic]
-
+// Creates a pair of input and output streams for the receiver and returns a Boolean value that indicates whether they were retrieved successfully.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/getInputStream(_:outputStream:)
 func (n_ NetService) GetInputStreamOutputStream(inputStream unsafe.Pointer, outputStream unsafe.Pointer) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("getInputStream:outputStream:"), inputStream, outputStream)
 	return rv
 }
-// Attempts to advertise the receiver’s on the network. [Full Topic]
-
+// Attempts to advertise the receiver’s on the network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/publish()
 func (n_ NetService) Publish() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("publish"))
 }
-// Attempts to advertise the receiver on the network, with the given options. [Full Topic]
-
+// Attempts to advertise the receiver on the network, with the given options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/publish(options:)
 func (n_ NetService) PublishWithOptions(options unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("publishWithOptions:"), options)
 }
-// Removes the service from the given run loop for a given mode. [Full Topic]
-
+// Removes the service from the given run loop for a given mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/remove(from:forMode:)
 func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
-// Starts a resolve process for the service. [Full Topic]
-
+// Starts a resolve process for the service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/resolve()
 func (n_ NetService) Resolve() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("resolve"))
 }
-// Starts a resolve process of a finite duration for the service. [Full Topic]
-
+// Starts a resolve process of a finite duration for the service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/resolve(withTimeout:)
 func (n_ NetService) ResolveWithTimeout(timeout TimeInterval) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("resolveWithTimeout:"), timeout)
 }
-// Adds the service to the specified run loop. [Full Topic]
-
+// Adds the service to the specified run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/schedule(in:forMode:)
 func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
-// Sets the TXT record for the receiver, and returns a Boolean value that indicates whether the operation was successful. [Full Topic]
-
+// Sets the TXT record for the receiver, and returns a Boolean value that indicates whether the operation was successful.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/setTXTRecord(_:)
 func (n_ NetService) SetTXTRecordData(recordData unsafe.Pointer) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("setTXTRecordData:"), recordData)
 	return rv
 }
-// Starts the monitoring of TXT-record updates for the receiver. [Full Topic]
-
+// Starts the monitoring of TXT-record updates for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/startMonitoring()
 func (n_ NetService) StartMonitoring() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("startMonitoring"))
 }
-// Halts a currently running attempt to publish or resolve a service. [Full Topic]
-
+// Halts a currently running attempt to publish or resolve a service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/stop()
 func (n_ NetService) Stop() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("stop"))
 }
-// Stops the monitoring of TXT-record updates for the receiver. [Full Topic]
-
+// Stops the monitoring of TXT-record updates for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/stopMonitoring()
 func (n_ NetService) StopMonitoring() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("stopMonitoring"))
 }
-// Returns the TXT record for the receiver. [Full Topic]
-
+// Returns the TXT record for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/txtRecordData()
 func (n_ NetService) TXTRecordData() unsafe.Pointer {

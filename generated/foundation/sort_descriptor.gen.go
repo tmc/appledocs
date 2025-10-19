@@ -33,7 +33,7 @@ type ISortDescriptor interface {
 	CompareObjectToObject(object1 objc.ID, object2 objc.ID) unsafe.Pointer
 }
 
-// An immutable description of how to order a collection of objects according to a property common to all the objects. [Full Topic]
+// An immutable description of how to order a collection of objects according to a property common to all the objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor
 type SortDescriptor struct {
@@ -79,8 +79,7 @@ func NewSortDescriptor() SortDescriptor {
 }
 
 
-// Creates a sort descriptor with a specified string key path and sort order. [Full Topic]
-
+// Creates a sort descriptor with a specified string key path and sort order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:)
 func NewSortDescriptorWithKeyAscending(key string, ascending bool) SortDescriptor {
@@ -91,16 +90,14 @@ func NewSortDescriptorWithKeyAscending(key string, ascending bool) SortDescripto
 }
 
 
-// Creates and returns a sort descriptor initialized with the specified key path and ordering, and a comparator block. [Full Topic]
-
+// Creates and returns a sort descriptor initialized with the specified key path and ordering, and a comparator block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/sortDescriptorWithKey:ascending:comparator:
 func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingComparator(key string, ascending bool, cmptr unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sortDescriptorWithKey:ascending:comparator:"), objc.String(key), ascending, cmptr)
 	return rv
 }
-// Returns a comparison result value that indicates the sort order of two objects. [Full Topic]
-
+// Returns a comparison result value that indicates the sort order of two objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/compare(_:to:)
 func (s_ SortDescriptor) CompareObjectToObject(object1 objc.ID, object2 objc.ID) unsafe.Pointer {

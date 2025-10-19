@@ -32,7 +32,7 @@ type IAVSynchronizedLayer interface {
 	quartzcore.ILayer
 }
 
-// A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback. [Full Topic]
+// A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSynchronizedLayer
 type AVSynchronizedLayer struct {

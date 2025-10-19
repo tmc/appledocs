@@ -32,7 +32,7 @@ type IOSLogPosition interface {
 	objectivec.IObject
 }
 
-// A representation of a point in a sequence of entries in the unified logging system. [Full Topic]
+// A representation of a point in a sequence of entries in the unified logging system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogPosition
 type OSLogPosition struct {

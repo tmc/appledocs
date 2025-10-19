@@ -31,7 +31,7 @@ type IInflectionRuleExplicit interface {
 	IInflectionRule
 }
 
-// An inflection rule that uses a morphology instance to determine how to inflect attribued strings. [Full Topic]
+// An inflection rule that uses a morphology instance to determine how to inflect attribued strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRuleExplicit
 type InflectionRuleExplicit struct {

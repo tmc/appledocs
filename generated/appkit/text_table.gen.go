@@ -31,7 +31,7 @@ type ITextTable interface {
 	ITextBlock
 }
 
-// An object that represents a text table as a whole. [Full Topic]
+// An object that represents a text table as a whole.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable
 type TextTable struct {

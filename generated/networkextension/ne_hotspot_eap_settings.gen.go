@@ -32,7 +32,7 @@ type INEHotspotEAPSettings interface {
 	objectivec.IObject
 }
 
-// Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks. [Full Topic]
+// Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings
 type NEHotspotEAPSettings struct {

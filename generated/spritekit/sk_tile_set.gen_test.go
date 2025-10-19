@@ -12,7 +12,6 @@ var _ = spritekit.NewSKTileSet
 
 
 
-
 // ExampleNewSKTileSetNamed demonstrates how to create a SKTileSet instance using NewSKTileSetNamed.
 // Initializes a tile set by searching the app bundle for an archived   file by name.
 func ExampleNewSKTileSetNamed() {
@@ -21,5 +20,6 @@ func ExampleNewSKTileSetNamed() {
 	)
 	// Output:
 }
+
 
 

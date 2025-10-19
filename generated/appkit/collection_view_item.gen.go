@@ -31,7 +31,7 @@ type ICollectionViewItem interface {
 	IViewController
 }
 
-// The visual representation for a single data element in a collection view. [Full Topic]
+// The visual representation for a single data element in a collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem
 type CollectionViewItem struct {

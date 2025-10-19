@@ -31,7 +31,7 @@ type ILevelIndicator interface {
 	IControl
 }
 
-// A visual representation of a level or quantity, using discrete values. [Full Topic]
+// A visual representation of a level or quantity, using discrete values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator
 type LevelIndicator struct {

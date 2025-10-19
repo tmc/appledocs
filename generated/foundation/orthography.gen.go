@@ -32,7 +32,7 @@ type IOrthography interface {
 	objectivec.IObject
 }
 
-// A description of the linguistic content of natural language text, typically used for spelling and grammar checking. [Full Topic]
+// A description of the linguistic content of natural language text, typically used for spelling and grammar checking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography
 type Orthography struct {

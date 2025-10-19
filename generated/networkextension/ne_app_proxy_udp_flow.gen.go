@@ -31,7 +31,7 @@ type INEAppProxyUDPFlow interface {
 	INEAppProxyFlow
 }
 
-// An object for reading and writing data to and from a UDP conversation being proxied by the provider. [Full Topic]
+// An object for reading and writing data to and from a UDP conversation being proxied by the provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyUDPFlow
 type NEAppProxyUDPFlow struct {

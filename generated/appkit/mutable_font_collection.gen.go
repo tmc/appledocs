@@ -31,7 +31,7 @@ type IMutableFontCollection interface {
 	IFontCollection
 }
 
-// A mutable collection of font descriptors taken together as a single object. [Full Topic]
+// A mutable collection of font descriptors taken together as a single object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection
 type MutableFontCollection struct {

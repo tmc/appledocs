@@ -31,7 +31,7 @@ type IUnitAcceleration interface {
 	IDimension
 }
 
-// A unit of measure for acceleration. [Full Topic]
+// A unit of measure for acceleration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration
 type UnitAcceleration struct {

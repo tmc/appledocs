@@ -32,7 +32,7 @@ type INEProvider interface {
 	objectivec.IObject
 }
 
-// An abstract base class for all NetworkExtension providers. [Full Topic]
+// An abstract base class for all NetworkExtension providers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider
 type NEProvider struct {

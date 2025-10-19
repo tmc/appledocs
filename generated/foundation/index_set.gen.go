@@ -32,7 +32,7 @@ type IIndexSet interface {
 	objectivec.IObject
 }
 
-// An immutable collection of unique integer values that represent indexes in another collection. [Full Topic]
+// An immutable collection of unique integer values that represent indexes in another collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet
 type IndexSet struct {

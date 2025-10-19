@@ -34,7 +34,7 @@ type IManagedObjectModel interface {
 	SetFetchRequestTemplateForName(fetchRequestTemplate unsafe.Pointer, name string)
 }
 
-// A programmatic representation of the file describing your objects. [Full Topic]
+// A programmatic representation of the file describing your objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel
 type ManagedObjectModel struct {
@@ -80,16 +80,14 @@ func NewManagedObjectModel() ManagedObjectModel {
 }
 
 
-// Returns a Boolean value that indicates whether a given configuration in the model is compatible with given metadata from a persistent store. [Full Topic]
-
+// Returns a Boolean value that indicates whether a given configuration in the model is compatible with given metadata from a persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/isConfiguration(withName:compatibleWithStoreMetadata:)
 func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configuration string, metadata unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isConfiguration:compatibleWithStoreMetadata:"), objc.String(configuration), metadata)
 	return rv
 }
-// Associates the specified fetch request with the receiver using the given name. [Full Topic]
-
+// Associates the specified fetch request with the receiver using the given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/setFetchRequestTemplate(_:forName:)
 func (m_ ManagedObjectModel) SetFetchRequestTemplateForName(fetchRequestTemplate unsafe.Pointer, name string) {

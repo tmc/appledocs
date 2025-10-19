@@ -32,7 +32,7 @@ type IGraphicsContext interface {
 	objectivec.IObject
 }
 
-// An object that represents a graphics context. [Full Topic]
+// An object that represents a graphics context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext
 type GraphicsContext struct {

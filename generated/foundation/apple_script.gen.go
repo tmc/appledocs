@@ -32,7 +32,7 @@ type IAppleScript interface {
 	objectivec.IObject
 }
 
-// An object that provides the ability to load, compile, and execute scripts. [Full Topic]
+// An object that provides the ability to load, compile, and execute scripts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript
 type AppleScript struct {

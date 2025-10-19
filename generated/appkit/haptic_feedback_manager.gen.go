@@ -32,7 +32,7 @@ type IHapticFeedbackManager interface {
 	objectivec.IObject
 }
 
-// An object that provides access to the haptic feedback management attributes on a system with a Force Touch trackpad. [Full Topic]
+// An object that provides access to the haptic feedback management attributes on a system with a Force Touch trackpad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager
 type HapticFeedbackManager struct {

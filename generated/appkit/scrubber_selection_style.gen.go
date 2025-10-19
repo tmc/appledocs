@@ -32,7 +32,7 @@ type IScrubberSelectionStyle interface {
 	objectivec.IObject
 }
 
-// An abstract class that provides decorative accessory views for selected and highlighted items within a scrubber control. [Full Topic]
+// An abstract class that provides decorative accessory views for selected and highlighted items within a scrubber control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle
 type ScrubberSelectionStyle struct {

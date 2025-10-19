@@ -31,7 +31,7 @@ type IAVURLAsset interface {
 	IAVAsset
 }
 
-// An asset that represents media at a local or remote URL. [Full Topic]
+// An asset that represents media at a local or remote URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset
 type AVURLAsset struct {

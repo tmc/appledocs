@@ -32,7 +32,7 @@ type IMorphologyCustomPronoun interface {
 	objectivec.IObject
 }
 
-// A custom pronoun behavior for use in a specific langauge. [Full Topic]
+// A custom pronoun behavior for use in a specific langauge.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun
 type MorphologyCustomPronoun struct {

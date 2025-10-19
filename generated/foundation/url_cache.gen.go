@@ -32,7 +32,7 @@ type IURLCache interface {
 	objectivec.IObject
 }
 
-// An object that maps URL requests to cached response objects. [Full Topic]
+// An object that maps URL requests to cached response objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache
 type URLCache struct {

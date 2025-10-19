@@ -32,7 +32,7 @@ type IWritingToolsCoordinatorAnimationParameters interface {
 	objectivec.IObject
 }
 
-// An object you use to configure additional tasks or animations to run alongside the Writing Tools animations. [Full Topic]
+// An object you use to configure additional tasks or animations to run alongside the Writing Tools animations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters
 type WritingToolsCoordinatorAnimationParameters struct {

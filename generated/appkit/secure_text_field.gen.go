@@ -31,7 +31,7 @@ type ISecureTextField interface {
 	ITextField
 }
 
-// A text field that hides the typed text. [Full Topic]
+// A text field that hides the typed text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextField
 type SecureTextField struct {

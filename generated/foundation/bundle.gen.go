@@ -33,7 +33,7 @@ type IBundle interface {
 	ObjectForInfoDictionaryKey(key string) objc.ID
 }
 
-// A representation of the code and resources stored in a bundle directory on disk. [Full Topic]
+// A representation of the code and resources stored in a bundle directory on disk.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle
 type Bundle struct {
@@ -79,8 +79,7 @@ func NewBundle() Bundle {
 }
 
 
-// Returns the object with which the specified class is associated. [Full Topic]
-
+// Returns the object with which the specified class is associated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
 func NewBundleForClass(aClass objc.Class) Bundle {
@@ -89,16 +88,14 @@ func NewBundleForClass(aClass objc.Class) Bundle {
 }
 
 
-// Returns the object with which the specified class is associated. [Full Topic]
-
+// Returns the object with which the specified class is associated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
 func (bc _BundleClass) BundleForClass(aClass objc.Class) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("bundleForClass:"), aClass)
 	return rv
 }
-// Returns the value associated with the specified key in the receiver’s information property list. [Full Topic]
-
+// Returns the value associated with the specified key in the receiver’s information property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/object(forInfoDictionaryKey:)
 func (b_ Bundle) ObjectForInfoDictionaryKey(key string) objc.ID {

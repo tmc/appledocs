@@ -31,7 +31,7 @@ type ITableHeaderCell interface {
 	ITextFieldCell
 }
 
-// An object that a table header view uses to draw the content of the column headers. [Full Topic]
+// An object that a table header view uses to draw the content of the column headers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderCell
 type TableHeaderCell struct {

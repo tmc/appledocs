@@ -32,7 +32,7 @@ type IPersistentStoreRequest interface {
 	objectivec.IObject
 }
 
-// Criteria used to retrieve data from or save data to a persistent store. [Full Topic]
+// Criteria used to retrieve data from or save data to a persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest
 type PersistentStoreRequest struct {

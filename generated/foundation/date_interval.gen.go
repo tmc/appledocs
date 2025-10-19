@@ -32,7 +32,7 @@ type IDateInterval interface {
 	objectivec.IObject
 }
 
-// An object representing the span of time between a specific start date and end date. [Full Topic]
+// An object representing the span of time between a specific start date and end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval
 type DateInterval struct {

@@ -42,7 +42,7 @@ type IExtensionContext interface {
 	WidgetMaximumSizeForDisplayMode(displayMode unsafe.Pointer) unsafe.Pointer
 }
 
-// The host app context from which an app extension is invoked. [Full Topic]
+// The host app context from which an app extension is invoked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext
 type ExtensionContext struct {
@@ -88,8 +88,7 @@ func NewExtensionContext() ExtensionContext {
 }
 
 
-// Tells the host app to complete the app extension request with the specified broadcast information. [Full Topic]
-
+// Tells the host app to complete the app extension request with the specified broadcast information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(withBroadcast:broadcastConfiguration:setupInfo:)
 func (e_ ExtensionContext) CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL unsafe.Pointer, broadcastConfiguration unsafe.Pointer, setupInfo unsafe.Pointer) {
@@ -105,8 +104,7 @@ func (e_ ExtensionContext) CompleteRequestWithBroadcastURLSetupInfo(broadcastURL
 func (e_ ExtensionContext) DismissNotificationContentExtension() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("dismissNotificationContentExtension"))
 }
-// Returns a human-readable string describing the data that SiriKit displays to the user when you handle an intent. [Full Topic]
-
+// Returns a human-readable string describing the data that SiriKit displays to the user when you handle an intent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/interfaceParametersDescription()
 func (e_ ExtensionContext) InterfaceParametersDescription() unsafe.Pointer {
@@ -118,22 +116,19 @@ func (e_ ExtensionContext) InterfaceParametersDescription() unsafe.Pointer {
 func (e_ ExtensionContext) LoadBroadcastingApplicationInfoWithCompletion(handler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("loadBroadcastingApplicationInfoWithCompletion:"), handler)
 }
-// Tells the system that the Notification Content app extension stopped playing a media file. [Full Topic]
-
+// Tells the system that the Notification Content app extension stopped playing a media file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/mediaPlayingPaused()
 func (e_ ExtensionContext) MediaPlayingPaused() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("mediaPlayingPaused"))
 }
-// Tells the system that the Notification Content app extension began playing a media file. [Full Topic]
-
+// Tells the system that the Notification Content app extension began playing a media file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/mediaPlayingStarted()
 func (e_ ExtensionContext) MediaPlayingStarted() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("mediaPlayingStarted"))
 }
-// Asks the system to open a URL on behalf of the currently running app extension. [Full Topic]
-
+// Asks the system to open a URL on behalf of the currently running app extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/open(_:completionHandler:)
 func (e_ ExtensionContext) OpenURLCompletionHandler(URL unsafe.Pointer, completionHandler unsafe.Pointer) {
@@ -144,8 +139,7 @@ func (e_ ExtensionContext) OpenURLCompletionHandler(URL unsafe.Pointer, completi
 func (e_ ExtensionContext) PerformNotificationDefaultAction() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("performNotificationDefaultAction"))
 }
-// Returns the maximum size for the specified widget display mode. [Full Topic]
-
+// Returns the maximum size for the specified widget display mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/widgetMaximumSize(for:)
 func (e_ ExtensionContext) WidgetMaximumSizeForDisplayMode(displayMode unsafe.Pointer) unsafe.Pointer {

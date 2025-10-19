@@ -32,7 +32,7 @@ type IXPCListener interface {
 	objectivec.IObject
 }
 
-// A listener that waits for new incoming connections, configures them, and accepts or rejects them. [Full Topic]
+// A listener that waits for new incoming connections, configures them, and accepts or rejects them.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener
 type XPCListener struct {
@@ -78,8 +78,7 @@ func NewXPCListener() XPCListener {
 }
 
 
-// Returns a new anonymous listener connection. [Full Topic]
-
+// Returns a new anonymous listener connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/anonymous()
 func (xc _XPCListenerClass) AnonymousListener() unsafe.Pointer {

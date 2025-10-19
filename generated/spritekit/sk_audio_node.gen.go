@@ -31,7 +31,7 @@ type ISKAudioNode interface {
 	ISKNode
 }
 
-// A node that plays audio. [Full Topic]
+// A node that plays audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAudioNode
 type SKAudioNode struct {

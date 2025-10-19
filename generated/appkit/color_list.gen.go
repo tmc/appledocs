@@ -32,7 +32,7 @@ type IColorList interface {
 	objectivec.IObject
 }
 
-// An ordered list of color objects, identified by keys. [Full Topic]
+// An ordered list of color objects, identified by keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList
 type ColorList struct {

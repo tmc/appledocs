@@ -31,7 +31,7 @@ type ISKTransformNode interface {
 	ISKNode
 }
 
-// A node that allows its children to rotate in 3D. [Full Topic]
+// A node that allows its children to rotate in 3D.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTransformNode
 type SKTransformNode struct {

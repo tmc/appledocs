@@ -31,7 +31,7 @@ type ISwitch_ interface {
 	IControl
 }
 
-// A control that offers a binary choice. [Full Topic]
+// A control that offers a binary choice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSwitch
 type Switch_ struct {

@@ -31,7 +31,7 @@ type IAztecCodeDescriptor interface {
 	IBarcodeDescriptor
 }
 
-// A concrete subclass the Core Image Barcode Descriptor that represents an Aztec code symbol. [Full Topic]
+// A concrete subclass the Core Image Barcode Descriptor that represents an Aztec code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor
 type AztecCodeDescriptor struct {
@@ -79,8 +79,7 @@ func NewAztecCodeDescriptor() AztecCodeDescriptor {
 }
 
 
-// Initializes an Aztec code descriptor for the given payload and parameters. [Full Topic]
-
+// Initializes an Aztec code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/init(payload:isCompact:layerCount:dataCodewordCount:)
 func NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, layerCount int, dataCodewordCount int) AztecCodeDescriptor {
@@ -91,8 +90,7 @@ func NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount(error
 }
 
 
-// Creates an Aztec code descriptor for the given payload and parameters. [Full Topic]
-
+// Creates an Aztec code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/descriptorWithPayload:isCompact:layerCount:dataCodewordCount:
 func (ac _AztecCodeDescriptorClass) DescriptorWithPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, layerCount int, dataCodewordCount int) unsafe.Pointer {

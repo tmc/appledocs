@@ -31,7 +31,7 @@ type ITextView interface {
 	IText
 }
 
-// A view that draws text and handles user interactions with that text. [Full Topic]
+// A view that draws text and handles user interactions with that text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView
 type TextView struct {

@@ -32,7 +32,7 @@ type IMergePolicy interface {
 	objectivec.IObject
 }
 
-// A policy object that you use to resolve conflicts between the persistent store and in-memory versions of managed objects. [Full Topic]
+// A policy object that you use to resolve conflicts between the persistent store and in-memory versions of managed objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy
 type MergePolicy struct {

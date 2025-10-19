@@ -32,7 +32,7 @@ type ISKTileDefinition interface {
 	objectivec.IObject
 }
 
-// A single tile that can be repeated in a tile map. [Full Topic]
+// A single tile that can be repeated in a tile map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition
 type SKTileDefinition struct {
@@ -78,18 +78,7 @@ func NewSKTileDefinition() SKTileDefinition {
 }
 
 
-// Initializes a new tile definition with a single texture. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(texture:)
-func NewSKTileDefinitionWithTexture(texture unsafe.Pointer) SKTileDefinition {
-	instance := getSKTileDefinitionClass().Alloc()
-	rv := objc.Send[SKTileDefinition](instance.ID, objc.Sel("initWithTexture:"), texture)
-	rv.Autorelease()
-	return rv
-}
-// Initializes a new tile definition with a single texture and separate normal texture for simulating 3D lighting. [Full Topic]
-
+// Initializes a new tile definition with a single texture and separate normal texture for simulating 3D lighting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(texture:normalTexture:size:)
 func NewSKTileDefinitionWithTextureNormalTextureSize(texture unsafe.Pointer, normalTexture unsafe.Pointer, size unsafe.Pointer) SKTileDefinition {
@@ -98,8 +87,7 @@ func NewSKTileDefinitionWithTextureNormalTextureSize(texture unsafe.Pointer, nor
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new tile definition of a specified size with a single texture. [Full Topic]
-
+// Initializes a new tile definition of a specified size with a single texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(texture:size:)
 func NewSKTileDefinitionWithTextureSize(texture unsafe.Pointer, size unsafe.Pointer) SKTileDefinition {
@@ -108,8 +96,7 @@ func NewSKTileDefinitionWithTextureSize(texture unsafe.Pointer, size unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new tile definition with arrays of textures and normal textures for animation. [Full Topic]
-
+// Initializes a new tile definition with arrays of textures and normal textures for animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(textures:normalTextures:size:timePerFrame:)
 func NewSKTileDefinitionWithTexturesNormalTexturesSizeTimePerFrame(textures unsafe.Pointer, normalTextures unsafe.Pointer, size unsafe.Pointer, timePerFrame float64) SKTileDefinition {
@@ -118,13 +105,21 @@ func NewSKTileDefinitionWithTexturesNormalTexturesSizeTimePerFrame(textures unsa
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new tile definition with an array of textures for animation. [Full Topic]
-
+// Initializes a new tile definition with an array of textures for animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(textures:size:timePerFrame:)
 func NewSKTileDefinitionWithTexturesSizeTimePerFrame(textures unsafe.Pointer, size unsafe.Pointer, timePerFrame float64) SKTileDefinition {
 	instance := getSKTileDefinitionClass().Alloc()
 	rv := objc.Send[SKTileDefinition](instance.ID, objc.Sel("initWithTextures:size:timePerFrame:"), textures, size, timePerFrame)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a new tile definition with a single texture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileDefinition/init(texture:)
+func NewSKTileDefinitionWithTexture(texture unsafe.Pointer) SKTileDefinition {
+	instance := getSKTileDefinitionClass().Alloc()
+	rv := objc.Send[SKTileDefinition](instance.ID, objc.Sel("initWithTexture:"), texture)
 	rv.Autorelease()
 	return rv
 }

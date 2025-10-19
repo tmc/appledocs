@@ -31,7 +31,7 @@ type INETunnelProviderSession interface {
 	INEVPNConnection
 }
 
-// An object to start and stop a tunnel connection and get its status. [Full Topic]
+// An object to start and stop a tunnel connection and get its status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderSession
 type NETunnelProviderSession struct {

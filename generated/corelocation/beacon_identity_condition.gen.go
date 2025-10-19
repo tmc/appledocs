@@ -31,7 +31,7 @@ type IBeaconIdentityCondition interface {
 	ICondition
 }
 
-// A condition that describes the identity characteristics of a beacon. [Full Topic]
+// A condition that describes the identity characteristics of a beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition
 type BeaconIdentityCondition struct {
@@ -79,8 +79,7 @@ func NewBeaconIdentityCondition() BeaconIdentityCondition {
 }
 
 
-// Creates a new beacon identity condition with the identifier you specify. [Full Topic]
-
+// Creates a new beacon identity condition with the identifier you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:
 func NewBeaconIdentityConditionWithUUID(uuid unsafe.Pointer) BeaconIdentityCondition {
@@ -89,8 +88,7 @@ func NewBeaconIdentityConditionWithUUID(uuid unsafe.Pointer) BeaconIdentityCondi
 	rv.Autorelease()
 	return rv
 }
-// Creates a new beacon identity condition with the identifier and major value you specify. [Full Topic]
-
+// Creates a new beacon identity condition with the identifier and major value you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:
 func NewBeaconIdentityConditionWithUUIDMajor(uuid unsafe.Pointer, major unsafe.Pointer) BeaconIdentityCondition {
@@ -99,8 +97,7 @@ func NewBeaconIdentityConditionWithUUIDMajor(uuid unsafe.Pointer, major unsafe.P
 	rv.Autorelease()
 	return rv
 }
-// Creates a new beacon identity condition with the identifier, and major and minor values you specify. [Full Topic]
-
+// Creates a new beacon identity condition with the identifier, and major and minor values you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:minor:
 func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid unsafe.Pointer, major unsafe.Pointer, minor unsafe.Pointer) BeaconIdentityCondition {

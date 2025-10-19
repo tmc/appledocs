@@ -31,7 +31,7 @@ type IUnitTemperature interface {
 	IDimension
 }
 
-// A unit of measure for temperature. [Full Topic]
+// A unit of measure for temperature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature
 type UnitTemperature struct {

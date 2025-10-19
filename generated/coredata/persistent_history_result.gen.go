@@ -31,7 +31,7 @@ type IPersistentHistoryResult interface {
 	IPersistentStoreResult
 }
 
-// The result of a request to fetch persistent history. [Full Topic]
+// The result of a request to fetch persistent history.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryResult
 type PersistentHistoryResult struct {

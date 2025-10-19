@@ -32,7 +32,7 @@ type IScriptWhoseTest interface {
 	objectivec.IObject
 }
 
-// An abstract class that provides the basis for testing specifiers one at a time or in groups. [Full Topic]
+// An abstract class that provides the basis for testing specifiers one at a time or in groups.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest
 type ScriptWhoseTest struct {

@@ -32,7 +32,7 @@ type IEntityMapping interface {
 	objectivec.IObject
 }
 
-// A mapping instance that specifies how to map an entity from a source to a destination managed object model. [Full Topic]
+// A mapping instance that specifies how to map an entity from a source to a destination managed object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping
 type EntityMapping struct {

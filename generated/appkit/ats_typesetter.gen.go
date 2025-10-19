@@ -31,7 +31,7 @@ type IATSTypesetter interface {
 	ITypesetter
 }
 
-// A concrete typesetter object that places glyphs during the text layout process. [Full Topic]
+// A concrete typesetter object that places glyphs during the text layout process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter
 type ATSTypesetter struct {

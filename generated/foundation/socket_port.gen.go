@@ -31,7 +31,7 @@ type ISocketPort interface {
 	IPort
 }
 
-// A port that represents a BSD socket. [Full Topic]
+// A port that represents a BSD socket.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort
 type SocketPort struct {

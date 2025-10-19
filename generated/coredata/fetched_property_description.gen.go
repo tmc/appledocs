@@ -31,7 +31,7 @@ type IFetchedPropertyDescription interface {
 	IPropertyDescription
 }
 
-// A description object used to define which properties are fetched from Core Data. [Full Topic]
+// A description object used to define which properties are fetched from Core Data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription
 type FetchedPropertyDescription struct {

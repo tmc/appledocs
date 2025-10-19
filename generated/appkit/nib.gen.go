@@ -32,7 +32,7 @@ type INib interface {
 	objectivec.IObject
 }
 
-// An object wrapper, or container, for an Interface Builder nib file. [Full Topic]
+// An object wrapper, or container, for an Interface Builder nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib
 type Nib struct {

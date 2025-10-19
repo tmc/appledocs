@@ -32,7 +32,7 @@ type IMIDICIResponder interface {
 	objectivec.IObject
 }
 
-// An object that responds to MIDI-CI inquiries from an initiator on behalf of a MIDI client, and handles profile and property exchange operations. [Full Topic]
+// An object that responds to MIDI-CI inquiries from an initiator on behalf of a MIDI client, and handles profile and property exchange operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIResponder
 type MIDICIResponder struct {

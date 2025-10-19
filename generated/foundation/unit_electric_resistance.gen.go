@@ -31,7 +31,7 @@ type IUnitElectricResistance interface {
 	IDimension
 }
 
-// A unit of measure for electric resistance. [Full Topic]
+// A unit of measure for electric resistance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance
 type UnitElectricResistance struct {

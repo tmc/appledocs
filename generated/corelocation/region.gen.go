@@ -33,7 +33,7 @@ type IRegion interface {
 	ContainsCoordinate(coordinate unsafe.Pointer) bool
 }
 
-// A base class representing an area that can be monitored. [Full Topic]
+// A base class representing an area that can be monitored.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion
 type Region struct {
@@ -79,8 +79,7 @@ func NewRegion() Region {
 }
 
 
-// Initializes and returns a region object defining a circular area. [Full Topic]
-
+// Initializes and returns a region object defining a circular area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/init(circularRegionWithCenter:radius:identifier:)
 func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, radius unsafe.Pointer, identifier string) Region {
@@ -91,8 +90,7 @@ func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, ra
 }
 
 
-// Returns a Boolean value indicating whether the region contains the specified coordinate. [Full Topic]
-
+// Returns a Boolean value indicating whether the region contains the specified coordinate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/contains(_:)
 func (r_ Region) ContainsCoordinate(coordinate unsafe.Pointer) bool {

@@ -31,7 +31,7 @@ type ITextFieldCell interface {
 	IActionCell
 }
 
-// An object that enhances the text display capabilities of a cell. [Full Topic]
+// An object that enhances the text display capabilities of a cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell
 type TextFieldCell struct {

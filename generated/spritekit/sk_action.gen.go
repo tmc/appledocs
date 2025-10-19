@@ -33,7 +33,7 @@ type ISKAction interface {
 	ReversedAction() unsafe.Pointer
 }
 
-// An object that is run by a node to change its structure or content. [Full Topic]
+// An object that is run by a node to change its structure or content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAction
 type SKAction struct {
@@ -79,16 +79,14 @@ func NewSKAction() SKAction {
 }
 
 
-// Creates an action that changes the alpha value of the node to . [Full Topic]
-
+// Creates an action that changes the alpha value of the node to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAction/fadeOut(withDuration:)
 func (sc _SKActionClass) FadeOutWithDuration(duration TimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("fadeOutWithDuration:"), duration)
 	return rv
 }
-// Creates an action that reverses the behavior of another action. [Full Topic]
-
+// Creates an action that reverses the behavior of another action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAction/reversed()
 func (s_ SKAction) ReversedAction() unsafe.Pointer {

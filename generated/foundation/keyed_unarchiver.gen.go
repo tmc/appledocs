@@ -31,7 +31,7 @@ type IKeyedUnarchiver interface {
 	ICoder
 }
 
-// A decoder that restores data from an archive referenced by keys. [Full Topic]
+// A decoder that restores data from an archive referenced by keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver
 type KeyedUnarchiver struct {

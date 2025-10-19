@@ -32,7 +32,7 @@ type IAVPlayerInterstitialEventMonitor interface {
 	objectivec.IObject
 }
 
-// An object that monitors the scheduling and progress of interstitial events. [Full Topic]
+// An object that monitors the scheduling and progress of interstitial events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventMonitor
 type AVPlayerInterstitialEventMonitor struct {

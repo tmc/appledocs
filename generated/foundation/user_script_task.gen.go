@@ -32,7 +32,7 @@ type IUserScriptTask interface {
 	objectivec.IObject
 }
 
-// An object that executes scripts. [Full Topic]
+// An object that executes scripts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask
 type UserScriptTask struct {

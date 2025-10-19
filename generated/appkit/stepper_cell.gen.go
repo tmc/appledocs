@@ -31,7 +31,7 @@ type IStepperCell interface {
 	IActionCell
 }
 
-// An object controls the appearance and behavior of an object. [Full Topic]
+// An object controls the appearance and behavior of an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell
 type StepperCell struct {

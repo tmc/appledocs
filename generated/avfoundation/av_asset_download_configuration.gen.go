@@ -32,7 +32,7 @@ type IAVAssetDownloadConfiguration interface {
 	objectivec.IObject
 }
 
-// An object that provides the configuration for a download task. [Full Topic]
+// An object that provides the configuration for a download task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadConfiguration
 type AVAssetDownloadConfiguration struct {

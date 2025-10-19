@@ -81,11 +81,13 @@ func (vc _ViewLayoutRegionClass) MarginsLayoutRegionWithCornerAdaptation(adaptiv
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("marginsLayoutRegionWithCornerAdaptation:"), adaptivityAxis)
 	return rv
 }
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion/safeAreaLayoutRegionWithCornerAdaptation:
 func (vc _ViewLayoutRegionClass) SafeAreaLayoutRegionWithCornerAdaptation(adaptivityAxis unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("safeAreaLayoutRegionWithCornerAdaptation:"), adaptivityAxis)
 	return rv
 }
+
 
 

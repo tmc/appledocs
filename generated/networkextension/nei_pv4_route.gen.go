@@ -32,7 +32,7 @@ type INEIPv4Route interface {
 	objectivec.IObject
 }
 
-// The settings for an IPv4 route. [Full Topic]
+// The settings for an IPv4 route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv4Route
 type NEIPv4Route struct {

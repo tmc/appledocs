@@ -31,7 +31,7 @@ type IXMLDocument interface {
 	IXMLNode
 }
 
-// An XML document as internalized into a logical tree structure. [Full Topic]
+// An XML document as internalized into a logical tree structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument
 type XMLDocument struct {

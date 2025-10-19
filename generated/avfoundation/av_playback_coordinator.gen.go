@@ -34,7 +34,7 @@ type IAVPlaybackCoordinator interface {
 	SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason unsafe.Pointer)
 }
 
-// An object that coordinates the playback of players in a connected group. [Full Topic]
+// An object that coordinates the playback of players in a connected group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator
 type AVPlaybackCoordinator struct {
@@ -80,16 +80,14 @@ func NewAVPlaybackCoordinator() AVPlaybackCoordinator {
 }
 
 
-// Returns the limit on the number of partipants that a group may contain before the coordinator stops waiting on suspensions that occur for a particular reason. [Full Topic]
-
+// Returns the limit on the number of partipants that a group may contain before the coordinator stops waiting on suspensions that occur for a particular reason.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/participantLimitForWaitingOutSuspensions(withReason:)
 func (a_ AVPlaybackCoordinator) ParticipantLimitForWaitingOutSuspensionsWithReason(reason unsafe.Pointer) int {
 	rv := objc.Send[int](a_.ID, objc.Sel("participantLimitForWaitingOutSuspensionsWithReason:"), reason)
 	return rv
 }
-// Sets a limit on the number of partipants that a group may contain before the coordinator stops waiting on suspensions that occur for a particular reason. [Full Topic]
-
+// Sets a limit on the number of partipants that a group may contain before the coordinator stops waiting on suspensions that occur for a particular reason.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/setParticipantLimit(_:forWaitingOutSuspensionsWithReason:)
 func (a_ AVPlaybackCoordinator) SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason unsafe.Pointer) {

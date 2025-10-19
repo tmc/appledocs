@@ -32,7 +32,7 @@ type IAVAudioMix interface {
 	objectivec.IObject
 }
 
-// An object that manages the input parameters for mixing audio tracks. [Full Topic]
+// An object that manages the input parameters for mixing audio tracks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAudioMix
 type AVAudioMix struct {

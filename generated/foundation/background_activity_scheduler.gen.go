@@ -32,7 +32,7 @@ type IBackgroundActivityScheduler interface {
 	objectivec.IObject
 }
 
-// A task scheduler suitable for low priority operations that can run in the background. [Full Topic]
+// A task scheduler suitable for low priority operations that can run in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler
 type BackgroundActivityScheduler struct {

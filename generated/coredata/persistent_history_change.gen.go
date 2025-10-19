@@ -32,7 +32,7 @@ type IPersistentHistoryChange interface {
 	objectivec.IObject
 }
 
-// A change representing the insertion, update, or deletion of a managed object in the persistent store. [Full Topic]
+// A change representing the insertion, update, or deletion of a managed object in the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange
 type PersistentHistoryChange struct {

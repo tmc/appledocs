@@ -32,7 +32,7 @@ type IAssertionHandler interface {
 	objectivec.IObject
 }
 
-// An object that logs an assertion to the console. [Full Topic]
+// An object that logs an assertion to the console.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler
 type AssertionHandler struct {

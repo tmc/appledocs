@@ -33,7 +33,7 @@ type IAVAssetExportSession interface {
 	ExportAsynchronouslyWithCompletionHandler(handler unsafe.Pointer)
 }
 
-// An object that exports assets in a format that you specify using an export preset. [Full Topic]
+// An object that exports assets in a format that you specify using an export preset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession
 type AVAssetExportSession struct {
@@ -79,24 +79,21 @@ func NewAVAssetExportSession() AVAssetExportSession {
 }
 
 
-// Returns all available export preset names. [Full Topic]
-
+// Returns all available export preset names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/allExportPresets()
 func (ac _AVAssetExportSessionClass) AllExportPresets() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("allExportPresets"))
 	return rv
 }
-// Returns compatible export presets for the asset. [Full Topic]
-
+// Returns compatible export presets for the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/exportPresets(compatibleWith:)
 func (ac _AVAssetExportSessionClass) ExportPresetsCompatibleWithAsset(asset unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("exportPresetsCompatibleWithAsset:"), asset)
 	return rv
 }
-// Starts the asynchronous execution of an export session. [Full Topic]
-
+// Starts the asynchronous execution of an export session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/exportAsynchronously(completionHandler:)
 func (a_ AVAssetExportSession) ExportAsynchronouslyWithCompletionHandler(handler unsafe.Pointer) {

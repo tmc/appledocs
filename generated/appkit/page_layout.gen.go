@@ -32,7 +32,7 @@ type IPageLayout interface {
 	objectivec.IObject
 }
 
-// A panel that queries the user for information such as paper type and orientation. [Full Topic]
+// A panel that queries the user for information such as paper type and orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout
 type PageLayout struct {

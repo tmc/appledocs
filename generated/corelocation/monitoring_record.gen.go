@@ -32,7 +32,7 @@ type IMonitoringRecord interface {
 	objectivec.IObject
 }
 
-// An object that represents a condition and its associated information that a location monitor is monitoring. [Full Topic]
+// An object that represents a condition and its associated information that a location monitor is monitoring.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringRecord
 type MonitoringRecord struct {

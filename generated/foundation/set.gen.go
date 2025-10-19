@@ -32,7 +32,7 @@ type ISet interface {
 	objectivec.IObject
 }
 
-// A static, unordered collection of unique objects. [Full Topic]
+// A static, unordered collection of unique objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet
 type Set struct {

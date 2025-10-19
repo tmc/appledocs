@@ -32,7 +32,7 @@ type IAVCaptureDeviceDiscoverySession interface {
 	objectivec.IObject
 }
 
-// An object that finds capture devices that match specific search criteria. [Full Topic]
+// An object that finds capture devices that match specific search criteria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession
 type AVCaptureDeviceDiscoverySession struct {

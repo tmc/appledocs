@@ -31,7 +31,7 @@ type ISKFieldNode interface {
 	ISKNode
 }
 
-// A node that applies physics effects to nearby nodes. [Full Topic]
+// A node that applies physics effects to nearby nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode
 type SKFieldNode struct {
@@ -79,96 +79,84 @@ func NewSKFieldNode() SKFieldNode {
 }
 
 
-// Creates a field node that calculates and applies a custom force to the physics body. [Full Topic]
-
+// Creates a field node that calculates and applies a custom force to the physics body.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/customField(evaluationBlock:)
 func (sc _SKFieldNodeClass) CustomFieldWithEvaluationBlock(block unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("customFieldWithEvaluationBlock:"), block)
 	return rv
 }
-// Creates a field node that applies a force that resists the motion of physics bodies. [Full Topic]
-
+// Creates a field node that applies a force that resists the motion of physics bodies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/dragField()
 func (sc _SKFieldNodeClass) DragField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("dragField"))
 	return rv
 }
-// Creates a field node that applies an electrical force proportional to the electrical charge of physics bodies. [Full Topic]
-
+// Creates a field node that applies an electrical force proportional to the electrical charge of physics bodies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/electricField()
 func (sc _SKFieldNodeClass) ElectricField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("electricField"))
 	return rv
 }
-// Creates a field node that accelerates physics bodies in a specific direction. [Full Topic]
-
+// Creates a field node that accelerates physics bodies in a specific direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/linearGravityField(withVector:)
 func (sc _SKFieldNodeClass) LinearGravityFieldWithVector(direction unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("linearGravityFieldWithVector:"), direction)
 	return rv
 }
-// Creates a field node that applies a magnetic force based on the velocity and electrical charge of the physics bodies. [Full Topic]
-
+// Creates a field node that applies a magnetic force based on the velocity and electrical charge of the physics bodies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/magneticField()
 func (sc _SKFieldNodeClass) MagneticField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("magneticField"))
 	return rv
 }
-// Creates a field node that applies a randomized acceleration to physics bodies. [Full Topic]
-
+// Creates a field node that applies a randomized acceleration to physics bodies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/noiseField(withSmoothness:animationSpeed:)
 func (sc _SKFieldNodeClass) NoiseFieldWithSmoothnessAnimationSpeed(smoothness float64, speed float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("noiseFieldWithSmoothness:animationSpeed:"), smoothness, speed)
 	return rv
 }
-// Creates a field node that accelerates physics bodies toward the field node. [Full Topic]
-
+// Creates a field node that accelerates physics bodies toward the field node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/radialGravityField()
 func (sc _SKFieldNodeClass) RadialGravityField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("radialGravityField"))
 	return rv
 }
-// Creates a field node that applies a spring-like force that pulls physics bodies toward the field node. [Full Topic]
-
+// Creates a field node that applies a spring-like force that pulls physics bodies toward the field node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/springField()
 func (sc _SKFieldNodeClass) SpringField() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("springField"))
 	return rv
 }
-// Creates a field node that applies a randomized acceleration to physics bodies. [Full Topic]
-
+// Creates a field node that applies a randomized acceleration to physics bodies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/turbulenceField(withSmoothness:animationSpeed:)
 func (sc _SKFieldNodeClass) TurbulenceFieldWithSmoothnessAnimationSpeed(smoothness float64, speed float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("turbulenceFieldWithSmoothness:animationSpeed:"), smoothness, speed)
 	return rv
 }
-// Creates a field node that sets the velocity of physics bodies that enter the node’s area based on the pixel values of a texture. [Full Topic]
-
+// Creates a field node that sets the velocity of physics bodies that enter the node’s area based on the pixel values of a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/velocityField(with:)
 func (sc _SKFieldNodeClass) VelocityFieldWithTexture(velocityTexture unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("velocityFieldWithTexture:"), velocityTexture)
 	return rv
 }
-// Creates a field node that gives physics bodies a constant velocity. [Full Topic]
-
+// Creates a field node that gives physics bodies a constant velocity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/velocityField(withVector:)
 func (sc _SKFieldNodeClass) VelocityFieldWithVector(direction unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("velocityFieldWithVector:"), direction)
 	return rv
 }
-// Creates a field node that applies a perpendicular force to physics bodies. [Full Topic]
-
+// Creates a field node that applies a perpendicular force to physics bodies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKFieldNode/vortexField()
 func (sc _SKFieldNodeClass) VortexField() unsafe.Pointer {

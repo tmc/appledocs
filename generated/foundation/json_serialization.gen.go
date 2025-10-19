@@ -32,7 +32,7 @@ type IJSONSerialization interface {
 	objectivec.IObject
 }
 
-// An object that converts between JSON and the equivalent Foundation objects. [Full Topic]
+// An object that converts between JSON and the equivalent Foundation objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization
 type JSONSerialization struct {

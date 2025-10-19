@@ -32,7 +32,7 @@ type IMIDINetworkConnection interface {
 	objectivec.IObject
 }
 
-// An object that connects a session to a host. [Full Topic]
+// An object that connects a session to a host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnection
 type MIDINetworkConnection struct {

@@ -32,7 +32,7 @@ type ISKTileGroupRule interface {
 	objectivec.IObject
 }
 
-// Rules that describe how various tiles should be placed in a map. [Full Topic]
+// Rules that describe how various tiles should be placed in a map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileGroupRule
 type SKTileGroupRule struct {
@@ -78,8 +78,7 @@ func NewSKTileGroupRule() SKTileGroupRule {
 }
 
 
-// Initializes a new tile group rule with adjacency rules and tile definitions. [Full Topic]
-
+// Initializes a new tile group rule with adjacency rules and tile definitions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileGroupRule/init(adjacency:tileDefinitions:)
 func NewSKTileGroupRuleWithAdjacencyTileDefinitions(adjacency unsafe.Pointer, tileDefinitions unsafe.Pointer) SKTileGroupRule {

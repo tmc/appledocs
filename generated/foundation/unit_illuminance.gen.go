@@ -31,7 +31,7 @@ type IUnitIlluminance interface {
 	IDimension
 }
 
-// A unit of measure for illuminance. [Full Topic]
+// A unit of measure for illuminance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance
 type UnitIlluminance struct {

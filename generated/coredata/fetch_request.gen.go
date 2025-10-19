@@ -32,7 +32,7 @@ type IFetchRequest interface {
 	Execute(error unsafe.Pointer) unsafe.Pointer
 }
 
-// A description of search criteria used to retrieve data from a persistent store. [Full Topic]
+// A description of search criteria used to retrieve data from a persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest
 type FetchRequest struct {
@@ -80,8 +80,7 @@ func NewFetchRequest() FetchRequest {
 }
 
 
-// Initializes a fetch request configured with a given entity name. [Full Topic]
-
+// Initializes a fetch request configured with a given entity name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/init(entityName:)
 func NewFetchRequestWithEntityName(entityName string) FetchRequest {
@@ -92,16 +91,14 @@ func NewFetchRequestWithEntityName(entityName string) FetchRequest {
 }
 
 
-// Returns a fetch request configured with a given entity name. [Full Topic]
-
+// Returns a fetch request configured with a given entity name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchRequestWithEntityName:
 func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fetchRequestWithEntityName:"), objc.String(entityName))
 	return rv
 }
-// Executes the fetch request against the managed object context that is associated with the current queue. [Full Topic]
-
+// Executes the fetch request against the managed object context that is associated with the current queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/execute()
 func (f_ FetchRequest) Execute(error unsafe.Pointer) unsafe.Pointer {

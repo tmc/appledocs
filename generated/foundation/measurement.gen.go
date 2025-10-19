@@ -32,7 +32,7 @@ type IMeasurement interface {
 	objectivec.IObject
 }
 
-// A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations. [Full Topic]
+// A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement
 type Measurement struct {

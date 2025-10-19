@@ -32,7 +32,7 @@ type ISKTileGroup interface {
 	objectivec.IObject
 }
 
-// A set of tiles that collectively define one type of terrain. [Full Topic]
+// A set of tiles that collectively define one type of terrain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileGroup
 type SKTileGroup struct {
@@ -78,18 +78,7 @@ func NewSKTileGroup() SKTileGroup {
 }
 
 
-// Creates and initializes a tile group with the specified tile group rules. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileGroup/init(rules:)
-func NewSKTileGroupWithRules(rules unsafe.Pointer) SKTileGroup {
-	instance := getSKTileGroupClass().Alloc()
-	rv := objc.Send[SKTileGroup](instance.ID, objc.Sel("initWithRules:"), rules)
-	rv.Autorelease()
-	return rv
-}
-// Creates and initializes a simple tile group with a single tile definition. [Full Topic]
-
+// Creates and initializes a simple tile group with a single tile definition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileGroup/init(tileDefinition:)
 func NewSKTileGroupWithTileDefinition(tileDefinition unsafe.Pointer) SKTileGroup {
@@ -98,10 +87,18 @@ func NewSKTileGroupWithTileDefinition(tileDefinition unsafe.Pointer) SKTileGroup
 	rv.Autorelease()
 	return rv
 }
+// Creates and initializes a tile group with the specified tile group rules.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileGroup/init(rules:)
+func NewSKTileGroupWithRules(rules unsafe.Pointer) SKTileGroup {
+	instance := getSKTileGroupClass().Alloc()
+	rv := objc.Send[SKTileGroup](instance.ID, objc.Sel("initWithRules:"), rules)
+	rv.Autorelease()
+	return rv
+}
 
 
-// Creates an empty tile that erases the existing tile at that location on a tile map. [Full Topic]
-
+// Creates an empty tile that erases the existing tile at that location on a tile map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileGroup/empty()
 func (sc _SKTileGroupClass) EmptyTileGroup() unsafe.Pointer {

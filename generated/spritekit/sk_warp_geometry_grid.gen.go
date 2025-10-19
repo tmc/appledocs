@@ -35,7 +35,7 @@ type ISKWarpGeometryGrid interface {
 	SourcePositionAtIndex(index int) unsafe.Pointer
 }
 
-// A definition for a grid-based deformation of nodes that conform to . [Full Topic]
+// A definition for a grid-based deformation of nodes that conform to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometryGrid
 type SKWarpGeometryGrid struct {
@@ -83,8 +83,7 @@ func NewSKWarpGeometryGrid() SKWarpGeometryGrid {
 }
 
 
-// Tells you when to intialize a grid that was loaded from an archive. [Full Topic]
-
+// Tells you when to intialize a grid that was loaded from an archive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometryGrid/init(coder:)
 func NewSKWarpGeometryGridWithCoder(aDecoder unsafe.Pointer) SKWarpGeometryGrid {
@@ -93,16 +92,14 @@ func NewSKWarpGeometryGridWithCoder(aDecoder unsafe.Pointer) SKWarpGeometryGrid 
 	rv.Autorelease()
 	return rv
 }
-// Creates a warp geometry grid of a specified size. [Full Topic]
-
+// Creates a warp geometry grid of a specified size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometryGrid/init(columns:rows:)
 func NewSKWarpGeometryGridWithColumnsRows(cols int, rows int) SKWarpGeometryGrid {
 	rv := objc.Send[SKWarpGeometryGrid](objc.ID(getSKWarpGeometryGridClass().class), objc.Sel("gridWithColumns:rows:"), cols, rows)
 	return rv
 }
-// Creates a warp geometry grid of a specific size and warp translation, in pointers to point arrays. [Full Topic]
-
+// Creates a warp geometry grid of a specific size and warp translation, in pointers to point arrays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometryGrid/initWithColumns:rows:sourcePositions:destPositions:
 func NewSKWarpGeometryGridWithColumnsRowsSourcePositionsDestPositions(cols int, rows int, sourcePositions unsafe.Pointer, destPositions unsafe.Pointer) SKWarpGeometryGrid {
@@ -113,8 +110,7 @@ func NewSKWarpGeometryGridWithColumnsRowsSourcePositionsDestPositions(cols int, 
 }
 
 
-// Initializes a new empty grid. [Full Topic]
-
+// Initializes a new empty grid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometryGrid/grid
 func (sc _SKWarpGeometryGridClass) Grid() unsafe.Pointer {
@@ -127,40 +123,35 @@ func (sc _SKWarpGeometryGridClass) GridWithColumnsRowsSourcePositionsDestPositio
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("gridWithColumns:rows:sourcePositions:destPositions:"), cols, rows, sourcePositions, destPositions)
 	return rv
 }
-// Creates a warp geometry grid of a specified size. [Full Topic]
-
+// Creates a warp geometry grid of a specified size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometryGrid/init(columns:rows:)
 func (sc _SKWarpGeometryGridClass) GridWithColumnsRows(cols int, rows int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("gridWithColumns:rows:"), cols, rows)
 	return rv
 }
-// Returns the destination position of a vertex. [Full Topic]
-
+// Returns the destination position of a vertex.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometryGrid/destPosition(at:)
 func (s_ SKWarpGeometryGrid) DestPositionAtIndex(index int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("destPositionAtIndex:"), index)
 	return rv
 }
-// Returns a copy of the receiver with the destination positions replaced by a specified array. [Full Topic]
-
+// Returns a copy of the receiver with the destination positions replaced by a specified array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometryGrid/gridByReplacingDestPositions:
 func (s_ SKWarpGeometryGrid) GridByReplacingDestPositions(destPositions unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("gridByReplacingDestPositions:"), destPositions)
 	return rv
 }
-// Returns a copy of the receiver with the source positions replaced by a specified array. [Full Topic]
-
+// Returns a copy of the receiver with the source positions replaced by a specified array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometryGrid/gridByReplacingSourcePositions:
 func (s_ SKWarpGeometryGrid) GridByReplacingSourcePositions(sourcePositions unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("gridByReplacingSourcePositions:"), sourcePositions)
 	return rv
 }
-// Returns the source position of a vertex. [Full Topic]
-
+// Returns the source position of a vertex.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometryGrid/sourcePosition(at:)
 func (s_ SKWarpGeometryGrid) SourcePositionAtIndex(index int) unsafe.Pointer {

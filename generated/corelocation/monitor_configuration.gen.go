@@ -32,7 +32,7 @@ type IMonitorConfiguration interface {
 	objectivec.IObject
 }
 
-// An object for configuring a location monitor instance. [Full Topic]
+// An object for configuring a location monitor instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration
 type MonitorConfiguration struct {

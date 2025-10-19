@@ -32,7 +32,7 @@ type IURLCredential interface {
 	objectivec.IObject
 }
 
-// n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any. [Full Topic]
+// n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential
 type URLCredential struct {

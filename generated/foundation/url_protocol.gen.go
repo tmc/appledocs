@@ -32,7 +32,7 @@ type IURLProtocol interface {
 	objectivec.IObject
 }
 
-// An abstract class that handles the loading of protocol-specific URL data. [Full Topic]
+// An abstract class that handles the loading of protocol-specific URL data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol
 type URLProtocol struct {

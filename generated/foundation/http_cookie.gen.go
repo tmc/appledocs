@@ -32,7 +32,7 @@ type IHTTPCookie interface {
 	objectivec.IObject
 }
 
-// A representation of an HTTP cookie. [Full Topic]
+// A representation of an HTTP cookie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie
 type HTTPCookie struct {

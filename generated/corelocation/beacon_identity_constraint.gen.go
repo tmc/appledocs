@@ -31,7 +31,7 @@ type IBeaconIdentityConstraint interface {
 	IBeaconIdentityCondition
 }
 
-// Identity characteristics that can match one or more beacons. [Full Topic]
+// Identity characteristics that can match one or more beacons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityConstraint
 type BeaconIdentityConstraint struct {

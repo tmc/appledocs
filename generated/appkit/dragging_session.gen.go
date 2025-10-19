@@ -32,7 +32,7 @@ type IDraggingSession interface {
 	objectivec.IObject
 }
 
-// The encapsulation of a drag-and-drop action that supports modification of the drag while in progress. [Full Topic]
+// The encapsulation of a drag-and-drop action that supports modification of the drag while in progress.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession
 type DraggingSession struct {

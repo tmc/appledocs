@@ -32,7 +32,7 @@ type ITermOfAddress interface {
 	objectivec.IObject
 }
 
-// The type for representing grammatical gender in localized text. [Full Topic]
+// The type for representing grammatical gender in localized text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress
 type TermOfAddress struct {

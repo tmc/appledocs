@@ -31,7 +31,7 @@ type IPathCell interface {
 	IActionCell
 }
 
-// The user interface of a path control object. [Full Topic]
+// The user interface of a path control object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathCell
 type PathCell struct {

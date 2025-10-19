@@ -33,7 +33,7 @@ type IManagedObjectID interface {
 	URIRepresentation() unsafe.Pointer
 }
 
-// A compact, universal identifier for a managed object. [Full Topic]
+// A compact, universal identifier for a managed object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID
 type ManagedObjectID struct {
@@ -79,8 +79,7 @@ func NewManagedObjectID() ManagedObjectID {
 }
 
 
-// Returns a URI that provides an archiveable reference to the object for the object ID. [Full Topic]
-
+// Returns a URI that provides an archiveable reference to the object for the object ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/uriRepresentation()
 func (m_ ManagedObjectID) URIRepresentation() unsafe.Pointer {

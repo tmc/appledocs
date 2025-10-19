@@ -31,7 +31,7 @@ type IComparisonPredicate interface {
 	IPredicate
 }
 
-// A specialized predicate for comparing expressions. [Full Topic]
+// A specialized predicate for comparing expressions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate
 type ComparisonPredicate struct {

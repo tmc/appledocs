@@ -32,7 +32,7 @@ type IStoryboard interface {
 	objectivec.IObject
 }
 
-// An encapsulation of the design-time view controller and window controller graph represented in an Interface Builder storyboard resource file. [Full Topic]
+// An encapsulation of the design-time view controller and window controller graph represented in an Interface Builder storyboard resource file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard
 type Storyboard struct {

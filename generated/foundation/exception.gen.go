@@ -32,7 +32,7 @@ type IException interface {
 	objectivec.IObject
 }
 
-// An object that represents a special condition that interrupts the normal flow of program execution. [Full Topic]
+// An object that represents a special condition that interrupts the normal flow of program execution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException
 type Exception struct {

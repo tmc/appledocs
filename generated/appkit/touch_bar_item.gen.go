@@ -32,7 +32,7 @@ type ITouchBarItem interface {
 	objectivec.IObject
 }
 
-// A UI control shown in the Touch Bar on supported models of MacBook Pro. [Full Topic]
+// A UI control shown in the Touch Bar on supported models of MacBook Pro.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem
 type TouchBarItem struct {

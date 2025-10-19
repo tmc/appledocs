@@ -31,7 +31,7 @@ type ICalendarDate interface {
 	IDate
 }
 
-// A specialized date object with embedded calendar information. [Full Topic]
+// A specialized date object with embedded calendar information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate
 type CalendarDate struct {

@@ -32,7 +32,7 @@ type ISKTileSet interface {
 	objectivec.IObject
 }
 
-// A container for related tile groups. [Full Topic]
+// A container for related tile groups.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet
 type SKTileSet struct {
@@ -78,24 +78,21 @@ func NewSKTileSet() SKTileSet {
 }
 
 
-// Initializes a tile set from a URL to an archived .sks file. [Full Topic]
-
+// Initializes a tile set from a URL to an archived .sks file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(from:)
 func NewSKTileSetFromURL(url unsafe.Pointer) SKTileSet {
 	rv := objc.Send[SKTileSet](objc.ID(getSKTileSetClass().class), objc.Sel("tileSetFromURL:"), url)
 	return rv
 }
-// Initializes a tile set by searching the app bundle for an archived file by name. [Full Topic]
-
+// Initializes a tile set by searching the app bundle for an archived file by name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(named:)
 func NewSKTileSetNamed(name string) SKTileSet {
 	rv := objc.Send[SKTileSet](objc.ID(getSKTileSetClass().class), objc.Sel("tileSetNamed:"), objc.String(name))
 	return rv
 }
-// Initializes a new tile set with an array of tile groups and rectangular grid layout. [Full Topic]
-
+// Initializes a new tile set with an array of tile groups and rectangular grid layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(tileGroups:)
 func NewSKTileSetWithTileGroups(tileGroups unsafe.Pointer) SKTileSet {
@@ -104,8 +101,7 @@ func NewSKTileSetWithTileGroups(tileGroups unsafe.Pointer) SKTileSet {
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new tile set with an array of tile groups and specified layout. [Full Topic]
-
+// Initializes a new tile set with an array of tile groups and specified layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(tileGroups:tileSetType:)
 func NewSKTileSetWithTileGroupsTileSetType(tileGroups unsafe.Pointer, tileSetType unsafe.Pointer) SKTileSet {
@@ -116,16 +112,14 @@ func NewSKTileSetWithTileGroupsTileSetType(tileGroups unsafe.Pointer, tileSetTyp
 }
 
 
-// Initializes a tile set from a URL to an archived .sks file. [Full Topic]
-
+// Initializes a tile set from a URL to an archived .sks file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(from:)
 func (sc _SKTileSetClass) TileSetFromURL(url unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("tileSetFromURL:"), url)
 	return rv
 }
-// Initializes a tile set by searching the app bundle for an archived file by name. [Full Topic]
-
+// Initializes a tile set by searching the app bundle for an archived file by name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileSet/init(named:)
 func (sc _SKTileSetClass) TileSetNamed(name string) unsafe.Pointer {

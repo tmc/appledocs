@@ -32,7 +32,7 @@ type ISKWarpGeometry interface {
 	objectivec.IObject
 }
 
-// A definition for a deformation of nodes that conform to . [Full Topic]
+// A definition for a deformation of nodes that conform to .
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKWarpGeometry
 type SKWarpGeometry struct {

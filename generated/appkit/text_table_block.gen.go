@@ -31,7 +31,7 @@ type ITextTableBlock interface {
 	ITextBlock
 }
 
-// A text block that appears as a cell in a text table. [Full Topic]
+// A text block that appears as a cell in a text table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTableBlock
 type TextTableBlock struct {

@@ -32,7 +32,7 @@ type IXMLNode interface {
 	objectivec.IObject
 }
 
-// The nodes in the abstract, logical tree structure that represents an XML document. [Full Topic]
+// The nodes in the abstract, logical tree structure that represents an XML document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode
 type XMLNode struct {

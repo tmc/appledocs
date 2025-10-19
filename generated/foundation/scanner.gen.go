@@ -35,7 +35,7 @@ type IScanner interface {
 	ScanInt(result unsafe.Pointer) bool
 }
 
-// A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations. [Full Topic]
+// A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner
 type Scanner struct {
@@ -81,24 +81,21 @@ func NewScanner() Scanner {
 }
 
 
-// Scans for a double value, returning a found value by reference. [Full Topic]
-
+// Scans for a double value, returning a found value by reference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanDouble(_:)
 func (s_ Scanner) ScanDouble(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanDouble:"), result)
 	return rv
 }
-// Scans for a float value, returning a found value by reference. [Full Topic]
-
+// Scans for a float value, returning a found value by reference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanFloat(_:)
 func (s_ Scanner) ScanFloat(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanFloat:"), result)
 	return rv
 }
-// Scans for an int value from a decimal representation, returning a found value by reference. [Full Topic]
-
+// Scans for an int value from a decimal representation, returning a found value by reference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanInt32(_:)
 func (s_ Scanner) ScanInt(result unsafe.Pointer) bool {

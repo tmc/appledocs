@@ -32,7 +32,7 @@ type IScrubberArrangedView interface {
 	ApplyLayoutAttributes(layoutAttributes unsafe.Pointer)
 }
 
-// An abstract base class for the views whose layout is managed by a scrubber. [Full Topic]
+// An abstract base class for the views whose layout is managed by a scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView
 type ScrubberArrangedView struct {
@@ -80,12 +80,12 @@ func NewScrubberArrangedView() ScrubberArrangedView {
 }
 
 
-// Updates the layout of the arranged view to respect the provided layout attributes. [Full Topic]
-
+// Updates the layout of the arranged view to respect the provided layout attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/apply(_:)
 func (s_ ScrubberArrangedView) ApplyLayoutAttributes(layoutAttributes unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("applyLayoutAttributes:"), layoutAttributes)
 }
+
 
 

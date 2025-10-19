@@ -31,7 +31,7 @@ type IScriptClassDescription interface {
 	IClassDescription
 }
 
-// A scriptable class that a macOS app supports. [Full Topic]
+// A scriptable class that a macOS app supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription
 type ScriptClassDescription struct {

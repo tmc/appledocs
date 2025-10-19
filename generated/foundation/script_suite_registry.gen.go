@@ -32,7 +32,7 @@ type IScriptSuiteRegistry interface {
 	objectivec.IObject
 }
 
-// The top-level repository of scriptability information for an app at runtime. [Full Topic]
+// The top-level repository of scriptability information for an app at runtime.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry
 type ScriptSuiteRegistry struct {

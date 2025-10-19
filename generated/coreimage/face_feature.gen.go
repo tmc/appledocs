@@ -31,7 +31,7 @@ type IFaceFeature interface {
 	IFeature
 }
 
-// Information about a face detected in a still or video image. [Full Topic]
+// Information about a face detected in a still or video image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature
 type FaceFeature struct {

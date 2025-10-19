@@ -31,7 +31,7 @@ type IUserAppleScriptTask interface {
 	IUserScriptTask
 }
 
-// An object that executes AppleScript scripts. [Full Topic]
+// An object that executes AppleScript scripts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAppleScriptTask
 type UserAppleScriptTask struct {

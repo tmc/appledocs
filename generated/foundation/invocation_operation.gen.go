@@ -31,7 +31,7 @@ type IInvocationOperation interface {
 	IOperation
 }
 
-// An operation that manages the execution of a single encapsulated task specified as an invocation. [Full Topic]
+// An operation that manages the execution of a single encapsulated task specified as an invocation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation
 type InvocationOperation struct {

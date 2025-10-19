@@ -32,7 +32,7 @@ type INEIPv6Route interface {
 	objectivec.IObject
 }
 
-// The settings for an IPv6 route. [Full Topic]
+// The settings for an IPv6 route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Route
 type NEIPv6Route struct {

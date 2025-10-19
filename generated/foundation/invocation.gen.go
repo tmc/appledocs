@@ -32,7 +32,7 @@ type IInvocation interface {
 	objectivec.IObject
 }
 
-// An Objective-C message rendered as an object. [Full Topic]
+// An Objective-C message rendered as an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation
 type Invocation struct {

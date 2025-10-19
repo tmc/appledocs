@@ -32,7 +32,7 @@ type IAVAggregateAssetDownloadTask interface {
 	foundation.IURLSessionTask
 }
 
-// A task that downloads multiple media selections for an asset. [Full Topic]
+// A task that downloads multiple media selections for an asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAggregateAssetDownloadTask
 type AVAggregateAssetDownloadTask struct {

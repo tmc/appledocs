@@ -31,7 +31,7 @@ type INEPacketTunnelProvider interface {
 	INETunnelProvider
 }
 
-// The principal class for a packet tunnel provider app extension. [Full Topic]
+// The principal class for a packet tunnel provider app extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider
 type NEPacketTunnelProvider struct {

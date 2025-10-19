@@ -32,7 +32,7 @@ type ISKTransition interface {
 	objectivec.IObject
 }
 
-// An object used to perform an animated transition to a new scene. [Full Topic]
+// An object used to perform an animated transition to a new scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTransition
 type SKTransition struct {
@@ -78,8 +78,7 @@ func NewSKTransition() SKTransition {
 }
 
 
-// Creates a transition that first fades to black and then fades to the new scene. [Full Topic]
-
+// Creates a transition that first fades to black and then fades to the new scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTransition/fade(withDuration:)
 func (sc _SKTransitionClass) FadeWithDuration(sec TimeInterval) unsafe.Pointer {

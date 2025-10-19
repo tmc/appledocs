@@ -31,7 +31,7 @@ type IByteCountFormatter interface {
 	IFormatter
 }
 
-// A formatter that converts a byte count value into a localized description that is formatted with the appropriate byte modifier (KB, MB, GB and so on). [Full Topic]
+// A formatter that converts a byte count value into a localized description that is formatted with the appropriate byte modifier (KB, MB, GB and so on).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter
 type ByteCountFormatter struct {

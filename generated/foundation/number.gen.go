@@ -32,7 +32,7 @@ type INumber interface {
 	DescriptionWithLocale(locale objc.ID) unsafe.Pointer
 }
 
-// An object wrapper for primitive scalar numeric values. [Full Topic]
+// An object wrapper for primitive scalar numeric values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber
 type Number struct {
@@ -80,8 +80,7 @@ func NewNumber() Number {
 }
 
 
-// Returns a string that represents the contents of the number object for a given locale. [Full Topic]
-
+// Returns a string that represents the contents of the number object for a given locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/description(withLocale:)
 func (n_ Number) DescriptionWithLocale(locale objc.ID) unsafe.Pointer {

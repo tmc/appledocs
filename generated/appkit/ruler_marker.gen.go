@@ -32,7 +32,7 @@ type IRulerMarker interface {
 	objectivec.IObject
 }
 
-// A symbol on a ruler view, indicating a location for the graphics element it represents in the client of the ruler view. [Full Topic]
+// A symbol on a ruler view, indicating a location for the graphics element it represents in the client of the ruler view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker
 type RulerMarker struct {

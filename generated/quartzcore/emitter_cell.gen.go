@@ -32,7 +32,7 @@ type IEmitterCell interface {
 	objectivec.IObject
 }
 
-// The definition of a particle emitted by a particle layer. [Full Topic]
+// The definition of a particle emitted by a particle layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell
 type EmitterCell struct {

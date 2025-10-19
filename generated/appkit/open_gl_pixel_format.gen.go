@@ -32,7 +32,7 @@ type IOpenGLPixelFormat interface {
 	objectivec.IObject
 }
 
-// An object that specifies the types of buffers and other attributes of the OpenGL context. [Full Topic]
+// An object that specifies the types of buffers and other attributes of the OpenGL context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat
 type OpenGLPixelFormat struct {

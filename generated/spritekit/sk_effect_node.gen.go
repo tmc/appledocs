@@ -31,7 +31,7 @@ type ISKEffectNode interface {
 	ISKNode
 }
 
-// A node that renders its children into a separate buffer, optionally applying an effect, before drawing the final result. [Full Topic]
+// A node that renders its children into a separate buffer, optionally applying an effect, before drawing the final result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKEffectNode
 type SKEffectNode struct {

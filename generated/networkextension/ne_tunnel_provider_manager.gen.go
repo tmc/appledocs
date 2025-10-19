@@ -31,7 +31,7 @@ type INETunnelProviderManager interface {
 	INEVPNManager
 }
 
-// An object to create and manage the tunnel provider’s VPN configuration. [Full Topic]
+// An object to create and manage the tunnel provider’s VPN configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderManager
 type NETunnelProviderManager struct {

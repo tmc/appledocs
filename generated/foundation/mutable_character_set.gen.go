@@ -31,7 +31,7 @@ type IMutableCharacterSet interface {
 	ICharacterSet
 }
 
-// An object representing a mutable set of Unicode character values for use in search operations. [Full Topic]
+// An object representing a mutable set of Unicode character values for use in search operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet
 type MutableCharacterSet struct {

@@ -33,7 +33,7 @@ type IProcessInfo interface {
 	PerformExpiringActivityWithReasonUsingBlock(reason string, block unsafe.Pointer)
 }
 
-// A collection of information about the current process. [Full Topic]
+// A collection of information about the current process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo
 type ProcessInfo struct {
@@ -79,8 +79,7 @@ func NewProcessInfo() ProcessInfo {
 }
 
 
-// Performs the specified block asynchronously and notifies you if the process is about to be suspended. [Full Topic]
-
+// Performs the specified block asynchronously and notifies you if the process is about to be suspended.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/performExpiringActivity(withReason:using:)
 func (p_ ProcessInfo) PerformExpiringActivityWithReasonUsingBlock(reason string, block unsafe.Pointer) {

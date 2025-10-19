@@ -32,7 +32,7 @@ type IVisit interface {
 	objectivec.IObject
 }
 
-// Information about the user’s location during a specific period of time. [Full Topic]
+// Information about the user’s location during a specific period of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit
 type Visit struct {

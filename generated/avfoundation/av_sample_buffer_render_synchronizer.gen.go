@@ -34,7 +34,7 @@ type IAVSampleBufferRenderSynchronizer interface {
 	SetRateTime(rate float32, time unsafe.Pointer)
 }
 
-// An object used to synchronize multiple queued sample buffers to a single timeline. [Full Topic]
+// An object used to synchronize multiple queued sample buffers to a single timeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer
 type AVSampleBufferRenderSynchronizer struct {
@@ -80,16 +80,14 @@ func NewAVSampleBufferRenderSynchronizer() AVSampleBufferRenderSynchronizer {
 }
 
 
-// Requests invocation of a block when specified times are traversed during normal rendering. [Full Topic]
-
+// Requests invocation of a block when specified times are traversed during normal rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer/addBoundaryTimeObserver(forTimes:queue:using:)
 func (a_ AVSampleBufferRenderSynchronizer) AddBoundaryTimeObserverForTimesQueueUsingBlock(times unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("addBoundaryTimeObserverForTimes:queue:usingBlock:"), times, queue, block)
 	return rv
 }
-// Sets the renderer’s time and rate. [Full Topic]
-
+// Sets the renderer’s time and rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer/setRate(_:time:)
 func (a_ AVSampleBufferRenderSynchronizer) SetRateTime(rate float32, time unsafe.Pointer) {

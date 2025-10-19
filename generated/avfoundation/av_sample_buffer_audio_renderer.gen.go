@@ -32,7 +32,7 @@ type IAVSampleBufferAudioRenderer interface {
 	objectivec.IObject
 }
 
-// An object used to decompress audio and play compressed or uncompressed audio. [Full Topic]
+// An object used to decompress audio and play compressed or uncompressed audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer
 type AVSampleBufferAudioRenderer struct {

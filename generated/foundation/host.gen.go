@@ -32,7 +32,7 @@ type IHost interface {
 	objectivec.IObject
 }
 
-// A representation of an individual host on the network. [Full Topic]
+// A representation of an individual host on the network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host
 type Host struct {

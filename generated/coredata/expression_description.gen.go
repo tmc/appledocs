@@ -31,7 +31,7 @@ type IExpressionDescription interface {
 	IPropertyDescription
 }
 
-// An object that describes an expression to include with a fetch request. [Full Topic]
+// An object that describes an expression to include with a fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription
 type ExpressionDescription struct {

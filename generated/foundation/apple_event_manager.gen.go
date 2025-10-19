@@ -32,7 +32,7 @@ type IAppleEventManager interface {
 	objectivec.IObject
 }
 
-// A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers. [Full Topic]
+// A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager
 type AppleEventManager struct {

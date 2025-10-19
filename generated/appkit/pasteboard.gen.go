@@ -33,7 +33,7 @@ type IPasteboard interface {
 	SetStringForType(string string, dataType unsafe.Pointer) bool
 }
 
-// An object that transfers data to and from the pasteboard server. [Full Topic]
+// An object that transfers data to and from the pasteboard server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard
 type Pasteboard struct {
@@ -79,13 +79,13 @@ func NewPasteboard() Pasteboard {
 }
 
 
-// Sets the given string as the representation for the specified type for the first item on the receiver. [Full Topic]
-
+// Sets the given string as the representation for the specified type for the first item on the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/setString(_:forType:)
 func (p_ Pasteboard) SetStringForType(string string, dataType unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("setString:forType:"), objc.String(string), dataType)
 	return rv
 }
+
 
 

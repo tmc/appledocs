@@ -32,7 +32,7 @@ type INEPacketTunnelFlow interface {
 	objectivec.IObject
 }
 
-// An object you use to read and write packets to and from the tunnel’s virtual interface. [Full Topic]
+// An object you use to read and write packets to and from the tunnel’s virtual interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelFlow
 type NEPacketTunnelFlow struct {

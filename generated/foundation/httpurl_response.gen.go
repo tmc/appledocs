@@ -31,7 +31,7 @@ type IHTTPURLResponse interface {
 	IURLResponse
 }
 
-// The metadata associated with the response to an HTTP protocol URL load request. [Full Topic]
+// The metadata associated with the response to an HTTP protocol URL load request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse
 type HTTPURLResponse struct {

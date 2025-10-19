@@ -31,7 +31,7 @@ type IPurgeableData interface {
 	IMutableData
 }
 
-// A mutable data object containing bytes that can be discarded when they’re no longer needed. [Full Topic]
+// A mutable data object containing bytes that can be discarded when they’re no longer needed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPurgeableData
 type PurgeableData struct {

@@ -32,7 +32,7 @@ type IRecursiveLock interface {
 	objectivec.IObject
 }
 
-// A lock that may be acquired multiple times by the same thread without causing a deadlock. [Full Topic]
+// A lock that may be acquired multiple times by the same thread without causing a deadlock.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock
 type RecursiveLock struct {

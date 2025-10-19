@@ -31,7 +31,7 @@ type ISearchToolbarItem interface {
 	IToolbarItem
 }
 
-// A toolbar item that contains a search field optimized for performing text-based searches. [Full Topic]
+// A toolbar item that contains a search field optimized for performing text-based searches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchToolbarItem
 type SearchToolbarItem struct {

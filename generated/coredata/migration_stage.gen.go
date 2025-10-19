@@ -32,7 +32,7 @@ type IMigrationStage interface {
 	objectivec.IObject
 }
 
-// An abstract base class for describing an individual stage of a migration. [Full Topic]
+// An abstract base class for describing an individual stage of a migration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage
 type MigrationStage struct {

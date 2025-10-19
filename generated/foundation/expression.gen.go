@@ -33,7 +33,7 @@ type IExpression interface {
 	ExpressionValueWithObjectContext(object objc.ID, context unsafe.Pointer) objc.ID
 }
 
-// An expression for use in a comparison predicate. [Full Topic]
+// An expression for use in a comparison predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression
 type Expression struct {
@@ -79,8 +79,7 @@ func NewExpression() Expression {
 }
 
 
-// Evaluates an expression using a specified object and context. [Full Topic]
-
+// Evaluates an expression using a specified object and context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionValue(with:context:)
 func (e_ Expression) ExpressionValueWithObjectContext(object objc.ID, context unsafe.Pointer) objc.ID {

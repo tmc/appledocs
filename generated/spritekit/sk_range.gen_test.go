@@ -10,15 +10,6 @@ import (
 var _ = spritekit.NewSKRange
 
 
-// ExampleNewSKRangeWithConstantValue demonstrates how to create a SKRange instance using NewSKRangeWithConstantValue.
-// Creates and initializes a new range object that specifies a constant value.
-func ExampleNewSKRangeWithConstantValue() {
-	_ = spritekit.NewSKRangeWithConstantValue(
-		0.0, // value float64
-	)
-	// Output:
-}
-
 // ExampleNewSKRangeWithLowerLimit demonstrates how to create a SKRange instance using NewSKRangeWithLowerLimit.
 // Creates and initializes a new range object that specifies only a minimum value.
 func ExampleNewSKRangeWithLowerLimit() {
@@ -53,6 +44,15 @@ func ExampleNewSKRangeWithValueVariance() {
 	_ = spritekit.NewSKRangeWithValueVariance(
 		0.0, // value float64
 		0.0, // variance float64
+	)
+	// Output:
+}
+
+// ExampleNewSKRangeWithConstantValue demonstrates how to create a SKRange instance using NewSKRangeWithConstantValue.
+// Creates and initializes a new range object that specifies a constant value.
+func ExampleNewSKRangeWithConstantValue() {
+	_ = spritekit.NewSKRangeWithConstantValue(
+		0.0, // value float64
 	)
 	// Output:
 }

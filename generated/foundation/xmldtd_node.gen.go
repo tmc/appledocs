@@ -31,7 +31,7 @@ type IXMLDTDNode interface {
 	IXMLNode
 }
 
-// A representation of element, attribute-list, entity, and notation declarations in a Document Type Definition. [Full Topic]
+// A representation of element, attribute-list, entity, and notation declarations in a Document Type Definition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode
 type XMLDTDNode struct {

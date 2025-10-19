@@ -32,7 +32,7 @@ type IUserNotification interface {
 	objectivec.IObject
 }
 
-// A notification that can be scheduled for display in the notification center. [Full Topic]
+// A notification that can be scheduled for display in the notification center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification
 type UserNotification struct {

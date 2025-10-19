@@ -31,7 +31,7 @@ type IFontPanel interface {
 	IPanel
 }
 
-// The Font panel—a user interface object that displays a list of available fonts, letting the user preview them and change the font used to display text. [Full Topic]
+// The Font panel—a user interface object that displays a list of available fonts, letting the user preview them and change the font used to display text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontPanel
 type FontPanel struct {

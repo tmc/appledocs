@@ -32,7 +32,7 @@ type IAVCaptureDevice interface {
 	objectivec.IObject
 }
 
-// An object that represents a hardware or virtual capture device like a camera or microphone. [Full Topic]
+// An object that represents a hardware or virtual capture device like a camera or microphone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice
 type AVCaptureDevice struct {
@@ -78,8 +78,7 @@ func NewAVCaptureDevice() AVCaptureDevice {
 }
 
 
-// Returns the default device for the specified device type, media type, and position. [Full Topic]
-
+// Returns the default device for the specified device type, media type, and position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/default(_:for:position:)
 func (ac _AVCaptureDeviceClass) DefaultDeviceWithDeviceTypeMediaTypePosition(deviceType unsafe.Pointer, mediaType unsafe.Pointer, position unsafe.Pointer) unsafe.Pointer {

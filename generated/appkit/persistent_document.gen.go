@@ -31,7 +31,7 @@ type IPersistentDocument interface {
 	IDocument
 }
 
-// A document object that can integrate with Core Data. [Full Topic]
+// A document object that can integrate with Core Data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument
 type PersistentDocument struct {

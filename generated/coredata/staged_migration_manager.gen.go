@@ -32,7 +32,7 @@ type IStagedMigrationManager interface {
 	objectivec.IObject
 }
 
-// An object that handles the migration event loop and provides access to the migrating persistent store. [Full Topic]
+// An object that handles the migration event loop and provides access to the migrating persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager
 type StagedMigrationManager struct {

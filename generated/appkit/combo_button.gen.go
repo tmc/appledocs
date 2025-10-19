@@ -31,7 +31,7 @@ type IComboButton interface {
 	IControl
 }
 
-// A button with a pull-down menu and a default action. [Full Topic]
+// A button with a pull-down menu and a default action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton
 type ComboButton struct {

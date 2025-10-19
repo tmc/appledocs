@@ -32,7 +32,7 @@ type IPipe interface {
 	objectivec.IObject
 }
 
-// A one-way communications channel between related processes. [Full Topic]
+// A one-way communications channel between related processes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe
 type Pipe struct {

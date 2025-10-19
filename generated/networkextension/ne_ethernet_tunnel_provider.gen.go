@@ -31,7 +31,7 @@ type INEEthernetTunnelProvider interface {
 	INEPacketTunnelProvider
 }
 
-// A type that implements the client side of a custom link-layer packet tunneling protocol. [Full Topic]
+// A type that implements the client side of a custom link-layer packet tunneling protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelProvider
 type NEEthernetTunnelProvider struct {

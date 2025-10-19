@@ -31,7 +31,7 @@ type IColorWell interface {
 	IControl
 }
 
-// A control that displays a color value and lets the user change that color value. [Full Topic]
+// A control that displays a color value and lets the user change that color value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell
 type ColorWell struct {

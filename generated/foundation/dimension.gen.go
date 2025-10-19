@@ -31,7 +31,7 @@ type IDimension interface {
 	IUnit
 }
 
-// An abstract class representing a dimensional unit of measure. [Full Topic]
+// An abstract class representing a dimensional unit of measure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension
 type Dimension struct {

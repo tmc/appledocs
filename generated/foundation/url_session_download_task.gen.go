@@ -31,7 +31,7 @@ type IURLSessionDownloadTask interface {
 	IURLSessionTask
 }
 
-// A URL session task that stores downloaded data to a file. [Full Topic]
+// A URL session task that stores downloaded data to a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDownloadTask
 type URLSessionDownloadTask struct {

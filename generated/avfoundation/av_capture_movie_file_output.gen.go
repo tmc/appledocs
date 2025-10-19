@@ -31,7 +31,7 @@ type IAVCaptureMovieFileOutput interface {
 	IAVCaptureFileOutput
 }
 
-// A capture output that records video and audio to a QuickTime movie file. [Full Topic]
+// A capture output that records video and audio to a QuickTime movie file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMovieFileOutput
 type AVCaptureMovieFileOutput struct {

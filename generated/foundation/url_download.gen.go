@@ -32,7 +32,7 @@ type IURLDownload interface {
 	objectivec.IObject
 }
 
-// An object that downloads a resource asynchronously and saves the data to a file. [Full Topic]
+// An object that downloads a resource asynchronously and saves the data to a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload
 type URLDownload struct {

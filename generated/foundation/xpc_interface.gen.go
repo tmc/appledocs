@@ -32,7 +32,7 @@ type IXPCInterface interface {
 	objectivec.IObject
 }
 
-// An interface that may be sent to an exported object or remote object proxy. [Full Topic]
+// An interface that may be sent to an exported object or remote object proxy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface
 type XPCInterface struct {

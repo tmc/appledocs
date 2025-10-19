@@ -31,7 +31,7 @@ type IAVCaptureSynchronizedSampleBufferData interface {
 	IAVCaptureSynchronizedData
 }
 
-// A container for video or audio samples collected using synchronized capture. [Full Topic]
+// A container for video or audio samples collected using synchronized capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData
 type AVCaptureSynchronizedSampleBufferData struct {

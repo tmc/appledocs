@@ -32,7 +32,7 @@ type IAVPlayerInterstitialEvent interface {
 	objectivec.IObject
 }
 
-// An object that provides instructions for how a player presents interstitial content. [Full Topic]
+// An object that provides instructions for how a player presents interstitial content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEvent
 type AVPlayerInterstitialEvent struct {

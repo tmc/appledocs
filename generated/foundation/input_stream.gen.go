@@ -31,7 +31,7 @@ type IInputStream interface {
 	IStream
 }
 
-// A stream that provides read-only stream functionality. [Full Topic]
+// A stream that provides read-only stream functionality.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream
 type InputStream struct {

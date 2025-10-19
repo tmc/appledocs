@@ -32,7 +32,7 @@ type IURLQueryItem interface {
 	objectivec.IObject
 }
 
-// An object representing a single name/value pair for an item in the query portion of a URL. [Full Topic]
+// An object representing a single name/value pair for an item in the query portion of a URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem
 type URLQueryItem struct {

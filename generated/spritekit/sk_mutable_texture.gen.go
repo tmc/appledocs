@@ -32,7 +32,7 @@ type ISKMutableTexture interface {
 	ModifyPixelDataWithBlock(block unsafe.Pointer)
 }
 
-// A texture whose contents can be dynamically updated. [Full Topic]
+// A texture whose contents can be dynamically updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKMutableTexture
 type SKMutableTexture struct {
@@ -80,8 +80,7 @@ func NewSKMutableTexture() SKMutableTexture {
 }
 
 
-// Initializes an empty texture with a specific size. [Full Topic]
-
+// Initializes an empty texture with a specific size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKMutableTexture/init(size:)
 func NewSKMutableTextureWithSize(size unsafe.Pointer) SKMutableTexture {
@@ -90,8 +89,7 @@ func NewSKMutableTextureWithSize(size unsafe.Pointer) SKMutableTexture {
 	rv.Autorelease()
 	return rv
 }
-// Initializes an empty texture with a specific size and format. [Full Topic]
-
+// Initializes an empty texture with a specific size and format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKMutableTexture/init(size:pixelFormat:)
 func NewSKMutableTextureWithSizePixelFormat(size unsafe.Pointer, format int) SKMutableTexture {
@@ -102,16 +100,14 @@ func NewSKMutableTextureWithSizePixelFormat(size unsafe.Pointer, format int) SKM
 }
 
 
-// Creates an empty texture with a specific size. [Full Topic]
-
+// Creates an empty texture with a specific size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKMutableTexture/mutableTextureWithSize:
 func (sc _SKMutableTextureClass) MutableTextureWithSize(size unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("mutableTextureWithSize:"), size)
 	return rv
 }
-// Modifies the contents of a mutable texture. [Full Topic]
-
+// Modifies the contents of a mutable texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKMutableTexture/modifyPixelData(_:)
 func (s_ SKMutableTexture) ModifyPixelDataWithBlock(block unsafe.Pointer) {

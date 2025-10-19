@@ -31,7 +31,7 @@ type IMessagePort interface {
 	IPort
 }
 
-// A port that can be used as an endpoint for distributed object connections (or raw messaging). [Full Topic]
+// A port that can be used as an endpoint for distributed object connections (or raw messaging).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MessagePort
 type MessagePort struct {

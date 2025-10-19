@@ -31,7 +31,7 @@ type ISKPhysicsJointSpring interface {
 	ISKPhysicsJoint
 }
 
-// A joint that simulates a spring connecting two physics bodies. [Full Topic]
+// A joint that simulates a spring connecting two physics bodies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointSpring
 type SKPhysicsJointSpring struct {
@@ -79,8 +79,7 @@ func NewSKPhysicsJointSpring() SKPhysicsJointSpring {
 }
 
 
-// Creates a new spring joint. [Full Topic]
-
+// Creates a new spring joint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointSpring/joint(withBodyA:bodyB:anchorA:anchorB:)
 func (sc _SKPhysicsJointSpringClass) JointWithBodyABodyBAnchorAAnchorB(bodyA unsafe.Pointer, bodyB unsafe.Pointer, anchorA unsafe.Pointer, anchorB unsafe.Pointer) unsafe.Pointer {

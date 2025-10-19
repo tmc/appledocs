@@ -32,7 +32,7 @@ type IFileWrapper interface {
 	objectivec.IObject
 }
 
-// A representation of a node (a file, directory, or symbolic link) in the file system. [Full Topic]
+// A representation of a node (a file, directory, or symbolic link) in the file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper
 type FileWrapper struct {

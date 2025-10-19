@@ -32,7 +32,7 @@ type IFileProviderService interface {
 	objectivec.IObject
 }
 
-// A service that provides a custom communication channel between your app and a File Provider extension. [Full Topic]
+// A service that provides a custom communication channel between your app and a File Provider extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderService
 type FileProviderService struct {

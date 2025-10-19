@@ -32,7 +32,7 @@ type IRemoteLayerClient interface {
 	objectivec.IObject
 }
 
-// A legacy class for cross-process rendering. [Full Topic]
+// A legacy class for cross-process rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient
 type RemoteLayerClient struct {
@@ -78,8 +78,7 @@ func NewRemoteLayerClient() RemoteLayerClient {
 }
 
 
-// Creates a layer client from a server port. [Full Topic]
-
+// Creates a layer client from a server port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient/init(serverPort:)
 func NewRemoteLayerClientWithServerPort(port unsafe.Pointer) RemoteLayerClient {

@@ -32,7 +32,7 @@ type IOSLogStore interface {
 	objectivec.IObject
 }
 
-// A set of entries from the unified logging system. [Full Topic]
+// A set of entries from the unified logging system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore
 type OSLogStore struct {

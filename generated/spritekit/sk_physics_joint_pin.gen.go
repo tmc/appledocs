@@ -31,7 +31,7 @@ type ISKPhysicsJointPin interface {
 	ISKPhysicsJoint
 }
 
-// A joint that pins together two physics bodies, allowing independent rotation. [Full Topic]
+// A joint that pins together two physics bodies, allowing independent rotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointPin
 type SKPhysicsJointPin struct {
@@ -79,8 +79,7 @@ func NewSKPhysicsJointPin() SKPhysicsJointPin {
 }
 
 
-// Creates a new pin joint. [Full Topic]
-
+// Creates a new pin joint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointPin/joint(withBodyA:bodyB:anchor:)
 func (sc _SKPhysicsJointPinClass) JointWithBodyABodyBAnchor(bodyA unsafe.Pointer, bodyB unsafe.Pointer, anchor unsafe.Pointer) unsafe.Pointer {

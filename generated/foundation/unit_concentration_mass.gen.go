@@ -31,7 +31,7 @@ type IUnitConcentrationMass interface {
 	IDimension
 }
 
-// A unit of measure for concentration of mass. [Full Topic]
+// A unit of measure for concentration of mass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass
 type UnitConcentrationMass struct {

@@ -31,7 +31,7 @@ type IMutableIndexSet interface {
 	IIndexSet
 }
 
-// A mutable collection of unique integer values that represent indexes in another collection. [Full Topic]
+// A mutable collection of unique integer values that represent indexes in another collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet
 type MutableIndexSet struct {

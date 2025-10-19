@@ -32,7 +32,7 @@ type IMTKSubmesh interface {
 	objectivec.IObject
 }
 
-// A container for the index data of a Model I/O submesh, suitable for use in a Metal app. [Full Topic]
+// A container for the index data of a Model I/O submesh, suitable for use in a Metal app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh
 type MTKSubmesh struct {

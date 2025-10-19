@@ -32,7 +32,7 @@ type IMIDICISession interface {
 	objectivec.IObject
 }
 
-// An object that represents a MIDI-CI session. [Full Topic]
+// An object that represents a MIDI-CI session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession
 type MIDICISession struct {

@@ -34,7 +34,7 @@ type IBlendKernel interface {
 	ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer
 }
 
-// A GPU-based image-processing routine that is optimized for blending two images. [Full Topic]
+// A GPU-based image-processing routine that is optimized for blending two images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel
 type BlendKernel struct {
@@ -82,8 +82,7 @@ func NewBlendKernel() BlendKernel {
 }
 
 
-// Creates a custom blend kernel from a program string. [Full Topic]
-
+// Creates a custom blend kernel from a program string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
 func NewBlendKernelWithString(string string) BlendKernel {
@@ -92,16 +91,14 @@ func NewBlendKernelWithString(string string) BlendKernel {
 }
 
 
-// Creates a custom blend kernel from a program string. [Full Topic]
-
+// Creates a custom blend kernel from a program string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
 func (bc _BlendKernelClass) KernelWithString(string string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), objc.String(string))
 	return rv
 }
-// Creates a new image using the blend kernel and specified foreground and background images. [Full Topic]
-
+// Creates a new image using the blend kernel and specified foreground and background images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/apply(foreground:background:)
 func (b_ BlendKernel) ApplyWithForegroundBackground(foreground unsafe.Pointer, background unsafe.Pointer) unsafe.Pointer {

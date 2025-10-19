@@ -31,7 +31,7 @@ type IExistsCommand interface {
 	IScriptCommand
 }
 
-// A command that determines whether a scriptable object exists. [Full Topic]
+// A command that determines whether a scriptable object exists.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExistsCommand
 type ExistsCommand struct {

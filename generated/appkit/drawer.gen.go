@@ -31,7 +31,7 @@ type IDrawer interface {
 	IResponder
 }
 
-// A user interface element that contains and displays text, scroll, and browser views, in addition to other view subclasses. [Full Topic]
+// A user interface element that contains and displays text, scroll, and browser views, in addition to other view subclasses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer
 type Drawer struct {

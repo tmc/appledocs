@@ -31,7 +31,7 @@ type ITextInsertionIndicator interface {
 	IView
 }
 
-// A view that represents the insertion indicator in text. [Full Topic]
+// A view that represents the insertion indicator in text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator
 type TextInsertionIndicator struct {

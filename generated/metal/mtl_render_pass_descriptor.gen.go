@@ -32,7 +32,7 @@ type IMTLRenderPassDescriptor interface {
 	objectivec.IObject
 }
 
-// A group of render targets that hold the results of a render pass. [Full Topic]
+// A group of render targets that hold the results of a render pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor
 type MTLRenderPassDescriptor struct {

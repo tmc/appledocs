@@ -33,7 +33,7 @@ type IImage interface {
 	BestRepresentationForDevice(deviceDescription unsafe.Pointer) unsafe.Pointer
 }
 
-// A high-level interface for manipulating image data. [Full Topic]
+// A high-level interface for manipulating image data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage
 type Image struct {
@@ -79,13 +79,13 @@ func NewImage() Image {
 }
 
 
-// Returns the best representation for the device with the specified characteristics. [Full Topic]
-
+// Returns the best representation for the device with the specified characteristics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/bestRepresentationForDevice:
 func (i_ Image) BestRepresentationForDevice(deviceDescription unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("bestRepresentationForDevice:"), deviceDescription)
 	return rv
 }
+
 
 

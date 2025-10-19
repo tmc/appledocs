@@ -31,7 +31,7 @@ type IScroller interface {
 	IControl
 }
 
-// An object that controls scrolling of a document view within a scroll view or other type of container view. [Full Topic]
+// An object that controls scrolling of a document view within a scroll view or other type of container view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller
 type Scroller struct {

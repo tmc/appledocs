@@ -32,7 +32,7 @@ type IAVSampleBufferVideoRenderer interface {
 	objectivec.IObject
 }
 
-// An object that enqueues video sample buffers for rendering. [Full Topic]
+// An object that enqueues video sample buffers for rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer
 type AVSampleBufferVideoRenderer struct {

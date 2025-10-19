@@ -31,7 +31,7 @@ type IOutputStream interface {
 	IStream
 }
 
-// A stream that provides write-only stream functionality. [Full Topic]
+// A stream that provides write-only stream functionality.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream
 type OutputStream struct {

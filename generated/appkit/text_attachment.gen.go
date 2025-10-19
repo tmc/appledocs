@@ -32,7 +32,7 @@ type ITextAttachment interface {
 	objectivec.IObject
 }
 
-// The values for the attachment characteristics of attributed strings and related objects. [Full Topic]
+// The values for the attachment characteristics of attributed strings and related objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment
 type TextAttachment struct {

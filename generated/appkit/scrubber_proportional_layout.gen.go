@@ -31,7 +31,7 @@ type IScrubberProportionalLayout interface {
 	IScrubberLayout
 }
 
-// A concrete layout object that sizes each item to some fraction of the scrubber’s visible size. [Full Topic]
+// A concrete layout object that sizes each item to some fraction of the scrubber’s visible size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout
 type ScrubberProportionalLayout struct {

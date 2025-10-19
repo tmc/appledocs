@@ -31,7 +31,7 @@ type IMatrix interface {
 	IControl
 }
 
-// A legacy interface for grouping radio buttons or other types of cells together. [Full Topic]
+// A legacy interface for grouping radio buttons or other types of cells together.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMatrix
 type Matrix struct {

@@ -37,7 +37,7 @@ type ISKView interface {
 	TextureFromNodeCrop(node unsafe.Pointer, crop unsafe.Pointer) unsafe.Pointer
 }
 
-// A view subclass that renders a SpriteKit scene. [Full Topic]
+// A view subclass that renders a SpriteKit scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView
 type SKView struct {
@@ -85,46 +85,40 @@ func NewSKView() SKView {
 }
 
 
-// Converts a point from scene coordinates to view coordinates. [Full Topic]
-
+// Converts a point from scene coordinates to view coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/convert(_:from:)
 func (s_ SKView) ConvertPointFromScene(point unsafe.Pointer, scene unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("convertPoint:fromScene:"), point, scene)
 	return rv
 }
-// Converts a point from view coordinates to scene coordinates. [Full Topic]
-
+// Converts a point from view coordinates to scene coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/convert(_:to:)
 func (s_ SKView) ConvertPointToScene(point unsafe.Pointer, scene unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("convertPoint:toScene:"), point, scene)
 	return rv
 }
-// Presents a scene. [Full Topic]
-
+// Presents a scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/presentScene(_:)
 func (s_ SKView) PresentScene(scene unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("presentScene:"), scene)
 }
-// Transitions from the current scene to a new scene. [Full Topic]
-
+// Transitions from the current scene to a new scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/presentScene(_:transition:)
 func (s_ SKView) PresentSceneTransition(scene unsafe.Pointer, transition unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("presentScene:transition:"), scene, transition)
 }
-// Renders the contents of a node tree and returns the rendered image as a texture. [Full Topic]
-
+// Renders the contents of a node tree and returns the rendered image as a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/texture(from:)
 func (s_ SKView) TextureFromNode(node unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("textureFromNode:"), node)
 	return rv
 }
-// Renders a portion of a node’s contents and returns the rendered image as a texture. [Full Topic]
-
+// Renders a portion of a node’s contents and returns the rendered image as a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKView/texture(from:crop:)
 func (s_ SKView) TextureFromNodeCrop(node unsafe.Pointer, crop unsafe.Pointer) unsafe.Pointer {

@@ -31,7 +31,7 @@ type IDataDetector interface {
 	IRegularExpression
 }
 
-// A specialized regular expression object that matches natural language text for predefined data patterns. [Full Topic]
+// A specialized regular expression object that matches natural language text for predefined data patterns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector
 type DataDetector struct {

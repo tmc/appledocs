@@ -31,7 +31,7 @@ type IUniqueIDSpecifier interface {
 	IScriptObjectSpecifier
 }
 
-// A specifier for an object in a collection (or container) by unique ID. [Full Topic]
+// A specifier for an object in a collection (or container) by unique ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier
 type UniqueIDSpecifier struct {

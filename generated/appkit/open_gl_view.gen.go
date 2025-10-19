@@ -35,7 +35,7 @@ type IOpenGLView interface {
 	Update()
 }
 
-// A view that displays OpenGL content in a view. [Full Topic]
+// A view that displays OpenGL content in a view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView
 type OpenGLView struct {
@@ -83,8 +83,7 @@ func NewOpenGLView() OpenGLView {
 }
 
 
-// Returns an object initialized with the specified frame rectangle and pixel format. [Full Topic]
-
+// Returns an object initialized with the specified frame rectangle and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
 func NewOpenGLViewWithFramePixelFormat(frameRect unsafe.Pointer, format unsafe.Pointer) OpenGLView {
@@ -95,40 +94,40 @@ func NewOpenGLViewWithFramePixelFormat(frameRect unsafe.Pointer, format unsafe.P
 }
 
 
-// Returns a default object. [Full Topic]
-
+// Returns a default object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/defaultPixelFormat()
 func (oc _OpenGLViewClass) DefaultPixelFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("defaultPixelFormat"))
 	return rv
 }
-// Releases the object associated with the view. [Full Topic]
 
+// Releases the object associated with the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/clearGLContext()
 func (o_ OpenGLView) ClearGLContext() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("clearGLContext"))
 }
-// Used by subclasses to initialize OpenGL state. [Full Topic]
 
+// Used by subclasses to initialize OpenGL state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/prepareOpenGL()
 func (o_ OpenGLView) PrepareOpenGL() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("prepareOpenGL"))
 }
-// Called by Cocoa when the view’s visible rectangle or bounds change. [Full Topic]
 
+// Called by Cocoa when the view’s visible rectangle or bounds change.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/reshape()
 func (o_ OpenGLView) Reshape() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("reshape"))
 }
-// Called by Cocoa when the view’s window moves or when the view itself moves or is resized. [Full Topic]
 
+// Called by Cocoa when the view’s window moves or when the view itself moves or is resized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/update()
 func (o_ OpenGLView) Update() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("update"))
 }
+
 

@@ -31,7 +31,7 @@ type ICustomImageRep interface {
 	IImageRep
 }
 
-// An object that uses a delegate object to render an image from a custom format. [Full Topic]
+// An object that uses a delegate object to render an image from a custom format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep
 type CustomImageRep struct {

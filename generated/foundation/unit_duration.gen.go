@@ -31,7 +31,7 @@ type IUnitDuration interface {
 	IDimension
 }
 
-// A unit of measure for a duration of time. [Full Topic]
+// A unit of measure for a duration of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration
 type UnitDuration struct {

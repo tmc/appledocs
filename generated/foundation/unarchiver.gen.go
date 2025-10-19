@@ -31,7 +31,7 @@ type IUnarchiver interface {
 	ICoder
 }
 
-// A decoder that restores data from an archive. [Full Topic]
+// A decoder that restores data from an archive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver
 type Unarchiver struct {

@@ -32,7 +32,7 @@ type IMetalDisplayLink interface {
 	objectivec.IObject
 }
 
-// A class your Metal app uses to register for callbacks to synchronize its animations for a display. [Full Topic]
+// A class your Metal app uses to register for callbacks to synchronize its animations for a display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink
 type MetalDisplayLink struct {

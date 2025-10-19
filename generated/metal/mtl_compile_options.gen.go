@@ -32,7 +32,7 @@ type IMTLCompileOptions interface {
 	objectivec.IObject
 }
 
-// Compilation settings for a Metal shader library. [Full Topic]
+// Compilation settings for a Metal shader library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions
 type MTLCompileOptions struct {

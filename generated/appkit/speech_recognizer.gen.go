@@ -32,7 +32,7 @@ type ISpeechRecognizer interface {
 	objectivec.IObject
 }
 
-// The Cocoa interface to speech recognition in macOS. [Full Topic]
+// The Cocoa interface to speech recognition in macOS.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechRecognizer
 type SpeechRecognizer struct {

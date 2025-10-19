@@ -32,7 +32,7 @@ type ICondition interface {
 	objectivec.IObject
 }
 
-// A condition variable whose semantics follow those used for POSIX-style conditions. [Full Topic]
+// A condition variable whose semantics follow those used for POSIX-style conditions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition
 type Condition struct {

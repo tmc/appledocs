@@ -31,7 +31,7 @@ type IPDF417CodeDescriptor interface {
 	IBarcodeDescriptor
 }
 
-// A concrete subclass of Core Image Barcode Descriptor that represents a PDF417 symbol. [Full Topic]
+// A concrete subclass of Core Image Barcode Descriptor that represents a PDF417 symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor
 type PDF417CodeDescriptor struct {
@@ -79,8 +79,7 @@ func NewPDF417CodeDescriptor() PDF417CodeDescriptor {
 }
 
 
-// Initializes an PDF417 code descriptor for the given payload and parameters. [Full Topic]
-
+// Initializes an PDF417 code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/init(payload:isCompact:rowCount:columnCount:)
 func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, rowCount int, columnCount int) PDF417CodeDescriptor {
@@ -91,8 +90,7 @@ func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrect
 }
 
 
-// Creates an PDF417 code descriptor for the given payload and parameters. [Full Topic]
-
+// Creates an PDF417 code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/descriptorWithPayload:isCompact:rowCount:columnCount:
 func (pc _PDF417CodeDescriptorClass) DescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, rowCount int, columnCount int) unsafe.Pointer {

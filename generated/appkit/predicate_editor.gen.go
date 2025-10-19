@@ -31,7 +31,7 @@ type IPredicateEditor interface {
 	IRuleEditor
 }
 
-// A defined set of rules that allows the editing of predicate objects. [Full Topic]
+// A defined set of rules that allows the editing of predicate objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor
 type PredicateEditor struct {

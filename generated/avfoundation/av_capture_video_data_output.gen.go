@@ -32,7 +32,7 @@ type IAVCaptureVideoDataOutput interface {
 	SetSampleBufferDelegateQueue(sampleBufferDelegate unsafe.Pointer, sampleBufferCallbackQueue unsafe.Pointer)
 }
 
-// A capture output that records video and provides access to video frames for processing. [Full Topic]
+// A capture output that records video and provides access to video frames for processing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput
 type AVCaptureVideoDataOutput struct {
@@ -80,8 +80,7 @@ func NewAVCaptureVideoDataOutput() AVCaptureVideoDataOutput {
 }
 
 
-// Sets the sample buffer delegate and the queue for invoking callbacks. [Full Topic]
-
+// Sets the sample buffer delegate and the queue for invoking callbacks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/setSampleBufferDelegate(_:queue:)
 func (a_ AVCaptureVideoDataOutput) SetSampleBufferDelegateQueue(sampleBufferDelegate unsafe.Pointer, sampleBufferCallbackQueue unsafe.Pointer) {

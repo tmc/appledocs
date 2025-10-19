@@ -31,7 +31,7 @@ type IRuleEditor interface {
 	IControl
 }
 
-// An interface for configuring a rule-based list of options. [Full Topic]
+// An interface for configuring a rule-based list of options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor
 type RuleEditor struct {

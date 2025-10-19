@@ -32,7 +32,7 @@ type IAVContinuityDevice interface {
 	objectivec.IObject
 }
 
-// A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones. [Full Topic]
+// A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice
 type AVContinuityDevice struct {

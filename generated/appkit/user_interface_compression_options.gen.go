@@ -32,7 +32,7 @@ type IUserInterfaceCompressionOptions interface {
 	objectivec.IObject
 }
 
-// An object that specifies how user interface elements resize themselves when space is constrained. [Full Topic]
+// An object that specifies how user interface elements resize themselves when space is constrained.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions
 type UserInterfaceCompressionOptions struct {

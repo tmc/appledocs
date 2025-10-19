@@ -32,7 +32,7 @@ type ITextRange interface {
 	objectivec.IObject
 }
 
-// A class that represents a contiguous range between two locations inside document contents. [Full Topic]
+// A class that represents a contiguous range between two locations inside document contents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextRange
 type TextRange struct {

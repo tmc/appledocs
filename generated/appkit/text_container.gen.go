@@ -32,7 +32,7 @@ type ITextContainer interface {
 	objectivec.IObject
 }
 
-// A region where text layout occurs. [Full Topic]
+// A region where text layout occurs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer
 type TextContainer struct {

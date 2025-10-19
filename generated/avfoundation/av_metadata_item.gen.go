@@ -32,7 +32,7 @@ type IAVMetadataItem interface {
 	objectivec.IObject
 }
 
-// A metadata item for an audiovisual asset or one of its tracks. [Full Topic]
+// A metadata item for an audiovisual asset or one of its tracks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem
 type AVMetadataItem struct {

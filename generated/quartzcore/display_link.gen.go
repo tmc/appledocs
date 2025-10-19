@@ -33,7 +33,7 @@ type IDisplayLink interface {
 	AddToRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer)
 }
 
-// A timer object that allows your app to synchronize its drawing to the refresh rate of the display. [Full Topic]
+// A timer object that allows your app to synchronize its drawing to the refresh rate of the display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink
 type DisplayLink struct {
@@ -79,8 +79,7 @@ func NewDisplayLink() DisplayLink {
 }
 
 
-// Registers the display link with a run loop. [Full Topic]
-
+// Registers the display link with a run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/add(to:forMode:)
 func (d_ DisplayLink) AddToRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer) {

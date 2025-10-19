@@ -32,7 +32,7 @@ type IURLComponents interface {
 	objectivec.IObject
 }
 
-// An object that parses URLs into and constructs URLs from their constituent parts. [Full Topic]
+// An object that parses URLs into and constructs URLs from their constituent parts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents
 type URLComponents struct {

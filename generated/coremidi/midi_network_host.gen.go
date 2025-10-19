@@ -32,7 +32,7 @@ type IMIDINetworkHost interface {
 	objectivec.IObject
 }
 
-// An object that represents the host’s network address. [Full Topic]
+// An object that represents the host’s network address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost
 type MIDINetworkHost struct {

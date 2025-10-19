@@ -32,7 +32,7 @@ type IAffineTransform interface {
 	objectivec.IObject
 }
 
-// A graphics coordinate transformation. [Full Topic]
+// A graphics coordinate transformation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform
 type AffineTransform struct {

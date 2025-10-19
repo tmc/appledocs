@@ -32,7 +32,7 @@ type IRemoteLayerServer interface {
 	objectivec.IObject
 }
 
-// A legacy class for cross-process rendering. [Full Topic]
+// A legacy class for cross-process rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerServer
 type RemoteLayerServer struct {

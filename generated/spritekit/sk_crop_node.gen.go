@@ -31,7 +31,7 @@ type ISKCropNode interface {
 	ISKNode
 }
 
-// A node that masks pixels drawn by its children so that only some pixels are seen. [Full Topic]
+// A node that masks pixels drawn by its children so that only some pixels are seen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKCropNode
 type SKCropNode struct {

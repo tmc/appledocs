@@ -32,7 +32,7 @@ type ITextList interface {
 	objectivec.IObject
 }
 
-// A section of text that forms a single list. [Full Topic]
+// A section of text that forms a single list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList
 type TextList struct {

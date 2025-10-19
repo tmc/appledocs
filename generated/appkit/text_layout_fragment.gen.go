@@ -32,7 +32,7 @@ type ITextLayoutFragment interface {
 	objectivec.IObject
 }
 
-// A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass. [Full Topic]
+// A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutFragment
 type TextLayoutFragment struct {

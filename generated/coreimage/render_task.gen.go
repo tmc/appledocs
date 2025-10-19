@@ -33,7 +33,7 @@ type IRenderTask interface {
 	WaitUntilCompletedAndReturnError(error unsafe.Pointer) unsafe.Pointer
 }
 
-// A single render task. [Full Topic]
+// A single render task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderTask
 type RenderTask struct {
@@ -79,8 +79,7 @@ func NewRenderTask() RenderTask {
 }
 
 
-// Waits until the finishes and returns. [Full Topic]
-
+// Waits until the finishes and returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderTask/waitUntilCompleted()
 func (r_ RenderTask) WaitUntilCompletedAndReturnError(error unsafe.Pointer) unsafe.Pointer {

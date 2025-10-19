@@ -31,7 +31,7 @@ type ISplitViewController interface {
 	IViewController
 }
 
-// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views. [Full Topic]
+// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController
 type SplitViewController struct {

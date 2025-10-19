@@ -32,7 +32,7 @@ type IFeature interface {
 	objectivec.IObject
 }
 
-// The abstract superclass for objects representing notable features detected in an image. [Full Topic]
+// The abstract superclass for objects representing notable features detected in an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature
 type Feature struct {

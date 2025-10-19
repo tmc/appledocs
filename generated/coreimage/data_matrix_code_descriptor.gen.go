@@ -31,7 +31,7 @@ type IDataMatrixCodeDescriptor interface {
 	IBarcodeDescriptor
 }
 
-// A concrete subclass the Core Image Barcode Descriptor that represents an Data Matrix code symbol. [Full Topic]
+// A concrete subclass the Core Image Barcode Descriptor that represents an Data Matrix code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor
 type DataMatrixCodeDescriptor struct {
@@ -79,8 +79,7 @@ func NewDataMatrixCodeDescriptor() DataMatrixCodeDescriptor {
 }
 
 
-// Initializes a Data Matrix code descriptor for the given payload and parameters. [Full Topic]
-
+// Initializes a Data Matrix code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/init(payload:rowCount:columnCount:eccVersion:)
 func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload unsafe.Pointer, rowCount int, columnCount int, eccVersion unsafe.Pointer) DataMatrixCodeDescriptor {
@@ -91,8 +90,7 @@ func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCo
 }
 
 
-// Creates a Data Matrix code descriptor for the given payload and parameters. [Full Topic]
-
+// Creates a Data Matrix code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/descriptorWithPayload:rowCount:columnCount:eccVersion:
 func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload unsafe.Pointer, rowCount int, columnCount int, eccVersion unsafe.Pointer) unsafe.Pointer {

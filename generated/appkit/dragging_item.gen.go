@@ -32,7 +32,7 @@ type IDraggingItem interface {
 	objectivec.IObject
 }
 
-// A single dragged item within a dragging session. [Full Topic]
+// A single dragged item within a dragging session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem
 type DraggingItem struct {

@@ -32,7 +32,7 @@ type IPrintOperation interface {
 	objectivec.IObject
 }
 
-// An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs. [Full Topic]
+// An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation
 type PrintOperation struct {

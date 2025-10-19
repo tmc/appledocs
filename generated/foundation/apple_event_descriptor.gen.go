@@ -32,7 +32,7 @@ type IAppleEventDescriptor interface {
 	objectivec.IObject
 }
 
-// A wrapper for the Apple event descriptor data type. [Full Topic]
+// A wrapper for the Apple event descriptor data type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor
 type AppleEventDescriptor struct {

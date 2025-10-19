@@ -31,7 +31,7 @@ type ISKVideoNode interface {
 	ISKNode
 }
 
-// A graphical element that plays video content. [Full Topic]
+// A graphical element that plays video content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKVideoNode
 type SKVideoNode struct {

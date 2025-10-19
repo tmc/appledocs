@@ -32,7 +32,7 @@ type IRenderDestination interface {
 	objectivec.IObject
 }
 
-// A specification for configuring all attributes of a render task’s destination and issuing asynchronous render tasks. [Full Topic]
+// A specification for configuring all attributes of a render task’s destination and issuing asynchronous render tasks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination
 type RenderDestination struct {
@@ -78,18 +78,7 @@ func NewRenderDestination() RenderDestination {
 }
 
 
-// Creates a render destination based on a client-managed buffer. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(bitmapData:width:height:bytesPerRow:format:)
-func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint, height uint, bytesPerRow uint, format unsafe.Pointer) RenderDestination {
-	instance := getRenderDestinationClass().Alloc()
-	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithBitmapData:width:height:bytesPerRow:format:"), data, width, height, bytesPerRow, format)
-	rv.Autorelease()
-	return rv
-}
-// Creates a render destination based on an OpenGL texture. [Full Topic]
-
+// Creates a render destination based on an OpenGL texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(glTexture:target:width:height:)
 func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, target unsafe.Pointer, width uint, height uint) RenderDestination {
@@ -98,8 +87,7 @@ func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, 
 	rv.Autorelease()
 	return rv
 }
-// Creates a render destination based on an object. [Full Topic]
-
+// Creates a render destination based on an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(ioSurface:)
 func NewRenderDestinationWithIOSurface(surface unsafe.Pointer) RenderDestination {
@@ -108,8 +96,7 @@ func NewRenderDestinationWithIOSurface(surface unsafe.Pointer) RenderDestination
 	rv.Autorelease()
 	return rv
 }
-// Creates a render destination based on a Metal texture. [Full Topic]
-
+// Creates a render destination based on a Metal texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(mtlTexture:commandBuffer:)
 func NewRenderDestinationWithMTLTextureCommandBuffer(texture unsafe.Pointer, commandBuffer unsafe.Pointer) RenderDestination {
@@ -118,8 +105,7 @@ func NewRenderDestinationWithMTLTextureCommandBuffer(texture unsafe.Pointer, com
 	rv.Autorelease()
 	return rv
 }
-// Creates a render destination based on a Core Video pixel buffer. [Full Topic]
-
+// Creates a render destination based on a Core Video pixel buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(pixelBuffer:)
 func NewRenderDestinationWithPixelBuffer(pixelBuffer unsafe.Pointer) RenderDestination {
@@ -128,13 +114,21 @@ func NewRenderDestinationWithPixelBuffer(pixelBuffer unsafe.Pointer) RenderDesti
 	rv.Autorelease()
 	return rv
 }
-// Creates a render destination based on a Metal texture with specified pixel format. [Full Topic]
-
+// Creates a render destination based on a Metal texture with specified pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(width:height:pixelFormat:commandBuffer:mtlTextureProvider:)
 func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(width uint, height uint, pixelFormat unsafe.Pointer, commandBuffer unsafe.Pointer, block unsafe.Pointer) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:"), width, height, pixelFormat, commandBuffer, block)
+	rv.Autorelease()
+	return rv
+}
+// Creates a render destination based on a client-managed buffer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(bitmapData:width:height:bytesPerRow:format:)
+func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint, height uint, bytesPerRow uint, format unsafe.Pointer) RenderDestination {
+	instance := getRenderDestinationClass().Alloc()
+	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithBitmapData:width:height:bytesPerRow:format:"), data, width, height, bytesPerRow, format)
 	rv.Autorelease()
 	return rv
 }

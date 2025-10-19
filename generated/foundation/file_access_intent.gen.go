@@ -32,7 +32,7 @@ type IFileAccessIntent interface {
 	objectivec.IObject
 }
 
-// The details of a coordinated-read or coordinated-write operation. [Full Topic]
+// The details of a coordinated-read or coordinated-write operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent
 type FileAccessIntent struct {

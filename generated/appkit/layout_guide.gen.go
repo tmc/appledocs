@@ -32,7 +32,7 @@ type ILayoutGuide interface {
 	objectivec.IObject
 }
 
-// A rectangular area that can interact with Auto Layout. [Full Topic]
+// A rectangular area that can interact with Auto Layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutGuide
 type LayoutGuide struct {

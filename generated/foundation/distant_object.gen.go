@@ -31,7 +31,7 @@ type IDistantObject interface {
 	IProxy
 }
 
-// A proxy for objects in other applications or threads. [Full Topic]
+// A proxy for objects in other applications or threads.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject
 type DistantObject struct {

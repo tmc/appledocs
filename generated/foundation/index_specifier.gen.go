@@ -31,7 +31,7 @@ type IIndexSpecifier interface {
 	IScriptObjectSpecifier
 }
 
-// A specifier representing an object in a collection (or container) with an index number. [Full Topic]
+// A specifier representing an object in a collection (or container) with an index number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier
 type IndexSpecifier struct {

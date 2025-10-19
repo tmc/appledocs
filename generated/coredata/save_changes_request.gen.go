@@ -31,7 +31,7 @@ type ISaveChangesRequest interface {
 	IPersistentStoreRequest
 }
 
-// An encapsulation of a collection of changes to be made by an object store in response to a save operation on a managed object context. [Full Topic]
+// An encapsulation of a collection of changes to be made by an object store in response to a save operation on a managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest
 type SaveChangesRequest struct {

@@ -32,7 +32,7 @@ type IOpenGLLayer interface {
 	objectivec.IObject
 }
 
-// A subclass of that is suitable for rendering OpenGL into layers. [Full Topic]
+// A subclass of that is suitable for rendering OpenGL into layers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLLayer
 type OpenGLLayer struct {

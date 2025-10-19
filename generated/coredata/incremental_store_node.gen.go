@@ -32,7 +32,7 @@ type IIncrementalStoreNode interface {
 	objectivec.IObject
 }
 
-// A concrete class used to represent basic nodes in a Core Data incremental store. [Full Topic]
+// A concrete class used to represent basic nodes in a Core Data incremental store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode
 type IncrementalStoreNode struct {

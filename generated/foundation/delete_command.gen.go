@@ -31,7 +31,7 @@ type IDeleteCommand interface {
 	IScriptCommand
 }
 
-// A command that deletes a scriptable object. [Full Topic]
+// A command that deletes a scriptable object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand
 type DeleteCommand struct {

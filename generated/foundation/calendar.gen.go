@@ -32,7 +32,7 @@ type ICalendar interface {
 	objectivec.IObject
 }
 
-// A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates. [Full Topic]
+// A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar
 type Calendar struct {

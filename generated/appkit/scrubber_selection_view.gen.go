@@ -31,7 +31,7 @@ type IScrubberSelectionView interface {
 	IScrubberArrangedView
 }
 
-// An abstract base class for specifying the appearance of a highlighted or selected item in a scrubber. [Full Topic]
+// An abstract base class for specifying the appearance of a highlighted or selected item in a scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionView
 type ScrubberSelectionView struct {

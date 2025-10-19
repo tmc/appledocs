@@ -32,7 +32,7 @@ type IAtomicStoreCacheNode interface {
 	objectivec.IObject
 }
 
-// A concrete class that you use to represent basic nodes in a Core Data atomic store. [Full Topic]
+// A concrete class that you use to represent basic nodes in a Core Data atomic store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode
 type AtomicStoreCacheNode struct {
@@ -78,8 +78,7 @@ func NewAtomicStoreCacheNode() AtomicStoreCacheNode {
 }
 
 
-// Returns the value for a given key. [Full Topic]
-
+// Returns the value for a given key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode/value(forKey:)
 func (a_ AtomicStoreCacheNode) ValueForKey(key string) objc.ID {

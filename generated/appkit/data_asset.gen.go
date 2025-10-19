@@ -32,7 +32,7 @@ type IDataAsset interface {
 	objectivec.IObject
 }
 
-// An object from a data set type stored in an asset catalog. [Full Topic]
+// An object from a data set type stored in an asset catalog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset
 type DataAsset struct {

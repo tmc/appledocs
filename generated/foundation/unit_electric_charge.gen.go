@@ -31,7 +31,7 @@ type IUnitElectricCharge interface {
 	IDimension
 }
 
-// A unit of measure for electric charge. [Full Topic]
+// A unit of measure for electric charge.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge
 type UnitElectricCharge struct {

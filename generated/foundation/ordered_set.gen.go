@@ -32,7 +32,7 @@ type IOrderedSet interface {
 	objectivec.IObject
 }
 
-// A static, ordered collection of unique objects. [Full Topic]
+// A static, ordered collection of unique objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet
 type OrderedSet struct {

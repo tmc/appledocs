@@ -32,7 +32,7 @@ type IValueTransformer interface {
 	objectivec.IObject
 }
 
-// An abstract class used to transform values from one representation to another. [Full Topic]
+// An abstract class used to transform values from one representation to another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer
 type ValueTransformer struct {

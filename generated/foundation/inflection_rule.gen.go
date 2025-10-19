@@ -32,7 +32,7 @@ type IInflectionRule interface {
 	objectivec.IObject
 }
 
-// A rule that affects how an attributed string performs automatic grammatical agreement. [Full Topic]
+// A rule that affects how an attributed string performs automatic grammatical agreement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule
 type InflectionRule struct {

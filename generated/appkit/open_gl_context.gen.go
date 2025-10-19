@@ -32,7 +32,7 @@ type IOpenGLContext interface {
 	objectivec.IObject
 }
 
-// An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered. [Full Topic]
+// An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext
 type OpenGLContext struct {

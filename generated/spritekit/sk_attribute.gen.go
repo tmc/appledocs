@@ -32,7 +32,7 @@ type ISKAttribute interface {
 	objectivec.IObject
 }
 
-// A specification for dynamic per-node data used with a custom shader. [Full Topic]
+// A specification for dynamic per-node data used with a custom shader.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttribute
 type SKAttribute struct {
@@ -78,8 +78,7 @@ func NewSKAttribute() SKAttribute {
 }
 
 
-// Creates and initializes a new attribute object of a specified type with a name that can be referenced within the shader. [Full Topic]
-
+// Creates and initializes a new attribute object of a specified type with a name that can be referenced within the shader.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKAttribute/init(name:type:)
 func NewSKAttributeWithNameType(name string, type_ unsafe.Pointer) SKAttribute {

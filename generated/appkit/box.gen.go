@@ -34,7 +34,7 @@ type IBox interface {
 	SizeToFit()
 }
 
-// A stylized rectangular box with an optional title. [Full Topic]
+// A stylized rectangular box with an optional title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox
 type Box struct {
@@ -82,26 +82,26 @@ func NewBox() Box {
 }
 
 
-// Places the receiver so its content view lies on the specified frame. [Full Topic]
-
+// Places the receiver so its content view lies on the specified frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/setFrameFromContentFrame(_:)
 func (b_ Box) SetFrameFromContentFrame(contentFrame unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setFrameFromContentFrame:"), contentFrame)
 }
-// Sets the title of the receiver with a character denoted as an access key. [Full Topic]
 
+// Sets the title of the receiver with a character denoted as an access key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/setTitleWithMnemonic:
 func (b_ Box) SetTitleWithMnemonic(stringWithAmpersand string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitleWithMnemonic:"), objc.String(stringWithAmpersand))
 }
-// Resizes and moves the receiver’s content view so it just encloses its subviews. [Full Topic]
 
+// Resizes and moves the receiver’s content view so it just encloses its subviews.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/sizeToFit()
 func (b_ Box) SizeToFit() {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sizeToFit"))
 }
+
 
 

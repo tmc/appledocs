@@ -32,7 +32,7 @@ type IHTTPCookieStorage interface {
 	objectivec.IObject
 }
 
-// A container that manages the storage of cookies. [Full Topic]
+// A container that manages the storage of cookies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage
 type HTTPCookieStorage struct {

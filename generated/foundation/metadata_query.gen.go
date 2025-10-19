@@ -32,7 +32,7 @@ type IMetadataQuery interface {
 	objectivec.IObject
 }
 
-// A query that you perform against Spotlight metadata. [Full Topic]
+// A query that you perform against Spotlight metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery
 type MetadataQuery struct {

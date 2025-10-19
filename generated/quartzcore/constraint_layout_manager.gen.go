@@ -32,7 +32,7 @@ type IConstraintLayoutManager interface {
 	objectivec.IObject
 }
 
-// An object that provides a constraint-based layout manager. [Full Topic]
+// An object that provides a constraint-based layout manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintLayoutManager
 type ConstraintLayoutManager struct {
@@ -78,8 +78,7 @@ func NewConstraintLayoutManager() ConstraintLayoutManager {
 }
 
 
-// Returns the shared layout manager object. [Full Topic]
-
+// Returns the shared layout manager object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintLayoutManager/layoutManager
 func (cc _ConstraintLayoutManagerClass) LayoutManager() unsafe.Pointer {

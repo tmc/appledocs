@@ -34,7 +34,7 @@ type IRunLoop interface {
 	GetCFRunLoop() unsafe.Pointer
 }
 
-// The programmatic interface to objects that manage input sources. [Full Topic]
+// The programmatic interface to objects that manage input sources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop
 type RunLoop struct {
@@ -80,15 +80,13 @@ func NewRunLoop() RunLoop {
 }
 
 
-// Registers a given timer with a given input mode. [Full Topic]
-
+// Registers a given timer with a given input mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/add(_:forMode:)-392ag
 func (r_ RunLoop) AddTimerForMode(timer unsafe.Pointer, mode unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addTimer:forMode:"), timer, mode)
 }
-// Returns the receiver’s underlying run loop object. [Full Topic]
-
+// Returns the receiver’s underlying run loop object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/getCFRunLoop()
 func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {

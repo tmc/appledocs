@@ -31,7 +31,7 @@ type IMutableDictionary interface {
 	IDictionary
 }
 
-// A dynamic collection of objects associated with unique keys. [Full Topic]
+// A dynamic collection of objects associated with unique keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary
 type MutableDictionary struct {

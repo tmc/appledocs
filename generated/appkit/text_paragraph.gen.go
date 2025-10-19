@@ -31,7 +31,7 @@ type ITextParagraph interface {
 	ITextElement
 }
 
-// A class that represents a single paragraph backed by an attributed string as the contents. [Full Topic]
+// A class that represents a single paragraph backed by an attributed string as the contents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph
 type TextParagraph struct {

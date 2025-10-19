@@ -31,7 +31,7 @@ type IDateFormatter interface {
 	IFormatter
 }
 
-// A formatter that converts between dates and their textual representations. [Full Topic]
+// A formatter that converts between dates and their textual representations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter
 type DateFormatter struct {

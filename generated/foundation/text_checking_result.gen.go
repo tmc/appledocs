@@ -32,7 +32,7 @@ type ITextCheckingResult interface {
 	objectivec.IObject
 }
 
-// An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression. [Full Topic]
+// An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult
 type TextCheckingResult struct {

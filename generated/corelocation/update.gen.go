@@ -32,7 +32,7 @@ type IUpdate interface {
 	objectivec.IObject
 }
 
-// An object that represents a location update. [Full Topic]
+// An object that represents a location update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate
 type Update struct {

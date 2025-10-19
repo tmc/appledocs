@@ -32,7 +32,7 @@ type IAVCaptureVideoPreviewLayer interface {
 	quartzcore.ILayer
 }
 
-// A Core Animation layer that displays video from a camera device. [Full Topic]
+// A Core Animation layer that displays video from a camera device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoPreviewLayer
 type AVCaptureVideoPreviewLayer struct {

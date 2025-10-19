@@ -34,7 +34,7 @@ type IWritingToolsCoordinator interface {
 	UpdateRangeWithTextReasonForContextWithIdentifier(range_ unsafe.Pointer, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer)
 }
 
-// An object that manages interactions between Writing Tools and your custom text view. [Full Topic]
+// An object that manages interactions between Writing Tools and your custom text view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator
 type WritingToolsCoordinator struct {
@@ -80,19 +80,19 @@ func NewWritingToolsCoordinator() WritingToolsCoordinator {
 }
 
 
-// Informs the coordinator that a change occurred to the view or its text that requires a layout update. [Full Topic]
-
+// Informs the coordinator that a change occurred to the view or its text that requires a layout update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateForReflowedTextInContextWithIdentifier(_:)
 func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(contextID unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateForReflowedTextInContextWithIdentifier:"), contextID)
 }
-// Informs the coordinator about changes your app made to the text in the specified context object. [Full Topic]
 
+// Informs the coordinator about changes your app made to the text in the specified context object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)
 func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ unsafe.Pointer, replacementText unsafe.Pointer, reason unsafe.Pointer, contextID unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateRange:withText:reason:forContextWithIdentifier:"), range_, replacementText, reason, contextID)
 }
+
 
 

@@ -32,7 +32,7 @@ type IURLCredentialStorage interface {
 	objectivec.IObject
 }
 
-// The manager of a shared credentials cache. [Full Topic]
+// The manager of a shared credentials cache.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage
 type URLCredentialStorage struct {

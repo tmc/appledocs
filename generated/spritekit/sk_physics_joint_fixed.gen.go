@@ -31,7 +31,7 @@ type ISKPhysicsJointFixed interface {
 	ISKPhysicsJoint
 }
 
-// A joint that fuses two physics bodies together at a reference point. [Full Topic]
+// A joint that fuses two physics bodies together at a reference point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointFixed
 type SKPhysicsJointFixed struct {
@@ -79,8 +79,7 @@ func NewSKPhysicsJointFixed() SKPhysicsJointFixed {
 }
 
 
-// Creates a new fixed joint. [Full Topic]
-
+// Creates a new fixed joint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsJointFixed/joint(withBodyA:bodyB:anchor:)
 func (sc _SKPhysicsJointFixedClass) JointWithBodyABodyBAnchor(bodyA unsafe.Pointer, bodyB unsafe.Pointer, anchor unsafe.Pointer) unsafe.Pointer {

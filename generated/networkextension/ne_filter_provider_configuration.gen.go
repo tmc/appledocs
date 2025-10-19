@@ -32,7 +32,7 @@ type INEFilterProviderConfiguration interface {
 	objectivec.IObject
 }
 
-// Configuration parameters for a content filter. [Full Topic]
+// Configuration parameters for a content filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterProviderConfiguration
 type NEFilterProviderConfiguration struct {

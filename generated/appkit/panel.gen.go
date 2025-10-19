@@ -31,7 +31,7 @@ type IPanel interface {
 	IWindow
 }
 
-// A special kind of window that typically performs a function that is auxiliary to the main window. [Full Topic]
+// A special kind of window that typically performs a function that is auxiliary to the main window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel
 type Panel struct {

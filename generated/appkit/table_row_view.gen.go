@@ -36,7 +36,7 @@ type ITableRowView interface {
 	ViewAtColumn(column int) objc.ID
 }
 
-// The view shown for a row in a table view. [Full Topic]
+// The view shown for a row in a table view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView
 type TableRowView struct {
@@ -84,41 +84,41 @@ func NewTableRowView() TableRowView {
 }
 
 
-// Draws the background of the row in the rectangle. [Full Topic]
-
+// Draws the background of the row in the rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawBackground(in:)
 func (t_ TableRowView) DrawBackgroundInRect(dirtyRect unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawBackgroundInRect:"), dirtyRect)
 }
-// Draws the row’s dragging destination feedback when the entire row is a drop target. [Full Topic]
 
+// Draws the row’s dragging destination feedback when the entire row is a drop target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawDraggingDestinationFeedback(in:)
 func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawDraggingDestinationFeedbackInRect:"), dirtyRect)
 }
-// Draws the selected row. [Full Topic]
 
+// Draws the selected row.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawSelection(in:)
 func (t_ TableRowView) DrawSelectionInRect(dirtyRect unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawSelectionInRect:"), dirtyRect)
 }
-// Draws the horizontal separator between table rows. [Full Topic]
 
+// Draws the horizontal separator between table rows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawSeparator(in:)
 func (t_ TableRowView) DrawSeparatorInRect(dirtyRect unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawSeparatorInRect:"), dirtyRect)
 }
-// Provides access to the given view at a particular column. [Full Topic]
 
+// Provides access to the given view at a particular column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/view(atColumn:)
 func (t_ TableRowView) ViewAtColumn(column int) objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("viewAtColumn:"), column)
 	return rv
 }
+
 
 

@@ -35,7 +35,7 @@ type IUserDefaults interface {
 	StringForKey(defaultName string) unsafe.Pointer
 }
 
-// An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app. [Full Topic]
+// An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults
 type UserDefaults struct {
@@ -81,8 +81,7 @@ func NewUserDefaults() UserDefaults {
 }
 
 
-// Creates a user defaults object initialized with the defaults for the specified database name. [Full Topic]
-
+// Creates a user defaults object initialized with the defaults for the specified database name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/init(suiteName:)
 func NewUserDefaultsWithSuiteName(suitename string) UserDefaults {
@@ -93,22 +92,19 @@ func NewUserDefaultsWithSuiteName(suitename string) UserDefaults {
 }
 
 
-// Sets the value of the specified default key to the specified URL. [Full Topic]
-
+// Sets the value of the specified default key to the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-2bqjt
 func (u_ UserDefaults) SetURLForKey(url unsafe.Pointer, defaultName string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setURL:forKey:"), url, objc.String(defaultName))
 }
-// Sets the value of the specified default key. [Full Topic]
-
+// Sets the value of the specified default key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-8ab6d
 func (u_ UserDefaults) SetObjectForKey(value objc.ID, defaultName string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setObject:forKey:"), value, objc.String(defaultName))
 }
-// Returns the string associated with the specified key. [Full Topic]
-
+// Returns the string associated with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/string(forKey:)
 func (u_ UserDefaults) StringForKey(defaultName string) unsafe.Pointer {

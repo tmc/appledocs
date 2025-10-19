@@ -32,7 +32,7 @@ type IMIDICIDiscoveryManager interface {
 	objectivec.IObject
 }
 
-// A singleton object that performs systemwide MIDI-CI discovery. [Full Topic]
+// A singleton object that performs systemwide MIDI-CI discovery.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveryManager
 type MIDICIDiscoveryManager struct {

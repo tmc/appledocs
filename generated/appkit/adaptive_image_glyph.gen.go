@@ -32,7 +32,7 @@ type IAdaptiveImageGlyph interface {
 	objectivec.IObject
 }
 
-// A data object for an emoji-like image that can appear in attributed text. [Full Topic]
+// A data object for an emoji-like image that can appear in attributed text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph
 type AdaptiveImageGlyph struct {

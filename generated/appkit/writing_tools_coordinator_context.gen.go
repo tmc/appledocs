@@ -32,7 +32,7 @@ type IWritingToolsCoordinatorContext interface {
 	objectivec.IObject
 }
 
-// A data object that you use to share your custom view’s text with Writing Tools. [Full Topic]
+// A data object that you use to share your custom view’s text with Writing Tools.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context
 type WritingToolsCoordinatorContext struct {

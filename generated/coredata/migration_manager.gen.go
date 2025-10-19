@@ -33,7 +33,7 @@ type IMigrationManager interface {
 	DestinationEntityForEntityMapping(mEntity unsafe.Pointer) unsafe.Pointer
 }
 
-// A migration manager instance that performs a migration of data from one persistent store to another using a given mapping model. [Full Topic]
+// A migration manager instance that performs a migration of data from one persistent store to another using a given mapping model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager
 type MigrationManager struct {
@@ -79,8 +79,7 @@ func NewMigrationManager() MigrationManager {
 }
 
 
-// Returns the entity description for the destination entity of a given entity mapping. [Full Topic]
-
+// Returns the entity description for the destination entity of a given entity mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/destinationEntity(for:)
 func (m_ MigrationManager) DestinationEntityForEntityMapping(mEntity unsafe.Pointer) unsafe.Pointer {

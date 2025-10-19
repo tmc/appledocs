@@ -32,7 +32,7 @@ type ISKRange interface {
 	objectivec.IObject
 }
 
-// A definition of a range of floating-point values. [Full Topic]
+// A definition of a range of floating-point values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange
 type SKRange struct {
@@ -78,32 +78,21 @@ func NewSKRange() SKRange {
 }
 
 
-// Creates and initializes a new range object using a value and a maximum distance from that value. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(value:variance:)
-func NewSKRangeWithValueVariance(value float64, variance float64) SKRange {
-	rv := objc.Send[SKRange](objc.ID(getSKRangeClass().class), objc.Sel("rangeWithValue:variance:"), value, variance)
-	return rv
-}
-// Creates and initializes a new range object that specifies a constant value. [Full Topic]
-
+// Creates and initializes a new range object that specifies a constant value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(constantValue:)
 func NewSKRangeWithConstantValue(value float64) SKRange {
 	rv := objc.Send[SKRange](objc.ID(getSKRangeClass().class), objc.Sel("rangeWithConstantValue:"), value)
 	return rv
 }
-// Creates and initializes a new range object that specifies only a minimum value. [Full Topic]
-
+// Creates and initializes a new range object that specifies only a minimum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(lowerLimit:)
 func NewSKRangeWithLowerLimit(lower float64) SKRange {
 	rv := objc.Send[SKRange](objc.ID(getSKRangeClass().class), objc.Sel("rangeWithLowerLimit:"), lower)
 	return rv
 }
-// Initializes a new range object. [Full Topic]
-
+// Initializes a new range object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(lowerLimit:upperLimit:)
 func NewSKRangeWithLowerLimitUpperLimit(lower float64, upper float64) SKRange {
@@ -112,58 +101,58 @@ func NewSKRangeWithLowerLimitUpperLimit(lower float64, upper float64) SKRange {
 	rv.Autorelease()
 	return rv
 }
-// Creates and initializes a new range object that specifies only a maximum value. [Full Topic]
-
+// Creates and initializes a new range object that specifies only a maximum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(upperLimit:)
 func NewSKRangeWithUpperLimit(upper float64) SKRange {
 	rv := objc.Send[SKRange](objc.ID(getSKRangeClass().class), objc.Sel("rangeWithUpperLimit:"), upper)
 	return rv
 }
+// Creates and initializes a new range object using a value and a maximum distance from that value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(value:variance:)
+func NewSKRangeWithValueVariance(value float64, variance float64) SKRange {
+	rv := objc.Send[SKRange](objc.ID(getSKRangeClass().class), objc.Sel("rangeWithValue:variance:"), value, variance)
+	return rv
+}
 
 
-// Creates and initializes a new range object that specifies a constant value. [Full Topic]
-
+// Creates and initializes a new range object that specifies a constant value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(constantValue:)
 func (sc _SKRangeClass) RangeWithConstantValue(value float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("rangeWithConstantValue:"), value)
 	return rv
 }
-// Creates and initializes a new range object that specifies only a minimum value. [Full Topic]
-
+// Creates and initializes a new range object that specifies only a minimum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(lowerLimit:)
 func (sc _SKRangeClass) RangeWithLowerLimit(lower float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("rangeWithLowerLimit:"), lower)
 	return rv
 }
-// Creates and initializes a new range object that specifies only a maximum value. [Full Topic]
-
+// Creates and initializes a new range object that specifies only a maximum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(upperLimit:)
 func (sc _SKRangeClass) RangeWithUpperLimit(upper float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("rangeWithUpperLimit:"), upper)
 	return rv
 }
-// Creates and initializes a new range object using a value and a maximum distance from that value. [Full Topic]
-
+// Creates and initializes a new range object using a value and a maximum distance from that value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/init(value:variance:)
 func (sc _SKRangeClass) RangeWithValueVariance(value float64, variance float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("rangeWithValue:variance:"), value, variance)
 	return rv
 }
-// Creates and initializes a new range object. [Full Topic]
-
+// Creates and initializes a new range object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/rangeWithLowerLimit:upperLimit:
 func (sc _SKRangeClass) RangeWithLowerLimitUpperLimit(lower float64, upper float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("rangeWithLowerLimit:upperLimit:"), lower, upper)
 	return rv
 }
-// Creates and initializes a new range object that encompasses all possible values. [Full Topic]
-
+// Creates and initializes a new range object that encompasses all possible values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKRange/withNoLimits()
 func (sc _SKRangeClass) RangeWithNoLimits() unsafe.Pointer {

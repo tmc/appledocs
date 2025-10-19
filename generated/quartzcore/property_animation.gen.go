@@ -31,7 +31,7 @@ type IPropertyAnimation interface {
 	IAnimation
 }
 
-// An abstract subclass for creating animations that manipulate the value of layer properties. [Full Topic]
+// An abstract subclass for creating animations that manipulate the value of layer properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation
 type PropertyAnimation struct {
@@ -79,8 +79,7 @@ func NewPropertyAnimation() PropertyAnimation {
 }
 
 
-// Creates and returns an instance for the specified key path. [Full Topic]
-
+// Creates and returns an instance for the specified key path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/init(keyPath:)
 func NewPropertyAnimationWithKeyPath(path string) PropertyAnimation {
@@ -89,8 +88,7 @@ func NewPropertyAnimationWithKeyPath(path string) PropertyAnimation {
 }
 
 
-// Creates and returns an instance for the specified key path. [Full Topic]
-
+// Creates and returns an instance for the specified key path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/init(keyPath:)
 func (pc _PropertyAnimationClass) AnimationWithKeyPath(path string) unsafe.Pointer {

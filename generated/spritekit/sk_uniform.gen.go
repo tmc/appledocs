@@ -32,7 +32,7 @@ type ISKUniform interface {
 	objectivec.IObject
 }
 
-// A container for uniform shader data. [Full Topic]
+// A container for uniform shader data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform
 type SKUniform struct {
@@ -78,34 +78,24 @@ func NewSKUniform() SKUniform {
 }
 
 
+// Initializes a new uniform object that holds a reference to a texture.
 //
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:vectorFloat4:)
-func NewSKUniformWithNameVectorFloat4(name string, value unsafe.Pointer) SKUniform {
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:texture:)
+func NewSKUniformWithNameTexture(name string, texture unsafe.Pointer) SKUniform {
 	instance := getSKUniformClass().Alloc()
-	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:vectorFloat4:"), objc.String(name), value)
+	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:texture:"), objc.String(name), texture)
 	rv.Autorelease()
 	return rv
 }
 //
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:vectorFloat3:)
-func NewSKUniformWithNameVectorFloat3(name string, value unsafe.Pointer) SKUniform {
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:vectorFloat2:)
+func NewSKUniformWithNameVectorFloat2(name string, value unsafe.Pointer) SKUniform {
 	instance := getSKUniformClass().Alloc()
-	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:vectorFloat3:"), objc.String(name), value)
+	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:vectorFloat2:"), objc.String(name), value)
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new uniform object. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:)
-func NewSKUniformWithName(name string) SKUniform {
-	instance := getSKUniformClass().Alloc()
-	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:"), objc.String(name))
-	rv.Autorelease()
-	return rv
-}
-// Initializes a new uniform object that holds a floating-point number. [Full Topic]
-
+// Initializes a new uniform object that holds a floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:float:)-48rln
 func NewSKUniformWithNameFloat(name string, value float32) SKUniform {
@@ -114,31 +104,30 @@ func NewSKUniformWithNameFloat(name string, value float32) SKUniform {
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new uniform object that holds a vector of two floating-point numbers. [Full Topic]
-
+// Initializes a new uniform object that holds a matrix of floating-point numbers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:float:)-60zbm
+func NewSKUniformWithNameFloatMatrix4(name string, value unsafe.Pointer) SKUniform {
+	instance := getSKUniformClass().Alloc()
+	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:floatMatrix4:"), objc.String(name), value)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a new uniform object that holds a matrix of floating-point numbers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:float:)-6110m
+func NewSKUniformWithNameFloatMatrix2(name string, value unsafe.Pointer) SKUniform {
+	instance := getSKUniformClass().Alloc()
+	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:floatMatrix2:"), objc.String(name), value)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a new uniform object that holds a vector of two floating-point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:float:)-9g5vj
 func NewSKUniformWithNameFloatVector2(name string, value unsafe.Pointer) SKUniform {
 	instance := getSKUniformClass().Alloc()
 	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:floatVector2:"), objc.String(name), value)
-	rv.Autorelease()
-	return rv
-}
-// Creates and initializes a new uniform object that holds a vector of three floating-point numbers. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:float:)-9g6a7
-func NewSKUniformWithNameFloatVector3(name string, value unsafe.Pointer) SKUniform {
-	instance := getSKUniformClass().Alloc()
-	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:floatVector3:"), objc.String(name), value)
-	rv.Autorelease()
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:matrixFloat2x2:)
-func NewSKUniformWithNameMatrixFloat2x2(name string, value unsafe.Pointer) SKUniform {
-	instance := getSKUniformClass().Alloc()
-	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:matrixFloat2x2:"), objc.String(name), value)
 	rv.Autorelease()
 	return rv
 }
@@ -151,35 +140,31 @@ func NewSKUniformWithNameMatrixFloat3x3(name string, value unsafe.Pointer) SKUni
 	return rv
 }
 //
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:vectorFloat2:)
-func NewSKUniformWithNameVectorFloat2(name string, value unsafe.Pointer) SKUniform {
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:matrixFloat4x4:)
+func NewSKUniformWithNameMatrixFloat4x4(name string, value unsafe.Pointer) SKUniform {
 	instance := getSKUniformClass().Alloc()
-	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:vectorFloat2:"), objc.String(name), value)
+	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:matrixFloat4x4:"), objc.String(name), value)
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new uniform object that holds a matrix of floating-point numbers. [Full Topic]
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:float:)-60zbm
-func NewSKUniformWithNameFloatMatrix4(name string, value unsafe.Pointer) SKUniform {
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:vectorFloat3:)
+func NewSKUniformWithNameVectorFloat3(name string, value unsafe.Pointer) SKUniform {
 	instance := getSKUniformClass().Alloc()
-	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:floatMatrix4:"), objc.String(name), value)
+	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:vectorFloat3:"), objc.String(name), value)
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new uniform object that holds a matrix of floating-point numbers. [Full Topic]
-
+// Initializes a new uniform object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:float:)-6110m
-func NewSKUniformWithNameFloatMatrix2(name string, value unsafe.Pointer) SKUniform {
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:)
+func NewSKUniformWithName(name string) SKUniform {
 	instance := getSKUniformClass().Alloc()
-	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:floatMatrix2:"), objc.String(name), value)
+	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:"), objc.String(name))
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new uniform object that holds a matrix of floating-point numbers. [Full Topic]
-
+// Initializes a new uniform object that holds a matrix of floating-point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:float:)-611hs
 func NewSKUniformWithNameFloatMatrix3(name string, value unsafe.Pointer) SKUniform {
@@ -188,8 +173,16 @@ func NewSKUniformWithNameFloatMatrix3(name string, value unsafe.Pointer) SKUnifo
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new uniform object that holds a vector of four floating-point numbers. [Full Topic]
-
+// Creates and initializes a new uniform object that holds a vector of three floating-point numbers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:float:)-9g6a7
+func NewSKUniformWithNameFloatVector3(name string, value unsafe.Pointer) SKUniform {
+	instance := getSKUniformClass().Alloc()
+	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:floatVector3:"), objc.String(name), value)
+	rv.Autorelease()
+	return rv
+}
+// Initializes a new uniform object that holds a vector of four floating-point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:float:)-9g7j7
 func NewSKUniformWithNameFloatVector4(name string, value unsafe.Pointer) SKUniform {
@@ -199,83 +192,73 @@ func NewSKUniformWithNameFloatVector4(name string, value unsafe.Pointer) SKUnifo
 	return rv
 }
 //
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:matrixFloat4x4:)
-func NewSKUniformWithNameMatrixFloat4x4(name string, value unsafe.Pointer) SKUniform {
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:matrixFloat2x2:)
+func NewSKUniformWithNameMatrixFloat2x2(name string, value unsafe.Pointer) SKUniform {
 	instance := getSKUniformClass().Alloc()
-	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:matrixFloat4x4:"), objc.String(name), value)
+	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:matrixFloat2x2:"), objc.String(name), value)
 	rv.Autorelease()
 	return rv
 }
-// Initializes a new uniform object that holds a reference to a texture. [Full Topic]
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:texture:)
-func NewSKUniformWithNameTexture(name string, texture unsafe.Pointer) SKUniform {
+// [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/init(name:vectorFloat4:)
+func NewSKUniformWithNameVectorFloat4(name string, value unsafe.Pointer) SKUniform {
 	instance := getSKUniformClass().Alloc()
-	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:texture:"), objc.String(name), texture)
+	rv := objc.Send[SKUniform](instance.ID, objc.Sel("initWithName:vectorFloat4:"), objc.String(name), value)
 	rv.Autorelease()
 	return rv
 }
 
 
-// Creates and initializes a new uniform object. [Full Topic]
-
+// Creates and initializes a new uniform object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/uniformWithName:
 func (sc _SKUniformClass) UniformWithName(name string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("uniformWithName:"), objc.String(name))
 	return rv
 }
-// Creates and initializes a new uniform object that holds a floating-point number. [Full Topic]
-
+// Creates and initializes a new uniform object that holds a floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/uniformWithName:float:
 func (sc _SKUniformClass) UniformWithNameFloat(name string, value float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("uniformWithName:float:"), objc.String(name), value)
 	return rv
 }
-// Creates and initializes a new uniform object that holds a matrix of floating-point numbers. [Full Topic]
-
+// Creates and initializes a new uniform object that holds a matrix of floating-point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/uniformWithName:floatMatrix2:
 func (sc _SKUniformClass) UniformWithNameFloatMatrix2(name string, value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("uniformWithName:floatMatrix2:"), objc.String(name), value)
 	return rv
 }
-// Creates and initializes a new uniform object that holds a matrix of floating-point numbers. [Full Topic]
-
+// Creates and initializes a new uniform object that holds a matrix of floating-point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/uniformWithName:floatMatrix3:
 func (sc _SKUniformClass) UniformWithNameFloatMatrix3(name string, value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("uniformWithName:floatMatrix3:"), objc.String(name), value)
 	return rv
 }
-// Creates and initializes a new uniform object that holds a matrix of floating-point numbers. [Full Topic]
-
+// Creates and initializes a new uniform object that holds a matrix of floating-point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/uniformWithName:floatMatrix4:
 func (sc _SKUniformClass) UniformWithNameFloatMatrix4(name string, value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("uniformWithName:floatMatrix4:"), objc.String(name), value)
 	return rv
 }
-// Creates and initializes a new uniform object that holds a vector of two floating-point numbers. [Full Topic]
-
+// Creates and initializes a new uniform object that holds a vector of two floating-point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/uniformWithName:floatVector2:
 func (sc _SKUniformClass) UniformWithNameFloatVector2(name string, value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("uniformWithName:floatVector2:"), objc.String(name), value)
 	return rv
 }
-// Creates and initializes a new uniform object that holds a vector of three floating-point numbers. [Full Topic]
-
+// Creates and initializes a new uniform object that holds a vector of three floating-point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/uniformWithName:floatVector3:
 func (sc _SKUniformClass) UniformWithNameFloatVector3(name string, value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("uniformWithName:floatVector3:"), objc.String(name), value)
 	return rv
 }
-// Creates and initializes a new uniform object that holds a vector of four floating-point numbers. [Full Topic]
-
+// Creates and initializes a new uniform object that holds a vector of four floating-point numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/uniformWithName:floatVector4:
 func (sc _SKUniformClass) UniformWithNameFloatVector4(name string, value unsafe.Pointer) unsafe.Pointer {
@@ -300,8 +283,7 @@ func (sc _SKUniformClass) UniformWithNameMatrixFloat4x4(name string, value unsaf
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("uniformWithName:matrixFloat4x4:"), objc.String(name), value)
 	return rv
 }
-// Creates and initializes a new uniform object that holds a reference to a texture. [Full Topic]
-
+// Creates and initializes a new uniform object that holds a reference to a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKUniform/uniformWithName:texture:
 func (sc _SKUniformClass) UniformWithNameTexture(name string, texture unsafe.Pointer) unsafe.Pointer {

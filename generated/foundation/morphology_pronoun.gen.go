@@ -32,7 +32,7 @@ type IMorphologyPronoun interface {
 	objectivec.IObject
 }
 
-// A custom pronoun for referring to a third person. [Full Topic]
+// A custom pronoun for referring to a third person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun
 type MorphologyPronoun struct {

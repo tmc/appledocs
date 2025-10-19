@@ -32,7 +32,7 @@ type IFilePromiseReceiver interface {
 	objectivec.IObject
 }
 
-// An object that receives a file promise from the pasteboard. [Full Topic]
+// An object that receives a file promise from the pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver
 type FilePromiseReceiver struct {

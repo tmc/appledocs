@@ -32,7 +32,7 @@ type IDistributedLock interface {
 	objectivec.IObject
 }
 
-// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file. [Full Topic]
+// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock
 type DistributedLock struct {

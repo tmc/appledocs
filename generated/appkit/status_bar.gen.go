@@ -32,7 +32,7 @@ type IStatusBar interface {
 	objectivec.IObject
 }
 
-// An object that manages a collection of status items displayed within the system-wide menu bar. [Full Topic]
+// An object that manages a collection of status items displayed within the system-wide menu bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBar
 type StatusBar struct {

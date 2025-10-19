@@ -31,7 +31,7 @@ type ISetCommand interface {
 	IScriptCommand
 }
 
-// A command that sets one or more attributes or relationships to one or more values. [Full Topic]
+// A command that sets one or more attributes or relationships to one or more values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand
 type SetCommand struct {

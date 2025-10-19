@@ -32,7 +32,7 @@ type IPrintPanel interface {
 	objectivec.IObject
 }
 
-// The Print panel that queries the user for information about a print job. [Full Topic]
+// The Print panel that queries the user for information about a print job.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel
 type PrintPanel struct {

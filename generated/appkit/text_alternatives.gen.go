@@ -32,7 +32,7 @@ type ITextAlternatives interface {
 	objectivec.IObject
 }
 
-// A list of alternative strings for a piece of text. [Full Topic]
+// A list of alternative strings for a piece of text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives
 type TextAlternatives struct {

@@ -32,7 +32,7 @@ type ISpellServer interface {
 	objectivec.IObject
 }
 
-// A server that your app uses to provide a spell checker service to other apps running in the system. [Full Topic]
+// A server that your app uses to provide a spell checker service to other apps running in the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer
 type SpellServer struct {

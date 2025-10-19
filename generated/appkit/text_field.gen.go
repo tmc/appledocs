@@ -31,7 +31,7 @@ type ITextField interface {
 	IControl
 }
 
-// Text the user can select or edit to send an action message to a target when the user presses the Return key. [Full Topic]
+// Text the user can select or edit to send an action message to a target when the user presses the Return key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField
 type TextField struct {

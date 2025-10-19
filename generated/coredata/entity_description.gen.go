@@ -32,7 +32,7 @@ type IEntityDescription interface {
 	objectivec.IObject
 }
 
-// A description of a Core Data entity. [Full Topic]
+// A description of a Core Data entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription
 type EntityDescription struct {

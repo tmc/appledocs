@@ -31,7 +31,7 @@ type IDateIntervalFormatter interface {
 	IFormatter
 }
 
-// A formatter that creates string representations of time intervals. [Full Topic]
+// A formatter that creates string representations of time intervals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter
 type DateIntervalFormatter struct {

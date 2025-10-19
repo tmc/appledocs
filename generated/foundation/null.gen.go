@@ -32,7 +32,7 @@ type INull interface {
 	objectivec.IObject
 }
 
-// A singleton object used to represent null values in collection objects that don’t allow values. [Full Topic]
+// A singleton object used to represent null values in collection objects that don’t allow values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull
 type Null struct {

@@ -32,7 +32,7 @@ type IPersistentCloudKitContainerOptions interface {
 	objectivec.IObject
 }
 
-// An object that customizes how a store description aligns with a CloudKit database. [Full Topic]
+// An object that customizes how a store description aligns with a CloudKit database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions
 type PersistentCloudKitContainerOptions struct {
@@ -78,8 +78,7 @@ func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions 
 }
 
 
-// Initializes container options using the given CloudKit container identifier. [Full Topic]
-
+// Initializes container options using the given CloudKit container identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/init(containerIdentifier:)
 func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier string) PersistentCloudKitContainerOptions {

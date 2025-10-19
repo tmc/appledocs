@@ -31,7 +31,7 @@ type IPersistentCloudKitContainerEventResult interface {
 	IPersistentStoreResult
 }
 
-// The result of a request to fetch persistent CloudKit container events. [Full Topic]
+// The result of a request to fetch persistent CloudKit container events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult
 type PersistentCloudKitContainerEventResult struct {

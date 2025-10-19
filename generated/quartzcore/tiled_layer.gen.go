@@ -31,7 +31,7 @@ type ITiledLayer interface {
 	ILayer
 }
 
-// A layer that provides a way to asynchronously provide tiles of the layer’s content, potentially cached at multiple levels of detail. [Full Topic]
+// A layer that provides a way to asynchronously provide tiles of the layer’s content, potentially cached at multiple levels of detail.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer
 type TiledLayer struct {

@@ -32,7 +32,7 @@ type ICondition interface {
 	objectivec.IObject
 }
 
-// The abstract base class that all other conditions derive from. [Full Topic]
+// The abstract base class that all other conditions derive from.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCondition-c.class
 type Condition struct {

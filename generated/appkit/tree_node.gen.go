@@ -32,7 +32,7 @@ type ITreeNode interface {
 	objectivec.IObject
 }
 
-// A node in a tree of nodes. [Full Topic]
+// A node in a tree of nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeNode
 type TreeNode struct {

@@ -32,7 +32,7 @@ type IAVAssetReader interface {
 	objectivec.IObject
 }
 
-// An object that reads media data from an asset. [Full Topic]
+// An object that reads media data from an asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader
 type AVAssetReader struct {

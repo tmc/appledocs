@@ -31,7 +31,7 @@ type IStatusBarButton interface {
 	IButton
 }
 
-// The appearance and behavior of an item in the systemwide menu bar. [Full Topic]
+// The appearance and behavior of an item in the systemwide menu bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusBarButton
 type StatusBarButton struct {

@@ -32,7 +32,7 @@ type ISpeechSynthesizer interface {
 	objectivec.IObject
 }
 
-// The Cocoa interface to speech synthesis in macOS. [Full Topic]
+// The Cocoa interface to speech synthesis in macOS.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer
 type SpeechSynthesizer struct {

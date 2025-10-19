@@ -31,7 +31,7 @@ type IMoveCommand interface {
 	IScriptCommand
 }
 
-// A command that moves one or more scriptable objects. [Full Topic]
+// A command that moves one or more scriptable objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand
 type MoveCommand struct {

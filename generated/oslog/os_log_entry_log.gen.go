@@ -31,7 +31,7 @@ type IOSLogEntryLog interface {
 	IOSLogEntry
 }
 
-// A log entry. [Full Topic]
+// A log entry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntryLog
 type OSLogEntryLog struct {

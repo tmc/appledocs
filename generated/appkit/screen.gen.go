@@ -34,7 +34,7 @@ type IScreen interface {
 	UserSpaceScaleFactor() float64
 }
 
-// An object that describes the attributes of a computer’s monitor or screen. [Full Topic]
+// An object that describes the attributes of a computer’s monitor or screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen
 type Screen struct {
@@ -80,21 +80,21 @@ func NewScreen() Screen {
 }
 
 
-// A Boolean value indicating whether the color space of the screen is capable of representing the specified display gamut. [Full Topic]
-
+// A Boolean value indicating whether the color space of the screen is capable of representing the specified display gamut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/canRepresent(_:)
 func (s_ Screen) CanRepresentDisplayGamut(displayGamut unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canRepresentDisplayGamut:"), displayGamut)
 	return rv
 }
-// Returns the scaling factor from user space to device space on the screen. [Full Topic]
 
+// Returns the scaling factor from user space to device space on the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/userSpaceScaleFactor
 func (s_ Screen) UserSpaceScaleFactor() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("userSpaceScaleFactor"))
 	return rv
 }
+
 
 

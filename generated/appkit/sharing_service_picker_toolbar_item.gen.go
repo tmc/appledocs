@@ -31,7 +31,7 @@ type ISharingServicePickerToolbarItem interface {
 	IToolbarItem
 }
 
-// A toolbar item that displays the macOS share sheet. [Full Topic]
+// A toolbar item that displays the macOS share sheet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem
 type SharingServicePickerToolbarItem struct {

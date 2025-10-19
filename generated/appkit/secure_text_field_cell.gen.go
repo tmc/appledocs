@@ -31,7 +31,7 @@ type ISecureTextFieldCell interface {
 	ITextFieldCell
 }
 
-// A text field whose value is hidden from the user. [Full Topic]
+// A text field whose value is hidden from the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextFieldCell
 type SecureTextFieldCell struct {

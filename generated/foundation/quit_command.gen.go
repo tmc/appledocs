@@ -31,7 +31,7 @@ type IQuitCommand interface {
 	IScriptCommand
 }
 
-// A command that quits the specified app. [Full Topic]
+// A command that quits the specified app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSQuitCommand
 type QuitCommand struct {

@@ -32,7 +32,7 @@ type INEHotspotHelper interface {
 	objectivec.IObject
 }
 
-// A class to register a hotspot helper. [Full Topic]
+// A class to register a hotspot helper.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelper
 type NEHotspotHelper struct {

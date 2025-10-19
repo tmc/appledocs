@@ -32,7 +32,7 @@ type ISKPhysicsContact interface {
 	objectivec.IObject
 }
 
-// A description of the contact between two physics bodies. [Full Topic]
+// A description of the contact between two physics bodies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKPhysicsContact
 type SKPhysicsContact struct {

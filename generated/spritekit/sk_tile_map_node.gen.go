@@ -40,7 +40,7 @@ type ISKTileMapNode interface {
 	ValueForAttributeNamed(key string) unsafe.Pointer
 }
 
-// A two-dimensional array of images. [Full Topic]
+// A two-dimensional array of images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileMapNode
 type SKTileMapNode struct {
@@ -94,22 +94,19 @@ func (s_ SKTileMapNode) CenterOfTileAtColumnRow(column uint, row uint) unsafe.Po
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("centerOfTileAtColumn:row:"), column, row)
 	return rv
 }
-// When creating a tile map node programmatically, this function performs a fill operation with the specified tile group. [Full Topic]
-
+// When creating a tile map node programmatically, this function performs a fill operation with the specified tile group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileMapNode/fill(with:)
 func (s_ SKTileMapNode) FillWithTileGroup(tileGroup unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("fillWithTileGroup:"), tileGroup)
 }
-// Set the tile group and tile definition at the specified tile index. [Full Topic]
-
+// Set the tile group and tile definition at the specified tile index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileMapNode/setTileGroup(_:andTileDefinition:forColumn:row:)
 func (s_ SKTileMapNode) SetTileGroupAndTileDefinitionForColumnRow(tileGroup unsafe.Pointer, tileDefinition unsafe.Pointer, column uint, row uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTileGroup:andTileDefinition:forColumn:row:"), tileGroup, tileDefinition, column, row)
 }
-// Sets an attribute value for an attached shader. [Full Topic]
-
+// Sets an attribute value for an attached shader.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileMapNode/setValue(_:forAttribute:)
 func (s_ SKTileMapNode) SetValueForAttributeNamed(value unsafe.Pointer, key string) {
@@ -133,16 +130,14 @@ func (s_ SKTileMapNode) TileGroupAtColumnRow(column uint, row uint) unsafe.Point
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("tileGroupAtColumn:row:"), column, row)
 	return rv
 }
-// Returns the tile map node object’s tile row index for the specified position in points. [Full Topic]
-
+// Returns the tile map node object’s tile row index for the specified position in points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileMapNode/tileRowIndex(fromPosition:)
 func (s_ SKTileMapNode) TileRowIndexFromPosition(position unsafe.Pointer) uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("tileRowIndexFromPosition:"), position)
 	return rv
 }
-// The value of a shader attribute. [Full Topic]
-
+// The value of a shader attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKTileMapNode/value(forAttributeNamed:)
 func (s_ SKTileMapNode) ValueForAttributeNamed(key string) unsafe.Pointer {

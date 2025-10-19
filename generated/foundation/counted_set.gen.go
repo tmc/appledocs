@@ -31,7 +31,7 @@ type ICountedSet interface {
 	IMutableSet
 }
 
-// A mutable, unordered collection of distinct objects that may appear more than once in the collection. [Full Topic]
+// A mutable, unordered collection of distinct objects that may appear more than once in the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet
 type CountedSet struct {

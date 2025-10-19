@@ -31,7 +31,7 @@ type ITextLayer interface {
 	ILayer
 }
 
-// A layer that provides simple text layout and rendering of plain or attributed strings. [Full Topic]
+// A layer that provides simple text layout and rendering of plain or attributed strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer
 type TextLayer struct {

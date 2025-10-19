@@ -32,7 +32,7 @@ type ITransaction interface {
 	objectivec.IObject
 }
 
-// A mechanism for grouping multiple layer-tree operations into atomic updates to the render tree. [Full Topic]
+// A mechanism for grouping multiple layer-tree operations into atomic updates to the render tree.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction
 type Transaction struct {
@@ -78,8 +78,7 @@ func NewTransaction() Transaction {
 }
 
 
-// Sets the arbitrary keyed-data for the specified key. [Full Topic]
-
+// Sets the arbitrary keyed-data for the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction/setValue(_:forKey:)
 func (tc _TransactionClass) SetValueForKey(anObject objc.ID, key string) {

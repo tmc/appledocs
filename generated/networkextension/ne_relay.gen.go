@@ -32,7 +32,7 @@ type INERelay interface {
 	objectivec.IObject
 }
 
-// A single relay server configuration that you can chain together with other relays. [Full Topic]
+// A single relay server configuration that you can chain together with other relays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay
 type NERelay struct {

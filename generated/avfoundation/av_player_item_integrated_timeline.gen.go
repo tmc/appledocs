@@ -32,7 +32,7 @@ type IAVPlayerItemIntegratedTimeline interface {
 	objectivec.IObject
 }
 
-// An object that models the timeline and playback sequence of a primary player item and scheduled interstitial events. [Full Topic]
+// An object that models the timeline and playback sequence of a primary player item and scheduled interstitial events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemIntegratedTimeline
 type AVPlayerItemIntegratedTimeline struct {

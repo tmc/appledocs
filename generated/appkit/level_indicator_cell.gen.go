@@ -31,7 +31,7 @@ type ILevelIndicatorCell interface {
 	IActionCell
 }
 
-// is a subclass of that provides several level indicator display styles including: capacity, ranking and relevancy. The capacity style provides both continuous and discrete modes. [Full Topic]
+// is a subclass of that provides several level indicator display styles including: capacity, ranking and relevancy. The capacity style provides both continuous and discrete modes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicatorCell
 type LevelIndicatorCell struct {

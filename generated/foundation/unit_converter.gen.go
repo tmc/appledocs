@@ -32,7 +32,7 @@ type IUnitConverter interface {
 	objectivec.IObject
 }
 
-// An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension. [Full Topic]
+// An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter
 type UnitConverter struct {

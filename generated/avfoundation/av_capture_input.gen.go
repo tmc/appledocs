@@ -32,7 +32,7 @@ type IAVCaptureInput interface {
 	objectivec.IObject
 }
 
-// An abstract superclass for objects that provide input data to a capture session. [Full Topic]
+// An abstract superclass for objects that provide input data to a capture session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput
 type AVCaptureInput struct {

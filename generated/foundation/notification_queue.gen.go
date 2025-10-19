@@ -32,7 +32,7 @@ type INotificationQueue interface {
 	objectivec.IObject
 }
 
-// A notification center buffer. [Full Topic]
+// A notification center buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue
 type NotificationQueue struct {

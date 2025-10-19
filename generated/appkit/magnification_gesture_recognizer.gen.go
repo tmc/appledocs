@@ -31,7 +31,7 @@ type IMagnificationGestureRecognizer interface {
 	IGestureRecognizer
 }
 
-// A continuous gesture recognizer that tracks a pinch gesture that magnifies content. [Full Topic]
+// A continuous gesture recognizer that tracks a pinch gesture that magnifies content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMagnificationGestureRecognizer
 type MagnificationGestureRecognizer struct {

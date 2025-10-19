@@ -32,7 +32,7 @@ type IConditionLock interface {
 	objectivec.IObject
 }
 
-// A lock that can be associated with specific, user-defined conditions. [Full Topic]
+// A lock that can be associated with specific, user-defined conditions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock
 type ConditionLock struct {

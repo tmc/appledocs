@@ -31,7 +31,7 @@ type INEPacketTunnelNetworkSettings interface {
 	INETunnelNetworkSettings
 }
 
-// The configuration for a packet tunnel provider’s virtual interface. [Full Topic]
+// The configuration for a packet tunnel provider’s virtual interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings
 type NEPacketTunnelNetworkSettings struct {

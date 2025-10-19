@@ -32,7 +32,7 @@ type IWorkspaceOpenConfiguration interface {
 	objectivec.IObject
 }
 
-// The configuration options for opening URLs or launching apps. [Full Topic]
+// The configuration options for opening URLs or launching apps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration
 type WorkspaceOpenConfiguration struct {

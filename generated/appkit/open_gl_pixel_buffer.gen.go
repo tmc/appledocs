@@ -32,7 +32,7 @@ type IOpenGLPixelBuffer interface {
 	objectivec.IObject
 }
 
-// An object that provides access to accelerated offscreen rendering. [Full Topic]
+// An object that provides access to accelerated offscreen rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer
 type OpenGLPixelBuffer struct {

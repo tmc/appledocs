@@ -31,7 +31,7 @@ type IMTL4MachineLearningPipelineDescriptor interface {
 	IMTL4PipelineDescriptor
 }
 
-// Description for a machine learning pipeline state. [Full Topic]
+// Description for a machine learning pipeline state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MachineLearningPipelineDescriptor
 type MTL4MachineLearningPipelineDescriptor struct {

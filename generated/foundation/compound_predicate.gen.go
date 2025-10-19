@@ -31,7 +31,7 @@ type ICompoundPredicate interface {
 	IPredicate
 }
 
-// A specialized predicate that evaluates logical combinations of other predicates. [Full Topic]
+// A specialized predicate that evaluates logical combinations of other predicates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate
 type CompoundPredicate struct {

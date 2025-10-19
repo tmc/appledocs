@@ -32,7 +32,7 @@ type IAVContentKeySpecifier interface {
 	objectivec.IObject
 }
 
-// An object that uniquely identifies a content key. [Full Topic]
+// An object that uniquely identifies a content key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKeySpecifier
 type AVContentKeySpecifier struct {

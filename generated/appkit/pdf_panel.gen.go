@@ -32,7 +32,7 @@ type IPDFPanel interface {
 	objectivec.IObject
 }
 
-// A Save or Export as PDF panel that’s consistent with the macOS user interface. [Full Topic]
+// A Save or Export as PDF panel that’s consistent with the macOS user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel
 type PDFPanel struct {

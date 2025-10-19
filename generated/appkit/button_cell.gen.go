@@ -31,7 +31,7 @@ type IButtonCell interface {
 	IActionCell
 }
 
-// An object that defines the user interface of a button or other clickable region of a view. [Full Topic]
+// An object that defines the user interface of a button or other clickable region of a view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell
 type ButtonCell struct {

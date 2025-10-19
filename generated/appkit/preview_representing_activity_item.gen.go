@@ -32,7 +32,7 @@ type IPreviewRepresentingActivityItem interface {
 	objectivec.IObject
 }
 
-// A type that adds metadata to an item you share using the macOS share sheet. [Full Topic]
+// A type that adds metadata to an item you share using the macOS share sheet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem
 type PreviewRepresentingActivityItem struct {

@@ -32,7 +32,7 @@ type IAVAssetWriterInput interface {
 	objectivec.IObject
 }
 
-// An object that appends media samples to a track in an asset writer’s output file. [Full Topic]
+// An object that appends media samples to a track in an asset writer’s output file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriterInput
 type AVAssetWriterInput struct {

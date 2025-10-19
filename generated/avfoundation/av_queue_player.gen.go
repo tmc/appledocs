@@ -31,7 +31,7 @@ type IAVQueuePlayer interface {
 	IAVPlayer
 }
 
-// An object that plays a sequence of player items. [Full Topic]
+// An object that plays a sequence of player items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer
 type AVQueuePlayer struct {

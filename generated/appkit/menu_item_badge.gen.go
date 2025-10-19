@@ -32,7 +32,7 @@ type IMenuItemBadge interface {
 	objectivec.IObject
 }
 
-// A control that provides additional quantitative information specific to a menu item, such as the number of available updates. [Full Topic]
+// A control that provides additional quantitative information specific to a menu item, such as the number of available updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge
 type MenuItemBadge struct {

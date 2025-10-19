@@ -31,7 +31,7 @@ type INETunnelProviderProtocol interface {
 	INEVPNProtocol
 }
 
-// Configuration parameters for a VPN tunnel. [Full Topic]
+// Configuration parameters for a VPN tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderProtocol
 type NETunnelProviderProtocol struct {

@@ -42,7 +42,7 @@ type ISKScene interface {
 	WillMoveFromView(view unsafe.Pointer)
 }
 
-// An object that organizes all of the active SpriteKit content. [Full Topic]
+// An object that organizes all of the active SpriteKit content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene
 type SKScene struct {
@@ -90,8 +90,7 @@ func NewSKScene() SKScene {
 }
 
 
-// Initializes a new scene object. [Full Topic]
-
+// Initializes a new scene object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/init(size:)
 func NewSKSceneWithSize(size unsafe.Pointer) SKScene {
@@ -102,88 +101,76 @@ func NewSKSceneWithSize(size unsafe.Pointer) SKScene {
 }
 
 
-// Creates and returns a new scene object. [Full Topic]
-
+// Creates and returns a new scene object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/sceneWithSize:
 func (sc _SKSceneClass) SceneWithSize(size unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sceneWithSize:"), size)
 	return rv
 }
-// Converts a point from view coordinates to scene coordinates. [Full Topic]
-
+// Converts a point from view coordinates to scene coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/convertPoint(fromView:)
 func (s_ SKScene) ConvertPointFromView(point unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("convertPointFromView:"), point)
 	return rv
 }
-// Converts a point from scene coordinates to view coordinates. [Full Topic]
-
+// Converts a point from scene coordinates to view coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/convertPoint(toView:)
 func (s_ SKScene) ConvertPointToView(point unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("convertPointToView:"), point)
 	return rv
 }
-// Tells your app to peform any necessary logic after constraints are applied. [Full Topic]
-
+// Tells your app to peform any necessary logic after constraints are applied.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/didApplyConstraints()
 func (s_ SKScene) DidApplyConstraints() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("didApplyConstraints"))
 }
-// Tells you when the scene’s size has changed. [Full Topic]
-
+// Tells you when the scene’s size has changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/didChangeSize(_:)
 func (s_ SKScene) DidChangeSize(oldSize unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("didChangeSize:"), oldSize)
 }
-// Tells your app to peform any necessary logic after scene actions are evaluated. [Full Topic]
-
+// Tells your app to peform any necessary logic after scene actions are evaluated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/didEvaluateActions()
 func (s_ SKScene) DidEvaluateActions() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("didEvaluateActions"))
 }
-// Tells your app to peform any necessary logic after the scene has finished all of the steps required to process animations. [Full Topic]
-
+// Tells your app to peform any necessary logic after the scene has finished all of the steps required to process animations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/didFinishUpdate()
 func (s_ SKScene) DidFinishUpdate() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("didFinishUpdate"))
 }
-// Tells you when the scene is presented by a view. [Full Topic]
-
+// Tells you when the scene is presented by a view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/didMove(to:)
 func (s_ SKScene) DidMoveToView(view unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("didMoveToView:"), view)
 }
-// Tells your app to peform any necessary logic after physics simulations are performed. [Full Topic]
-
+// Tells your app to peform any necessary logic after physics simulations are performed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/didSimulatePhysics()
 func (s_ SKScene) DidSimulatePhysics() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("didSimulatePhysics"))
 }
-// Tells you when the scene is presented. [Full Topic]
-
+// Tells you when the scene is presented.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/sceneDidLoad()
 func (s_ SKScene) SceneDidLoad() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("sceneDidLoad"))
 }
-// Tells your app to perform any app-specific logic to update your scene. [Full Topic]
-
+// Tells your app to perform any app-specific logic to update your scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/update(_:)
 func (s_ SKScene) Update(currentTime TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("update:"), currentTime)
 }
-// Tells you when the scene is about to be removed from a view. [Full Topic]
-
+// Tells you when the scene is about to be removed from a view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKScene/willMove(from:)
 func (s_ SKScene) WillMoveFromView(view unsafe.Pointer) {

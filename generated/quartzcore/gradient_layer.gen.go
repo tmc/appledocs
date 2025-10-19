@@ -31,7 +31,7 @@ type IGradientLayer interface {
 	ILayer
 }
 
-// A layer that draws a color gradient over its background color, filling the shape of the layer. [Full Topic]
+// A layer that draws a color gradient over its background color, filling the shape of the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer
 type GradientLayer struct {

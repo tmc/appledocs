@@ -31,7 +31,7 @@ type IDecimalNumber interface {
 	INumber
 }
 
-// An object for representing and performing arithmetic on base-10 numbers. [Full Topic]
+// An object for representing and performing arithmetic on base-10 numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber
 type DecimalNumber struct {

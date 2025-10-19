@@ -31,7 +31,7 @@ type IPopover interface {
 	IResponder
 }
 
-// A means to display additional content related to existing content on the screen. [Full Topic]
+// A means to display additional content related to existing content on the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover
 type Popover struct {

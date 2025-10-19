@@ -37,7 +37,7 @@ type IUserActivity interface {
 	ResignCurrent()
 }
 
-// A representation of the state of your app at a moment in time. [Full Topic]
+// A representation of the state of your app at a moment in time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity
 type UserActivity struct {
@@ -83,8 +83,7 @@ func NewUserActivity() UserActivity {
 }
 
 
-// Creates a user activity object with the specified type. [Full Topic]
-
+// Creates a user activity object with the specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/init(activityType:)
 func NewUserActivityWithActivityType(activityType string) UserActivity {
@@ -95,50 +94,43 @@ func NewUserActivityWithActivityType(activityType string) UserActivity {
 }
 
 
-// Deletes all user activities created by your app. [Full Topic]
-
+// Deletes all user activities created by your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/deleteAllSavedUserActivities(completionHandler:)
 func (uc _UserActivityClass) DeleteAllSavedUserActivitiesWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("deleteAllSavedUserActivitiesWithCompletionHandler:"), handler)
 }
-// Deletes user activities created by your app that have the specified persistent identifiers. [Full Topic]
-
+// Deletes user activities created by your app that have the specified persistent identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/deleteSavedUserActivities(withPersistentIdentifiers:completionHandler:)
 func (uc _UserActivityClass) DeleteSavedUserActivitiesWithPersistentIdentifiersCompletionHandler(persistentIdentifiers unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:"), persistentIdentifiers, handler)
 }
-// Adds the contents of the specified dictionary to the user info dictionary. [Full Topic]
-
+// Adds the contents of the specified dictionary to the user info dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/addUserInfoEntries(from:)
 func (u_ UserActivity) AddUserInfoEntriesFromDictionary(otherDictionary unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("addUserInfoEntriesFromDictionary:"), otherDictionary)
 }
-// Marks the activity as currently in use by the user. [Full Topic]
-
+// Marks the activity as currently in use by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/becomeCurrent()
 func (u_ UserActivity) BecomeCurrent() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("becomeCurrent"))
 }
-// Requests streams back to the originating app. [Full Topic]
-
+// Requests streams back to the originating app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/getContinuationStreams(completionHandler:)
 func (u_ UserActivity) GetContinuationStreamsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("getContinuationStreamsWithCompletionHandler:"), completionHandler)
 }
-// Invalidates an activity and marks it as no longer eligible for continuation. [Full Topic]
-
+// Invalidates an activity and marks it as no longer eligible for continuation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/invalidate()
 func (u_ UserActivity) Invalidate() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("invalidate"))
 }
-// Marks this activity object as inactive without invalidating it. [Full Topic]
-
+// Marks this activity object as inactive without invalidating it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/resignCurrent()
 func (u_ UserActivity) ResignCurrent() {

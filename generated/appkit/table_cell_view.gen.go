@@ -31,7 +31,7 @@ type ITableCellView interface {
 	IView
 }
 
-// A reusable container view shown for a particular cell in a table view that uses rows for content. [Full Topic]
+// A reusable container view shown for a particular cell in a table view that uses rows for content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView
 type TableCellView struct {

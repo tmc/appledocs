@@ -31,7 +31,7 @@ type IAVPlayerItemRenderedLegibleOutput interface {
 	IAVPlayerItemOutput
 }
 
-// A player item output that vends media with a legible characteristic as rendered pixel buffers. [Full Topic]
+// A player item output that vends media with a legible characteristic as rendered pixel buffers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemRenderedLegibleOutput
 type AVPlayerItemRenderedLegibleOutput struct {

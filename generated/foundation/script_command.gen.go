@@ -32,7 +32,7 @@ type IScriptCommand interface {
 	objectivec.IObject
 }
 
-// A self-contained scripting statement. [Full Topic]
+// A self-contained scripting statement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand
 type ScriptCommand struct {

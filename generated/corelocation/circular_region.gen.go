@@ -31,7 +31,7 @@ type ICircularRegion interface {
 	IRegion
 }
 
-// A circular geographic region that a center point and radius deine. [Full Topic]
+// A circular geographic region that a center point and radius deine.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularRegion
 type CircularRegion struct {

@@ -31,7 +31,7 @@ type IURLSessionUploadTask interface {
 	IURLSessionDataTask
 }
 
-// A URL session task that uploads data to the network in a request body. [Full Topic]
+// A URL session task that uploads data to the network in a request body.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionUploadTask
 type URLSessionUploadTask struct {

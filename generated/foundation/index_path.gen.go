@@ -32,7 +32,7 @@ type IIndexPath interface {
 	objectivec.IObject
 }
 
-// A list of indexes that together represent the path to a specific location in a tree of nested arrays. [Full Topic]
+// A list of indexes that together represent the path to a specific location in a tree of nested arrays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath
 type IndexPath struct {

@@ -32,7 +32,7 @@ type IPresentationIntent interface {
 	objectivec.IObject
 }
 
-// A type that contains the Markdown formatting for blocks of text, like paragraphs, lists, code blocks, and parts of tables. [Full Topic]
+// A type that contains the Markdown formatting for blocks of text, like paragraphs, lists, code blocks, and parts of tables.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent
 type PresentationIntent struct {

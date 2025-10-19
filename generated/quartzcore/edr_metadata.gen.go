@@ -32,7 +32,7 @@ type IEDRMetadata interface {
 	objectivec.IObject
 }
 
-// Metadata describing how extended dynamic range (EDR) values should be tone mapped. [Full Topic]
+// Metadata describing how extended dynamic range (EDR) values should be tone mapped.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata
 type EDRMetadata struct {

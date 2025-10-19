@@ -32,7 +32,7 @@ type IMorphology interface {
 	objectivec.IObject
 }
 
-// A description of the grammatical properties of a string. [Full Topic]
+// A description of the grammatical properties of a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology
 type Morphology struct {

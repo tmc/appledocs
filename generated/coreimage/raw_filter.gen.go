@@ -31,7 +31,7 @@ type IRAWFilter interface {
 	IFilter
 }
 
-// A filter subclass that produces an image by manipulating RAW image sensor data from a digital camera or scanner. [Full Topic]
+// A filter subclass that produces an image by manipulating RAW image sensor data from a digital camera or scanner.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter
 type RAWFilter struct {
@@ -79,24 +79,21 @@ func NewRAWFilter() RAWFilter {
 }
 
 
-// Creates a RAW filter from the pixel buffer and its properties that you specify. [Full Topic]
-
+// Creates a RAW filter from the pixel buffer and its properties that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(cvPixelBuffer:properties:)
 func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties unsafe.Pointer) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithCVPixelBuffer:properties:"), buffer, properties)
 	return rv
 }
-// Creates a RAW filter from the image data and type hint that you specify. [Full Topic]
-
+// Creates a RAW filter from the image data and type hint that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
 func NewRAWFilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint string) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
 	return rv
 }
-// Creates a RAW filter from the image at the URL location that you specify. [Full Topic]
-
+// Creates a RAW filter from the image at the URL location that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
 func NewRAWFilterWithImageURL(url unsafe.Pointer) RAWFilter {
@@ -105,24 +102,21 @@ func NewRAWFilterWithImageURL(url unsafe.Pointer) RAWFilter {
 }
 
 
-// Creates a RAW filter from the pixel buffer and its properties that you specify. [Full Topic]
-
+// Creates a RAW filter from the pixel buffer and its properties that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(cvPixelBuffer:properties:)
 func (rc _RAWFilterClass) FilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithCVPixelBuffer:properties:"), buffer, properties)
 	return rv
 }
-// Creates a RAW filter from the image data and type hint that you specify. [Full Topic]
-
+// Creates a RAW filter from the image data and type hint that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
 func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
 	return rv
 }
-// Creates a RAW filter from the image at the URL location that you specify. [Full Topic]
-
+// Creates a RAW filter from the image at the URL location that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
 func (rc _RAWFilterClass) FilterWithImageURL(url unsafe.Pointer) unsafe.Pointer {

@@ -32,7 +32,7 @@ type ITrackingArea interface {
 	objectivec.IObject
 }
 
-// A region of a view that generates mouse-tracking and cursor-update events when the pointer is over that region. [Full Topic]
+// A region of a view that generates mouse-tracking and cursor-update events when the pointer is over that region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea
 type TrackingArea struct {

@@ -32,7 +32,7 @@ type ITimeZone interface {
 	objectivec.IObject
 }
 
-// Information about standard time conventions associated with a specific geopolitical region. [Full Topic]
+// Information about standard time conventions associated with a specific geopolitical region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone
 type TimeZone struct {

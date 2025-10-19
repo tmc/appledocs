@@ -32,7 +32,7 @@ type IURLSessionConfiguration interface {
 	objectivec.IObject
 }
 
-// A configuration object that defines behavior and policies for a URL session. [Full Topic]
+// A configuration object that defines behavior and policies for a URL session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration
 type URLSessionConfiguration struct {
@@ -78,8 +78,7 @@ func NewURLSessionConfiguration() URLSessionConfiguration {
 }
 
 
-// Returns a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background. [Full Topic]
-
+// Returns a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/backgroundSessionConfiguration(_:)
 func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier string) unsafe.Pointer {

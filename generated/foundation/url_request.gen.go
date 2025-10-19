@@ -32,7 +32,7 @@ type IURLRequest interface {
 	objectivec.IObject
 }
 
-// A URL load request that is independent of protocol or URL scheme. [Full Topic]
+// A URL load request that is independent of protocol or URL scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest
 type URLRequest struct {

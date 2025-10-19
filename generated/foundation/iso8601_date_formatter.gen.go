@@ -31,7 +31,7 @@ type IISO8601DateFormatter interface {
 	IFormatter
 }
 
-// A formatter that converts between dates and their ISO 8601 string representations. [Full Topic]
+// A formatter that converts between dates and their ISO 8601 string representations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter
 type ISO8601DateFormatter struct {

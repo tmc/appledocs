@@ -33,7 +33,7 @@ type IAVAsset interface {
 	LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic unsafe.Pointer, completionHandler unsafe.Pointer)
 }
 
-// An object that models timed audiovisual media. [Full Topic]
+// An object that models timed audiovisual media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset
 type AVAsset struct {
@@ -79,8 +79,7 @@ func NewAVAsset() AVAsset {
 }
 
 
-// Loads tracks that contain media of a specified characteristic. [Full Topic]
-
+// Loads tracks that contain media of a specified characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/loadTracks(withMediaCharacteristic:completionHandler:)
 func (a_ AVAsset) LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic unsafe.Pointer, completionHandler unsafe.Pointer) {

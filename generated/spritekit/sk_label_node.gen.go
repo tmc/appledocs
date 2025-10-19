@@ -31,7 +31,7 @@ type ISKLabelNode interface {
 	ISKNode
 }
 
-// A graphical element that draws text. [Full Topic]
+// A graphical element that draws text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKLabelNode
 type SKLabelNode struct {

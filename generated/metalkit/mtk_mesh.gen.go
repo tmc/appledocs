@@ -32,7 +32,7 @@ type IMTKMesh interface {
 	objectivec.IObject
 }
 
-// A container for the vertex data of a Model I/O mesh, suitable for use in a Metal app. [Full Topic]
+// A container for the vertex data of a Model I/O mesh, suitable for use in a Metal app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh
 type MTKMesh struct {
@@ -78,8 +78,7 @@ func NewMTKMesh() MTKMesh {
 }
 
 
-// Initializes a MetalKit mesh and its submeshes from a Model I/O mesh. [Full Topic]
-
+// Initializes a MetalKit mesh and its submeshes from a Model I/O mesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/init(mesh:device:)
 func NewMTKMeshWithMeshDeviceError(mesh unsafe.Pointer, device unsafe.Pointer, error unsafe.Pointer) MTKMesh {
@@ -90,8 +89,7 @@ func NewMTKMeshWithMeshDeviceError(mesh unsafe.Pointer, device unsafe.Pointer, e
 }
 
 
-// Creates and initializes MetalKit meshes from all Model I/O meshes in a Model I/O asset. [Full Topic]
-
+// Creates and initializes MetalKit meshes from all Model I/O meshes in a Model I/O asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/newMeshesFromAsset:device:sourceMeshes:error:
 func (mc _MTKMeshClass) NewMeshesFromAssetDeviceSourceMeshesError(asset unsafe.Pointer, device unsafe.Pointer, sourceMeshes unsafe.Pointer, error unsafe.Pointer) unsafe.Pointer {

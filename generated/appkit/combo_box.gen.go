@@ -31,7 +31,7 @@ type IComboBox interface {
 	ITextField
 }
 
-// A view that displays a list of values in a pop-up menu where the user selects a value or types in a custom value. [Full Topic]
+// A view that displays a list of values in a pop-up menu where the user selects a value or types in a custom value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox
 type ComboBox struct {

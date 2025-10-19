@@ -32,7 +32,7 @@ type IBezierPath interface {
 	objectivec.IObject
 }
 
-// An object that can create paths using PostScript-style commands. [Full Topic]
+// An object that can create paths using PostScript-style commands.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath
 type BezierPath struct {

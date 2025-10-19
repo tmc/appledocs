@@ -31,7 +31,7 @@ type IComboBoxCell interface {
 	ITextFieldCell
 }
 
-// The user interface of a combo box. [Full Topic]
+// The user interface of a combo box.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBoxCell
 type ComboBoxCell struct {

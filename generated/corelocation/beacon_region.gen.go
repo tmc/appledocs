@@ -32,7 +32,7 @@ type IBeaconRegion interface {
 	PeripheralDataWithMeasuredPower(measuredPower unsafe.Pointer) unsafe.Pointer
 }
 
-// A region for detecting the presence of iBeacon devices. [Full Topic]
+// A region for detecting the presence of iBeacon devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion
 type BeaconRegion struct {
@@ -80,8 +80,7 @@ func NewBeaconRegion() BeaconRegion {
 }
 
 
-// Retrieves data that you can use to advertise the current device as a beacon. [Full Topic]
-
+// Retrieves data that you can use to advertise the current device as a beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/peripheralData(withMeasuredPower:)
 func (b_ BeaconRegion) PeripheralDataWithMeasuredPower(measuredPower unsafe.Pointer) unsafe.Pointer {

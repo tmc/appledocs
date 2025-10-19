@@ -51,7 +51,7 @@ type IAVPlayer interface {
 	SetRateTimeAtHostTime(rate float32, itemTime unsafe.Pointer, hostClockTime unsafe.Pointer)
 }
 
-// An object that provides the interface to control the player’s transport behavior. [Full Topic]
+// An object that provides the interface to control the player’s transport behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer
 type AVPlayer struct {
@@ -97,18 +97,7 @@ func NewAVPlayer() AVPlayer {
 }
 
 
-// Creates a new player to play the specified player item. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(playerItem:)
-func NewAVPlayerWithPlayerItem(item unsafe.Pointer) AVPlayer {
-	instance := getAVPlayerClass().Alloc()
-	rv := objc.Send[AVPlayer](instance.ID, objc.Sel("initWithPlayerItem:"), item)
-	rv.Autorelease()
-	return rv
-}
-// Creates a new player to play a single audiovisual resource referenced by a given URL. [Full Topic]
-
+// Creates a new player to play a single audiovisual resource referenced by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(url:)
 func NewAVPlayerWithURL(URL unsafe.Pointer) AVPlayer {
@@ -117,156 +106,144 @@ func NewAVPlayerWithURL(URL unsafe.Pointer) AVPlayer {
 	rv.Autorelease()
 	return rv
 }
+// Creates a new player to play the specified player item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(playerItem:)
+func NewAVPlayerWithPlayerItem(item unsafe.Pointer) AVPlayer {
+	instance := getAVPlayerClass().Alloc()
+	rv := objc.Send[AVPlayer](instance.ID, objc.Sel("initWithPlayerItem:"), item)
+	rv.Autorelease()
+	return rv
+}
 
 
-// Returns a new player initialized to play the specified player item. [Full Topic]
-
+// Returns a new player initialized to play the specified player item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playerWithPlayerItem:
 func (ac _AVPlayerClass) PlayerWithPlayerItem(item unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("playerWithPlayerItem:"), item)
 	return rv
 }
-// Returns a new player to play a single audiovisual resource referenced by a given URL. [Full Topic]
-
+// Returns a new player to play a single audiovisual resource referenced by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playerWithURL:
 func (ac _AVPlayerClass) PlayerWithURL(URL unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("playerWithURL:"), URL)
 	return rv
 }
-// Requests the invocation of a block when specified times are traversed during normal playback. [Full Topic]
-
+// Requests the invocation of a block when specified times are traversed during normal playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/addBoundaryTimeObserver(forTimes:queue:using:)
 func (a_ AVPlayer) AddBoundaryTimeObserverForTimesQueueUsingBlock(times unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("addBoundaryTimeObserverForTimes:queue:usingBlock:"), times, queue, block)
 	return rv
 }
-// Requests the periodic invocation of a given block during playback to report changing time. [Full Topic]
-
+// Requests the periodic invocation of a given block during playback to report changing time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/addPeriodicTimeObserver(forInterval:queue:using:)
 func (a_ AVPlayer) AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("addPeriodicTimeObserverForInterval:queue:usingBlock:"), interval, queue, block)
 	return rv
 }
-// Cancels any pending preroll requests and invokes the corresponding completion handlers, if present. [Full Topic]
-
+// Cancels any pending preroll requests and invokes the corresponding completion handlers, if present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/cancelPendingPrerolls()
 func (a_ AVPlayer) CancelPendingPrerolls() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("cancelPendingPrerolls"))
 }
-// Returns the current time of the current player item. [Full Topic]
-
+// Returns the current time of the current player item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/currentTime()
 func (a_ AVPlayer) CurrentTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentTime"))
 	return rv
 }
-// Returns the automatic selection criteria for media items with the specified media characteristic. [Full Topic]
-
+// Returns the automatic selection criteria for media items with the specified media characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/mediaSelectionCriteria(forMediaCharacteristic:)
 func (a_ AVPlayer) MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristic unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mediaSelectionCriteriaForMediaCharacteristic:"), mediaCharacteristic)
 	return rv
 }
-// Pauses playback of the current item. [Full Topic]
-
+// Pauses playback of the current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/pause()
 func (a_ AVPlayer) Pause() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("pause"))
 }
-// Begins playback of the current item. [Full Topic]
-
+// Begins playback of the current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/play()
 func (a_ AVPlayer) Play() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("play"))
 }
-// Plays the available media data immediately, at the specified rate. [Full Topic]
-
+// Plays the available media data immediately, at the specified rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playImmediately(atRate:)
 func (a_ AVPlayer) PlayImmediatelyAtRate(rate float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("playImmediatelyAtRate:"), rate)
 }
-// Begins loading media data to prime the media pipelines for playback. [Full Topic]
-
+// Begins loading media data to prime the media pipelines for playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preroll(atRate:completionHandler:)
 func (a_ AVPlayer) PrerollAtRateCompletionHandler(rate float32, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("prerollAtRate:completionHandler:"), rate, completionHandler)
 }
-// Cancels a previously registered periodic or boundary time observer. [Full Topic]
-
+// Cancels a previously registered periodic or boundary time observer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/removeTimeObserver(_:)
 func (a_ AVPlayer) RemoveTimeObserver(observer objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeTimeObserver:"), observer)
 }
-// Replaces the current item with a new item. [Full Topic]
-
+// Replaces the current item with a new item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/replaceCurrentItem(with:)
 func (a_ AVPlayer) ReplaceCurrentItemWithPlayerItem(item unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("replaceCurrentItemWithPlayerItem:"), item)
 }
-// Requests that the player seek to a specified time. [Full Topic]
-
+// Requests that the player seek to a specified time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:)-87h2r
 func (a_ AVPlayer) SeekToTime(time unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("seekToTime:"), time)
 }
-// Requests that the player seek to a specified date. [Full Topic]
-
+// Requests that the player seek to a specified date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:)-9h9qr
 func (a_ AVPlayer) SeekToDate(date unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("seekToDate:"), date)
 }
-// Requests that the player seek to a specified time, and to notify you when the seek is complete. [Full Topic]
-
+// Requests that the player seek to a specified time, and to notify you when the seek is complete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:completionHandler:)-75bls
 func (a_ AVPlayer) SeekToTimeCompletionHandler(time unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("seekToTime:completionHandler:"), time, completionHandler)
 }
-// Requests that the player seek to a specified date, and to notify you when the seek is complete. [Full Topic]
-
+// Requests that the player seek to a specified date, and to notify you when the seek is complete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:completionHandler:)-wr1l
 func (a_ AVPlayer) SeekToDateCompletionHandler(date unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("seekToDate:completionHandler:"), date, completionHandler)
 }
-// Requests that the player seek to a specified time with the amount of accuracy specified by the time tolerance values. [Full Topic]
-
+// Requests that the player seek to a specified time with the amount of accuracy specified by the time tolerance values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:toleranceBefore:toleranceAfter:)
 func (a_ AVPlayer) SeekToTimeToleranceBeforeToleranceAfter(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("seekToTime:toleranceBefore:toleranceAfter:"), time, toleranceBefore, toleranceAfter)
 }
-// Requests that the player seek to a specified time with the amount of accuracy specified by the time tolerance values, and to notify you when the seek is complete. [Full Topic]
-
+// Requests that the player seek to a specified time with the amount of accuracy specified by the time tolerance values, and to notify you when the seek is complete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:toleranceBefore:toleranceAfter:completionHandler:)
 func (a_ AVPlayer) SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("seekToTime:toleranceBefore:toleranceAfter:completionHandler:"), time, toleranceBefore, toleranceAfter, completionHandler)
 }
-// Applies automatic selection criteria for media that has the specified media characteristic. [Full Topic]
-
+// Applies automatic selection criteria for media that has the specified media characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/setMediaSelectionCriteria(_:forMediaCharacteristic:)
 func (a_ AVPlayer) SetMediaSelectionCriteriaForMediaCharacteristic(criteria unsafe.Pointer, mediaCharacteristic unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaSelectionCriteria:forMediaCharacteristic:"), criteria, mediaCharacteristic)
 }
-// Synchronizes the playback rate and time of the current item with an external source. [Full Topic]
-
+// Synchronizes the playback rate and time of the current item with an external source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/setRate(_:time:atHostTime:)
 func (a_ AVPlayer) SetRateTimeAtHostTime(rate float32, itemTime unsafe.Pointer, hostClockTime unsafe.Pointer) {

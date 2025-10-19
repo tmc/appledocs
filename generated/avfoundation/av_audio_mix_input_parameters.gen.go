@@ -32,7 +32,7 @@ type IAVAudioMixInputParameters interface {
 	objectivec.IObject
 }
 
-// An object that represents the parameters that you apply when adding an audio track to a mix. [Full Topic]
+// An object that represents the parameters that you apply when adding an audio track to a mix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAudioMixInputParameters
 type AVAudioMixInputParameters struct {

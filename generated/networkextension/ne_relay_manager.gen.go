@@ -32,7 +32,7 @@ type INERelayManager interface {
 	objectivec.IObject
 }
 
-// An object you use to create and manage a network relay configuration. [Full Topic]
+// An object you use to create and manage a network relay configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager
 type NERelayManager struct {

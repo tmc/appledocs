@@ -32,7 +32,7 @@ type IViewAnimation interface {
 	quartzcore.IAnimation
 }
 
-// An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects. [Full Topic]
+// An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewAnimation
 type ViewAnimation struct {

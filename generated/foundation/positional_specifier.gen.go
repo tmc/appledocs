@@ -32,7 +32,7 @@ type IPositionalSpecifier interface {
 	objectivec.IObject
 }
 
-// A specifier for an insertion point in a container relative to another object in the container. [Full Topic]
+// A specifier for an insertion point in a container relative to another object in the container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier
 type PositionalSpecifier struct {

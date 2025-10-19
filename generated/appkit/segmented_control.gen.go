@@ -31,7 +31,7 @@ type ISegmentedControl interface {
 	IControl
 }
 
-// Display one or more buttons in a single horizontal group. [Full Topic]
+// Display one or more buttons in a single horizontal group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl
 type SegmentedControl struct {

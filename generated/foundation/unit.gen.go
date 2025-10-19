@@ -32,7 +32,7 @@ type IUnit interface {
 	objectivec.IObject
 }
 
-// An abstract class representing a unit of measure. [Full Topic]
+// An abstract class representing a unit of measure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit
 type Unit struct {

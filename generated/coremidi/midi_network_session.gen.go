@@ -32,7 +32,7 @@ type IMIDINetworkSession interface {
 	objectivec.IObject
 }
 
-// An object that represents a pairing of a source and destination. [Full Topic]
+// An object that represents a pairing of a source and destination.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession
 type MIDINetworkSession struct {

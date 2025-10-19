@@ -31,7 +31,7 @@ type IMiddleSpecifier interface {
 	IScriptObjectSpecifier
 }
 
-// A specifier indicating the middle object in a collection or, if not a one-to-many relationship, the sole object. [Full Topic]
+// A specifier indicating the middle object in a collection or, if not a one-to-many relationship, the sole object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMiddleSpecifier
 type MiddleSpecifier struct {

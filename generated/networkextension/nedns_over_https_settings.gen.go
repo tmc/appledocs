@@ -31,7 +31,7 @@ type INEDNSOverHTTPSSettings interface {
 	INEDNSSettings
 }
 
-// The DNS resolver settings for a DNS-over-HTTPS server. [Full Topic]
+// The DNS resolver settings for a DNS-over-HTTPS server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSOverHTTPSSettings
 type NEDNSOverHTTPSSettings struct {

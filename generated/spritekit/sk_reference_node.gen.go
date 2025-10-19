@@ -31,7 +31,7 @@ type ISKReferenceNode interface {
 	ISKNode
 }
 
-// A node that’s defined in an archived file. [Full Topic]
+// A node that’s defined in an archived file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKReferenceNode
 type SKReferenceNode struct {

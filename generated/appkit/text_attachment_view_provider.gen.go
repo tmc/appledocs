@@ -32,7 +32,7 @@ type ITextAttachmentViewProvider interface {
 	objectivec.IObject
 }
 
-// A container object that associates a text attachment at a particular document location with a view object. [Full Topic]
+// A container object that associates a text attachment at a particular document location with a view object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider
 type TextAttachmentViewProvider struct {

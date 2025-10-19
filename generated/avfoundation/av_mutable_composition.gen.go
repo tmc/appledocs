@@ -31,7 +31,7 @@ type IAVMutableComposition interface {
 	IAVComposition
 }
 
-// An object that you use to create a new composition from existing assets. [Full Topic]
+// An object that you use to create a new composition from existing assets.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition
 type AVMutableComposition struct {

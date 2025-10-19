@@ -31,7 +31,7 @@ type IGlassEffectContainerView interface {
 	IView
 }
 
-// A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other. [Full Topic]
+// A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView
 type GlassEffectContainerView struct {

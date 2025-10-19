@@ -31,7 +31,7 @@ type IRotationGestureRecognizer interface {
 	IGestureRecognizer
 }
 
-// A continuous gesture recognizer that tracks two trackpad touches moving opposite each other in a circular motion. [Full Topic]
+// A continuous gesture recognizer that tracks two trackpad touches moving opposite each other in a circular motion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRotationGestureRecognizer
 type RotationGestureRecognizer struct {

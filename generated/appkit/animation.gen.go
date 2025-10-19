@@ -32,7 +32,7 @@ type IAnimation interface {
 	objectivec.IObject
 }
 
-// An object that manages the timing and progress of animations in the user interface. [Full Topic]
+// An object that manages the timing and progress of animations in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation
 type Animation struct {

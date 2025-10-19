@@ -32,7 +32,7 @@ type IFont interface {
 	objectivec.IObject
 }
 
-// The representation of a font in an app. [Full Topic]
+// The representation of a font in an app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont
 type Font struct {

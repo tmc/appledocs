@@ -31,7 +31,7 @@ type IActionCell interface {
 	ICell
 }
 
-// An active area inside a control. [Full Topic]
+// An active area inside a control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell
 type ActionCell struct {

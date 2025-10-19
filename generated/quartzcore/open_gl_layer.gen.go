@@ -32,7 +32,7 @@ type IOpenGLLayer interface {
 	DrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t unsafe.Pointer, ts unsafe.Pointer)
 }
 
-// A layer that provides a layer suitable for rendering OpenGL content. [Full Topic]
+// A layer that provides a layer suitable for rendering OpenGL content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer
 type OpenGLLayer struct {
@@ -80,8 +80,7 @@ func NewOpenGLLayer() OpenGLLayer {
 }
 
 
-// Draws the OpenGL content for the specified time. [Full Topic]
-
+// Draws the OpenGL content for the specified time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/draw(inCGLContext:pixelFormat:forLayerTime:displayTime:)
 func (o_ OpenGLLayer) DrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t unsafe.Pointer, ts unsafe.Pointer) {

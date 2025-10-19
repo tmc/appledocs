@@ -31,7 +31,7 @@ type IPickerTouchBarItem interface {
 	ITouchBarItem
 }
 
-// A bar item that provides a picker control with multiple options. [Full Topic]
+// A bar item that provides a picker control with multiple options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem
 type PickerTouchBarItem struct {

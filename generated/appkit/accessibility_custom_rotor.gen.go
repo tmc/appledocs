@@ -32,7 +32,7 @@ type IAccessibilityCustomRotor interface {
 	objectivec.IObject
 }
 
-// A context-sensitive function that helps VoiceOver users find the next instance of a related accessibility element. [Full Topic]
+// A context-sensitive function that helps VoiceOver users find the next instance of a related accessibility element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotor
 type AccessibilityCustomRotor struct {

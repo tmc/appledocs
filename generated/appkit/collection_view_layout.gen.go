@@ -32,7 +32,7 @@ type ICollectionViewLayout interface {
 	objectivec.IObject
 }
 
-// An abstract base class that you subclass and use to generate layout information for a collection view. [Full Topic]
+// An abstract base class that you subclass and use to generate layout information for a collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayout
 type CollectionViewLayout struct {

@@ -31,7 +31,7 @@ type IMassFormatter interface {
 	IFormatter
 }
 
-// A formatter that provides localized descriptions of mass and weight values. [Full Topic]
+// A formatter that provides localized descriptions of mass and weight values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter
 type MassFormatter struct {

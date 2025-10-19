@@ -32,7 +32,7 @@ type IPointerFunctions interface {
 	objectivec.IObject
 }
 
-// An instance of defines callout functions appropriate for managing a pointer reference held somewhere else. [Full Topic]
+// An instance of defines callout functions appropriate for managing a pointer reference held somewhere else.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions
 type PointerFunctions struct {

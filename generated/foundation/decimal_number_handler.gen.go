@@ -32,7 +32,7 @@ type IDecimalNumberHandler interface {
 	objectivec.IObject
 }
 
-// A class that adopts the decimal number behaviors protocol. [Full Topic]
+// A class that adopts the decimal number behaviors protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler
 type DecimalNumberHandler struct {

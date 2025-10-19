@@ -31,7 +31,7 @@ type ISKShapeNode interface {
 	ISKNode
 }
 
-// A mathematical shape that can be stroked or filled. [Full Topic]
+// A mathematical shape that can be stroked or filled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SpriteKit/SKShapeNode
 type SKShapeNode struct {
