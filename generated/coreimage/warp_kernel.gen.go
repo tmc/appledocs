@@ -72,7 +72,7 @@ func NewWarpKernel() WarpKernel {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
-func NewKernelWithString(string string) WarpKernel {
+func NewWarpKernelWithString(string string) WarpKernel {
 	rv := objc.Send[WarpKernel](objc.ID(warpKernelClass.class), objc.Sel("kernelWithString:"), string)
 	rv.Autorelease()
 	return rv

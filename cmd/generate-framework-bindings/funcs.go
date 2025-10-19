@@ -88,6 +88,9 @@ var templateFuncs = template.FuncMap{
 
 	// Method filtering
 	"isInheritedFromNSObject": isInheritedFromNSObject,
+
+	// Cross-framework dependency detection
+	"classDependsOnCoreGraphics": classDependsOnCoreGraphics,
 }
 
 // FunctionData represents data for function template rendering.
@@ -996,12 +999,26 @@ func initMethodToConstructorName(className, selector string) string {
 		return "New" + structName + goName
 	}
 
-	// This is a class factory method (e.g., buttonWithTitle:target:action:)
+	// This is a class factory method (e.g., buttonWithTitle:target:action:, kernelWithString:)
 	// Convert the entire selector to Go name
 	goName := occ2go.SelectorToGoName(selector)
 
-	// Return "New" + GoName (e.g., "NewButtonWithTitleTargetAction")
-	return "New" + goName
+	// Check if the selector and class name share a common suffix/prefix to avoid doubling
+	// Example: BlendKernel.kernelWithString: -> "New" + "BlendKernel" + "KernelWithString"
+	// We want: NewBlendKernelWithString (not NewBlendKernelKernelWithString)
+	// Strategy: If structName ends with the same word that goName starts with, merge them
+
+	// Try to find the common overlap
+	for i := 1; i <= len(structName) && i <= len(goName); i++ {
+		if strings.HasSuffix(structName, goName[:i]) {
+			// Found overlap: structName ends with first i chars of goName
+			// Return structName + rest of goName
+			return "New" + structName + goName[i:]
+		}
+	}
+
+	// No overlap, just concatenate
+	return "New" + structName + goName
 }
 
 // prepareInitMethodsWithClassName properly deduplicates init methods by their generated constructor names.
@@ -1036,6 +1053,32 @@ func prepareInitMethodsWithClassName(className string, methods []*occ2go.ParsedM
 	}
 
 	return result
+}
+
+// classDependsOnCoreGraphics returns true if any method in the class uses CoreGraphics types
+func classDependsOnCoreGraphics(methods []*occ2go.ParsedMethod, framework string) bool {
+	if framework == "CoreGraphics" {
+		return false
+	}
+
+	for _, m := range methods {
+		// Check return type
+		goType := occ2go.MapCTypeToGo(m.ReturnType, framework)
+		if strings.HasPrefix(goType, "coregraphics.") {
+			return true
+		}
+
+		// Check parameters
+		for _, p := range m.Parameters {
+			paramType := strings.TrimSpace(strings.TrimRight(p.Type, ",;)"))
+			goParamType := occ2go.MapCTypeToGo(paramType, framework)
+			if strings.HasPrefix(goParamType, "coregraphics.") {
+				return true
+			}
+		}
+	}
+
+	return false
 }
 
 // sortMethodsByName sorts methods by name for consistent output

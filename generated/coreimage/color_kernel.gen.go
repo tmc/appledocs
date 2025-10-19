@@ -72,7 +72,7 @@ func NewColorKernel() ColorKernel {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
-func NewKernelWithString(string string) ColorKernel {
+func NewColorKernelWithString(string string) ColorKernel {
 	rv := objc.Send[ColorKernel](objc.ID(colorKernelClass.class), objc.Sel("kernelWithString:"), string)
 	rv.Autorelease()
 	return rv

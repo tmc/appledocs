@@ -525,6 +525,7 @@ import (
 {{- $needsObjectiveC := false}}
 {{- $needsFoundation := false}}
 {{- $needsQuartzCore := false}}
+{{- $needsCoreGraphics := false}}
 {{- $structName := classToStructName .Class.Name}}
 {{- if and (ne $.Framework "ObjectiveC") .Class.SuperClass}}
 {{- $superStructName := classToStructName .Class.SuperClass}}
@@ -540,6 +541,9 @@ import (
 {{- else if ne $.Framework "ObjectiveC"}}
 {{- $needsObjectiveC = true}}
 {{- end}}
+{{- if classDependsOnCoreGraphics .Class.Methods $.Framework}}
+{{- $needsCoreGraphics = true}}
+{{- end}}
 {{- if $needsObjectiveC}}
 	"{{.OutputModule}}/objectivec"
 {{- end}}
@@ -548,6 +552,9 @@ import (
 {{- end}}
 {{- if $needsQuartzCore}}
 	"{{.OutputModule}}/quartzcore"
+{{- end}}
+{{- if $needsCoreGraphics}}
+	"{{.OutputModule}}/coregraphics"
 {{- end}}
 )
 

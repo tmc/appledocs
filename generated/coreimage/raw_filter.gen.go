@@ -71,7 +71,7 @@ func NewRAWFilter() RAWFilter {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(cvPixelBuffer:properties:)
-func NewFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties unsafe.Pointer) RAWFilter {
+func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties unsafe.Pointer) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(rAWFilterClass.class), objc.Sel("filterWithCVPixelBuffer:properties:"), buffer, properties)
 	rv.Autorelease()
 	return rv
@@ -80,7 +80,7 @@ func NewFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
-func NewFilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint string) RAWFilter {
+func NewRAWFilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint string) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(rAWFilterClass.class), objc.Sel("filterWithImageData:identifierHint:"), data, identifierHint)
 	rv.Autorelease()
 	return rv
@@ -89,7 +89,7 @@ func NewFilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint st
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
-func NewFilterWithImageURL(url unsafe.Pointer) RAWFilter {
+func NewRAWFilterWithImageURL(url unsafe.Pointer) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(rAWFilterClass.class), objc.Sel("filterWithImageURL:"), url)
 	rv.Autorelease()
 	return rv

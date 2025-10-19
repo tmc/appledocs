@@ -10,10 +10,10 @@ import (
 var _ = coreimage.NewBlendKernel
 
 
-// ExampleNewKernelWithString demonstrates how to create a BlendKernel instance using NewKernelWithString.
+// ExampleNewBlendKernelWithString demonstrates how to create a BlendKernel instance using NewBlendKernelWithString.
 // Creates a custom blend kernel from a program string.
-func ExampleNewKernelWithString() {
-	_ = coreimage.NewKernelWithString(
+func ExampleNewBlendKernelWithString() {
+	_ = coreimage.NewBlendKernelWithString(
 		"string", // string string
 	)
 	// Output:

@@ -10,10 +10,10 @@ import (
 var _ = coreimage.NewWarpKernel
 
 
-// ExampleNewKernelWithString demonstrates how to create a WarpKernel instance using NewKernelWithString.
+// ExampleNewWarpKernelWithString demonstrates how to create a WarpKernel instance using NewWarpKernelWithString.
 // Creates a warp kernel object from the specified kernel source code.
-func ExampleNewKernelWithString() {
-	_ = coreimage.NewKernelWithString(
+func ExampleNewWarpKernelWithString() {
+	_ = coreimage.NewWarpKernelWithString(
 		"string", // string string
 	)
 	// Output:

@@ -73,7 +73,7 @@ func NewBlendKernel() BlendKernel {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-func NewKernelWithString(string string) BlendKernel {
+func NewBlendKernelWithString(string string) BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(blendKernelClass.class), objc.Sel("kernelWithString:"), string)
 	rv.Autorelease()
 	return rv

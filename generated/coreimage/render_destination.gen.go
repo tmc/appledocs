@@ -66,16 +66,6 @@ func NewRenderDestination() RenderDestination {
 }
 
 
-// Creates a render destination based on a Metal texture. [Full Topic]
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(mtlTexture:commandBuffer:)
-func NewRenderDestinationWithMTLTextureCommandBuffer(texture unsafe.Pointer, commandBuffer unsafe.Pointer) RenderDestination {
-	instance := renderDestinationClass.Alloc()
-	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithMTLTexture:commandBuffer:"), texture, commandBuffer)
-	rv.Autorelease()
-	return rv
-}
 // Creates a render destination based on a Core Video pixel buffer. [Full Topic]
 
 //
@@ -123,6 +113,16 @@ func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, 
 func NewRenderDestinationWithIOSurface(surface unsafe.Pointer) RenderDestination {
 	instance := renderDestinationClass.Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithIOSurface:"), surface)
+	rv.Autorelease()
+	return rv
+}
+// Creates a render destination based on a Metal texture. [Full Topic]
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(mtlTexture:commandBuffer:)
+func NewRenderDestinationWithMTLTextureCommandBuffer(texture unsafe.Pointer, commandBuffer unsafe.Pointer) RenderDestination {
+	instance := renderDestinationClass.Alloc()
+	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithMTLTexture:commandBuffer:"), texture, commandBuffer)
 	rv.Autorelease()
 	return rv
 }
